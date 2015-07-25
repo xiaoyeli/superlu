@@ -3,10 +3,10 @@
  * \brief Estimates reciprocal of the condition number of a general matrix
  * 
  * <pre>
- * -- SuperLU routine (version 3.0) --
+ * -- SuperLU routine (version 5.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
- * October 15, 2003
+ * July 25, 2015
  *
  * Modified from lapack routines SGECON.
  * </pre> 
@@ -81,9 +81,10 @@ sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     float ainvnm;
     float *work;
     int    *iwork;
+    int    isave[3];
     extern int srscl_(int *, float *, float *, int *);
 
-    extern int slacon_(int *, float *, float *, int *, float *, int *);
+    extern int slacon2_(int *, float *, float *, int *, float *, int *, int []);
 
     
     /* Test the input parameters. */
@@ -123,7 +124,7 @@ sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     kase = 0;
 
     do {
-	slacon_(&L->nrow, &work[L->nrow], &work[0], &iwork[0], &ainvnm, &kase);
+	slacon2_(&L->nrow, &work[L->nrow], &work[0], &iwork[0], &ainvnm, &kase, isave);
 
 	if (kase == 0) break;
 

@@ -75,10 +75,11 @@ slacon_(int *n, float *v, float *x, int *isgn, float *est, int *kase)
     float      one = 1.0;
     
     /* Local variables */
-    static int iter;
-    static int jump, jlast;
-    static float altsgn, estold;
-    static int i, j;
+    static int jump;
+    int jlast;
+     int iter;
+     float altsgn, estold;
+     int i, j;
     float temp;
 #ifdef _CRAY
     extern int ISAMAX(int *, float *, int *);

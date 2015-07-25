@@ -39,10 +39,10 @@ include ../make.inc
 
 ### LAPACK 
 LAAUX 	= lsame.o  xerbla.o
-SLASRC 	= slacon.o 
-DLASRC	= dlacon.o
-CLASRC	= clacon.o scsum1.o icmax1.o
-ZLASRC	= zlacon.o dzsum1.o izmax1.o
+SLASRC 	= slacon2.o 
+DLASRC	= dlacon2.o
+CLASRC	= clacon2.o scsum1.o icmax1.o
+ZLASRC	= zlacon2.o dzsum1.o izmax1.o
 SCLAUX 	= slamch.o
 DZLAUX 	= dlamch.o
 

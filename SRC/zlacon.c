@@ -79,10 +79,11 @@ zlacon_(int *n, doublecomplex *v, doublecomplex *x, double *est, int *kase)
     double d__1;
     
     /* Local variables */
-    static int iter;
-    static int jump, jlast;
-    static double altsgn, estold;
-    static int i, j;
+    static int jump;
+    int jlast;
+     int iter;
+     double altsgn, estold;
+     int i, j;
     double temp;
     double safmin;
     extern double dlamch_(char *);

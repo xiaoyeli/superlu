@@ -15,10 +15,11 @@
 #define abs(a) ((a) >= 0) ? (a) : -(a)
 #define min(a,b) ((a) < (b)) ? (a) : (b)
 
+#if 0
 /* Table of constant values */
-
 static int_t c__1 = 1;
 static int_t c__2 = 2;
+#endif
 
 /* CCCC COPYRIGHT (c) 1999  Council for the Central Laboratory of the */
 /* CCCC Research Councils.    All rights reserved. */
@@ -662,6 +663,7 @@ L99:
     /* System generated locals */
     int_t i__1, i__2, i__3;
     double d__1, d__2, d__3;
+    int_t c__1 = 1;
 
     /* Local variables */
     int_t i__, j, k;
@@ -1087,6 +1089,7 @@ L1000:
 {
     /* System generated locals */
     int_t i__1;
+    int_t c__1 = 1;
 
     /* Local variables */
     double di;
@@ -2161,7 +2164,7 @@ L101:
 	double *d__)
 {
     /* System generated locals */
-    int_t i__1, i__2, i__3;
+    int_t i__1, i__2, i__3, c__2 = 2;
 
     /* Local variables */
     int_t i__, j, k, i0, k0, k1, k2, q0;

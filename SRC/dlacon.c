@@ -75,10 +75,11 @@ dlacon_(int *n, double *v, double *x, int *isgn, double *est, int *kase)
     double      one = 1.0;
     
     /* Local variables */
-    static int iter;
-    static int jump, jlast;
-    static double altsgn, estold;
-    static int i, j;
+    static int jump;
+     int iter;
+    int jlast;
+     double altsgn, estold;
+     int i, j;
     double temp;
 #ifdef _CRAY
     extern int ISAMAX(int *, double *, int *);

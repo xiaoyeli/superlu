@@ -79,10 +79,11 @@ clacon_(int *n, complex *v, complex *x, float *est, int *kase)
     float d__1;
     
     /* Local variables */
-    static int iter;
-    static int jump, jlast;
-    static float altsgn, estold;
-    static int i, j;
+    static int jump;
+    int jlast;
+     int iter;
+     float altsgn, estold;
+     int i, j;
     float temp;
     float safmin;
     extern float slamch_(char *);

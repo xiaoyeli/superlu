@@ -157,8 +157,9 @@ cgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
     complex   *work;
     float   *rwork;
     int      *iwork;
+    int      isave[3];
 
-    extern int clacon_(int *, complex *, complex *, float *, int *);
+    extern int clacon2_(int *, complex *, complex *, float *, int *, int []);
 #ifdef _CRAY
     extern int CCOPY(int *, complex *, int *, complex *, int *);
     extern int CSAXPY(int *, complex *, complex *, int *, complex *, int *);
@@ -360,7 +361,7 @@ cgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
           is incremented by SAFE1 if the i-th component of   
           abs(op(A))*abs(X) + abs(B) is less than SAFE2.   
 
-          Use CLACON to estimate the infinity-norm of the matrix   
+          Use CLACON2 to estimate the infinity-norm of the matrix   
              inv(op(A)) * diag(W),   
           where W = abs(R) + NZ*EPS*( abs(op(A))*abs(X)+abs(B) ))) */
 	
@@ -393,8 +394,7 @@ cgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 	kase = 0;
 
 	do {
-	    clacon_(&A->nrow, &work[A->nrow], work,
-		    &ferr[j], &kase);
+	    clacon2_(&A->nrow, &work[A->nrow], work, &ferr[j], &kase, isave);
 	    if (kase == 0) break;
 
 	    if (kase == 1) {

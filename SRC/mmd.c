@@ -57,7 +57,7 @@ typedef int shortint;
     int i__1;
 
     /* Local variables */
-    static int mdeg, ehead, i, mdlmt, mdnode;
+    int mdeg, ehead, i, mdlmt, mdnode;
     extern /* Subroutine */ int slu_mmdelm_(int *, int *, shortint *, 
 	    shortint *, shortint *, shortint *, shortint *, shortint *, 
 	    shortint *, int *, int *), slu_mmdupd_(int *, int *, 
@@ -66,7 +66,7 @@ typedef int shortint;
 	    int *), slu_mmdint_(int *, int *, shortint *, shortint *, 
 	    shortint *, shortint *, shortint *, shortint *, shortint *), 
 	    slu_mmdnum_(int *, shortint *, shortint *, shortint *);
-    static int nextmd, tag, num;
+    int nextmd, tag, num;
 
 
 /* *************************************************************** */
@@ -243,7 +243,7 @@ L1000:
     int i__1;
 
     /* Local variables */
-    static int ndeg, node, fnode;
+    int ndeg, node, fnode;
 
 
 /* *************************************************************** */
@@ -327,8 +327,8 @@ L1000:
     int i__1, i__2;
 
     /* Local variables */
-    static int node, link, rloc, rlmt, i, j, nabor, rnode, elmnt, xqnbr, 
-	    istop, jstop, istrt, jstrt, nxnode, pvnode, nqnbrs, npv;
+    int node, link, rloc, rlmt, i, j, nabor, rnode, elmnt, xqnbr, 
+	istop, jstop, istrt, jstrt, nxnode, pvnode, nqnbrs, npv;
 
 
 /* *************************************************************** */
@@ -575,7 +575,7 @@ L1800:
     int i__1, i__2;
 
     /* Local variables */
-    static int node, mtag, link, mdeg0, i, j, enode, fnode, nabor, elmnt, 
+    int node, mtag, link, mdeg0, i, j, enode, fnode, nabor, elmnt, 
 	    istop, jstop, q2head, istrt, jstrt, qxhead, iq2, deg, deg0;
 
 
@@ -929,7 +929,7 @@ L2300:
     int i__1;
 
     /* Local variables */
-    static int node, root, nextf, father, nqsize, num;
+    int node, root, nextf, father, nqsize, num;
 
 
 /* *************************************************************** */

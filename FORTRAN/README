@@ -10,3 +10,6 @@ To run the examples, type:
   	% df77exm < ../EXAMPLE/g20.rua		-- double precision example
 	% zf77exm < ../EXAMPLE/cg20.cua   	-- double complex example
 	% test_omp < ../EXAMPLE/g20.rua		-- solve multiple systems with different threads
+
+Useful envorinment variables for running OpenMP example:
+setenv OMP_NUM_THREADS 2; setenv OMP_STACKSIZE 8192M; limit stacksize unlimited

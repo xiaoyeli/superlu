@@ -46,10 +46,10 @@ ARCHFLAGS    = cr
 RANLIB       = ranlib
 
 CC           = gcc
-CFLAGS       = -g #-O3
+CFLAGS       = -O3 -g
 NOOPTS       = 
-FORTRAN	     = gfortran #g77
-FFLAGS       = -g -fopenmp
+FORTRAN	     = gfortran 
+FFLAGS       = -O3 -g -fopenmp
 LOADER       = $(CC)
 LOADOPTS     = -fopenmp
 

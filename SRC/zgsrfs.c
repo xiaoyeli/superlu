@@ -157,8 +157,9 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
     doublecomplex   *work;
     double   *rwork;
     int      *iwork;
+    int      isave[3];
 
-    extern int zlacon_(int *, doublecomplex *, doublecomplex *, double *, int *);
+    extern int zlacon2_(int *, doublecomplex *, doublecomplex *, double *, int *, int []);
 #ifdef _CRAY
     extern int CCOPY(int *, doublecomplex *, int *, doublecomplex *, int *);
     extern int CSAXPY(int *, doublecomplex *, doublecomplex *, int *, doublecomplex *, int *);
@@ -360,7 +361,7 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
           is incremented by SAFE1 if the i-th component of   
           abs(op(A))*abs(X) + abs(B) is less than SAFE2.   
 
-          Use ZLACON to estimate the infinity-norm of the matrix   
+          Use ZLACON2 to estimate the infinity-norm of the matrix   
              inv(op(A)) * diag(W),   
           where W = abs(R) + NZ*EPS*( abs(op(A))*abs(X)+abs(B) ))) */
 	
@@ -393,8 +394,7 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 	kase = 0;
 
 	do {
-	    zlacon_(&A->nrow, &work[A->nrow], work,
-		    &ferr[j], &kase);
+	    zlacon2_(&A->nrow, &work[A->nrow], work, &ferr[j], &kase, isave);
 	    if (kase == 0) break;
 
 	    if (kase == 1) {

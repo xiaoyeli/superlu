@@ -157,8 +157,9 @@ sgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
     float   *work;
     float   *rwork;
     int      *iwork;
+    int      isave[3];
 
-    extern int slacon_(int *, float *, float *, int *, float *, int *);
+    extern int slacon2_(int *, float *, float *, int *, float *, int *, int []);
 #ifdef _CRAY
     extern int SCOPY(int *, float *, int *, float *, int *);
     extern int SSAXPY(int *, float *, float *, int *, float *, int *);
@@ -362,7 +363,7 @@ sgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
           is incremented by SAFE1 if the i-th component of   
           abs(op(A))*abs(X) + abs(B) is less than SAFE2.   
 
-          Use SLACON to estimate the infinity-norm of the matrix   
+          Use SLACON2 to estimate the infinity-norm of the matrix   
              inv(op(A)) * diag(W),   
           where W = abs(R) + NZ*EPS*( abs(op(A))*abs(X)+abs(B) ))) */
 	
@@ -396,8 +397,8 @@ sgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 	kase = 0;
 
 	do {
-	    slacon_(&A->nrow, &work[A->nrow], work,
-		    &iwork[A->nrow], &ferr[j], &kase);
+	    slacon2_(&A->nrow, &work[A->nrow], work,
+		    &iwork[A->nrow], &ferr[j], &kase, isave);
 	    if (kase == 0) break;
 
 	    if (kase == 1) {

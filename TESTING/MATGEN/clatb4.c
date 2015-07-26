@@ -28,7 +28,7 @@ static integer c__2 = 2;
     static real badc1, badc2, large, small;
     static char c2[2];
     extern /* Subroutine */ int slabad_(real *, real *);
-    extern float slamch_(char *);
+    extern float smach(char *);
     extern logical lsamen_(integer *, char *, char *);
     static integer mat;
     static real eps;
@@ -99,10 +99,10 @@ static integer c__2 = 2;
 
     if (first) {
 	first = FALSE_;
-	eps = slamch_("Precision");
+	eps = smach("Precision");
 	badc2 = .1f / eps;
 	badc1 = sqrt(badc2);
-	small = slamch_("Safe minimum");
+	small = smach("Safe minimum");
 	large = 1.f / small;
 
 /*        If it looks like we're on a Cray, take the square root of   

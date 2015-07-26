@@ -78,8 +78,7 @@ int dgst04(int n, int nrhs, double *x, int ldx, double *xact,
     }
 
     /* Exit with RESID = 1/EPS if RCOND is invalid. */
-
-    eps = dlamch_("Epsilon");
+    eps = dmach("Epsilon");
     if ( rcond < 0. ) {
 	*resid = 1. / eps;
 	return 0;

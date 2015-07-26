@@ -440,7 +440,7 @@ sgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     } else {
 	rowequ = lsame_(equed, "R") || lsame_(equed, "B");
 	colequ = lsame_(equed, "C") || lsame_(equed, "B");
-	smlnum = slamch_("Safe minimum");
+	smlnum = smach("Safe minimum");  /* lamch_("Safe minimum"); */
 	bignum = 1. / smlnum;
     }
 
@@ -712,7 +712,8 @@ sgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 
     if ( options->ConditionNumber ) {
 	/* The matrix is singular to working precision. */
-	if ( *rcond < slamch_("E") && *info == 0) *info = A->ncol + 1;
+	/* if ( *rcond < slamch_("E") && *info == 0) *info = A->ncol + 1; */
+	if ( *rcond < smach("E") && *info == 0) *info = A->ncol + 1;
     }
 
     if ( nofact ) {

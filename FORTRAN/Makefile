@@ -10,7 +10,7 @@ LIBS	= $(SUPERLULIB) $(BLASLIB) -lm
 
 # double real
 DF77EXM	= f77_main.o hbcode1.o c_fortran_dgssv.o
-TEST_OMP= tslu_omp.o hbcode1.o c_fortran_dgssv.o
+TEST_OMP= test_omp.o hbcode1.o c_fortran_dgssv.o
 
 # double complex
 ZF77EXM	= z_f77_main.o zhbcode1.o c_fortran_zgssv.o

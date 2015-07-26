@@ -43,8 +43,8 @@ SLASRC 	= slacon2.o
 DLASRC	= dlacon2.o
 CLASRC	= clacon2.o scsum1.o icmax1.o
 ZLASRC	= zlacon2.o dzsum1.o izmax1.o
-SCLAUX 	= slamch.o
-DZLAUX 	= dlamch.o
+SCLAUX 	= smach.o    # slamch.o
+DZLAUX 	= dmach.o    # dlamch.o
 
 ### SuperLU 
 ALLAUX 	= superlu_timer.o util.o memory.o get_perm_c.o mmd.o \
@@ -137,9 +137,11 @@ complex16: $(ZLUSRC) $(ALLAUX) $(LAAUX) $(ZLASRC) $(DZLAUX)
 ##################################
 # Do not optimize these routines #
 ##################################
+smach.o: ../INSTALL/smach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
+dmach.o: ../INSTALL/dmach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
+superlu_timer.o:  superlu_timer.c ; $(CC) -c $(NOOPTS) $<
 slamch.o: slamch.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
 dlamch.o: dlamch.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
-superlu_timer.o:  superlu_timer.c ; $(CC) -c $(NOOPTS) $<
 ##################################
 
 .c.o:

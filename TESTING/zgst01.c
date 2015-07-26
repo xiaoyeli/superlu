@@ -91,7 +91,7 @@ int zgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
         }
 	
     /* Determine EPS and the norm of A. */
-    eps = dlamch_("Epsilon");
+    eps = dmach("Epsilon");
     anorm = zlangs("1", A);
     cnorm = 0.;
 

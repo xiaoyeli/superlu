@@ -59,17 +59,17 @@
     static doublereal scale;
     static integer count;
     static doublereal f1, g1, safmn2, safmx2;
-    extern doublereal dlamch_(char *);
+    extern doublereal dmach(char *);
     static doublereal safmin, eps;
 
 
 
     if (first) {
 	first = FALSE_;
-	safmin = dlamch_("S");
-	eps = dlamch_("E");
-	d__1 = dlamch_("B");
-	i__1 = (integer) (log(safmin / eps) / log(dlamch_("B")) / 2.);
+	safmin = dmach("S");
+	eps = dmach("E");
+	d__1 = dmach("B");
+	i__1 = (integer) (log(safmin / eps) / log(dmach("B")) / 2.);
 	safmn2 = pow_di(&d__1, &i__1);
 	safmx2 = 1. / safmn2;
     }

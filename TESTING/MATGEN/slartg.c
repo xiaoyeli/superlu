@@ -58,16 +58,16 @@
     static real scale;
     static integer count;
     static real f1, g1, safmn2, safmx2;
-    extern float slamch_(char *);
+    extern float smach(char *);
     static real safmin, eps;
 
 
     if (first) {
 	first = FALSE_;
-	safmin = slamch_("S");
-	eps = slamch_("E");
-	r__1 = slamch_("B");
-	i__1 = (integer) (log(safmin / eps) / log(slamch_("B")) / 2.f);
+	safmin = smach("S");
+	eps = smach("E");
+	r__1 = smach("B");
+	i__1 = (integer) (log(safmin / eps) / log(smach("B")) / 2.f);
 	safmn2 = pow_ri(&r__1, &i__1);
 	safmx2 = 1.f / safmn2;
     }

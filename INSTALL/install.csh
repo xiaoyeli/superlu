@@ -3,10 +3,10 @@
 set ofile = install.out			# output file
 
 echo '---- SINGLE PRECISION' >! $ofile
-./testslamch >> $ofile
+./testsmach >> $ofile
 echo '' >> $ofile
 echo ---- DOUBLE PRECISION >> $ofile
-./testdlamch >> $ofile
+./testdmach >> $ofile
 echo '' >> $ofile
 echo ---- TIMER >> $ofile
 ./testtimer >> $ofile

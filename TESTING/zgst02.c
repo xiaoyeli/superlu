@@ -104,8 +104,7 @@ int zgst02(trans_t trans, int m, int n, int nrhs, SuperMatrix *A,
     }
 
     /* Exit with RESID = 1/EPS if ANORM = 0. */
-
-    eps = dlamch_("Epsilon");
+    eps = dmach("Epsilon");
     anorm = zlangs("1", A);
     if (anorm <= 0.) {
 	*resid = 1. / eps;

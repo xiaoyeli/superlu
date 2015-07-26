@@ -240,7 +240,7 @@ extern int     sp_sgemm (char *, char *, int, int, int, float,
 			SuperMatrix *, float *, int, float, 
 			float *, int);
 extern         float slamch_(char *);
-
+extern         float smach(char *);   /* from C99 standard, in float.h */
 
 /*! \brief Memory-related */
 extern int     sLUMemInit (fact_t, void *, int, int, int, int, int,

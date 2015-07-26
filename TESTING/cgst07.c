@@ -122,8 +122,8 @@ int cgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, complex *b,
 	return 0;
     }
 
-    eps = slamch_("Epsilon");
-    unfl = slamch_("Safe minimum");
+    eps = smach("Epsilon");
+    unfl = smach("Safe minimum");
     ovfl   = 1. / unfl;
     notran = (trans == NOTRANS);
 

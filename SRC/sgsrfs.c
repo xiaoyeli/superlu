@@ -232,8 +232,9 @@ sgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 
     /* NZ = maximum number of nonzero elements in each row of A, plus 1 */
     nz     = A->ncol + 1;
-    eps    = slamch_("Epsilon");
-    safmin = slamch_("Safe minimum");
+    eps    = smach("Epsilon");
+    safmin = smach("Safe minimum");
+
     /* Set SAFE1 essentially to be the underflow threshold times the
        number of additions in each row. */
     safe1  = nz * safmin;

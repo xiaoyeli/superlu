@@ -104,8 +104,7 @@ int sgst02(trans_t trans, int m, int n, int nrhs, SuperMatrix *A,
     }
 
     /* Exit with RESID = 1/EPS if ANORM = 0. */
-
-    eps = slamch_("Epsilon");
+    eps = smach("Epsilon");
     anorm = slangs("1", A);
     if (anorm <= 0.) {
 	*resid = 1. / eps;

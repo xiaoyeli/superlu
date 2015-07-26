@@ -91,7 +91,7 @@ int sgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
         }
 	
     /* Determine EPS and the norm of A. */
-    eps = slamch_("Epsilon");
+    eps = smach("Epsilon");
     anorm = slangs("1", A);
     cnorm = 0.;
 

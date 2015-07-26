@@ -29,7 +29,7 @@ static integer c__2 = 2;
     static doublereal badc1, badc2, large, small;
     static char c2[2];
     extern /* Subroutine */ int dlabad_(doublereal *, doublereal *);
-    extern doublereal dlamch_(char *);
+    extern doublereal dmach(char *);
     extern logical lsamen_(integer *, char *, char *);
     static integer mat;
     static doublereal eps;
@@ -100,10 +100,10 @@ static integer c__2 = 2;
 
     if (first) {
 	first = FALSE_;
-	eps = dlamch_("Precision");
+	eps = dmach("Precision");
 	badc2 = .1 / eps;
 	badc1 = sqrt(badc2);
-	small = dlamch_("Safe minimum");
+	small = dmach("Safe minimum");
 	large = 1. / small;
 
 /*        If it looks like we're on a Cray, take the square root of   

@@ -122,8 +122,8 @@ int zgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, doublecomplex *b,
 	return 0;
     }
 
-    eps = dlamch_("Epsilon");
-    unfl = dlamch_("Safe minimum");
+    eps = dmach("Epsilon");
+    unfl = dmach("Safe minimum");
     ovfl   = 1. / unfl;
     notran = (trans == NOTRANS);
 

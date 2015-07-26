@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 
-main()
+int main()
 {
     /* Local variables */
     double base, emin, prec, emax, rmin, rmax, t, sfmin;

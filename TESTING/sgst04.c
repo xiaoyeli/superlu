@@ -78,8 +78,7 @@ int sgst04(int n, int nrhs, float *x, int ldx, float *xact,
     }
 
     /* Exit with RESID = 1/EPS if RCOND is invalid. */
-
-    eps = slamch_("Epsilon");
+    eps = smach("Epsilon");
     if ( rcond < 0. ) {
 	*resid = 1. / eps;
 	return 0;

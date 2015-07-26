@@ -390,7 +390,7 @@ sgssvx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     } else {
 	rowequ = lsame_(equed, "R") || lsame_(equed, "B");
 	colequ = lsame_(equed, "C") || lsame_(equed, "B");
-	smlnum = slamch_("Safe minimum");
+	smlnum = smach("Safe minimum");   /* lamch_("Safe minimum"); */
 	bignum = 1. / smlnum;
     }
 
@@ -620,7 +620,8 @@ printf("dgssvx: Fact=%4d, Trans=%4d, equed=%c\n",
 
     if ( options->ConditionNumber ) {
         /* Set INFO = A->ncol+1 if the matrix is singular to working precision. */
-        if ( *rcond < slamch_("E") ) *info = A->ncol + 1;
+        /*if ( *rcond < slamch_("E") ) *info = A->ncol + 1;*/
+        if ( *rcond < smach("E") ) *info = A->ncol + 1;
     }
 
     if ( nofact ) {

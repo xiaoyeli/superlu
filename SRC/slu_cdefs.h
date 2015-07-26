@@ -241,7 +241,7 @@ extern int     sp_cgemm (char *, char *, int, int, int, complex,
 			SuperMatrix *, complex *, int, complex, 
 			complex *, int);
 extern         float slamch_(char *);
-
+extern         float smach(char *);   /* from C99 standard, in float.h */
 
 /*! \brief Memory-related */
 extern int     cLUMemInit (fact_t, void *, int, int, int, int, int,

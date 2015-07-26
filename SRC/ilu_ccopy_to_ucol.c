@@ -63,7 +63,7 @@ ilu_ccopy_to_ucol(
     int       *usub, *xusub;
     int       nzumax;
     int       m; /* number of entries in the nonzero U-segments */
-    register float d_max = 0.0, d_min = 1.0 / dlamch_("Safe minimum");
+    register float d_max = 0.0, d_min = 1.0 / dmach_("Safe minimum");
     register double tmp;
     complex zero = {0.0, 0.0};
     int i_1 = 1;

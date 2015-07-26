@@ -1,6 +1,12 @@
 include ../make.inc
 
-all:  testdlamch testslamch testtimer install.out
+all:  testsmach testdmach testtimer install.out #testdlamch testslamch
+
+testdmach: dmach.o lsame.o dmachtst.o
+	$(LOADER) $(LOADOPTS) -o testdmach dmach.o lsame.o dmachtst.o
+
+testsmach: smach.o lsame.o smachtst.o
+	$(LOADER) $(LOADOPTS) -o testsmach smach.o lsame.o smachtst.o
 
 testdlamch: dlamch.o lsame.o dlamchtst.o
 	$(LOADER) $(LOADOPTS) -o testdlamch dlamch.o lsame.o dlamchtst.o

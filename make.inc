@@ -46,12 +46,12 @@ ARCHFLAGS    = cr
 RANLIB       = ranlib
 
 CC           = gcc
-CFLAGS       = -O3 -g
+CFLAGS       = -O3 -std=c99 -g
 NOOPTS       = 
 FORTRAN	     = gfortran 
 FFLAGS       = -O3 -g -fopenmp
 LOADER       = $(CC)
-LOADOPTS     = -fopenmp
+LOADOPTS     = -fopenmp -v
 
 #
 #  C preprocessor defs for compilation for the Fortran interface

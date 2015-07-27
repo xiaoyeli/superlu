@@ -277,6 +277,32 @@ extern void    dprint_lu_col(char *, int, int, int *, GlobalLU_t *);
 extern int     print_double_vec(char *, int, double *);
 extern void    check_tempv(int, double *);
 
+/*! \brief BLAS */
+
+#ifdef USE_VENDOR_BLAS
+extern int dgemm_(const char*, const char*, const int*, const int*, const int*,
+                  const double*, const double*, const int*, const double*,
+                  const int*, const double*, double*, const int*, int, int);
+extern int dtrsv_(char*, char*, char*, int*, double*, int*,
+                  double*, int*, int, int, int);
+extern int dtrsm_(char*, char*, char*, char*, int*, int*,
+                  double*, double*, int*, double*,
+                  int*, int, int, int, int);
+extern int dgemv_(char *, int *, int *, double *, double *a, int *,
+                  double *, int *, double *, double *, int *, int);
+#else
+extern int dgemm_(const char*, const char*, const int*, const int*, const int*,
+                  const double*, const double*, const int*, const double*,
+		  const int*, const double*, double*, const int*);
+extern int dtrsv_(char*, char*, char*, int*, double*, int*,
+                  double*, int*);
+extern int dtrsm_(char*, char*, char*, char*, int*, int*,
+                  double*, double*, int*, double*, int*);
+extern int dgemv_(char *, int *, int *, double *, double *a, int *,
+                  double *, int *, double *, double *, int *);
+#endif
+
+
 #ifdef __cplusplus
   }
 #endif

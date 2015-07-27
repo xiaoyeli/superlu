@@ -63,7 +63,7 @@ ilu_scopy_to_ucol(
     int       *usub, *xusub;
     int       nzumax;
     int       m; /* number of entries in the nonzero U-segments */
-    register float d_max = 0.0, d_min = 1.0 / dmach_("Safe minimum");
+    register float d_max = 0.0, d_min = 1.0 / dmach("Safe minimum");
     register double tmp;
     float zero = 0.0;
     int i_1 = 1;

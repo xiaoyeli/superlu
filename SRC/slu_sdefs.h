@@ -277,6 +277,32 @@ extern void    sprint_lu_col(char *, int, int, int *, GlobalLU_t *);
 extern int     print_double_vec(char *, int, double *);
 extern void    check_tempv(int, float *);
 
+/*! \brief BLAS */
+
+#ifdef USE_VENDOR_BLAS
+extern int sgemm_(const char*, const char*, const int*, const int*, const int*,
+                  const float*, const float*, const int*, const float*,
+                  const int*, const float*, float*, const int*, int, int);
+extern int strsv_(char*, char*, char*, int*, float*, int*,
+                  float*, int*, int, int, int);
+extern int strsm_(char*, char*, char*, char*, int*, int*,
+                  float*, float*, int*, float*,
+                  int*, int, int, int, int);
+extern int sgemv_(char *, int *, int *, float *, float *a, int *,
+                  float *, int *, float *, float *, int *, int);
+#else
+extern int sgemm_(const char*, const char*, const int*, const int*, const int*,
+                  const float*, const float*, const int*, const float*,
+		  const int*, const float*, float*, const int*);
+extern int strsv_(char*, char*, char*, int*, float*, int*,
+                  float*, int*);
+extern int strsm_(char*, char*, char*, char*, int*, int*,
+                  float*, float*, int*, float*, int*);
+extern int sgemv_(char *, int *, int *, float *, float *a, int *,
+                  float *, int *, float *, float *, int *);
+#endif
+
+
 #ifdef __cplusplus
   }
 #endif

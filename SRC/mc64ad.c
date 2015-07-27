@@ -334,7 +334,7 @@ static int_t c__2 = 2;
     --info;
 
     /* Function Body */
-    rinf = dlamch_("Overflow");
+    rinf = dmach("Overflow");
 /* Check value of JOB */
     if (*job < 1 || *job > 5) {
 	info[1] = -1;
@@ -709,8 +709,8 @@ L99:
 /* Local parameters */
 /* Intrinsic functions */
 /* External subroutines and/or functions */
-/*      EXTERNAL FD05AD,MC64DD,MC64ED,MC64FD, DLAMCH */
-/*      DOUBLE PRECISION FD05AD, DLAMCH */
+/*      EXTERNAL FD05AD,MC64DD,MC64ED,MC64FD, DMACH */
+/*      DOUBLE PRECISION FD05AD, DMACH */
 /* Set RINF to largest positive real number */
 /* XSL  RINF = FD05AD(5) */
     /* Parameter adjustments */
@@ -725,7 +725,7 @@ L99:
     --irn;
 
     /* Function Body */
-    rinf = dlamch_("Overflow");
+    rinf = dmach("Overflow");
 /* Initialization */
     *num = 0;
     bv = rinf;
@@ -1620,7 +1620,7 @@ L100:
     --irn;
 
     /* Function Body */
-    rinf = dlamch_("Overflow");
+    rinf = dmach("Overflow");
 /* Compute a first maximum matching from scratch on whole matrix. */
     i__1 = *n;
     for (j = 1; j <= i__1; ++j) {
@@ -2235,7 +2235,7 @@ L101:
     --irn;
 
     /* Function Body */
-    rinf = dlamch_("Overflow");
+    rinf = dmach("Overflow");
 /* Initialization */
     *num = 0;
     i__1 = *n;

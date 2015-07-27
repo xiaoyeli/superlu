@@ -12,4 +12,5 @@ To run the examples, type:
 	% test_omp < ../EXAMPLE/g20.rua		-- solve multiple systems with different threads
 
 Useful envorinment variables for running OpenMP example:
-setenv OMP_NUM_THREADS 2; setenv OMP_STACKSIZE 8192M; limit stacksize unlimited
+setenv OMP_STACKSIZE 8192M; limit stacksize unlimited; setenv OMP_NUM_THREADS 2
+

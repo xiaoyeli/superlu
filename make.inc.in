@@ -1,0 +1,43 @@
+############################################################################
+#
+#  Program:         SuperLU
+#
+#  Module:          make.inc
+#
+#  Purpose:         Top-level Definitions
+#
+#  Creation date:   May 10, 2015
+#
+#  Modified:	    
+#		    
+#
+############################################################################
+#
+#  The name of the libraries to be created/linked to
+#
+SuperLUroot	= ${CMAKE_SOURCE_DIR}/build
+SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu_5.0.a
+
+## BLASLIB   	= $(SuperLUroot)/lib/libblas.a
+
+# BLASDEF 	= -DUSE_VENDOR_BLAS
+
+LIBS		= $(SUPERLULIB) ${BLAS_LIB_STR}
+
+#
+#  The archiver and the flag(s) to use when building archive (library)
+#  If your system has no ranlib, set RANLIB = echo.
+#
+ARCH         = @CMAKE_AR@
+ARCHFLAGS    = cr
+RANLIB       = @CMAKE_RANLIB@
+
+CC           = @CMAKE_C_COMPILER@
+CFLAGS 	     = @CMAKE_C_FLAGS_RELEASE@  @CMAKE_C_FLAGS@ 
+# CFLAGS       += -D${DirDefs}
+# CFLAGS       += @COMPILE_DEFINITIONS@ 
+NOOPTS       = -O0
+FORTRAN	     = @CMAKE_Fortran_COMPILER@
+
+LOADER       = $(CC)
+LOADOPTS     =

@@ -282,18 +282,6 @@ extern void    check_tempv(int, complex *);
 
 /*! \brief BLAS */
 
-#ifdef USE_VENDOR_BLAS
-extern int cgemm_(const char*, const char*, const int*, const int*, const int*,
-                  const complex*, const complex*, const int*, const complex*,
-                  const int*, const complex*, complex*, const int*, int, int);
-extern int ctrsv_(char*, char*, char*, int*, complex*, int*,
-                  complex*, int*, int, int, int);
-extern int ctrsm_(char*, char*, char*, char*, int*, int*,
-                  complex*, complex*, int*, complex*,
-                  int*, int, int, int, int);
-extern int cgemv_(char *, int *, int *, complex *, complex *a, int *,
-                  complex *, int *, complex *, complex *, int *, int);
-#else
 extern int cgemm_(const char*, const char*, const int*, const int*, const int*,
                   const complex*, const complex*, const int*, const complex*,
 		  const int*, const complex*, complex*, const int*);
@@ -303,8 +291,6 @@ extern int ctrsm_(char*, char*, char*, char*, int*, int*,
                   complex*, complex*, int*, complex*, int*);
 extern int cgemv_(char *, int *, int *, complex *, complex *a, int *,
                   complex *, int *, complex *, complex *, int *);
-#endif
-
 
 #ifdef __cplusplus
   }

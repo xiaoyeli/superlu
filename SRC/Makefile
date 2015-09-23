@@ -137,11 +137,11 @@ complex16: $(ZLUSRC) $(ALLAUX) $(LAAUX) $(ZLASRC) $(DZLAUX)
 ##################################
 # Do not optimize these routines #
 ##################################
-smach.o: ../INSTALL/smach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
-dmach.o: ../INSTALL/dmach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
+smach.o: smach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
+dmach.o: dmach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
 superlu_timer.o:  superlu_timer.c ; $(CC) -c $(NOOPTS) $<
-slamch.o: slamch.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
-dlamch.o: dlamch.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
+#slamch.o: slamch.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
+#dlamch.o: dlamch.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
 ##################################
 
 .c.o:

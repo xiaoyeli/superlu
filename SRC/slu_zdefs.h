@@ -282,18 +282,6 @@ extern void    check_tempv(int, doublecomplex *);
 
 /*! \brief BLAS */
 
-#ifdef USE_VENDOR_BLAS
-extern int zgemm_(const char*, const char*, const int*, const int*, const int*,
-                  const doublecomplex*, const doublecomplex*, const int*, const doublecomplex*,
-                  const int*, const doublecomplex*, doublecomplex*, const int*, int, int);
-extern int ztrsv_(char*, char*, char*, int*, doublecomplex*, int*,
-                  doublecomplex*, int*, int, int, int);
-extern int ztrsm_(char*, char*, char*, char*, int*, int*,
-                  doublecomplex*, doublecomplex*, int*, doublecomplex*,
-                  int*, int, int, int, int);
-extern int zgemv_(char *, int *, int *, doublecomplex *, doublecomplex *a, int *,
-                  doublecomplex *, int *, doublecomplex *, doublecomplex *, int *, int);
-#else
 extern int zgemm_(const char*, const char*, const int*, const int*, const int*,
                   const doublecomplex*, const doublecomplex*, const int*, const doublecomplex*,
 		  const int*, const doublecomplex*, doublecomplex*, const int*);
@@ -303,8 +291,6 @@ extern int ztrsm_(char*, char*, char*, char*, int*, int*,
                   doublecomplex*, doublecomplex*, int*, doublecomplex*, int*);
 extern int zgemv_(char *, int *, int *, doublecomplex *, doublecomplex *a, int *,
                   doublecomplex *, int *, doublecomplex *, doublecomplex *, int *);
-#endif
-
 
 #ifdef __cplusplus
   }

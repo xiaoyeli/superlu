@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int zlarnv_(integer *idist, integer *iseed, integer *n, 
+/* Subroutine */ int zlarnv_slu(integer *idist, integer *iseed, integer *n, 
 	doublecomplex *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -66,7 +66,7 @@
     static integer i;
     static doublereal u[128];
     static integer il, iv;
-    extern /* Subroutine */ int dlaruv_(integer *, integer *, doublereal *);
+    extern /* Subroutine */ int dlaruv_slu(integer *, integer *, doublereal *);
 
 
 #define U(I) u[(I)]
@@ -85,7 +85,7 @@
           distribution (2*IL <= LV) */
 
 	i__2 = il << 1;
-	dlaruv_(&ISEED(1), &i__2, u);
+	dlaruv_slu(&ISEED(1), &i__2, u);
 
 	if (*idist == 1) {
 
@@ -169,5 +169,5 @@ y
 
 /*     End of ZLARNV */
 
-} /* zlarnv_ */
+} /* zlarnv_slu */
 

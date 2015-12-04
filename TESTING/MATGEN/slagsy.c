@@ -13,7 +13,7 @@ static real c_b12 = 0.f;
 static real c_b19 = -1.f;
 static real c_b26 = 1.f;
 
-/* Subroutine */ int slagsy_(integer *n, integer *k, real *d, real *a, 
+/* Subroutine */ int slagsy_slu(integer *n, integer *k, real *d, real *a, 
 	integer *lda, integer *iseed, real *work, integer *info)
 {
     /* System generated locals */
@@ -39,8 +39,8 @@ static real c_b26 = 1.f;
 	    char *, integer *, real *, real *, integer *, real *, integer *, 
 	    real *, real *, integer *);
     static real wa, wb, wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), slarnv_(
-	    integer *, integer *, integer *, real *);
+    extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real *);
+    extern int input_error(char *, int *);
     static real tau;
 
 
@@ -118,7 +118,7 @@ static real c_b26 = 1.f;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("SLAGSY", &i__1);
+	input_error("SLAGSY", &i__1);
 	return 0;
     }
 
@@ -146,7 +146,7 @@ static real c_b26 = 1.f;
 /*        generate random reflection */
 
 	i__1 = *n - i + 1;
-	slarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	slarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = snrm2_(&i__1, &work[1], &c__1);
 	wa = r_sign(&wn, &work[1]);
@@ -268,5 +268,5 @@ ht
 
 /*     End of SLAGSY */
 
-} /* slagsy_ */
+} /* slagsy_slu */
 

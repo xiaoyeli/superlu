@@ -6,14 +6,6 @@ include ../make.inc
 #  The files are organized as follows:
 #
 #       ALLAUX -- Auxiliary routines called from all precisions of SuperLU
-#	LAAUX  -- LAPACK auxiliary routines called from all precisions
-#	SLASRC -- LAPACK single precision real routines
-#	DLASRC -- LAPACK double precision real routines
-#	CLASRC -- LAPACK single precision complex routines
-#	ZLASRC -- LAPACK double precision complex routines
-#       SCLAUX -- LAPACK Auxiliary routines called from both real and complex
-#       DZLAUX -- LAPACK Auxiliary routines called from both double precision
-#                 and complex*16
 #	SLUSRC -- Single precision real SuperLU routines
 #       DLUSRC -- Double precision real SuperLU routines
 #	CLUSRC -- Single precision complex SuperLU routines
@@ -37,21 +29,16 @@ include ../make.inc
 #
 #######################################################################
 
-### LAPACK 
-LAAUX 	= lsame.o  xerbla.o
-SLASRC 	= slacon2.o 
-DLASRC	= dlacon2.o
-CLASRC	= clacon2.o scsum1.o icmax1.o
-ZLASRC	= zlacon2.o dzsum1.o izmax1.o
-SCLAUX 	= smach.o    # slamch.o
-DZLAUX 	= dmach.o    # dlamch.o
+### return machine parameters
+SCAUX 	= smach.o
+DZAUX 	= dmach.o
 
 ### SuperLU 
 ALLAUX 	= superlu_timer.o util.o memory.o get_perm_c.o mmd.o \
 	  sp_coletree.o sp_preorder.o sp_ienv.o relax_snode.o \
 	  heap_relax_snode.o colamd.o \
 	  ilu_relax_snode.o ilu_heap_relax_snode.o mark_relax.o \
-	  mc64ad.o qselect.o input_error.o
+	  mc64ad.o qselect.o input_error.o smach.o dmach.o
 
 SLUSRC = \
 	sgssv.o sgssvx.o \
@@ -66,7 +53,7 @@ SLUSRC = \
 	sgsisx.o sgsitrf.o sldperm.o \
 	ilu_sdrop_row.o ilu_ssnode_dfs.o \
 	ilu_scolumn_dfs.o ilu_spanel_dfs.o ilu_scopy_to_ucol.o \
-	ilu_spivotL.o sdiagonal.o
+	ilu_spivotL.o sdiagonal.o slacon2.o
 
 DLUSRC = \
 	dgssv.o dgssvx.o \
@@ -80,7 +67,7 @@ DLUSRC = \
 	dgsisx.o dgsitrf.o dldperm.o \
 	ilu_ddrop_row.o ilu_dsnode_dfs.o \
 	ilu_dcolumn_dfs.o ilu_dpanel_dfs.o ilu_dcopy_to_ucol.o \
-	ilu_dpivotL.o ddiagonal.o 
+	ilu_dpivotL.o ddiagonal.o dlacon2.o
         ## dgstrsL.o dgstrsU.o
 
 CLUSRC = \
@@ -95,7 +82,7 @@ CLUSRC = \
 	cgsisx.o cgsitrf.o cldperm.o \
 	ilu_cdrop_row.o ilu_csnode_dfs.o \
 	ilu_ccolumn_dfs.o ilu_cpanel_dfs.o ilu_ccopy_to_ucol.o \
-	ilu_cpivotL.o cdiagonal.o
+	ilu_cpivotL.o cdiagonal.o clacon2.o scsum1.o icmax1.o
 
 ZLUSRC = \
 	dcomplex.o zgssv.o zgssvx.o zsp_blas2.o zsp_blas3.o zgscon.o \
@@ -109,28 +96,24 @@ ZLUSRC = \
 	zgsisx.o zgsitrf.o zldperm.o \
 	ilu_zdrop_row.o ilu_zsnode_dfs.o \
 	ilu_zcolumn_dfs.o ilu_zpanel_dfs.o ilu_zcopy_to_ucol.o \
-	ilu_zpivotL.o zdiagonal.o
+	ilu_zpivotL.o zdiagonal.o zlacon2.o dzsum1.o izmax1.o
 
 all:    single double complex complex16
 
-single: $(SLUSRC) $(ALLAUX) $(LAAUX) $(SLASRC) $(SCLAUX)
-	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) \
-		$(SLUSRC) $(ALLAUX) $(LAAUX) $(SLASRC) $(SCLAUX)
+single: $(SLUSRC) $(ALLAUX) $(SCAUX)
+	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) $(SLUSRC) $(ALLAUX) $(SCAUX)
 	$(RANLIB) $(SUPERLULIB)
 
-double: $(DLUSRC) $(ALLAUX) $(LAAUX) $(DLASRC) $(DZLAUX)
-	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) \
-                $(DLUSRC) $(ALLAUX) $(LAAUX) $(DLASRC) $(DZLAUX)
+double: $(DLUSRC) $(ALLAUX) $(DZLAUX)
+	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) $(DLUSRC) $(ALLAUX) $(DZLAUX)
 	$(RANLIB) $(SUPERLULIB)
 
-complex: $(CLUSRC) $(ALLAUX) $(LAAUX) $(CLASRC) $(SCLAUX)
-	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) \
-		$(CLUSRC) $(ALLAUX) $(LAAUX) $(CLASRC) $(SCLAUX)
+complex: $(CLUSRC) $(ALLAUX) $(SCAUX)
+	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) $(CLUSRC) $(ALLAUX) $(SCAUX)
 	$(RANLIB) $(SUPERLULIB)
 
-complex16: $(ZLUSRC) $(ALLAUX) $(LAAUX) $(ZLASRC) $(DZLAUX)
-	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) \
-		$(ZLUSRC) $(ALLAUX) $(LAAUX) $(ZLASRC) $(DZLAUX)
+complex16: $(ZLUSRC) $(ALLAUX) $(DZLAUX)
+	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) $(ZLUSRC) $(ALLAUX) $(DZLAUX)
 	$(RANLIB) $(SUPERLULIB)
 
 
@@ -140,8 +123,6 @@ complex16: $(ZLUSRC) $(ALLAUX) $(LAAUX) $(ZLASRC) $(DZLAUX)
 smach.o: smach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
 dmach.o: dmach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
 superlu_timer.o:  superlu_timer.c ; $(CC) -c $(NOOPTS) $<
-#slamch.o: slamch.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
-#dlamch.o: dlamch.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
 ##################################
 
 .c.o:

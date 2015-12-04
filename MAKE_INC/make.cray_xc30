@@ -19,8 +19,8 @@ PLAT		= _xc30
 #
 #  The name of the libraries to be created/linked to
 #
-SuperLUroot	= $(HOME)/Edison/SuperLU_5.0
-SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.0.a
+SuperLUroot	= $(HOME)/Edison/SuperLU_5.1
+SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.1.a
 #
 # need 'module load mkl'
 BLASDEF	     	= -DUSE_VENDOR_BLAS

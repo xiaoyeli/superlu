@@ -305,9 +305,9 @@ zLUMemInit(fact_t fact, void *work, int lwork, int m, int n, int annz,
     Glu->supno   = supno;
     Glu->lsub    = lsub;
     Glu->xlsub   = xlsub;
-    Glu->lusup   = lusup;
+    Glu->lusup   = (void *) lusup;
     Glu->xlusup  = xlusup;
-    Glu->ucol    = ucol;
+    Glu->ucol    = (void *) ucol;
     Glu->usub    = usub;
     Glu->xusub   = xusub;
     Glu->nzlmax  = nzlmax;
@@ -442,11 +442,11 @@ zLUMemXpand(int jcol,
 
     switch ( mem_type ) {
       case LUSUP:
-	Glu->lusup   = (doublecomplex *) new_mem;
+	Glu->lusup   = (void *) new_mem;
 	Glu->nzlumax = *maxlen;
 	break;
       case UCOL:
-	Glu->ucol   = (doublecomplex *) new_mem;
+	Glu->ucol   = (void *) new_mem;
 	Glu->nzumax = *maxlen;
 	break;
       case LSUB:

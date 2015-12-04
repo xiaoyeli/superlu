@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Double Complex */ VOID zlatm2_(doublecomplex * ret_val, integer *m, 
+/* Double Complex */ VOID zlatm2_slu(doublecomplex * ret_val, integer *m, 
 	integer *n, integer *i, integer *j, integer *kl, integer *ku, integer 
 	*idist, integer *iseed, doublecomplex *d, integer *igrade, 
 	doublecomplex *dl, doublecomplex *dr, integer *ipvtng, integer *iwork,
@@ -22,8 +22,8 @@
     /* Local variables */
     static integer isub, jsub;
     static doublecomplex ctemp;
-    extern doublereal dlaran_(integer *);
-    extern /* Double Complex */ VOID zlarnd_(doublecomplex *, integer *, 
+    extern doublereal dlaran_slu(integer *);
+    extern /* Double Complex */ VOID zlarnd_slu(doublecomplex *, integer *, 
 	    integer *);
 
 
@@ -205,7 +205,7 @@
 /*     Check for sparsity */
 
     if (*sparse > 0.) {
-	if (dlaran_(&iseed[1]) < *sparse) {
+	if (dlaran_slu(&iseed[1]) < *sparse) {
 	     ret_val->r = 0.,  ret_val->i = 0.;
 	    return ;
 	}
@@ -233,7 +233,7 @@
 	i__1 = isub;
 	ctemp.r = d[i__1].r, ctemp.i = d[i__1].i;
     } else {
-	zlarnd_(&z__1, idist, &iseed[1]);
+	zlarnd_slu(&z__1, idist, &iseed[1]);
 	ctemp.r = z__1.r, ctemp.i = z__1.i;
     }
     if (*igrade == 1) {
@@ -282,5 +282,5 @@
 
 /*     End of ZLATM2 */
 
-} /* zlatm2_ */
+} /* zlatm2_slu */
 

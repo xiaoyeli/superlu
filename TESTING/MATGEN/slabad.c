@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int slabad_(real *small, real *large)
+/* Subroutine */ int slabad_slu(real *small, real *large)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -56,5 +56,5 @@
 
 /*     End of SLABAD */
 
-} /* slabad_ */
+} /* slabad_slu */
 

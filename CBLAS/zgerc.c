@@ -23,7 +23,8 @@
     static integer info;
     static doublecomplex temp;
     static integer i, j, ix, jy, kx;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
+
+    extern int input_error(char *, int *);
 
 
 /*  Purpose   
@@ -123,7 +124,7 @@
 	info = 9;
     }
     if (info != 0) {
-	xerbla_("ZGERC ", &info);
+	input_error("ZGERC ", &info);
 	return 0;
     }
 

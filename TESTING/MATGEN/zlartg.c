@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int zlartg_(doublecomplex *f, doublecomplex *g, doublereal *
+/* Subroutine */ int zlartg_slu(doublecomplex *f, doublecomplex *g, doublereal *
 	cs, doublecomplex *sn, doublecomplex *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -142,5 +142,5 @@
 
 /*     End of ZLARTG */
 
-} /* zlartg_ */
+} /* zlartg_slu */
 

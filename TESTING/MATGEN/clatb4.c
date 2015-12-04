@@ -10,7 +10,7 @@
 
 static integer c__2 = 2;
 
-/* Subroutine */ int clatb4_(char *path, integer *imat, integer *m, integer *
+/* Subroutine */ int clatb4_slu(char *path, integer *imat, integer *m, integer *
 	n, char *type, integer *kl, integer *ku, real *anorm, integer *mode, 
 	real *cndnum, char *dist)
 {
@@ -27,9 +27,8 @@ static integer c__2 = 2;
     /* Local variables */
     static real badc1, badc2, large, small;
     static char c2[2];
-    extern /* Subroutine */ int slabad_(real *, real *);
+    extern /* Subroutine */ int slabad_slu(real *, real *);
     extern float smach(char *);
-    extern logical lsamen_(integer *, char *, char *);
     static integer mat;
     static real eps;
 
@@ -108,7 +107,7 @@ static integer c__2 = 2;
 /*        If it looks like we're on a Cray, take the square root of   
           SMALL and LARGE to avoid overflow and underflow problems. */
 
-	slabad_(&small, &large);
+	slabad_slu(&small, &large);
 	small = small / eps * .25f;
 	large = 1.f / small;
     }
@@ -124,8 +123,8 @@ static integer c__2 = 2;
 /*     xQR, xLQ, xQL, xRQ:  Set parameters to generate a general   
                             M x N matrix. */
 
-    if (lsamen_(&c__2, c2, "QR") || lsamen_(&c__2, c2, "LQ") 
-	    || lsamen_(&c__2, c2, "QL") || lsamen_(&c__2, c2, "RQ")) {
+    if (strncmp(c2, "QR", 2)==0 || strncmp(c2, "LQ", 2)==0  
+	|| strncmp(c2, "QL", 2)==0 || strncmp(c2, "RQ", 2)==0) {
 
 /*        Set TYPE, the type of matrix to be generated. */
 
@@ -173,7 +172,7 @@ static integer c__2 = 2;
 	    *anorm = 1.f;
 	}
 
-    } else if (lsamen_(&c__2, c2, "GE")) {
+    } else if (strncmp(c2, "GE", 2)==0) {
 
 /*        xGE:  Set parameters to generate a general M x N matrix.   
 
@@ -223,7 +222,7 @@ static integer c__2 = 2;
 	    *anorm = 1.f;
 	}
 
-    } else if (lsamen_(&c__2, c2, "GB")) {
+    } else if (strncmp(c2, "GB", 2)==0) {
 
 /*        xGB:  Set parameters to generate a general banded matrix.   
 
@@ -249,7 +248,7 @@ static integer c__2 = 2;
 	    *anorm = 1.f;
 	}
 
-    } else if (lsamen_(&c__2, c2, "GT")) {
+    } else if (strncmp(c2, "GT", 2)==0) {
 
 /*        xGT:  Set parameters to generate a general tridiagonal matri
 x.   
@@ -285,9 +284,9 @@ x.
 	    *anorm = 1.f;
 	}
 
-    } else if (lsamen_(&c__2, c2, "PO") || lsamen_(&c__2, c2, "PP") || lsamen_(&c__2, c2, "HE") || lsamen_(&c__2, c2, 
-	    "HP") || lsamen_(&c__2, c2, "SY") || lsamen_(&
-	    c__2, c2, "SP")) {
+    } else if (strncmp(c2, "PO", 2)==0 || strncmp(c2, "PP", 2)==0 || 
+	       strncmp(c2, "HE", 2)==0 || strncmp(c2, "HP", 2)==0 ||
+	       strncmp(c2, "SY", 2)==0 || strncmp(c2, "SP", 2)==0) {
 
 /*        xPO, xPP, xHE, xHP, xSY, xSP: Set parameters to generate a 
   
@@ -326,7 +325,7 @@ x.
 	    *anorm = 1.f;
 	}
 
-    } else if (lsamen_(&c__2, c2, "PB")) {
+    } else if (strncmp(c2, "PB", 2)==0) {
 
 /*        xPB:  Set parameters to generate a symmetric band matrix.   
 
@@ -352,7 +351,7 @@ x.
 	    *anorm = 1.f;
 	}
 
-    } else if (lsamen_(&c__2, c2, "PT")) {
+    } else if (strncmp(c2, "PT", 2)==0) {
 
 /*        xPT:  Set parameters to generate a symmetric positive defini
 te   
@@ -384,7 +383,7 @@ te
 	    *anorm = 1.f;
 	}
 
-    } else if (lsamen_(&c__2, c2, "TR") || lsamen_(&c__2, c2, "TP")) {
+    } else if (strncmp(c2, "TR", 2)==0 || strncmp(c2, "TP", 2)==0) {
 
 /*        xTR, xTP:  Set parameters to generate a triangular matrix   
 
@@ -428,7 +427,7 @@ te
 	    *anorm = 1.f;
 	}
 
-    } else if (lsamen_(&c__2, c2, "TB")) {
+    } else if (strncmp(c2, "TB", 2)==0) {
 
 /*        xTB:  Set parameters to generate a triangular band matrix. 
   
@@ -463,5 +462,5 @@ te
 
 /*     End of CLATB4 */
 
-} /* clatb4_ */
+} /* clatb4_slu */
 

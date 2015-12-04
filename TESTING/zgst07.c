@@ -111,7 +111,6 @@ int zgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, doublecomplex *b,
     NCformat *Astore;
 
     /* Function prototypes */
-    extern int    lsame_(char *, char *);
     extern int    izamax_(int *, doublecomplex *, int *);
 
 

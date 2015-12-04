@@ -83,7 +83,6 @@ int zgst02(trans_t trans, int m, int n, int nrhs, SuperMatrix *A,
     char transc[1];
 
     /* Function prototypes */
-    extern int lsame_(char *, char *);
     extern double zlangs(char *, SuperMatrix *);
     extern double dzasum_(int *, doublecomplex *, int *);
     

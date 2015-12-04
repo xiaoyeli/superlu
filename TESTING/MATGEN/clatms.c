@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -13,7 +13,7 @@ static integer c__5 = 5;
 static logical c_true = TRUE_;
 static logical c_false = FALSE_;
 
-/* Subroutine */ int clatms_(integer *m, integer *n, char *dist, integer *
+/* Subroutine */ int clatms_slu(integer *m, integer *n, char *dist, integer *
 	iseed, char *sym, real *d, integer *mode, real *cond, real *dmax__, 
 	integer *kl, integer *ku, char *pack, complex *a, integer *lda, 
 	complex *work, integer *info)
@@ -41,32 +41,32 @@ static logical c_false = FALSE_;
     static integer ipack;
     static real realc;
     static integer ioffg;
-    extern logical lsame_(char *, char *);
     static integer iinfo;
     extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *);
     static complex ctemp;
     static integer idist, mnmin, iskew;
     static complex extra, dummy;
-    extern /* Subroutine */ int slatm1_(integer *, real *, integer *, integer 
+    extern /* Subroutine */ int slatm1_slu(integer *, real *, integer *, integer 
 	    *, integer *, real *, integer *, integer *);
     static integer ic, jc, nc;
-    extern /* Subroutine */ int clagge_(integer *, integer *, integer *, 
+    extern /* Subroutine */ int clagge_slu(integer *, integer *, integer *, 
 	    integer *, real *, complex *, integer *, integer *, complex *, 
-	    integer *), claghe_(integer *, integer *, real *, complex *, 
+	    integer *), claghe_slu(integer *, integer *, real *, complex *, 
 	    integer *, integer *, complex *, integer *);
     static integer il;
     static complex ct;
     static integer iendch, ir, jr, ipackg, mr;
-    extern /* Complex */ VOID clarnd_(complex *, integer *, integer *);
+    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
     static integer minlda;
     static complex st;
-    extern /* Subroutine */ int claset_(char *, integer *, integer *, complex 
-	    *, complex *, complex *, integer *), clartg_(complex *, 
-	    complex *, real *, complex *, complex *), xerbla_(char *, integer 
-	    *), clagsy_(integer *, integer *, real *, complex *, 
+    extern /* Subroutine */ int claset_slu(char *, integer *, integer *, complex 
+	    *, complex *, complex *, integer *), clartg_slu(complex *, 
+	    complex *, real *, complex *, complex *), 
+	    clagsy_slu(integer *, integer *, real *, complex *, 
 	    integer *, integer *, complex *, integer *);
-    extern doublereal slarnd_(integer *, integer *);
-    extern /* Subroutine */ int clarot_(logical *, logical *, logical *, 
+    extern int input_error(char *, int *);
+    extern doublereal slarnd_slu(integer *, integer *);
+    extern /* Subroutine */ int clarot_slu(logical *, logical *, logical *, 
 	    integer *, complex *, complex *, complex *, integer *, complex *, 
 	    complex *);
     static logical iltemp, givens;
@@ -368,11 +368,11 @@ static logical c_false = FALSE_;
 
 /*     Decode DIST */
 
-    if (lsame_(dist, "U")) {
+    if (strncmp(dist, "U", 1)==0) {
 	idist = 1;
-    } else if (lsame_(dist, "S")) {
+    } else if (strncmp(dist, "S", 1)==0) {
 	idist = 2;
-    } else if (lsame_(dist, "N")) {
+    } else if (strncmp(dist, "N", 1)==0) {
 	idist = 3;
     } else {
 	idist = -1;
@@ -380,19 +380,19 @@ static logical c_false = FALSE_;
 
 /*     Decode SYM */
 
-    if (lsame_(sym, "N")) {
+    if (strncmp(sym, "N", 1)==0) {
 	isym = 1;
 	irsign = 0;
 	csym = FALSE_;
-    } else if (lsame_(sym, "P")) {
+    } else if (strncmp(sym, "P", 1)==0) {
 	isym = 2;
 	irsign = 0;
 	csym = FALSE_;
-    } else if (lsame_(sym, "S")) {
+    } else if (strncmp(sym, "S", 1)==0) {
 	isym = 2;
 	irsign = 0;
 	csym = TRUE_;
-    } else if (lsame_(sym, "H")) {
+    } else if (strncmp(sym, "H", 1)==0) {
 	isym = 2;
 	irsign = 1;
 	csym = FALSE_;
@@ -403,27 +403,27 @@ static logical c_false = FALSE_;
 /*     Decode PACK */
 
     isympk = 0;
-    if (lsame_(pack, "N")) {
+    if (strncmp(pack, "N", 1)==0) {
 	ipack = 0;
-    } else if (lsame_(pack, "U")) {
+    } else if (strncmp(pack, "U", 1)==0) {
 	ipack = 1;
 	isympk = 1;
-    } else if (lsame_(pack, "L")) {
+    } else if (strncmp(pack, "L", 1)==0) {
 	ipack = 2;
 	isympk = 1;
-    } else if (lsame_(pack, "C")) {
+    } else if (strncmp(pack, "C", 1)==0) {
 	ipack = 3;
 	isympk = 2;
-    } else if (lsame_(pack, "R")) {
+    } else if (strncmp(pack, "R", 1)==0) {
 	ipack = 4;
 	isympk = 3;
-    } else if (lsame_(pack, "B")) {
+    } else if (strncmp(pack, "B", 1)==0) {
 	ipack = 5;
 	isympk = 3;
-    } else if (lsame_(pack, "Q")) {
+    } else if (strncmp(pack, "Q", 1)==0) {
 	ipack = 6;
 	isympk = 2;
-    } else if (lsame_(pack, "Z")) {
+    } else if (strncmp(pack, "Z", 1)==0) {
 	ipack = 7;
     } else {
 	ipack = -1;
@@ -502,7 +502,7 @@ static logical c_false = FALSE_;
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("CLATMS", &i__1);
+	input_error("CLATMS", &i__1);
 	return 0;
     }
 
@@ -521,7 +521,7 @@ static logical c_false = FALSE_;
 
                Compute D according to COND and MODE */
 
-    slatm1_(mode, cond, &irsign, &idist, &iseed[1], &d[1], &mnmin, &iinfo);
+    slatm1_slu(mode, cond, &irsign, &idist, &iseed[1], &d[1], &mnmin, &iinfo);
     if (iinfo != 0) {
 	*info = 1;
 	return 0;
@@ -560,7 +560,7 @@ static logical c_false = FALSE_;
 
     }
 
-    claset_("Full", lda, n, &c_b1, &c_b1, &a[a_offset], lda);
+    claset_slu("Full", lda, n, &c_b1, &c_b1, &a[a_offset], lda);
 
 /*     3)      Generate Banded Matrix using Givens rotations.   
                Also the special case of UUB=LLB=0   
@@ -649,14 +649,14 @@ JKU, N )
 		    i__2 = min(i__3,*n) + jkl - 1;
 		    for (jr = 1; jr <= i__2; ++jr) {
 			extra.r = 0.f, extra.i = 0.f;
-			angle = slarnd_(&c__1, &iseed[1]) * 
+			angle = slarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663f;
 			d__1 = cos(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			c.r = q__1.r, c.i = q__1.i;
 			d__1 = sin(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			s.r = q__1.r, s.i = q__1.i;
 /* Computing MAX */
@@ -667,7 +667,7 @@ JKU, N )
 			    i__3 = *n, i__4 = jr + jku;
 			    il = min(i__3,i__4) + 1 - icol;
 			    L__1 = jr > jkl;
-			    clarot_(&c_true, &L__1, &c_false, &il, &c, &s, &a[
+			    clarot_slu(&c_true, &L__1, &c_false, &il, &c, &s, &a[
 				    jr - iskew * icol + ioffst + icol * 
 				    a_dim1], &ilda, &extra, &dummy);
 			}
@@ -680,10 +680,10 @@ JKU, N )
 			for (jch = jr - jkl; i__3 < 0 ? jch >= 1 : jch <= 1; 
 				jch += i__3) {
 			    if (ir < *m) {
-				clartg_(&a[ir + 1 - iskew * (ic + 1) + ioffst 
+				clartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst 
 					+ (ic + 1) * a_dim1], &extra, &realc, 
 					&s, &dummy);
-				clarnd_(&q__1, &c__5, &iseed[1]);
+				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
 				q__2.r = realc * dummy.r, q__2.i = realc * 
 					dummy.i;
@@ -703,14 +703,14 @@ JKU, N )
 			    il = ir + 2 - irow;
 			    ctemp.r = 0.f, ctemp.i = 0.f;
 			    iltemp = jch > jku;
-			    clarot_(&c_false, &iltemp, &c_true, &il, &c, &s, &
+			    clarot_slu(&c_false, &iltemp, &c_true, &il, &c, &s, &
 				    a[irow - iskew * ic + ioffst + ic * 
 				    a_dim1], &ilda, &ctemp, &extra);
 			    if (iltemp) {
-				clartg_(&a[irow + 1 - iskew * (ic + 1) + 
+				clartg_slu(&a[irow + 1 - iskew * (ic + 1) + 
 					ioffst + (ic + 1) * a_dim1], &ctemp, &
 					realc, &s, &dummy);
-				clarnd_(&q__1, &c__5, &iseed[1]);
+				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
 				q__2.r = realc * dummy.r, q__2.i = realc * 
 					dummy.i;
@@ -730,7 +730,7 @@ JKU, N )
 				il = ic + 2 - icol;
 				extra.r = 0.f, extra.i = 0.f;
 				L__1 = jch > jku + jkl;
-				clarot_(&c_true, &L__1, &c_true, &il, &c, &s, 
+				clarot_slu(&c_true, &L__1, &c_true, &il, &c, &s, 
 					&a[irow - iskew * icol + ioffst + 
 					icol * a_dim1], &ilda, &extra, &ctemp)
 					;
@@ -756,14 +756,14 @@ JKL, JKU
 		    i__2 = min(i__3,*m) + jku - 1;
 		    for (jc = 1; jc <= i__2; ++jc) {
 			extra.r = 0.f, extra.i = 0.f;
-			angle = slarnd_(&c__1, &iseed[1]) * 
+			angle = slarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663f;
 			d__1 = cos(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			c.r = q__1.r, c.i = q__1.i;
 			d__1 = sin(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			s.r = q__1.r, s.i = q__1.i;
 /* Computing MAX */
@@ -774,7 +774,7 @@ JKL, JKU
 			    i__3 = *m, i__4 = jc + jkl;
 			    il = min(i__3,i__4) + 1 - irow;
 			    L__1 = jc > jku;
-			    clarot_(&c_false, &L__1, &c_false, &il, &c, &s, &
+			    clarot_slu(&c_false, &L__1, &c_false, &il, &c, &s, &
 				    a[irow - iskew * jc + ioffst + jc * 
 				    a_dim1], &ilda, &extra, &dummy);
 			}
@@ -787,10 +787,10 @@ JKL, JKU
 			for (jch = jc - jku; i__3 < 0 ? jch >= 1 : jch <= 1; 
 				jch += i__3) {
 			    if (ic < *n) {
-				clartg_(&a[ir + 1 - iskew * (ic + 1) + ioffst 
+				clartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst 
 					+ (ic + 1) * a_dim1], &extra, &realc, 
 					&s, &dummy);
-				clarnd_(&q__1, &c__5, &iseed[1]);
+				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
 				q__2.r = realc * dummy.r, q__2.i = realc * 
 					dummy.i;
@@ -810,14 +810,14 @@ JKL, JKU
 			    il = ic + 2 - icol;
 			    ctemp.r = 0.f, ctemp.i = 0.f;
 			    iltemp = jch > jkl;
-			    clarot_(&c_true, &iltemp, &c_true, &il, &c, &s, &
+			    clarot_slu(&c_true, &iltemp, &c_true, &il, &c, &s, &
 				    a[ir - iskew * icol + ioffst + icol * 
 				    a_dim1], &ilda, &ctemp, &extra);
 			    if (iltemp) {
-				clartg_(&a[ir + 1 - iskew * (icol + 1) + 
+				clartg_slu(&a[ir + 1 - iskew * (icol + 1) + 
 					ioffst + (icol + 1) * a_dim1], &ctemp,
 					 &realc, &s, &dummy);
-				clarnd_(&q__1, &c__5, &iseed[1]);
+				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
 				q__2.r = realc * dummy.r, q__2.i = realc * 
 					dummy.i;
@@ -836,7 +836,7 @@ JKL, JKU
 				il = ir + 2 - irow;
 				extra.r = 0.f, extra.i = 0.f;
 				L__1 = jch > jkl + jku;
-				clarot_(&c_false, &L__1, &c_true, &il, &c, &s,
+				clarot_slu(&c_false, &L__1, &c_true, &il, &c, &s,
 					 &a[irow - iskew * icol + ioffst + 
 					icol * a_dim1], &ilda, &extra, &ctemp)
 					;
@@ -873,14 +873,14 @@ JKL, JKU
 		    i__3 = 1 - jkl;
 		    for (jc = min(i__2,*n) - 1; jc >= i__3; --jc) {
 			extra.r = 0.f, extra.i = 0.f;
-			angle = slarnd_(&c__1, &iseed[1]) * 
+			angle = slarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663f;
 			d__1 = cos(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			c.r = q__1.r, c.i = q__1.i;
 			d__1 = sin(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			s.r = q__1.r, s.i = q__1.i;
 /* Computing MAX */
@@ -891,7 +891,7 @@ JKL, JKU
 			    i__2 = *m, i__4 = jc + jkl + 1;
 			    il = min(i__2,i__4) + 1 - irow;
 			    L__1 = jc + jkl < *m;
-			    clarot_(&c_false, &c_false, &L__1, &il, &c, &s, &
+			    clarot_slu(&c_false, &c_false, &L__1, &il, &c, &s, &
 				    a[irow - iskew * jc + ioffst + jc * 
 				    a_dim1], &ilda, &dummy, &extra);
 			}
@@ -905,9 +905,9 @@ JKL, JKU
 				i__2; jch += i__4) {
 			    ilextr = ic > 0;
 			    if (ilextr) {
-				clartg_(&a[jch - iskew * ic + ioffst + ic * 
+				clartg_slu(&a[jch - iskew * ic + ioffst + ic * 
 					a_dim1], &extra, &realc, &s, &dummy);
-				clarnd_(&q__1, &c__5, &iseed[1]);
+				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
 				q__1.r = realc * dummy.r, q__1.i = realc * 
 					dummy.i;
@@ -924,14 +924,14 @@ JKL, JKU
 			    iltemp = jch + jku < *n;
 			    ctemp.r = 0.f, ctemp.i = 0.f;
 			    i__5 = icol + 2 - ic;
-			    clarot_(&c_true, &ilextr, &iltemp, &i__5, &c, &s, 
+			    clarot_slu(&c_true, &ilextr, &iltemp, &i__5, &c, &s, 
 				    &a[jch - iskew * ic + ioffst + ic * 
 				    a_dim1], &ilda, &extra, &ctemp);
 			    if (iltemp) {
-				clartg_(&a[jch - iskew * icol + ioffst + icol 
+				clartg_slu(&a[jch - iskew * icol + ioffst + icol 
 					* a_dim1], &ctemp, &realc, &s, &dummy)
 					;
-				clarnd_(&q__1, &c__5, &iseed[1]);
+				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
 				q__1.r = realc * dummy.r, q__1.i = realc * 
 					dummy.i;
@@ -945,7 +945,7 @@ JKL, JKU
 				il = min(i__5,i__6) + 2 - jch;
 				extra.r = 0.f, extra.i = 0.f;
 				L__1 = jch + jkl + jku <= iendch;
-				clarot_(&c_false, &c_true, &L__1, &il, &c, &s,
+				clarot_slu(&c_false, &c_true, &L__1, &il, &c, &s,
 					 &a[jch - iskew * icol + ioffst + 
 					icol * a_dim1], &ilda, &ctemp, &extra)
 					;
@@ -977,14 +977,14 @@ L, M )
 		    i__4 = 1 - jku;
 		    for (jr = min(i__3,*m) - 1; jr >= i__4; --jr) {
 			extra.r = 0.f, extra.i = 0.f;
-			angle = slarnd_(&c__1, &iseed[1]) * 
+			angle = slarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663f;
 			d__1 = cos(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			c.r = q__1.r, c.i = q__1.i;
 			d__1 = sin(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			s.r = q__1.r, s.i = q__1.i;
 /* Computing MAX */
@@ -995,7 +995,7 @@ L, M )
 			    i__3 = *n, i__2 = jr + jku + 1;
 			    il = min(i__3,i__2) + 1 - icol;
 			    L__1 = jr + jku < *n;
-			    clarot_(&c_true, &c_false, &L__1, &il, &c, &s, &a[
+			    clarot_slu(&c_true, &c_false, &L__1, &il, &c, &s, &a[
 				    jr - iskew * icol + ioffst + icol * 
 				    a_dim1], &ilda, &dummy, &extra);
 			}
@@ -1009,9 +1009,9 @@ L, M )
 				i__3; jch += i__2) {
 			    ilextr = ir > 0;
 			    if (ilextr) {
-				clartg_(&a[ir - iskew * jch + ioffst + jch * 
+				clartg_slu(&a[ir - iskew * jch + ioffst + jch * 
 					a_dim1], &extra, &realc, &s, &dummy);
-				clarnd_(&q__1, &c__5, &iseed[1]);
+				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
 				q__1.r = realc * dummy.r, q__1.i = realc * 
 					dummy.i;
@@ -1028,13 +1028,13 @@ L, M )
 			    iltemp = jch + jkl < *m;
 			    ctemp.r = 0.f, ctemp.i = 0.f;
 			    i__5 = irow + 2 - ir;
-			    clarot_(&c_false, &ilextr, &iltemp, &i__5, &c, &s,
+			    clarot_slu(&c_false, &ilextr, &iltemp, &i__5, &c, &s,
 				     &a[ir - iskew * jch + ioffst + jch * 
 				    a_dim1], &ilda, &extra, &ctemp);
 			    if (iltemp) {
-				clartg_(&a[irow - iskew * jch + ioffst + jch *
+				clartg_slu(&a[irow - iskew * jch + ioffst + jch *
 					 a_dim1], &ctemp, &realc, &s, &dummy);
-				clarnd_(&q__1, &c__5, &iseed[1]);
+				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
 				q__1.r = realc * dummy.r, q__1.i = realc * 
 					dummy.i;
@@ -1048,7 +1048,7 @@ L, M )
 				il = min(i__5,i__6) + 2 - jch;
 				extra.r = 0.f, extra.i = 0.f;
 				L__1 = jch + jkl + jku <= iendch;
-				clarot_(&c_true, &c_true, &L__1, &il, &c, &s, 
+				clarot_slu(&c_true, &c_true, &L__1, &il, &c, &s, 
 					&a[irow - iskew * jch + ioffst + jch *
 					 a_dim1], &ilda, &ctemp, &extra);
 				ir = irow;
@@ -1104,14 +1104,14 @@ L, M )
 			i__2 = jc - iskew * (jc + 1) + ioffg + (jc + 1) * 
 				a_dim1;
 			ctemp.r = a[i__2].r, ctemp.i = a[i__2].i;
-			angle = slarnd_(&c__1, &iseed[1]) * 
+			angle = slarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663f;
 			d__1 = cos(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			c.r = q__1.r, c.i = q__1.i;
 			d__1 = sin(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			s.r = q__1.r, s.i = q__1.i;
 			if (csym) {
@@ -1126,13 +1126,13 @@ L, M )
 			    st.r = q__1.r, st.i = q__1.i;
 			}
 			L__1 = jc > k;
-			clarot_(&c_false, &L__1, &c_true, &il, &c, &s, &a[
+			clarot_slu(&c_false, &L__1, &c_true, &il, &c, &s, &a[
 				irow - iskew * jc + ioffg + jc * a_dim1], &
 				ilda, &extra, &ctemp);
 /* Computing MIN */
 			i__3 = k, i__5 = *n - jc;
 			i__2 = min(i__3,i__5) + 1;
-			clarot_(&c_true, &c_true, &c_false, &i__2, &ct, &st, &
+			clarot_slu(&c_true, &c_true, &c_false, &i__2, &ct, &st, &
 				a[(1 - iskew) * jc + ioffg + jc * a_dim1], &
 				ilda, &ctemp, &dummy);
 
@@ -1143,10 +1143,10 @@ L, M )
 			i__2 = -k;
 			for (jch = jc - k; i__2 < 0 ? jch >= 1 : jch <= 1; 
 				jch += i__2) {
-			    clartg_(&a[jch + 1 - iskew * (icol + 1) + ioffg + 
+			    clartg_slu(&a[jch + 1 - iskew * (icol + 1) + ioffg + 
 				    (icol + 1) * a_dim1], &extra, &realc, &s, 
 				    &dummy);
-			    clarnd_(&q__1, &c__5, &iseed[1]);
+			    clarnd_slu(&q__1, &c__5, &iseed[1]);
 			    dummy.r = q__1.r, dummy.i = q__1.i;
 			    q__2.r = realc * dummy.r, q__2.i = realc * 
 				    dummy.i;
@@ -1174,7 +1174,7 @@ L, M )
 				st.r = q__1.r, st.i = q__1.i;
 			    }
 			    i__3 = k + 2;
-			    clarot_(&c_true, &c_true, &c_true, &i__3, &c, &s, 
+			    clarot_slu(&c_true, &c_true, &c_true, &i__3, &c, &s, 
 				    &a[(1 - iskew) * jch + ioffg + jch * 
 				    a_dim1], &ilda, &ctemp, &extra);
 /* Computing MAX */
@@ -1185,7 +1185,7 @@ L, M )
 			    il = min(i__3,i__5);
 			    extra.r = 0.f, extra.i = 0.f;
 			    L__1 = jch > k;
-			    clarot_(&c_false, &L__1, &c_true, &il, &ct, &st, &
+			    clarot_slu(&c_false, &L__1, &c_true, &il, &ct, &st, &
 				    a[irow - iskew * jch + ioffg + jch * 
 				    a_dim1], &ilda, &extra, &ctemp);
 			    icol = jch;
@@ -1278,14 +1278,14 @@ te that
 			extra.r = 0.f, extra.i = 0.f;
 			i__4 = (1 - iskew) * jc + 1 + ioffg + jc * a_dim1;
 			ctemp.r = a[i__4].r, ctemp.i = a[i__4].i;
-			angle = slarnd_(&c__1, &iseed[1]) * 
+			angle = slarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663f;
 			d__1 = cos(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			c.r = q__1.r, c.i = q__1.i;
 			d__1 = sin(angle);
-			clarnd_(&q__2, &c__5, &iseed[1]);
+			clarnd_slu(&q__2, &c__5, &iseed[1]);
 			q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 			s.r = q__1.r, s.i = q__1.i;
 			if (csym) {
@@ -1300,14 +1300,14 @@ te that
 			    st.r = q__1.r, st.i = q__1.i;
 			}
 			L__1 = *n - jc > k;
-			clarot_(&c_false, &c_true, &L__1, &il, &c, &s, &a[(1 
+			clarot_slu(&c_false, &c_true, &L__1, &il, &c, &s, &a[(1 
 				- iskew) * jc + ioffg + jc * a_dim1], &ilda, &
 				ctemp, &extra);
 /* Computing MAX */
 			i__4 = 1, i__2 = jc - k + 1;
 			icol = max(i__4,i__2);
 			i__4 = jc + 2 - icol;
-			clarot_(&c_true, &c_false, &c_true, &i__4, &ct, &st, &
+			clarot_slu(&c_true, &c_false, &c_true, &i__4, &ct, &st, &
 				a[jc - iskew * icol + ioffg + icol * a_dim1], 
 				&ilda, &dummy, &ctemp);
 
@@ -1319,9 +1319,9 @@ te that
 			i__2 = k;
 			for (jch = jc + k; i__2 < 0 ? jch >= i__4 : jch <= 
 				i__4; jch += i__2) {
-			    clartg_(&a[jch - iskew * icol + ioffg + icol * 
+			    clartg_slu(&a[jch - iskew * icol + ioffg + icol * 
 				    a_dim1], &extra, &realc, &s, &dummy);
-			    clarnd_(&q__1, &c__5, &iseed[1]);
+			    clarnd_slu(&q__1, &c__5, &iseed[1]);
 			    dummy.r = q__1.r, dummy.i = q__1.i;
 			    q__1.r = realc * dummy.r, q__1.i = realc * 
 				    dummy.i;
@@ -1344,7 +1344,7 @@ te that
 				st.r = q__1.r, st.i = q__1.i;
 			    }
 			    i__3 = k + 2;
-			    clarot_(&c_true, &c_true, &c_true, &i__3, &c, &s, 
+			    clarot_slu(&c_true, &c_true, &c_true, &i__3, &c, &s, 
 				    &a[jch - iskew * icol + ioffg + icol * 
 				    a_dim1], &ilda, &extra, &ctemp);
 /* Computing MIN */
@@ -1352,7 +1352,7 @@ te that
 			    il = min(i__3,i__5);
 			    extra.r = 0.f, extra.i = 0.f;
 			    L__1 = *n - jch > k;
-			    clarot_(&c_false, &c_true, &L__1, &il, &ct, &st, &
+			    clarot_slu(&c_false, &c_true, &L__1, &il, &ct, &st, &
 				    a[(1 - iskew) * jch + ioffg + jch * 
 				    a_dim1], &ilda, &ctemp, &extra);
 			    icol = jch;
@@ -1445,7 +1445,7 @@ te that
 
 /*           Non-symmetric -- A = U D V */
 
-	    clagge_(&mr, &nc, &llb, &uub, &d[1], &a[a_offset], lda, &iseed[1],
+	    clagge_slu(&mr, &nc, &llb, &uub, &d[1], &a[a_offset], lda, &iseed[1],
 		     &work[1], &iinfo);
 	} else {
 
@@ -1453,10 +1453,10 @@ te that
              Hermitian -- A = U D U* */
 
 	    if (csym) {
-		clagsy_(m, &llb, &d[1], &a[a_offset], lda, &iseed[1], &work[1]
+		clagsy_slu(m, &llb, &d[1], &a[a_offset], lda, &iseed[1], &work[1]
 			, &iinfo);
 	    } else {
-		claghe_(m, &llb, &d[1], &a[a_offset], lda, &iseed[1], &work[1]
+		claghe_slu(m, &llb, &d[1], &a[a_offset], lda, &iseed[1], &work[1]
 			, &iinfo);
 	    }
 	}
@@ -1646,5 +1646,5 @@ te that
 
 /*     End of CLATMS */
 
-} /* clatms_ */
+} /* clatms_slu */
 

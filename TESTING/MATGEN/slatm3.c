@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-doublereal slatm3_(integer *m, integer *n, integer *i, integer *j, integer *
+doublereal slatm3_slu(integer *m, integer *n, integer *i, integer *j, integer *
 	isub, integer *jsub, integer *kl, integer *ku, integer *idist, 
 	integer *iseed, real *d, integer *igrade, real *dl, real *dr, integer 
 	*ipvtng, integer *iwork, real *sparse)
@@ -15,7 +15,7 @@ doublereal slatm3_(integer *m, integer *n, integer *i, integer *j, integer *
 
     /* Local variables */
     static real temp;
-    extern doublereal slaran_(integer *), slarnd_(integer *, integer *);
+    extern doublereal dlaran_sluslu(integer *), slarnd_slu(integer *, integer *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   
@@ -219,7 +219,7 @@ doublereal slatm3_(integer *m, integer *n, integer *i, integer *j, integer *
 /*     Check for sparsity */
 
     if (*sparse > 0.f) {
-	if (slaran_(&iseed[1]) < *sparse) {
+	if (dlaran_sluslu(&iseed[1]) < *sparse) {
 	    ret_val = 0.f;
 	    return ret_val;
 	}
@@ -230,7 +230,7 @@ doublereal slatm3_(integer *m, integer *n, integer *i, integer *j, integer *
     if (*i == *j) {
 	temp = d[*i];
     } else {
-	temp = slarnd_(idist, &iseed[1]);
+	temp = slarnd_slu(idist, &iseed[1]);
     }
     if (*igrade == 1) {
 	temp *= dl[*i];
@@ -248,5 +248,5 @@ doublereal slatm3_(integer *m, integer *n, integer *i, integer *j, integer *
 
 /*     End of SLATM3 */
 
-} /* slatm3_ */
+} /* slatm3_slu */
 

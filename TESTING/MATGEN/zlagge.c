@@ -12,7 +12,7 @@ static doublecomplex c_b2 = {1.,0.};
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int zlagge_(integer *m, integer *n, integer *kl, integer *ku,
+/* Subroutine */ int zlagge_slu(integer *m, integer *n, integer *kl, integer *ku,
 	 doublereal *d, doublecomplex *a, integer *lda, integer *iseed, 
 	doublecomplex *work, integer *info)
 {
@@ -36,9 +36,9 @@ static integer c__1 = 1;
     extern doublereal dznrm2_(integer *, doublecomplex *, integer *);
     static doublecomplex wa, wb;
     static doublereal wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), zlacgv_(
-	    integer *, doublecomplex *, integer *), zlarnv_(integer *, 
+    extern /* Subroutine */ int zlacgv_slu(integer *, doublecomplex *, integer *), zlarnv_slu(integer *, 
 	    integer *, integer *, doublecomplex *);
+    extern int input_error(char *, int *);
     static doublecomplex tau;
 
 
@@ -125,7 +125,7 @@ static integer c__1 = 1;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("ZLAGGE", &i__1);
+	input_error("ZLAGGE", &i__1);
 	return 0;
     }
 
@@ -157,7 +157,7 @@ static integer c__1 = 1;
 /*           generate random reflection */
 
 	    i__1 = *m - i + 1;
-	    zlarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	    zlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *m - i + 1;
 	    wn = dznrm2_(&i__1, &work[1], &c__1);
 	    d__1 = wn / z_abs(&work[1]);
@@ -196,7 +196,7 @@ t */
 /*           generate random reflection */
 
 	    i__1 = *n - i + 1;
-	    zlarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	    zlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *n - i + 1;
 	    wn = dznrm2_(&i__1, &work[1], &c__1);
 	    d__1 = wn / z_abs(&work[1]);
@@ -324,7 +324,7 @@ eft */
 ight */
 
 		i__2 = *n - *ku - i + 1;
-		zlacgv_(&i__2, &a[i + (*ku + i) * a_dim1], lda);
+		zlacgv_slu(&i__2, &a[i + (*ku + i) * a_dim1], lda);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
 		zgemv_("No transpose", &i__2, &i__3, &c_b2, &a[i + 1 + (*ku + 
@@ -378,7 +378,7 @@ ight */
 ight */
 
 		i__2 = *n - *ku - i + 1;
-		zlacgv_(&i__2, &a[i + (*ku + i) * a_dim1], lda);
+		zlacgv_slu(&i__2, &a[i + (*ku + i) * a_dim1], lda);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
 		zgemv_("No transpose", &i__2, &i__3, &c_b2, &a[i + 1 + (*ku + 
@@ -461,5 +461,5 @@ eft */
 
 /*     End of ZLAGGE */
 
-} /* zlagge_ */
+} /* zlagge_slu */
 

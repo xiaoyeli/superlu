@@ -13,7 +13,7 @@ static doublereal c_b12 = 0.;
 static doublereal c_b19 = -1.;
 static doublereal c_b26 = 1.;
 
-/* Subroutine */ int dlagsy_(integer *n, integer *k, doublereal *d, 
+/* Subroutine */ int dlagsy_slu(integer *n, integer *k, doublereal *d, 
 	doublereal *a, integer *lda, integer *iseed, doublereal *work, 
 	integer *info)
 {
@@ -43,8 +43,8 @@ static doublereal c_b26 = 1.;
 	    integer *, doublereal *, doublereal *, integer *, doublereal *, 
 	    integer *, doublereal *, doublereal *, integer *);
     static doublereal wa, wb, wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), dlarnv_(
-	    integer *, integer *, integer *, doublereal *);
+    extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern int input_error(char *, int *);
     static doublereal tau;
 
 
@@ -122,7 +122,7 @@ static doublereal c_b26 = 1.;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("DLAGSY", &i__1);
+	input_error("DLAGSY", &i__1);
 	return 0;
     }
 
@@ -150,7 +150,7 @@ static doublereal c_b26 = 1.;
 /*        generate random reflection */
 
 	i__1 = *n - i + 1;
-	dlarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	dlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = dnrm2_(&i__1, &work[1], &c__1);
 	wa = d_sign(&wn, &work[1]);
@@ -272,5 +272,5 @@ ht
 
 /*     End of DLAGSY */
 
-} /* dlagsy_ */
+} /* dlagsy_slu */
 

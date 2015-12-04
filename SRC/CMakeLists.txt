@@ -2,8 +2,6 @@
 set(headers supermatrix.h)
 
 set(sources
-  lsame.c
-  xerbla.c
   superlu_timer.c
   util.c
   memory.c

@@ -345,6 +345,6 @@ cprint_soln(int n, int nrhs, complex *soln)
 {
     int i;
 
-    for (i = 0; i < n; i++) 
-  	printf("\t%d: %.4f\n", i, soln[i]);
+    for (i = 0; i < n; i++)
+  	printf("\t%d: %.4f\t%.4f\n", i, soln[i].r, soln[i].i);
 }

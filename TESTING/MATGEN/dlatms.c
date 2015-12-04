@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -13,7 +13,7 @@ static logical c_true = TRUE_;
 static logical c_false = FALSE_;
 
 int
-dlatms_(integer *m, integer *n, char *dist, integer *
+dlatms_slu(integer *m, integer *n, char *dist, integer *
 	iseed, char *sym, doublereal *d, integer *mode, doublereal *cond, 
 	doublereal *dmax__, integer *kl, integer *ku, char *pack,
 	doublereal *a, integer *lda, doublereal *work, integer *info)
@@ -37,28 +37,27 @@ dlatms_(integer *m, integer *n, char *dist, integer *
     extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
 	    integer *);
     static integer ioffg;
-    extern logical lsame_(char *, char *);
     static integer iinfo, idist, mnmin;
     extern /* Subroutine */ int dcopy_(integer *, doublereal *, integer *, 
 	    doublereal *, integer *);
     static integer iskew;
     static doublereal extra, dummy;
-    extern /* Subroutine */ int dlatm1_(integer *, doublereal *, integer *, 
+    extern /* Subroutine */ int dlatm1_slu(integer *, doublereal *, integer *, 
 	    integer *, integer *, doublereal *, integer *, integer *);
     static integer ic, jc, nc;
-    extern /* Subroutine */ int dlagge_(integer *, integer *, integer *, 
+    extern /* Subroutine */ int dlagge_slu(integer *, integer *, integer *, 
 	    integer *, doublereal *, doublereal *, integer *, integer *, 
 	    doublereal *, integer *);
     static integer il, iendch, ir, jr, ipackg, mr, minlda;
-    extern doublereal dlarnd_(integer *, integer *);
-    extern /* Subroutine */ int dlaset_(char *, integer *, integer *, 
+    extern doublereal dlarnd_slu(integer *, integer *);
+    extern /* Subroutine */ int dlaset_slu(char *, integer *, integer *, 
 	    doublereal *, doublereal *, doublereal *, integer *), 
-	    dlartg_(doublereal *, doublereal *, doublereal *, doublereal *, 
-	    doublereal *), xerbla_(char *, integer *), dlagsy_(
-	    integer *, integer *, doublereal *, doublereal *, integer *, 
-	    integer *, doublereal *, integer *), dlarot_(logical *, logical *,
+	    dlartg_slu(doublereal *, doublereal *, doublereal *, doublereal *, doublereal *),
+	    dlagsy_slu(integer *, integer *, doublereal *, doublereal *, integer *, 
+	    integer *, doublereal *, integer *), dlarot_slu(logical *, logical *,
 	     logical *, integer *, doublereal *, doublereal *, doublereal *, 
 	    integer *, doublereal *, doublereal *);
+    extern int input_error(char *, int *);
     static logical iltemp, givens;
     static integer ioffst, irsign;
     static logical ilextr, topdwn;
@@ -345,11 +344,11 @@ dlatms_(integer *m, integer *n, char *dist, integer *
 
 /*     Decode DIST */
 
-    if (lsame_(dist, "U")) {
+    if (strncmp(dist, "U", 1)==0) {
 	idist = 1;
-    } else if (lsame_(dist, "S")) {
+    } else if (strncmp(dist, "S", 1)==0) {
 	idist = 2;
-    } else if (lsame_(dist, "N")) {
+    } else if (strncmp(dist, "N", 1)==0) {
 	idist = 3;
     } else {
 	idist = -1;
@@ -357,16 +356,16 @@ dlatms_(integer *m, integer *n, char *dist, integer *
 
 /*     Decode SYM */
 
-    if (lsame_(sym, "N")) {
+    if (strncmp(sym, "N", 1)==0) {
 	isym = 1;
 	irsign = 0;
-    } else if (lsame_(sym, "P")) {
+    } else if (strncmp(sym, "P", 1)==0) {
 	isym = 2;
 	irsign = 0;
-    } else if (lsame_(sym, "S")) {
+    } else if (strncmp(sym, "S", 1)==0) {
 	isym = 2;
 	irsign = 1;
-    } else if (lsame_(sym, "H")) {
+    } else if (strncmp(sym, "H", 1)==0) {
 	isym = 2;
 	irsign = 1;
     } else {
@@ -376,27 +375,27 @@ dlatms_(integer *m, integer *n, char *dist, integer *
 /*     Decode PACK */
 
     isympk = 0;
-    if (lsame_(pack, "N")) {
+    if (strncmp(pack, "N", 1)==0) {
 	ipack = 0;
-    } else if (lsame_(pack, "U")) {
+    } else if (strncmp(pack, "U", 1)==0) {
 	ipack = 1;
 	isympk = 1;
-    } else if (lsame_(pack, "L")) {
+    } else if (strncmp(pack, "L", 1)==0) {
 	ipack = 2;
 	isympk = 1;
-    } else if (lsame_(pack, "C")) {
+    } else if (strncmp(pack, "C", 1)==0) {
 	ipack = 3;
 	isympk = 2;
-    } else if (lsame_(pack, "R")) {
+    } else if (strncmp(pack, "R", 1)==0) {
 	ipack = 4;
 	isympk = 3;
-    } else if (lsame_(pack, "B")) {
+    } else if (strncmp(pack, "B", 1)==0) {
 	ipack = 5;
 	isympk = 3;
-    } else if (lsame_(pack, "Q")) {
+    } else if (strncmp(pack, "Q", 1)==0) {
 	ipack = 6;
 	isympk = 2;
-    } else if (lsame_(pack, "Z")) {
+    } else if (strncmp(pack, "Z", 1)==0) {
 	ipack = 7;
     } else {
 	ipack = -1;
@@ -475,7 +474,7 @@ dlatms_(integer *m, integer *n, char *dist, integer *
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("DLATMS", &i__1);
+	input_error("DLATMS", &i__1);
 	return 0;
     }
 
@@ -494,7 +493,7 @@ dlatms_(integer *m, integer *n, char *dist, integer *
 
                Compute D according to COND and MODE */
 
-    dlatm1_(mode, cond, &irsign, &idist, &iseed[1], &d[1], &mnmin, &iinfo);
+    dlatm1_slu(mode, cond, &irsign, &idist, &iseed[1], &d[1], &mnmin, &iinfo);
     if (iinfo != 0) {
 	*info = 1;
 	return 0;
@@ -561,7 +560,7 @@ dlatms_(integer *m, integer *n, char *dist, integer *
        end.  It also signals how to compute the norm, for scaling. */
 
     ipackg = 0;
-    dlaset_("Full", lda, n, &c_b22, &c_b22, &a[a_offset], lda);
+    dlaset_slu("Full", lda, n, &c_b22, &c_b22, &a[a_offset], lda);
 
 /*     Diagonal Matrix -- We are done, unless it   
        is to be stored SP/PP/TP (PACK='R' or 'C') */
@@ -609,7 +608,7 @@ JKU, N )
 		    i__2 = min(i__3,*n) + jkl - 1;
 		    for (jr = 1; jr <= i__2; ++jr) {
 			extra = 0.;
-			angle = dlarnd_(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -621,7 +620,7 @@ JKU, N )
 			    i__3 = *n, i__4 = jr + jku;
 			    il = min(i__3,i__4) + 1 - icol;
 			    L__1 = jr > jkl;
-			    dlarot_(&c_true, &L__1, &c_false, &il, &c, &s, &a[
+			    dlarot_slu(&c_true, &L__1, &c_false, &il, &c, &s, &a[
 				    jr - iskew * icol + ioffst + icol * 
 				    a_dim1], &ilda, &extra, &dummy);
 			}
@@ -634,7 +633,7 @@ JKU, N )
 			for (jch = jr - jkl; i__3 < 0 ? jch >= 1 : jch <= 1; 
 				jch += i__3) {
 			    if (ir < *m) {
-				dlartg_(&a[ir + 1 - iskew * (ic + 1) + ioffst 
+				dlartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst 
 					+ (ic + 1) * a_dim1], &extra, &c, &s, 
 					&dummy);
 			    }
@@ -645,11 +644,11 @@ JKU, N )
 			    temp = 0.;
 			    iltemp = jch > jku;
 			    d__1 = -s;
-			    dlarot_(&c_false, &iltemp, &c_true, &il, &c, &
+			    dlarot_slu(&c_false, &iltemp, &c_true, &il, &c, &
 				    d__1, &a[irow - iskew * ic + ioffst + ic *
 				     a_dim1], &ilda, &temp, &extra);
 			    if (iltemp) {
-				dlartg_(&a[irow + 1 - iskew * (ic + 1) + 
+				dlartg_slu(&a[irow + 1 - iskew * (ic + 1) + 
 					ioffst + (ic + 1) * a_dim1], &temp, &
 					c, &s, &dummy);
 /* Computing MAX */
@@ -659,7 +658,7 @@ JKU, N )
 				extra = 0.;
 				L__1 = jch > jku + jkl;
 				d__1 = -s;
-				dlarot_(&c_true, &L__1, &c_true, &il, &c, &
+				dlarot_slu(&c_true, &L__1, &c_true, &il, &c, &
 					d__1, &a[irow - iskew * icol + ioffst 
 					+ icol * a_dim1], &ilda, &extra, &
 					temp);
@@ -685,7 +684,7 @@ JKL, JKU
 		    i__2 = min(i__3,*m) + jku - 1;
 		    for (jc = 1; jc <= i__2; ++jc) {
 			extra = 0.;
-			angle = dlarnd_(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -697,7 +696,7 @@ JKL, JKU
 			    i__3 = *m, i__4 = jc + jkl;
 			    il = min(i__3,i__4) + 1 - irow;
 			    L__1 = jc > jku;
-			    dlarot_(&c_false, &L__1, &c_false, &il, &c, &s, &
+			    dlarot_slu(&c_false, &L__1, &c_false, &il, &c, &s, &
 				    a[irow - iskew * jc + ioffst + jc * 
 				    a_dim1], &ilda, &extra, &dummy);
 			}
@@ -710,7 +709,7 @@ JKL, JKU
 			for (jch = jc - jku; i__3 < 0 ? jch >= 1 : jch <= 1; 
 				jch += i__3) {
 			    if (ic < *n) {
-				dlartg_(&a[ir + 1 - iskew * (ic + 1) + ioffst 
+				dlartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst 
 					+ (ic + 1) * a_dim1], &extra, &c, &s, 
 					&dummy);
 			    }
@@ -721,11 +720,11 @@ JKL, JKU
 			    temp = 0.;
 			    iltemp = jch > jkl;
 			    d__1 = -s;
-			    dlarot_(&c_true, &iltemp, &c_true, &il, &c, &d__1,
+			    dlarot_slu(&c_true, &iltemp, &c_true, &il, &c, &d__1,
 				     &a[ir - iskew * icol + ioffst + icol * 
 				    a_dim1], &ilda, &temp, &extra);
 			    if (iltemp) {
-				dlartg_(&a[ir + 1 - iskew * (icol + 1) + 
+				dlartg_slu(&a[ir + 1 - iskew * (icol + 1) + 
 					ioffst + (icol + 1) * a_dim1], &temp, 
 					&c, &s, &dummy);
 /* Computing MAX */
@@ -735,7 +734,7 @@ JKL, JKU
 				extra = 0.;
 				L__1 = jch > jkl + jku;
 				d__1 = -s;
-				dlarot_(&c_false, &L__1, &c_true, &il, &c, &
+				dlarot_slu(&c_false, &L__1, &c_true, &il, &c, &
 					d__1, &a[irow - iskew * icol + ioffst 
 					+ icol * a_dim1], &ilda, &extra, &
 					temp);
@@ -772,7 +771,7 @@ JKL, JKU
 		    i__3 = 1 - jkl;
 		    for (jc = min(i__2,*n) - 1; jc >= i__3; --jc) {
 			extra = 0.;
-			angle = dlarnd_(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -784,7 +783,7 @@ JKL, JKU
 			    i__2 = *m, i__4 = jc + jkl + 1;
 			    il = min(i__2,i__4) + 1 - irow;
 			    L__1 = jc + jkl < *m;
-			    dlarot_(&c_false, &c_false, &L__1, &il, &c, &s, &
+			    dlarot_slu(&c_false, &c_false, &L__1, &il, &c, &s, &
 				    a[irow - iskew * jc + ioffst + jc * 
 				    a_dim1], &ilda, &dummy, &extra);
 			}
@@ -798,7 +797,7 @@ JKL, JKU
 				i__2; jch += i__4) {
 			    ilextr = ic > 0;
 			    if (ilextr) {
-				dlartg_(&a[jch - iskew * ic + ioffst + ic * 
+				dlartg_slu(&a[jch - iskew * ic + ioffst + ic * 
 					a_dim1], &extra, &c, &s, &dummy);
 			    }
 			    ic = max(1,ic);
@@ -808,18 +807,18 @@ JKL, JKU
 			    iltemp = jch + jku < *n;
 			    temp = 0.;
 			    i__5 = icol + 2 - ic;
-			    dlarot_(&c_true, &ilextr, &iltemp, &i__5, &c, &s, 
+			    dlarot_slu(&c_true, &ilextr, &iltemp, &i__5, &c, &s, 
 				    &a[jch - iskew * ic + ioffst + ic * 
 				    a_dim1], &ilda, &extra, &temp);
 			    if (iltemp) {
-				dlartg_(&a[jch - iskew * icol + ioffst + icol 
+				dlartg_slu(&a[jch - iskew * icol + ioffst + icol 
 					* a_dim1], &temp, &c, &s, &dummy);
 /* Computing MIN */
 				i__5 = iendch, i__6 = jch + jkl + jku;
 				il = min(i__5,i__6) + 2 - jch;
 				extra = 0.;
 				L__1 = jch + jkl + jku <= iendch;
-				dlarot_(&c_false, &c_true, &L__1, &il, &c, &s,
+				dlarot_slu(&c_false, &c_true, &L__1, &il, &c, &s,
 					 &a[jch - iskew * icol + ioffst + 
 					icol * a_dim1], &ilda, &temp, &extra);
 				ic = icol;
@@ -850,7 +849,7 @@ L, M )
 		    i__4 = 1 - jku;
 		    for (jr = min(i__3,*m) - 1; jr >= i__4; --jr) {
 			extra = 0.;
-			angle = dlarnd_(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -862,7 +861,7 @@ L, M )
 			    i__3 = *n, i__2 = jr + jku + 1;
 			    il = min(i__3,i__2) + 1 - icol;
 			    L__1 = jr + jku < *n;
-			    dlarot_(&c_true, &c_false, &L__1, &il, &c, &s, &a[
+			    dlarot_slu(&c_true, &c_false, &L__1, &il, &c, &s, &a[
 				    jr - iskew * icol + ioffst + icol * 
 				    a_dim1], &ilda, &dummy, &extra);
 			}
@@ -876,7 +875,7 @@ L, M )
 				i__3; jch += i__2) {
 			    ilextr = ir > 0;
 			    if (ilextr) {
-				dlartg_(&a[ir - iskew * jch + ioffst + jch * 
+				dlartg_slu(&a[ir - iskew * jch + ioffst + jch * 
 					a_dim1], &extra, &c, &s, &dummy);
 			    }
 			    ir = max(1,ir);
@@ -886,18 +885,18 @@ L, M )
 			    iltemp = jch + jkl < *m;
 			    temp = 0.;
 			    i__5 = irow + 2 - ir;
-			    dlarot_(&c_false, &ilextr, &iltemp, &i__5, &c, &s,
+			    dlarot_slu(&c_false, &ilextr, &iltemp, &i__5, &c, &s,
 				     &a[ir - iskew * jch + ioffst + jch * 
 				    a_dim1], &ilda, &extra, &temp);
 			    if (iltemp) {
-				dlartg_(&a[irow - iskew * jch + ioffst + jch *
+				dlartg_slu(&a[irow - iskew * jch + ioffst + jch *
 					 a_dim1], &temp, &c, &s, &dummy);
 /* Computing MIN */
 				i__5 = iendch, i__6 = jch + jkl + jku;
 				il = min(i__5,i__6) + 2 - jch;
 				extra = 0.;
 				L__1 = jch + jkl + jku <= iendch;
-				dlarot_(&c_true, &c_true, &L__1, &il, &c, &s, 
+				dlarot_slu(&c_true, &c_true, &L__1, &il, &c, &s, 
 					&a[irow - iskew * jch + ioffst + jch *
 					 a_dim1], &ilda, &temp, &extra);
 				ir = irow;
@@ -944,18 +943,18 @@ L, M )
 			extra = 0.;
 			temp = a[jc - iskew * (jc + 1) + ioffg + (jc + 1) * 
 				a_dim1];
-			angle = dlarnd_(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
 			L__1 = jc > k;
-			dlarot_(&c_false, &L__1, &c_true, &il, &c, &s, &a[
+			dlarot_slu(&c_false, &L__1, &c_true, &il, &c, &s, &a[
 				irow - iskew * jc + ioffg + jc * a_dim1], &
 				ilda, &extra, &temp);
 /* Computing MIN */
 			i__3 = k, i__5 = *n - jc;
 			i__2 = min(i__3,i__5) + 1;
-			dlarot_(&c_true, &c_true, &c_false, &i__2, &c, &s, &a[
+			dlarot_slu(&c_true, &c_true, &c_false, &i__2, &c, &s, &a[
 				(1 - iskew) * jc + ioffg + jc * a_dim1], &
 				ilda, &temp, &dummy);
 
@@ -966,14 +965,14 @@ L, M )
 			i__2 = -k;
 			for (jch = jc - k; i__2 < 0 ? jch >= 1 : jch <= 1; 
 				jch += i__2) {
-			    dlartg_(&a[jch + 1 - iskew * (icol + 1) + ioffg + 
+			    dlartg_slu(&a[jch + 1 - iskew * (icol + 1) + ioffg + 
 				    (icol + 1) * a_dim1], &extra, &c, &s, &
 				    dummy);
 			    temp = a[jch - iskew * (jch + 1) + ioffg + (jch + 
 				    1) * a_dim1];
 			    i__3 = k + 2;
 			    d__1 = -s;
-			    dlarot_(&c_true, &c_true, &c_true, &i__3, &c, &
+			    dlarot_slu(&c_true, &c_true, &c_true, &i__3, &c, &
 				    d__1, &a[(1 - iskew) * jch + ioffg + jch *
 				     a_dim1], &ilda, &temp, &extra);
 /* Computing MAX */
@@ -985,7 +984,7 @@ L, M )
 			    extra = 0.;
 			    L__1 = jch > k;
 			    d__1 = -s;
-			    dlarot_(&c_false, &L__1, &c_true, &il, &c, &d__1, 
+			    dlarot_slu(&c_false, &L__1, &c_true, &il, &c, &d__1, 
 				    &a[irow - iskew * jch + ioffg + jch * 
 				    a_dim1], &ilda, &extra, &temp);
 			    icol = jch;
@@ -1056,19 +1055,19 @@ te that
 			il = min(i__4,i__2);
 			extra = 0.;
 			temp = a[(1 - iskew) * jc + 1 + ioffg + jc * a_dim1];
-			angle = dlarnd_(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = -sin(angle);
 			L__1 = *n - jc > k;
-			dlarot_(&c_false, &c_true, &L__1, &il, &c, &s, &a[(1 
+			dlarot_slu(&c_false, &c_true, &L__1, &il, &c, &s, &a[(1 
 				- iskew) * jc + ioffg + jc * a_dim1], &ilda, &
 				temp, &extra);
 /* Computing MAX */
 			i__4 = 1, i__2 = jc - k + 1;
 			icol = max(i__4,i__2);
 			i__4 = jc + 2 - icol;
-			dlarot_(&c_true, &c_false, &c_true, &i__4, &c, &s, &a[
+			dlarot_slu(&c_true, &c_false, &c_true, &i__4, &c, &s, &a[
 				jc - iskew * icol + ioffg + icol * a_dim1], &
 				ilda, &dummy, &temp);
 
@@ -1080,12 +1079,12 @@ te that
 			i__2 = k;
 			for (jch = jc + k; i__2 < 0 ? jch >= i__4 : jch <= 
 				i__4; jch += i__2) {
-			    dlartg_(&a[jch - iskew * icol + ioffg + icol * 
+			    dlartg_slu(&a[jch - iskew * icol + ioffg + icol * 
 				    a_dim1], &extra, &c, &s, &dummy);
 			    temp = a[(1 - iskew) * jch + 1 + ioffg + jch * 
 				    a_dim1];
 			    i__3 = k + 2;
-			    dlarot_(&c_true, &c_true, &c_true, &i__3, &c, &s, 
+			    dlarot_slu(&c_true, &c_true, &c_true, &i__3, &c, &s, 
 				    &a[jch - iskew * icol + ioffg + icol * 
 				    a_dim1], &ilda, &extra, &temp);
 /* Computing MIN */
@@ -1093,7 +1092,7 @@ te that
 			    il = min(i__3,i__5);
 			    extra = 0.;
 			    L__1 = *n - jch > k;
-			    dlarot_(&c_false, &c_true, &L__1, &il, &c, &s, &a[
+			    dlarot_slu(&c_false, &c_true, &L__1, &il, &c, &s, &a[
 				    (1 - iskew) * jch + ioffg + jch * a_dim1],
 				     &ilda, &temp, &extra);
 			    icol = jch;
@@ -1155,13 +1154,13 @@ te that
 
 /*           Non-symmetric -- A = U D V */
 
-	    dlagge_(&mr, &nc, &llb, &uub, &d[1], &a[a_offset], lda, &iseed[1],
+	    dlagge_slu(&mr, &nc, &llb, &uub, &d[1], &a[a_offset], lda, &iseed[1],
 		     &work[1], &iinfo);
 	} else {
 
 /*           Symmetric -- A = U D U' */
 
-	    dlagsy_(m, &llb, &d[1], &a[a_offset], lda, &iseed[1], &work[1], &
+	    dlagsy_slu(m, &llb, &d[1], &a[a_offset], lda, &iseed[1], &work[1], &
 		    iinfo);
 
 	}
@@ -1337,5 +1336,5 @@ te that
 
 /*     End of DLATMS */
 
-} /* dlatms_ */
+} /* dlatms_slu */
 

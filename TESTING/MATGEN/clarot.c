@@ -10,7 +10,7 @@
 static integer c__4 = 4;
 static integer c__8 = 8;
 
-/* Subroutine */ int clarot_(logical *lrows, logical *lleft, logical *lright, 
+/* Subroutine */ int clarot_slu(logical *lrows, logical *lleft, logical *lright, 
 	integer *nl, complex *c, complex *s, complex *a, integer *lda, 
 	complex *xleft, complex *xright)
 {
@@ -26,7 +26,7 @@ static integer c__8 = 8;
     static complex tempx;
     static integer ix, iy, nt;
     static complex xt[2], yt[2];
-    extern /* Subroutine */ int xerbla_(char *, integer *);
+    extern int input_error(char *, int *);
     static integer iyt;
 
 
@@ -175,7 +175,7 @@ static integer c__8 = 8;
              least 2.  The number of rows/columns to be rotated   
              exclusive of those involving XLEFT and/or XRIGHT may   
              not be negative, i.e., NL minus how many of LLEFT and   
-             LRIGHT are .TRUE. must be at least zero; if not, XERBLA   
+             LRIGHT are .TRUE. must be at least zero; if not, INPUT_ERROR
              will be called.   
              Not modified.   
 
@@ -274,11 +274,11 @@ static integer c__8 = 8;
 /*     Check for errors */
 
     if (*nl < nt) {
-	xerbla_("CLAROT", &c__4);
+	input_error("CLAROT", &c__4);
 	return 0;
     }
     if (*lda <= 0 || ! (*lrows) && *lda < *nl - nt) {
-	xerbla_("CLAROT", &c__8);
+	input_error("CLAROT", &c__8);
 	return 0;
     }
 
@@ -361,5 +361,5 @@ static integer c__8 = 8;
 
 /*     End of CLAROT */
 
-} /* clarot_ */
+} /* clarot_slu */
 

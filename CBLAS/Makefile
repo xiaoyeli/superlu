@@ -53,11 +53,11 @@ DBLAS1 = idamax.o dasum.o daxpy.o dcopy.o ddot.o dnrm2.o \
 DBLAS2 = dgemv.o dsymv.o dtrsv.o dger.o dsyr2.o
 
 CBLAS1 = icamax.o scasum.o caxpy.o ccopy.o scnrm2.o \
-	 cscal.o cswap.o
+	 cscal.o cswap.o cdotc.o
 CBLAS2 = cgemv.o chemv.o ctrsv.o cgerc.o cher2.o
 
 ZBLAS1 = izamax.o dzasum.o zaxpy.o zcopy.o dznrm2.o \
-	 zscal.o dcabs1.o zswap.o
+	 zscal.o dcabs1.o zswap.o zdotc.o
 ZBLAS2 = zgemv.o zhemv.o ztrsv.o zgerc.o zher2.o
 
 

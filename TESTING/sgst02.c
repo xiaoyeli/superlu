@@ -83,7 +83,6 @@ int sgst02(trans_t trans, int m, int n, int nrhs, SuperMatrix *A,
     char transc[1];
 
     /* Function prototypes */
-    extern int lsame_(char *, char *);
     extern float slangs(char *, SuperMatrix *);
     extern float sasum_(int *, float *, int *);
     

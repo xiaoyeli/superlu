@@ -480,7 +480,7 @@ sgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 		    xlsub[jj + 1]++;
 		    assert(xlusup[jj]==xlusup[jj+1]);
 		    xlusup[jj + 1]++;
-		    Glu->lusup[xlusup[jj]] = zero;
+		    ((float *) Glu->lusup)[xlusup[jj]] = zero;
 
 		    /* Choose a row index (pivrow) for fill-in */
 		    for (i = jj; i < n; i++)
@@ -620,20 +620,22 @@ sgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 	   may have changed, */
 	((SCformat *)L->Store)->nnz = nnzL;
 	((SCformat *)L->Store)->nsuper = Glu->supno[n];
-	((SCformat *)L->Store)->nzval = Glu->lusup;
+	((SCformat *)L->Store)->nzval = (float *) Glu->lusup;
 	((SCformat *)L->Store)->nzval_colptr = Glu->xlusup;
 	((SCformat *)L->Store)->rowind = Glu->lsub;
 	((SCformat *)L->Store)->rowind_colptr = Glu->xlsub;
 	((NCformat *)U->Store)->nnz = nnzU;
-	((NCformat *)U->Store)->nzval = Glu->ucol;
+	((NCformat *)U->Store)->nzval = (float *) Glu->ucol;
 	((NCformat *)U->Store)->rowind = Glu->usub;
 	((NCformat *)U->Store)->colptr = Glu->xusub;
     } else {
-	sCreate_SuperNode_Matrix(L, A->nrow, min_mn, nnzL, Glu->lusup,
-				 Glu->xlusup, Glu->lsub, Glu->xlsub, Glu->supno,
-				 Glu->xsup, SLU_SC, SLU_S, SLU_TRLU);
-	sCreate_CompCol_Matrix(U, min_mn, min_mn, nnzU, Glu->ucol,
-			       Glu->usub, Glu->xusub, SLU_NC, SLU_S, SLU_TRU);
+	sCreate_SuperNode_Matrix(L, A->nrow, min_mn, nnzL,
+              (float *) Glu->lusup, Glu->xlusup,
+              Glu->lsub, Glu->xlsub, Glu->supno, Glu->xsup,
+	      SLU_SC, SLU_S, SLU_TRLU);
+	sCreate_CompCol_Matrix(U, min_mn, min_mn, nnzU,
+	      (float *) Glu->ucol, Glu->usub, Glu->xusub,
+	      SLU_NC, SLU_S, SLU_TRU);
     }
 
     ops[FACT] += ops[TRSV] + ops[GEMV];

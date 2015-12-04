@@ -27,7 +27,9 @@ INCLUDE("XSDKDefaults.cmake")
 ######################################################################
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
 
-set(NOFORTRAN TRUE)
+enable_language (Fortran)
+# set(NOFORTRAN TRUE)
+set(NOFORTRAN FALSE)
 set(SUPERLU_VERSION "${PROJECT_VERSION}")
 set(SUPERLU_REV "${PROJECT_REV}")
 

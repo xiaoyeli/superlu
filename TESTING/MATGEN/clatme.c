@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -13,7 +13,7 @@ static integer c__1 = 1;
 static integer c__0 = 0;
 static integer c__5 = 5;
 
-/* Subroutine */ int clatme_(integer *n, char *dist, integer *iseed, complex *
+/* Subroutine */ int clatme_slu(integer *n, char *dist, integer *iseed, complex *
 	d, integer *mode, real *cond, complex *dmax__, char *ei, char *rsign, 
 	char *upper, char *sim, real *ds, integer *modes, real *conds, 
 	integer *kl, integer *ku, real *anorm, complex *a, integer *lda, 
@@ -38,7 +38,6 @@ static integer c__5 = 5;
     static complex alpha;
     extern /* Subroutine */ int cscal_(integer *, complex *, complex *, 
 	    integer *);
-    extern logical lsame_(char *, char *);
     extern /* Subroutine */ int cgemv_(char *, integer *, integer *, complex *
 	    , complex *, integer *, complex *, integer *, complex *, complex *
 	    , integer *);
@@ -49,23 +48,24 @@ static integer c__5 = 5;
 	    complex *, integer *);
     static integer irows;
     extern /* Subroutine */ int clatm1_(integer *, real *, integer *, integer 
-	    *, integer *, complex *, integer *, integer *), slatm1_(integer *,
+	    *, integer *, complex *, integer *, integer *), slatm1_slu(integer *,
 	     real *, integer *, integer *, integer *, real *, integer *, 
 	    integer *);
     static integer ic, jc;
     extern doublereal clange_(char *, integer *, integer *, complex *, 
 	    integer *, real *);
     static integer ir;
-    extern /* Subroutine */ int clarge_(integer *, complex *, integer *, 
+    extern /* Subroutine */ int clarge_slu(integer *, complex *, integer *, 
 	    integer *, complex *, integer *), clarfg_(integer *, complex *, 
-	    complex *, integer *, complex *), clacgv_(integer *, complex *, 
+	    complex *, integer *, complex *), clacgv_slu(integer *, complex *, 
 	    integer *);
-    extern /* Complex */ VOID clarnd_(complex *, integer *, integer *);
+    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
     static real ralpha;
     extern /* Subroutine */ int csscal_(integer *, real *, complex *, integer 
-	    *), claset_(char *, integer *, integer *, complex *, complex *, 
-	    complex *, integer *), xerbla_(char *, integer *),
-	     clarnv_(integer *, integer *, integer *, complex *);
+	    *), claset_slu(char *, integer *, integer *, complex *, complex *, 
+	    complex *, integer *),
+	     clarnv_slu(integer *, integer *, integer *, complex *);
+    extern int input_error(char *, int *);
     static integer irsign, iupper;
     static complex xnorms;
     static integer jcr;
@@ -306,13 +306,13 @@ static integer c__5 = 5;
 
 /*     Decode DIST */
 
-    if (lsame_(dist, "U")) {
+    if (strncmp(dist, "U", 1)==0) {
 	idist = 1;
-    } else if (lsame_(dist, "S")) {
+    } else if (strncmp(dist, "S", 1)==0) {
 	idist = 2;
-    } else if (lsame_(dist, "N")) {
+    } else if (strncmp(dist, "N", 1)==0) {
 	idist = 3;
-    } else if (lsame_(dist, "D")) {
+    } else if (strncmp(dist, "D", 1)==0) {
 	idist = 4;
     } else {
 	idist = -1;
@@ -320,9 +320,9 @@ static integer c__5 = 5;
 
 /*     Decode RSIGN */
 
-    if (lsame_(rsign, "T")) {
+    if (strncmp(rsign, "T", 1)==0) {
 	irsign = 1;
-    } else if (lsame_(rsign, "F")) {
+    } else if (strncmp(rsign, "F", 1)==0) {
 	irsign = 0;
     } else {
 	irsign = -1;
@@ -330,9 +330,9 @@ static integer c__5 = 5;
 
 /*     Decode UPPER */
 
-    if (lsame_(upper, "T")) {
+    if (strncmp(upper, "T", 1)==0) {
 	iupper = 1;
-    } else if (lsame_(upper, "F")) {
+    } else if (strncmp(upper, "F", 1)==0) {
 	iupper = 0;
     } else {
 	iupper = -1;
@@ -340,9 +340,9 @@ static integer c__5 = 5;
 
 /*     Decode SIM */
 
-    if (lsame_(sim, "T")) {
+    if (strncmp(sim, "T", 1)==0) {
 	isim = 1;
-    } else if (lsame_(sim, "F")) {
+    } else if (strncmp(sim, "F", 1)==0) {
 	isim = 0;
     } else {
 	isim = -1;
@@ -393,7 +393,7 @@ static integer c__5 = 5;
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("CLATME", &i__1);
+	input_error("CLATME", &i__1);
 	return 0;
     }
 
@@ -442,7 +442,7 @@ static integer c__5 = 5;
 
     }
 
-    claset_("Full", n, n, &c_b1, &c_b1, &a[a_offset], lda);
+    claset_slu("Full", n, n, &c_b1, &c_b1, &a[a_offset], lda);
     i__1 = *lda + 1;
     ccopy_(n, &d[1], &c__1, &a[a_offset], &i__1);
 
@@ -452,7 +452,7 @@ static integer c__5 = 5;
 	i__1 = *n;
 	for (jc = 2; jc <= i__1; ++jc) {
 	    i__2 = jc - 1;
-	    clarnv_(&idist, &iseed[1], &i__2, &a[jc * a_dim1 + 1]);
+	    clarnv_slu(&idist, &iseed[1], &i__2, &a[jc * a_dim1 + 1]);
 /* L40: */
 	}
     }
@@ -469,7 +469,7 @@ static integer c__5 = 5;
 /*        Compute S (singular values of the eigenvector matrix)   
           according to CONDS and MODES */
 
-	slatm1_(modes, conds, &c__0, &c__0, &iseed[1], &ds[1], n, &iinfo);
+	slatm1_slu(modes, conds, &c__0, &c__0, &iseed[1], &ds[1], n, &iinfo);
 	if (iinfo != 0) {
 	    *info = 3;
 	    return 0;
@@ -477,7 +477,7 @@ static integer c__5 = 5;
 
 /*        Multiply by V and V' */
 
-	clarge_(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
+	clarge_slu(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
 	if (iinfo != 0) {
 	    *info = 4;
 	    return 0;
@@ -500,7 +500,7 @@ static integer c__5 = 5;
 
 /*        Multiply by U and U' */
 
-	clarge_(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
+	clarge_slu(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
 	if (iinfo != 0) {
 	    *info = 4;
 	    return 0;
@@ -525,7 +525,7 @@ static integer c__5 = 5;
 	    r_cnjg(&q__1, &tau);
 	    tau.r = q__1.r, tau.i = q__1.i;
 	    work[1].r = 1.f, work[1].i = 0.f;
-	    clarnd_(&q__1, &c__5, &iseed[1]);
+	    clarnd_slu(&q__1, &c__5, &iseed[1]);
 	    alpha.r = q__1.r, alpha.i = q__1.i;
 
 	    cgemv_("C", &irows, &icols, &c_b2, &a[jcr + (ic + 1) * a_dim1], 
@@ -544,7 +544,7 @@ static integer c__5 = 5;
 	    i__2 = jcr + ic * a_dim1;
 	    a[i__2].r = xnorms.r, a[i__2].i = xnorms.i;
 	    i__2 = irows - 1;
-	    claset_("Full", &i__2, &c__1, &c_b1, &c_b1, &a[jcr + 1 + ic * 
+	    claset_slu("Full", &i__2, &c__1, &c_b1, &c_b1, &a[jcr + 1 + ic * 
 		    a_dim1], lda);
 
 	    i__2 = icols + 1;
@@ -570,8 +570,8 @@ static integer c__5 = 5;
 	    tau.r = q__1.r, tau.i = q__1.i;
 	    work[1].r = 1.f, work[1].i = 0.f;
 	    i__2 = icols - 1;
-	    clacgv_(&i__2, &work[2], &c__1);
-	    clarnd_(&q__1, &c__5, &iseed[1]);
+	    clacgv_slu(&i__2, &work[2], &c__1);
+	    clarnd_slu(&q__1, &c__5, &iseed[1]);
 	    alpha.r = q__1.r, alpha.i = q__1.i;
 
 	    cgemv_("N", &irows, &icols, &c_b2, &a[ir + 1 + jcr * a_dim1], lda,
@@ -590,7 +590,7 @@ static integer c__5 = 5;
 	    i__2 = ir + jcr * a_dim1;
 	    a[i__2].r = xnorms.r, a[i__2].i = xnorms.i;
 	    i__2 = icols - 1;
-	    claset_("Full", &c__1, &i__2, &c_b1, &c_b1, &a[ir + (jcr + 1) * 
+	    claset_slu("Full", &c__1, &i__2, &c_b1, &c_b1, &a[ir + (jcr + 1) * 
 		    a_dim1], lda);
 
 	    i__2 = irows + 1;
@@ -619,5 +619,5 @@ static integer c__5 = 5;
 
 /*     End of CLATME */
 
-} /* clatme_ */
+} /* clatme_slu */
 

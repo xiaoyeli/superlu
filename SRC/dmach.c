@@ -48,11 +48,10 @@ double dmach(char *cmach)
 */
 
     double sfmin, small, rmach;
-    extern int lsame_(char *, char *);
 
-    if (lsame_(cmach, "E")) {
+    if (strncmp(cmach, "E", 1)==0) {
 	rmach = DBL_EPSILON * 0.5;
-    } else if (lsame_(cmach, "S")) {
+    } else if (strncmp(cmach, "S", 1)==0) {
 	sfmin = DBL_MIN;
 	small = 1. / DBL_MAX;
 	if (small >= sfmin) {
@@ -61,21 +60,21 @@ double dmach(char *cmach)
 	    sfmin = small * (DBL_EPSILON*0.5 + 1.);
 	}
 	rmach = sfmin;
-    } else if (lsame_(cmach, "B")) {
+    } else if (strncmp(cmach, "B", 1)==0) {
 	rmach = FLT_RADIX;
-    } else if (lsame_(cmach, "P")) {
+    } else if (strncmp(cmach, "P", 1)==0) {
 	rmach = DBL_EPSILON * 0.5 * FLT_RADIX;
-    } else if (lsame_(cmach, "N")) {
+    } else if (strncmp(cmach, "N", 1)==0) {
 	rmach = DBL_MANT_DIG;
-    } else if (lsame_(cmach, "R")) {
+    } else if (strncmp(cmach, "R", 1)==0) {
 	rmach = FLT_ROUNDS;
-    } else if (lsame_(cmach, "M")) {
+    } else if (strncmp(cmach, "M", 1)==0) {
 	rmach = DBL_MIN_EXP;
-    } else if (lsame_(cmach, "U")) {
+    } else if (strncmp(cmach, "U", 1)==0) {
 	rmach = DBL_MIN;
-    } else if (lsame_(cmach, "L")) {
+    } else if (strncmp(cmach, "L", 1)==0) {
 	rmach = DBL_MAX_EXP;
-    } else if (lsame_(cmach, "O")) {
+    } else if (strncmp(cmach, "O", 1)==0) {
 	rmach = DBL_MAX;
     }
 

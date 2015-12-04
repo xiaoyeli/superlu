@@ -11,7 +11,7 @@ static integer c__4 = 4;
 static integer c__8 = 8;
 static integer c__1 = 1;
 
-/* Subroutine */ int slarot_(logical *lrows, logical *lleft, logical *lright, 
+/* Subroutine */ int slarot_slu(logical *lrows, logical *lleft, logical *lright, 
 	integer *nl, real *c, real *s, real *a, integer *lda, real *xleft, 
 	real *xright)
 {
@@ -24,7 +24,7 @@ static integer c__1 = 1;
 	    integer *, real *, real *);
     static integer inext, ix, iy, nt;
     static real xt[2], yt[2];
-    extern /* Subroutine */ int xerbla_(char *, integer *);
+    extern int input_error(char *, int *);
     static integer iyt;
 
 
@@ -173,7 +173,7 @@ static integer c__1 = 1;
              least 2.  The number of rows/columns to be rotated   
              exclusive of those involving XLEFT and/or XRIGHT may   
              not be negative, i.e., NL minus how many of LLEFT and   
-             LRIGHT are .TRUE. must be at least zero; if not, XERBLA   
+             LRIGHT are .TRUE. must be at least zero; if not, INPUT_ERROR  
              will be called.   
              Not modified.   
 
@@ -265,11 +265,11 @@ static integer c__1 = 1;
 /*     Check for errors */
 
     if (*nl < nt) {
-	xerbla_("SLAROT", &c__4);
+	input_error("SLAROT", &c__4);
 	return 0;
     }
     if (*lda <= 0 || ! (*lrows) && *lda < *nl - nt) {
-	xerbla_("SLAROT", &c__8);
+	input_error("SLAROT", &c__8);
 	return 0;
     }
 
@@ -295,5 +295,5 @@ static integer c__1 = 1;
 
 /*     End of SLAROT */
 
-} /* slarot_ */
+} /* slarot_slu */
 

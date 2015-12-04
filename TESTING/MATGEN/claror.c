@@ -3,6 +3,7 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -12,7 +13,7 @@ static complex c_b2 = {1.f,0.f};
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int claror_(char *side, char *init, integer *m, integer *n, 
+/* Subroutine */ int claror_slu(char *side, char *init, integer *m, integer *n, 
 	complex *a, integer *lda, integer *iseed, complex *x, integer *info)
 {
     /* System generated locals */
@@ -30,7 +31,6 @@ static integer c__1 = 1;
     extern /* Subroutine */ int cgerc_(integer *, integer *, complex *, 
 	    complex *, integer *, complex *, integer *, complex *, integer *),
 	     cscal_(integer *, complex *, complex *, integer *);
-    extern logical lsame_(char *, char *);
     extern /* Subroutine */ int cgemv_(char *, integer *, integer *, complex *
 	    , complex *, integer *, complex *, integer *, complex *, complex *
 	    , integer *);
@@ -38,11 +38,11 @@ static integer c__1 = 1;
     static integer ixfrm, itype, nxfrm;
     static real xnorm;
     extern real scnrm2_(integer *, complex *, integer *);
-    extern /* Subroutine */ int clacgv_(integer *, complex *, integer *);
-    extern /* Complex */ VOID clarnd_(complex *, integer *, integer *);
-    extern /* Subroutine */ int claset_(char *, integer *, integer *, complex 
-	    *, complex *, complex *, integer *), xerbla_(char *, 
-	    integer *);
+    extern /* Subroutine */ int clacgv_slu(integer *, complex *, integer *);
+    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
+    extern /* Subroutine */ int claset_slu(char *, integer *, integer *, complex 
+	    *, complex *, complex *, integer *);
+    extern int input_error(char *, int *);
     static real factor;
     static complex xnorms;
 
@@ -171,13 +171,13 @@ static integer c__1 = 1;
     }
 
     itype = 0;
-    if (lsame_(side, "L")) {
+    if (strncmp(side, "L", 1)==0) {
 	itype = 1;
-    } else if (lsame_(side, "R")) {
+    } else if (strncmp(side, "R", 1)==0) {
 	itype = 2;
-    } else if (lsame_(side, "C")) {
+    } else if (strncmp(side, "C", 1)==0) {
 	itype = 3;
-    } else if (lsame_(side, "T")) {
+    } else if (strncmp(side, "T", 1)==0) {
 	itype = 4;
     }
 
@@ -195,7 +195,7 @@ static integer c__1 = 1;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("CLAROR", &i__1);
+	input_error("CLAROR", &i__1);
 	return 0;
     }
 
@@ -207,8 +207,8 @@ static integer c__1 = 1;
 
 /*     Initialize A to the identity matrix if desired */
 
-    if (lsame_(init, "I")) {
-	claset_("Full", m, n, &c_b1, &c_b2, &a[a_offset], lda);
+    if (strncmp(init, "I", 1)==0) {
+	claset_slu("Full", m, n, &c_b1, &c_b2, &a[a_offset], lda);
     }
 
 /*     If no rotation possible, still multiply by   
@@ -234,7 +234,7 @@ static integer c__1 = 1;
 	i__2 = nxfrm;
 	for (j = kbeg; j <= i__2; ++j) {
 	    i__3 = j;
-	    clarnd_(&q__1, &c__3, &iseed[1]);
+	    clarnd_slu(&q__1, &c__3, &iseed[1]);
 	    x[i__3].r = q__1.r, x[i__3].i = q__1.i;
 /* L50: */
 	}
@@ -260,7 +260,7 @@ static integer c__1 = 1;
 	if (dabs(factor) < 1e-20f) {
 	    *info = 1;
 	    i__2 = -(*info);
-	    xerbla_("CLAROR", &i__2);
+	    input_error("CLAROR", &i__2);
 	    return 0;
 	} else {
 	    factor = 1.f / factor;
@@ -290,7 +290,7 @@ static integer c__1 = 1;
 /*           Apply H(k)* (or H(k)') on the right of A */
 
 	    if (itype == 4) {
-		clacgv_(&ixfrm, &x[kbeg], &c__1);
+		clacgv_slu(&ixfrm, &x[kbeg], &c__1);
 	    }
 
 	    cgemv_("N", m, &ixfrm, &c_b2, &a[kbeg * a_dim1 + 1], lda, &x[kbeg]
@@ -304,7 +304,7 @@ static integer c__1 = 1;
 /* L60: */
     }
 
-    clarnd_(&q__1, &c__3, &iseed[1]);
+    clarnd_slu(&q__1, &c__3, &iseed[1]);
     x[1].r = q__1.r, x[1].i = q__1.i;
     xabs = c_abs(&x[1]);
     if (xabs != 0.f) {
@@ -347,5 +347,5 @@ static integer c__1 = 1;
 
 /*     End of CLAROR */
 
-} /* claror_ */
+} /* claror_slu */
 

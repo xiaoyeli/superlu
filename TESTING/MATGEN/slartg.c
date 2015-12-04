@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int slartg_(real *f, real *g, real *cs, real *sn, real *r)
+/* Subroutine */ int slartg_slu(real *f, real *g, real *cs, real *sn, real *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -152,5 +152,5 @@ L30:
 
 /*     End of SLARTG */
 
-} /* slartg_ */
+} /* slartg_slu */
 

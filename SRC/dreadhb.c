@@ -133,7 +133,7 @@ static int ReadVector(FILE *fp, int n, int *where, int perline, int persize)
     char tmp, buf[100];
     
     i = 0;
-    while (i < n) {
+    while (i <  n) {
 	fgets(buf, 100, fp);    /* read a line at a time */
 	for (j=0; j<perline && i<n; j++) {
 	    tmp = buf[(j+1)*persize];     /* save the char at that place */

@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -12,7 +12,7 @@ static real c_b10 = 1.f;
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int slaror_(char *side, char *init, integer *m, integer *n, 
+/* Subroutine */ int slaror_slu(char *side, char *init, integer *m, integer *n, 
 	real *a, integer *lda, integer *iseed, real *x, integer *info)
 {
     /* System generated locals */
@@ -29,16 +29,15 @@ static integer c__1 = 1;
     static integer irow;
     extern real snrm2_(integer *, real *, integer *);
     static integer j;
-    extern logical lsame_(char *, char *);
     extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *), 
 	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
 	    real *, integer *, real *, real *, integer *);
     static integer ixfrm, itype, nxfrm;
     static real xnorm;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
+    extern int input_error(char *, int *);
     static real factor;
-    extern doublereal slarnd_(integer *, integer *);
-    extern /* Subroutine */ int slaset_(char *, integer *, integer *, real *, 
+    extern doublereal slarnd_slu(integer *, integer *);
+    extern /* Subroutine */ int slaset_slu(char *, integer *, integer *, real *, 
 	    real *, real *, integer *);
     static real xnorms;
 
@@ -153,11 +152,11 @@ static integer c__1 = 1;
     }
 
     itype = 0;
-    if (lsame_(side, "L")) {
+    if (strncmp(side, "L", 1)==0) {
 	itype = 1;
-    } else if (lsame_(side, "R")) {
+    } else if (strncmp(side, "R", 1)==0) {
 	itype = 2;
-    } else if (lsame_(side, "C") || lsame_(side, "T")) {
+    } else if (strncmp(side, "C", 1)==0 || strncmp(side, "T", 1)==0) {
 	itype = 3;
     }
 
@@ -175,7 +174,7 @@ static integer c__1 = 1;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("SLAROR", &i__1);
+	input_error("SLAROR", &i__1);
 	return 0;
     }
 
@@ -187,8 +186,8 @@ static integer c__1 = 1;
 
 /*     Initialize A to the identity matrix if desired */
 
-    if (lsame_(init, "I")) {
-	slaset_("Full", m, n, &c_b9, &c_b10, &a[a_offset], lda);
+    if (strncmp(init, "I", 1)==0) {
+	slaset_slu("Full", m, n, &c_b9, &c_b10, &a[a_offset], lda);
     }
 
 /*     If no rotation possible, multiply by random +/-1   
@@ -210,7 +209,7 @@ static integer c__1 = 1;
 
 	i__2 = nxfrm;
 	for (j = kbeg; j <= i__2; ++j) {
-	    x[j] = slarnd_(&c__3, &iseed[1]);
+	    x[j] = slarnd_slu(&c__3, &iseed[1]);
 /* L20: */
 	}
 
@@ -224,7 +223,7 @@ static integer c__1 = 1;
 	factor = xnorms * (xnorms + x[kbeg]);
 	if (dabs(factor) < 1e-20f) {
 	    *info = 1;
-	    xerbla_("SLAROR", info);
+	    input_error("SLAROR", info);
 	    return 0;
 	} else {
 	    factor = 1.f / factor;
@@ -259,7 +258,7 @@ static integer c__1 = 1;
 /* L30: */
     }
 
-    r__1 = slarnd_(&c__3, &iseed[1]);
+    r__1 = slarnd_slu(&c__3, &iseed[1]);
     x[nxfrm * 2] = r_sign(&c_b10, &r__1);
 
 /*     Scale the matrix A by D. */
@@ -283,5 +282,5 @@ static integer c__1 = 1;
 
 /*     End of SLAROR */
 
-} /* slaror_ */
+} /* slaror_slu */
 

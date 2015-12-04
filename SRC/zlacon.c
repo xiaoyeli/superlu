@@ -87,8 +87,8 @@ zlacon_(int *n, doublecomplex *v, doublecomplex *x, double *est, int *kase)
     double temp;
     double safmin;
     extern double dlamch_(char *);
-    extern int izmax1_(int *, doublecomplex *, int *);
-    extern double dzsum1_(int *, doublecomplex *, int *);
+    extern int izmax1_slu(int *, doublecomplex *, int *);
+    extern double dzsum1_slu(int *, doublecomplex *, int *);
 
     safmin = dlamch_("Safe minimum");
     if ( *kase == 0 ) {
@@ -118,7 +118,7 @@ zlacon_(int *n, doublecomplex *v, doublecomplex *x, double *est, int *kase)
 	/*        ... QUIT */
 	goto L150;
     }
-    *est = dzsum1_(n, x, &c__1);
+    *est = dzsum1_slu(n, x, &c__1);
 
     for (i = 0; i < *n; ++i) {
 	d__1 = z_abs(&x[i]);
@@ -137,7 +137,7 @@ zlacon_(int *n, doublecomplex *v, doublecomplex *x, double *est, int *kase)
     /*     ................ ENTRY   (JUMP = 2)   
 	   FIRST ITERATION.  X HAS BEEN OVERWRITTEN BY TRANSPOSE(A)*X. */
 L40:
-    j = izmax1_(n, &x[0], &c__1);
+    j = izmax1_slu(n, &x[0], &c__1);
     --j;
     iter = 2;
 
@@ -158,7 +158,7 @@ L70:
     zcopy_(n, x, &c__1, v, &c__1);
 #endif
     estold = *est;
-    *est = dzsum1_(n, v, &c__1);
+    *est = dzsum1_slu(n, v, &c__1);
 
 
 L90:
@@ -183,7 +183,7 @@ L90:
 	   X HAS BEEN OVERWRITTEN BY TRANDPOSE(A)*X. */
 L110:
     jlast = j;
-    j = izmax1_(n, &x[0], &c__1);
+    j = izmax1_slu(n, &x[0], &c__1);
     --j;
     if (x[jlast].r != (d__1 = x[j].r, fabs(d__1)) && iter < 5) {
 	++iter;
@@ -205,7 +205,7 @@ L120:
     /*     ................ ENTRY   (JUMP = 5)   
 	   X HAS BEEN OVERWRITTEN BY A*X. */
 L140:
-    temp = dzsum1_(n, x, &c__1) / (double)(*n * 3) * 2.;
+    temp = dzsum1_slu(n, x, &c__1) / (double)(*n * 3) * 2.;
     if (temp > *est) {
 #ifdef _CRAY
 	CCOPY(n, &x[0], &c__1, &v[0], &c__1);

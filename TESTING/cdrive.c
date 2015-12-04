@@ -99,9 +99,9 @@ main(int argc, char *argv[])
     extern int cgst07(trans_t, int, int, SuperMatrix *, complex *, int,
                          complex *, int, complex *, int, 
                          float *, float *, float *);
-    extern int clatb4_(char *, int *, int *, int *, char *, int *, int *, 
+    extern int clatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
 	               float *, int *, float *, char *);
-    extern int clatms_(int *, int *, char *, int *, char *, float *d,
+    extern int clatms_slu(int *, int *, char *, int *, char *, float *d,
                        int *, float *, float *, int *, int *,
                        char *, complex *, int *, complex *, int *);
     extern int sp_cconvert(int, int, complex *, int, int, int,
@@ -198,10 +198,10 @@ main(int argc, char *argv[])
 	    
 	    /* Set up parameters with CLATB4 and generate a test matrix
 	       with CLATMS.  */
-	    clatb4_(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
+	    clatb4_slu(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
 		    &cndnum, dist);
 
-	    clatms_(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
+	    clatms_slu(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
 		    &anorm, &kl, &ku, "No packing", Afull, &lda,
 		    &wwork[0], &info);
 
@@ -277,13 +277,13 @@ main(int argc, char *argv[])
 
 			    /* Force equilibration. */
 			    if ( !info && n > 0 ) {
-				if ( lsame_(equed, "R") ) {
+				if ( strncmp(equed, "R", 1)==0 ) {
 				    rowcnd = 0.;
 				    colcnd = 1.;
-				} else if ( lsame_(equed, "C") ) {
+				} else if ( strncmp(equed, "C", 1)==0 ) {
 				    rowcnd = 1.;
 				    colcnd = 0.;
-				} else if ( lsame_(equed, "B") ) {
+				} else if ( strncmp(equed, "B", 1)==0 ) {
 				    rowcnd = 0.;
 				    colcnd = 0.;
 				}

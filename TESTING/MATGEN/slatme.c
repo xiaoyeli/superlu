@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -12,7 +12,7 @@ static real c_b23 = 0.f;
 static integer c__0 = 0;
 static real c_b39 = 1.f;
 
-/* Subroutine */ int slatme_(integer *n, char *dist, integer *iseed, real *d, 
+/* Subroutine */ int slatme_slu(integer *n, char *dist, integer *iseed, real *d, 
 	integer *mode, real *cond, real *dmax__, char *ei, char *rsign, char *
 	upper, char *sim, real *ds, integer *modes, real *conds, integer *kl, 
 	integer *ku, real *anorm, real *a, integer *lda, real *work, integer *
@@ -31,7 +31,6 @@ static real c_b39 = 1.f;
     static logical badei;
     static integer i, j;
     static real alpha;
-    extern logical lsame_(char *, char *);
     static integer iinfo;
     extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *);
     static real tempa[1];
@@ -41,20 +40,21 @@ static real c_b39 = 1.f;
     extern /* Subroutine */ int sgemv_(char *, integer *, integer *, real *, 
 	    real *, integer *, real *, integer *, real *, real *, integer *), scopy_(integer *, real *, integer *, real *, integer *);
     static integer irows;
-    extern /* Subroutine */ int slatm1_(integer *, real *, integer *, integer 
+    extern /* Subroutine */ int slatm1_slu(integer *, real *, integer *, integer 
 	    *, integer *, real *, integer *, integer *);
     static integer ic, jc, ir, jr;
     extern doublereal slange_(char *, integer *, integer *, real *, integer *,
 	     real *);
-    extern /* Subroutine */ int slarge_(integer *, real *, integer *, integer 
-	    *, real *, integer *), slarfg_(integer *, real *, real *, integer 
-	    *, real *), xerbla_(char *, integer *);
-    extern doublereal slaran_(integer *);
+    extern /* Subroutine */ int slarge_slu(integer *, real *, integer *, integer *,
+					real *, integer *), slarfg_(integer *, real *,
+					real *, integer *, real *);
+    extern int input_error(char *, int *);
+    extern doublereal dlaran_sluslu(integer *);
     static integer irsign;
-    extern /* Subroutine */ int slaset_(char *, integer *, integer *, real *, 
+    extern /* Subroutine */ int slaset_slu(char *, integer *, integer *, real *, 
 	    real *, real *, integer *);
     static integer iupper;
-    extern /* Subroutine */ int slarnv_(integer *, integer *, integer *, real 
+    extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real 
 	    *);
     static real xnorms;
     static integer jcr;
@@ -321,11 +321,11 @@ static real c_b39 = 1.f;
 
 /*     Decode DIST */
 
-    if (lsame_(dist, "U")) {
+    if (strncmp(dist, "U", 1)==0) {
 	idist = 1;
-    } else if (lsame_(dist, "S")) {
+    } else if (strncmp(dist, "S", 1)==0) {
 	idist = 2;
-    } else if (lsame_(dist, "N")) {
+    } else if (strncmp(dist, "N", 1)==0) {
 	idist = 3;
     } else {
 	idist = -1;
@@ -335,18 +335,18 @@ static real c_b39 = 1.f;
 
     useei = TRUE_;
     badei = FALSE_;
-    if (lsame_(ei + 1, " ") || *mode != 0) {
+    if (strncmp(ei + 1, " ", 1)==0 || *mode != 0) {
 	useei = FALSE_;
     } else {
-	if (lsame_(ei + 1, "R")) {
+	if (strncmp(ei + 1, "R", 1)==0) {
 	    i__1 = *n;
 	    for (j = 2; j <= i__1; ++j) {
-		if (lsame_(ei + j, "I")) {
-		    if (lsame_(ei + (j - 1), "I")) {
+		if (strncmp(ei + j, "I", 1)==0) {
+		    if (strncmp(ei + (j - 1), "I", 1)==0) {
 			badei = TRUE_;
 		    }
 		} else {
-		    if (! lsame_(ei + j, "R")) {
+		    if (strncmp(ei + j, "R", 1)!=0) {
 			badei = TRUE_;
 		    }
 		}
@@ -359,9 +359,9 @@ static real c_b39 = 1.f;
 
 /*     Decode RSIGN */
 
-    if (lsame_(rsign, "T")) {
+    if (strncmp(rsign, "T", 1)==0) {
 	irsign = 1;
-    } else if (lsame_(rsign, "F")) {
+    } else if (strncmp(rsign, "F", 1)==0) {
 	irsign = 0;
     } else {
 	irsign = -1;
@@ -369,9 +369,9 @@ static real c_b39 = 1.f;
 
 /*     Decode UPPER */
 
-    if (lsame_(upper, "T")) {
+    if (strncmp(upper, "T", 1)==0) {
 	iupper = 1;
-    } else if (lsame_(upper, "F")) {
+    } else if (strncmp(upper, "F", 1)==0) {
 	iupper = 0;
     } else {
 	iupper = -1;
@@ -379,9 +379,9 @@ static real c_b39 = 1.f;
 
 /*     Decode SIM */
 
-    if (lsame_(sim, "T")) {
+    if (strncmp(sim, "T", 1)==0) {
 	isim = 1;
-    } else if (lsame_(sim, "F")) {
+    } else if (strncmp(sim, "F", 1)==0) {
 	isim = 0;
     } else {
 	isim = -1;
@@ -434,7 +434,7 @@ static real c_b39 = 1.f;
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("SLATME", &i__1);
+	input_error("SLATME", &i__1);
 	return 0;
     }
 
@@ -453,7 +453,7 @@ static real c_b39 = 1.f;
 
                Compute D according to COND and MODE */
 
-    slatm1_(mode, cond, &irsign, &idist, &iseed[1], &d[1], n, &iinfo);
+    slatm1_slu(mode, cond, &irsign, &idist, &iseed[1], &d[1], n, &iinfo);
     if (iinfo != 0) {
 	*info = 1;
 	return 0;
@@ -484,7 +484,7 @@ static real c_b39 = 1.f;
 
     }
 
-    slaset_("Full", n, n, &c_b23, &c_b23, &a[a_offset], lda);
+    slaset_slu("Full", n, n, &c_b23, &c_b23, &a[a_offset], lda);
     i__1 = *lda + 1;
     scopy_(n, &d[1], &c__1, &a[a_offset], &i__1);
 
@@ -494,7 +494,7 @@ static real c_b39 = 1.f;
 	if (useei) {
 	    i__1 = *n;
 	    for (j = 2; j <= i__1; ++j) {
-		if (lsame_(ei + j, "I")) {
+		if (strncmp(ei + j, "I", 1)==0) {
 		    a[j - 1 + j * a_dim1] = a[j + j * a_dim1];
 		    a[j + (j - 1) * a_dim1] = -(doublereal)a[j + j * a_dim1];
 		    a[j + j * a_dim1] = a[j - 1 + (j - 1) * a_dim1];
@@ -507,7 +507,7 @@ static real c_b39 = 1.f;
 
 	i__1 = *n;
 	for (j = 2; j <= i__1; j += 2) {
-	    if (slaran_(&iseed[1]) > .5f) {
+	    if (dlaran_sluslu(&iseed[1]) > .5f) {
 		a[j - 1 + j * a_dim1] = a[j + j * a_dim1];
 		a[j + (j - 1) * a_dim1] = -(doublereal)a[j + j * a_dim1];
 		a[j + j * a_dim1] = a[j - 1 + (j - 1) * a_dim1];
@@ -527,7 +527,7 @@ static real c_b39 = 1.f;
 	    } else {
 		jr = jc - 1;
 	    }
-	    slarnv_(&idist, &iseed[1], &jr, &a[jc * a_dim1 + 1]);
+	    slarnv_slu(&idist, &iseed[1], &jr, &a[jc * a_dim1 + 1]);
 /* L70: */
 	}
     }
@@ -544,7 +544,7 @@ static real c_b39 = 1.f;
 /*        Compute S (singular values of the eigenvector matrix)   
           according to CONDS and MODES */
 
-	slatm1_(modes, conds, &c__0, &c__0, &iseed[1], &ds[1], n, &iinfo);
+	slatm1_slu(modes, conds, &c__0, &c__0, &iseed[1], &ds[1], n, &iinfo);
 	if (iinfo != 0) {
 	    *info = 3;
 	    return 0;
@@ -552,7 +552,7 @@ static real c_b39 = 1.f;
 
 /*        Multiply by V and V' */
 
-	slarge_(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
+	slarge_slu(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
 	if (iinfo != 0) {
 	    *info = 4;
 	    return 0;
@@ -575,7 +575,7 @@ static real c_b39 = 1.f;
 
 /*        Multiply by U and U' */
 
-	slarge_(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
+	slarge_slu(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
 	if (iinfo != 0) {
 	    *info = 4;
 	    return 0;
@@ -614,7 +614,7 @@ static real c_b39 = 1.f;
 
 	    a[jcr + ic * a_dim1] = xnorms;
 	    i__2 = irows - 1;
-	    slaset_("Full", &i__2, &c__1, &c_b23, &c_b23, &a[jcr + 1 + ic * 
+	    slaset_slu("Full", &i__2, &c__1, &c_b23, &c_b23, &a[jcr + 1 + ic * 
 		    a_dim1], lda);
 /* L90: */
 	}
@@ -648,7 +648,7 @@ static real c_b39 = 1.f;
 
 	    a[ir + jcr * a_dim1] = xnorms;
 	    i__2 = icols - 1;
-	    slaset_("Full", &c__1, &i__2, &c_b23, &c_b23, &a[ir + (jcr + 1) * 
+	    slaset_slu("Full", &c__1, &i__2, &c_b23, &c_b23, &a[ir + (jcr + 1) * 
 		    a_dim1], lda);
 /* L100: */
 	}
@@ -672,5 +672,5 @@ static real c_b39 = 1.f;
 
 /*     End of SLATME */
 
-} /* slatme_ */
+} /* slatme_slu */
 

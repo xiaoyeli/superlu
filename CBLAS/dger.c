@@ -19,8 +19,8 @@
     static integer info;
     static doublereal temp;
     static integer i, j, ix, jy, kx;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
 
+    extern int input_error(char *, int *);
 
 /*  Purpose   
     =======   
@@ -95,9 +95,7 @@
        Richard Hanson, Sandia National Labs.   
 
 
-
        Test the input parameters.   
-
     
    Parameter adjustments   
        Function Body */
@@ -119,7 +117,7 @@
 	info = 9;
     }
     if (info != 0) {
-	xerbla_("DGER  ", &info);
+	input_error("DGER  ", &info);
 	return 0;
     }
 

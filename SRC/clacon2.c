@@ -94,8 +94,8 @@ clacon2_(int *n, complex *v, complex *x, float *est, int *kase, int isave[3])
     float temp;
     float safmin;
     extern float smach(char *);
-    extern int icmax1_(int *, complex *, int *);
-    extern double scsum1_(int *, complex *, int *);
+    extern int icmax1_slu(int *, complex *, int *);
+    extern double scsum1_slu(int *, complex *, int *);
 
     safmin = smach("Safe minimum");  /* lamch_("Safe minimum"); */
     if ( *kase == 0 ) {
@@ -125,7 +125,7 @@ clacon2_(int *n, complex *v, complex *x, float *est, int *kase, int isave[3])
 	/*        ... QUIT */
 	goto L150;
     }
-    *est = scsum1_(n, x, &c__1);
+    *est = scsum1_slu(n, x, &c__1);
 
     for (i = 0; i < *n; ++i) {
 	d__1 = c_abs(&x[i]);
@@ -144,7 +144,7 @@ clacon2_(int *n, complex *v, complex *x, float *est, int *kase, int isave[3])
     /*     ................ ENTRY   (isave[0] = 2)
 	   FIRST ITERATION.  X HAS BEEN OVERWRITTEN BY TRANSPOSE(A)*X. */
 L40:
-    isave[1] = icmax1_(n, &x[0], &c__1);  /* j */
+    isave[1] = icmax1_slu(n, &x[0], &c__1);  /* j */
     --isave[1];  /* --j; */
     isave[2] = 2;  /* iter = 2; */
 
@@ -165,7 +165,7 @@ L70:
     ccopy_(n, x, &c__1, v, &c__1);
 #endif
     estold = *est;
-    *est = scsum1_(n, v, &c__1);
+    *est = scsum1_slu(n, v, &c__1);
 
 
 L90:
@@ -190,7 +190,7 @@ L90:
 	   X HAS BEEN OVERWRITTEN BY TRANDPOSE(A)*X. */
 L110:
     jlast = isave[1];  /* j; */
-    isave[1] = icmax1_(n, &x[0], &c__1);  /* j */
+    isave[1] = icmax1_slu(n, &x[0], &c__1);  /* j */
     isave[1] = isave[1] - 1;  /* --j; */
     if (x[jlast].r != (d__1 = x[isave[1]].r, fabs(d__1)) && isave[2] < 5) {
 	isave[2] = isave[2] + 1;  /* ++iter; */
@@ -212,7 +212,7 @@ L120:
     /*     ................ ENTRY   (isave[0] = 5)   
 	   X HAS BEEN OVERWRITTEN BY A*X. */
 L140:
-    temp = scsum1_(n, x, &c__1) / (float)(*n * 3) * 2.;
+    temp = scsum1_slu(n, x, &c__1) / (float)(*n * 3) * 2.;
     if (temp > *est) {
 #ifdef _CRAY
 	CCOPY(n, &x[0], &c__1, &v[0], &c__1);

@@ -12,7 +12,7 @@ static integer c__1 = 1;
 static doublereal c_b11 = 1.;
 static doublereal c_b13 = 0.;
 
-/* Subroutine */ int dlagge_(integer *m, integer *n, integer *kl, integer *ku,
+/* Subroutine */ int dlagge_slu(integer *m, integer *n, integer *kl, integer *ku,
 	 doublereal *d, doublereal *a, integer *lda, integer *iseed, 
 	doublereal *work, integer *info)
 {
@@ -34,8 +34,8 @@ static doublereal c_b13 = 0.;
 	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
 	    doublereal *, integer *);
     static doublereal wa, wb, wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), dlarnv_(
-	    integer *, integer *, integer *, doublereal *);
+    extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern int input_error(char *, int *);
     static doublereal tau;
 
 
@@ -122,7 +122,7 @@ static doublereal c_b13 = 0.;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("DLAGGE", &i__1);
+	input_error("DLAGGE", &i__1);
 	return 0;
     }
 
@@ -151,7 +151,7 @@ static doublereal c_b13 = 0.;
 /*           generate random reflection */
 
 	    i__1 = *m - i + 1;
-	    dlarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	    dlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *m - i + 1;
 	    wn = dnrm2_(&i__1, &work[1], &c__1);
 	    wa = d_sign(&wn, &work[1]);
@@ -184,7 +184,7 @@ t */
 /*           generate random reflection */
 
 	    i__1 = *n - i + 1;
-	    dlarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	    dlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *n - i + 1;
 	    wn = dnrm2_(&i__1, &work[1], &c__1);
 	    wa = d_sign(&wn, &work[1]);
@@ -398,5 +398,5 @@ eft */
 
 /*     End of DLAGGE */
 
-} /* dlagge_ */
+} /* dlagge_slu */
 

@@ -110,7 +110,7 @@ spanel_bmod (
     supno   = Glu->supno;
     lsub    = Glu->lsub;
     xlsub   = Glu->xlsub;
-    lusup   = Glu->lusup;
+    lusup   = (float *) Glu->lusup;
     xlusup  = Glu->xlusup;
     
     maxsuper = SUPERLU_MAX( sp_ienv(3), sp_ienv(7) );

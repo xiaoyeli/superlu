@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -13,7 +13,7 @@ static integer c__1 = 1;
 static integer c__0 = 0;
 static integer c__5 = 5;
 
-/* Subroutine */ int zlatme_(integer *n, char *dist, integer *iseed, 
+/* Subroutine */ int zlatme_slu(integer *n, char *dist, integer *iseed, 
 	doublecomplex *d, integer *mode, doublereal *cond, doublecomplex *
 	dmax__, char *ei, char *rsign, char *upper, char *sim, doublereal *ds,
 	 integer *modes, doublereal *conds, integer *kl, integer *ku, 
@@ -35,7 +35,6 @@ static integer c__5 = 5;
     static doublereal temp;
     static integer i, j;
     static doublecomplex alpha;
-    extern logical lsame_(char *, char *);
     static integer iinfo;
     static doublereal tempa[1];
     static integer icols;
@@ -49,27 +48,27 @@ static integer c__5 = 5;
 	    integer *, doublecomplex *, doublecomplex *, integer *);
     static integer irows;
     extern /* Subroutine */ int zcopy_(integer *, doublecomplex *, integer *, 
-	    doublecomplex *, integer *), dlatm1_(integer *, doublereal *, 
+	    doublecomplex *, integer *), dlatm1_slu(integer *, doublereal *, 
 	    integer *, integer *, integer *, doublereal *, integer *, integer 
 	    *), zlatm1_(integer *, doublereal *, integer *, integer *, 
 	    integer *, doublecomplex *, integer *, integer *);
     static integer ic, jc, ir;
     static doublereal ralpha;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
+    extern int input_error(char *, int *);
     extern doublereal zlange_(char *, integer *, integer *, doublecomplex *, 
 	    integer *, doublereal *);
     extern /* Subroutine */ int zdscal_(integer *, doublereal *, 
-	    doublecomplex *, integer *), zlarge_(integer *, doublecomplex *, 
+	    doublecomplex *, integer *), zlarge_slu(integer *, doublecomplex *, 
 	    integer *, integer *, doublecomplex *, integer *), zlarfg_(
 	    integer *, doublecomplex *, doublecomplex *, integer *, 
-	    doublecomplex *), zlacgv_(integer *, doublecomplex *, integer *);
-    extern /* Double Complex */ void zlarnd_(doublecomplex *, integer *, 
+	    doublecomplex *), zlacgv_slu(integer *, doublecomplex *, integer *);
+    extern /* Double Complex */ void zlarnd_slu(doublecomplex *, integer *, 
 	    integer *);
     static integer irsign;
-    extern /* Subroutine */ int zlaset_(char *, integer *, integer *, 
+    extern /* Subroutine */ int zlaset_slu(char *, integer *, integer *, 
 	    doublecomplex *, doublecomplex *, doublecomplex *, integer *);
     static integer iupper;
-    extern /* Subroutine */ int zlarnv_(integer *, integer *, integer *, 
+    extern /* Subroutine */ int zlarnv_slu(integer *, integer *, integer *, 
 	    doublecomplex *);
     static doublecomplex xnorms;
     static integer jcr;
@@ -310,13 +309,13 @@ static integer c__5 = 5;
 
 /*     Decode DIST */
 
-    if (lsame_(dist, "U")) {
+    if (strncmp(dist, "U", 1)==0) {
 	idist = 1;
-    } else if (lsame_(dist, "S")) {
+    } else if (strncmp(dist, "S", 1)==0) {
 	idist = 2;
-    } else if (lsame_(dist, "N")) {
+    } else if (strncmp(dist, "N", 1)==0) {
 	idist = 3;
-    } else if (lsame_(dist, "D")) {
+    } else if (strncmp(dist, "D", 1)==0) {
 	idist = 4;
     } else {
 	idist = -1;
@@ -324,9 +323,9 @@ static integer c__5 = 5;
 
 /*     Decode RSIGN */
 
-    if (lsame_(rsign, "T")) {
+    if (strncmp(rsign, "T", 1)==0) {
 	irsign = 1;
-    } else if (lsame_(rsign, "F")) {
+    } else if (strncmp(rsign, "F", 1)==0) {
 	irsign = 0;
     } else {
 	irsign = -1;
@@ -334,9 +333,9 @@ static integer c__5 = 5;
 
 /*     Decode UPPER */
 
-    if (lsame_(upper, "T")) {
+    if (strncmp(upper, "T", 1)==0) {
 	iupper = 1;
-    } else if (lsame_(upper, "F")) {
+    } else if (strncmp(upper, "F", 1)==0) {
 	iupper = 0;
     } else {
 	iupper = -1;
@@ -344,9 +343,9 @@ static integer c__5 = 5;
 
 /*     Decode SIM */
 
-    if (lsame_(sim, "T")) {
+    if (strncmp(sim, "T", 1)==0) {
 	isim = 1;
-    } else if (lsame_(sim, "F")) {
+    } else if (strncmp(sim, "F", 1)==0) {
 	isim = 0;
     } else {
 	isim = -1;
@@ -397,7 +396,7 @@ static integer c__5 = 5;
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("ZLATME", &i__1);
+	input_error("ZLATME", &i__1);
 	return 0;
     }
 
@@ -446,7 +445,7 @@ static integer c__5 = 5;
 
     }
 
-    zlaset_("Full", n, n, &c_b1, &c_b1, &a[a_offset], lda);
+    zlaset_slu("Full", n, n, &c_b1, &c_b1, &a[a_offset], lda);
     i__1 = *lda + 1;
     zcopy_(n, &d[1], &c__1, &a[a_offset], &i__1);
 
@@ -456,7 +455,7 @@ static integer c__5 = 5;
 	i__1 = *n;
 	for (jc = 2; jc <= i__1; ++jc) {
 	    i__2 = jc - 1;
-	    zlarnv_(&idist, &iseed[1], &i__2, &a[jc * a_dim1 + 1]);
+	    zlarnv_slu(&idist, &iseed[1], &i__2, &a[jc * a_dim1 + 1]);
 /* L40: */
 	}
     }
@@ -473,7 +472,7 @@ static integer c__5 = 5;
 /*        Compute S (singular values of the eigenvector matrix)   
           according to CONDS and MODES */
 
-	dlatm1_(modes, conds, &c__0, &c__0, &iseed[1], &ds[1], n, &iinfo);
+	dlatm1_slu(modes, conds, &c__0, &c__0, &iseed[1], &ds[1], n, &iinfo);
 	if (iinfo != 0) {
 	    *info = 3;
 	    return 0;
@@ -481,7 +480,7 @@ static integer c__5 = 5;
 
 /*        Multiply by V and V' */
 
-	zlarge_(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
+	zlarge_slu(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
 	if (iinfo != 0) {
 	    *info = 4;
 	    return 0;
@@ -504,7 +503,7 @@ static integer c__5 = 5;
 
 /*        Multiply by U and U' */
 
-	zlarge_(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
+	zlarge_slu(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
 	if (iinfo != 0) {
 	    *info = 4;
 	    return 0;
@@ -529,7 +528,7 @@ static integer c__5 = 5;
 	    d_cnjg(&z__1, &tau);
 	    tau.r = z__1.r, tau.i = z__1.i;
 	    work[1].r = 1., work[1].i = 0.;
-	    zlarnd_(&z__1, &c__5, &iseed[1]);
+	    zlarnd_slu(&z__1, &c__5, &iseed[1]);
 	    alpha.r = z__1.r, alpha.i = z__1.i;
 
 	    zgemv_("C", &irows, &icols, &c_b2, &a[jcr + (ic + 1) * a_dim1], 
@@ -548,7 +547,7 @@ static integer c__5 = 5;
 	    i__2 = jcr + ic * a_dim1;
 	    a[i__2].r = xnorms.r, a[i__2].i = xnorms.i;
 	    i__2 = irows - 1;
-	    zlaset_("Full", &i__2, &c__1, &c_b1, &c_b1, &a[jcr + 1 + ic * 
+	    zlaset_slu("Full", &i__2, &c__1, &c_b1, &c_b1, &a[jcr + 1 + ic * 
 		    a_dim1], lda);
 
 	    i__2 = icols + 1;
@@ -574,8 +573,8 @@ static integer c__5 = 5;
 	    tau.r = z__1.r, tau.i = z__1.i;
 	    work[1].r = 1., work[1].i = 0.;
 	    i__2 = icols - 1;
-	    zlacgv_(&i__2, &work[2], &c__1);
-	    zlarnd_(&z__1, &c__5, &iseed[1]);
+	    zlacgv_slu(&i__2, &work[2], &c__1);
+	    zlarnd_slu(&z__1, &c__5, &iseed[1]);
 	    alpha.r = z__1.r, alpha.i = z__1.i;
 
 	    zgemv_("N", &irows, &icols, &c_b2, &a[ir + 1 + jcr * a_dim1], lda,
@@ -594,7 +593,7 @@ static integer c__5 = 5;
 	    i__2 = ir + jcr * a_dim1;
 	    a[i__2].r = xnorms.r, a[i__2].i = xnorms.i;
 	    i__2 = icols - 1;
-	    zlaset_("Full", &c__1, &i__2, &c_b1, &c_b1, &a[ir + (jcr + 1) * 
+	    zlaset_slu("Full", &c__1, &i__2, &c_b1, &c_b1, &a[ir + (jcr + 1) * 
 		    a_dim1], lda);
 
 	    i__2 = irows + 1;
@@ -623,5 +622,5 @@ static integer c__5 = 5;
 
 /*     End of ZLATME */
 
-} /* zlatme_ */
+} /* zlatme_slu */
 

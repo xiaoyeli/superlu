@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Complex */ VOID clarnd_(complex * ret_val, integer *idist, integer *iseed)
+/* Complex */ VOID clarnd_slu(complex * ret_val, integer *idist, integer *iseed)
 {
     /* System generated locals */
     doublereal d__1, d__2;
@@ -17,7 +17,7 @@
 
     /* Local variables */
     static real t1, t2;
-    extern doublereal slaran_(integer *);
+    extern doublereal dlaran_sluslu(integer *);
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -71,8 +71,8 @@
     --iseed;
 
     /* Function Body */
-    t1 = slaran_(&iseed[1]);
-    t2 = slaran_(&iseed[1]);
+    t1 = dlaran_sluslu(&iseed[1]);
+    t2 = dlaran_sluslu(&iseed[1]);
 
     if (*idist == 1) {
 
@@ -121,5 +121,5 @@
 
 /*     End of CLARND */
 
-} /* clarnd_ */
+} /* clarnd_slu */
 

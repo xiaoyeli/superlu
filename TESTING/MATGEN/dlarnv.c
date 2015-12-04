@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int dlarnv_(integer *idist, integer *iseed, integer *n, 
+/* Subroutine */ int dlarnv_slu(integer *idist, integer *iseed, integer *n, 
 	doublereal *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -60,7 +60,7 @@
     static integer i;
     static doublereal u[128];
     static integer il, iv;
-    extern /* Subroutine */ int dlaruv_(integer *, integer *, doublereal *);
+    extern /* Subroutine */ int dlaruv_slu(integer *, integer *, doublereal *);
     static integer il2;
 
 
@@ -83,7 +83,7 @@
 /*        Call DLARUV to generate IL2 numbers from a uniform (0,1)   
           distribution (IL2 <= LV) */
 
-	dlaruv_(&ISEED(1), &il2, u);
+	dlaruv_slu(&ISEED(1), &il2, u);
 
 	if (*idist == 1) {
 
@@ -122,5 +122,5 @@ n */
 
 /*     End of DLARNV */
 
-} /* dlarnv_ */
+} /* dlarnv_slu */
 

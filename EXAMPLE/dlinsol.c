@@ -7,6 +7,7 @@
  *
  */
 #include "slu_ddefs.h"
+#include "slu_zdefs.h"
 
 int main(int argc, char *argv[])
 {

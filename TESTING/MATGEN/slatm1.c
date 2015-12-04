@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int slatm1_(integer *mode, real *cond, integer *irsign, 
+/* Subroutine */ int slatm1_slu(integer *mode, real *cond, integer *irsign, 
 	integer *idist, integer *iseed, real *d, integer *n, integer *info)
 {
     /* System generated locals */
@@ -20,9 +20,9 @@
     static real temp;
     static integer i;
     static real alpha;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
-    extern doublereal slaran_(integer *);
-    extern /* Subroutine */ int slarnv_(integer *, integer *, integer *, real 
+    extern int input_error(char *, int *);
+    extern doublereal dlaran_sluslu(integer *);
+    extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real 
 	    *);
 
 
@@ -143,7 +143,7 @@
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("SLATM1", &i__1);
+	input_error("SLATM1", &i__1);
 	return 0;
     }
 
@@ -219,7 +219,7 @@ L90:
 	alpha = log(1.f / *cond);
 	i__1 = *n;
 	for (i = 1; i <= i__1; ++i) {
-	    d[i] = exp(alpha * slaran_(&iseed[1]));
+	    d[i] = exp(alpha * dlaran_sluslu(&iseed[1]));
 /* L100: */
 	}
 	goto L120;
@@ -227,7 +227,7 @@ L90:
 /*        Randomly distributed D values from IDIST */
 
 L110:
-	slarnv_(idist, &iseed[1], n, &d[1]);
+	slarnv_slu(idist, &iseed[1], n, &d[1]);
 
 L120:
 
@@ -237,7 +237,7 @@ L120:
 	if (*mode != -6 && *mode != 0 && *mode != 6 && *irsign == 1) {
 	    i__1 = *n;
 	    for (i = 1; i <= i__1; ++i) {
-		temp = slaran_(&iseed[1]);
+		temp = dlaran_sluslu(&iseed[1]);
 		if (temp > .5f) {
 		    d[i] = -(doublereal)d[i];
 		}
@@ -263,5 +263,5 @@ L120:
 
 /*     End of SLATM1 */
 
-} /* slatm1_ */
+} /* slatm1_slu */
 

@@ -3,7 +3,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Subroutine */ int ctrsv_(char *uplo, char *trans, char *diag, integer *n, 
@@ -22,11 +22,10 @@
     static integer info;
     static complex temp;
     static integer i, j;
-    extern logical lsame_(char *, char *);
     static integer ix, jx, kx;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
     static logical noconj, nounit;
 
+    extern int input_error(char *, int *);
 
 /*  Purpose   
     =======   
@@ -140,12 +139,12 @@
 #define A(I,J) a[(I)-1 + ((J)-1)* ( *lda)]
 
     info = 0;
-    if (! lsame_(uplo, "U") && ! lsame_(uplo, "L")) {
+    if ( strncmp(uplo, "U", 1)!=0 && strncmp(uplo, "L", 1)!=0 ) {
 	info = 1;
-    } else if (! lsame_(trans, "N") && ! lsame_(trans, "T") &&
-	     ! lsame_(trans, "C")) {
+    } else if ( strncmp(trans, "N", 1)!=0 && strncmp(trans, "T", 1)!=0 &&
+		strncmp(trans, "C", 1)!=0 ) {
 	info = 2;
-    } else if (! lsame_(diag, "U") && ! lsame_(diag, "N")) {
+    } else if ( strncmp(diag, "U", 1)!=0 && strncmp(diag, "N", 1)!=0 ) {
 	info = 3;
     } else if (*n < 0) {
 	info = 4;
@@ -155,7 +154,7 @@
 	info = 8;
     }
     if (info != 0) {
-	xerbla_("CTRSV ", &info);
+	input_error("CTRSV ", &info);
 	return 0;
     }
 
@@ -165,8 +164,8 @@
 	return 0;
     }
 
-    noconj = lsame_(trans, "T");
-    nounit = lsame_(diag, "N");
+    noconj = (strncmp(trans, "T", 1)==0);
+    nounit = (strncmp(diag, "N", 1)==0);
 
 /*     Set up the start point in X if the increment is not unity. This   
        will be  ( N - 1 )*INCX  too small for descending loops. */
@@ -180,11 +179,11 @@
 /*     Start the operations. In this version the elements of A are   
        accessed sequentially with one pass through A. */
 
-    if (lsame_(trans, "N")) {
+    if (strncmp(trans, "N", 1)==0) {
 
 /*        Form  x := inv( A )*x. */
 
-	if (lsame_(uplo, "U")) {
+	if (strncmp(uplo, "U", 1)==0) {
 	    if (*incx == 1) {
 		for (j = *n; j >= 1; --j) {
 		    i__1 = j;
@@ -305,7 +304,7 @@
 
 /*        Form  x := inv( A' )*x  or  x := inv( conjg( A' ) )*x. */
 
-	if (lsame_(uplo, "U")) {
+	if (strncmp(uplo, "U", 1)==0) {
 	    if (*incx == 1) {
 		i__1 = *n;
 		for (j = 1; j <= *n; ++j) {

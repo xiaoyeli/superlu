@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Complex */ VOID clatm3_(complex * ret_val, integer *m, integer *n, integer 
+/* Complex */ VOID clatm3_slu(complex * ret_val, integer *m, integer *n, integer 
 	*i, integer *j, integer *isub, integer *jsub, integer *kl, integer *
 	ku, integer *idist, integer *iseed, complex *d, integer *igrade, 
 	complex *dl, complex *dr, integer *ipvtng, integer *iwork, real *
@@ -20,8 +20,8 @@
 
     /* Local variables */
     static complex ctemp;
-    extern /* Complex */ VOID clarnd_(complex *, integer *, integer *);
-    extern doublereal slaran_(integer *);
+    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
+    extern doublereal dlaran_sluslu(integer *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   
@@ -230,7 +230,7 @@
 /*     Check for sparsity */
 
     if (*sparse > 0.f) {
-	if (slaran_(&iseed[1]) < *sparse) {
+	if (dlaran_sluslu(&iseed[1]) < *sparse) {
 	     ret_val->r = 0.f,  ret_val->i = 0.f;
 	    return ;
 	}
@@ -242,7 +242,7 @@
 	i__1 = *i;
 	ctemp.r = d[i__1].r, ctemp.i = d[i__1].i;
     } else {
-	clarnd_(&q__1, idist, &iseed[1]);
+	clarnd_slu(&q__1, idist, &iseed[1]);
 	ctemp.r = q__1.r, ctemp.i = q__1.i;
     }
     if (*igrade == 1) {
@@ -291,5 +291,5 @@
 
 /*     End of CLATM3 */
 
-} /* clatm3_ */
+} /* clatm3_slu */
 

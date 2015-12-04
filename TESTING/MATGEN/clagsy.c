@@ -12,7 +12,7 @@ static complex c_b2 = {1.f,0.f};
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int clagsy_(integer *n, integer *k, real *d, complex *a, 
+/* Subroutine */ int clagsy_slu(integer *n, integer *k, real *d, complex *a, 
 	integer *lda, integer *iseed, complex *work, integer *info)
 {
     /* System generated locals */
@@ -37,16 +37,16 @@ static integer c__1 = 1;
     extern /* Subroutine */ int cgemv_(char *, integer *, integer *, complex *
 	    , complex *, integer *, complex *, integer *, complex *, complex *
 	    , integer *), caxpy_(integer *, complex *, complex *, 
-	    integer *, complex *, integer *), csymv_(char *, integer *, 
+	    integer *, complex *, integer *), csymv_sluslu(char *, integer *, 
 	    complex *, complex *, integer *, complex *, integer *, complex *, 
 	    complex *, integer *);
     extern real scnrm2_(integer *, complex *, integer *);
     static integer ii, jj;
     static complex wa, wb;
-    extern /* Subroutine */ int clacgv_(integer *, complex *, integer *);
+    extern /* Subroutine */ int clacgv_slu(integer *, complex *, integer *);
     static real wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), clarnv_(
-	    integer *, integer *, integer *, complex *);
+    extern /* Subroutine */ int clarnv_slu(integer *, integer *, integer *, complex *);
+    extern int input_error(char *, int *);
     static complex tau;
 
 
@@ -122,7 +122,7 @@ static integer c__1 = 1;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("CLAGSY", &i__1);
+	input_error("CLAGSY", &i__1);
 	return 0;
     }
 
@@ -153,7 +153,7 @@ static integer c__1 = 1;
 /*        generate random reflection */
 
 	i__1 = *n - i + 1;
-	clarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	clarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = scnrm2_(&i__1, &work[1], &c__1);
 	d__1 = wn / c_abs(&work[1]);
@@ -179,12 +179,12 @@ static integer c__1 = 1;
           compute  y := tau * A * conjg(u) */
 
 	i__1 = *n - i + 1;
-	clacgv_(&i__1, &work[1], &c__1);
+	clacgv_slu(&i__1, &work[1], &c__1);
 	i__1 = *n - i + 1;
-	csymv_("Lower", &i__1, &tau, &a[i + i * a_dim1], lda, &work[1], &c__1,
+	csymv_sluslu("Lower", &i__1, &tau, &a[i + i * a_dim1], lda, &work[1], &c__1,
 		 &c_b1, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
-	clacgv_(&i__1, &work[1], &c__1);
+	clacgv_slu(&i__1, &work[1], &c__1);
 
 /*        compute  v := y - 1/2 * tau * ( u, y ) * u */
 
@@ -279,12 +279,12 @@ ht
           compute  y := tau * A * conjg(u) */
 
 	i__2 = *n - *k - i + 1;
-	clacgv_(&i__2, &a[*k + i + i * a_dim1], &c__1);
+	clacgv_slu(&i__2, &a[*k + i + i * a_dim1], &c__1);
 	i__2 = *n - *k - i + 1;
-	csymv_("Lower", &i__2, &tau, &a[*k + i + (*k + i) * a_dim1], lda, &a[*
+	csymv_sluslu("Lower", &i__2, &tau, &a[*k + i + (*k + i) * a_dim1], lda, &a[*
 		k + i + i * a_dim1], &c__1, &c_b1, &work[1], &c__1);
 	i__2 = *n - *k - i + 1;
-	clacgv_(&i__2, &a[*k + i + i * a_dim1], &c__1);
+	clacgv_slu(&i__2, &a[*k + i + i * a_dim1], &c__1);
 
 /*        compute  v := y - 1/2 * tau * ( u, y ) * u */
 
@@ -359,5 +359,5 @@ ht
 
 /*     End of CLAGSY */
 
-} /* clagsy_ */
+} /* clagsy_slu */
 

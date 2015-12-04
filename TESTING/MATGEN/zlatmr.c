@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -10,7 +10,7 @@
 static integer c__0 = 0;
 static integer c__1 = 1;
 
-/* Subroutine */ int zlatmr_(integer *m, integer *n, char *dist, integer *
+/* Subroutine */ int zlatmr_slu(integer *m, integer *n, char *dist, integer *
 	iseed, char *sym, doublecomplex *d, integer *mode, doublereal *cond, 
 	doublecomplex *dmax__, char *rsign, char *grade, doublecomplex *dl, 
 	integer *model, doublereal *condl, doublecomplex *dr, integer *moder, 
@@ -31,7 +31,6 @@ static integer c__1 = 1;
     static integer isub, jsub;
     static doublereal temp;
     static integer isym, i, j, k, ipack;
-    extern logical lsame_(char *, char *);
     static doublereal tempa[1];
     static doublecomplex ctemp;
     static integer iisub, idist, jjsub, mnmin;
@@ -41,10 +40,10 @@ static integer c__1 = 1;
     static integer mxsub, npvts;
     extern /* Subroutine */ int zlatm1_(integer *, doublereal *, integer *, 
 	    integer *, integer *, doublecomplex *, integer *, integer *);
-    extern /* Double Complex */ VOID zlatm2_(doublecomplex *, integer *, 
+    extern /* Double Complex */ VOID zlatm2_slu(doublecomplex *, integer *, 
 	    integer *, integer *, integer *, integer *, integer *, integer *, 
 	    integer *, doublecomplex *, integer *, doublecomplex *, 
-	    doublecomplex *, integer *, integer *, doublereal *), zlatm3_(
+	    doublecomplex *, integer *, integer *, doublereal *), zlatm3_slu(
 	    doublecomplex *, integer *, integer *, integer *, integer *, 
 	    integer *, integer *, integer *, integer *, integer *, integer *, 
 	    doublecomplex *, integer *, doublecomplex *, doublecomplex *, 
@@ -54,7 +53,7 @@ static integer c__1 = 1;
     static logical fulbnd;
     extern doublereal zlangb_(char *, integer *, integer *, integer *, 
 	    doublecomplex *, integer *, doublereal *);
-    extern /* Subroutine */ int xerbla_(char *, integer *);
+    extern int input_error(char *, int *);
     static logical badpvt;
     extern doublereal zlange_(char *, integer *, integer *, doublecomplex *, 
 	    integer *, doublereal *);
@@ -484,13 +483,13 @@ static integer c__1 = 1;
 
 /*     Decode DIST */
 
-    if (lsame_(dist, "U")) {
+    if (strncmp(dist, "U", 1)==0) {
 	idist = 1;
-    } else if (lsame_(dist, "S")) {
+    } else if (strncmp(dist, "S", 1)==0) {
 	idist = 2;
-    } else if (lsame_(dist, "N")) {
+    } else if (strncmp(dist, "N", 1)==0) {
 	idist = 3;
-    } else if (lsame_(dist, "D")) {
+    } else if (strncmp(dist, "D", 1)==0) {
 	idist = 4;
     } else {
 	idist = -1;
@@ -498,11 +497,11 @@ static integer c__1 = 1;
 
 /*     Decode SYM */
 
-    if (lsame_(sym, "H")) {
+    if (strncmp(sym, "H", 1)==0) {
 	isym = 0;
-    } else if (lsame_(sym, "N")) {
+    } else if (strncmp(sym, "N", 1)==0) {
 	isym = 1;
-    } else if (lsame_(sym, "S")) {
+    } else if (strncmp(sym, "S", 1)==0) {
 	isym = 2;
     } else {
 	isym = -1;
@@ -510,9 +509,9 @@ static integer c__1 = 1;
 
 /*     Decode RSIGN */
 
-    if (lsame_(rsign, "F")) {
+    if (strncmp(rsign, "F", 1)==0) {
 	irsign = 0;
-    } else if (lsame_(rsign, "T")) {
+    } else if (strncmp(rsign, "T", 1)==0) {
 	irsign = 1;
     } else {
 	irsign = -1;
@@ -520,20 +519,20 @@ static integer c__1 = 1;
 
 /*     Decode PIVTNG */
 
-    if (lsame_(pivtng, "N")) {
+    if (strncmp(pivtng, "N", 1)==0) {
 	ipvtng = 0;
-    } else if (lsame_(pivtng, " ")) {
+    } else if (strncmp(pivtng, " ", 1)==0) {
 	ipvtng = 0;
-    } else if (lsame_(pivtng, "L")) {
+    } else if (strncmp(pivtng, "L", 1)==0) {
 	ipvtng = 1;
 	npvts = *m;
-    } else if (lsame_(pivtng, "R")) {
+    } else if (strncmp(pivtng, "R", 1)==0) {
 	ipvtng = 2;
 	npvts = *n;
-    } else if (lsame_(pivtng, "B")) {
+    } else if (strncmp(pivtng, "B", 1)==0) {
 	ipvtng = 3;
 	npvts = min(*n,*m);
-    } else if (lsame_(pivtng, "F")) {
+    } else if (strncmp(pivtng, "F", 1)==0) {
 	ipvtng = 3;
 	npvts = min(*n,*m);
     } else {
@@ -542,19 +541,19 @@ static integer c__1 = 1;
 
 /*     Decode GRADE */
 
-    if (lsame_(grade, "N")) {
+    if (strncmp(grade, "N", 1)==0) {
 	igrade = 0;
-    } else if (lsame_(grade, "L")) {
+    } else if (strncmp(grade, "L", 1)==0) {
 	igrade = 1;
-    } else if (lsame_(grade, "R")) {
+    } else if (strncmp(grade, "R", 1)==0) {
 	igrade = 2;
-    } else if (lsame_(grade, "B")) {
+    } else if (strncmp(grade, "B", 1)==0) {
 	igrade = 3;
-    } else if (lsame_(grade, "E")) {
+    } else if (strncmp(grade, "E", 1)==0) {
 	igrade = 4;
-    } else if (lsame_(grade, "H")) {
+    } else if (strncmp(grade, "H", 1)==0) {
 	igrade = 5;
-    } else if (lsame_(grade, "S")) {
+    } else if (strncmp(grade, "S", 1)==0) {
 	igrade = 6;
     } else {
 	igrade = -1;
@@ -562,21 +561,21 @@ static integer c__1 = 1;
 
 /*     Decode PACK */
 
-    if (lsame_(pack, "N")) {
+    if (strncmp(pack, "N", 1)==0) {
 	ipack = 0;
-    } else if (lsame_(pack, "U")) {
+    } else if (strncmp(pack, "U", 1)==0) {
 	ipack = 1;
-    } else if (lsame_(pack, "L")) {
+    } else if (strncmp(pack, "L", 1)==0) {
 	ipack = 2;
-    } else if (lsame_(pack, "C")) {
+    } else if (strncmp(pack, "C", 1)==0) {
 	ipack = 3;
-    } else if (lsame_(pack, "R")) {
+    } else if (strncmp(pack, "R", 1)==0) {
 	ipack = 4;
-    } else if (lsame_(pack, "B")) {
+    } else if (strncmp(pack, "B", 1)==0) {
 	ipack = 5;
-    } else if (lsame_(pack, "Q")) {
+    } else if (strncmp(pack, "Q", 1)==0) {
 	ipack = 6;
-    } else if (lsame_(pack, "Z")) {
+    } else if (strncmp(pack, "Z", 1)==0) {
 	ipack = 7;
     } else {
 	ipack = -1;
@@ -680,7 +679,7 @@ static integer c__1 = 1;
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("ZLATMR", &i__1);
+	input_error("ZLATMR", &i__1);
 	return 0;
     }
 
@@ -822,7 +821,7 @@ y
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j;
 		    for (i = 1; i <= i__2; ++i) {
-			zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
+			zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -840,7 +839,7 @@ y
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = *m;
 		    for (i = 1; i <= i__2; ++i) {
-			zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
+			zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -855,7 +854,7 @@ y
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j;
 		    for (i = 1; i <= i__2; ++i) {
-			zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
+			zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -875,7 +874,7 @@ y
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -904,7 +903,7 @@ y
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -933,7 +932,7 @@ y
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -970,7 +969,7 @@ ry in packed
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -1015,7 +1014,7 @@ packed array */
 			i__3 = j - i + 1 + (i + *n) * a_dim1;
 			a[i__3].r = 0., a[i__3].i = 0.;
 		    } else {
-			zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
+			zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -1041,7 +1040,7 @@ packed array */
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = j - kuu; i <= i__2; ++i) {
-		    zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -1067,7 +1066,7 @@ packed array */
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j;
 		    for (i = j - kuu; i <= i__2; ++i) {
-			zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
+			zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -1106,7 +1105,7 @@ packed array */
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j + kll;
 		    for (i = j - kuu; i <= i__2; ++i) {
-			zlatm3_(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
+			zlatm3_slu(&z__1, m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			ctemp.r = z__1.r, ctemp.i = z__1.i;
@@ -1131,7 +1130,7 @@ packed array */
 		    i__2 = j;
 		    for (i = 1; i <= i__2; ++i) {
 			i__3 = i + j * a_dim1;
-			zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1148,7 +1147,7 @@ packed array */
 		    i__2 = *m;
 		    for (i = 1; i <= i__2; ++i) {
 			i__3 = i + j * a_dim1;
-			zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1162,7 +1161,7 @@ packed array */
 		    i__2 = j;
 		    for (i = 1; i <= i__2; ++i) {
 			i__3 = i + j * a_dim1;
-			zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1182,7 +1181,7 @@ packed array */
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
 		    i__3 = i + j * a_dim1;
-		    zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1], &
+		    zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1], &
 			    d[1], &igrade, &dl[1], &dr[1], &ipvtng, &iwork[1],
 			     sparse);
 		    a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1203,14 +1202,14 @@ packed array */
 		for (i = 1; i <= i__2; ++i) {
 		    if (isym == 0) {
 			i__3 = j + i * a_dim1;
-			zlatm2_(&z__2, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__2, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			d_cnjg(&z__1, &z__2);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
 		    } else {
 			i__3 = j + i * a_dim1;
-			zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1238,7 +1237,7 @@ packed array */
 			++jsub;
 		    }
 		    i__3 = isub + jsub * a_dim1;
-		    zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1], &
+		    zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1], &
 			    d[1], &igrade, &dl[1], &dr[1], &ipvtng, &iwork[1],
 			     sparse);
 		    a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1272,7 +1271,7 @@ n */
 			isub = k - *lda * (jsub - 1);
 
 			i__3 = isub + jsub * a_dim1;
-			zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1298,7 +1297,7 @@ n */
 			    ++jsub;
 			}
 			i__3 = isub + jsub * a_dim1;
-			zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1320,14 +1319,14 @@ n */
 		    } else {
 			if (isym == 0) {
 			    i__3 = j - i + 1 + i * a_dim1;
-			    zlatm2_(&z__2, m, n, &i, &j, kl, ku, &idist, &
+			    zlatm2_slu(&z__2, m, n, &i, &j, kl, ku, &idist, &
 				    iseed[1], &d[1], &igrade, &dl[1], &dr[1], 
 				    &ipvtng, &iwork[1], sparse);
 			    d_cnjg(&z__1, &z__2);
 			    a[i__3].r = z__1.r, a[i__3].i = z__1.i;
 			} else {
 			    i__3 = j - i + 1 + i * a_dim1;
-			    zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &
+			    zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &
 				    iseed[1], &d[1], &igrade, &dl[1], &dr[1], 
 				    &ipvtng, &iwork[1], sparse);
 			    a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1345,7 +1344,7 @@ n */
 		i__2 = j;
 		for (i = j - kuu; i <= i__2; ++i) {
 		    i__3 = i - j + kuu + 1 + j * a_dim1;
-		    zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1], &
+		    zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1], &
 			    d[1], &igrade, &dl[1], &dr[1], &ipvtng, &iwork[1],
 			     sparse);
 		    a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1362,7 +1361,7 @@ n */
 		    i__2 = j;
 		    for (i = j - kuu; i <= i__2; ++i) {
 			i__3 = i - j + kuu + 1 + j * a_dim1;
-			zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1392,7 +1391,7 @@ n */
 		    i__2 = j + kll;
 		    for (i = j - kuu; i <= i__2; ++i) {
 			i__3 = i - j + kuu + 1 + j * a_dim1;
-			zlatm2_(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
+			zlatm2_slu(&z__1, m, n, &i, &j, kl, ku, &idist, &iseed[1]
 				, &d[1], &igrade, &dl[1], &dr[1], &ipvtng, &
 				iwork[1], sparse);
 			a[i__3].r = z__1.r, a[i__3].i = z__1.i;
@@ -1506,5 +1505,5 @@ n */
 /*     End of ZLATMR */
 
     return 0;
-} /* zlatmr_ */
+} /* zlatmr_slu */
 

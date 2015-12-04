@@ -12,7 +12,7 @@ static doublecomplex c_b2 = {1.,0.};
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int zlagsy_(integer *n, integer *k, doublereal *d, 
+/* Subroutine */ int zlagsy_slu(integer *n, integer *k, doublereal *d, 
 	doublecomplex *a, integer *lda, integer *iseed, doublecomplex *work, 
 	integer *info)
 {
@@ -46,9 +46,9 @@ static integer c__1 = 1;
     static integer ii, jj;
     static doublecomplex wa, wb;
     static doublereal wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), zlacgv_(
-	    integer *, doublecomplex *, integer *), zlarnv_(integer *, 
+    extern /* Subroutine */ int zlacgv_slu(integer *, doublecomplex *, integer *), zlarnv_slu(integer *, 
 	    integer *, integer *, doublecomplex *);
+    extern int input_error(char *, int *);
     static doublecomplex tau;
 
 
@@ -124,7 +124,7 @@ static integer c__1 = 1;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("ZLAGSY", &i__1);
+	input_error("ZLAGSY", &i__1);
 	return 0;
     }
 
@@ -155,7 +155,7 @@ static integer c__1 = 1;
 /*        generate random reflection */
 
 	i__1 = *n - i + 1;
-	zlarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	zlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = dznrm2_(&i__1, &work[1], &c__1);
 	d__1 = wn / z_abs(&work[1]);
@@ -181,12 +181,12 @@ static integer c__1 = 1;
           compute  y := tau * A * conjg(u) */
 
 	i__1 = *n - i + 1;
-	zlacgv_(&i__1, &work[1], &c__1);
+	zlacgv_slu(&i__1, &work[1], &c__1);
 	i__1 = *n - i + 1;
 	zsymv_("Lower", &i__1, &tau, &a[i + i * a_dim1], lda, &work[1], &c__1,
 		 &c_b1, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
-	zlacgv_(&i__1, &work[1], &c__1);
+	zlacgv_slu(&i__1, &work[1], &c__1);
 
 /*        compute  v := y - 1/2 * tau * ( u, y ) * u */
 
@@ -281,12 +281,12 @@ ht
           compute  y := tau * A * conjg(u) */
 
 	i__2 = *n - *k - i + 1;
-	zlacgv_(&i__2, &a[*k + i + i * a_dim1], &c__1);
+	zlacgv_slu(&i__2, &a[*k + i + i * a_dim1], &c__1);
 	i__2 = *n - *k - i + 1;
 	zsymv_("Lower", &i__2, &tau, &a[*k + i + (*k + i) * a_dim1], lda, &a[*
 		k + i + i * a_dim1], &c__1, &c_b1, &work[1], &c__1);
 	i__2 = *n - *k - i + 1;
-	zlacgv_(&i__2, &a[*k + i + i * a_dim1], &c__1);
+	zlacgv_slu(&i__2, &a[*k + i + i * a_dim1], &c__1);
 
 /*        compute  v := y - 1/2 * tau * ( u, y ) * u */
 
@@ -361,5 +361,5 @@ ht
 
 /*     End of ZLAGSY */
 
-} /* zlagsy_ */
+} /* zlagsy_slu */
 

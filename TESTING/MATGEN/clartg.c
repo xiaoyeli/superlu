@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int clartg_(complex *f, complex *g, real *cs, complex *sn, 
+/* Subroutine */ int clartg_slu(complex *f, complex *g, real *cs, complex *sn, 
 	complex *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -143,5 +143,5 @@
 
 /*     End of CLARTG */
 
-} /* clartg_ */
+} /* clartg_slu */
 

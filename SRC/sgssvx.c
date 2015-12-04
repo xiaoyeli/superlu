@@ -388,8 +388,8 @@ sgssvx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 	rowequ = FALSE;
 	colequ = FALSE;
     } else {
-	rowequ = lsame_(equed, "R") || lsame_(equed, "B");
-	colequ = lsame_(equed, "C") || lsame_(equed, "B");
+	rowequ = strncmp(equed, "R", 1)==0 || strncmp(equed, "B", 1)==0;
+	colequ = strncmp(equed, "C", 1)==0 || strncmp(equed, "B", 1)==0;
 	smlnum = smach("Safe minimum");   /* lamch_("Safe minimum"); */
 	bignum = 1. / smlnum;
     }
@@ -411,8 +411,8 @@ printf("dgssvx: Fact=%4d, Trans=%4d, equed=%c\n",
 	      (A->Stype != SLU_NC && A->Stype != SLU_NR) ||
 	      A->Dtype != SLU_S || A->Mtype != SLU_GE )
 	*info = -2;
-    else if (options->Fact == FACTORED &&
-	     !(rowequ || colequ || lsame_(equed, "N")))
+    else if ( options->Fact == FACTORED &&
+	     !(rowequ || colequ || strncmp(equed, "N", 1)==0) )
 	*info = -6;
     else {
 	if (rowequ) {
@@ -498,8 +498,8 @@ printf("dgssvx: Fact=%4d, Trans=%4d, equed=%c\n",
 	if ( info1 == 0 ) {
 	    /* Equilibrate matrix A. */
 	    slaqgs(AA, R, C, rowcnd, colcnd, amax, equed);
-	    rowequ = lsame_(equed, "R") || lsame_(equed, "B");
-	    colequ = lsame_(equed, "C") || lsame_(equed, "B");
+	    rowequ = strncmp(equed, "R", 1)==0 || strncmp(equed, "B", 1)==0;
+	    colequ = strncmp(equed, "C", 1)==0 || strncmp(equed, "B", 1)==0;
 	}
 	utime[EQUIL] = SuperLU_timer_() - t0;
     }

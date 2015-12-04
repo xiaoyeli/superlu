@@ -71,7 +71,6 @@
 
 #ifdef _CRAY
 #include <fortran.h>
-#include <string.h>
 #endif
 
 /* Define my integer type int_t */
@@ -82,32 +81,11 @@ typedef int int_t; /* default */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 #include "slu_Cnames.h"
 #include "supermatrix.h"
 #include "slu_util.h"
 #include "slu_scomplex.h"
-
-
-
-typedef struct {
-    int     *xsup;    /* supernode and column mapping */
-    int     *supno;   
-    int     *lsub;    /* compressed L subscripts */
-    int	    *xlsub;
-    complex  *lusup;   /* L supernodes */
-    int     *xlusup;
-    complex  *ucol;    /* U columns */
-    int     *usub;
-    int	    *xusub;
-    int     nzlmax;   /* current max size of lsub */
-    int     nzumax;   /*    "    "    "      ucol */
-    int     nzlumax;  /*    "    "    "     lusup */
-    int     n;        /* number of columns in the matrix */
-    LU_space_t MemModel; /* 0 - system malloc'd; 1 - user provided */
-    int     num_expansions;
-    ExpHeader *expanders; /* Array of pointers to 4 types of memory */
-    LU_stack_t stack;     /* use user supplied memory */
-} GlobalLU_t;
 
 
 /* -------- Prototypes -------- */
@@ -267,8 +245,6 @@ extern void    cCompRow_to_CompCol(int, int, int, complex*, int*, int*,
 		                   complex **, int **, int **);
 extern void    cfill (complex *, int, complex);
 extern void    cinf_norm_error (int, SuperMatrix *, complex *);
-extern void    PrintPerf (SuperMatrix *, SuperMatrix *, mem_usage_t *,
-			 complex, complex, complex *, complex *, char *);
 extern float  sqselect(int, float *, int);
 
 
@@ -278,7 +254,7 @@ extern void    cPrint_SuperNode_Matrix(char *, SuperMatrix *);
 extern void    cPrint_Dense_Matrix(char *, SuperMatrix *);
 extern void    cprint_lu_col(char *, int, int, int *, GlobalLU_t *);
 extern int     print_double_vec(char *, int, double *);
-extern void    check_tempv(int, complex *);
+extern void    ccheck_tempv(int, complex *);
 
 /*! \brief BLAS */
 

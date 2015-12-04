@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -10,7 +10,7 @@
 static integer c__0 = 0;
 static integer c__1 = 1;
 
-/* Subroutine */ int slatmr_(integer *m, integer *n, char *dist, integer *
+/* Subroutine */ int slatmr_slu(integer *m, integer *n, char *dist, integer *
 	iseed, char *sym, real *d, integer *mode, real *cond, real *dmax__, 
 	char *rsign, char *grade, real *dl, integer *model, real *condl, real 
 	*dr, integer *moder, real *condr, char *pivtng, integer *ipivot, 
@@ -27,7 +27,6 @@ static integer c__1 = 1;
     static integer isym, i, j, k;
     static real alpha;
     static integer ipack;
-    extern logical lsame_(char *, char *);
     static real tempa[1];
     extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *);
     static integer iisub, idist, jjsub, mnmin;
@@ -35,11 +34,11 @@ static integer c__1 = 1;
     static integer mnsub;
     static real onorm;
     static integer mxsub, npvts;
-    extern /* Subroutine */ int slatm1_(integer *, real *, integer *, integer 
+    extern /* Subroutine */ int slatm1_slu(integer *, real *, integer *, integer 
 	    *, integer *, real *, integer *, integer *);
-    extern doublereal slatm2_(integer *, integer *, integer *, integer *, 
+    extern doublereal slatm2_slu(integer *, integer *, integer *, integer *, 
 	    integer *, integer *, integer *, integer *, real *, integer *, 
-	    real *, real *, integer *, integer *, real *), slatm3_(integer *, 
+	    real *, real *, integer *, integer *, real *), slatm3_slu(integer *, 
 	    integer *, integer *, integer *, integer *, integer *, integer *, 
 	    integer *, integer *, integer *, real *, integer *, real *, real *
 	    , integer *, integer *, real *);
@@ -48,7 +47,7 @@ static integer c__1 = 1;
 	     integer *, real *), slange_(char *, integer *, integer *,
 	     real *, integer *, real *);
     static logical fulbnd;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
+    extern int input_error(char *, int *);
     static logical badpvt;
     extern doublereal slansb_(char *, char *, integer *, integer *, real *, 
 	    integer *, real *);
@@ -458,11 +457,11 @@ static integer c__1 = 1;
 
 /*     Decode DIST */
 
-    if (lsame_(dist, "U")) {
+    if (strncmp(dist, "U", 1)==0) {
 	idist = 1;
-    } else if (lsame_(dist, "S")) {
+    } else if (strncmp(dist, "S", 1)==0) {
 	idist = 2;
-    } else if (lsame_(dist, "N")) {
+    } else if (strncmp(dist, "N", 1)==0) {
 	idist = 3;
     } else {
 	idist = -1;
@@ -470,11 +469,11 @@ static integer c__1 = 1;
 
 /*     Decode SYM */
 
-    if (lsame_(sym, "S")) {
+    if (strncmp(sym, "S", 1)==0) {
 	isym = 0;
-    } else if (lsame_(sym, "N")) {
+    } else if (strncmp(sym, "N", 1)==0) {
 	isym = 1;
-    } else if (lsame_(sym, "H")) {
+    } else if (strncmp(sym, "H", 1)==0) {
 	isym = 0;
     } else {
 	isym = -1;
@@ -482,9 +481,9 @@ static integer c__1 = 1;
 
 /*     Decode RSIGN */
 
-    if (lsame_(rsign, "F")) {
+    if (strncmp(rsign, "F", 1)==0) {
 	irsign = 0;
-    } else if (lsame_(rsign, "T")) {
+    } else if (strncmp(rsign, "T", 1)==0) {
 	irsign = 1;
     } else {
 	irsign = -1;
@@ -492,20 +491,20 @@ static integer c__1 = 1;
 
 /*     Decode PIVTNG */
 
-    if (lsame_(pivtng, "N")) {
+    if (strncmp(pivtng, "N", 1)==0) {
 	ipvtng = 0;
-    } else if (lsame_(pivtng, " ")) {
+    } else if (strncmp(pivtng, " ", 1)==0) {
 	ipvtng = 0;
-    } else if (lsame_(pivtng, "L")) {
+    } else if (strncmp(pivtng, "L", 1)==0) {
 	ipvtng = 1;
 	npvts = *m;
-    } else if (lsame_(pivtng, "R")) {
+    } else if (strncmp(pivtng, "R", 1)==0) {
 	ipvtng = 2;
 	npvts = *n;
-    } else if (lsame_(pivtng, "B")) {
+    } else if (strncmp(pivtng, "B", 1)==0) {
 	ipvtng = 3;
 	npvts = min(*n,*m);
-    } else if (lsame_(pivtng, "F")) {
+    } else if (strncmp(pivtng, "F", 1)==0) {
 	ipvtng = 3;
 	npvts = min(*n,*m);
     } else {
@@ -514,17 +513,17 @@ static integer c__1 = 1;
 
 /*     Decode GRADE */
 
-    if (lsame_(grade, "N")) {
+    if (strncmp(grade, "N", 1)==0) {
 	igrade = 0;
-    } else if (lsame_(grade, "L")) {
+    } else if (strncmp(grade, "L", 1)==0) {
 	igrade = 1;
-    } else if (lsame_(grade, "R")) {
+    } else if (strncmp(grade, "R", 1)==0) {
 	igrade = 2;
-    } else if (lsame_(grade, "B")) {
+    } else if (strncmp(grade, "B", 1)==0) {
 	igrade = 3;
-    } else if (lsame_(grade, "E")) {
+    } else if (strncmp(grade, "E", 1)==0) {
 	igrade = 4;
-    } else if (lsame_(grade, "H") || lsame_(grade, "S")) {
+    } else if (strncmp(grade, "H", 1)==0 || strncmp(grade, "S", 1)==0) {
 	igrade = 5;
     } else {
 	igrade = -1;
@@ -532,21 +531,21 @@ static integer c__1 = 1;
 
 /*     Decode PACK */
 
-    if (lsame_(pack, "N")) {
+    if (strncmp(pack, "N", 1)==0) {
 	ipack = 0;
-    } else if (lsame_(pack, "U")) {
+    } else if (strncmp(pack, "U", 1)==0) {
 	ipack = 1;
-    } else if (lsame_(pack, "L")) {
+    } else if (strncmp(pack, "L", 1)==0) {
 	ipack = 2;
-    } else if (lsame_(pack, "C")) {
+    } else if (strncmp(pack, "C", 1)==0) {
 	ipack = 3;
-    } else if (lsame_(pack, "R")) {
+    } else if (strncmp(pack, "R", 1)==0) {
 	ipack = 4;
-    } else if (lsame_(pack, "B")) {
+    } else if (strncmp(pack, "B", 1)==0) {
 	ipack = 5;
-    } else if (lsame_(pack, "Q")) {
+    } else if (strncmp(pack, "Q", 1)==0) {
 	ipack = 6;
-    } else if (lsame_(pack, "Z")) {
+    } else if (strncmp(pack, "Z", 1)==0) {
 	ipack = 7;
     } else {
 	ipack = -1;
@@ -646,7 +645,7 @@ static integer c__1 = 1;
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("SLATMR", &i__1);
+	input_error("SLATMR", &i__1);
 	return 0;
     }
 
@@ -670,7 +669,7 @@ static integer c__1 = 1;
 
                Compute D according to COND and MODE */
 
-    slatm1_(mode, cond, &irsign, &idist, &iseed[1], &d[1], &mnmin, info);
+    slatm1_slu(mode, cond, &irsign, &idist, &iseed[1], &d[1], &mnmin, info);
     if (*info != 0) {
 	*info = 1;
 	return 0;
@@ -707,7 +706,7 @@ static integer c__1 = 1;
 /*     Compute DL if grading set */
 
     if (igrade == 1 || igrade == 3 || igrade == 4 || igrade == 5) {
-	slatm1_(model, condl, &c__0, &idist, &iseed[1], &dl[1], m, info);
+	slatm1_slu(model, condl, &c__0, &idist, &iseed[1], &dl[1], m, info);
 	if (*info != 0) {
 	    *info = 3;
 	    return 0;
@@ -717,7 +716,7 @@ static integer c__1 = 1;
 /*     Compute DR if grading set */
 
     if (igrade == 2 || igrade == 3) {
-	slatm1_(moder, condr, &c__0, &idist, &iseed[1], &dr[1], n, info);
+	slatm1_slu(moder, condr, &c__0, &idist, &iseed[1], &dr[1], n, info);
 	if (*info != 0) {
 	    *info = 4;
 	    return 0;
@@ -769,7 +768,7 @@ y
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j;
 		    for (i = 1; i <= i__2; ++i) {
-			temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &
+			temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			a[isub + jsub * a_dim1] = temp;
@@ -783,7 +782,7 @@ y
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = *m;
 		    for (i = 1; i <= i__2; ++i) {
-			temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &
+			temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			a[isub + jsub * a_dim1] = temp;
@@ -799,7 +798,7 @@ y
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    mnsub = min(isub,jsub);
@@ -819,7 +818,7 @@ y
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    mnsub = min(isub,jsub);
@@ -839,7 +838,7 @@ y
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 
@@ -868,7 +867,7 @@ ry in packed
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 
@@ -904,7 +903,7 @@ packed array */
 		    if (i < 1) {
 			a[j - i + 1 + (i + *n) * a_dim1] = 0.f;
 		    } else {
-			temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &
+			temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			mnsub = min(isub,jsub);
@@ -922,7 +921,7 @@ packed array */
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = j - kuu; i <= i__2; ++i) {
-		    temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
+		    temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &idist,
 			     &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    mnsub = min(isub,jsub);
@@ -940,7 +939,7 @@ packed array */
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j;
 		    for (i = j - kuu; i <= i__2; ++i) {
-			temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &
+			temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			mnsub = min(isub,jsub);
@@ -962,7 +961,7 @@ packed array */
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j + kll;
 		    for (i = j - kuu; i <= i__2; ++i) {
-			temp = slatm3_(m, n, &i, &j, &isub, &jsub, kl, ku, &
+			temp = slatm3_slu(m, n, &i, &j, &isub, &jsub, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			a[isub - jsub + kuu + 1 + jsub * a_dim1] = temp;
@@ -984,7 +983,7 @@ packed array */
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j;
 		    for (i = 1; i <= i__2; ++i) {
-			a[i + j * a_dim1] = slatm2_(m, n, &i, &j, kl, ku, &
+			a[i + j * a_dim1] = slatm2_slu(m, n, &i, &j, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 			a[j + i * a_dim1] = a[i + j * a_dim1];
@@ -997,7 +996,7 @@ packed array */
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = *m;
 		    for (i = 1; i <= i__2; ++i) {
-			a[i + j * a_dim1] = slatm2_(m, n, &i, &j, kl, ku, &
+			a[i + j * a_dim1] = slatm2_slu(m, n, &i, &j, kl, ku, &
 				idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[
 				1], &ipvtng, &iwork[1], sparse);
 /* L310: */
@@ -1012,7 +1011,7 @@ packed array */
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    a[i + j * a_dim1] = slatm2_(m, n, &i, &j, kl, ku, &idist, 
+		    a[i + j * a_dim1] = slatm2_slu(m, n, &i, &j, kl, ku, &idist, 
 			    &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    if (i != j) {
@@ -1029,7 +1028,7 @@ packed array */
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = 1; i <= i__2; ++i) {
-		    a[j + i * a_dim1] = slatm2_(m, n, &i, &j, kl, ku, &idist, 
+		    a[j + i * a_dim1] = slatm2_slu(m, n, &i, &j, kl, ku, &idist, 
 			    &iseed[1], &d[1], &igrade, &dl[1], &dr[1], &
 			    ipvtng, &iwork[1], sparse);
 		    if (i != j) {
@@ -1053,7 +1052,7 @@ packed array */
 			isub = 1;
 			++jsub;
 		    }
-		    a[isub + jsub * a_dim1] = slatm2_(m, n, &i, &j, kl, ku, &
+		    a[isub + jsub * a_dim1] = slatm2_slu(m, n, &i, &j, kl, ku, &
 			    idist, &iseed[1], &d[1], &igrade, &dl[1], &dr[1], 
 			    &ipvtng, &iwork[1], sparse);
 /* L370: */
@@ -1085,7 +1084,7 @@ n */
 			jsub = (k - 1) / *lda + 1;
 			isub = k - *lda * (jsub - 1);
 
-			a[isub + jsub * a_dim1] = slatm2_(m, n, &i, &j, kl, 
+			a[isub + jsub * a_dim1] = slatm2_slu(m, n, &i, &j, kl, 
 				ku, &idist, &iseed[1], &d[1], &igrade, &dl[1],
 				 &dr[1], &ipvtng, &iwork[1], sparse);
 /* L390: */
@@ -1104,7 +1103,7 @@ n */
 			    isub = 1;
 			    ++jsub;
 			}
-			a[isub + jsub * a_dim1] = slatm2_(m, n, &i, &j, kl, 
+			a[isub + jsub * a_dim1] = slatm2_slu(m, n, &i, &j, kl, 
 				ku, &idist, &iseed[1], &d[1], &igrade, &dl[1],
 				 &dr[1], &ipvtng, &iwork[1], sparse);
 /* L410: */
@@ -1122,7 +1121,7 @@ n */
 		    if (i < 1) {
 			a[j - i + 1 + (i + *n) * a_dim1] = 0.f;
 		    } else {
-			a[j - i + 1 + i * a_dim1] = slatm2_(m, n, &i, &j, kl, 
+			a[j - i + 1 + i * a_dim1] = slatm2_slu(m, n, &i, &j, kl, 
 				ku, &idist, &iseed[1], &d[1], &igrade, &dl[1],
 				 &dr[1], &ipvtng, &iwork[1], sparse);
 		    }
@@ -1137,7 +1136,7 @@ n */
 	    for (j = 1; j <= i__1; ++j) {
 		i__2 = j;
 		for (i = j - kuu; i <= i__2; ++i) {
-		    a[i - j + kuu + 1 + j * a_dim1] = slatm2_(m, n, &i, &j, 
+		    a[i - j + kuu + 1 + j * a_dim1] = slatm2_slu(m, n, &i, &j, 
 			    kl, ku, &idist, &iseed[1], &d[1], &igrade, &dl[1],
 			     &dr[1], &ipvtng, &iwork[1], sparse);
 /* L450: */
@@ -1152,7 +1151,7 @@ n */
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j;
 		    for (i = j - kuu; i <= i__2; ++i) {
-			a[i - j + kuu + 1 + j * a_dim1] = slatm2_(m, n, &i, &
+			a[i - j + kuu + 1 + j * a_dim1] = slatm2_slu(m, n, &i, &
 				j, kl, ku, &idist, &iseed[1], &d[1], &igrade, 
 				&dl[1], &dr[1], &ipvtng, &iwork[1], sparse);
 			if (i < 1) {
@@ -1171,7 +1170,7 @@ n */
 		for (j = 1; j <= i__1; ++j) {
 		    i__2 = j + kll;
 		    for (i = j - kuu; i <= i__2; ++i) {
-			a[i - j + kuu + 1 + j * a_dim1] = slatm2_(m, n, &i, &
+			a[i - j + kuu + 1 + j * a_dim1] = slatm2_slu(m, n, &i, &
 				j, kl, ku, &idist, &iseed[1], &d[1], &igrade, 
 				&dl[1], &dr[1], &ipvtng, &iwork[1], sparse);
 /* L490: */
@@ -1285,5 +1284,5 @@ n */
 /*     End of SLATMR */
 
     return 0;
-} /* slatmr_ */
+} /* slatmr_slu */
 

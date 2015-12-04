@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int dlaruv_(integer *iseed, integer *n, doublereal *x)
+/* Subroutine */ int dlaruv_slu(integer *iseed, integer *n, doublereal *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -148,5 +148,5 @@
 
 /*     End of DLARUV */
 
-} /* dlaruv_ */
+} /* dlaruv_slu */
 

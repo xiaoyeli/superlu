@@ -22,7 +22,7 @@ PLAT = _mac_x
 #  The name of the libraries to be created/linked to
 #
 SuperLUroot	= $(HOME)/Dropbox/Codes/SuperLU/SuperLU
-SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.0.a
+SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.1.a
 BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 TMGLIB       	= libtmglib.a
 LIBS		= $(SUPERLULIB) $(BLASLIB)

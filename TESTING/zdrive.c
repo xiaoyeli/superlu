@@ -99,9 +99,9 @@ main(int argc, char *argv[])
     extern int zgst07(trans_t, int, int, SuperMatrix *, doublecomplex *, int,
                          doublecomplex *, int, doublecomplex *, int, 
                          double *, double *, double *);
-    extern int zlatb4_(char *, int *, int *, int *, char *, int *, int *, 
+    extern int zlatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
 	               double *, int *, double *, char *);
-    extern int zlatms_(int *, int *, char *, int *, char *, double *d,
+    extern int zlatms_slu(int *, int *, char *, int *, char *, double *d,
                        int *, double *, double *, int *, int *,
                        char *, doublecomplex *, int *, doublecomplex *, int *);
     extern int sp_zconvert(int, int, doublecomplex *, int, int, int,
@@ -198,10 +198,10 @@ main(int argc, char *argv[])
 	    
 	    /* Set up parameters with ZLATB4 and generate a test matrix
 	       with ZLATMS.  */
-	    zlatb4_(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
+	    zlatb4_slu(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
 		    &cndnum, dist);
 
-	    zlatms_(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
+	    zlatms_slu(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
 		    &anorm, &kl, &ku, "No packing", Afull, &lda,
 		    &wwork[0], &info);
 
@@ -277,13 +277,13 @@ main(int argc, char *argv[])
 
 			    /* Force equilibration. */
 			    if ( !info && n > 0 ) {
-				if ( lsame_(equed, "R") ) {
+				if ( strncmp(equed, "R", 1)==0 ) {
 				    rowcnd = 0.;
 				    colcnd = 1.;
-				} else if ( lsame_(equed, "C") ) {
+				} else if ( strncmp(equed, "C", 1)==0 ) {
 				    rowcnd = 1.;
 				    colcnd = 0.;
-				} else if ( lsame_(equed, "B") ) {
+				} else if ( strncmp(equed, "B", 1)==0 ) {
 				    rowcnd = 0.;
 				    colcnd = 0.;
 				}

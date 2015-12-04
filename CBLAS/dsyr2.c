@@ -3,7 +3,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Subroutine */ int dsyr2_(char *uplo, integer *n, doublereal *alpha, 
@@ -19,10 +19,8 @@
     static integer info;
     static doublereal temp1, temp2;
     static integer i, j;
-    extern logical lsame_(char *, char *);
     static integer ix, iy, jx, jy, kx, ky;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
-
+    extern int input_error(char *, int *);
 
 /*  Purpose   
     =======   
@@ -127,7 +125,7 @@
 #define A(I,J) a[(I)-1 + ((J)-1)* ( *lda)]
 
     info = 0;
-    if (! lsame_(uplo, "U") && ! lsame_(uplo, "L")) {
+    if ( strncmp(uplo, "U", 1)!=0 && strncmp(uplo, "L", 1)!=0 ) {
 	info = 1;
     } else if (*n < 0) {
 	info = 2;
@@ -139,7 +137,7 @@
 	info = 9;
     }
     if (info != 0) {
-	xerbla_("DSYR2 ", &info);
+	input_error("DSYR2 ", &info);
 	return 0;
     }
 
@@ -172,7 +170,7 @@
        accessed sequentially with one pass through the triangular part   
        of A. */
 
-    if (lsame_(uplo, "U")) {
+    if (strncmp(uplo, "U", 1)==0) {
 
 /*        Form  A  when A is stored in the upper triangle. */
 

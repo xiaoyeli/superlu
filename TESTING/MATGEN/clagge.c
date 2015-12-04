@@ -12,7 +12,7 @@ static complex c_b2 = {1.f,0.f};
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int clagge_(integer *m, integer *n, integer *kl, integer *ku,
+/* Subroutine */ int clagge_slu(integer *m, integer *n, integer *kl, integer *ku,
 	 real *d, complex *a, integer *lda, integer *iseed, complex *work, 
 	integer *info)
 {
@@ -34,10 +34,10 @@ static integer c__1 = 1;
 	    , integer *, complex *, complex *, integer *);
     extern real scnrm2_(integer *, complex *, integer *);
     static complex wa, wb;
-    extern /* Subroutine */ int clacgv_(integer *, complex *, integer *);
+    extern /* Subroutine */ int clacgv_slu(integer *, complex *, integer *);
     static real wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), clarnv_(
-	    integer *, integer *, integer *, complex *);
+    extern /* Subroutine */ int clarnv_slu(integer *, integer *, integer *, complex *);
+    extern int input_error(char *, int *);
     static complex tau;
 
 
@@ -124,7 +124,7 @@ static integer c__1 = 1;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("CLAGGE", &i__1);
+	input_error("CLAGGE", &i__1);
 	return 0;
     }
 
@@ -156,7 +156,7 @@ static integer c__1 = 1;
 /*           generate random reflection */
 
 	    i__1 = *m - i + 1;
-	    clarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	    clarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *m - i + 1;
 	    wn = scnrm2_(&i__1, &work[1], &c__1);
 	    d__1 = wn / c_abs(&work[1]);
@@ -195,7 +195,7 @@ t */
 /*           generate random reflection */
 
 	    i__1 = *n - i + 1;
-	    clarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	    clarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *n - i + 1;
 	    wn = scnrm2_(&i__1, &work[1], &c__1);
 	    d__1 = wn / c_abs(&work[1]);
@@ -323,7 +323,7 @@ eft */
 ight */
 
 		i__2 = *n - *ku - i + 1;
-		clacgv_(&i__2, &a[i + (*ku + i) * a_dim1], lda);
+		clacgv_slu(&i__2, &a[i + (*ku + i) * a_dim1], lda);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
 		cgemv_("No transpose", &i__2, &i__3, &c_b2, &a[i + 1 + (*ku + 
@@ -377,7 +377,7 @@ ight */
 ight */
 
 		i__2 = *n - *ku - i + 1;
-		clacgv_(&i__2, &a[i + (*ku + i) * a_dim1], lda);
+		clacgv_slu(&i__2, &a[i + (*ku + i) * a_dim1], lda);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
 		cgemv_("No transpose", &i__2, &i__3, &c_b2, &a[i + 1 + (*ku + 
@@ -460,5 +460,5 @@ eft */
 
 /*     End of CLAGGE */
 
-} /* clagge_ */
+} /* clagge_slu */
 

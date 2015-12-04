@@ -438,8 +438,8 @@ dgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 	rowequ = FALSE;
 	colequ = FALSE;
     } else {
-	rowequ = lsame_(equed, "R") || lsame_(equed, "B");
-	colequ = lsame_(equed, "C") || lsame_(equed, "B");
+	rowequ = strncmp(equed, "R", 1)==0 || strncmp(equed, "B", 1)==0;
+	colequ = strncmp(equed, "C", 1)==0 || strncmp(equed, "B", 1)==0;
 	smlnum = dmach("Safe minimum");  /* lamch_("Safe minimum"); */
 	bignum = 1. / smlnum;
     }
@@ -456,8 +456,8 @@ dgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 	      (A->Stype != SLU_NC && A->Stype != SLU_NR) ||
 	      A->Dtype != SLU_D || A->Mtype != SLU_GE )
 	*info = -2;
-    else if (options->Fact == FACTORED &&
-	     !(rowequ || colequ || lsame_(equed, "N")))
+    else if ( options->Fact == FACTORED &&
+	     !(rowequ || colequ || strncmp(equed, "N", 1)==0) )
 	*info = -6;
     else {
 	if (rowequ) {
@@ -583,8 +583,8 @@ dgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 	    if ( info1 == 0 ) {
 		/* Equilibrate matrix A. */
 		dlaqgs(AA, R, C, rowcnd, colcnd, amax, equed);
-		rowequ = lsame_(equed, "R") || lsame_(equed, "B");
-		colequ = lsame_(equed, "C") || lsame_(equed, "B");
+		rowequ = strncmp(equed, "R", 1)==0 || strncmp(equed, "B", 1)==0;
+		colequ = strncmp(equed, "C", 1)==0 || strncmp(equed, "B", 1)==0;
 	    }
 	    utime[EQUIL] = SuperLU_timer_() - t0;
 	}

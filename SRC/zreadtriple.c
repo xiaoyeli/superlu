@@ -35,7 +35,7 @@ zreadtriple(int *m, int *n, int *nonz,
      *                 row, col, value
      */
 
-    scanf("%d%d%d", m, n, nonz);
+    scanf("%d%d", n, nonz);
     *m = *n;
     printf("m %d, n %d, nonz %d\n", *m, *n, *nonz);
     zallocateA(*n, *nonz, nzval, rowind, colptr); /* Allocate storage */

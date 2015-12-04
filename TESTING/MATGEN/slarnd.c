@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-doublereal slarnd_(integer *idist, integer *iseed)
+doublereal slarnd_slu(integer *idist, integer *iseed)
 {
     /* System generated locals */
     real ret_val;
@@ -15,7 +15,7 @@ doublereal slarnd_(integer *idist, integer *iseed)
 
     /* Local variables */
     static real t1, t2;
-    extern doublereal slaran_(integer *);
+    extern doublereal dlaran_sluslu(integer *);
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -66,7 +66,7 @@ doublereal slarnd_(integer *idist, integer *iseed)
     --iseed;
 
     /* Function Body */
-    t1 = slaran_(&iseed[1]);
+    t1 = dlaran_sluslu(&iseed[1]);
 
     if (*idist == 1) {
 
@@ -82,7 +82,7 @@ doublereal slarnd_(integer *idist, integer *iseed)
 
 /*        normal (0,1) */
 
-	t2 = slaran_(&iseed[1]);
+	t2 = dlaran_sluslu(&iseed[1]);
 	ret_val = sqrt(log(t1) * -2.f) * cos(t2 * 
 		6.2831853071795864769252867663f);
     }
@@ -90,5 +90,5 @@ doublereal slarnd_(integer *idist, integer *iseed)
 
 /*     End of SLARND */
 
-} /* slarnd_ */
+} /* slarnd_slu */
 

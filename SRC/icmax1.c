@@ -41,7 +41,7 @@
    ===================================================================== 
   </pre>
 */
-int icmax1_(int *n, complex *cx, int *incx)
+int icmax1_slu(int *n, complex *cx, int *incx)
 {
 /*
        NEXT LINE IS THE ONLY MODIFICATION.   
@@ -53,8 +53,8 @@ int icmax1_(int *n, complex *cx, int *incx)
     int ret_val, i__1, i__2;
     float r__1;
     /* Local variables */
-    float smax;
-    int i, ix;
+    static float smax;
+    static int i, ix;
 
 
 #define CX(I) cx[(I)-1]
@@ -112,5 +112,5 @@ L40:
 
 /*     End of ICMAX1 */
 
-} /* icmax1_ */
+} /* icmax1_slu */
 

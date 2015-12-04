@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int dlatm1_(integer *mode, doublereal *cond, integer *irsign,
+/* Subroutine */ int dlatm1_slu(integer *mode, doublereal *cond, integer *irsign,
 	 integer *idist, integer *iseed, doublereal *d, integer *n, integer *
 	info)
 {
@@ -21,9 +21,9 @@
     static doublereal temp;
     static integer i;
     static doublereal alpha;
-    extern doublereal dlaran_(integer *);
-    extern /* Subroutine */ int xerbla_(char *, integer *), dlarnv_(
-	    integer *, integer *, integer *, doublereal *);
+    extern doublereal dlaran_slu(integer *);
+    extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern int input_error(char *, int *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   
@@ -143,7 +143,7 @@
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("DLATM1", &i__1);
+	input_error("DLATM1", &i__1);
 	return 0;
     }
 
@@ -218,7 +218,7 @@ L90:
 	alpha = log(1. / *cond);
 	i__1 = *n;
 	for (i = 1; i <= i__1; ++i) {
-	    d[i] = exp(alpha * dlaran_(&iseed[1]));
+	    d[i] = exp(alpha * dlaran_slu(&iseed[1]));
 /* L100: */
 	}
 	goto L120;
@@ -226,7 +226,7 @@ L90:
 /*        Randomly distributed D values from IDIST */
 
 L110:
-	dlarnv_(idist, &iseed[1], n, &d[1]);
+	dlarnv_slu(idist, &iseed[1], n, &d[1]);
 
 L120:
 
@@ -236,7 +236,7 @@ L120:
 	if (*mode != -6 && *mode != 0 && *mode != 6 && *irsign == 1) {
 	    i__1 = *n;
 	    for (i = 1; i <= i__1; ++i) {
-		temp = dlaran_(&iseed[1]);
+		temp = dlaran_slu(&iseed[1]);
 		if (temp > .5) {
 		    d[i] = -d[i];
 		}
@@ -262,5 +262,5 @@ L120:
 
 /*     End of DLATM1 */
 
-} /* dlatm1_ */
+} /* dlatm1_slu */
 

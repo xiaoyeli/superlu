@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int slaruv_(integer *iseed, integer *n, real *x)
+/* Subroutine */ int slaruv_slu(integer *iseed, integer *n, real *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -148,5 +148,5 @@
 
 /*     End of SLARUV */
 
-} /* slaruv_ */
+} /* slaruv_slu */
 

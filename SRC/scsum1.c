@@ -40,7 +40,7 @@
     ===================================================================== 
 </pre>
 */
-double scsum1_(int *n, complex *cx, int *incx)
+double scsum1_slu(int *n, complex *cx, int *incx)
 {
     /* System generated locals */
     int i__1, i__2;
@@ -48,11 +48,13 @@ double scsum1_(int *n, complex *cx, int *incx)
     /* Builtin functions */
     double c_abs(complex *);
     /* Local variables */
-    int i, nincx;
-    float stemp;
+    static int i, nincx;
+    static float stemp;
+
 
 #define CX(I) cx[(I)-1]
- 
+
+
     ret_val = 0.f;
     stemp = 0.f;
     if (*n <= 0) {
@@ -93,5 +95,5 @@ L20:
 
 /*     End of SCSUM1 */
 
-} /* scsum1_ */
+} /* scsum1_slu */
 

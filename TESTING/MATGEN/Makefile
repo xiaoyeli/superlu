@@ -29,7 +29,6 @@ include ../../make.inc
 #       make clean
 #
 #######################################################################
-ALLAUX  = lsamen.o
 
 SCATGEN = slatm1.o slaran.o slarnd.o slaruv.o slabad.o slarnv.o
 SLASRC  = slatb4.o slaset.o slartg.o
@@ -46,12 +45,14 @@ DINTRINSIC  = d_lg10.o d_sign.o pow_dd.o pow_di.o
 CLASRC  = clatb4.o claset.o clartg.o clarnv.o clacgv.o csymv.o
 CMATGEN = clatms.o clatme.o clatmr.o \
 	  clagge.o clagsy.o clarge.o claror.o clarot.o clatm2.o clatm3.o \
-	  claghe.o clarnd.o cdotc.o
+	  claghe.o clarnd.o
+ #cdotc.o  already in BLAS
 
 ZLASRC  = zlatb4.o zlaset.o zlartg.o zlarnv.o zlacgv.o zsymv.o
 ZMATGEN = zlatms.o zlatme.o zlatmr.o \
 	  zlagge.o zlagsy.o zlarge.o zlaror.o zlarot.o zlatm2.o zlatm3.o \
-	  zlaghe.o zlarnd.o zdotc.o
+	  zlaghe.o zlarnd.o
+ #zdotc.o  in BLAS
 
 all: single double complex complex16
 

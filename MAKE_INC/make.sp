@@ -21,8 +21,8 @@ PLAT = _sp
 #
 #  The name of the libraries to be created/linked to
 #
-SuperLUroot	= $(HOME)/Codes/SuperLU_4.3
-SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_4.3.a
+SuperLUroot	= $(HOME)/Codes/SuperLU/SuperLU_5.1
+SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.1.a
 # 
 # If you don't have ESSL, you can use the following blaslib instead:
 #           BLASLIB = -lblas -lxlf -lxlf90

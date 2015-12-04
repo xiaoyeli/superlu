@@ -12,7 +12,7 @@ static integer c__1 = 1;
 static doublereal c_b8 = 1.;
 static doublereal c_b10 = 0.;
 
-/* Subroutine */ int dlarge_(integer *n, doublereal *a, integer *lda, integer 
+/* Subroutine */ int dlarge_slu(integer *n, doublereal *a, integer *lda, integer 
 	*iseed, doublereal *work, integer *info)
 {
     /* System generated locals */
@@ -33,8 +33,8 @@ static doublereal c_b10 = 0.;
 	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
 	    doublereal *, integer *);
     static doublereal wa, wb, wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), dlarnv_(
-	    integer *, integer *, integer *, doublereal *);
+    extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern int input_error(char *, int *);
     static doublereal tau;
 
 
@@ -99,7 +99,7 @@ static doublereal c_b10 = 0.;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("DLARGE", &i__1);
+	input_error("DLARGE", &i__1);
 	return 0;
     }
 
@@ -110,7 +110,7 @@ static doublereal c_b10 = 0.;
 /*        generate random reflection */
 
 	i__1 = *n - i + 1;
-	dlarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	dlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = dnrm2_(&i__1, &work[1], &c__1);
 	wa = d_sign(&wn, &work[1]);
@@ -150,5 +150,5 @@ static doublereal c_b10 = 0.;
 
 /*     End of DLARGE */
 
-} /* dlarge_ */
+} /* dlarge_slu */
 

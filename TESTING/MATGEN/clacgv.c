@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int clacgv_(integer *n, complex *x, integer *incx)
+/* Subroutine */ int clacgv_slu(integer *n, complex *x, integer *incx)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -72,5 +72,5 @@
 
 /*     End of CLACGV */
 
-} /* clacgv_ */
+} /* clacgv_slu */
 

@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int zlacgv_(integer *n, doublecomplex *x, integer *incx)
+/* Subroutine */ int zlacgv_slu(integer *n, doublecomplex *x, integer *incx)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -72,5 +72,5 @@
 
 /*     End of ZLACGV */
 
-} /* zlacgv_ */
+} /* zlacgv_slu */
 

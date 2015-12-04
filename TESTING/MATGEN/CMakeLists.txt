@@ -1,4 +1,4 @@
-set(sources lsamen.c)
+set(sources "")
 
 if(enable_single)
   list(APPEND sources

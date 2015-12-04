@@ -61,7 +61,7 @@ Include dependency graph for zsp_blas2.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="zsp__blas2_8c__incl.png" border="0" usemap="#SRC_2zsp__blas2_8c" alt=""/></div>
 <map name="SRC_2zsp__blas2_8c" id="SRC_2zsp__blas2_8c">
-<area shape="rect" id="node2" href="slu__zdefs_8h.html" title="Header file for real operations. " alt="" coords="274,80,363,107"/><area shape="rect" id="node8" href="SRC_2slu__Cnames_8h.html" title="slu_Cnames.h" alt="" coords="471,155,577,181"/><area shape="rect" id="node9" href="supermatrix_8h.html" title="Defines matrix types. " alt="" coords="601,155,703,181"/><area shape="rect" id="node10" href="slu__util_8h.html" title="Utility header file. " alt="" coords="281,155,355,181"/><area shape="rect" id="node14" href="slu__dcomplex_8h.html" title="Header file for complex operations. " alt="" coords="727,155,840,181"/><area shape="rect" id="node13" href="superlu__enum__consts_8h.html" title="enum constants header file " alt="" coords="484,229,643,256"/></map>
+<area shape="rect" id="node2" href="slu__zdefs_8h.html" title="Header file for real operations. " alt="" coords="311,80,400,107"/><area shape="rect" id="node9" href="SRC_2slu__Cnames_8h.html" title="slu_Cnames.h" alt="" coords="521,155,628,181"/><area shape="rect" id="node10" href="supermatrix_8h.html" title="Defines matrix types. " alt="" coords="652,155,753,181"/><area shape="rect" id="node11" href="slu__util_8h.html" title="Utility header file. " alt="" coords="281,155,355,181"/><area shape="rect" id="node14" href="slu__dcomplex_8h.html" title="Header file for complex operations. " alt="" coords="778,155,891,181"/><area shape="rect" id="node13" href="superlu__enum__consts_8h.html" title="enum constants header file " alt="" coords="269,229,428,256"/></map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -75,7 +75,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a1165292a4e2a6c282638868bd503fb7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zsp__blas2_8c.html#a1165292a4e2a6c282638868bd503fb7a">zmatvec</a> (int, int, int, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *)</td></tr>
 <tr class="memdesc:a1165292a4e2a6c282638868bd503fb7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a dense matrix-vector multiply: Mxvec = Mxvec + M * vec.  <a href="#a1165292a4e2a6c282638868bd503fb7a">More...</a><br/></td></tr>
 <tr class="separator:a1165292a4e2a6c282638868bd503fb7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a070a51d222072a18d8d6ac91381b4859"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zsp__blas2_8c.html#a070a51d222072a18d8d6ac91381b4859">sp_ztrsv</a> (char *uplo, char *trans, char *diag, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *x, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat, int *info)</td></tr>
+<tr class="memitem:a070a51d222072a18d8d6ac91381b4859"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zsp__blas2_8c.html#a070a51d222072a18d8d6ac91381b4859">sp_ztrsv</a> (char *uplo, char *trans, char *diag, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *x, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat, int *info)</td></tr>
 <tr class="memdesc:a070a51d222072a18d8d6ac91381b4859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves one of the systems of equations A*x = b, or A'*x = b.  <a href="#a070a51d222072a18d8d6ac91381b4859">More...</a><br/></td></tr>
 <tr class="separator:a070a51d222072a18d8d6ac91381b4859"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ea39731f07b4c2ab20e44c97ffd773c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zsp__blas2_8c.html#a9ea39731f07b4c2ab20e44c97ffd773c">sp_zgemv</a> (char *trans, <a class="el" href="structdoublecomplex.html">doublecomplex</a> alpha, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="ilu__zdrop__row_8c.html#ac900805a486cbb8489e3c176ed6e0d8e">A</a>, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *x, int incx, <a class="el" href="structdoublecomplex.html">doublecomplex</a> beta, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *y, int incy)</td></tr>
@@ -84,10 +84,10 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><pre>
-&ndash; SuperLU routine (version 3.0) &ndash;
+&ndash; SuperLU routine (version 5.1) &ndash;
 Univ. of California Berkeley, Xerox Palo Alto Research Center,
 and Lawrence Berkeley National Lab.
-October 15, 2003
+October 15, 2003</pre><pre>Last update: December 3, 2015
 </pre> </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a9ea39731f07b4c2ab20e44c97ffd773c"></a>
 <div class="memitem">
@@ -161,7 +161,7 @@ October 15, 2003
            follows:   
               TRANS = 'N' or 'n'   y := alpha*A*x + beta*y.   
               TRANS = 'T' or 't'   y := alpha*A'*x + beta*y.   
-              TRANS = 'C' or 'c'   y := alpha*A'*x + beta*y.</pre><pre>  ALPHA  - (input) doublecomplex
+              TRANS = 'C' or 'c'   y := alpha*A^H*x + beta*y.</pre><pre>  ALPHA  - (input) doublecomplex
            On entry, ALPHA specifies the scalar alpha.</pre><pre>  A      - (input) SuperMatrix*
            Before entry, the leading m by n part of the array A must   
            contain the matrix of coefficients.</pre><pre>  X      - (input) doublecomplex*, array of DIMENSION at least   
@@ -188,7 +188,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="zsp__blas2_8c_a9ea39731f07b4c2ab20e44c97ffd773c_cgraph.png" border="0" usemap="#zsp__blas2_8c_a9ea39731f07b4c2ab20e44c97ffd773c_cgraph" alt=""/></div>
 <map name="zsp__blas2_8c_a9ea39731f07b4c2ab20e44c97ffd773c_cgraph" id="zsp__blas2_8c_a9ea39731f07b4c2ab20e44c97ffd773c_cgraph">
-<area shape="rect" id="node2" href="lsame_8c.html#a6de88349c1fe993f318dd0643af908c3" title="lsame_" alt="" coords="145,5,209,32"/><area shape="rect" id="node3" href="input__error_8c.html#a5832852b8f6777484b6f55dd79e67d86" title="input_error" alt="" coords="136,56,219,83"/></map>
+<area shape="rect" id="node2" href="input__error_8c.html#a5832852b8f6777484b6f55dd79e67d86" title="input_error" alt="" coords="136,5,219,32"/></map>
 </div>
 </p>
 
@@ -293,7 +293,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="zsp__blas2_8c_a070a51d222072a18d8d6ac91381b4859_cgraph.png" border="0" usemap="#zsp__blas2_8c_a070a51d222072a18d8d6ac91381b4859_cgraph" alt=""/></div>
 <map name="zsp__blas2_8c_a070a51d222072a18d8d6ac91381b4859_cgraph" id="zsp__blas2_8c_a070a51d222072a18d8d6ac91381b4859_cgraph">
-<area shape="rect" id="node2" href="lsame_8c.html#a6de88349c1fe993f318dd0643af908c3" title="lsame_" alt="" coords="167,5,231,32"/><area shape="rect" id="node3" href="input__error_8c.html#a5832852b8f6777484b6f55dd79e67d86" title="input_error" alt="" coords="157,56,240,83"/><area shape="rect" id="node4" href="slu__zdefs_8h.html#ab7683ac1617339478753ab308a7b0fc5" title="doublecomplexCalloc" alt="" coords="125,107,272,133"/><area shape="rect" id="node5" href="slu__zdefs_8h.html#ae97174a10346e0629387c0f8ce9a9a08" title="ztrsv_" alt="" coords="169,157,228,184"/><area shape="rect" id="node6" href="slu__zdefs_8h.html#aa25bbd36f5c52cf8df1db92545fe80b9" title="zgemv_" alt="" coords="165,208,233,235"/><area shape="rect" id="node7" href="zsp__blas2_8c.html#afb6f65890b5348dc1692d01b087be35d" title="Solves a dense UNIT lower triangular system. " alt="" coords="167,259,230,285"/><area shape="rect" id="node8" href="zsp__blas2_8c.html#a1165292a4e2a6c282638868bd503fb7a" title="Performs a dense matrix&#45;vector multiply: Mxvec = Mxvec + M * vec. " alt="" coords="163,309,235,336"/><area shape="rect" id="node9" href="dcomplex_8c.html#a4cfde2671a83833a15c5b48517781db0" title="Complex Division c = a/b. " alt="" coords="320,385,373,412"/><area shape="rect" id="node10" href="zsp__blas2_8c.html#ac9798dda11fa387039351d70fa59ce3b" title="Solves a dense upper triangular system. " alt="" coords="165,411,232,437"/></map>
+<area shape="rect" id="node2" href="input__error_8c.html#a5832852b8f6777484b6f55dd79e67d86" title="input_error" alt="" coords="157,5,240,32"/><area shape="rect" id="node3" href="slu__zdefs_8h.html#ab7683ac1617339478753ab308a7b0fc5" title="doublecomplexCalloc" alt="" coords="125,56,272,83"/><area shape="rect" id="node4" href="slu__zdefs_8h.html#ae97174a10346e0629387c0f8ce9a9a08" title="ztrsv_" alt="" coords="169,107,228,133"/><area shape="rect" id="node5" href="slu__zdefs_8h.html#aa25bbd36f5c52cf8df1db92545fe80b9" title="zgemv_" alt="" coords="165,157,233,184"/><area shape="rect" id="node6" href="zsp__blas2_8c.html#afb6f65890b5348dc1692d01b087be35d" title="Solves a dense UNIT lower triangular system. " alt="" coords="167,208,230,235"/><area shape="rect" id="node7" href="zsp__blas2_8c.html#a1165292a4e2a6c282638868bd503fb7a" title="Performs a dense matrix&#45;vector multiply: Mxvec = Mxvec + M * vec. " alt="" coords="163,259,235,285"/><area shape="rect" id="node8" href="dcomplex_8c.html#a4cfde2671a83833a15c5b48517781db0" title="Complex Division c = a/b. " alt="" coords="320,335,373,361"/><area shape="rect" id="node9" href="zsp__blas2_8c.html#ac9798dda11fa387039351d70fa59ce3b" title="Solves a dense upper triangular system. " alt="" coords="165,360,232,387"/></map>
 </div>
 </p>
 
@@ -440,7 +440,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 27 2015 15:29:53 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 3 2015 14:46:42 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -143,10 +143,6 @@
 #define zher2_    zher2__
 
 /* LAPACK */
-#define dlamch_   dlamch__
-#define slamch_   slamch__
-#define xerbla_   xerbla__
-#define lsame_    lsame__
 #define dlacon_   dlacon__
 #define slacon_   slacon__
 #define icmax1_   icmax1__
@@ -239,10 +235,6 @@
 #define zher2_    ZHER2
 
 /* LAPACK */
-#define dlamch_   DLAMCH
-#define slamch_   SLAMCH
-#define xerbla_   XERBLA
-#define lsame_    LSAME
 #define dlacon_   DLACON
 #define slacon_   SLACON
 #define icmax1_   ICMAX1
@@ -338,8 +330,6 @@
 /* LAPACK */
 #define dlamch_   DLAMCH
 #define slamch_   SLAMCH
-#define xerbla_   XERBLA
-#define lsame_    LSAME
 #define dlacon_   DLACON
 #define slacon_   SLACON
 #define icmax1_   ICMAX1
@@ -433,10 +423,6 @@
 #define zher2_    zher2
 
 /* LAPACK */
-#define dlamch_   dlamch
-#define slamch_   slamch
-#define xerbla_   xerbla
-#define lsame_    lsame
 #define dlacon_   dlacon
 #define slacon_   slacon
 #define icmax1_   icmax1

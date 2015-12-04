@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int clarnv_(integer *idist, integer *iseed, integer *n, 
+/* Subroutine */ int clarnv_slu(integer *idist, integer *iseed, integer *n, 
 	complex *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -66,7 +66,7 @@
     static integer i;
     static real u[128];
     static integer il, iv;
-    extern /* Subroutine */ int slaruv_(integer *, integer *, real *);
+    extern /* Subroutine */ int slaruv_slu(integer *, integer *, real *);
 
 
 #define X(I) x[(I)-1]
@@ -84,7 +84,7 @@
           distribution (2*IL <= LV) */
 
 	i__2 = il << 1;
-	slaruv_(&ISEED(1), &i__2, u);
+	slaruv_slu(&ISEED(1), &i__2, u);
 
 	if (*idist == 1) {
 
@@ -168,5 +168,5 @@ y
 
 /*     End of CLARNV */
 
-} /* clarnv_ */
+} /* clarnv_slu */
 

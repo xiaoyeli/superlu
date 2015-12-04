@@ -1,6 +1,7 @@
+#include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int slaset_(char *uplo, integer *m, integer *n, real *alpha, 
+/* Subroutine */ int slaset_slu(char *uplo, integer *m, integer *n, real *alpha, 
 	real *beta, real *a, integer *lda)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -65,13 +66,11 @@
     integer a_dim1, a_offset, i__1, i__2, i__3;
     /* Local variables */
     static integer i, j;
-    extern logical lsame_(char *, char *);
-
 
 
 #define A(I,J) a[(I)-1 + ((J)-1)* ( *lda)]
 
-    if (lsame_(uplo, "U")) {
+    if (strncmp(uplo, "U", 1)==0) {
 
 /*        Set the strictly upper triangular or trapezoidal part of the
    
@@ -89,7 +88,7 @@
 /* L20: */
 	}
 
-    } else if (lsame_(uplo, "L")) {
+    } else if (strncmp(uplo, "L", 1)==0) {
 
 /*        Set the strictly lower triangular or trapezoidal part of the
    
@@ -132,5 +131,5 @@
 
 /*     End of SLASET */
 
-} /* slaset_ */
+} /* slaset_slu */
 

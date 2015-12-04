@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int dlartg_(doublereal *f, doublereal *g, doublereal *cs, 
+/* Subroutine */ int dlartg_slu(doublereal *f, doublereal *g, doublereal *cs, 
 	doublereal *sn, doublereal *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -154,5 +154,5 @@ L30:
 
 /*     End of DLARTG */
 
-} /* dlartg_ */
+} /* dlartg_slu */
 

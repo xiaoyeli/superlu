@@ -12,7 +12,7 @@ static doublecomplex c_b2 = {1.,0.};
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int zlarge_(integer *n, doublecomplex *a, integer *lda, 
+/* Subroutine */ int zlarge_slu(integer *n, doublecomplex *a, integer *lda, 
 	integer *iseed, doublecomplex *work, integer *info)
 {
     /* System generated locals */
@@ -35,8 +35,8 @@ static integer c__1 = 1;
     extern doublereal dznrm2_(integer *, doublecomplex *, integer *);
     static doublecomplex wa, wb;
     static doublereal wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), zlarnv_(
-	    integer *, integer *, integer *, doublecomplex *);
+    extern /* Subroutine */ int zlarnv_slu(integer *, integer *, integer *, doublecomplex *);
+    extern int input_error(char *, int *);
     static doublecomplex tau;
 
 
@@ -101,7 +101,7 @@ static integer c__1 = 1;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("ZLARGE", &i__1);
+	input_error("ZLARGE", &i__1);
 	return 0;
     }
 
@@ -112,7 +112,7 @@ static integer c__1 = 1;
 /*        generate random reflection */
 
 	i__1 = *n - i + 1;
-	zlarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	zlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = dznrm2_(&i__1, &work[1], &c__1);
 	d__1 = wn / z_abs(&work[1]);
@@ -157,5 +157,5 @@ static integer c__1 = 1;
 
 /*     End of ZLARGE */
 
-} /* zlarge_ */
+} /* zlarge_slu */
 

@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-doublereal slaran_(integer *iseed)
+doublereal dlaran_sluslu(integer *iseed)
 {
     /* System generated locals */
     real ret_val;
@@ -88,5 +88,5 @@ doublereal slaran_(integer *iseed)
 
 /*     End of SLARAN */
 
-} /* slaran_ */
+} /* dlaran_sluslu */
 

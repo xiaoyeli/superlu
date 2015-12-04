@@ -1,6 +1,7 @@
+#include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int claset_(char *uplo, integer *m, integer *n, complex *
+/* Subroutine */ int claset_slu(char *uplo, integer *m, integer *n, complex *
 	alpha, complex *beta, complex *a, integer *lda)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -59,13 +60,11 @@
     integer a_dim1, a_offset, i__1, i__2, i__3;
     /* Local variables */
     static integer i, j;
-    extern logical lsame_(char *, char *);
-
 
 
 #define A(I,J) a[(I)-1 + ((J)-1)* ( *lda)]
 
-    if (lsame_(uplo, "U")) {
+    if (strncmp(uplo, "U", 1)==0) {
 
 /*        Set the diagonal to BETA and the strictly upper triangular 
   
@@ -90,7 +89,7 @@
 /* L30: */
 	}
 
-    } else if (lsame_(uplo, "L")) {
+    } else if (strncmp(uplo, "L", 1)==0) {
 
 /*        Set the diagonal to BETA and the strictly lower triangular 
   
@@ -140,5 +139,5 @@
 
 /*     End of CLASET */
 
-} /* claset_ */
+} /* claset_slu */
 

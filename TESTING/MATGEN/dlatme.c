@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -12,7 +12,7 @@ static doublereal c_b23 = 0.;
 static integer c__0 = 0;
 static doublereal c_b39 = 1.;
 
-/* Subroutine */ int dlatme_(integer *n, char *dist, integer *iseed, 
+/* Subroutine */ int dlatme_slu(integer *n, char *dist, integer *iseed, 
 	doublereal *d, integer *mode, doublereal *cond, doublereal *dmax__, 
 	char *ei, char *rsign, char *upper, char *sim, doublereal *ds, 
 	integer *modes, doublereal *conds, integer *kl, integer *ku, 
@@ -35,7 +35,6 @@ static doublereal c_b39 = 1.;
     static doublereal alpha;
     extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
 	    integer *);
-    extern logical lsame_(char *, char *);
     extern /* Subroutine */ int dgemv_(char *, integer *, integer *, 
 	    doublereal *, doublereal *, integer *, doublereal *, integer *, 
 	    doublereal *, doublereal *, integer *);
@@ -47,25 +46,25 @@ static doublereal c_b39 = 1.;
     extern /* Subroutine */ int dcopy_(integer *, doublereal *, integer *, 
 	    doublereal *, integer *);
     static integer irows;
-    extern /* Subroutine */ int dlatm1_(integer *, doublereal *, integer *, 
+    extern /* Subroutine */ int dlatm1_slu(integer *, doublereal *, integer *, 
 	    integer *, integer *, doublereal *, integer *, integer *);
     static integer ic, jc;
     extern doublereal dlange_(char *, integer *, integer *, doublereal *, 
 	    integer *, doublereal *);
     static integer ir, jr;
-    extern /* Subroutine */ int dlarge_(integer *, doublereal *, integer *, 
+    extern /* Subroutine */ int dlarge_slu(integer *, doublereal *, integer *, 
 	    integer *, doublereal *, integer *), dlarfg_(integer *, 
 	    doublereal *, doublereal *, integer *, doublereal *);
-    extern doublereal dlaran_(integer *);
-    extern /* Subroutine */ int dlaset_(char *, integer *, integer *, 
+    extern doublereal dlaran_slu(integer *);
+    extern /* Subroutine */ int dlaset_slu(char *, integer *, integer *, 
 	    doublereal *, doublereal *, doublereal *, integer *), 
-	    xerbla_(char *, integer *), dlarnv_(integer *, integer *, 
-	    integer *, doublereal *);
+	    dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern int input_error(char *, int *);
     static integer irsign, iupper;
     static doublereal xnorms;
     static integer jcr;
     static doublereal tau;
-
+    extern int input_error(char *, int *);
 
 /*  -- LAPACK test routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -327,11 +326,11 @@ static doublereal c_b39 = 1.;
 
 /*     Decode DIST */
 
-    if (lsame_(dist, "U")) {
+    if (strncmp(dist, "U", 1)==0) {
 	idist = 1;
-    } else if (lsame_(dist, "S")) {
+    } else if (strncmp(dist, "S", 1)==0) {
 	idist = 2;
-    } else if (lsame_(dist, "N")) {
+    } else if (strncmp(dist, "N", 1)==0) {
 	idist = 3;
     } else {
 	idist = -1;
@@ -341,18 +340,18 @@ static doublereal c_b39 = 1.;
 
     useei = TRUE_;
     badei = FALSE_;
-    if (lsame_(ei + 1, " ") || *mode != 0) {
+    if (strncmp(ei + 1, " ", 1)==0 || *mode != 0) {
 	useei = FALSE_;
     } else {
-	if (lsame_(ei + 1, "R")) {
+	if (strncmp(ei + 1, "R", 1)==0) {
 	    i__1 = *n;
 	    for (j = 2; j <= i__1; ++j) {
-		if (lsame_(ei + j, "I")) {
-		    if (lsame_(ei + (j - 1), "I")) {
+		if (strncmp(ei + j, "I", 1)==0) {
+		    if (strncmp(ei + (j - 1), "I", 1)==0) {
 			badei = TRUE_;
 		    }
 		} else {
-		    if (! lsame_(ei + j, "R")) {
+		    if (strncmp(ei + j, "R", 1)!=0) {
 			badei = TRUE_;
 		    }
 		}
@@ -365,9 +364,9 @@ static doublereal c_b39 = 1.;
 
 /*     Decode RSIGN */
 
-    if (lsame_(rsign, "T")) {
+    if (strncmp(rsign, "T", 1)==0) {
 	irsign = 1;
-    } else if (lsame_(rsign, "F")) {
+    } else if (strncmp(rsign, "F", 1)==0) {
 	irsign = 0;
     } else {
 	irsign = -1;
@@ -375,9 +374,9 @@ static doublereal c_b39 = 1.;
 
 /*     Decode UPPER */
 
-    if (lsame_(upper, "T")) {
+    if (strncmp(upper, "T", 1)==0) {
 	iupper = 1;
-    } else if (lsame_(upper, "F")) {
+    } else if (strncmp(upper, "F", 1)==0) {
 	iupper = 0;
     } else {
 	iupper = -1;
@@ -385,9 +384,9 @@ static doublereal c_b39 = 1.;
 
 /*     Decode SIM */
 
-    if (lsame_(sim, "T")) {
+    if (strncmp(sim, "T", 1)==0) {
 	isim = 1;
-    } else if (lsame_(sim, "F")) {
+    } else if (strncmp(sim, "F", 1)==0) {
 	isim = 0;
     } else {
 	isim = -1;
@@ -440,7 +439,7 @@ static doublereal c_b39 = 1.;
 
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("DLATME", &i__1);
+	input_error("DLATME", &i__1);
 	return 0;
     }
 
@@ -459,7 +458,7 @@ static doublereal c_b39 = 1.;
 
                Compute D according to COND and MODE */
 
-    dlatm1_(mode, cond, &irsign, &idist, &iseed[1], &d[1], n, &iinfo);
+    dlatm1_slu(mode, cond, &irsign, &idist, &iseed[1], &d[1], n, &iinfo);
     if (iinfo != 0) {
 	*info = 1;
 	return 0;
@@ -490,7 +489,7 @@ static doublereal c_b39 = 1.;
 
     }
 
-    dlaset_("Full", n, n, &c_b23, &c_b23, &a[a_offset], lda);
+    dlaset_slu("Full", n, n, &c_b23, &c_b23, &a[a_offset], lda);
     i__1 = *lda + 1;
     dcopy_(n, &d[1], &c__1, &a[a_offset], &i__1);
 
@@ -500,7 +499,7 @@ static doublereal c_b39 = 1.;
 	if (useei) {
 	    i__1 = *n;
 	    for (j = 2; j <= i__1; ++j) {
-		if (lsame_(ei + j, "I")) {
+		if (strncmp(ei + j, "I", 1)==0) {
 		    a[j - 1 + j * a_dim1] = a[j + j * a_dim1];
 		    a[j + (j - 1) * a_dim1] = -a[j + j * a_dim1];
 		    a[j + j * a_dim1] = a[j - 1 + (j - 1) * a_dim1];
@@ -513,7 +512,7 @@ static doublereal c_b39 = 1.;
 
 	i__1 = *n;
 	for (j = 2; j <= i__1; j += 2) {
-	    if (dlaran_(&iseed[1]) > .5) {
+	    if (dlaran_slu(&iseed[1]) > .5) {
 		a[j - 1 + j * a_dim1] = a[j + j * a_dim1];
 		a[j + (j - 1) * a_dim1] = -a[j + j * a_dim1];
 		a[j + j * a_dim1] = a[j - 1 + (j - 1) * a_dim1];
@@ -533,7 +532,7 @@ static doublereal c_b39 = 1.;
 	    } else {
 		jr = jc - 1;
 	    }
-	    dlarnv_(&idist, &iseed[1], &jr, &a[jc * a_dim1 + 1]);
+	    dlarnv_slu(&idist, &iseed[1], &jr, &a[jc * a_dim1 + 1]);
 /* L70: */
 	}
     }
@@ -550,7 +549,7 @@ static doublereal c_b39 = 1.;
 /*        Compute S (singular values of the eigenvector matrix)   
           according to CONDS and MODES */
 
-	dlatm1_(modes, conds, &c__0, &c__0, &iseed[1], &ds[1], n, &iinfo);
+	dlatm1_slu(modes, conds, &c__0, &c__0, &iseed[1], &ds[1], n, &iinfo);
 	if (iinfo != 0) {
 	    *info = 3;
 	    return 0;
@@ -558,7 +557,7 @@ static doublereal c_b39 = 1.;
 
 /*        Multiply by V and V' */
 
-	dlarge_(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
+	dlarge_slu(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
 	if (iinfo != 0) {
 	    *info = 4;
 	    return 0;
@@ -581,7 +580,7 @@ static doublereal c_b39 = 1.;
 
 /*        Multiply by U and U' */
 
-	dlarge_(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
+	dlarge_slu(n, &a[a_offset], lda, &iseed[1], &work[1], &iinfo);
 	if (iinfo != 0) {
 	    *info = 4;
 	    return 0;
@@ -620,7 +619,7 @@ static doublereal c_b39 = 1.;
 
 	    a[jcr + ic * a_dim1] = xnorms;
 	    i__2 = irows - 1;
-	    dlaset_("Full", &i__2, &c__1, &c_b23, &c_b23, &a[jcr + 1 + ic * 
+	    dlaset_slu("Full", &i__2, &c__1, &c_b23, &c_b23, &a[jcr + 1 + ic * 
 		    a_dim1], lda);
 /* L90: */
 	}
@@ -654,7 +653,7 @@ static doublereal c_b39 = 1.;
 
 	    a[ir + jcr * a_dim1] = xnorms;
 	    i__2 = icols - 1;
-	    dlaset_("Full", &c__1, &i__2, &c_b23, &c_b23, &a[ir + (jcr + 1) * 
+	    dlaset_slu("Full", &c__1, &i__2, &c_b23, &c_b23, &a[ir + (jcr + 1) * 
 		    a_dim1], lda);
 /* L100: */
 	}
@@ -678,5 +677,5 @@ static doublereal c_b39 = 1.;
 
 /*     End of DLATME */
 
-} /* dlatme_ */
+} /* dlatme_slu */
 

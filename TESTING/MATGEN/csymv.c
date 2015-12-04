@@ -1,6 +1,7 @@
+#include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int csymv_(char *uplo, integer *n, complex *alpha, complex *
+/* Subroutine */ int csymv_sluslu(char *uplo, integer *n, complex *alpha, complex *
 	a, integer *lda, complex *x, integer *incx, complex *beta, complex *y,
 	 integer *incy)
 {
@@ -108,10 +109,8 @@
     static integer info;
     static complex temp1, temp2;
     static integer i, j;
-    extern logical lsame_(char *, char *);
     static integer ix, iy, jx, jy, kx, ky;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
-
+    extern int input_error(char *, int *);
 
 #define X(I) x[(I)-1]
 #define Y(I) y[(I)-1]
@@ -119,7 +118,7 @@
 #define A(I,J) a[(I)-1 + ((J)-1)* ( *lda)]
 
     info = 0;
-    if (! lsame_(uplo, "U") && ! lsame_(uplo, "L")) {
+    if ( strncmp(uplo, "U", 1)!=0 && ! strncmp(uplo, "L", 1)!=0) {
 	info = 1;
     } else if (*n < 0) {
 	info = 2;
@@ -131,7 +130,7 @@
 	info = 10;
     }
     if (info != 0) {
-	xerbla_("CSYMV ", &info);
+	input_error("CSYMV ", &info);
 	return 0;
     }
 
@@ -210,7 +209,7 @@
     if (alpha->r == 0.f && alpha->i == 0.f) {
 	return 0;
     }
-    if (lsame_(uplo, "U")) {
+    if (strncmp(uplo, "U", 1)==0) {
 
 /*        Form  y  when A is stored in upper triangle. */
 
@@ -404,5 +403,5 @@
 
 /*     End of CSYMV */
 
-} /* csymv_ */
+} /* csymv_sluslu */
 

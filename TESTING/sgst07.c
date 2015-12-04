@@ -110,7 +110,6 @@ int sgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, float *b,
     NCformat *Astore;
 
     /* Function prototypes */
-    extern int    lsame_(char *, char *);
     extern int    isamax_(int *, float *, int *);
 
 

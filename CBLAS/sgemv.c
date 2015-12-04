@@ -3,7 +3,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Subroutine */ int sgemv_(char *trans, integer *m, integer *n, real *alpha, 
@@ -19,10 +19,9 @@
     static integer info;
     static real temp;
     static integer lenx, leny, i, j;
-    extern logical lsame_(char *, char *);
     static integer ix, iy, jx, jy, kx, ky;
-    extern /* Subroutine */ int xerbla_(char *, integer *);
 
+    extern int input_error(char *, int *);
 
 /*  Purpose   
     =======   
@@ -130,8 +129,8 @@
 #define A(I,J) a[(I)-1 + ((J)-1)* ( *lda)]
 
     info = 0;
-    if (! lsame_(trans, "N") && ! lsame_(trans, "T") && ! 
-	    lsame_(trans, "C")) {
+    if ( strncmp(trans, "N", 1)!=0 &&  strncmp(trans, "T", 1)!=0 &&
+	 strncmp(trans, "C", 1)!=0 ) {
 	info = 1;
     } else if (*m < 0) {
 	info = 2;
@@ -145,7 +144,7 @@
 	info = 11;
     }
     if (info != 0) {
-	xerbla_("SGEMV ", &info);
+	input_error("SGEMV ", &info);
 	return 0;
     }
 
@@ -159,7 +158,7 @@
   
        up the start points in  X  and  Y. */
 
-    if (lsame_(trans, "N")) {
+    if (strncmp(trans, "N", 1)==0) {
 	lenx = *n;
 	leny = *m;
     } else {
@@ -219,7 +218,7 @@
     if (*alpha == 0.f) {
 	return 0;
     }
-    if (lsame_(trans, "N")) {
+    if (strncmp(trans, "N", 1)==0) {
 
 /*        Form  y := alpha*A*x + y. */
 

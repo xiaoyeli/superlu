@@ -6,7 +6,7 @@ include ../make.inc
 #######################################################################
 
 HEADER   = ../SRC
-LIBS	= $(SUPERLULIB) $(BLASLIB) -lm
+LIBS	+= -lm
 
 # double real
 DF77EXM	= f77_main.o hbcode1.o c_fortran_dgssv.o

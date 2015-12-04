@@ -2,7 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
-
+#include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -12,7 +12,7 @@ static doublecomplex c_b2 = {1.,0.};
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int zlaror_(char *side, char *init, integer *m, integer *n, 
+/* Subroutine */ int zlaror_slu(char *side, char *init, integer *m, integer *n, 
 	doublecomplex *a, integer *lda, integer *iseed, doublecomplex *x, 
 	integer *info)
 {
@@ -28,7 +28,6 @@ static integer c__1 = 1;
     static integer kbeg, jcol;
     static doublereal xabs;
     static integer irow, j;
-    extern logical lsame_(char *, char *);
     static doublecomplex csign;
     extern /* Subroutine */ int zgerc_(integer *, integer *, doublecomplex *, 
 	    doublecomplex *, integer *, doublecomplex *, integer *, 
@@ -41,13 +40,13 @@ static integer c__1 = 1;
     static integer itype, nxfrm;
     static doublereal xnorm;
     extern doublereal dznrm2_(integer *, doublecomplex *, integer *);
-    extern /* Subroutine */ int xerbla_(char *, integer *);
+    extern int input_error(char *, int *);
     static doublereal factor;
-    extern /* Subroutine */ int zlacgv_(integer *, doublecomplex *, integer *)
+    extern /* Subroutine */ int zlacgv_slu(integer *, doublecomplex *, integer *)
 	    ;
-    extern /* Double Complex */ VOID zlarnd_(doublecomplex *, integer *, 
+    extern /* Double Complex */ VOID zlarnd_slu(doublecomplex *, integer *, 
 	    integer *);
-    extern /* Subroutine */ int zlaset_(char *, integer *, integer *, 
+    extern /* Subroutine */ int zlaset_slu(char *, integer *, integer *, 
 	    doublecomplex *, doublecomplex *, doublecomplex *, integer *);
     static doublecomplex xnorms;
 
@@ -176,13 +175,13 @@ static integer c__1 = 1;
     }
 
     itype = 0;
-    if (lsame_(side, "L")) {
+    if (strncmp(side, "L", 1)==0) {
 	itype = 1;
-    } else if (lsame_(side, "R")) {
+    } else if (strncmp(side, "R", 1)==0) {
 	itype = 2;
-    } else if (lsame_(side, "C")) {
+    } else if (strncmp(side, "C", 1)==0) {
 	itype = 3;
-    } else if (lsame_(side, "T")) {
+    } else if (strncmp(side, "T", 1)==0) {
 	itype = 4;
     }
 
@@ -200,7 +199,7 @@ static integer c__1 = 1;
     }
     if (*info != 0) {
 	i__1 = -(*info);
-	xerbla_("ZLAROR", &i__1);
+	input_error("ZLAROR", &i__1);
 	return 0;
     }
 
@@ -212,8 +211,8 @@ static integer c__1 = 1;
 
 /*     Initialize A to the identity matrix if desired */
 
-    if (lsame_(init, "I")) {
-	zlaset_("Full", m, n, &c_b1, &c_b2, &a[a_offset], lda);
+    if (strncmp(init, "I", 1)==0) {
+	zlaset_slu("Full", m, n, &c_b1, &c_b2, &a[a_offset], lda);
     }
 
 /*     If no rotation possible, still multiply by   
@@ -239,7 +238,7 @@ static integer c__1 = 1;
 	i__2 = nxfrm;
 	for (j = kbeg; j <= i__2; ++j) {
 	    i__3 = j;
-	    zlarnd_(&z__1, &c__3, &iseed[1]);
+	    zlarnd_slu(&z__1, &c__3, &iseed[1]);
 	    x[i__3].r = z__1.r, x[i__3].i = z__1.i;
 /* L20: */
 	}
@@ -265,7 +264,7 @@ static integer c__1 = 1;
 	if (abs(factor) < 1e-20) {
 	    *info = 1;
 	    i__2 = -(*info);
-	    xerbla_("ZLAROR", &i__2);
+	    input_error("ZLAROR", &i__2);
 	    return 0;
 	} else {
 	    factor = 1. / factor;
@@ -295,7 +294,7 @@ static integer c__1 = 1;
 /*           Apply H(k)* (or H(k)') on the right of A */
 
 	    if (itype == 4) {
-		zlacgv_(&ixfrm, &x[kbeg], &c__1);
+		zlacgv_slu(&ixfrm, &x[kbeg], &c__1);
 	    }
 
 	    zgemv_("N", m, &ixfrm, &c_b2, &a[kbeg * a_dim1 + 1], lda, &x[kbeg]
@@ -309,7 +308,7 @@ static integer c__1 = 1;
 /* L30: */
     }
 
-    zlarnd_(&z__1, &c__3, &iseed[1]);
+    zlarnd_slu(&z__1, &c__3, &iseed[1]);
     x[1].r = z__1.r, x[1].i = z__1.i;
     xabs = z_abs(&x[1]);
     if (xabs != 0.) {
@@ -352,5 +351,5 @@ static integer c__1 = 1;
 
 /*     End of ZLAROR */
 
-} /* zlaror_ */
+} /* zlaror_slu */
 

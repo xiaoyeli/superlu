@@ -99,9 +99,9 @@ main(int argc, char *argv[])
     extern int dgst07(trans_t, int, int, SuperMatrix *, double *, int,
                          double *, int, double *, int, 
                          double *, double *, double *);
-    extern int dlatb4_(char *, int *, int *, int *, char *, int *, int *, 
+    extern int dlatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
 	               double *, int *, double *, char *);
-    extern int dlatms_(int *, int *, char *, int *, char *, double *d,
+    extern int dlatms_slu(int *, int *, char *, int *, char *, double *d,
                        int *, double *, double *, int *, int *,
                        char *, double *, int *, double *, int *);
     extern int sp_dconvert(int, int, double *, int, int, int,
@@ -198,10 +198,10 @@ main(int argc, char *argv[])
 	    
 	    /* Set up parameters with DLATB4 and generate a test matrix
 	       with DLATMS.  */
-	    dlatb4_(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
+	    dlatb4_slu(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
 		    &cndnum, dist);
 
-	    dlatms_(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
+	    dlatms_slu(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
 		    &anorm, &kl, &ku, "No packing", Afull, &lda,
 		    &wwork[0], &info);
 
@@ -277,13 +277,13 @@ main(int argc, char *argv[])
 
 			    /* Force equilibration. */
 			    if ( !info && n > 0 ) {
-				if ( lsame_(equed, "R") ) {
+				if ( strncmp(equed, "R", 1)==0 ) {
 				    rowcnd = 0.;
 				    colcnd = 1.;
-				} else if ( lsame_(equed, "C") ) {
+				} else if ( strncmp(equed, "C", 1)==0 ) {
 				    rowcnd = 1.;
 				    colcnd = 0.;
-				} else if ( lsame_(equed, "B") ) {
+				} else if ( strncmp(equed, "B", 1)==0 ) {
 				    rowcnd = 0.;
 				    colcnd = 0.;
 				}

@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int dlabad_(doublereal *small, doublereal *large)
+/* Subroutine */ int dlabad_slu(doublereal *small, doublereal *large)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -56,5 +56,5 @@
 
 /*     End of DLABAD */
 
-} /* dlabad_ */
+} /* dlabad_slu */
 

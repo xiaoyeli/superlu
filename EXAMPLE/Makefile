@@ -45,7 +45,7 @@ SITSOL1	     	= sitersol1.o sfgmr.o
 
 DLINEXM		= dlinsol.o
 DLINEXM1	= dlinsol1.o
-DLINXEXM 	= dlinsolx.o  sp_ienv.o
+DLINXEXM 	= dlinsolx.o
 DLINXEXM1 	= dlinsolx1.o
 DLINXEXM2 	= dlinsolx2.o
 DLINXEXM3 	= dlinsolx3.o

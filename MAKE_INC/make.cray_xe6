@@ -19,8 +19,8 @@ PLAT		= _xe6
 #
 #  The name of the libraries to be created/linked to
 #
-SuperLUroot	= $(HOME)/Hopper/SuperLU_5.0
-SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.0.a
+SuperLUroot	= $(HOME)/Hopper/SuperLU_5.1
+SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.1.a
 #
 # need 'module load mkl'
 BLASDEF	     	= -DUSE_VENDOR_BLAS

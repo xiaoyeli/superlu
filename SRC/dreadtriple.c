@@ -35,7 +35,7 @@ dreadtriple(int *m, int *n, int *nonz,
      *                 row, col, value
      */
 
-    scanf("%d%d%d", n, m, nonz);
+    scanf("%d%d", n, nonz);
     *m = *n;
     printf("m %d, n %d, nonz %d\n", *m, *n, *nonz);
     dallocateA(*n, *nonz, nzval, rowind, colptr); /* Allocate storage */

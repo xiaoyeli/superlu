@@ -421,20 +421,22 @@ dgstrf (superlu_options_t *options, SuperMatrix *A,
            may have changed, */
         ((SCformat *)L->Store)->nnz = nnzL;
 	((SCformat *)L->Store)->nsuper = Glu->supno[n];
-	((SCformat *)L->Store)->nzval = Glu->lusup;
+	((SCformat *)L->Store)->nzval = (double *) Glu->lusup;
 	((SCformat *)L->Store)->nzval_colptr = Glu->xlusup;
 	((SCformat *)L->Store)->rowind = Glu->lsub;
 	((SCformat *)L->Store)->rowind_colptr = Glu->xlsub;
 	((NCformat *)U->Store)->nnz = nnzU;
-	((NCformat *)U->Store)->nzval = Glu->ucol;
+	((NCformat *)U->Store)->nzval = (double *) Glu->ucol;
 	((NCformat *)U->Store)->rowind = Glu->usub;
 	((NCformat *)U->Store)->colptr = Glu->xusub;
     } else {
-        dCreate_SuperNode_Matrix(L, A->nrow, min_mn, nnzL, Glu->lusup, 
-	                         Glu->xlusup, Glu->lsub, Glu->xlsub, Glu->supno,
-			         Glu->xsup, SLU_SC, SLU_D, SLU_TRLU);
-    	dCreate_CompCol_Matrix(U, min_mn, min_mn, nnzU, Glu->ucol, 
-			       Glu->usub, Glu->xusub, SLU_NC, SLU_D, SLU_TRU);
+        dCreate_SuperNode_Matrix(L, A->nrow, min_mn, nnzL, 
+	      (double *) Glu->lusup, Glu->xlusup, 
+              Glu->lsub, Glu->xlsub, Glu->supno, Glu->xsup,
+              SLU_SC, SLU_D, SLU_TRLU);
+    	dCreate_CompCol_Matrix(U, min_mn, min_mn, nnzU, 
+	      (double *) Glu->ucol, Glu->usub, Glu->xusub,
+              SLU_NC, SLU_D, SLU_TRU);
     }
     
     ops[FACT] += ops[TRSV] + ops[GEMV];	

@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-doublereal dlatm2_(integer *m, integer *n, integer *i, integer *j, integer *
+doublereal dlatm2_slu(integer *m, integer *n, integer *i, integer *j, integer *
 	kl, integer *ku, integer *idist, integer *iseed, doublereal *d, 
 	integer *igrade, doublereal *dl, doublereal *dr, integer *ipvtng, 
 	integer *iwork, doublereal *sparse)
@@ -16,7 +16,7 @@ doublereal dlatm2_(integer *m, integer *n, integer *i, integer *j, integer *
     /* Local variables */
     static integer isub, jsub;
     static doublereal temp;
-    extern doublereal dlaran_(integer *), dlarnd_(integer *, integer *);
+    extern doublereal dlaran_slu(integer *), dlarnd_slu(integer *, integer *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   
@@ -192,7 +192,7 @@ doublereal dlatm2_(integer *m, integer *n, integer *i, integer *j, integer *
 /*     Check for sparsity */
 
     if (*sparse > 0.) {
-	if (dlaran_(&iseed[1]) < *sparse) {
+	if (dlaran_slu(&iseed[1]) < *sparse) {
 	    ret_val = 0.;
 	    return ret_val;
 	}
@@ -219,7 +219,7 @@ doublereal dlatm2_(integer *m, integer *n, integer *i, integer *j, integer *
     if (isub == jsub) {
 	temp = d[isub];
     } else {
-	temp = dlarnd_(idist, &iseed[1]);
+	temp = dlarnd_slu(idist, &iseed[1]);
     }
     if (*igrade == 1) {
 	temp *= dl[isub];
@@ -237,5 +237,5 @@ doublereal dlatm2_(integer *m, integer *n, integer *i, integer *j, integer *
 
 /*     End of DLATM2 */
 
-} /* dlatm2_ */
+} /* dlatm2_slu */
 

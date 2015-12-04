@@ -12,7 +12,7 @@ static integer c__1 = 1;
 static real c_b11 = 1.f;
 static real c_b13 = 0.f;
 
-/* Subroutine */ int slagge_(integer *m, integer *n, integer *kl, integer *ku,
+/* Subroutine */ int slagge_slu(integer *m, integer *n, integer *kl, integer *ku,
 	 real *d, real *a, integer *lda, integer *iseed, real *work, integer *
 	info)
 {
@@ -32,8 +32,8 @@ static real c_b13 = 0.f;
 	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
 	    real *, integer *, real *, real *, integer *);
     static real wa, wb, wn;
-    extern /* Subroutine */ int xerbla_(char *, integer *), slarnv_(
-	    integer *, integer *, integer *, real *);
+    extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real *);
+    extern int input_error(char *, int *);
     static real tau;
 
 
@@ -120,7 +120,7 @@ static real c_b13 = 0.f;
     }
     if (*info < 0) {
 	i__1 = -(*info);
-	xerbla_("SLAGGE", &i__1);
+	input_error("SLAGGE", &i__1);
 	return 0;
     }
 
@@ -149,7 +149,7 @@ static real c_b13 = 0.f;
 /*           generate random reflection */
 
 	    i__1 = *m - i + 1;
-	    slarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	    slarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *m - i + 1;
 	    wn = snrm2_(&i__1, &work[1], &c__1);
 	    wa = r_sign(&wn, &work[1]);
@@ -182,7 +182,7 @@ t */
 /*           generate random reflection */
 
 	    i__1 = *n - i + 1;
-	    slarnv_(&c__3, &iseed[1], &i__1, &work[1]);
+	    slarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *n - i + 1;
 	    wn = snrm2_(&i__1, &work[1], &c__1);
 	    wa = r_sign(&wn, &work[1]);
@@ -396,5 +396,5 @@ eft */
 
 /*     End of SLAGGE */
 
-} /* slagge_ */
+} /* slagge_slu */
 

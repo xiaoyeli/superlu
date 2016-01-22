@@ -218,7 +218,6 @@ extern int     sp_zgemv (char *, doublecomplex, SuperMatrix *, doublecomplex *,
 extern int     sp_zgemm (char *, char *, int, int, int, doublecomplex,
 			SuperMatrix *, doublecomplex *, int, doublecomplex, 
 			doublecomplex *, int);
-extern         double dlamch_(char *);
 extern         double dmach(char *);   /* from C99 standard, in float.h */
 
 /*! \brief Memory-related */

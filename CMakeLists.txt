@@ -10,13 +10,15 @@ cmake_minimum_required(VERSION 2.8.12)
 # Project Version	
 project(SuperLU C)
 set(VERSION_MAJOR "5")
-set(VERSION_MINOR "0")
-set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR})
+set(VERSION_MINOR "1")
+set(VERSION_BugFix "0")
+set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 
 ######################################################################
 #
 # IDEAS: xSDK standards module
 MESSAGE("\nProcess XSDK defaults ...")
+# SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
 INCLUDE("XSDKDefaults.cmake")
 ######################################################################
 
@@ -27,6 +29,8 @@ INCLUDE("XSDKDefaults.cmake")
 ######################################################################
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
 
+# enable_language(C)
+# enable_language(C++)
 enable_language (Fortran)
 # set(NOFORTRAN TRUE)
 set(NOFORTRAN FALSE)
@@ -65,7 +69,7 @@ if(BLAS_FOUND)
   set(BLAS_LIB ${BLAS_LIBRARIES})
 else()
   add_subdirectory(CBLAS)
-  set(BLAS_LIB blas)
+  set(BLAS_LIB ${CMAKE_SOURCE_DIR}/build/CBLAS/libblas.a)
 endif()
 
 ######################################################################

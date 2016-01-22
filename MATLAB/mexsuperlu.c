@@ -1,10 +1,12 @@
 /*
- * -- SuperLU routine (version 4.2) --
+ * -- SuperLU routine (version 5.2) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * June 30, 2009
  *
- * Modified: September 25, 2011,  compatible with 64-bit integer in R2006b
+ * Modified: 
+ *   September 25, 2011,  compatible with 64-bit integer in R2006b
+ *   January 17, 2016,    compatible with SuperLU_5.0 interface
  */
 #include <stdio.h>
 #include "mex.h"
@@ -42,18 +44,23 @@ void mexFunction(
     extern flops_t LUFactFlops(SuperLUStat_t *);
     
     /* Arguments to C dgstrf(). */
-    SuperMatrix A;
+    superlu_options_t options;
     SuperMatrix Ac;        /* Matrix postmultiplied by Pc */
     SuperMatrix L, U;
+    GlobalLU_t Glu; /* Not needed on return. */
+    int         panel_size, relax;
+    int    	*etree, *perm_r, *perm_c;
+    SuperLUStat_t stat;
+    
+    /* other local variables */
+    SuperMatrix A;
     int	   	m, n, nnz;
     double      *val;
     int       	*rowind;
     int		*colptr;
-    int    	*etree, *perm_r, *perm_c;
     mwSize      *perm_c_64;
     mwSize      *rowind_64;
     mwSize      *colptr_64;
-    int         panel_size, relax;
     double      thresh = 1.0;       /* diagonal pivoting threshold */
     int		info;
     MatlabMatrix *X, *Y;            /* args to calls back to Matlab */
@@ -64,8 +71,6 @@ void mexFunction(
     int         *Lcol, *Ucol;
     mwIndex     *Lrow_64, *Lcol_64, *Urow_64, *Ucol_64;
     int         nnzL, nnzU, snnzL, snnzU;
-    superlu_options_t options;
-    SuperLUStat_t stat;
 
     /* Check number of arguments passed from Matlab. */
     if (nrhs != 2) {
@@ -124,7 +129,7 @@ void mexFunction(
     }
 
     dgstrf(&options, &Ac, relax, panel_size, etree,
-	   NULL, 0, perm_c, perm_r, &L, &U, &stat, &info);
+	   NULL, 0, perm_c, perm_r, &L, &U, &Glu, &stat, &info);
 
     if ( verbose ) mexPrintf("INFO from dgstrf %d\n", info);
 

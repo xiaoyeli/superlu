@@ -291,7 +291,7 @@ int main(int argc, char *argv[])
     restrt = SUPERLU_MIN(n / 3 + 1, 50);
     maxit = 1000;
     iter = maxit;
-    resid = 1e-8;
+    resid = 1e-4;
     if (!(x = floatMalloc(n))) ABORT("Malloc fails for x[].");
 
     if (info <= n + 1)

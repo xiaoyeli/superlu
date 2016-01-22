@@ -6,60 +6,38 @@
 #
 #  Purpose:         Top-level Definitions
 #
-#  Creation date:   October 2, 1995
+#  Creation date:   May 10, 2015
 #
-#  Modified:	    February 4, 1997  Version 1.0
-#		    November 15, 1997 Version 1.1
-#		    September 1, 1999 Version 2.0
+#  Modified:	    
+#		    
 #
 ############################################################################
 #
-#  The machine (platform) identifier to append to the library names
-#
-PLAT = _linux
-
-#
 #  The name of the libraries to be created/linked to
 #
-SuperLUroot	= $(HOME)/Dropbox/Codes/SuperLU/SuperLU
-SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.1.a
+SuperLUroot	= /home/xiaoye/Dropbox/Codes/SuperLU/SuperLU/build
+SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu_5.0.a
 
-#BLASLIB   	= $(SuperLUroot)/lib/libblas.a
+## BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 
-## ATLAS BLAS causes single-precision to fail
-#BLASDEF = -DUSE_VENDOR_BLAS
-#BLASLIB   	= -L/usr/lib/atlas -lblas
+# BLASDEF 	= -DUSE_VENDOR_BLAS
 
-## This BLAS causes single-precision to fail the test in SuperLU
-BLASDEF 	= -DUSE_VENDOR_BLAS
-BLASLIB 	= -L/usr/lib -lblas
-
-TMGLIB       	= libtmglib.a
-LIBS		= $(SUPERLULIB) $(BLASLIB)
+LIBS		= $(SUPERLULIB) /home/xiaoye/Dropbox/Codes/SuperLU/SuperLU/build/CBLAS/libblas.a
 
 #
 #  The archiver and the flag(s) to use when building archive (library)
 #  If your system has no ranlib, set RANLIB = echo.
 #
-ARCH         = ar
+ARCH         = /usr/bin/ar
 ARCHFLAGS    = cr
-RANLIB       = ranlib
+RANLIB       = /usr/bin/ranlib
 
-CC           = gcc
-CFLAGS       = -O3 -g
-NOOPTS       = 
-FORTRAN	     = gfortran #g77
-FFLAGS       = -O2 -g -fopenmp
+CC           = /usr/bin/cc
+CFLAGS 	     = -O3  -DPRNTlevel=0 -DAdd_ 
+# CFLAGS       += -D
+# CFLAGS       +=  
+NOOPTS       = -O0
+FORTRAN	     = /usr/bin/gfortran
+
 LOADER       = $(CC)
-LOADOPTS     = -fopenmp
-
-#
-#  C preprocessor defs for compilation for the Fortran interface
-#  (-DNoChange, -DAdd_, -DAdd__, or -DUpCase)
-#
-CDEFS        = -DAdd_
-#
-# The directory in which Matlab is installed
-#
-MATLAB	     = /usr/sww/matlab
-
+LOADOPTS     =

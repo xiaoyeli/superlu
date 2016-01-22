@@ -217,7 +217,6 @@ extern int     sp_dgemv (char *, double, SuperMatrix *, double *,
 extern int     sp_dgemm (char *, char *, int, int, int, double,
 			SuperMatrix *, double *, int, double, 
 			double *, int);
-extern         double dlamch_(char *);
 extern         double dmach(char *);   /* from C99 standard, in float.h */
 
 /*! \brief Memory-related */

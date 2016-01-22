@@ -25,7 +25,17 @@ SuperLUroot	= $(HOME)/Dropbox/Codes/SuperLU/SuperLU
 SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.1.a
 BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 TMGLIB       	= libtmglib.a
+
+## ATLAS BLAS causes single-precision to fail
+#BLASDEF = -DUSE_VENDOR_BLAS
+#BLASLIB   	= -L/usr/lib/atlas -lblas
+
+## This BLAS causes single-precision to fail the test in SuperLU
+# BLASDEF 	= -DUSE_VENDOR_BLAS
+# BLASLIB 	= -L/usr/lib -lblas
+
 LIBS		= $(SUPERLULIB) $(BLASLIB)
+
 
 #
 #  The archiver and the flag(s) to use when building archive (library)
@@ -51,5 +61,5 @@ CDEFS        = -DAdd_
 #
 # The directory in which Matlab is installed
 #
-MATLAB	     = /Applications/MATLAB74/bin/matlab
+MATLAB	     = /Applications/MATLAB_R2015b.app
 

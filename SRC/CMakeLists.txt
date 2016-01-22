@@ -1,5 +1,11 @@
 
-set(headers supermatrix.h)
+set(headers 
+    supermatrix.h
+    slu_Cnames.h
+    slu_dcomplex.h
+    slu_scomplex.h
+    slu_util.h
+    superlu_enum_consts.h)
 
 set(sources
   superlu_timer.c
@@ -220,9 +226,9 @@ if(enable_complex16)
   )
 endif()
 
-add_library(superlu_${VERSION_MAJOR}.${VERSION_MINOR} ${sources} ${HEADERS})
+add_library(superlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix}  ${sources} ${HEADERS})
 
-install(TARGETS superlu_${VERSION_MAJOR}.${VERSION_MINOR}
+install(TARGETS superlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix}
   DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
 )
 

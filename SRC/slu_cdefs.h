@@ -218,7 +218,6 @@ extern int     sp_cgemv (char *, complex, SuperMatrix *, complex *,
 extern int     sp_cgemm (char *, char *, int, int, int, complex,
 			SuperMatrix *, complex *, int, complex, 
 			complex *, int);
-extern         float slamch_(char *);
 extern         float smach(char *);   /* from C99 standard, in float.h */
 
 /*! \brief Memory-related */

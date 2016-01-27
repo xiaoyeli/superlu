@@ -51,8 +51,8 @@ option(enable_examples  "Build examples" ON)
 # setup required compiler defines and options.
 ## add_definitions(-DPRNTlevel=0 -DAdd_)
 ## get_directory_property( DirDefs COMPILE_DEFINITIONS )
-set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DAdd_ ${CMAKE_C_FLAGS}" CACHE STRING)
-set(CMAKE_C_FLAGS_RELEASE "-O3 ${CMAKE_C_FLAGS_RELEASE}" CACHE STRING)
+set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DAdd_ ${CMAKE_C_FLAGS}" CACHE STRING "")
+set(CMAKE_C_FLAGS_RELEASE "-O3 ${CMAKE_C_FLAGS_RELEASE}" CACHE STRING "")
 
 ######################################################################
 #
@@ -61,15 +61,52 @@ set(CMAKE_C_FLAGS_RELEASE "-O3 ${CMAKE_C_FLAGS_RELEASE}" CACHE STRING)
 ######################################################################
 
 if(NOT enable_blaslib)
-  find_package(BLAS)
+  set(TPL_BLAS_LIBRARIES "" CACHE FILEPATH
+    "Override of list of absolute path to libs for BLAS.")
+  if (TPL_BLAS_LIBRARIES)
+    set(BLAS_FOUND TRUE)
+  else()
+    find_package(BLAS)
+    if (BLAS_FOUND)
+      set(TPL_BLAS_LIBRARIES "${BLAS_LIBRARIES}" CACHE FILEPATH
+        "Set from FindBLAS.cmake BLAS_LIBRARIES." FORCE)
+    endif()
+  endif()
 endif()
 
 if(BLAS_FOUND)
+  message(STATUS "Using TPL_BLAS_LIBRARIES='${TPL_BLAS_LIBRARIES}'")
   add_definitions(-DPRNTlevel=0 -DUSE_VENDOR_BLAS)
-  set(BLAS_LIB ${BLAS_LIBRARIES})
+  set(BLAS_LIB ${TPL_BLAS_LIBRARIES})
 else()
+  message(STATUS "Did not find or specify BLAS so configure to build internal CBLAS ...")
   add_subdirectory(CBLAS)
-  set(BLAS_LIB ${CMAKE_SOURCE_DIR}/build/CBLAS/libblas.a)
+  set(BLAS_LIB blas)
+endif()
+
+if (enable_tests AND BLAS_FOUND)
+
+  set(TPL_LAPACK_LIBRARIES "" CACHE FILEPATH
+    "Override of list of absolute path to libs for LAPACK.")
+  if (TPL_LAPACK_LIBRARIES)
+    set(LAPACK_FOUND TRUE)
+  else()
+    find_package(LAPACK)
+    if (LAPACK_FOUND)
+      set(TPL_LAPACK_LIBRARIES "${LAPACK_LIBRARIES}" CACHE FILEPATH
+        "Set from FindLAPACK.cmake LAPACK_LIBRARIES." FORCE)
+    endif()
+  endif()
+
+  if(LAPACK_FOUND)
+    message(STATUS "Using TPL_LAPACK_LIBRARIES='${TPL_LAPACK_LIBRARIES}'")
+    add_definitions(-DPRNTlevel=0 -DUSE_VENDOR_BLAS)
+    set(LAPACK_LIB ${TPL_LAPACK_LIBRARIES})
+  else()
+    message(FATAL_ERROR "Error, must find or specify LAPACK when enable_testing=TRUE"
+      " and not building internal CBLAS!")
+  endif()
+
 endif()
 
 ######################################################################
@@ -109,7 +146,7 @@ endif()
 
 # file(WRITE "make.defs" "# can be exposed to users"
 #  ${CMAKE_C_COMPILER}  )
-string (REPLACE ";" " " BLAS_LIB_STR "${BLAS_LIB}")
+#string (REPLACE ";" " " BLAS_LIB_STR "${BLAS_LIB}")
 # configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_BINARY_DIR}/make.inc)
-configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
+#configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
  

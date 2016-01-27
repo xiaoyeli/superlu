@@ -80,3 +80,8 @@ if (enable_complex16)
 endif()
 
 add_library(blas ${sources} ${HEADERS})
+target_link_libraries(blas m)
+set_target_properties(blas PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  SOVERSION ${VERSION_MAJOR}
+  )

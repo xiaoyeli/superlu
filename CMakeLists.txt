@@ -8,7 +8,7 @@
 cmake_minimum_required(VERSION 2.8.12)
 
 # Project Version	
-project(SuperLU C)
+project(SuperLU NONE)
 set(VERSION_MAJOR "5")
 set(VERSION_MINOR "1")
 set(VERSION_BugFix "1")
@@ -29,7 +29,7 @@ INCLUDE("XSDKDefaults.cmake")
 ######################################################################
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
 
-# enable_language(C)
+enable_language(C)
 # enable_language(C++)
 enable_language (Fortran)
 # set(NOFORTRAN TRUE)

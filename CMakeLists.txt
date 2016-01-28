@@ -51,8 +51,8 @@ option(enable_examples  "Build examples" ON)
 # setup required compiler defines and options.
 ## add_definitions(-DPRNTlevel=0 -DAdd_)
 ## get_directory_property( DirDefs COMPILE_DEFINITIONS )
-set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DAdd_")
-set(CMAKE_C_FLAGS_RELEASE "-O3")
+set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DAdd_ ${CMAKE_C_FLAGS}" CACHE STRING)
+set(CMAKE_C_FLAGS_RELEASE "-O3 ${CMAKE_C_FLAGS_RELEASE}" CACHE STRING)
 
 ######################################################################
 #

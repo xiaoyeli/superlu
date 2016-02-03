@@ -24,7 +24,7 @@ macro(add_superlu_test output input target)
   # "== LAPACK test matrices"
   file(WRITE ${TEST_OUTPUT} "")
 
-  get_target_property(TEST_LOC ${target} LOCATION)
+  set(TEST_LOC ${CMAKE_CURRENT_BINARY_DIR})
 
   foreach (n ${NVAL})
     foreach (s ${NRHS})

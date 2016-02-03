@@ -16,7 +16,7 @@ function(cat IN_FILE OUT_FILE)
 endfunction()
 
 
-macro(add_superlu_test output input target)
+function(add_superlu_test output input target)
   set(TEST_INPUT "${SuperLU_SOURCE_DIR}/EXAMPLE/${input}")
   set(TEST_OUTPUT "${SuperLU_BINARY_DIR}/TESTING/${output}")
 
@@ -57,7 +57,7 @@ macro(add_superlu_test output input target)
       endforeach()
   endforeach()
 
-endmacro(add_superlu_test)
+endfunction(add_superlu_test)
 
 
 if(enable_single)

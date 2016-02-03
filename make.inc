@@ -16,13 +16,14 @@
 #  The name of the libraries to be created/linked to
 #
 SuperLUroot	= /home/xiaoye/Dropbox/Codes/SuperLU/SuperLU/build
-SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu_5.0.a
+SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu_5.1.0.a
 
-## BLASLIB   	= $(SuperLUroot)/lib/libblas.a
+TMGLIB       	= libtmglib.a
 
+# BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 # BLASDEF 	= -DUSE_VENDOR_BLAS
 
-LIBS		= $(SUPERLULIB) /home/xiaoye/Dropbox/Codes/SuperLU/SuperLU/build/CBLAS/libblas.a
+LIBS		= $(SUPERLULIB) blas
 
 #
 #  The archiver and the flag(s) to use when building archive (library)

@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 2.8.12)
 project(SuperLU C)
 set(VERSION_MAJOR "5")
 set(VERSION_MINOR "1")
-set(VERSION_BugFix "0")
+set(VERSION_BugFix "1")
 set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 
 ######################################################################

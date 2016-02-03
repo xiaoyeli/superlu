@@ -16,10 +16,11 @@
 #  The name of the libraries to be created/linked to
 #
 SuperLUroot	= ${CMAKE_SOURCE_DIR}/build
-SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu_5.0.a
+SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix}.a
 
-## BLASLIB   	= $(SuperLUroot)/lib/libblas.a
+TMGLIB       	= libtmglib.a
 
+# BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 # BLASDEF 	= -DUSE_VENDOR_BLAS
 
 LIBS		= $(SUPERLULIB) ${BLAS_LIB_STR}

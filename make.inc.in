@@ -13,10 +13,13 @@
 #
 ############################################################################
 #
+# ToDo: Make this work for shared libraries and out-of-source builds.  Right
+# now it only works for builds under ${CMAKE_SOURCE_DIR}/build/
+#
 #  The name of the libraries to be created/linked to
 #
 SuperLUroot	= ${CMAKE_SOURCE_DIR}/build
-SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix}.a
+SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu.a
 
 TMGLIB       	= libtmglib.a
 

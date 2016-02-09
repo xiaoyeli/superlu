@@ -8,7 +8,7 @@
 cmake_minimum_required(VERSION 2.8.12)
 
 # Project Version	
-project(SuperLU C)
+project(SuperLU NONE)
 set(VERSION_MAJOR "5")
 set(VERSION_MINOR "1")
 set(VERSION_BugFix "1")
@@ -29,7 +29,7 @@ INCLUDE("XSDKDefaults.cmake")
 ######################################################################
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
 
-# enable_language(C)
+enable_language(C)
 # enable_language(C++)
 enable_language (Fortran)
 # set(NOFORTRAN TRUE)
@@ -51,8 +51,8 @@ option(enable_examples  "Build examples" ON)
 # setup required compiler defines and options.
 ## add_definitions(-DPRNTlevel=0 -DAdd_)
 ## get_directory_property( DirDefs COMPILE_DEFINITIONS )
-set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DAdd_")
-set(CMAKE_C_FLAGS_RELEASE "-O3")
+set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DAdd_ ${CMAKE_C_FLAGS}")
+set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 
 ######################################################################
 #
@@ -61,16 +61,29 @@ set(CMAKE_C_FLAGS_RELEASE "-O3")
 ######################################################################
 
 if(NOT enable_blaslib)
-  find_package(BLAS)
+  set(TPL_BLAS_LIBRARIES "" CACHE FILEPATH
+    "Override of list of absolute path to libs for BLAS.")
+  if (TPL_BLAS_LIBRARIES)
+    set(BLAS_FOUND TRUE)
+  else()
+    find_package(BLAS)
+    if (BLAS_FOUND)
+      set(TPL_BLAS_LIBRARIES "${BLAS_LIBRARIES}" CACHE FILEPATH
+        "Set from FindBLAS.cmake BLAS_LIBRARIES." FORCE)
+    endif()
+  endif()
 endif()
 
 if(BLAS_FOUND)
+  message(STATUS "Using TPL_BLAS_LIBRARIES='${TPL_BLAS_LIBRARIES}'")
   add_definitions(-DPRNTlevel=0 -DUSE_VENDOR_BLAS)
-  set(BLAS_LIB ${BLAS_LIBRARIES})
+  set(BLAS_LIB ${TPL_BLAS_LIBRARIES})
 else()
+  message(STATUS "Did not find or specify BLAS so configure to build internal CBLAS ...")
   add_subdirectory(CBLAS)
-  set(BLAS_LIB ${CMAKE_SOURCE_DIR}/build/CBLAS/libblas.a)
+  set(BLAS_LIB blas)
 endif()
+
 
 ######################################################################
 #

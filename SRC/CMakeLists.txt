@@ -226,9 +226,13 @@ if(enable_complex16)
   )
 endif()
 
-add_library(superlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix}  ${sources} ${HEADERS})
+add_library(superlu ${sources} ${HEADERS})
 
-install(TARGETS superlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix}
+target_link_libraries(superlu ${BLAS_LIB} m)
+set_target_properties(superlu PROPERTIES
+  VERSION ${PROJECT_VERSION} SOVERSION ${VERSION_MAJOR}
+  )
+install(TARGETS superlu
   DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
 )
 

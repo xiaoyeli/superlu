@@ -146,7 +146,7 @@ endif()
 
 # file(WRITE "make.defs" "# can be exposed to users"
 #  ${CMAKE_C_COMPILER}  )
-#string (REPLACE ";" " " BLAS_LIB_STR "${BLAS_LIB}")
+string (REPLACE ";" " " BLAS_LIB_STR "${BLAS_LIB}")
 # configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_BINARY_DIR}/make.inc)
-#configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
+configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
  

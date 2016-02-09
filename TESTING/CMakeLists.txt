@@ -1,4 +1,8 @@
 include_directories(${SuperLU_SOURCE_DIR}/SRC)
+
+# Libs linked to all of the tests
+set(test_link_libs superlu matgen)
+
 add_subdirectory(MATGEN)
 
 set(ALINTST sp_ienv.c)
@@ -12,7 +16,7 @@ function(cat IN_FILE OUT_FILE)
 endfunction()
 
 
-macro(add_superlu_test output input target)
+function(add_superlu_test output input target)
   set(TEST_INPUT "${SuperLU_SOURCE_DIR}/EXAMPLE/${input}")
   set(TEST_OUTPUT "${SuperLU_BINARY_DIR}/TESTING/${output}")
 
@@ -20,7 +24,7 @@ macro(add_superlu_test output input target)
   # "== LAPACK test matrices"
   file(WRITE ${TEST_OUTPUT} "")
 
-  get_target_property(TEST_LOC ${target} LOCATION)
+  set(TEST_LOC ${CMAKE_CURRENT_BINARY_DIR})
 
   foreach (n ${NVAL})
     foreach (s ${NRHS})
@@ -53,14 +57,14 @@ macro(add_superlu_test output input target)
       endforeach()
   endforeach()
 
-endmacro(add_superlu_test)
+endfunction(add_superlu_test)
 
 
 if(enable_single)
   set(SLINTST sdrive.c sp_sconvert.c sgst01.c sgst02.c sgst04.c sgst07.c)
 
   add_executable(s_test ${ALINTST} ${SLINTST})
-  target_link_libraries(s_test matgen superlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix} ${BLAS_LIB} m)
+  target_link_libraries(s_test matgen ${test_link_libs})
 
   add_superlu_test(s_test.out g20.rua s_test)
 
@@ -71,7 +75,7 @@ if(enable_double)
   set(DLINTST ddrive.c sp_dconvert.c dgst01.c dgst02.c dgst04.c dgst07.c)
 
   add_executable(d_test ${ALINTST} ${DLINTST})
-  target_link_libraries(d_test matgen superlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix}  ${BLAS_LIB} m)
+  target_link_libraries(d_test matgen ${test_link_libs})
 
   add_superlu_test(d_test.out g20.rua d_test)
 endif()
@@ -80,7 +84,7 @@ if(enable_complex)
   set(CLINTST cdrive.c sp_cconvert.c cgst01.c cgst02.c cgst04.c cgst07.c)
 
   add_executable(c_test ${ALINTST} ${CLINTST})
-  target_link_libraries(c_test matgen superlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix} ${BLAS_LIB} m)
+  target_link_libraries(c_test matgen ${test_link_libs})
 
   add_superlu_test(c_test.out cg20.cua c_test)
 endif()
@@ -90,7 +94,7 @@ if(enable_complex16)
   set(ZLINTST zdrive.c sp_zconvert.c zgst01.c zgst02.c zgst04.c zgst07.c)
 
   add_executable(z_test ${ALINTST} ${ZLINTST})
-  target_link_libraries(z_test matgen superlu_${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix} ${BLAS_LIB} m)
+  target_link_libraries(z_test matgen ${test_link_libs})
 
   add_superlu_test(z_test.out cg20.cua z_test)
 endif()

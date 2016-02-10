@@ -37,8 +37,15 @@ set(NOFORTRAN FALSE)
 set(SUPERLU_VERSION "${PROJECT_VERSION}")
 set(SUPERLU_REV "${PROJECT_REV}")
 
+# The XSDK standard does not allow using internally built BLAS
+if (USE_XSDK_DEFAULTS)
+  set(enable_blaslib_DEFAULT OFF)
+else()
+  set(enable_blaslib_DEFAULT ON)
+endif()
+
 # setup options
-option(enable_blaslib   "Build the CBLAS library" ON)
+option(enable_blaslib   "Build the CBLAS library" ${enable_blaslib_DEFAULT})
 option(enable_matlabmex "Build the Matlab mex library" OFF)
 option(enable_tests     "Build tests" ON)
 option(enable_doc       "Build doxygen documentation" OFF)

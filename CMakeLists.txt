@@ -38,7 +38,7 @@ set(SUPERLU_VERSION "${PROJECT_VERSION}")
 set(SUPERLU_REV "${PROJECT_REV}")
 
 # setup options
-option(enable_blaslib   "Build the CBLAS library" OFF)
+option(enable_blaslib   "Build the CBLAS library" ON)
 option(enable_matlabmex "Build the Matlab mex library" OFF)
 option(enable_tests     "Build tests" ON)
 option(enable_doc       "Build doxygen documentation" OFF)
@@ -46,7 +46,7 @@ option(enable_single    "Enable single precision library" ON)
 option(enable_double    "Enable double precision library" ON)
 option(enable_complex   "Enable complex precision library" ON)
 option(enable_complex16 "Enable complex16 precision library" ON)
-option(enable_examples  "Build examples" ON)
+# option(enable_examples  "Build examples" ON)
 
 # setup required compiler defines and options.
 ## add_definitions(-DPRNTlevel=0 -DAdd_)
@@ -113,10 +113,6 @@ endif()
 if(enable_doc)
   message(FATAL_ERROR "Documentation build requested but not implemented.")
   #implement doxygen
-endif()
-
-if(enable_examples)
-  add_subdirectory(EXAMPLE)
 endif()
 
 

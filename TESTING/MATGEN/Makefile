@@ -32,25 +32,21 @@ include ../../make.inc
 
 SCATGEN = slatm1.o slaran.o slarnd.o slaruv.o slabad.o slarnv.o
 SLASRC  = slatb4.o slaset.o slartg.o
-SMATGEN = slatms.o slatme.o slatmr.o \
-	  slagge.o slagsy.o slarge.o slaror.o slarot.o slatm2.o slatm3.o
+SMATGEN = slatms.o slagge.o slagsy.o slarge.o slaror.o slarot.o slatm2.o slatm3.o
 SINTRINSIC  = r_lg10.o r_sign.o pow_dd.o pow_ri.o
 
 DZATGEN = dlatm1.o dlaran.o dlarnd.o dlaruv.o dlabad.o dlarnv.o
 DLASRC  = dlatb4.o dlaset.o dlartg.o
-DMATGEN = dlatms.o dlatme.o dlatmr.o \
-	  dlagge.o dlagsy.o dlarge.o dlaror.o dlarot.o dlatm2.o dlatm3.o
+DMATGEN = dlatms.o dlagge.o dlagsy.o dlarge.o dlaror.o dlarot.o dlatm2.o dlatm3.o
 DINTRINSIC  = d_lg10.o d_sign.o pow_dd.o pow_di.o
 
 CLASRC  = clatb4.o claset.o clartg.o clarnv.o clacgv.o csymv.o
-CMATGEN = clatms.o clatme.o clatmr.o \
-	  clagge.o clagsy.o clarge.o claror.o clarot.o clatm2.o clatm3.o \
+CMATGEN = clatms.o clagge.o clagsy.o clarge.o claror.o clarot.o clatm2.o clatm3.o \
 	  claghe.o clarnd.o
  #cdotc.o  already in BLAS
 
 ZLASRC  = zlatb4.o zlaset.o zlartg.o zlarnv.o zlacgv.o zsymv.o
-ZMATGEN = zlatms.o zlatme.o zlatmr.o \
-	  zlagge.o zlagsy.o zlarge.o zlaror.o zlarot.o zlatm2.o zlatm3.o \
+ZMATGEN = zlatms.o zlagge.o zlagsy.o zlarge.o zlaror.o zlarot.o zlatm2.o zlatm3.o \
 	  zlaghe.o zlarnd.o
  #zdotc.o  in BLAS
 

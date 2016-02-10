@@ -12,8 +12,6 @@ if(enable_single)
     slaset.c
     slartg.c
     slatms.c
-    slatme.c
-    slatmr.c
     slagge.c
     slagsy.c
     slarge.c
@@ -40,8 +38,6 @@ if(enable_double)
     dlaset.c
     dlartg.c
     dlatms.c
-    dlatme.c
-    dlatmr.c
     dlagge.c
     dlagsy.c
     dlarge.c
@@ -65,8 +61,6 @@ if(enable_complex)
     clacgv.c
     csymv.c
     clatms.c
-    clatme.c
-    clatmr.c
     clagge.c
     clagsy.c
     clarge.c
@@ -89,8 +83,6 @@ if(enable_complex16)
     zlacgv.c
     zsymv.c
     zlatms.c
-    zlatme.c
-    zlatmr.c
     zlagge.c
     zlagsy.c
     zlarge.c

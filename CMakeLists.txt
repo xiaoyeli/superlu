@@ -19,7 +19,7 @@ set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 # IDEAS: xSDK standards module
 MESSAGE("\nProcess XSDK defaults ...")
 # SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
-INCLUDE("XSDKDefaults.cmake")
+INCLUDE("cmake/XSDKDefaults.cmake")
 ######################################################################
 
 ######################################################################
@@ -29,10 +29,16 @@ INCLUDE("XSDKDefaults.cmake")
 ######################################################################
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
 
+if (BUILD_SHARED_LIBS)
+  message("-- SuperLU will be built as a shared library.")
+  set(PROJECT_NAME_LIB_EXPORT libsuperlu.so)
+else()
+  message("-- SuperLU will be built as a static library.")
+  set(PROJECT_NAME_LIB_EXPORT libsuperlu.a)
+endif()
+
 enable_language(C)
-# enable_language(C++)
 enable_language (Fortran)
-# set(NOFORTRAN TRUE)
 set(NOFORTRAN FALSE)
 set(SUPERLU_VERSION "${PROJECT_VERSION}")
 set(SUPERLU_REV "${PROJECT_REV}")
@@ -66,7 +72,8 @@ set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 # Find packages
 #
 ######################################################################
-
+#
+#--------------------- BLAS ---------------------
 if(NOT enable_blaslib)
   set(TPL_BLAS_LIBRARIES "" CACHE FILEPATH
     "Override of list of absolute path to libs for BLAS.")
@@ -82,13 +89,21 @@ if(NOT enable_blaslib)
 endif()
 
 if(BLAS_FOUND)
-  message(STATUS "Using TPL_BLAS_LIBRARIES='${TPL_BLAS_LIBRARIES}'")
-  add_definitions(-DPRNTlevel=0 -DUSE_VENDOR_BLAS)
+  message("-- Using TPL_BLAS_LIBRARIES='${TPL_BLAS_LIBRARIES}'")
+  set(CMAKE_C_FLAGS "-DUSE_VENDOR_BLAS ${CMAKE_C_FLAGS}")
   set(BLAS_LIB ${TPL_BLAS_LIBRARIES})
+  # fix up BLAS library name
+  string (REPLACE ";" " " BLAS_LIB_STR "${BLAS_LIB}")
+  set(BLAS_LIB_EXPORT ${BLAS_LIB_STR})
 else()
-  message(STATUS "Did not find or specify BLAS so configure to build internal CBLAS ...")
+  message("-- Did not find or specify BLAS so configure to build internal CBLAS ...")
   add_subdirectory(CBLAS)
   set(BLAS_LIB blas)
+  if (BUILD_SHARED_LIBS)  # export to be referenced by downstream makefile
+      set(BLAS_LIB_EXPORT ${CMAKE_SOURCE_DIR}/build/CBLAS/libblas.so)
+  else()
+      set(BLAS_LIB_EXPORT ${CMAKE_SOURCE_DIR}/build/CBLAS/libblas.a)
+  endif()
 endif()
 
 
@@ -125,7 +140,5 @@ endif()
 
 # file(WRITE "make.defs" "# can be exposed to users"
 #  ${CMAKE_C_COMPILER}  )
-string (REPLACE ";" " " BLAS_LIB_STR "${BLAS_LIB}")
-# configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_BINARY_DIR}/make.inc)
-configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
+configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
  

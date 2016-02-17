@@ -19,14 +19,13 @@
 #  The name of the libraries to be created/linked to
 #
 SuperLUroot	= ${CMAKE_SOURCE_DIR}/build
-SUPERLULIB   	= $(SuperLUroot)/SRC/libsuperlu.a
+SUPERLULIB   	= $(SuperLUroot)/SRC/${PROJECT_NAME_LIB_EXPORT}
 
 TMGLIB       	= libtmglib.a
 
-# BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 # BLASDEF 	= -DUSE_VENDOR_BLAS
 
-LIBS		= $(SUPERLULIB) ${BLAS_LIB_STR}
+LIBS		= $(SUPERLULIB) ${BLAS_LIB_EXPORT}
 
 #
 #  The archiver and the flag(s) to use when building archive (library)
@@ -37,9 +36,7 @@ ARCHFLAGS    = cr
 RANLIB       = @CMAKE_RANLIB@
 
 CC           = @CMAKE_C_COMPILER@
-CFLAGS 	     = @CMAKE_C_FLAGS_RELEASE@  @CMAKE_C_FLAGS@ 
-# CFLAGS       += -D${DirDefs}
-# CFLAGS       += @COMPILE_DEFINITIONS@ 
+CFLAGS 	     = @CMAKE_C_FLAGS_RELEASE@ @CMAKE_C_FLAGS@ 
 NOOPTS       = -O0
 FORTRAN	     = @CMAKE_Fortran_COMPILER@
 

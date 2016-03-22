@@ -75,8 +75,6 @@ set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 #
 #--------------------- BLAS ---------------------
 if(NOT enable_blaslib)
-  set(TPL_BLAS_LIBRARIES "" CACHE FILEPATH
-    "Override of list of absolute path to libs for BLAS.")
   if (TPL_BLAS_LIBRARIES)
     set(BLAS_FOUND TRUE)
   else()

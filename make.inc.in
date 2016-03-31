@@ -42,3 +42,8 @@ FORTRAN	     = @CMAKE_Fortran_COMPILER@
 
 LOADER       = $(CC)
 LOADOPTS     =
+
+#
+# The directory in which Matlab is installed
+#
+MATLAB	     = /Applications/MATLAB_R2015b.app

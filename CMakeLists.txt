@@ -27,7 +27,8 @@ INCLUDE("cmake/XSDKDefaults.cmake")
 # Usual initialization stuff
 #
 ######################################################################
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
+set(CMAKE_INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 
 if (BUILD_SHARED_LIBS)
   message("-- SuperLU will be built as a shared library.")

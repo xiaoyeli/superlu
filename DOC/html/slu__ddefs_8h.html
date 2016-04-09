@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SuperLU
-   &#160;<span id="projectnumber">5.0</span>
+   &#160;<span id="projectnumber">5.2.0</span>
    </div>
   </td>
  </tr>
@@ -62,7 +62,7 @@
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;stdint.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="SRC_2slu__Cnames_8h_source.html">slu_Cnames.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="slu__Cnames_8h_source.html">slu_Cnames.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="supermatrix_8h_source.html">supermatrix.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="slu__util_8h_source.html">slu_util.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
@@ -70,7 +70,7 @@ Include dependency graph for slu_ddefs.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="slu__ddefs_8h__incl.png" border="0" usemap="#SRC_2slu__ddefs_8h" alt=""/></div>
 <map name="SRC_2slu__ddefs_8h" id="SRC_2slu__ddefs_8h">
-<area shape="rect" id="node8" href="SRC_2slu__Cnames_8h.html" title="slu_Cnames.h" alt="" coords="521,80,628,107"/><area shape="rect" id="node9" href="supermatrix_8h.html" title="Defines matrix types. " alt="" coords="652,80,753,107"/><area shape="rect" id="node10" href="slu__util_8h.html" title="Utility header file. " alt="" coords="281,80,355,107"/><area shape="rect" id="node12" href="superlu__enum__consts_8h.html" title="enum constants header file " alt="" coords="269,155,428,181"/></map>
+<area shape="rect" id="node8" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called. " alt="" coords="521,80,628,107"/><area shape="rect" id="node9" href="supermatrix_8h.html" title="Defines matrix types. " alt="" coords="652,80,753,107"/><area shape="rect" id="node10" href="slu__util_8h.html" title="Utility header file. " alt="" coords="281,80,355,107"/><area shape="rect" id="node12" href="superlu__enum__consts_8h.html" title="enum constants header file " alt="" coords="269,155,428,181"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -189,8 +189,6 @@ Functions</h2></td></tr>
 <tr class="separator:a505f6c005fe6a0cdcbf00512a1e4823a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab776edfed8eb517dc4d037e76ed2bb24"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__ddefs_8h.html#ab776edfed8eb517dc4d037e76ed2bb24">sp_dgemm</a> (char *, char *, int, int, int, double, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *, double *, int, double, double *, int)</td></tr>
 <tr class="separator:ab776edfed8eb517dc4d037e76ed2bb24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a177ab9599e432642729507475d5cea83"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__ddefs_8h.html#a177ab9599e432642729507475d5cea83">dlamch_</a> (char *)</td></tr>
-<tr class="separator:a177ab9599e432642729507475d5cea83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a532ff1aed405ef9b1c54654bcab207b7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__ddefs_8h.html#a532ff1aed405ef9b1c54654bcab207b7">dmach</a> (char *)</td></tr>
 <tr class="separator:a532ff1aed405ef9b1c54654bcab207b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa93b6921e772245253231d545072e93c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__ddefs_8h.html#aa93b6921e772245253231d545072e93c">dLUMemInit</a> (<a class="el" href="superlu__enum__consts_8h.html#ac785c8235480e5cfef9848d89c047c0a">fact_t</a>, void *, int, int, int, int, int, double, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *, int **, double **)</td></tr>
@@ -259,7 +257,10 @@ Functions</h2></td></tr>
 <tr class="separator:ab9959831d583511b25c4de2ebb2448e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre> 
+<div class="textblock"><p>Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
+<p>All rights reserved.</p>
+<p>The source code is distributed under BSD license, see the file License.txt at the top-level directory.</p>
+<pre> 
 &ndash; SuperLU routine (version 4.1) &ndash;
 Univ. of California Berkeley, Xerox Palo Alto Research Center,
 and Lawrence Berkeley National Lab.
@@ -1884,9 +1885,9 @@ The routine performs the following steps:</pre><pre>  1. If A is stored column-w
           matrix that usually preserves sparsity.
           For more details of this step, see <a class="el" href="sp__preorder_8c.html" title="Permute and performs functions on columns of orginal matrix. ">sp_preorder.c</a>.</pre><pre>     1.3. If options-&gt;Fact != FACTORED, the LU decomposition is used to
           factor the matrix A (after equilibration if options-&gt;Equil = YES)
-          as Pr*A*Pc = L*U, with Pr determined by partial pivoting.</pre><pre>     1.4. Compute the reciprocal pivot growth factor.</pre><pre>     1.5. If some <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> = 0, so that U is exactly singular, then the
+          as Pr*A*Pc = L*U, with Pr determined by partial pivoting.</pre><pre>     1.4. Compute the reciprocal pivot growth factor.</pre><pre>     1.5. If some U(i,i) = 0, so that U is exactly singular, then the
           routine fills a small number on the diagonal entry, that is
-        <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> = ||A(:,i)||_oo * options-&gt;ILU_FillTol ** (1 - i / n),
+        U(i,i) = ||A(:,i)||_oo * options-&gt;ILU_FillTol ** (1 - i / n),
           and info will be increased by 1. The factored form of A is used
           to estimate the condition number of the preconditioner. If the
           reciprocal of the condition number is less than machine precision,
@@ -1946,18 +1947,18 @@ The routine performs the following steps:</pre><pre>  1. If A is stored column-w
           6) options-&gt;ILU_MILU specifies the type of MILU's variation.
         = SILU: do not perform Modified ILU;
         = SMILU_1 (not recommended):
-            <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> := <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> + sum(dropped entries);
+            U(i,i) := U(i,i) + sum(dropped entries);
         = SMILU_2:
-            <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> := <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> + <a class="el" href="ilu__zpivotL_8c.html#a95ed41486ca0ed53262e4b8934d4afac">SGN(U(i,i))</a> * sum(dropped entries);
+            U(i,i) := U(i,i) + <a class="el" href="ilu__zpivotL_8c.html#a95ed41486ca0ed53262e4b8934d4afac">SGN(U(i,i))</a> * sum(dropped entries);
         = SMILU_3:
-            <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> := <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> + <a class="el" href="ilu__zpivotL_8c.html#a95ed41486ca0ed53262e4b8934d4afac">SGN(U(i,i))</a> * sum(|dropped entries|);
+            U(i,i) := U(i,i) + <a class="el" href="ilu__zpivotL_8c.html#a95ed41486ca0ed53262e4b8934d4afac">SGN(U(i,i))</a> * sum(|dropped entries|);
         NOTE: Even SMILU_1 does not preserve the column sum because of
         late dropping.
              ( Default: SILU )
           7) options-&gt;ILU_FillTol is used as the perturbation when
-        encountering zero pivots. If some <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> = 0, so that U is
+        encountering zero pivots. If some U(i,i) = 0, so that U is
         exactly singular, then
-           <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> := ||A(:,i)|| * options-&gt;ILU_FillTol ** (1 - i / n).
+           U(i,i) := ||A(:,i)|| * options-&gt;ILU_FillTol ** (1 - i / n).
              ( Default: 1e-2 )</pre><pre>  2. If A is stored row-wise (A-&gt;Stype = SLU_NR), apply the above algorithm
      to the transpose of A:</pre><pre>     2.1. If options-&gt;Equil = YES or options-&gt;RowPerm = LargeDiag, scaling
           factors are computed to equilibrate the system:
@@ -1976,9 +1977,9 @@ The routine performs the following steps:</pre><pre>  1. If A is stored column-w
           For more details of this step, see <a class="el" href="sp__preorder_8c.html" title="Permute and performs functions on columns of orginal matrix. ">sp_preorder.c</a>.</pre><pre>     2.3. If options-&gt;Fact != FACTORED, the LU decomposition is used to
           factor the transpose(A) (after equilibration if
           options-&gt;Fact = YES) as Pr*transpose(A)*Pc = L*U with the
-          permutation Pr determined by partial pivoting.</pre><pre>     2.4. Compute the reciprocal pivot growth factor.</pre><pre>     2.5. If some <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> = 0, so that U is exactly singular, then the
+          permutation Pr determined by partial pivoting.</pre><pre>     2.4. Compute the reciprocal pivot growth factor.</pre><pre>     2.5. If some U(i,i) = 0, so that U is exactly singular, then the
           routine fills a small number on the diagonal entry, that is
-         <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> = ||A(:,i)||_oo * options-&gt;ILU_FillTol ** (1 - i / n).
+         U(i,i) = ||A(:,i)||_oo * options-&gt;ILU_FillTol ** (1 - i / n).
           And info will be increased by 1. The factored form of A is used
           to estimate the condition number of the preconditioner. If the
           reciprocal of the condition number is less than machine precision,
@@ -2517,16 +2518,16 @@ Here is the call graph for this function:</div>
           if *equed = 'C' or 'B', X should be premultiplied by diag(C)
               in order to obtain the solution to the original system.</pre><pre>  FERR    (output) double*, dimension (B-&gt;ncol)   
           The estimated forward error bound for each solution vector   
-          <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a> (the j-th column of the solution matrix X).   
-          If XTRUE is the true solution corresponding to <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a>, FERR(j) 
+          X(j) (the j-th column of the solution matrix X).   
+          If XTRUE is the true solution corresponding to X(j), FERR(j) 
           is an estimated upper bound for the magnitude of the largest 
-          element in (<a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a> - XTRUE) divided by the magnitude of the   
-          largest element in <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a>.  The estimate is as reliable as   
+          element in (X(j) - XTRUE) divided by the magnitude of the   
+          largest element in X(j).  The estimate is as reliable as   
           the estimate for RCOND, and is almost always a slight   
           overestimate of the true error.</pre><pre>  BERR    (output) double*, dimension (B-&gt;ncol)   
           The componentwise relative backward error of each solution   
-          vector <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a> (i.e., the smallest relative change in   
-          any element of A or B that makes <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a> an exact solution).</pre><pre>  stat     (output) SuperLUStat_t*
+          vector X(j) (i.e., the smallest relative change in   
+          any element of A or B that makes X(j) an exact solution).</pre><pre>  stat     (output) SuperLUStat_t*
            Record the statistics on runtime and floating-point operation count.
            See util.h for the definition of '<a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a>'.</pre><pre>  info    (output) int*   
           = 0:  successful exit   
@@ -2675,7 +2676,7 @@ LU factorization from DGSTRF. It performs the following steps:</pre><pre>  1. If
        See util.h for the definition of '<a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a>'.</pre><pre>info    (output) int*
         = 0: successful exit
         &gt; 0: if info = i, and i is
-            &lt;= A-&gt;ncol: <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> is exactly zero. The factorization has
+            &lt;= A-&gt;ncol: U(i,i) is exactly zero. The factorization has
                been completed, but the factor U is exactly singular,
                so the solution could not be computed.
             &gt; A-&gt;ncol: number of bytes allocated when memory allocation
@@ -2856,7 +2857,7 @@ a condition estimate are also provided. It performs the following steps:</pre><p
           matrix that usually preserves sparsity.
           For more details of this step, see <a class="el" href="sp__preorder_8c.html" title="Permute and performs functions on columns of orginal matrix. ">sp_preorder.c</a>.</pre><pre>     1.3. If options-&gt;Fact != FACTORED, the LU decomposition is used to
           factor the matrix A (after equilibration if options-&gt;Equil = YES)
-          as Pr*A*Pc = L*U, with Pr determined by partial pivoting.</pre><pre>     1.4. Compute the reciprocal pivot growth factor.</pre><pre>     1.5. If some <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> = 0, so that U is exactly singular, then the
+          as Pr*A*Pc = L*U, with Pr determined by partial pivoting.</pre><pre>     1.4. Compute the reciprocal pivot growth factor.</pre><pre>     1.5. If some U(i,i) = 0, so that U is exactly singular, then the
           routine returns with info = i. Otherwise, the factored form of 
           A is used to estimate the condition number of the matrix A. If
           the reciprocal of the condition number is less than machine
@@ -2886,7 +2887,7 @@ a condition estimate are also provided. It performs the following steps:</pre><p
           For more details of this step, see <a class="el" href="sp__preorder_8c.html" title="Permute and performs functions on columns of orginal matrix. ">sp_preorder.c</a>.</pre><pre>     2.3. If options-&gt;Fact != FACTORED, the LU decomposition is used to
           factor the transpose(A) (after equilibration if 
           options-&gt;Fact = YES) as Pr*transpose(A)*Pc = L*U with the
-          permutation Pr determined by partial pivoting.</pre><pre>     2.4. Compute the reciprocal pivot growth factor.</pre><pre>     2.5. If some <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> = 0, so that U is exactly singular, then the
+          permutation Pr determined by partial pivoting.</pre><pre>     2.4. Compute the reciprocal pivot growth factor.</pre><pre>     2.5. If some U(i,i) = 0, so that U is exactly singular, then the
           routine returns with info = i. Otherwise, the factored form 
           of transpose(A) is used to estimate the condition number of the
           matrix A. If the reciprocal of the condition number
@@ -3023,17 +3024,17 @@ a condition estimate are also provided. It performs the following steps:</pre><p
         to working precision. This condition is indicated by a return
         code of info &gt; 0.</pre><pre>FERR    (output) double*, dimension (B-&gt;ncol)   
         The estimated forward error bound for each solution vector   
-        <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a> (the j-th column of the solution matrix X).   
-        If XTRUE is the true solution corresponding to <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a>, FERR(j) 
+        X(j) (the j-th column of the solution matrix X).   
+        If XTRUE is the true solution corresponding to X(j), FERR(j) 
         is an estimated upper bound for the magnitude of the largest 
-        element in (<a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a> - XTRUE) divided by the magnitude of the   
-        largest element in <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a>.  The estimate is as reliable as   
+        element in (X(j) - XTRUE) divided by the magnitude of the   
+        largest element in X(j).  The estimate is as reliable as   
         the estimate for RCOND, and is almost always a slight   
         overestimate of the true error.
         If options-&gt;IterRefine = NOREFINE, ferr = 1.0.</pre><pre>BERR    (output) double*, dimension (B-&gt;ncol)
         The componentwise relative backward error of each solution   
-        vector <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a> (i.e., the smallest relative change in   
-        any element of A or B that makes <a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X(j)</a> an exact solution).
+        vector X(j) (i.e., the smallest relative change in   
+        any element of A or B that makes X(j) an exact solution).
         If options-&gt;IterRefine = NOREFINE, berr = 1.0.</pre><pre>Glu      (input/output) <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *
          If options-&gt;Fact == SamePattern_SameRowPerm, it is an input;
              The matrix A will be factorized assuming that a 
@@ -3059,7 +3060,7 @@ a condition estimate are also provided. It performs the following steps:</pre><p
         = 0: successful exit   
         &lt; 0: if info = -i, the i-th argument had an illegal value   
         &gt; 0: if info = i, and i is   
-             &lt;= A-&gt;ncol: <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> is exactly zero. The factorization has   
+             &lt;= A-&gt;ncol: U(i,i) is exactly zero. The factorization has   
                    been completed, but the factor U is exactly   
                    singular, so the solution and error bounds   
                    could not be computed.   
@@ -3248,7 +3249,7 @@ triangular (upper trapezoidal if A-&gt;nrow &lt; A-&gt;ncol).</pre><pre>See <a c
          = 0: successful exit
          &lt; 0: if info = -i, the i-th argument had an illegal value
          &gt; 0: if info = i, and i is
-            &lt;= A-&gt;ncol: <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> is exactly zero. The factorization has
+            &lt;= A-&gt;ncol: U(i,i) is exactly zero. The factorization has
                been completed, but the factor U is exactly singular,
                and division by zero will occur if it is used to solve a
                system of equations.
@@ -3424,22 +3425,6 @@ Here is the call graph for this function:</div>
           <td></td>
           <td>)</td>
           <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a177ab9599e432642729507475d5cea83"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double dlamch_ </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -4249,14 +4234,14 @@ Here is the call graph for this function:</div>
 </pre><pre>
   Performs the numerical pivoting on the current column of L,
   and the CDIV operation.</pre><pre>  Pivot policy:
-  (1) Compute thresh = u * max_(i&gt;=j) <a class="el" href="bak_2f2c_8h.html#a3aa069ac3980707dae1e0530f50d59e4">abs(A_ij)</a>;
-  (2) IF user specifies pivot row k and <a class="el" href="bak_2f2c_8h.html#a3aa069ac3980707dae1e0530f50d59e4">abs(A_kj)</a> &gt;= thresh THEN
+  (1) Compute thresh = u * max_(i&gt;=j) <a class="el" href="mc64ad_8c.html#a6a010865b10e541735fa2da8f3cd062d">abs(A_ij)</a>;
+  (2) IF user specifies pivot row k and <a class="el" href="mc64ad_8c.html#a6a010865b10e541735fa2da8f3cd062d">abs(A_kj)</a> &gt;= thresh THEN
           pivot row = k;
-      ELSE IF <a class="el" href="bak_2f2c_8h.html#a3aa069ac3980707dae1e0530f50d59e4">abs(A_jj)</a> &gt;= thresh THEN
+      ELSE IF <a class="el" href="mc64ad_8c.html#a6a010865b10e541735fa2da8f3cd062d">abs(A_jj)</a> &gt;= thresh THEN
           pivot row = j;
       ELSE
           pivot row = m;</pre><pre>  Note: If you absolutely want to use a given pivot order, then set u=0.0.</pre><pre>  Return value: 0      success;
-                i &gt; 0  <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> is exactly zero.
+                i &gt; 0  U(i,i) is exactly zero.
 </pre> 
 </div>
 </div>
@@ -5705,14 +5690,14 @@ Here is the call graph for this function:</div>
 </pre><pre>
   Performs the numerical pivoting on the current column of L,
   and the CDIV operation.</pre><pre>  Pivot policy:
-  (1) Compute thresh = u * max_(i&gt;=j) <a class="el" href="bak_2f2c_8h.html#a3aa069ac3980707dae1e0530f50d59e4">abs(A_ij)</a>;
-  (2) IF user specifies pivot row k and <a class="el" href="bak_2f2c_8h.html#a3aa069ac3980707dae1e0530f50d59e4">abs(A_kj)</a> &gt;= thresh THEN
+  (1) Compute thresh = u * max_(i&gt;=j) <a class="el" href="mc64ad_8c.html#a6a010865b10e541735fa2da8f3cd062d">abs(A_ij)</a>;
+  (2) IF user specifies pivot row k and <a class="el" href="mc64ad_8c.html#a6a010865b10e541735fa2da8f3cd062d">abs(A_kj)</a> &gt;= thresh THEN
           pivot row = k;
-      ELSE IF <a class="el" href="bak_2f2c_8h.html#a3aa069ac3980707dae1e0530f50d59e4">abs(A_jj)</a> &gt;= thresh THEN
+      ELSE IF <a class="el" href="mc64ad_8c.html#a6a010865b10e541735fa2da8f3cd062d">abs(A_jj)</a> &gt;= thresh THEN
           pivot row = j;
       ELSE
           pivot row = m;</pre><pre>  Note: If you absolutely want to use a given pivot order, then set u=0.0.</pre><pre>  Return value: 0         success;
-           i &gt; 0  <a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U(i,i)</a> is exactly zero.
+           i &gt; 0  U(i,i) is exactly zero.
 </pre> 
 </div>
 </div>
@@ -6001,7 +5986,7 @@ Here is the call graph for this function:</div>
            matrix B.   
            Unchanged on exit.</pre><pre>  LDB    - (input) int
            On entry, LDB specifies the first dimension of B as declared 
-           in the calling (sub) program. LDB must be at least <a class="el" href="bak_2f2c_8h.html#affe776513b24d84b39af8ab0930fef7f">max( 1, n )</a>.  
+           in the calling (sub) program. LDB must be at least max( 1, n ).  
            Unchanged on exit.</pre><pre>  BETA   - (input) double
            On entry, BETA specifies the scalar beta. When BETA is   
            supplied as zero then C need not be set on input.</pre><pre>  C      - DOUBLE PRECISION array of DIMENSION ( LDC, n ).   
@@ -6011,7 +5996,7 @@ Here is the call graph for this function:</div>
            On exit, the array C is overwritten by the m by n matrix 
           ( alpha*op( A )*B + beta*C ).</pre><pre>  LDC    - (input) int
            On entry, LDC specifies the first dimension of C as declared 
-           in the calling (sub)program. LDC must be at least <a class="el" href="bak_2f2c_8h.html#affe776513b24d84b39af8ab0930fef7f">max(1,m)</a>.   
+           in the calling (sub)program. LDC must be at least max(1,m).   
            Unchanged on exit.</pre><pre>  ==== Sparse Level 3 Blas routine.   
 </pre> 
 <p><div class="dynheader">
@@ -6240,7 +6225,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 3 2015 14:46:40 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 8 2016 18:40:07 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

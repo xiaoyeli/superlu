@@ -86,7 +86,7 @@ ilu_scolumn_dfs(
     int     mem_error;
     int     *xsup, *supno, *lsub, *xlsub;
     int     nzlmax;
-    static  int  first = 1, maxsuper;
+    int     maxsuper;
 
     xsup    = Glu->xsup;
     supno   = Glu->supno;
@@ -94,10 +94,7 @@ ilu_scolumn_dfs(
     xlsub   = Glu->xlsub;
     nzlmax  = Glu->nzlmax;
 
-    if ( first ) {
-	maxsuper = sp_ienv(7);
-	first = 0;
-    }
+    maxsuper = sp_ienv(7);
     jcolp1  = jcol + 1;
     jcolm1  = jcol - 1;
     nsuper  = supno[jcol];

@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SuperLU
-   &#160;<span id="projectnumber">5.0</span>
+   &#160;<span id="projectnumber">5.2.0</span>
    </div>
   </td>
  </tr>
@@ -62,7 +62,7 @@ Include dependency graph for cutil.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="cutil_8c__incl.png" border="0" usemap="#SRC_2cutil_8c" alt=""/></div>
 <map name="SRC_2cutil_8c" id="SRC_2cutil_8c">
-<area shape="rect" id="node3" href="slu__cdefs_8h.html" title="Header file for real operations. " alt="" coords="341,80,429,107"/><area shape="rect" id="node9" href="SRC_2slu__Cnames_8h.html" title="slu_Cnames.h" alt="" coords="332,155,439,181"/><area shape="rect" id="node10" href="supermatrix_8h.html" title="Defines matrix types. " alt="" coords="463,155,564,181"/><area shape="rect" id="node11" href="slu__util_8h.html" title="Utility header file. " alt="" coords="143,155,216,181"/><area shape="rect" id="node14" href="slu__scomplex_8h.html" title="Header file for complex operations. " alt="" coords="589,155,701,181"/><area shape="rect" id="node13" href="superlu__enum__consts_8h.html" title="enum constants header file " alt="" coords="131,229,289,256"/></map>
+<area shape="rect" id="node3" href="slu__cdefs_8h.html" title="Header file for real operations. " alt="" coords="341,80,429,107"/><area shape="rect" id="node9" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called. " alt="" coords="332,155,439,181"/><area shape="rect" id="node10" href="supermatrix_8h.html" title="Defines matrix types. " alt="" coords="463,155,564,181"/><area shape="rect" id="node11" href="slu__util_8h.html" title="Utility header file. " alt="" coords="143,155,216,181"/><area shape="rect" id="node14" href="slu__scomplex_8h.html" title="Header file for complex operations. " alt="" coords="589,155,701,181"/><area shape="rect" id="node13" href="superlu__enum__consts_8h.html" title="enum constants header file " alt="" coords="131,229,289,256"/></map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -75,9 +75,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6954ae5638f7ba23ae15c403313d93b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a6954ae5638f7ba23ae15c403313d93b2">cCopy_CompCol_Matrix</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="ilu__zdrop__row_8c.html#ac900805a486cbb8489e3c176ed6e0d8e">A</a>, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *B)</td></tr>
 <tr class="memdesc:a6954ae5638f7ba23ae15c403313d93b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy matrix A into matrix B.  <a href="#a6954ae5638f7ba23ae15c403313d93b2">More...</a><br/></td></tr>
 <tr class="separator:a6954ae5638f7ba23ae15c403313d93b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1e1455807ad7dbf3a5b63842eccd3ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#aa1e1455807ad7dbf3a5b63842eccd3ae">cCreate_Dense_Matrix</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X</a>, int m, int n, <a class="el" href="structcomplex.html">complex</a> *x, int ldx, <a class="el" href="supermatrix_8h.html#a9d2ddedeb2a3d92e950811c61d0b8796">Stype_t</a> stype, <a class="el" href="supermatrix_8h.html#a7987cb2a28ec879b39a90e9e48e29190">Dtype_t</a> dtype, <a class="el" href="supermatrix_8h.html#a5962adac634f3feebe487ad443802d60">Mtype_t</a> mtype)</td></tr>
+<tr class="memitem:aa1e1455807ad7dbf3a5b63842eccd3ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#aa1e1455807ad7dbf3a5b63842eccd3ae">cCreate_Dense_Matrix</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *X, int m, int n, <a class="el" href="structcomplex.html">complex</a> *x, int ldx, <a class="el" href="supermatrix_8h.html#a9d2ddedeb2a3d92e950811c61d0b8796">Stype_t</a> stype, <a class="el" href="supermatrix_8h.html#a7987cb2a28ec879b39a90e9e48e29190">Dtype_t</a> dtype, <a class="el" href="supermatrix_8h.html#a5962adac634f3feebe487ad443802d60">Mtype_t</a> mtype)</td></tr>
 <tr class="separator:aa1e1455807ad7dbf3a5b63842eccd3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a626267a542de9e81c94f1f6049c68c2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a626267a542de9e81c94f1f6049c68c2f">cCopy_Dense_Matrix</a> (int M, int N, <a class="el" href="structcomplex.html">complex</a> *<a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X</a>, int ldx, <a class="el" href="structcomplex.html">complex</a> *<a class="el" href="bak_2zsymv_8c.html#ae24739177a9fd4c04876d49d043774ab">Y</a>, int ldy)</td></tr>
+<tr class="memitem:a626267a542de9e81c94f1f6049c68c2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a626267a542de9e81c94f1f6049c68c2f">cCopy_Dense_Matrix</a> (int M, int N, <a class="el" href="structcomplex.html">complex</a> *X, int ldx, <a class="el" href="structcomplex.html">complex</a> *Y, int ldy)</td></tr>
 <tr class="separator:a626267a542de9e81c94f1f6049c68c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab70481bde9dc947f9dc1f42580fe6086"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#ab70481bde9dc947f9dc1f42580fe6086">cCreate_SuperNode_Matrix</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, int m, int n, int nnz, <a class="el" href="structcomplex.html">complex</a> *nzval, int *nzval_colptr, int *rowind, int *rowind_colptr, int *col_to_sup, int *sup_to_col, <a class="el" href="supermatrix_8h.html#a9d2ddedeb2a3d92e950811c61d0b8796">Stype_t</a> stype, <a class="el" href="supermatrix_8h.html#a7987cb2a28ec879b39a90e9e48e29190">Dtype_t</a> dtype, <a class="el" href="supermatrix_8h.html#a5962adac634f3feebe487ad443802d60">Mtype_t</a> mtype)</td></tr>
 <tr class="separator:ab70481bde9dc947f9dc1f42580fe6086"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,17 +105,20 @@ Functions</h2></td></tr>
 <tr class="memitem:a0987feeb2bd380db917660cde3352ec7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a0987feeb2bd380db917660cde3352ec7">cfill</a> (<a class="el" href="structcomplex.html">complex</a> *a, int alen, <a class="el" href="structcomplex.html">complex</a> dval)</td></tr>
 <tr class="memdesc:a0987feeb2bd380db917660cde3352ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a complex precision array with a given value.  <a href="#a0987feeb2bd380db917660cde3352ec7">More...</a><br/></td></tr>
 <tr class="separator:a0987feeb2bd380db917660cde3352ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1936a1981a1b766e102aec4be7d98f57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a1936a1981a1b766e102aec4be7d98f57">cinf_norm_error</a> (int nrhs, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="bak_2zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X</a>, <a class="el" href="structcomplex.html">complex</a> *xtrue)</td></tr>
+<tr class="memitem:a1936a1981a1b766e102aec4be7d98f57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a1936a1981a1b766e102aec4be7d98f57">cinf_norm_error</a> (int nrhs, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *X, <a class="el" href="structcomplex.html">complex</a> *xtrue)</td></tr>
 <tr class="memdesc:a1936a1981a1b766e102aec4be7d98f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the inf-norm of the error vector.  <a href="#a1936a1981a1b766e102aec4be7d98f57">More...</a><br/></td></tr>
 <tr class="separator:a1936a1981a1b766e102aec4be7d98f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a84a1610e172fb59a0bc19a1dadcb9fbe">cPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, float rpg, float rcond, float *ferr, float *berr, char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
+<tr class="memitem:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a84a1610e172fb59a0bc19a1dadcb9fbe">cPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *U, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, float rpg, float rcond, float *ferr, float *berr, char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
 <tr class="memdesc:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print performance of the code.  <a href="#a84a1610e172fb59a0bc19a1dadcb9fbe">More...</a><br/></td></tr>
 <tr class="separator:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6a8d174ff8ba298e99b4ac94794d5e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#af6a8d174ff8ba298e99b4ac94794d5e1">print_complex_vec</a> (char *what, int n, <a class="el" href="structcomplex.html">complex</a> *vec)</td></tr>
 <tr class="separator:af6a8d174ff8ba298e99b4ac94794d5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre>
+<div class="textblock"><p>Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
+<p>All rights reserved.</p>
+<p>The source code is distributed under BSD license, see the file License.txt at the top-level directory.</p>
+<pre>
 &ndash; SuperLU routine (version 3.1) &ndash;
 Univ. of California Berkeley, Xerox Palo Alto Research Center,
 and Lawrence Berkeley National Lab.
@@ -1003,7 +1006,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 3 2015 14:46:39 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 8 2016 18:40:06 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

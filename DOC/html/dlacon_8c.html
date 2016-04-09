@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SuperLU
-   &#160;<span id="projectnumber">5.0</span>
+   &#160;<span id="projectnumber">5.2.0</span>
    </div>
   </td>
  </tr>
@@ -57,20 +57,20 @@
 <p>Estimates the 1-norm.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;math.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="SRC_2slu__Cnames_8h_source.html">slu_Cnames.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="slu__Cnames_8h_source.html">slu_Cnames.h</a>&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for dlacon.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="dlacon_8c__incl.png" border="0" usemap="#SRC_2dlacon_8c" alt=""/></div>
 <map name="SRC_2dlacon_8c" id="SRC_2dlacon_8c">
-<area shape="rect" id="node3" href="SRC_2slu__Cnames_8h.html" title="slu_Cnames.h" alt="" coords="92,80,199,107"/></map>
+<area shape="rect" id="node3" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called. " alt="" coords="92,80,199,107"/></map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a51b3babab7bbf03500dbc5ede2a682b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dlacon_8c.html#a51b3babab7bbf03500dbc5ede2a682b3">d_sign</a>(a, b)&#160;&#160;&#160;(b &gt;= 0 ? fabs(a) : -fabs(a))    /* Copy sign */</td></tr>
 <tr class="separator:a51b3babab7bbf03500dbc5ede2a682b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adccc1e5692ca1dd160d0ca2a17e1b12c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dlacon_8c.html#adccc1e5692ca1dd160d0ca2a17e1b12c">i_dnnt</a>(a)&#160;&#160;&#160;( a&gt;=0 ? floor(a+.5) : -floor(.5-a) ) /* Round to nearest <a class="el" href="f2c_8h.html#a3b6ee100a473e8866bcea6d1fc4041d9">integer</a> */</td></tr>
+<tr class="memitem:adccc1e5692ca1dd160d0ca2a17e1b12c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dlacon_8c.html#adccc1e5692ca1dd160d0ca2a17e1b12c">i_dnnt</a>(a)&#160;&#160;&#160;( a&gt;=0 ? floor(a+.5) : -floor(.5-a) ) /* Round to nearest integer */</td></tr>
 <tr class="separator:adccc1e5692ca1dd160d0ca2a17e1b12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -79,7 +79,10 @@ Functions</h2></td></tr>
 <tr class="separator:a4187621e84a9554552e3fa8098542801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre>
+<div class="textblock"><p>Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
+<p>All rights reserved.</p>
+<p>The source code is distributed under BSD license, see the file License.txt at the top-level directory.</p>
+<pre>
 &ndash; SuperLU routine (version 2.0) &ndash;
 Univ. of California Berkeley, Xerox Palo Alto Research Center,
 and Lawrence Berkeley National Lab.
@@ -120,7 +123,7 @@ November 15, 1997
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">a</td><td>)</td>
-          <td>&#160;&#160;&#160;( a&gt;=0 ? floor(a+.5) : -floor(.5-a) ) /* Round to nearest <a class="el" href="f2c_8h.html#a3b6ee100a473e8866bcea6d1fc4041d9">integer</a> */</td>
+          <td>&#160;&#160;&#160;( a&gt;=0 ? floor(a+.5) : -floor(.5-a) ) /* Round to nearest integer */</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -217,7 +220,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 3 2015 14:46:39 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 8 2016 18:40:06 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

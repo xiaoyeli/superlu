@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SuperLU
-   &#160;<span id="projectnumber">5.0</span>
+   &#160;<span id="projectnumber">5.2.0</span>
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ Include dependency graph for ssp_blas2.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="ssp__blas2_8c__incl.png" border="0" usemap="#SRC_2ssp__blas2_8c" alt=""/></div>
 <map name="SRC_2ssp__blas2_8c" id="SRC_2ssp__blas2_8c">
-<area shape="rect" id="node2" href="slu__sdefs_8h.html" title="Header file for real operations. " alt="" coords="274,80,363,107"/><area shape="rect" id="node9" href="SRC_2slu__Cnames_8h.html" title="slu_Cnames.h" alt="" coords="521,155,628,181"/><area shape="rect" id="node10" href="supermatrix_8h.html" title="Defines matrix types. " alt="" coords="652,155,753,181"/><area shape="rect" id="node11" href="slu__util_8h.html" title="Utility header file. " alt="" coords="281,155,355,181"/><area shape="rect" id="node13" href="superlu__enum__consts_8h.html" title="enum constants header file " alt="" coords="269,229,428,256"/></map>
+<area shape="rect" id="node2" href="slu__sdefs_8h.html" title="Header file for real operations. " alt="" coords="274,80,363,107"/><area shape="rect" id="node9" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called. " alt="" coords="521,155,628,181"/><area shape="rect" id="node10" href="supermatrix_8h.html" title="Defines matrix types. " alt="" coords="652,155,753,181"/><area shape="rect" id="node11" href="slu__util_8h.html" title="Utility header file. " alt="" coords="281,155,355,181"/><area shape="rect" id="node13" href="superlu__enum__consts_8h.html" title="enum constants header file " alt="" coords="269,229,428,256"/></map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -75,7 +75,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ab452e957171a4d0d9cfe6abb3d8a950c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ssp__blas2_8c.html#ab452e957171a4d0d9cfe6abb3d8a950c">smatvec</a> (int, int, int, float *, float *, float *)</td></tr>
 <tr class="memdesc:ab452e957171a4d0d9cfe6abb3d8a950c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a dense matrix-vector multiply: Mxvec = Mxvec + M * vec.  <a href="#ab452e957171a4d0d9cfe6abb3d8a950c">More...</a><br/></td></tr>
 <tr class="separator:ab452e957171a4d0d9cfe6abb3d8a950c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9e8302d09840e67df27ddd4defaa621"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ssp__blas2_8c.html#ab9e8302d09840e67df27ddd4defaa621">sp_strsv</a> (char *uplo, char *trans, char *diag, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="bak_2zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, float *x, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat, int *info)</td></tr>
+<tr class="memitem:ab9e8302d09840e67df27ddd4defaa621"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ssp__blas2_8c.html#ab9e8302d09840e67df27ddd4defaa621">sp_strsv</a> (char *uplo, char *trans, char *diag, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *U, float *x, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat, int *info)</td></tr>
 <tr class="memdesc:ab9e8302d09840e67df27ddd4defaa621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves one of the systems of equations A*x = b, or A'*x = b.  <a href="#ab9e8302d09840e67df27ddd4defaa621">More...</a><br/></td></tr>
 <tr class="separator:ab9e8302d09840e67df27ddd4defaa621"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a14fab0d3fc42c621199aed6962ab3e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ssp__blas2_8c.html#a3a14fab0d3fc42c621199aed6962ab3e">sp_sgemv</a> (char *trans, float alpha, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="ilu__zdrop__row_8c.html#ac900805a486cbb8489e3c176ed6e0d8e">A</a>, float *x, int incx, float beta, float *y, int incy)</td></tr>
@@ -83,7 +83,10 @@ Functions</h2></td></tr>
 <tr class="separator:a3a14fab0d3fc42c621199aed6962ab3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre>
+<div class="textblock"><p>Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
+<p>All rights reserved.</p>
+<p>The source code is distributed under BSD license, see the file License.txt at the top-level directory.</p>
+<pre>
 &ndash; SuperLU routine (version 5.1) &ndash;
 Univ. of California Berkeley, Xerox Palo Alto Research Center,
 and Lawrence Berkeley National Lab.
@@ -433,7 +436,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 3 2015 14:46:41 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 8 2016 18:40:08 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

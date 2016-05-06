@@ -116,13 +116,6 @@ complex16: $(ZLUSRC) $(ALLAUX) $(DZLAUX)
 	$(ARCH) $(ARCHFLAGS) $(SUPERLULIB) $(ZLUSRC) $(ALLAUX) $(DZLAUX)
 	$(RANLIB) $(SUPERLULIB)
 
-
-##################################
-# Do not optimize these routines #
-##################################
-smach.o: smach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
-dmach.o: dmach.c ; $(CC) -c $(NOOPTS) $(CDEFS) $<
-superlu_timer.o:  superlu_timer.c ; $(CC) -c $(NOOPTS) $<
 ##################################
 
 .c.o:

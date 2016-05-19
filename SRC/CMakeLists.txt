@@ -1,5 +1,5 @@
 
-set(headers 
+set(headers
     supermatrix.h
     slu_Cnames.h
     slu_dcomplex.h
@@ -232,10 +232,13 @@ target_link_libraries(superlu ${BLAS_LIB} m)
 set_target_properties(superlu PROPERTIES
   VERSION ${PROJECT_VERSION} SOVERSION ${VERSION_MAJOR}
   )
+
+include(GNUInstallDirs)
+
 install(TARGETS superlu
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 install(FILES ${headers}
-  DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )

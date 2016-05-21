@@ -7,3 +7,5 @@
 # If the instructions are telling people to create this build dir under the
 # source tree, you had better put in an ignore for this.
 /build/
+
+.dropbox.attr

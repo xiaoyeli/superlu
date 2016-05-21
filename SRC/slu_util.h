@@ -32,9 +32,25 @@ at the top-level directory.
 #include <assert.h>
 #include "superlu_enum_consts.h"
 
+
 /***********************************************************************
  * Macros
  ***********************************************************************/
+/*                                                                                           
+ * You can support older version of SuperLU.                                              
+ * At compile-time, you can catch the new release as:                                          
+ *   #ifdef SUPERLU_MAIN_VERSION == 5                                                     
+ *       use the new interface                                                                 
+ *   #else                                                                                     
+ *       use the old interface                                                                 
+ *   #endif                                                                                    
+ * Versions 4.x and earlier do not include a #define'd version numbers.                        
+ */
+#define SUPERLU_MAJOR_VERSION     5
+#define SUPERLU_MINOR_VERSION     2
+#define SUPERLU_PATCH_VERSION     1
+
+
 #define FIRSTCOL_OF_SNODE(i)	(xsup[i])
 /* No of marker arrays used in the symbolic factorization,
    each of size n */

@@ -134,13 +134,16 @@ are described below.
    	make
 
    To run the installation test, type:
-   	ctest
+   	make test (or: ctest)
 
-   The test results are in the files below:
-       build/TESTING/s_test.out   # single precision, real
-       build/TESTING/d_test.out   # double precision, real
-       build/TESTING/c_test.out   # single precision, complex
-       build/TESTING/z_test.out   # double precision, complex
+   	The test results are in the files below:
+       	    build/TESTING/s_test.out   # single precision, real
+       	    build/TESTING/d_test.out   # double precision, real
+       	    build/TESTING/c_test.out   # single precision, complex
+       	    build/TESTING/z_test.out   # double precision, complex
+
+   To install the library, type:
+        make install
 
 
 --------------------

@@ -126,9 +126,9 @@ are described below.
      	mkdir build ; cd build
    	cmake ..
 
-     or with more options:
+     or with more options, e.g.,
         cmake .. \
-	 
+	      -DCMAKE_INSTALL_INCLUDEDIR=/my/custom/path 	 
 
    To actually build, type:
    	make

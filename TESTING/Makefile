@@ -54,7 +54,7 @@ single: ./stest stest.out
 
 ./stest: $(SLINTST) $(ALINTST) $(SUPERLULIB) $(TMGLIB)
 	$(LOADER) $(LOADOPTS) $(SLINTST) $(ALINTST) \
-        $(TMGLIB) $(SUPERLULIB) $(BLASLIB) -lm -o $@
+        $(TMGLIB) $(LIBS) -lm -o $@
 
 stest.out: stest stest.csh
 	@echo Testing SINGLE PRECISION linear equation routines 
@@ -64,7 +64,7 @@ double: ./dtest dtest.out
 
 ./dtest: $(DLINTST) $(ALINTST) $(SUPERLULIB) $(TMGLIB)
 	$(LOADER) $(LOADOPTS) $(DLINTST) $(ALINTST) \
-        $(TMGLIB) $(SUPERLULIB) $(BLASLIB) -lm -o $@
+        $(TMGLIB) $(LIBS) -lm -o $@
 
 dtest.out: dtest dtest.csh
 	@echo Testing DOUBLE PRECISION linear equation routines 
@@ -74,7 +74,7 @@ complex: ./ctest ctest.out
 
 ./ctest: $(CLINTST) $(ALINTST) $(SUPERLULIB) $(TMGLIB)
 	$(LOADER) $(LOADOPTS) $(CLINTST) $(ALINTST) \
-	$(TMGLIB) $(SUPERLULIB) $(BLASLIB) -lm -o $@
+	$(TMGLIB) $(LIBS) -lm -o $@
 
 ctest.out: ctest ctest.csh
 	@echo Testing SINGLE COMPLEX linear equation routines 
@@ -84,7 +84,7 @@ complex16: ./ztest ztest.out
 
 ./ztest: $(ZLINTST) $(ALINTST) $(SUPERLULIB) $(TMGLIB)
 	$(LOADER) $(LOADOPTS) $(ZLINTST) $(ALINTST) \
-	$(TMGLIB) $(SUPERLULIB) $(BLASLIB) -lm -o $@
+	$(TMGLIB) $(LIBS) -lm -o $@
 
 ztest.out: ztest ztest.csh
 	@echo Testing DOUBLE COMPLEX linear equation routines 

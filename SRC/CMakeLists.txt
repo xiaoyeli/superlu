@@ -236,9 +236,11 @@ set_target_properties(superlu PROPERTIES
 include(GNUInstallDirs)
 
 install(TARGETS superlu
+#  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
   DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 install(FILES ${headers}
+#  DESTINATION ${CMAKE_INSTALL_PREFIX}/include
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )

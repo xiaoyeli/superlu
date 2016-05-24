@@ -1,3 +1,14 @@
+/*! \file
+Copyright (c) 2003, The Regents of the University of California, through
+Lawrence Berkeley National Laboratory (subject to receipt of any required 
+approvals from U.S. Dept. of Energy) 
+
+All rights reserved. 
+
+The source code is distributed under BSD license, see the file License.txt
+at the top-level directory.
+*/
+
 /*! @file superlu_timer.c
  * \brief Returns the time used
  *
@@ -12,6 +23,7 @@
  * </pre>
  */
 
+#undef USE_TIMES
 
 #ifdef SUN 
 /*
@@ -36,7 +48,7 @@ double SuperLU_timer_()
     return ((double)t)/CLOCKS_PER_SEC;
 }
 
-#else
+#elif defined( USE_TIMES )
 
 #ifndef NO_TIMER
 #include <sys/types.h>
@@ -67,6 +79,22 @@ double SuperLU_timer_()
 #endif
     /*return (double)(tmp) / CLK_TCK;*/
     return (double)(tmp) / clocks_per_sec;
+}
+
+#else
+
+#include <sys/time.h>
+#include <stdlib.h>
+
+/*! \brief Timer function
+ */ 
+double SuperLU_timer_()
+{
+    struct timeval tp;
+    double tmp;
+    gettimeofday(&tp, NULL);
+    tmp = tp.tv_sec + tp.tv_usec/1000000.0;
+    return (tmp);
 }
 
 #endif

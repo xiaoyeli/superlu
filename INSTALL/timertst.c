@@ -37,9 +37,9 @@ int main()
       tnotim = t2 - t1;
       if ( tnotim > 0. ){
 	float ops = 2.0 * iters * NMAX * 1e-9;
-        printf("Time for %d DAXPYs = %10.3g seconds\n",
+        printf("Time for %d DAXPYs = %10.6g seconds\n",
 	       iters, tnotim);
-	printf("DAXPY performance rate = %10.3g Gflops\n", ops/tnotim);
+	printf("DAXPY performance rate = %10.6g Gflops\n", ops/tnotim);
       } else {
         /* this makes sure we dont keep trying forever */
         if ( iters > 100000000 ) {

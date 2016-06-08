@@ -6,6 +6,8 @@ void mysub(int n, double *x, double *y)
     return;
 }
 
+volatile double _dummy;
+
 int main()
 {
     /* Parameters */    
@@ -32,6 +34,7 @@ int main()
       for (j = 0; j < iters; ++j) {
 	for (i = 0; i < NMAX; ++i) y[i] += alpha * x[i];
 	alpha = -alpha;
+	_dummy = y[j%NMAX];
       }
       t2 = SuperLU_timer_();
       tnotim = t2 - t1;

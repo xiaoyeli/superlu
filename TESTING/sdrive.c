@@ -21,6 +21,7 @@ at the top-level directory.
  * Purpose:             MAIN test program
  */
 #include <string.h>
+#include <unistd.h>
 #include "slu_sdefs.h"
 
 #define NTESTS    5      /* Number of test types */

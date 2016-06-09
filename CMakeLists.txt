@@ -62,6 +62,7 @@ option(enable_single    "Enable single precision library" ON)
 option(enable_double    "Enable double precision library" ON)
 option(enable_complex   "Enable complex precision library" ON)
 option(enable_complex16 "Enable complex16 precision library" ON)
+option(enable_nonfree   "Enable code that is not BSD-licensed" ON)
 # option(enable_examples  "Build examples" ON)
 
 # setup required compiler defines and options.

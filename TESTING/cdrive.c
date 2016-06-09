@@ -37,7 +37,7 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int *lwork, double *u, FILE **fp);
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 /* 
  * Purpose

@@ -22,11 +22,11 @@ the terms of  the GNU General Public License as  published by the Free
 Software Foundation [version 2 of  the License, or any later version]
 For details, see 
 
-http://www.gnu.org/copyleft/gpl.html
+http://www.gnu.org/licenses/gpl-2.0.txt
 
 A copy of the GNU licencing agreement is attached to the ITSOL package
 in the file GNU.  For additional information contact the Free Software
-Foundation Inc., 65 Mass Ave, Cambridge, MA 02139, USA.
+Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 DISCLAIMER
 ----------

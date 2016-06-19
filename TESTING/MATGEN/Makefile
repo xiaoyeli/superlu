@@ -52,24 +52,24 @@ ZMATGEN = zlatms.o zlagge.o zlagsy.o zlarge.o zlaror.o zlarot.o zlatm2.o zlatm3.
 
 all: single double complex complex16
 
-single: $(SMATGEN) $(SCATGEN) $(SLASRC) $(SINTRINSIC) $(ALLAUX)
+single: $(SMATGEN) $(SCATGEN) $(SLASRC) $(SINTRINSIC)
 	$(ARCH) $(ARCHFLAGS) ../$(TMGLIB) $(SMATGEN) $(SCATGEN) \
-	        $(SLASRC) $(SINTRINSIC) $(ALLAUX)
+	        $(SLASRC) $(SINTRINSIC)
 	$(RANLIB) ../$(TMGLIB)
 
-double: $(DMATGEN) $(DZATGEN) $(DLASRC) $(DINTRINSIC) $(ALLAUX)
+double: $(DMATGEN) $(DZATGEN) $(DLASRC) $(DINTRINSIC)
 	$(ARCH) $(ARCHFLAGS) ../$(TMGLIB) $(DMATGEN) $(DZATGEN) \
-	        $(DLASRC) $(DINTRINSIC) $(ALLAUX)
+	        $(DLASRC) $(DINTRINSIC)
 	$(RANLIB) ../$(TMGLIB)
 
-complex: $(CMATGEN) $(SCATGEN) $(CLASRC) $(SINTRINSIC) $(ALLAUX)
+complex: $(CMATGEN) $(SCATGEN) $(CLASRC) $(SINTRINSIC)
 	$(ARCH) $(ARCHFLAGS) ../$(TMGLIB) $(CMATGEN) $(SCATGEN) \
-	        $(CLASRC) $(SINTRINSIC) $(ALLAUX)
+	        $(CLASRC) $(SINTRINSIC)
 	$(RANLIB) ../$(TMGLIB)
 
-complex16: $(ZMATGEN) $(DZATGEN) $(ZLASRC) $(DINSTRINSIC) $(ALLAUX)
+complex16: $(ZMATGEN) $(DZATGEN) $(ZLASRC) $(DINSTRINSIC)
 	$(ARCH) $(ARCHFLAGS) ../$(TMGLIB) $(ZMATGEN) $(DZATGEN) \
-	        $(ZLASRC) $(DINTRINSIC) $(ALLAUX)
+	        $(ZLASRC) $(DINTRINSIC)
 	$(RANLIB) ../$(TMGLIB)
 
 clean:

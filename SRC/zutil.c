@@ -482,4 +482,3 @@ print_doublecomplex_vec(char *what, int n, doublecomplex *vec)
     for (i = 0; i < n; ++i) printf("%d\t%f%f\n", i, vec[i].r, vec[i].i);
     return 0;
 }
-

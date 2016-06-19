@@ -1,4 +1,3 @@
-
 set(headers
     supermatrix.h
     slu_Cnames.h
@@ -25,6 +24,8 @@ set(sources
   mc64ad.c
   qselect.c
   input_error.c
+  dmach.c
+  smach.c
 )
 set_source_files_properties(superlu_timer.c PROPERTIES COMPILE_FLAGS -O0)
 

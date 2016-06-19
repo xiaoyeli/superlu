@@ -4,7 +4,7 @@ set(headers
 )
 set(sources "")
 
-if (enable_single)
+#if (enable_single)
     list(APPEND sources
       isamax.c
       sasum.c
@@ -21,9 +21,9 @@ if (enable_single)
       sger
       ssyr2
     )
-endif()
+#endif()
 
-if (enable_double)
+#if (enable_double)
     list(APPEND sources
       idamax.c
       dasum.c
@@ -40,9 +40,9 @@ if (enable_double)
       dger.c
       dsyr2.c
     )
-endif()
+#endif()
 
-if (enable_complex)
+#if (enable_complex)
     list(APPEND sources
       icamax.c
       scasum.c
@@ -58,9 +58,9 @@ if (enable_complex)
       cgerc.c
       cher2.c
     )
-endif()
+#endif()
 
-if (enable_complex16)
+#if (enable_complex16)
     list(APPEND sources
       izamax.c
       dzasum.c
@@ -77,6 +77,6 @@ if (enable_complex16)
       zgerc.c
       zher2.c
     )
-endif()
+#endif()
 
 add_library(blas ${sources} ${HEADERS})

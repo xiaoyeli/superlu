@@ -478,4 +478,3 @@ print_float_vec(char *what, int n, float *vec)
     for (i = 0; i < n; ++i) printf("%d\t%f\n", i, vec[i]);
     return 0;
 }
-

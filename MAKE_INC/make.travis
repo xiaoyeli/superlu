@@ -23,15 +23,15 @@ PLAT = _linux
 #
 SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.1.a
 
-#BLASLIB   	= $(SuperLUroot)/lib/libblas.a
+BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 
 ## ATLAS BLAS causes single-precision to fail
 #BLASDEF = -DUSE_VENDOR_BLAS
 #BLASLIB   	= -L/usr/lib/atlas -lblas
 
 ## This BLAS causes single-precision to fail the test in SuperLU
-BLASDEF 	= -DUSE_VENDOR_BLAS
-BLASLIB 	= -L/usr/lib -lblas
+#BLASDEF 	= -DUSE_VENDOR_BLAS
+#BLASLIB 	= -L/usr/lib -lblas
 
 TMGLIB       	= libtmglib.a
 LIBS		= $(SUPERLULIB) $(BLASLIB)
@@ -44,7 +44,7 @@ ARCH         = ar
 ARCHFLAGS    = cr
 RANLIB       = ranlib
 
-CC           = gcc
+#CC           = clang-omp
 CFLAGS       = -O3 -g
 NOOPTS       = 
 FORTRAN	     = gfortran #g77

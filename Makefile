@@ -24,7 +24,7 @@ lib: superlulib tmglib
 
 clean: cleanlib cleantesting
 
-install:
+install: blaslib
 	( cd INSTALL; $(MAKE) )
 #	( cd INSTALL; cp lsame.c ../SRC/; \
 #	  cp dlamch.c ../SRC/; cp slamch.c ../SRC/ )

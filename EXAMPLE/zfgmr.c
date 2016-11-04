@@ -1,13 +1,3 @@
-/*! \file
-Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
-
-All rights reserved. 
-
-The source code is distributed under BSD license, see the file License.txt
-at the top-level directory.
-*/
 
 /*! @file zfgmr.c
  * \brief flexible GMRES from ITSOL developed by Yousef Saad.
@@ -19,14 +9,14 @@ Copyright (C) 2006, the University of Minnesota
 
 ITSOL is free software; you can redistribute it and/or modify it under
 the terms of  the GNU General Public License as  published by the Free
-Software Foundation [version 2 of  the License, or any later version]
+Software Foundation [version 2 of the License, or any later version]
 For details, see 
 
 http://www.gnu.org/licenses/gpl-2.0.txt
 
 A copy of the GNU licencing agreement is attached to the ITSOL package
 in the file GNU.  For additional information contact the Free Software
-Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. 
 
 DISCLAIMER
 ----------

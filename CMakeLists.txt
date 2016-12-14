@@ -143,3 +143,6 @@ endif()
 #  ${CMAKE_C_COMPILER}  )
 configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
  
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

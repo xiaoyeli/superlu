@@ -1,0 +1,23 @@
+sudo: true
+
+language: c
+
+compiler:
+  - gcc
+  - clang
+
+os:
+  - linux
+
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install csh; fi
+
+# command to run tests
+script: 
+  - export SuperLUroot=`pwd`
+  - cp MAKE_INC/make.travis make.inc
+  - mkdir lib
+  - make
+  
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

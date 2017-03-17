@@ -30,6 +30,23 @@ INCLUDE("cmake/XSDKDefaults.cmake")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
 set(CMAKE_INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 
+#---- For shared library
+
+# use, i.e. don't skip the full RPATH for the build tree
+SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
+
+# when building, don't use the install RPATH already
+# (but later on when installing)
+SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+
+# the RPATH to be used when installing
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+
+# add the automatically determined parts of the RPATH
+# which point to directories outside the build tree to the install RPATH
+SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+#----
+
 if (BUILD_SHARED_LIBS)
   message("-- SuperLU will be built as a shared library.")
   set(PROJECT_NAME_LIB_EXPORT libsuperlu.so)
@@ -67,7 +84,7 @@ option(enable_complex16 "Enable complex16 precision library" ON)
 # setup required compiler defines and options.
 ## add_definitions(-DPRNTlevel=0 -DAdd_)
 ## get_directory_property( DirDefs COMPILE_DEFINITIONS )
-set(CMAKE_C_FLAGS "-DPRNTlevel=0 ${CMAKE_C_FLAGS}")
+set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DDEBUGlevel=0 ${CMAKE_C_FLAGS}")
 set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 
 ######################################################################
@@ -101,9 +118,9 @@ else()
   add_subdirectory(CBLAS)
   set(BLAS_LIB blas)
   if (BUILD_SHARED_LIBS)  # export to be referenced by downstream makefile
-      set(BLAS_LIB_EXPORT ${CMAKE_SOURCE_DIR}/build/CBLAS/libblas.so)
+      set(BLAS_LIB_EXPORT ${CMAKE_INSTALL_PREFIX}/CBLAS/libblas.so)
   else()
-      set(BLAS_LIB_EXPORT ${CMAKE_SOURCE_DIR}/build/CBLAS/libblas.a)
+      set(BLAS_LIB_EXPORT ${CMAKE_INSTALL_PREFIX}/CBLAS/libblas.a)
   endif()
 endif()
 

@@ -128,7 +128,8 @@ are described below.
 
      or with more options, e.g.,
         cmake .. \
-	      -DCMAKE_INSTALL_INCLUDEDIR=/my/custom/path 	 
+	      -DCMAKE_INSTALL_PREFIX=../build
+	      -DCMAKE_INSTALL_INCLUDEDIR=/my/custom/path
 
    To actually build, type:
    	make

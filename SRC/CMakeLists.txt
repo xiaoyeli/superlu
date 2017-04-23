@@ -21,12 +21,16 @@ set(sources
   ilu_relax_snode.c
   ilu_heap_relax_snode.c
   mark_relax.c
-  mc64ad.c
   qselect.c
   input_error.c
   dmach.c
   smach.c
 )
+if(enable_nonfree)
+  list(APPEND sources
+    mc64ad.c
+  )
+endif()
 set_source_files_properties(superlu_timer.c PROPERTIES COMPILE_FLAGS -O0)
 
 if(enable_single)
@@ -64,9 +68,7 @@ if(enable_single)
     smemory.c
     sutil.c
     smyblas2.c
-    sgsisx.c
     sgsitrf.c
-    sldperm.c
     ilu_sdrop_row.c
     ilu_ssnode_dfs.c
     ilu_scolumn_dfs.c
@@ -75,6 +77,12 @@ if(enable_single)
     ilu_spivotL.c
     sdiagonal.c
   )
+  if(enable_nonfree)
+    list(APPEND sources
+      sgsisx.c
+      sldperm.c
+    )
+  endif()
   set_source_files_properties(smach.c PROPERTIES COMPILE_FLAGS -O0)
 endif()
 
@@ -113,9 +121,7 @@ if(enable_double)
     dmemory.c
     dutil.c
     dmyblas2.c
-    dgsisx.c
     dgsitrf.c
-    dldperm.c
     ilu_ddrop_row.c
     ilu_dsnode_dfs.c
     ilu_dcolumn_dfs.c
@@ -124,6 +130,12 @@ if(enable_double)
     ilu_dpivotL.c
     ddiagonal.c
   )
+  if(enable_nonfree)
+    list(APPEND sources
+      dgsisx.c
+      dldperm.c
+    )
+  endif()
   set_source_files_properties(dmach.c PROPERTIES COMPILE_FLAGS -O0)
 endif()
 
@@ -164,9 +176,7 @@ if(enable_complex)
     cmemory.c
     cutil.c
     cmyblas2.c
-    cgsisx.c
     cgsitrf.c
-    cldperm.c
     ilu_cdrop_row.c
     ilu_csnode_dfs.c
     ilu_ccolumn_dfs.c
@@ -175,6 +185,12 @@ if(enable_complex)
     ilu_cpivotL.c
     cdiagonal.c
   )
+  if(enable_nonfree)
+    list(APPEND sources
+      cgsisx.c
+      cldperm.c
+    )
+  endif()
 endif()
 
 if(enable_complex16)
@@ -214,9 +230,7 @@ if(enable_complex16)
     zmemory.c
     zutil.c
     zmyblas2.c
-    zgsisx.c
     zgsitrf.c
-    zldperm.c
     ilu_zdrop_row.c
     ilu_zsnode_dfs.c
     ilu_zcolumn_dfs.c
@@ -225,6 +239,12 @@ if(enable_complex16)
     ilu_zpivotL.c
     zdiagonal.c
   )
+  if(enable_nonfree)
+    list(APPEND sources
+      zgsisx.c
+      zldperm.c
+    )
+  endif()
 endif()
 
 add_library(superlu ${sources} ${HEADERS})

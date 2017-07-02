@@ -56,8 +56,13 @@ int main(int argc, char *argv[])
      */
     set_default_options(&options);
 
+#if 1
     /* Read the matrix in Harwell-Boeing format. */
     dreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
+#else
+    /* Read the matrix in Matrix Market format. */
+    dreadMM(fp, &m, &n, &nnz, &a, &asub, &xa);
+#endif
 
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);
     Astore = A.Store;

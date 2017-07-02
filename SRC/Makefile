@@ -42,7 +42,7 @@ SLUSRC = \
 	sgsrfs.o sgstrf.o sgstrs.o scopy_to_ucol.o \
 	ssnode_dfs.o ssnode_bmod.o \
 	spanel_dfs.o spanel_bmod.o \
-	sreadhb.o sreadrb.o sreadtriple.o \
+	sreadhb.o sreadrb.o sreadtriple.o sreadMM.o \
 	scolumn_dfs.o scolumn_bmod.o spivotL.o spruneL.o \
 	smemory.o sutil.o smyblas2.o sgsisx.o sgsitrf.o sldperm.o \
 	ilu_sdrop_row.o ilu_ssnode_dfs.o \
@@ -55,7 +55,7 @@ DLUSRC = \
 	dlangs.o dgsequ.o dlaqgs.o dpivotgrowth.o  \
 	dgsrfs.o dgstrf.o dgstrs.o dcopy_to_ucol.o \
 	dsnode_dfs.o dsnode_bmod.o dpanel_dfs.o dpanel_bmod.o \
-	dreadhb.o dreadrb.o dreadtriple.o \
+	dreadhb.o dreadrb.o dreadtriple.o dreadMM.o \
 	dcolumn_dfs.o dcolumn_bmod.o dpivotL.o dpruneL.o \
 	dmemory.o dutil.o dmyblas2.o dgsisx.o dgsitrf.o dldperm.o \
 	ilu_ddrop_row.o ilu_dsnode_dfs.o \
@@ -69,7 +69,7 @@ CLUSRC = \
 	cgsrfs.o cgstrf.o cgstrs.o ccopy_to_ucol.o \
 	csnode_dfs.o csnode_bmod.o \
 	cpanel_dfs.o cpanel_bmod.o \
-	creadhb.o creadrb.o creadtriple.o \
+	creadhb.o creadrb.o creadtriple.o creadMM.o \
 	ccolumn_dfs.o ccolumn_bmod.o cpivotL.o cpruneL.o \
 	cmemory.o cutil.o cmyblas2.o \
 	cgsisx.o cgsitrf.o cldperm.o \
@@ -83,7 +83,7 @@ ZLUSRC = \
 	zgsrfs.o zgstrf.o zgstrs.o zcopy_to_ucol.o \
 	zsnode_dfs.o zsnode_bmod.o \
 	zpanel_dfs.o zpanel_bmod.o \
-	zreadhb.o zreadrb.o zreadtriple.o \
+	zreadhb.o zreadrb.o zreadtriple.o zreadMM.o \
 	zcolumn_dfs.o zcolumn_bmod.o zpivotL.o zpruneL.o \
 	zmemory.o zutil.o zmyblas2.o \
 	zgsisx.o zgsitrf.o zldperm.o \

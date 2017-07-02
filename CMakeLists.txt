@@ -20,6 +20,8 @@ set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 MESSAGE("\nProcess XSDK defaults ...")
 # SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
 INCLUDE("cmake/XSDKDefaults.cmake")
+INCLUDE(CTest)
+
 ######################################################################
 
 ######################################################################
@@ -68,6 +70,10 @@ if (USE_XSDK_DEFAULTS)
   set(enable_blaslib_DEFAULT OFF)
 else()
   set(enable_blaslib_DEFAULT ON)
+endif()
+
+if (NOT CMAKE_INSTALL_PREFIX)
+  set(CMAKE_INSTALL_PREFIX /usr/local)
 endif()
 
 # setup options
@@ -155,10 +161,10 @@ if(enable_doc)
   #implement doxygen
 endif()
 
-
 # file(WRITE "make.defs" "# can be exposed to users"
 #  ${CMAKE_C_COMPILER}  )
-configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
+# configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
+configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
  
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc

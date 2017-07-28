@@ -1,7 +1,7 @@
 include_directories(${SuperLU_SOURCE_DIR}/SRC)
 
 # Libs linked to all of the tests
-set(test_link_libs superlu matgen ${BLAS_LIB} m)
+set(test_link_libs matgen)
 
 add_subdirectory(MATGEN)
 

@@ -113,3 +113,4 @@ if(enable_complex16)
 endif()
 
 add_library(matgen ${sources})
+target_link_libraries(matgen superlu)

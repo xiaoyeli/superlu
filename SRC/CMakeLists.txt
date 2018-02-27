@@ -232,8 +232,8 @@ if(enable_complex16)
 endif()
 
 add_library(superlu ${sources} ${HEADERS})
-
 target_link_libraries(superlu ${BLAS_LIB} m)
+
 set_target_properties(superlu PROPERTIES
   VERSION ${PROJECT_VERSION} SOVERSION ${VERSION_MAJOR}
   )

@@ -67,7 +67,7 @@ void ilu_set_default_options(superlu_options_t *options)
 
     /* further options for incomplete factorization */
     options->DiagPivotThresh = 0.1;
-    options->RowPerm = LargeDiag;
+    options->RowPerm = LargeDiag_MC64;
     options->ILU_DropRule = DROP_BASIC | DROP_AREA;
     options->ILU_DropTol = 1e-4;
     options->ILU_FillFactor = 10.0;

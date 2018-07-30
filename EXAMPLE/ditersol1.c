@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 	options.PivotGrowth = NO;
 	options.ConditionNumber = NO;
 	options.PrintStat = YES;
-	options.RowPerm = LargeDiag;
+	options.RowPerm = LargeDiag_MC64;
 	options.ILU_DropTol = 1e-4;
 	options.ILU_FillTol = 1e-2;
 	options.ILU_FillFactor = 10.0;

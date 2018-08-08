@@ -34,6 +34,13 @@ at the top-level directory.
 
 #include "slu_cdefs.h"
 
+/* 
+ * Function prototypes 
+ */
+#ifndef USE_VENDOR_BLAS
+void clsolve(int, int, complex*, complex*);
+void cmatvec(int, int, int, complex*, complex*, complex*);
+#endif
 
 /*! \brief Performs numeric block updates within the relaxed snode. 
  */

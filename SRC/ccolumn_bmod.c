@@ -51,7 +51,7 @@ void cmatvec(int, int, int, complex*, complex*, complex*);
  * ========
  * Performs numeric block updates (sup-col) in topological order.
  * It features: col-col, 2cols-col, 3cols-col, and sup-col updates.
- * Special processing on the supernodal portion of L\U[*,j]
+ * Special processing on the supernodal portion of LU[*,j]
  * Return value:   0 - successful return
  *               > 0 - number of bytes allocated when run out of space
  * </pre>

@@ -25,40 +25,41 @@ at the top-level directory.
  * as described below.
  * 
  * Line 1 (A72,A8) 
- *  	Col. 1 - 72   Title (TITLE) 
- *	Col. 73 - 80  Key (KEY) 
+ *      Col. 1 - 72   Title (TITLE) 
+ *      Col. 73 - 80  Key (KEY) 
  * 
  * Line 2 (5I14) 
- * 	Col. 1 - 14   Total number of lines excluding header (TOTCRD) 
- * 	Col. 15 - 28  Number of lines for pointers (PTRCRD) 
- * 	Col. 29 - 42  Number of lines for row (or variable) indices (INDCRD) 
- * 	Col. 43 - 56  Number of lines for numerical values (VALCRD) 
- *	Col. 57 - 70  Number of lines for right-hand sides (RHSCRD) 
+ *      Col. 1 - 14   Total number of lines excluding header (TOTCRD) 
+ *      Col. 15 - 28  Number of lines for pointers (PTRCRD) 
+ *      Col. 29 - 42  Number of lines for row (or variable) indices (INDCRD) 
+ *      Col. 43 - 56  Number of lines for numerical values (VALCRD) 
+ *      Col. 57 - 70  Number of lines for right-hand sides (RHSCRD) 
  *                    (including starting guesses and solution vectors 
- *		       if present) 
- *           	      (zero indicates no right-hand side data is present) 
+ *                    if present) 
+ *                    (zero indicates no right-hand side data is present) 
  *
  * Line 3 (A3, 11X, 4I14) 
- *   	Col. 1 - 3    Matrix type (see below) (MXTYPE) 
- * 	Col. 15 - 28  Number of rows (or variables) (NROW) 
- * 	Col. 29 - 42  Number of columns (or elements) (NCOL) 
- *	Col. 43 - 56  Number of row (or variable) indices (NNZERO) 
- *	              (equal to number of entries for assembled matrices) 
- * 	Col. 57 - 70  Number of elemental matrix entries (NELTVL) 
- *	              (zero in the case of assembled matrices) 
+ *      Col. 1 - 3    Matrix type (see below) (MXTYPE) 
+ *      Col. 15 - 28  Number of rows (or variables) (NROW) 
+ *      Col. 29 - 42  Number of columns (or elements) (NCOL) 
+ *      Col. 43 - 56  Number of row (or variable) indices (NNZERO) 
+ *                    (equal to number of entries for assembled matrices) 
+ *      Col. 57 - 70  Number of elemental matrix entries (NELTVL) 
+ *                    (zero in the case of assembled matrices) 
+ *
  * Line 4 (2A16, 2A20) 
- * 	Col. 1 - 16   Format for pointers (PTRFMT) 
- *	Col. 17 - 32  Format for row (or variable) indices (INDFMT) 
- *	Col. 33 - 52  Format for numerical values of coefficient matrix (VALFMT) 
- * 	Col. 53 - 72 Format for numerical values of right-hand sides (RHSFMT) 
+ *      Col. 1 - 16   Format for pointers (PTRFMT) 
+ *      Col. 17 - 32  Format for row (or variable) indices (INDFMT) 
+ *      Col. 33 - 52  Format for numerical values of coefficient matrix (VALFMT) 
+ *      Col. 53 - 72  Format for numerical values of right-hand sides (RHSFMT) 
  *
  * Line 5 (A3, 11X, 2I14) Only present if there are right-hand sides present 
- *    	Col. 1 	      Right-hand side type: 
- *	         	  F for full storage or M for same format as matrix 
- *    	Col. 2        G if a starting vector(s) (Guess) is supplied. (RHSTYP) 
- *    	Col. 3        X if an exact solution vector(s) is supplied. 
- *	Col. 15 - 28  Number of right-hand sides (NRHS) 
- *	Col. 29 - 42  Number of row indices (NRHSIX) 
+ *      Col. 1 	      Right-hand side type: 
+ *                    F for full storage or M for same format as matrix 
+ *      Col. 2        G if a starting vector(s) (Guess) is supplied. (RHSTYP) 
+ *      Col. 3        X if an exact solution vector(s) is supplied. 
+ *      Col. 15 - 28  Number of right-hand sides (NRHS) 
+ *      Col. 29 - 42  Number of row indices (NRHSIX) 
  *          	      (ignored in case of unassembled matrices) 
  *
  * The three character type field on line 3 describes the matrix type. 
@@ -67,20 +68,20 @@ at the top-level directory.
  * is real, symmetric, and assembled. 
  *
  * First Character: 
- *	R Real matrix 
- *	C Complex matrix 
- *	P Pattern only (no numerical values supplied) 
+ *      R Real matrix 
+ *      C Complex matrix 
+ *      P Pattern only (no numerical values supplied) 
  *
  * Second Character: 
- *	S Symmetric 
- *	U Unsymmetric 
- *	H Hermitian 
- *	Z Skew symmetric 
- *	R Rectangular 
+ *      S Symmetric 
+ *      U Unsymmetric 
+ *      H Hermitian 
+ *      Z Skew symmetric 
+ *      R Rectangular 
  *
  * Third Character: 
- *	A Assembled 
- *	E Elemental matrices (unassembled) 
+ *      A Assembled 
+ *      E Elemental matrices (unassembled) 
  *
  * </pre>
  */

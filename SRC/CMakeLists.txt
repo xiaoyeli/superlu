@@ -231,6 +231,37 @@ if(enable_complex16)
   )
 endif()
 
+if(BUILD_SHARED_LIBS)
+   if(CMAKE_RC_COMPILER)
+  # Make .rc file in Windows-based systems
+  		set(RC_FILE_CONTENTS "1 VERSIONINFO
+FILEVERSION     ${VERSION_MAJOR},${VERSION_MINOR},${VERSION_BugFix},0
+PRODUCTVERSION  ${VERSION_MAJOR},${VERSION_MINOR},${VERSION_BugFix},0
+BEGIN
+  BLOCK \"StringFileInfo\"
+  BEGIN
+    BLOCK \"040904E4\"
+    BEGIN
+      VALUE \"CompanyName\", \"The Regents of the University of California, through Lawrence Berkeley National Laboratory\"
+      VALUE \"FileDescription\", \"SuperLU shared library\"
+      VALUE \"FileVersion\", \"${PROJECT_VERSION}\"
+      VALUE \"InternalName\", \"${CMAKE_SHARED_MODULE_PREFIX}superlu\"
+      VALUE \"LegalCopyright\", \"Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)\"
+      VALUE \"OriginalFilename\", \"${CMAKE_SHARED_MODULE_PREFIX}superlu${CMAKE_SHARED_LIBRARY_SUFFIX}\"
+      VALUE \"ProductName\", \"SuperLU\"
+      VALUE \"ProductVersion\", \"${PROJECT_VERSION}\"
+    END
+  END
+  BLOCK \"VarFileInfo\"
+  BEGIN
+    VALUE \"Translation\", 0x409, 1252
+  END
+END")
+     FILE(WRITE ${CMAKE_CURRENT_BINARY_DIR}/libsuperlu.rc "${RC_FILE_CONTENTS}")
+     list(APPEND sources ${CMAKE_CURRENT_BINARY_DIR}/libsuperlu.rc)
+  endif(CMAKE_RC_COMPILER)
+endif(BUILD_SHARED_LIBS)
+
 add_library(superlu ${sources} ${HEADERS})
 target_link_libraries(superlu ${BLAS_LIB} m)
 
@@ -242,8 +273,11 @@ set_target_properties(superlu PROPERTIES
 include(GNUInstallDirs)
 
 install(TARGETS superlu
+  #In Cygwin, MSYS, and Win32 Mingw, the run-time .dll is placed in the bin directory, not lib.
 #  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 install(FILES ${headers}

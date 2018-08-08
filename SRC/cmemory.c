@@ -103,7 +103,7 @@ void cuser_free(int bytes, int which_end, GlobalLU_t *Glu)
  * <pre>
  * mem_usage consists of the following fields:
  *    - for_lu (float)
- *      The amount of space used in bytes for the L\U data structures.
+ *      The amount of space used in bytes for the LU data structures.
  *    - total_needed (float)
  *      The amount of space needed in bytes to perform factorization.
  * </pre>
@@ -141,7 +141,7 @@ int cQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
  * <pre>
  * mem_usage consists of the following fields:
  *    - for_lu (float)
- *      The amount of space used in bytes for the L\U data structures.
+ *      The amount of space used in bytes for the L\\U data structures.
  *    - total_needed (float)
  *      The amount of space needed in bytes to perform factorization.
  * </pre>
@@ -646,8 +646,8 @@ cStackCompress(GlobalLU_t *Glu)
     
     last = (char*)usub + xusub[ndim] * iword;
     fragment = (char*) (((char*)Glu->stack.array + Glu->stack.top1) - last);
-    Glu->stack.used -= (long int) fragment;
-    Glu->stack.top1 -= (long int) fragment;
+    Glu->stack.used -= (ptrdiff_t) fragment;
+    Glu->stack.top1 -= (ptrdiff_t) fragment;
 
     Glu->ucol = ucol;
     Glu->lsub = lsub;

@@ -34,6 +34,13 @@ at the top-level directory.
 
 #include "slu_zdefs.h"
 
+/* 
+ * Function prototypes 
+ */
+#ifndef USE_VENDOR_BLAS
+void zlsolve(int, int, doublecomplex*, doublecomplex*);
+void zmatvec(int, int, int, doublecomplex*, doublecomplex*, doublecomplex*);
+#endif
 
 /*! \brief Performs numeric block updates within the relaxed snode. 
  */

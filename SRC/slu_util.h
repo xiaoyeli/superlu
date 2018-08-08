@@ -24,6 +24,15 @@ at the top-level directory.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+/*
+needed for ptrdiff_t type.  This is for typecasting points to integers
+of the correct size.  On Windows 64-bit, an int or long is 4 bytes wide
+while a pointer is 8 bytes.  GCC and several other compilers will warn
+you about this.
+*/
+#include <stddef.h>
+
 /*
 #ifndef __STDC__
 #include <malloc.h>
@@ -307,16 +316,16 @@ typedef struct {
 
 /*! \brief Headers for 4 types of dynamatically managed memory */
 typedef struct e_node {
-    int size;      /* length of the memory that has been used */
-    void *mem;     /* pointer to the new malloc'd store */
+    ptrdiff_t size;      /* length of the memory that has been used */
+    void      *mem;     /* pointer to the new malloc'd store */
 } ExpHeader;
 
 typedef struct {
-    int  size;
-    int  used;
-    int  top1;  /* grow upward, relative to &array[0] */
-    int  top2;  /* grow downward */
-    void *array;
+    ptrdiff_t  size;
+    ptrdiff_t  used;
+    ptrdiff_t  top1;  /* grow upward, relative to &array[0] */
+    ptrdiff_t  top2;  /* grow downward */
+    void       *array;
 } LU_stack_t;
 
 typedef struct {

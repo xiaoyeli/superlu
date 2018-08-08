@@ -34,6 +34,13 @@ at the top-level directory.
 
 #include "slu_ddefs.h"
 
+/* 
+ * Function prototypes 
+ */
+#ifndef USE_VENDOR_BLAS
+void dlsolve(int, int, double*, double*);
+void dmatvec(int, int, int, double*, double*, double*);
+#endif
 
 /*! \brief Performs numeric block updates within the relaxed snode. 
  */

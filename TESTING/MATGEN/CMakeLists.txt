@@ -112,5 +112,8 @@ if(enable_complex16)
   )
 endif()
 
-add_library(matgen ${sources})
+#For some reason, the name is inconsistant from the DIR to the Makefile system.
+#I also think it was intended to be linked statically, not dynamically.
+add_library(matgen STATIC ${sources})
+set_target_properties(matgen PROPERTIES OUTPUT_NAME tmglib)
 target_link_libraries(matgen superlu)

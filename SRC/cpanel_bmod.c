@@ -53,7 +53,7 @@ extern void ccheck_tempv();
  *
  *    Performs numeric block updates (sup-panel) in topological order.
  *    It features: col-col, 2cols-col, 3cols-col, and sup-col updates.
- *    Special processing on the supernodal portion of L\U[*,j]
+ *    Special processing on the supernodal portion of LU[*,j]
  *
  *    Before entering this routine, the original nonzeros in the panel 
  *    were already copied into the spa[m,w].

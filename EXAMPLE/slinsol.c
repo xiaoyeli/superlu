@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     superlu_options_t options;
     SuperLUStat_t stat;
     FILE      *fp = stdin;
-    
+
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Enter main()");
 #endif
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     sCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_S, SLU_GE);
     Astore = A.Store;
     printf("Dimension %dx%d; # nonzeros %d\n", A.nrow, A.ncol, Astore->nnz);
-    
+
     nrhs   = 1;
     if ( !(rhs = floatMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
     sCreate_Dense_Matrix(&B, m, nrhs, rhs, m, SLU_DN, SLU_S, SLU_GE);
@@ -76,13 +76,13 @@ int main(int argc, char *argv[])
 
     /* Initialize the statistics variables. */
     StatInit(&stat);
-    
+
     sgssv(&options, &A, perm_c, perm_r, &L, &U, &B, &stat, &info);
-    
+
     if ( info == 0 ) {
 
 	/* This is how you could access the solution matrix. */
-        float *sol = (float*) ((DNformat*) B.Store)->nzval; 
+        float *sol = (float*) ((DNformat*) B.Store)->nzval;
 
 	 /* Compute the infinity norm of the error. */
 	sinf_norm_error(nrhs, &B, xact);
@@ -93,11 +93,11 @@ int main(int argc, char *argv[])
     	printf("No of nonzeros in factor U = %d\n", Ustore->nnz);
     	printf("No of nonzeros in L+U = %d\n", Lstore->nnz + Ustore->nnz - n);
     	printf("FILL ratio = %.1f\n", (float)(Lstore->nnz + Ustore->nnz - n)/nnz);
-	
+
 	sQuerySpace(&L, &U, &mem_usage);
 	printf("L\\U MB %.3f\ttotal MB needed %.3f\n",
 	       mem_usage.for_lu/1e6, mem_usage.total_needed/1e6);
-	
+
     } else {
 	printf("sgssv() error returns INFO= %d\n", info);
 	if ( info <= n ) { /* factorization completes */

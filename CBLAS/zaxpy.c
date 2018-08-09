@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int zaxpy_(integer *n, doublecomplex *za, doublecomplex *zx, 
+/* Subroutine */ int zaxpy_(integer *n, doublecomplex *za, doublecomplex *zx,
 	integer *incx, doublecomplex *zy, integer *incy)
 {
 
@@ -21,12 +21,12 @@
     static integer ix, iy;
 
 
-/*     constant times a vector plus a vector.   
-       jack dongarra, 3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     constant times a vector plus a vector.
+       jack dongarra, 3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define ZY(I) zy[(I)-1]
 #define ZX(I) zx[(I)-1]
@@ -42,7 +42,7 @@
 	goto L20;
     }
 
-/*        code for unequal increments or equal increments   
+/*        code for unequal increments or equal increments
             not equal to 1 */
 
     ix = 1;

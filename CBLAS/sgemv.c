@@ -6,8 +6,8 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int sgemv_(char *trans, integer *m, integer *n, real *alpha, 
-	real *a, integer *lda, real *x, integer *incx, real *beta, real *y, 
+/* Subroutine */ int sgemv_(char *trans, integer *m, integer *n, real *alpha,
+	real *a, integer *lda, real *x, integer *incx, real *beta, real *y,
 	integer *incy)
 {
 
@@ -23,105 +23,105 @@
 
     extern int input_error(char *, int *);
 
-/*  Purpose   
-    =======   
+/*  Purpose
+    =======
 
-    SGEMV  performs one of the matrix-vector operations   
+    SGEMV  performs one of the matrix-vector operations
 
-       y := alpha*A*x + beta*y,   or   y := alpha*A'*x + beta*y,   
+       y := alpha*A*x + beta*y,   or   y := alpha*A'*x + beta*y,
 
-    where alpha and beta are scalars, x and y are vectors and A is an   
-    m by n matrix.   
+    where alpha and beta are scalars, x and y are vectors and A is an
+    m by n matrix.
 
-    Parameters   
-    ==========   
+    Parameters
+    ==========
 
-    TRANS  - CHARACTER*1.   
-             On entry, TRANS specifies the operation to be performed as   
-             follows:   
+    TRANS  - CHARACTER*1.
+             On entry, TRANS specifies the operation to be performed as
+             follows:
 
-                TRANS = 'N' or 'n'   y := alpha*A*x + beta*y.   
+                TRANS = 'N' or 'n'   y := alpha*A*x + beta*y.
 
-                TRANS = 'T' or 't'   y := alpha*A'*x + beta*y.   
+                TRANS = 'T' or 't'   y := alpha*A'*x + beta*y.
 
-                TRANS = 'C' or 'c'   y := alpha*A'*x + beta*y.   
+                TRANS = 'C' or 'c'   y := alpha*A'*x + beta*y.
 
-             Unchanged on exit.   
+             Unchanged on exit.
 
-    M      - INTEGER.   
-             On entry, M specifies the number of rows of the matrix A.   
-             M must be at least zero.   
-             Unchanged on exit.   
+    M      - INTEGER.
+             On entry, M specifies the number of rows of the matrix A.
+             M must be at least zero.
+             Unchanged on exit.
 
-    N      - INTEGER.   
-             On entry, N specifies the number of columns of the matrix A. 
-  
-             N must be at least zero.   
-             Unchanged on exit.   
+    N      - INTEGER.
+             On entry, N specifies the number of columns of the matrix A.
 
-    ALPHA  - REAL            .   
-             On entry, ALPHA specifies the scalar alpha.   
-             Unchanged on exit.   
+             N must be at least zero.
+             Unchanged on exit.
 
-    A      - REAL             array of DIMENSION ( LDA, n ).   
-             Before entry, the leading m by n part of the array A must   
-             contain the matrix of coefficients.   
-             Unchanged on exit.   
+    ALPHA  - REAL            .
+             On entry, ALPHA specifies the scalar alpha.
+             Unchanged on exit.
 
-    LDA    - INTEGER.   
-             On entry, LDA specifies the first dimension of A as declared 
-  
-             in the calling (sub) program. LDA must be at least   
-             max( 1, m ).   
-             Unchanged on exit.   
+    A      - REAL             array of DIMENSION ( LDA, n ).
+             Before entry, the leading m by n part of the array A must
+             contain the matrix of coefficients.
+             Unchanged on exit.
 
-    X      - REAL             array of DIMENSION at least   
-             ( 1 + ( n - 1 )*abs( INCX ) ) when TRANS = 'N' or 'n'   
-             and at least   
-             ( 1 + ( m - 1 )*abs( INCX ) ) otherwise.   
-             Before entry, the incremented array X must contain the   
-             vector x.   
-             Unchanged on exit.   
+    LDA    - INTEGER.
+             On entry, LDA specifies the first dimension of A as declared
 
-    INCX   - INTEGER.   
-             On entry, INCX specifies the increment for the elements of   
-             X. INCX must not be zero.   
-             Unchanged on exit.   
+             in the calling (sub) program. LDA must be at least
+             max( 1, m ).
+             Unchanged on exit.
 
-    BETA   - REAL            .   
-             On entry, BETA specifies the scalar beta. When BETA is   
-             supplied as zero then Y need not be set on input.   
-             Unchanged on exit.   
+    X      - REAL             array of DIMENSION at least
+             ( 1 + ( n - 1 )*abs( INCX ) ) when TRANS = 'N' or 'n'
+             and at least
+             ( 1 + ( m - 1 )*abs( INCX ) ) otherwise.
+             Before entry, the incremented array X must contain the
+             vector x.
+             Unchanged on exit.
 
-    Y      - REAL             array of DIMENSION at least   
-             ( 1 + ( m - 1 )*abs( INCY ) ) when TRANS = 'N' or 'n'   
-             and at least   
-             ( 1 + ( n - 1 )*abs( INCY ) ) otherwise.   
-             Before entry with BETA non-zero, the incremented array Y   
-             must contain the vector y. On exit, Y is overwritten by the 
-  
-             updated vector y.   
+    INCX   - INTEGER.
+             On entry, INCX specifies the increment for the elements of
+             X. INCX must not be zero.
+             Unchanged on exit.
 
-    INCY   - INTEGER.   
-             On entry, INCY specifies the increment for the elements of   
-             Y. INCY must not be zero.   
-             Unchanged on exit.   
+    BETA   - REAL            .
+             On entry, BETA specifies the scalar beta. When BETA is
+             supplied as zero then Y need not be set on input.
+             Unchanged on exit.
 
+    Y      - REAL             array of DIMENSION at least
+             ( 1 + ( m - 1 )*abs( INCY ) ) when TRANS = 'N' or 'n'
+             and at least
+             ( 1 + ( n - 1 )*abs( INCY ) ) otherwise.
+             Before entry with BETA non-zero, the incremented array Y
+             must contain the vector y. On exit, Y is overwritten by the
 
-    Level 2 Blas routine.   
+             updated vector y.
 
-    -- Written on 22-October-1986.   
-       Jack Dongarra, Argonne National Lab.   
-       Jeremy Du Croz, Nag Central Office.   
-       Sven Hammarling, Nag Central Office.   
-       Richard Hanson, Sandia National Labs.   
+    INCY   - INTEGER.
+             On entry, INCY specifies the increment for the elements of
+             Y. INCY must not be zero.
+             Unchanged on exit.
 
 
+    Level 2 Blas routine.
 
-       Test the input parameters.   
+    -- Written on 22-October-1986.
+       Jack Dongarra, Argonne National Lab.
+       Jeremy Du Croz, Nag Central Office.
+       Sven Hammarling, Nag Central Office.
+       Richard Hanson, Sandia National Labs.
 
-    
-   Parameter adjustments   
+
+
+       Test the input parameters.
+
+
+   Parameter adjustments
        Function Body */
 #define X(I) x[(I)-1]
 #define Y(I) y[(I)-1]
@@ -154,8 +154,8 @@
 	return 0;
     }
 
-/*     Set  LENX  and  LENY, the lengths of the vectors x and y, and set 
-  
+/*     Set  LENX  and  LENY, the lengths of the vectors x and y, and set
+
        up the start points in  X  and  Y. */
 
     if (strncmp(trans, "N", 1)==0) {
@@ -176,8 +176,8 @@
 	ky = 1 - (leny - 1) * *incy;
     }
 
-/*     Start the operations. In this version the elements of A are   
-       accessed sequentially with one pass through A.   
+/*     Start the operations. In this version the elements of A are
+       accessed sequentially with one pass through A.
 
        First form  y := beta*y. */
 

@@ -32,64 +32,64 @@ static integer c__2 = 2;
     static integer mat;
     static doublereal eps;
 
-/*  -- LAPACK test routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       February 29, 1992   
+/*  -- LAPACK test routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       February 29, 1992
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    DLATB4 sets parameters for the matrix generator based on the type of 
-  
-    matrix to be generated.   
+    DLATB4 sets parameters for the matrix generator based on the type of
 
-    Arguments   
-    =========   
+    matrix to be generated.
 
-    PATH    (input) CHARACTER*3   
-            The LAPACK path name.   
+    Arguments
+    =========
 
-    IMAT    (input) INTEGER   
-            An integer key describing which matrix to generate for this   
-            path.   
+    PATH    (input) CHARACTER*3
+            The LAPACK path name.
 
-    M       (input) INTEGER   
-            The number of rows in the matrix to be generated.   
+    IMAT    (input) INTEGER
+            An integer key describing which matrix to generate for this
+            path.
 
-    N       (input) INTEGER   
-            The number of columns in the matrix to be generated.   
+    M       (input) INTEGER
+            The number of rows in the matrix to be generated.
 
-    TYPE    (output) CHARACTER*1   
-            The type of the matrix to be generated:   
-            = 'S':  symmetric matrix   
-            = 'P':  symmetric positive (semi)definite matrix   
-            = 'N':  nonsymmetric matrix   
+    N       (input) INTEGER
+            The number of columns in the matrix to be generated.
 
-    KL      (output) INTEGER   
-            The lower band width of the matrix to be generated.   
+    TYPE    (output) CHARACTER*1
+            The type of the matrix to be generated:
+            = 'S':  symmetric matrix
+            = 'P':  symmetric positive (semi)definite matrix
+            = 'N':  nonsymmetric matrix
 
-    KU      (output) INTEGER   
-            The upper band width of the matrix to be generated.   
+    KL      (output) INTEGER
+            The lower band width of the matrix to be generated.
 
-    ANORM   (output) DOUBLE PRECISION   
-            The desired norm of the matrix to be generated.  The diagonal 
-  
-            matrix of singular values or eigenvalues is scaled by this   
-            value.   
+    KU      (output) INTEGER
+            The upper band width of the matrix to be generated.
 
-    MODE    (output) INTEGER   
-            A key indicating how to choose the vector of eigenvalues.   
+    ANORM   (output) DOUBLE PRECISION
+            The desired norm of the matrix to be generated.  The diagonal
 
-    CNDNUM  (output) DOUBLE PRECISION   
-            The desired condition number.   
+            matrix of singular values or eigenvalues is scaled by this
+            value.
 
-    DIST    (output) CHARACTER*1   
-            The type of distribution to be used by the random number   
-            generator.   
+    MODE    (output) INTEGER
+            A key indicating how to choose the vector of eigenvalues.
 
-    ===================================================================== 
-  
+    CNDNUM  (output) DOUBLE PRECISION
+            The desired condition number.
+
+    DIST    (output) CHARACTER*1
+            The type of distribution to be used by the random number
+            generator.
+
+    =====================================================================
+
 
 
        Set some constants for use in the subroutine. */
@@ -102,7 +102,7 @@ static integer c__2 = 2;
 	small = dmach("Safe minimum");
 	large = 1. / small;
 
-/*        If it looks like we're on a Cray, take the square root of   
+/*        If it looks like we're on a Cray, take the square root of
           SMALL and LARGE to avoid overflow and underflow problems. */
 
 	dlabad_slu(&small, &large);
@@ -111,7 +111,7 @@ static integer c__2 = 2;
     }
 
     strncpy(c2, path + 1, 2);
-    
+
 /*     Set some parameters we don't plan to change. */
 
     *(unsigned char *)dist = 'S';
@@ -120,8 +120,8 @@ static integer c__2 = 2;
     if (strncmp(c2, "QR", 2)==0 || strncmp(c2, "LQ", 2)==0 ||
 	strncmp(c2, "QL", 2)==0 || strncmp(c2, "RQ", 2)==0) {
 
-/*        xQR, xLQ, xQL, xRQ:  Set parameters to generate a general   
-                               M x N matrix.   
+/*        xQR, xLQ, xQL, xRQ:  Set parameters to generate a general
+                               M x N matrix.
 
           Set TYPE, the type of matrix to be generated. */
 
@@ -171,7 +171,7 @@ static integer c__2 = 2;
 
     } else if (strncmp(c2, "GE", 2)==0) {
 
-/*        xGE:  Set parameters to generate a general M x N matrix.   
+/*        xGE:  Set parameters to generate a general M x N matrix.
           Set TYPE, the type of matrix to be generated. */
 
 	*(unsigned char *)type = 'N';
@@ -220,7 +220,7 @@ static integer c__2 = 2;
 
     } else if (strncmp(c2, "GB", 2)==0) {
 
-/*        xGB:  Set parameters to generate a general banded matrix.   
+/*        xGB:  Set parameters to generate a general banded matrix.
 
           Set TYPE, the type of matrix to be generated. */
 
@@ -246,7 +246,7 @@ static integer c__2 = 2;
 
     } else if (strncmp(c2, "GT", 2)==0) {
 
-/*        xGT:  Set parameters to generate a general tridiagonal matrix.   
+/*        xGT:  Set parameters to generate a general tridiagonal matrix.
           Set TYPE, the type of matrix to be generated. */
 
 	*(unsigned char *)type = 'N';
@@ -281,8 +281,8 @@ static integer c__2 = 2;
     } else if (strncmp(c2, "PO", 2)==0 || strncmp(c2, "PP", 2)==0 ||
 	       strncmp(c2, "SY", 2)==0 || strncmp(c2, "SP", 2)==0) {
 
-/*        xPO, xPP, xSY, xSP: Set parameters to generate a   
-          symmetric matrix.   
+/*        xPO, xPP, xSY, xSP: Set parameters to generate a
+          symmetric matrix.
 
           Set TYPE, the type of matrix to be generated. */
 
@@ -319,7 +319,7 @@ static integer c__2 = 2;
 
     } else if (strncmp(c2, "PB", 2)==0) {
 
-/*        xPB:  Set parameters to generate a symmetric band matrix.   
+/*        xPB:  Set parameters to generate a symmetric band matrix.
 
           Set TYPE, the type of matrix to be generated. */
 
@@ -346,7 +346,7 @@ static integer c__2 = 2;
     } else if (strncmp(c2, "PT", 2)==0) {
 
 /*        xPT:  Set parameters to generate a symmetric positive defini
-te   
+te
           tridiagonal matrix. */
 
 	*(unsigned char *)type = 'P';
@@ -377,7 +377,7 @@ te
 
     } else if (strncmp(c2, "TR", 2)==0 || strncmp(c2, "TP", 2)==0) {
 
-/*        xTR, xTP:  Set parameters to generate a triangular matrix   
+/*        xTR, xTP:  Set parameters to generate a triangular matrix
 
           Set TYPE, the type of matrix to be generated. */
 
@@ -423,7 +423,7 @@ te
 
     } else if (strncmp(c2, "TB", 2)==0) {
 
-/*        xTB:  Set parameters to generate a triangular band matrix. 
+/*        xTB:  Set parameters to generate a triangular band matrix.
           Set TYPE, the type of matrix to be generated. */
 
 	*(unsigned char *)type = 'N';

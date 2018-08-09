@@ -1,106 +1,106 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int zsymv_(char *uplo, integer *n, doublecomplex *alpha, 
-	doublecomplex *a, integer *lda, doublecomplex *x, integer *incx, 
+/* Subroutine */ int zsymv_(char *uplo, integer *n, doublecomplex *alpha,
+	doublecomplex *a, integer *lda, doublecomplex *x, integer *incx,
 	doublecomplex *beta, doublecomplex *y, integer *incy)
 {
-/*  -- LAPACK auxiliary routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       October 31, 1992   
+/*  -- LAPACK auxiliary routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       October 31, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    ZSYMV  performs the matrix-vector  operation   
+    ZSYMV  performs the matrix-vector  operation
 
-       y := alpha*A*x + beta*y,   
+       y := alpha*A*x + beta*y,
 
-    where alpha and beta are scalars, x and y are n element vectors and   
-    A is an n by n symmetric matrix.   
+    where alpha and beta are scalars, x and y are n element vectors and
+    A is an n by n symmetric matrix.
 
-    Arguments   
-    ==========   
+    Arguments
+    ==========
 
-    UPLO   - CHARACTER*1   
-             On entry, UPLO specifies whether the upper or lower   
-             triangular part of the array A is to be referenced as   
-             follows:   
+    UPLO   - CHARACTER*1
+             On entry, UPLO specifies whether the upper or lower
+             triangular part of the array A is to be referenced as
+             follows:
 
-                UPLO = 'U' or 'u'   Only the upper triangular part of A   
-                                    is to be referenced.   
+                UPLO = 'U' or 'u'   Only the upper triangular part of A
+                                    is to be referenced.
 
-                UPLO = 'L' or 'l'   Only the lower triangular part of A   
-                                    is to be referenced.   
+                UPLO = 'L' or 'l'   Only the lower triangular part of A
+                                    is to be referenced.
 
-             Unchanged on exit.   
+             Unchanged on exit.
 
-    N      - INTEGER   
-             On entry, N specifies the order of the matrix A.   
-             N must be at least zero.   
-             Unchanged on exit.   
+    N      - INTEGER
+             On entry, N specifies the order of the matrix A.
+             N must be at least zero.
+             Unchanged on exit.
 
-    ALPHA  - COMPLEX*16   
-             On entry, ALPHA specifies the scalar alpha.   
-             Unchanged on exit.   
+    ALPHA  - COMPLEX*16
+             On entry, ALPHA specifies the scalar alpha.
+             Unchanged on exit.
 
-    A      - COMPLEX*16 array, dimension ( LDA, N )   
-             Before entry, with  UPLO = 'U' or 'u', the leading n by n   
-             upper triangular part of the array A must contain the upper 
-  
-             triangular part of the symmetric matrix and the strictly   
-             lower triangular part of A is not referenced.   
-             Before entry, with UPLO = 'L' or 'l', the leading n by n   
-             lower triangular part of the array A must contain the lower 
-  
-             triangular part of the symmetric matrix and the strictly   
-             upper triangular part of A is not referenced.   
-             Unchanged on exit.   
+    A      - COMPLEX*16 array, dimension ( LDA, N )
+             Before entry, with  UPLO = 'U' or 'u', the leading n by n
+             upper triangular part of the array A must contain the upper
 
-    LDA    - INTEGER   
-             On entry, LDA specifies the first dimension of A as declared 
-  
-             in the calling (sub) program. LDA must be at least   
-             max( 1, N ).   
-             Unchanged on exit.   
+             triangular part of the symmetric matrix and the strictly
+             lower triangular part of A is not referenced.
+             Before entry, with UPLO = 'L' or 'l', the leading n by n
+             lower triangular part of the array A must contain the lower
 
-    X      - COMPLEX*16 array, dimension at least   
-             ( 1 + ( N - 1 )*abs( INCX ) ).   
-             Before entry, the incremented array X must contain the N-   
-             element vector x.   
-             Unchanged on exit.   
+             triangular part of the symmetric matrix and the strictly
+             upper triangular part of A is not referenced.
+             Unchanged on exit.
 
-    INCX   - INTEGER   
-             On entry, INCX specifies the increment for the elements of   
-             X. INCX must not be zero.   
-             Unchanged on exit.   
+    LDA    - INTEGER
+             On entry, LDA specifies the first dimension of A as declared
 
-    BETA   - COMPLEX*16   
-             On entry, BETA specifies the scalar beta. When BETA is   
-             supplied as zero then Y need not be set on input.   
-             Unchanged on exit.   
+             in the calling (sub) program. LDA must be at least
+             max( 1, N ).
+             Unchanged on exit.
 
-    Y      - COMPLEX*16 array, dimension at least   
-             ( 1 + ( N - 1 )*abs( INCY ) ).   
-             Before entry, the incremented array Y must contain the n   
-             element vector y. On exit, Y is overwritten by the updated   
-             vector y.   
+    X      - COMPLEX*16 array, dimension at least
+             ( 1 + ( N - 1 )*abs( INCX ) ).
+             Before entry, the incremented array X must contain the N-
+             element vector x.
+             Unchanged on exit.
 
-    INCY   - INTEGER   
-             On entry, INCY specifies the increment for the elements of   
-             Y. INCY must not be zero.   
-             Unchanged on exit.   
+    INCX   - INTEGER
+             On entry, INCX specifies the increment for the elements of
+             X. INCX must not be zero.
+             Unchanged on exit.
 
-   ===================================================================== 
-  
+    BETA   - COMPLEX*16
+             On entry, BETA specifies the scalar beta. When BETA is
+             supplied as zero then Y need not be set on input.
+             Unchanged on exit.
+
+    Y      - COMPLEX*16 array, dimension at least
+             ( 1 + ( N - 1 )*abs( INCY ) ).
+             Before entry, the incremented array Y must contain the n
+             element vector y. On exit, Y is overwritten by the updated
+             vector y.
+
+    INCY   - INTEGER
+             On entry, INCY specifies the increment for the elements of
+             Y. INCY must not be zero.
+             Unchanged on exit.
+
+   =====================================================================
 
 
-       Test the input parameters.   
 
-    
-   Parameter adjustments   
+       Test the input parameters.
+
+
+   Parameter adjustments
        Function Body */
     /* System generated locals */
     integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5;
@@ -136,7 +136,7 @@
 
 /*     Quick return if possible. */
 
-    if (*n == 0 || alpha->r == 0. && alpha->i == 0. && (beta->r == 1. && 
+    if (*n == 0 || alpha->r == 0. && alpha->i == 0. && (beta->r == 1. &&
 	    beta->i == 0.)) {
 	return 0;
     }
@@ -154,9 +154,9 @@
 	ky = 1 - (*n - 1) * *incy;
     }
 
-/*     Start the operations. In this version the elements of A are   
-       accessed sequentially with one pass through the triangular part   
-       of A.   
+/*     Start the operations. In this version the elements of A are
+       accessed sequentially with one pass through the triangular part
+       of A.
 
        First form  y := beta*y. */
 
@@ -174,7 +174,7 @@
 		for (i = 1; i <= *n; ++i) {
 		    i__2 = i;
 		    i__3 = i;
-		    z__1.r = beta->r * Y(i).r - beta->i * Y(i).i, 
+		    z__1.r = beta->r * Y(i).r - beta->i * Y(i).i,
 			    z__1.i = beta->r * Y(i).i + beta->i * Y(i)
 			    .r;
 		    Y(i).r = z__1.r, Y(i).i = z__1.i;
@@ -196,7 +196,7 @@
 		for (i = 1; i <= *n; ++i) {
 		    i__2 = iy;
 		    i__3 = iy;
-		    z__1.r = beta->r * Y(iy).r - beta->i * Y(iy).i, 
+		    z__1.r = beta->r * Y(iy).r - beta->i * Y(iy).i,
 			    z__1.i = beta->r * Y(iy).i + beta->i * Y(iy)
 			    .r;
 		    Y(iy).r = z__1.r, Y(iy).i = z__1.i;
@@ -226,14 +226,14 @@
 		    i__3 = i;
 		    i__4 = i;
 		    i__5 = i + j * a_dim1;
-		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i, 
+		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i,
 			    z__2.i = temp1.r * A(i,j).i + temp1.i * A(i,j)
 			    .r;
 		    z__1.r = Y(i).r + z__2.r, z__1.i = Y(i).i + z__2.i;
 		    Y(i).r = z__1.r, Y(i).i = z__1.i;
 		    i__3 = i + j * a_dim1;
 		    i__4 = i;
-		    z__2.r = A(i,j).r * X(i).r - A(i,j).i * X(i).i, 
+		    z__2.r = A(i,j).r * X(i).r - A(i,j).i * X(i).i,
 			    z__2.i = A(i,j).r * X(i).i + A(i,j).i * X(
 			    i).r;
 		    z__1.r = temp2.r + z__2.r, z__1.i = temp2.i + z__2.i;
@@ -243,10 +243,10 @@
 		i__2 = j;
 		i__3 = j;
 		i__4 = j + j * a_dim1;
-		z__3.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__3.i = 
+		z__3.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__3.i =
 			temp1.r * A(j,j).i + temp1.i * A(j,j).r;
 		z__2.r = Y(j).r + z__3.r, z__2.i = Y(j).i + z__3.i;
-		z__4.r = alpha->r * temp2.r - alpha->i * temp2.i, z__4.i = 
+		z__4.r = alpha->r * temp2.r - alpha->i * temp2.i, z__4.i =
 			alpha->r * temp2.i + alpha->i * temp2.r;
 		z__1.r = z__2.r + z__4.r, z__1.i = z__2.i + z__4.i;
 		Y(j).r = z__1.r, Y(j).i = z__1.i;
@@ -269,14 +269,14 @@
 		    i__3 = iy;
 		    i__4 = iy;
 		    i__5 = i + j * a_dim1;
-		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i, 
+		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i,
 			    z__2.i = temp1.r * A(i,j).i + temp1.i * A(i,j)
 			    .r;
 		    z__1.r = Y(iy).r + z__2.r, z__1.i = Y(iy).i + z__2.i;
 		    Y(iy).r = z__1.r, Y(iy).i = z__1.i;
 		    i__3 = i + j * a_dim1;
 		    i__4 = ix;
-		    z__2.r = A(i,j).r * X(ix).r - A(i,j).i * X(ix).i, 
+		    z__2.r = A(i,j).r * X(ix).r - A(i,j).i * X(ix).i,
 			    z__2.i = A(i,j).r * X(ix).i + A(i,j).i * X(
 			    ix).r;
 		    z__1.r = temp2.r + z__2.r, z__1.i = temp2.i + z__2.i;
@@ -288,10 +288,10 @@
 		i__2 = jy;
 		i__3 = jy;
 		i__4 = j + j * a_dim1;
-		z__3.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__3.i = 
+		z__3.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__3.i =
 			temp1.r * A(j,j).i + temp1.i * A(j,j).r;
 		z__2.r = Y(jy).r + z__3.r, z__2.i = Y(jy).i + z__3.i;
-		z__4.r = alpha->r * temp2.r - alpha->i * temp2.i, z__4.i = 
+		z__4.r = alpha->r * temp2.r - alpha->i * temp2.i, z__4.i =
 			alpha->r * temp2.i + alpha->i * temp2.r;
 		z__1.r = z__2.r + z__4.r, z__1.i = z__2.i + z__4.i;
 		Y(jy).r = z__1.r, Y(jy).i = z__1.i;
@@ -315,7 +315,7 @@
 		i__2 = j;
 		i__3 = j;
 		i__4 = j + j * a_dim1;
-		z__2.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__2.i = 
+		z__2.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__2.i =
 			temp1.r * A(j,j).i + temp1.i * A(j,j).r;
 		z__1.r = Y(j).r + z__2.r, z__1.i = Y(j).i + z__2.i;
 		Y(j).r = z__1.r, Y(j).i = z__1.i;
@@ -324,14 +324,14 @@
 		    i__3 = i;
 		    i__4 = i;
 		    i__5 = i + j * a_dim1;
-		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i, 
+		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i,
 			    z__2.i = temp1.r * A(i,j).i + temp1.i * A(i,j)
 			    .r;
 		    z__1.r = Y(i).r + z__2.r, z__1.i = Y(i).i + z__2.i;
 		    Y(i).r = z__1.r, Y(i).i = z__1.i;
 		    i__3 = i + j * a_dim1;
 		    i__4 = i;
-		    z__2.r = A(i,j).r * X(i).r - A(i,j).i * X(i).i, 
+		    z__2.r = A(i,j).r * X(i).r - A(i,j).i * X(i).i,
 			    z__2.i = A(i,j).r * X(i).i + A(i,j).i * X(
 			    i).r;
 		    z__1.r = temp2.r + z__2.r, z__1.i = temp2.i + z__2.i;
@@ -340,7 +340,7 @@
 		}
 		i__2 = j;
 		i__3 = j;
-		z__2.r = alpha->r * temp2.r - alpha->i * temp2.i, z__2.i = 
+		z__2.r = alpha->r * temp2.r - alpha->i * temp2.i, z__2.i =
 			alpha->r * temp2.i + alpha->i * temp2.r;
 		z__1.r = Y(j).r + z__2.r, z__1.i = Y(j).i + z__2.i;
 		Y(j).r = z__1.r, Y(j).i = z__1.i;
@@ -359,7 +359,7 @@
 		i__2 = jy;
 		i__3 = jy;
 		i__4 = j + j * a_dim1;
-		z__2.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__2.i = 
+		z__2.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__2.i =
 			temp1.r * A(j,j).i + temp1.i * A(j,j).r;
 		z__1.r = Y(jy).r + z__2.r, z__1.i = Y(jy).i + z__2.i;
 		Y(jy).r = z__1.r, Y(jy).i = z__1.i;
@@ -372,14 +372,14 @@
 		    i__3 = iy;
 		    i__4 = iy;
 		    i__5 = i + j * a_dim1;
-		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i, 
+		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i,
 			    z__2.i = temp1.r * A(i,j).i + temp1.i * A(i,j)
 			    .r;
 		    z__1.r = Y(iy).r + z__2.r, z__1.i = Y(iy).i + z__2.i;
 		    Y(iy).r = z__1.r, Y(iy).i = z__1.i;
 		    i__3 = i + j * a_dim1;
 		    i__4 = ix;
-		    z__2.r = A(i,j).r * X(ix).r - A(i,j).i * X(ix).i, 
+		    z__2.r = A(i,j).r * X(ix).r - A(i,j).i * X(ix).i,
 			    z__2.i = A(i,j).r * X(ix).i + A(i,j).i * X(
 			    ix).r;
 		    z__1.r = temp2.r + z__2.r, z__1.i = temp2.i + z__2.i;
@@ -388,7 +388,7 @@
 		}
 		i__2 = jy;
 		i__3 = jy;
-		z__2.r = alpha->r * temp2.r - alpha->i * temp2.i, z__2.i = 
+		z__2.r = alpha->r * temp2.r - alpha->i * temp2.i, z__2.i =
 			alpha->r * temp2.i + alpha->i * temp2.r;
 		z__1.r = Y(jy).r + z__2.r, z__1.i = Y(jy).i + z__2.i;
 		Y(jy).r = z__1.r, Y(jy).i = z__1.i;

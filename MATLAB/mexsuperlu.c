@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -14,7 +14,7 @@ at the top-level directory.
  * and Lawrence Berkeley National Lab.
  * June 30, 2009
  *
- * Modified: 
+ * Modified:
  *   September 25, 2011,  compatible with 64-bit integer in R2006b
  *   January 17, 2016,    compatible with SuperLU_5.0 interface
  */
@@ -35,7 +35,7 @@ at the top-level directory.
 #define Pr_out     	plhs[2]
 #define Pc_out   	plhs[3]
 
-void LUextract(SuperMatrix *, SuperMatrix *, double *, mwIndex *, mwIndex *, 
+void LUextract(SuperMatrix *, SuperMatrix *, double *, mwIndex *, mwIndex *,
 	       double *, mwIndex *, mwIndex *, int *, int*);
 
 #define verbose (SPUMONI>0)
@@ -52,7 +52,7 @@ void mexFunction(
     int SPUMONI;             /* ... as should the sparse monitor flag */
     double FlopsInSuperLU;   /* ... as should the flop counter */
     extern flops_t LUFactFlops(SuperLUStat_t *);
-    
+
     /* Arguments to C dgstrf(). */
     superlu_options_t options;
     SuperMatrix Ac;        /* Matrix postmultiplied by Pc */
@@ -61,7 +61,7 @@ void mexFunction(
     int         panel_size, relax;
     int    	*etree, *perm_r, *perm_c;
     SuperLUStat_t stat;
-    
+
     /* other local variables */
     SuperMatrix A;
     int	   	m, n, nnz;
@@ -87,7 +87,7 @@ void mexFunction(
 	mexErrMsgTxt("SUPERLU requires 2 input arguments.");
     } else if (nlhs != 4) {
       	mexErrMsgTxt("SUPERLU requires 4 output arguments.");
-    }   
+    }
 
     /* Read the Sparse Monitor Flag */
     X = mxCreateString("spumoni");
@@ -101,7 +101,7 @@ void mexFunction(
     val = mxGetPr(A_in);
     rowind_64 = mxGetIr(A_in);
     colptr_64 = mxGetJc(A_in);
-    perm_c_64 = mxGetIr(Pc_in); 
+    perm_c_64 = mxGetIr(Pc_in);
     nnz = colptr_64[n];
     if ( verbose ) mexPrintf("m = %d, n = %d, nnz  = %d\n", m, n, nnz);
 
@@ -118,7 +118,7 @@ void mexFunction(
     }
     colptr[n] = colptr_64[n];
     for (i = 0; i < nnz; ++i) rowind[i] = rowind_64[i];
-    
+
     dCreate_CompCol_Matrix(&A, m, n, nnz, val, rowind, colptr,
 			   SLU_NC, SLU_D, SLU_GE);
     panel_size = sp_ienv(1);
@@ -153,7 +153,7 @@ void mexFunction(
     mxDestroyArray(Y);
     mxDestroyArray(X);
 #endif
-	
+
     /* Construct output arguments for Matlab. */
     if ( info >= 0 && info <= n ) {
 	Pr_out = mxCreateDoubleMatrix(m, 1, mxREAL);   /* output row perm */
@@ -163,7 +163,7 @@ void mexFunction(
 	Pc_out = mxCreateDoubleMatrix(n, 1, mxREAL);   /* output col perm */
 	dp = mxGetPr(Pc_out);
 	for (i = 0; i < m; ++i) dp[i] = (double) perm_c[i]+1;
-	
+
 	/* Now for L and U */
 	nnzL = ((SCformat*)L.Store)->nnz; /* count diagonals */
    	nnzU = ((NCformat*)U.Store)->nnz;
@@ -179,14 +179,14 @@ void mexFunction(
 	LUextract(&L, &U, Lval, Lrow_64, Lcol_64, Uval, Urow_64, Ucol_64,
 		  &snnzL, &snnzU);
 
-	if ( babble ) 
+	if ( babble )
 	  for (i = 0; i <= n; ++i) printf("Lcol_64[%d] %d\n", i, Lcol_64[i]);
 
 	printf("nnzL = %d, nnzU = %d\n", nnzL, nnzU);
 	if ( babble ) {
-	  for (i=0; i < nnzL; ++i) 
+	  for (i=0; i < nnzL; ++i)
 	    mexPrintf("Lrow_64[%d] %d\n", i, Lrow_64[i]);
-	  for (i = 0; i < snnzU; ++i) 
+	  for (i = 0; i < snnzU; ++i)
 	    mexPrintf("Urow_64[%d] = %d\n", i, Urow_64[i]);
 	}
 
@@ -228,15 +228,15 @@ LUextract(SuperMatrix *L, SuperMatrix *U, double *Lval, mwIndex *Lrow,
     Ustore = U->Store;
     Lcol[0] = 0;
     Ucol[0] = 0;
-    
+
     /* for each supernode */
     for (k = 0; k <= Lstore->nsuper; ++k) {
-	
+
 	fsupc = L_FST_SUPC(k);
 	istart = L_SUB_START(fsupc);
 	nsupr = L_SUB_START(fsupc+1) - istart;
 	upper = 1;
-	
+
 	/* for each column in the supernode */
 	for (j = fsupc; j < L_FST_SUPC(k+1); ++j) {
 	    SNptr = &((double*)Lstore->nzval)[L_NZ_START(j)];
@@ -265,9 +265,9 @@ LUextract(SuperMatrix *L, SuperMatrix *U, double *Lval, mwIndex *Lrow,
 	    Lcol[j+1] = lastl;
 
 	    ++upper;
-	    
+
 	} /* for j ... */
-	
+
     } /* for k ... */
 
     *snnzL = lastl;

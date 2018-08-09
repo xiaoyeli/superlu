@@ -12,7 +12,7 @@ static real c_b10 = 1.f;
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int slaror_slu(char *side, char *init, integer *m, integer *n, 
+/* Subroutine */ int slaror_slu(char *side, char *init, integer *m, integer *n,
 	real *a, integer *lda, integer *iseed, real *x, integer *info)
 {
     /* System generated locals */
@@ -24,119 +24,119 @@ static integer c__1 = 1;
 
     /* Local variables */
     static integer kbeg, jcol;
-    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *, 
+    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *,
 	    integer *, real *, integer *, real *, integer *);
     static integer irow;
     extern real snrm2_(integer *, real *, integer *);
     static integer j;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *), 
-	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
+    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *),
+	    sgemv_(char *, integer *, integer *, real *, real *, integer *,
 	    real *, integer *, real *, real *, integer *);
     static integer ixfrm, itype, nxfrm;
     static real xnorm;
     extern int input_error(char *, int *);
     static real factor;
     extern doublereal slarnd_slu(integer *, integer *);
-    extern /* Subroutine */ int slaset_slu(char *, integer *, integer *, real *, 
+    extern /* Subroutine */ int slaset_slu(char *, integer *, integer *, real *,
 	    real *, real *, integer *);
     static real xnorms;
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       September 30, 1994   
+/*  -- LAPACK auxiliary test routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       September 30, 1994
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    SLAROR pre- or post-multiplies an M by N matrix A by a random   
-    orthogonal matrix U, overwriting A.  A may optionally be initialized 
-  
-    to the identity matrix before multiplying by U.  U is generated using 
-  
-    the method of G.W. Stewart (SIAM J. Numer. Anal. 17, 1980, 403-409). 
-  
+    SLAROR pre- or post-multiplies an M by N matrix A by a random
+    orthogonal matrix U, overwriting A.  A may optionally be initialized
 
-    Arguments   
-    =========   
+    to the identity matrix before multiplying by U.  U is generated using
 
-    SIDE    (input) CHARACTER*1   
-            Specifies whether A is multiplied on the left or right by U. 
-  
-            = 'L':         Multiply A on the left (premultiply) by U   
-            = 'R':         Multiply A on the right (postmultiply) by U'   
-            = 'C' or 'T':  Multiply A on the left by U and the right   
-                            by U' (Here, U' means U-transpose.)   
+    the method of G.W. Stewart (SIAM J. Numer. Anal. 17, 1980, 403-409).
 
-    INIT    (input) CHARACTER*1   
-            Specifies whether or not A should be initialized to the   
-            identity matrix.   
-            = 'I':  Initialize A to (a section of) the identity matrix   
-                     before applying U.   
-            = 'N':  No initialization.  Apply U to the input matrix A.   
 
-            INIT = 'I' may be used to generate square or rectangular   
-            orthogonal matrices:   
+    Arguments
+    =========
 
-            For M = N and SIDE = 'L' or 'R', the rows will be orthogonal 
-  
-            to each other, as will the columns.   
+    SIDE    (input) CHARACTER*1
+            Specifies whether A is multiplied on the left or right by U.
 
-            If M < N, SIDE = 'R' produces a dense matrix whose rows are   
-            orthogonal and whose columns are not, while SIDE = 'L'   
-            produces a matrix whose rows are orthogonal, and whose first 
-  
-            M columns are orthogonal, and whose remaining columns are   
-            zero.   
+            = 'L':         Multiply A on the left (premultiply) by U
+            = 'R':         Multiply A on the right (postmultiply) by U'
+            = 'C' or 'T':  Multiply A on the left by U and the right
+                            by U' (Here, U' means U-transpose.)
 
-            If M > N, SIDE = 'L' produces a dense matrix whose columns   
-            are orthogonal and whose rows are not, while SIDE = 'R'   
-            produces a matrix whose columns are orthogonal, and whose   
-            first M rows are orthogonal, and whose remaining rows are   
-            zero.   
+    INIT    (input) CHARACTER*1
+            Specifies whether or not A should be initialized to the
+            identity matrix.
+            = 'I':  Initialize A to (a section of) the identity matrix
+                     before applying U.
+            = 'N':  No initialization.  Apply U to the input matrix A.
 
-    M       (input) INTEGER   
-            The number of rows of A.   
+            INIT = 'I' may be used to generate square or rectangular
+            orthogonal matrices:
 
-    N       (input) INTEGER   
-            The number of columns of A.   
+            For M = N and SIDE = 'L' or 'R', the rows will be orthogonal
 
-    A       (input/output) REAL array, dimension (LDA, N)   
-            On entry, the array A.   
-            On exit, overwritten by U A ( if SIDE = 'L' ),   
-             or by A U ( if SIDE = 'R' ),   
-             or by U A U' ( if SIDE = 'C' or 'T').   
+            to each other, as will the columns.
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= max(1,M).   
+            If M < N, SIDE = 'R' produces a dense matrix whose rows are
+            orthogonal and whose columns are not, while SIDE = 'L'
+            produces a matrix whose rows are orthogonal, and whose first
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry ISEED specifies the seed of the random number   
-            generator. The array elements should be between 0 and 4095;   
-            if not they will be reduced mod 4096.  Also, ISEED(4) must   
-            be odd.  The random number generator uses a linear   
-            congruential sequence limited to small integers, and so   
-            should produce machine independent random numbers. The   
-            values of ISEED are changed on exit, and can be used in the   
-            next call to SLAROR to continue the same random number   
-            sequence.   
+            M columns are orthogonal, and whose remaining columns are
+            zero.
 
-    X       (workspace) REAL array, dimension (3*MAX( M, N ))   
-            Workspace of length   
-                2*M + N if SIDE = 'L',   
-                2*N + M if SIDE = 'R',   
-                3*N     if SIDE = 'C' or 'T'.   
+            If M > N, SIDE = 'L' produces a dense matrix whose columns
+            are orthogonal and whose rows are not, while SIDE = 'R'
+            produces a matrix whose columns are orthogonal, and whose
+            first M rows are orthogonal, and whose remaining rows are
+            zero.
 
-    INFO    (output) INTEGER   
-            An error flag.  It is set to:   
-            = 0:  normal return   
-            < 0:  if INFO = -k, the k-th argument had an illegal value   
-            = 1:  if the random numbers generated by SLARND are bad.   
+    M       (input) INTEGER
+            The number of rows of A.
 
-    ===================================================================== 
-  
+    N       (input) INTEGER
+            The number of columns of A.
+
+    A       (input/output) REAL array, dimension (LDA, N)
+            On entry, the array A.
+            On exit, overwritten by U A ( if SIDE = 'L' ),
+             or by A U ( if SIDE = 'R' ),
+             or by U A U' ( if SIDE = 'C' or 'T').
+
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= max(1,M).
+
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry ISEED specifies the seed of the random number
+            generator. The array elements should be between 0 and 4095;
+            if not they will be reduced mod 4096.  Also, ISEED(4) must
+            be odd.  The random number generator uses a linear
+            congruential sequence limited to small integers, and so
+            should produce machine independent random numbers. The
+            values of ISEED are changed on exit, and can be used in the
+            next call to SLAROR to continue the same random number
+            sequence.
+
+    X       (workspace) REAL array, dimension (3*MAX( M, N ))
+            Workspace of length
+                2*M + N if SIDE = 'L',
+                2*N + M if SIDE = 'R',
+                3*N     if SIDE = 'C' or 'T'.
+
+    INFO    (output) INTEGER
+            An error flag.  It is set to:
+            = 0:  normal return
+            < 0:  if INFO = -k, the k-th argument had an illegal value
+            = 1:  if the random numbers generated by SLARND are bad.
+
+    =====================================================================
+
 
 
        Parameter adjustments */
@@ -190,9 +190,9 @@ static integer c__1 = 1;
 	slaset_slu("Full", m, n, &c_b9, &c_b10, &a[a_offset], lda);
     }
 
-/*     If no rotation possible, multiply by random +/-1   
+/*     If no rotation possible, multiply by random +/-1
 
-       Compute rotation by computing Householder transformations   
+       Compute rotation by computing Householder transformations
        H(2), H(3), ..., H(nhouse) */
 
     i__1 = nxfrm;

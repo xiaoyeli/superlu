@@ -13,7 +13,7 @@
  * NOCHANGE indicates that fortran will be calling, and that it expects
  * the name called by fortran to be identical to that compiled by the C
  * (RS6K's do this).  UPCASE says it expects C routines called by fortran
- * to be in all upcase (CRAY wants this). 
+ * to be in all upcase (CRAY wants this).
  * </pre>
  */
 #ifndef __SUPERLU_CNAMES /* allow multiple inclusions */
@@ -69,7 +69,7 @@
 #if (F77_CALL_C == ADD__)
 /*
  * These defines set up the naming scheme required to have a fortran 77
- * routine call a C routine 
+ * routine call a C routine
  * for following Fortran to C interface:
  *           FORTRAN CALL               C DECLARATION
  *           call dgemm(...)           void dgemm__(...)
@@ -163,7 +163,7 @@
 #if (F77_CALL_C == UPCASE)
 /*
  * These defines set up the naming scheme required to have a fortran 77
- * routine call a C routine 
+ * routine call a C routine
  * following Fortran to C interface:
  *           FORTRAN CALL               C DECLARATION
  *           call dgemm(...)           void DGEMM(...)
@@ -256,7 +256,7 @@
 #if (F77_CALL_C == OLD_CRAY)
 /*
  * These defines set up the naming scheme required to have a fortran 77
- * routine call a C routine 
+ * routine call a C routine
  * following Fortran to C interface:
  *           FORTRAN CALL               C DECLARATION
  *           call dgemm(...)           void SGEMM(...)
@@ -349,7 +349,7 @@
 #if (F77_CALL_C == NOCHANGE)
 /*
  * These defines set up the naming scheme required to have a fortran 77
- * routine call a C routine 
+ * routine call a C routine
  * for following Fortran to C interface:
  *           FORTRAN CALL               C DECLARATION
  *           call dgemm(...)           void dgemm(...)

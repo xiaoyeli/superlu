@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int srot_(integer *n, real *sx, integer *incx, real *sy, 
+/* Subroutine */ int srot_(integer *n, real *sx, integer *incx, real *sy,
 	integer *incy, real *c, real *s)
 {
 
@@ -20,13 +20,13 @@
     static integer ix, iy;
 
 
-/*     applies a plane rotation.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     applies a plane rotation.
+       jack dongarra, linpack, 3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define SY(I) sy[(I)-1]
 #define SX(I) sx[(I)-1]
@@ -39,7 +39,7 @@
 	goto L20;
     }
 
-/*       code for unequal increments or equal increments not equal   
+/*       code for unequal increments or equal increments not equal
            to 1 */
 
     ix = 1;

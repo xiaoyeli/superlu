@@ -1,7 +1,7 @@
 #include "f2c.h"
 /*#include "blaswrap.h"*/
 
-/* Subroutine */ int dswap_(integer *n, doublereal *dx, integer *incx, 
+/* Subroutine */ int dswap_(integer *n, doublereal *dx, integer *incx,
 	doublereal *dy, integer *incy)
 {
     /* System generated locals */

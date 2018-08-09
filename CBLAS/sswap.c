@@ -1,7 +1,7 @@
 #include "f2c.h"
 /*#include "blaswrap.h"*/
 
-/* Subroutine */ int sswap_(integer *n, real *sx, integer *incx, real *sy, 
+/* Subroutine */ int sswap_(integer *n, real *sx, integer *incx, real *sy,
 	integer *incy)
 {
     /* System generated locals */

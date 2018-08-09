@@ -13,7 +13,7 @@ static real c_b12 = 0.f;
 static real c_b19 = -1.f;
 static real c_b26 = 1.f;
 
-/* Subroutine */ int slagsy_slu(integer *n, integer *k, real *d, real *a, 
+/* Subroutine */ int slagsy_slu(integer *n, integer *k, real *d, real *a,
 	integer *lda, integer *iseed, real *work, integer *info)
 {
     /* System generated locals */
@@ -24,19 +24,19 @@ static real c_b26 = 1.f;
     double r_sign(real *, real *);
 
     /* Local variables */
-    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *, 
+    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *,
 	    integer *, real *, integer *, real *, integer *);
-    extern real sdot_(integer *, real *, integer *, real *, integer *), 
+    extern real sdot_(integer *, real *, integer *, real *, integer *),
 	    snrm2_(integer *, real *, integer *);
     static integer i, j;
-    extern /* Subroutine */ int ssyr2_(char *, integer *, real *, real *, 
+    extern /* Subroutine */ int ssyr2_(char *, integer *, real *, real *,
 	    integer *, real *, integer *, real *, integer *);
     static real alpha;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *), 
-	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
+    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *),
+	    sgemv_(char *, integer *, integer *, real *, real *, integer *,
 	    real *, integer *, real *, real *, integer *), saxpy_(
 	    integer *, real *, real *, integer *, real *, integer *), ssymv_(
-	    char *, integer *, real *, real *, integer *, real *, integer *, 
+	    char *, integer *, real *, real *, integer *, real *, integer *,
 	    real *, real *, integer *);
     static real wa, wb, wn;
     extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real *);
@@ -44,60 +44,60 @@ static real c_b26 = 1.f;
     static real tau;
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0)   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       February 29, 1992   
+/*  -- LAPACK auxiliary test routine (version 2.0)
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       February 29, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    SLAGSY generates a real symmetric matrix A, by pre- and post-   
-    multiplying a real diagonal matrix D with a random orthogonal matrix: 
-  
-    A = U*D*U'. The semi-bandwidth may then be reduced to k by additional 
-  
-    orthogonal transformations.   
+    SLAGSY generates a real symmetric matrix A, by pre- and post-
+    multiplying a real diagonal matrix D with a random orthogonal matrix:
 
-    Arguments   
-    =========   
+    A = U*D*U'. The semi-bandwidth may then be reduced to k by additional
 
-    N       (input) INTEGER   
-            The order of the matrix A.  N >= 0.   
+    orthogonal transformations.
 
-    K       (input) INTEGER   
-            The number of nonzero subdiagonals within the band of A.   
-            0 <= K <= N-1.   
+    Arguments
+    =========
 
-    D       (input) REAL array, dimension (N)   
-            The diagonal elements of the diagonal matrix D.   
+    N       (input) INTEGER
+            The order of the matrix A.  N >= 0.
 
-    A       (output) REAL array, dimension (LDA,N)   
-            The generated n by n symmetric matrix A (the full matrix is   
-            stored).   
+    K       (input) INTEGER
+            The number of nonzero subdiagonals within the band of A.
+            0 <= K <= N-1.
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= N.   
+    D       (input) REAL array, dimension (N)
+            The diagonal elements of the diagonal matrix D.
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    A       (output) REAL array, dimension (LDA,N)
+            The generated n by n symmetric matrix A (the full matrix is
+            stored).
 
-    WORK    (workspace) REAL array, dimension (2*N)   
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= N.
 
-    INFO    (output) INTEGER   
-            = 0: successful exit   
-            < 0: if INFO = -i, the i-th argument had an illegal value   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    ===================================================================== 
-  
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
+
+    WORK    (workspace) REAL array, dimension (2*N)
+
+    INFO    (output) INTEGER
+            = 0: successful exit
+            < 0: if INFO = -i, the i-th argument had an illegal value
+
+    =====================================================================
 
 
-       Test the input arguments   
+
+       Test the input arguments
 
        Parameter adjustments */
     --d;
@@ -161,8 +161,8 @@ static real c_b26 = 1.f;
 	    tau = wb / wa;
 	}
 
-/*        apply random reflection to A(i:n,i:n) from the left   
-          and the right   
+/*        apply random reflection to A(i:n,i:n) from the left
+          and the right
 
           compute  y := tau * A * u */
 
@@ -181,7 +181,7 @@ static real c_b26 = 1.f;
 /*        apply the transformation as a rank-2 update to A(i:n,i:n) */
 
 	i__1 = *n - i + 1;
-	ssyr2_("Lower", &i__1, &c_b19, &work[1], &c__1, &work[*n + 1], &c__1, 
+	ssyr2_("Lower", &i__1, &c_b19, &work[1], &c__1, &work[*n + 1], &c__1,
 		&a[i + i * a_dim1], lda);
 /* L40: */
     }
@@ -211,7 +211,7 @@ static real c_b26 = 1.f;
 
 	i__2 = *n - *k - i + 1;
 	i__3 = *k - 1;
-	sgemv_("Transpose", &i__2, &i__3, &c_b26, &a[*k + i + (i + 1) * 
+	sgemv_("Transpose", &i__2, &i__3, &c_b26, &a[*k + i + (i + 1) *
 		a_dim1], lda, &a[*k + i + i * a_dim1], &c__1, &c_b12, &work[1]
 		, &c__1);
 	i__2 = *n - *k - i + 1;
@@ -221,7 +221,7 @@ static real c_b26 = 1.f;
 		c__1, &a[*k + i + (i + 1) * a_dim1], lda);
 
 /*        apply reflection to A(k+i:n,k+i:n) from the left and the rig
-ht   
+ht
 
           compute  y := tau * A * u */
 
@@ -232,7 +232,7 @@ ht
 /*        compute  v := y - 1/2 * tau * ( y, u ) * u */
 
 	i__2 = *n - *k - i + 1;
-	alpha = tau * -.5f * sdot_(&i__2, &work[1], &c__1, &a[*k + i + i * 
+	alpha = tau * -.5f * sdot_(&i__2, &work[1], &c__1, &a[*k + i + i *
 		a_dim1], &c__1);
 	i__2 = *n - *k - i + 1;
 	saxpy_(&i__2, &alpha, &a[*k + i + i * a_dim1], &c__1, &work[1], &c__1)

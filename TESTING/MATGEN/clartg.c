@@ -1,50 +1,50 @@
 #include "f2c.h"
 
-/* Subroutine */ int clartg_slu(complex *f, complex *g, real *cs, complex *sn, 
+/* Subroutine */ int clartg_slu(complex *f, complex *g, real *cs, complex *sn,
 	complex *r)
 {
-/*  -- LAPACK auxiliary routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       September 30, 1994   
+/*  -- LAPACK auxiliary routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       September 30, 1994
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    CLARTG generates a plane rotation so that   
+    CLARTG generates a plane rotation so that
 
-       [  CS  SN  ]     [ F ]     [ R ]   
-       [  __      ]  .  [   ]  =  [   ]   where CS**2 + |SN|**2 = 1.   
-       [ -SN  CS  ]     [ G ]     [ 0 ]   
+       [  CS  SN  ]     [ F ]     [ R ]
+       [  __      ]  .  [   ]  =  [   ]   where CS**2 + |SN|**2 = 1.
+       [ -SN  CS  ]     [ G ]     [ 0 ]
 
-    This is a faster version of the BLAS1 routine CROTG, except for   
-    the following differences:   
-       F and G are unchanged on return.   
-       If G=0, then CS=1 and SN=0.   
-       If F=0 and (G .ne. 0), then CS=0 and SN=1 without doing any   
-          floating point operations.   
+    This is a faster version of the BLAS1 routine CROTG, except for
+    the following differences:
+       F and G are unchanged on return.
+       If G=0, then CS=1 and SN=0.
+       If F=0 and (G .ne. 0), then CS=0 and SN=1 without doing any
+          floating point operations.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    F       (input) COMPLEX   
-            The first component of vector to be rotated.   
+    F       (input) COMPLEX
+            The first component of vector to be rotated.
 
-    G       (input) COMPLEX   
-            The second component of vector to be rotated.   
+    G       (input) COMPLEX
+            The second component of vector to be rotated.
 
-    CS      (output) REAL   
-            The cosine of the rotation.   
+    CS      (output) REAL
+            The cosine of the rotation.
 
-    SN      (output) COMPLEX   
-            The sine of the rotation.   
+    SN      (output) COMPLEX
+            The sine of the rotation.
 
-    R       (output) COMPLEX   
-            The nonzero component of the rotated vector.   
+    R       (output) COMPLEX
+            The nonzero component of the rotated vector.
 
-    ===================================================================== 
-  
+    =====================================================================
+
 
 
        [ 25 or 38 ops for main paths ] */
@@ -74,7 +74,7 @@
 	d__1 = c_abs(g);
 	r->r = d__1, r->i = 0.f;
 
-/*         SN = ONE   
+/*         SN = ONE
            R = G */
 
     } else {
@@ -98,7 +98,7 @@
 	    d = sqrt(g2 / f2 + 1.f);
 	    *cs = 1.f / d;
 	    r_cnjg(&q__3, &gs);
-	    q__2.r = q__3.r * fs.r - q__3.i * fs.i, q__2.i = q__3.r * fs.i + 
+	    q__2.r = q__3.r * fs.r - q__3.i * fs.i, q__2.i = q__3.r * fs.i +
 		    q__3.i * fs.r;
 	    d__1 = *cs / f2;
 	    q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
@@ -126,14 +126,14 @@
 	    di = 1.f / d;
 	    *cs = fa / ga * di;
 	    r_cnjg(&q__3, &gs);
-	    q__2.r = q__3.r * fs.r - q__3.i * fs.i, q__2.i = q__3.r * fs.i + 
+	    q__2.r = q__3.r * fs.r - q__3.i * fs.i, q__2.i = q__3.r * fs.i +
 		    q__3.i * fs.r;
 	    d__1 = fa * ga;
 	    q__1.r = q__2.r / d__1, q__1.i = q__2.i / d__1;
 	    ss.r = q__1.r, ss.i = q__1.i;
 	    q__1.r = di * ss.r, q__1.i = di * ss.i;
 	    sn->r = q__1.r, sn->i = q__1.i;
-	    q__2.r = g->r * ss.r - g->i * ss.i, q__2.i = g->r * ss.i + g->i * 
+	    q__2.r = g->r * ss.r - g->i * ss.i, q__2.i = g->r * ss.i + g->i *
 		    ss.r;
 	    q__1.r = d * q__2.r, q__1.i = d * q__2.i;
 	    r->r = q__1.r, r->i = q__1.i;

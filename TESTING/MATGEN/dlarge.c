@@ -12,7 +12,7 @@ static integer c__1 = 1;
 static doublereal c_b8 = 1.;
 static doublereal c_b10 = 0.;
 
-/* Subroutine */ int dlarge_slu(integer *n, doublereal *a, integer *lda, integer 
+/* Subroutine */ int dlarge_slu(integer *n, doublereal *a, integer *lda, integer
 	*iseed, doublereal *work, integer *info)
 {
     /* System generated locals */
@@ -23,14 +23,14 @@ static doublereal c_b10 = 0.;
     double d_sign(doublereal *, doublereal *);
 
     /* Local variables */
-    extern /* Subroutine */ int dger_(integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
+    extern /* Subroutine */ int dger_(integer *, integer *, doublereal *,
+	    doublereal *, integer *, doublereal *, integer *, doublereal *,
 	    integer *);
     extern doublereal dnrm2_(integer *, doublereal *, integer *);
     static integer i;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
-	    integer *), dgemv_(char *, integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
+    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *,
+	    integer *), dgemv_(char *, integer *, integer *, doublereal *,
+	    doublereal *, integer *, doublereal *, integer *, doublereal *,
 	    doublereal *, integer *);
     static doublereal wa, wb, wn;
     extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
@@ -38,50 +38,50 @@ static doublereal c_b10 = 0.;
     static doublereal tau;
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0)   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       February 29, 1992   
+/*  -- LAPACK auxiliary test routine (version 2.0)
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       February 29, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    DLARGE pre- and post-multiplies a real general n by n matrix A   
-    with a random orthogonal matrix: A = U*D*U'.   
+    DLARGE pre- and post-multiplies a real general n by n matrix A
+    with a random orthogonal matrix: A = U*D*U'.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    N       (input) INTEGER   
-            The order of the matrix A.  N >= 0.   
+    N       (input) INTEGER
+            The order of the matrix A.  N >= 0.
 
-    A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)   
-            On entry, the original n by n matrix A.   
-            On exit, A is overwritten by U*A*U' for some random   
-            orthogonal matrix U.   
+    A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+            On entry, the original n by n matrix A.
+            On exit, A is overwritten by U*A*U' for some random
+            orthogonal matrix U.
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= N.   
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= N.
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    WORK    (workspace) DOUBLE PRECISION array, dimension (2*N)   
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
 
-    INFO    (output) INTEGER   
-            = 0: successful exit   
-            < 0: if INFO = -i, the i-th argument had an illegal value   
+    WORK    (workspace) DOUBLE PRECISION array, dimension (2*N)
 
-    ===================================================================== 
-  
+    INFO    (output) INTEGER
+            = 0: successful exit
+            < 0: if INFO = -i, the i-th argument had an illegal value
+
+    =====================================================================
 
 
-       Test the input arguments   
+
+       Test the input arguments
 
        Parameter adjustments */
     a_dim1 = *lda;
@@ -132,7 +132,7 @@ static doublereal c_b10 = 0.;
 		c__1, &c_b10, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
 	d__1 = -tau;
-	dger_(&i__1, n, &d__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i + 
+	dger_(&i__1, n, &d__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i +
 		a_dim1], lda);
 
 /*        multiply A(1:n,i:n) by random reflection from the right */
@@ -142,7 +142,7 @@ static doublereal c_b10 = 0.;
 		work[1], &c__1, &c_b10, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
 	d__1 = -tau;
-	dger_(n, &i__1, &d__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i * 
+	dger_(n, &i__1, &d__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i *
 		a_dim1 + 1], lda);
 /* L10: */
     }

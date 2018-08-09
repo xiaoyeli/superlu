@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -51,7 +51,7 @@ void mexFunction(
     double FlopsInSuperLU;   /* ... as should the flop counter. */
     extern flops_t LUFactFlops(SuperLUStat_t*);
     extern flops_t LUSolveFlops(SuperLUStat_t*);
-    
+
     /* Arguments to dgssv(). */
     SuperMatrix A;
     SuperMatrix B;
@@ -77,7 +77,7 @@ void mexFunction(
 	mexErrMsgTxt("LUSOLVE requires 3 input arguments.");
     } else if (nlhs != 1) {
       	mexErrMsgTxt("LUSOLVE requires 1 output argument.");
-    }   
+    }
 
     /* Read the Sparse Monitor Flag */
     X = mxCreateString("spumoni");
@@ -101,7 +101,7 @@ void mexFunction(
     val = mxGetPr(A_in);
     rowind_64 = mxGetIr(A_in);
     colptr_64 = mxGetJc(A_in);
-    perm_c_64 = mxGetIr(Pc_in); 
+    perm_c_64 = mxGetIr(Pc_in);
     nnz = colptr_64[n];
     perm_r = (int *) mxCalloc(m, sizeof(int));
     perm_c = (int *) mxMalloc(n * sizeof(int));
@@ -159,5 +159,5 @@ void mexFunction(
     StatFree(&stat);
 
     return;
- 
+
 }

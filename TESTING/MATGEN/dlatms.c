@@ -14,7 +14,7 @@ static logical c_false = FALSE_;
 
 int
 dlatms_slu(integer *m, integer *n, char *dist, integer *
-	iseed, char *sym, doublereal *d, integer *mode, doublereal *cond, 
+	iseed, char *sym, doublereal *d, integer *mode, doublereal *cond,
 	doublereal *dmax__, integer *kl, integer *ku, char *pack,
 	doublereal *a, integer *lda, doublereal *work, integer *info)
 {
@@ -34,28 +34,28 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
     static integer i, j, k;
     static doublereal s, alpha, angle;
     static integer ipack;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
+    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *,
 	    integer *);
     static integer ioffg;
     static integer iinfo, idist, mnmin;
-    extern /* Subroutine */ int dcopy_(integer *, doublereal *, integer *, 
+    extern /* Subroutine */ int dcopy_(integer *, doublereal *, integer *,
 	    doublereal *, integer *);
     static integer iskew;
     static doublereal extra, dummy;
-    extern /* Subroutine */ int dlatm1_slu(integer *, doublereal *, integer *, 
+    extern /* Subroutine */ int dlatm1_slu(integer *, doublereal *, integer *,
 	    integer *, integer *, doublereal *, integer *, integer *);
     static integer ic, jc, nc;
-    extern /* Subroutine */ int dlagge_slu(integer *, integer *, integer *, 
-	    integer *, doublereal *, doublereal *, integer *, integer *, 
+    extern /* Subroutine */ int dlagge_slu(integer *, integer *, integer *,
+	    integer *, doublereal *, doublereal *, integer *, integer *,
 	    doublereal *, integer *);
     static integer il, iendch, ir, jr, ipackg, mr, minlda;
     extern doublereal dlarnd_slu(integer *, integer *);
-    extern /* Subroutine */ int dlaset_slu(char *, integer *, integer *, 
-	    doublereal *, doublereal *, doublereal *, integer *), 
+    extern /* Subroutine */ int dlaset_slu(char *, integer *, integer *,
+	    doublereal *, doublereal *, doublereal *, integer *),
 	    dlartg_slu(doublereal *, doublereal *, doublereal *, doublereal *, doublereal *),
-	    dlagsy_slu(integer *, integer *, doublereal *, doublereal *, integer *, 
+	    dlagsy_slu(integer *, integer *, doublereal *, doublereal *, integer *,
 	    integer *, doublereal *, integer *), dlarot_slu(logical *, logical *,
-	     logical *, integer *, doublereal *, doublereal *, doublereal *, 
+	     logical *, integer *, doublereal *, doublereal *, doublereal *,
 	    integer *, doublereal *, doublereal *);
     extern int input_error(char *, int *);
     static logical iltemp, givens;
@@ -64,266 +64,266 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
     static integer ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
 
-/*  -- LAPACK test routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       September 30, 1994   
+/*  -- LAPACK test routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       September 30, 1994
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-       DLATMS generates random matrices with specified singular values   
-       (or symmetric/hermitian with specified eigenvalues)   
-       for testing LAPACK programs.   
+       DLATMS generates random matrices with specified singular values
+       (or symmetric/hermitian with specified eigenvalues)
+       for testing LAPACK programs.
 
-       DLATMS operates by applying the following sequence of   
-       operations:   
+       DLATMS operates by applying the following sequence of
+       operations:
 
-         Set the diagonal to D, where D may be input or   
-            computed according to MODE, COND, DMAX, and SYM   
-            as described below.   
+         Set the diagonal to D, where D may be input or
+            computed according to MODE, COND, DMAX, and SYM
+            as described below.
 
-         Generate a matrix with the appropriate band structure, by one   
-            of two methods:   
+         Generate a matrix with the appropriate band structure, by one
+            of two methods:
 
-         Method A:   
-             Generate a dense M x N matrix by multiplying D on the left   
-                 and the right by random unitary matrices, then:   
+         Method A:
+             Generate a dense M x N matrix by multiplying D on the left
+                 and the right by random unitary matrices, then:
 
-             Reduce the bandwidth according to KL and KU, using   
-             Householder transformations.   
+             Reduce the bandwidth according to KL and KU, using
+             Householder transformations.
 
-         Method B:   
-             Convert the bandwidth-0 (i.e., diagonal) matrix to a   
-                 bandwidth-1 matrix using Givens rotations, "chasing"   
-                 out-of-band elements back, much as in QR; then   
-                 convert the bandwidth-1 to a bandwidth-2 matrix, etc.   
-                 Note that for reasonably small bandwidths (relative to   
-                 M and N) this requires less storage, as a dense matrix   
-                 is not generated.  Also, for symmetric matrices, only   
-                 one triangle is generated.   
+         Method B:
+             Convert the bandwidth-0 (i.e., diagonal) matrix to a
+                 bandwidth-1 matrix using Givens rotations, "chasing"
+                 out-of-band elements back, much as in QR; then
+                 convert the bandwidth-1 to a bandwidth-2 matrix, etc.
+                 Note that for reasonably small bandwidths (relative to
+                 M and N) this requires less storage, as a dense matrix
+                 is not generated.  Also, for symmetric matrices, only
+                 one triangle is generated.
 
-         Method A is chosen if the bandwidth is a large fraction of the   
-             order of the matrix, and LDA is at least M (so a dense   
-             matrix can be stored.)  Method B is chosen if the bandwidth 
-  
-             is small (< 1/2 N for symmetric, < .3 N+M for   
-             non-symmetric), or LDA is less than M and not less than the 
-  
-             bandwidth.   
+         Method A is chosen if the bandwidth is a large fraction of the
+             order of the matrix, and LDA is at least M (so a dense
+             matrix can be stored.)  Method B is chosen if the bandwidth
 
-         Pack the matrix if desired. Options specified by PACK are:   
-            no packing   
-            zero out upper half (if symmetric)   
-            zero out lower half (if symmetric)   
-            store the upper half columnwise (if symmetric or upper   
-                  triangular)   
-            store the lower half columnwise (if symmetric or lower   
-                  triangular)   
-            store the lower triangle in banded format (if symmetric   
-                  or lower triangular)   
-            store the upper triangle in banded format (if symmetric   
-                  or upper triangular)   
-            store the entire matrix in banded format   
-         If Method B is chosen, and band format is specified, then the   
-            matrix will be generated in the band format, so no repacking 
-  
-            will be necessary.   
+             is small (< 1/2 N for symmetric, < .3 N+M for
+             non-symmetric), or LDA is less than M and not less than the
 
-    Arguments   
-    =========   
+             bandwidth.
 
-    M      - INTEGER   
-             The number of rows of A. Not modified.   
+         Pack the matrix if desired. Options specified by PACK are:
+            no packing
+            zero out upper half (if symmetric)
+            zero out lower half (if symmetric)
+            store the upper half columnwise (if symmetric or upper
+                  triangular)
+            store the lower half columnwise (if symmetric or lower
+                  triangular)
+            store the lower triangle in banded format (if symmetric
+                  or lower triangular)
+            store the upper triangle in banded format (if symmetric
+                  or upper triangular)
+            store the entire matrix in banded format
+         If Method B is chosen, and band format is specified, then the
+            matrix will be generated in the band format, so no repacking
 
-    N      - INTEGER   
-             The number of columns of A. Not modified.   
+            will be necessary.
 
-    DIST   - CHARACTER*1   
-             On entry, DIST specifies the type of distribution to be used 
-  
-             to generate the random eigen-/singular values.   
-             'U' => UNIFORM( 0, 1 )  ( 'U' for uniform )   
-             'S' => UNIFORM( -1, 1 ) ( 'S' for symmetric )   
-             'N' => NORMAL( 0, 1 )   ( 'N' for normal )   
-             Not modified.   
+    Arguments
+    =========
 
-    ISEED  - INTEGER array, dimension ( 4 )   
-             On entry ISEED specifies the seed of the random number   
-             generator. They should lie between 0 and 4095 inclusive,   
-             and ISEED(4) should be odd. The random number generator   
-             uses a linear congruential sequence limited to small   
-             integers, and so should produce machine independent   
-             random numbers. The values of ISEED are changed on   
-             exit, and can be used in the next call to DLATMS   
-             to continue the same random number sequence.   
-             Changed on exit.   
+    M      - INTEGER
+             The number of rows of A. Not modified.
 
-    SYM    - CHARACTER*1   
-             If SYM='S' or 'H', the generated matrix is symmetric, with   
-               eigenvalues specified by D, COND, MODE, and DMAX; they   
-               may be positive, negative, or zero.   
-             If SYM='P', the generated matrix is symmetric, with   
-               eigenvalues (= singular values) specified by D, COND,   
-               MODE, and DMAX; they will not be negative.   
-             If SYM='N', the generated matrix is nonsymmetric, with   
-               singular values specified by D, COND, MODE, and DMAX;   
-               they will not be negative.   
-             Not modified.   
+    N      - INTEGER
+             The number of columns of A. Not modified.
 
-    D      - DOUBLE PRECISION array, dimension ( MIN( M , N ) )   
-             This array is used to specify the singular values or   
-             eigenvalues of A (see SYM, above.)  If MODE=0, then D is   
-             assumed to contain the singular/eigenvalues, otherwise   
-             they will be computed according to MODE, COND, and DMAX,   
-             and placed in D.   
-             Modified if MODE is nonzero.   
+    DIST   - CHARACTER*1
+             On entry, DIST specifies the type of distribution to be used
 
-    MODE   - INTEGER   
-             On entry this describes how the singular/eigenvalues are to 
-  
-             be specified:   
-             MODE = 0 means use D as input   
-             MODE = 1 sets D(1)=1 and D(2:N)=1.0/COND   
-             MODE = 2 sets D(1:N-1)=1 and D(N)=1.0/COND   
-             MODE = 3 sets D(I)=COND**(-(I-1)/(N-1))   
-             MODE = 4 sets D(i)=1 - (i-1)/(N-1)*(1 - 1/COND)   
-             MODE = 5 sets D to random numbers in the range   
-                      ( 1/COND , 1 ) such that their logarithms   
-                      are uniformly distributed.   
-             MODE = 6 set D to random numbers from same distribution   
-                      as the rest of the matrix.   
-             MODE < 0 has the same meaning as ABS(MODE), except that   
-                the order of the elements of D is reversed.   
-             Thus if MODE is positive, D has entries ranging from   
-                1 to 1/COND, if negative, from 1/COND to 1,   
-             If SYM='S' or 'H', and MODE is neither 0, 6, nor -6, then   
-                the elements of D will also be multiplied by a random   
-                sign (i.e., +1 or -1.)   
-             Not modified.   
+             to generate the random eigen-/singular values.
+             'U' => UNIFORM( 0, 1 )  ( 'U' for uniform )
+             'S' => UNIFORM( -1, 1 ) ( 'S' for symmetric )
+             'N' => NORMAL( 0, 1 )   ( 'N' for normal )
+             Not modified.
 
-    COND   - DOUBLE PRECISION   
-             On entry, this is used as described under MODE above.   
-             If used, it must be >= 1. Not modified.   
+    ISEED  - INTEGER array, dimension ( 4 )
+             On entry ISEED specifies the seed of the random number
+             generator. They should lie between 0 and 4095 inclusive,
+             and ISEED(4) should be odd. The random number generator
+             uses a linear congruential sequence limited to small
+             integers, and so should produce machine independent
+             random numbers. The values of ISEED are changed on
+             exit, and can be used in the next call to DLATMS
+             to continue the same random number sequence.
+             Changed on exit.
 
-    DMAX   - DOUBLE PRECISION   
-             If MODE is neither -6, 0 nor 6, the contents of D, as   
-             computed according to MODE and COND, will be scaled by   
-             DMAX / max(abs(D(i))); thus, the maximum absolute eigen- or 
-  
-             singular value (which is to say the norm) will be abs(DMAX). 
-  
-             Note that DMAX need not be positive: if DMAX is negative   
-             (or zero), D will be scaled by a negative number (or zero). 
-  
-             Not modified.   
+    SYM    - CHARACTER*1
+             If SYM='S' or 'H', the generated matrix is symmetric, with
+               eigenvalues specified by D, COND, MODE, and DMAX; they
+               may be positive, negative, or zero.
+             If SYM='P', the generated matrix is symmetric, with
+               eigenvalues (= singular values) specified by D, COND,
+               MODE, and DMAX; they will not be negative.
+             If SYM='N', the generated matrix is nonsymmetric, with
+               singular values specified by D, COND, MODE, and DMAX;
+               they will not be negative.
+             Not modified.
 
-    KL     - INTEGER   
-             This specifies the lower bandwidth of the  matrix. For   
-             example, KL=0 implies upper triangular, KL=1 implies upper   
-             Hessenberg, and KL being at least M-1 means that the matrix 
-  
-             has full lower bandwidth.  KL must equal KU if the matrix   
-             is symmetric.   
-             Not modified.   
+    D      - DOUBLE PRECISION array, dimension ( MIN( M , N ) )
+             This array is used to specify the singular values or
+             eigenvalues of A (see SYM, above.)  If MODE=0, then D is
+             assumed to contain the singular/eigenvalues, otherwise
+             they will be computed according to MODE, COND, and DMAX,
+             and placed in D.
+             Modified if MODE is nonzero.
 
-    KU     - INTEGER   
-             This specifies the upper bandwidth of the  matrix. For   
-             example, KU=0 implies lower triangular, KU=1 implies lower   
-             Hessenberg, and KU being at least N-1 means that the matrix 
-  
-             has full upper bandwidth.  KL must equal KU if the matrix   
-             is symmetric.   
-             Not modified.   
+    MODE   - INTEGER
+             On entry this describes how the singular/eigenvalues are to
 
-    PACK   - CHARACTER*1   
-             This specifies packing of matrix as follows:   
-             'N' => no packing   
-             'U' => zero out all subdiagonal entries (if symmetric)   
-             'L' => zero out all superdiagonal entries (if symmetric)   
-             'C' => store the upper triangle columnwise   
-                    (only if the matrix is symmetric or upper triangular) 
-  
-             'R' => store the lower triangle columnwise   
-                    (only if the matrix is symmetric or lower triangular) 
-  
-             'B' => store the lower triangle in band storage scheme   
-                    (only if matrix symmetric or lower triangular)   
-             'Q' => store the upper triangle in band storage scheme   
-                    (only if matrix symmetric or upper triangular)   
-             'Z' => store the entire matrix in band storage scheme   
-                        (pivoting can be provided for by using this   
-                        option to store A in the trailing rows of   
-                        the allocated storage)   
+             be specified:
+             MODE = 0 means use D as input
+             MODE = 1 sets D(1)=1 and D(2:N)=1.0/COND
+             MODE = 2 sets D(1:N-1)=1 and D(N)=1.0/COND
+             MODE = 3 sets D(I)=COND**(-(I-1)/(N-1))
+             MODE = 4 sets D(i)=1 - (i-1)/(N-1)*(1 - 1/COND)
+             MODE = 5 sets D to random numbers in the range
+                      ( 1/COND , 1 ) such that their logarithms
+                      are uniformly distributed.
+             MODE = 6 set D to random numbers from same distribution
+                      as the rest of the matrix.
+             MODE < 0 has the same meaning as ABS(MODE), except that
+                the order of the elements of D is reversed.
+             Thus if MODE is positive, D has entries ranging from
+                1 to 1/COND, if negative, from 1/COND to 1,
+             If SYM='S' or 'H', and MODE is neither 0, 6, nor -6, then
+                the elements of D will also be multiplied by a random
+                sign (i.e., +1 or -1.)
+             Not modified.
 
-             Using these options, the various LAPACK packed and banded   
-             storage schemes can be obtained:   
-             GB               - use 'Z'   
-             PB, SB or TB     - use 'B' or 'Q'   
-             PP, SP or TP     - use 'C' or 'R'   
+    COND   - DOUBLE PRECISION
+             On entry, this is used as described under MODE above.
+             If used, it must be >= 1. Not modified.
 
-             If two calls to DLATMS differ only in the PACK parameter,   
-             they will generate mathematically equivalent matrices.   
-             Not modified.   
+    DMAX   - DOUBLE PRECISION
+             If MODE is neither -6, 0 nor 6, the contents of D, as
+             computed according to MODE and COND, will be scaled by
+             DMAX / max(abs(D(i))); thus, the maximum absolute eigen- or
 
-    A      - DOUBLE PRECISION array, dimension ( LDA, N )   
-             On exit A is the desired test matrix.  A is first generated 
-             in full (unpacked) form, and then packed, if so specified   
-             by PACK.  Thus, the first M elements of the first N   
-             columns will always be modified.  If PACK specifies a   
-             packed or banded storage scheme, all LDA elements of the   
-             first N columns will be modified; the elements of the   
-             array which do not correspond to elements of the generated   
-             matrix are set to zero.   
-             Modified.   
+             singular value (which is to say the norm) will be abs(DMAX).
 
-    LDA    - INTEGER   
-             LDA specifies the first dimension of A as declared in the   
-             calling program.  If PACK='N', 'U', 'L', 'C', or 'R', then   
-             LDA must be at least M.  If PACK='B' or 'Q', then LDA must   
-             be at least MIN( KL, M-1) (which is equal to MIN(KU,N-1)).   
-             If PACK='Z', LDA must be large enough to hold the packed   
-             array: MIN( KU, N-1) + MIN( KL, M-1) + 1.   
-             Not modified.   
+             Note that DMAX need not be positive: if DMAX is negative
+             (or zero), D will be scaled by a negative number (or zero).
 
-    WORK   - DOUBLE PRECISION array, dimension ( 3*MAX( N , M ) )   
-             Workspace.   
-             Modified.   
+             Not modified.
 
-    INFO   - INTEGER   
-             Error code.  On exit, INFO will be set to one of the   
-             following values:   
-               0 => normal return   
-              -1 => M negative or unequal to N and SYM='S', 'H', or 'P'   
-              -2 => N negative   
-              -3 => DIST illegal string   
-              -5 => SYM illegal string   
-              -7 => MODE not in range -6 to 6   
-              -8 => COND less than 1.0, and MODE neither -6, 0 nor 6   
-             -10 => KL negative   
-             -11 => KU negative, or SYM='S' or 'H' and KU not equal to KL 
-  
-             -12 => PACK illegal string, or PACK='U' or 'L', and SYM='N'; 
-  
-                    or PACK='C' or 'Q' and SYM='N' and KL is not zero;   
-                    or PACK='R' or 'B' and SYM='N' and KU is not zero;   
-                    or PACK='U', 'L', 'C', 'R', 'B', or 'Q', and M is not 
-  
-                    N.   
-             -14 => LDA is less than M, or PACK='Z' and LDA is less than 
-  
-                    MIN(KU,N-1) + MIN(KL,M-1) + 1.   
-              1  => Error return from DLATM1   
-              2  => Cannot scale to DMAX (max. sing. value is 0)   
-              3  => Error return from DLAGGE or SLAGSY   
+    KL     - INTEGER
+             This specifies the lower bandwidth of the  matrix. For
+             example, KL=0 implies upper triangular, KL=1 implies upper
+             Hessenberg, and KL being at least M-1 means that the matrix
 
-    ===================================================================== 
-  
+             has full lower bandwidth.  KL must equal KU if the matrix
+             is symmetric.
+             Not modified.
+
+    KU     - INTEGER
+             This specifies the upper bandwidth of the  matrix. For
+             example, KU=0 implies lower triangular, KU=1 implies lower
+             Hessenberg, and KU being at least N-1 means that the matrix
+
+             has full upper bandwidth.  KL must equal KU if the matrix
+             is symmetric.
+             Not modified.
+
+    PACK   - CHARACTER*1
+             This specifies packing of matrix as follows:
+             'N' => no packing
+             'U' => zero out all subdiagonal entries (if symmetric)
+             'L' => zero out all superdiagonal entries (if symmetric)
+             'C' => store the upper triangle columnwise
+                    (only if the matrix is symmetric or upper triangular)
+
+             'R' => store the lower triangle columnwise
+                    (only if the matrix is symmetric or lower triangular)
+
+             'B' => store the lower triangle in band storage scheme
+                    (only if matrix symmetric or lower triangular)
+             'Q' => store the upper triangle in band storage scheme
+                    (only if matrix symmetric or upper triangular)
+             'Z' => store the entire matrix in band storage scheme
+                        (pivoting can be provided for by using this
+                        option to store A in the trailing rows of
+                        the allocated storage)
+
+             Using these options, the various LAPACK packed and banded
+             storage schemes can be obtained:
+             GB               - use 'Z'
+             PB, SB or TB     - use 'B' or 'Q'
+             PP, SP or TP     - use 'C' or 'R'
+
+             If two calls to DLATMS differ only in the PACK parameter,
+             they will generate mathematically equivalent matrices.
+             Not modified.
+
+    A      - DOUBLE PRECISION array, dimension ( LDA, N )
+             On exit A is the desired test matrix.  A is first generated
+             in full (unpacked) form, and then packed, if so specified
+             by PACK.  Thus, the first M elements of the first N
+             columns will always be modified.  If PACK specifies a
+             packed or banded storage scheme, all LDA elements of the
+             first N columns will be modified; the elements of the
+             array which do not correspond to elements of the generated
+             matrix are set to zero.
+             Modified.
+
+    LDA    - INTEGER
+             LDA specifies the first dimension of A as declared in the
+             calling program.  If PACK='N', 'U', 'L', 'C', or 'R', then
+             LDA must be at least M.  If PACK='B' or 'Q', then LDA must
+             be at least MIN( KL, M-1) (which is equal to MIN(KU,N-1)).
+             If PACK='Z', LDA must be large enough to hold the packed
+             array: MIN( KU, N-1) + MIN( KL, M-1) + 1.
+             Not modified.
+
+    WORK   - DOUBLE PRECISION array, dimension ( 3*MAX( N , M ) )
+             Workspace.
+             Modified.
+
+    INFO   - INTEGER
+             Error code.  On exit, INFO will be set to one of the
+             following values:
+               0 => normal return
+              -1 => M negative or unequal to N and SYM='S', 'H', or 'P'
+              -2 => N negative
+              -3 => DIST illegal string
+              -5 => SYM illegal string
+              -7 => MODE not in range -6 to 6
+              -8 => COND less than 1.0, and MODE neither -6, 0 nor 6
+             -10 => KL negative
+             -11 => KU negative, or SYM='S' or 'H' and KU not equal to KL
+
+             -12 => PACK illegal string, or PACK='U' or 'L', and SYM='N';
+
+                    or PACK='C' or 'Q' and SYM='N' and KL is not zero;
+                    or PACK='R' or 'B' and SYM='N' and KU is not zero;
+                    or PACK='U', 'L', 'C', 'R', 'B', or 'Q', and M is not
+
+                    N.
+             -14 => LDA is less than M, or PACK='Z' and LDA is less than
+
+                    MIN(KU,N-1) + MIN(KL,M-1) + 1.
+              1  => Error return from DLATM1
+              2  => Cannot scale to DMAX (max. sing. value is 0)
+              3  => Error return from DLAGGE or SLAGSY
+
+    =====================================================================
 
 
-       1)      Decode and Test the input parameters.   
-               Initialize flags & seed.   
+
+       1)      Decode and Test the input parameters.
+               Initialize flags & seed.
 
        Parameter adjustments */
     --iseed;
@@ -425,7 +425,7 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 	minlda = *m;
     }
 
-/*     Use Givens rotation method if bandwidth small enough,   
+/*     Use Givens rotation method if bandwidth small enough,
        or if LDA is too small to store the matrix unpacked. */
 
     givens = FALSE_;
@@ -464,8 +464,8 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 	*info = -10;
     } else if (*ku < 0 || isym != 1 && *kl != *ku) {
 	*info = -11;
-    } else if (ipack == -1 || isympk == 1 && isym == 1 || isympk == 2 && isym 
-	    == 1 && *kl > 0 || isympk == 3 && isym == 1 && *ku > 0 || isympk 
+    } else if (ipack == -1 || isympk == 1 && isym == 1 || isympk == 2 && isym
+	    == 1 && *kl > 0 || isympk == 3 && isym == 1 && *ku > 0 || isympk
 	    != 0 && *m != *n) {
 	*info = -12;
     } else if (*lda < max(1,minlda)) {
@@ -489,7 +489,7 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 	++iseed[4];
     }
 
-/*     2)      Set up D  if indicated.   
+/*     2)      Set up D  if indicated.
 
                Compute D according to COND and MODE */
 
@@ -499,7 +499,7 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 	return 0;
     }
 
-/*     Choose Top-Down if D is (apparently) increasing,   
+/*     Choose Top-Down if D is (apparently) increasing,
        Bottom-Up if D is (apparently) decreasing. */
 
     if (abs(d[1]) <= (d__1 = d[mnmin], abs(d__1))) {
@@ -532,13 +532,13 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 
     }
 
-/*     3)      Generate Banded Matrix using Givens rotations.   
-               Also the special case of UUB=LLB=0   
+/*     3)      Generate Banded Matrix using Givens rotations.
+               Also the special case of UUB=LLB=0
 
-                 Compute Addressing constants to cover all   
-                 storage formats.  Whether GE, SY, GB, or SB,   
-                 upper or lower triangle or both,   
-                 the (i,j)-th element is in   
+                 Compute Addressing constants to cover all
+                 storage formats.  Whether GE, SY, GB, or SB,
+                 upper or lower triangle or both,
+                 the (i,j)-th element is in
                  A( i - ISKEW*j + IOFFST, j ) */
 
     if (ipack > 4) {
@@ -555,14 +555,14 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 	ioffst = 0;
     }
 
-/*     IPACKG is the format that the matrix is generated in. If this is   
-       different from IPACK, then the matrix must be repacked at the   
+/*     IPACKG is the format that the matrix is generated in. If this is
+       different from IPACK, then the matrix must be repacked at the
        end.  It also signals how to compute the norm, for scaling. */
 
     ipackg = 0;
     dlaset_slu("Full", lda, n, &c_b22, &c_b22, &a[a_offset], lda);
 
-/*     Diagonal Matrix -- We are done, unless it   
+/*     Diagonal Matrix -- We are done, unless it
        is to be stored SP/PP/TP (PACK='R' or 'C') */
 
     if (llb == 0 && uub == 0) {
@@ -574,7 +574,7 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 
     } else if (givens) {
 
-/*        Check whether to use Givens rotations,   
+/*        Check whether to use Givens rotations,
           Householder transformations, or nothing. */
 
 	if (isym == 1) {
@@ -596,19 +596,19 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 		i__1 = uub;
 		for (jku = 1; jku <= i__1; ++jku) {
 
-/*                 Transform from bandwidth JKL, JKU-1 to 
-JKL, JKU   
+/*                 Transform from bandwidth JKL, JKU-1 to
+JKL, JKU
 
-                   Last row actually rotated is M   
+                   Last row actually rotated is M
                    Last column actually rotated is MIN( M+
-JKU, N )   
+JKU, N )
 
    Computing MIN */
 		    i__3 = *m + jku;
 		    i__2 = min(i__3,*n) + jkl - 1;
 		    for (jr = 1; jr <= i__2; ++jr) {
 			extra = 0.;
-			angle = dlarnd_slu(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) *
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -621,7 +621,7 @@ JKU, N )
 			    il = min(i__3,i__4) + 1 - icol;
 			    L__1 = jr > jkl;
 			    dlarot_slu(&c_true, &L__1, &c_false, &il, &c, &s, &a[
-				    jr - iskew * icol + ioffst + icol * 
+				    jr - iskew * icol + ioffst + icol *
 				    a_dim1], &ilda, &extra, &dummy);
 			}
 
@@ -630,11 +630,11 @@ JKU, N )
 			ir = jr;
 			ic = icol;
 			i__3 = -jkl - jku;
-			for (jch = jr - jkl; i__3 < 0 ? jch >= 1 : jch <= 1; 
+			for (jch = jr - jkl; i__3 < 0 ? jch >= 1 : jch <= 1;
 				jch += i__3) {
 			    if (ir < *m) {
-				dlartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst 
-					+ (ic + 1) * a_dim1], &extra, &c, &s, 
+				dlartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst
+					+ (ic + 1) * a_dim1], &extra, &c, &s,
 					&dummy);
 			    }
 /* Computing MAX */
@@ -648,7 +648,7 @@ JKU, N )
 				    d__1, &a[irow - iskew * ic + ioffst + ic *
 				     a_dim1], &ilda, &temp, &extra);
 			    if (iltemp) {
-				dlartg_slu(&a[irow + 1 - iskew * (ic + 1) + 
+				dlartg_slu(&a[irow + 1 - iskew * (ic + 1) +
 					ioffst + (ic + 1) * a_dim1], &temp, &
 					c, &s, &dummy);
 /* Computing MAX */
@@ -659,7 +659,7 @@ JKU, N )
 				L__1 = jch > jku + jkl;
 				d__1 = -s;
 				dlarot_slu(&c_true, &L__1, &c_true, &il, &c, &
-					d__1, &a[irow - iskew * icol + ioffst 
+					d__1, &a[irow - iskew * icol + ioffst
 					+ icol * a_dim1], &ilda, &extra, &
 					temp);
 				ic = icol;
@@ -676,15 +676,15 @@ JKU, N )
 		i__1 = llb;
 		for (jkl = 1; jkl <= i__1; ++jkl) {
 
-/*                 Transform from bandwidth JKL-1, JKU to 
-JKL, JKU   
+/*                 Transform from bandwidth JKL-1, JKU to
+JKL, JKU
 
    Computing MIN */
 		    i__3 = *n + jkl;
 		    i__2 = min(i__3,*m) + jku - 1;
 		    for (jc = 1; jc <= i__2; ++jc) {
 			extra = 0.;
-			angle = dlarnd_slu(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) *
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -697,7 +697,7 @@ JKL, JKU
 			    il = min(i__3,i__4) + 1 - irow;
 			    L__1 = jc > jku;
 			    dlarot_slu(&c_false, &L__1, &c_false, &il, &c, &s, &
-				    a[irow - iskew * jc + ioffst + jc * 
+				    a[irow - iskew * jc + ioffst + jc *
 				    a_dim1], &ilda, &extra, &dummy);
 			}
 
@@ -706,11 +706,11 @@ JKL, JKU
 			ic = jc;
 			ir = irow;
 			i__3 = -jkl - jku;
-			for (jch = jc - jku; i__3 < 0 ? jch >= 1 : jch <= 1; 
+			for (jch = jc - jku; i__3 < 0 ? jch >= 1 : jch <= 1;
 				jch += i__3) {
 			    if (ic < *n) {
-				dlartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst 
-					+ (ic + 1) * a_dim1], &extra, &c, &s, 
+				dlartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst
+					+ (ic + 1) * a_dim1], &extra, &c, &s,
 					&dummy);
 			    }
 /* Computing MAX */
@@ -721,11 +721,11 @@ JKL, JKU
 			    iltemp = jch > jkl;
 			    d__1 = -s;
 			    dlarot_slu(&c_true, &iltemp, &c_true, &il, &c, &d__1,
-				     &a[ir - iskew * icol + ioffst + icol * 
+				     &a[ir - iskew * icol + ioffst + icol *
 				    a_dim1], &ilda, &temp, &extra);
 			    if (iltemp) {
-				dlartg_slu(&a[ir + 1 - iskew * (icol + 1) + 
-					ioffst + (icol + 1) * a_dim1], &temp, 
+				dlartg_slu(&a[ir + 1 - iskew * (icol + 1) +
+					ioffst + (icol + 1) * a_dim1], &temp,
 					&c, &s, &dummy);
 /* Computing MAX */
 				i__4 = 1, i__5 = jch - jkl - jku;
@@ -735,7 +735,7 @@ JKL, JKU
 				L__1 = jch > jkl + jku;
 				d__1 = -s;
 				dlarot_slu(&c_false, &L__1, &c_true, &il, &c, &
-					d__1, &a[irow - iskew * icol + ioffst 
+					d__1, &a[irow - iskew * icol + ioffst
 					+ icol * a_dim1], &ilda, &extra, &
 					temp);
 				ic = icol;
@@ -756,12 +756,12 @@ JKL, JKU
 		i__1 = uub;
 		for (jku = 1; jku <= i__1; ++jku) {
 
-/*                 Transform from bandwidth JKL, JKU-1 to 
-JKL, JKU   
+/*                 Transform from bandwidth JKL, JKU-1 to
+JKL, JKU
 
-                   First row actually rotated is M   
+                   First row actually rotated is M
                    First column actually rotated is MIN( M
-+JKU, N )   
++JKU, N )
 
    Computing MIN */
 		    i__2 = *m, i__3 = *n + jkl;
@@ -771,7 +771,7 @@ JKL, JKU
 		    i__3 = 1 - jkl;
 		    for (jc = min(i__2,*n) - 1; jc >= i__3; --jc) {
 			extra = 0.;
-			angle = dlarnd_slu(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) *
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -784,7 +784,7 @@ JKL, JKU
 			    il = min(i__2,i__4) + 1 - irow;
 			    L__1 = jc + jkl < *m;
 			    dlarot_slu(&c_false, &c_false, &L__1, &il, &c, &s, &
-				    a[irow - iskew * jc + ioffst + jc * 
+				    a[irow - iskew * jc + ioffst + jc *
 				    a_dim1], &ilda, &dummy, &extra);
 			}
 
@@ -793,11 +793,11 @@ JKL, JKU
 			ic = jc;
 			i__2 = iendch;
 			i__4 = jkl + jku;
-			for (jch = jc + jkl; i__4 < 0 ? jch >= i__2 : jch <= 
+			for (jch = jc + jkl; i__4 < 0 ? jch >= i__2 : jch <=
 				i__2; jch += i__4) {
 			    ilextr = ic > 0;
 			    if (ilextr) {
-				dlartg_slu(&a[jch - iskew * ic + ioffst + ic * 
+				dlartg_slu(&a[jch - iskew * ic + ioffst + ic *
 					a_dim1], &extra, &c, &s, &dummy);
 			    }
 			    ic = max(1,ic);
@@ -807,11 +807,11 @@ JKL, JKU
 			    iltemp = jch + jku < *n;
 			    temp = 0.;
 			    i__5 = icol + 2 - ic;
-			    dlarot_slu(&c_true, &ilextr, &iltemp, &i__5, &c, &s, 
-				    &a[jch - iskew * ic + ioffst + ic * 
+			    dlarot_slu(&c_true, &ilextr, &iltemp, &i__5, &c, &s,
+				    &a[jch - iskew * ic + ioffst + ic *
 				    a_dim1], &ilda, &extra, &temp);
 			    if (iltemp) {
-				dlartg_slu(&a[jch - iskew * icol + ioffst + icol 
+				dlartg_slu(&a[jch - iskew * icol + ioffst + icol
 					* a_dim1], &temp, &c, &s, &dummy);
 /* Computing MIN */
 				i__5 = iendch, i__6 = jch + jkl + jku;
@@ -819,7 +819,7 @@ JKL, JKU
 				extra = 0.;
 				L__1 = jch + jkl + jku <= iendch;
 				dlarot_slu(&c_false, &c_true, &L__1, &il, &c, &s,
-					 &a[jch - iskew * icol + ioffst + 
+					 &a[jch - iskew * icol + ioffst +
 					icol * a_dim1], &ilda, &temp, &extra);
 				ic = icol;
 			    }
@@ -834,12 +834,12 @@ JKL, JKU
 		i__1 = llb;
 		for (jkl = 1; jkl <= i__1; ++jkl) {
 
-/*                 Transform from bandwidth JKL-1, JKU to 
-JKL, JKU   
+/*                 Transform from bandwidth JKL-1, JKU to
+JKL, JKU
 
                    First row actually rotated is MIN( N+JK
-L, M )   
-                   First column actually rotated is N   
+L, M )
+                   First column actually rotated is N
 
    Computing MIN */
 		    i__3 = *n, i__4 = *m + jku;
@@ -849,7 +849,7 @@ L, M )
 		    i__4 = 1 - jku;
 		    for (jr = min(i__3,*m) - 1; jr >= i__4; --jr) {
 			extra = 0.;
-			angle = dlarnd_slu(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) *
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -862,7 +862,7 @@ L, M )
 			    il = min(i__3,i__2) + 1 - icol;
 			    L__1 = jr + jku < *n;
 			    dlarot_slu(&c_true, &c_false, &L__1, &il, &c, &s, &a[
-				    jr - iskew * icol + ioffst + icol * 
+				    jr - iskew * icol + ioffst + icol *
 				    a_dim1], &ilda, &dummy, &extra);
 			}
 
@@ -871,11 +871,11 @@ L, M )
 			ir = jr;
 			i__3 = iendch;
 			i__2 = jkl + jku;
-			for (jch = jr + jku; i__2 < 0 ? jch >= i__3 : jch <= 
+			for (jch = jr + jku; i__2 < 0 ? jch >= i__3 : jch <=
 				i__3; jch += i__2) {
 			    ilextr = ir > 0;
 			    if (ilextr) {
-				dlartg_slu(&a[ir - iskew * jch + ioffst + jch * 
+				dlartg_slu(&a[ir - iskew * jch + ioffst + jch *
 					a_dim1], &extra, &c, &s, &dummy);
 			    }
 			    ir = max(1,ir);
@@ -886,7 +886,7 @@ L, M )
 			    temp = 0.;
 			    i__5 = irow + 2 - ir;
 			    dlarot_slu(&c_false, &ilextr, &iltemp, &i__5, &c, &s,
-				     &a[ir - iskew * jch + ioffst + jch * 
+				     &a[ir - iskew * jch + ioffst + jch *
 				    a_dim1], &ilda, &extra, &temp);
 			    if (iltemp) {
 				dlartg_slu(&a[irow - iskew * jch + ioffst + jch *
@@ -896,7 +896,7 @@ L, M )
 				il = min(i__5,i__6) + 2 - jch;
 				extra = 0.;
 				L__1 = jch + jkl + jku <= iendch;
-				dlarot_slu(&c_true, &c_true, &L__1, &il, &c, &s, 
+				dlarot_slu(&c_true, &c_true, &L__1, &il, &c, &s,
 					&a[irow - iskew * jch + ioffst + jch *
 					 a_dim1], &ilda, &temp, &extra);
 				ir = irow;
@@ -941,9 +941,9 @@ L, M )
 			i__2 = jc + 1, i__3 = k + 2;
 			il = min(i__2,i__3);
 			extra = 0.;
-			temp = a[jc - iskew * (jc + 1) + ioffg + (jc + 1) * 
+			temp = a[jc - iskew * (jc + 1) + ioffg + (jc + 1) *
 				a_dim1];
-			angle = dlarnd_slu(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) *
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = sin(angle);
@@ -958,17 +958,17 @@ L, M )
 				(1 - iskew) * jc + ioffg + jc * a_dim1], &
 				ilda, &temp, &dummy);
 
-/*                    Chase EXTRA back up the matrix 
+/*                    Chase EXTRA back up the matrix
 */
 
 			icol = jc;
 			i__2 = -k;
-			for (jch = jc - k; i__2 < 0 ? jch >= 1 : jch <= 1; 
+			for (jch = jc - k; i__2 < 0 ? jch >= 1 : jch <= 1;
 				jch += i__2) {
-			    dlartg_slu(&a[jch + 1 - iskew * (icol + 1) + ioffg + 
+			    dlartg_slu(&a[jch + 1 - iskew * (icol + 1) + ioffg +
 				    (icol + 1) * a_dim1], &extra, &c, &s, &
 				    dummy);
-			    temp = a[jch - iskew * (jch + 1) + ioffg + (jch + 
+			    temp = a[jch - iskew * (jch + 1) + ioffg + (jch +
 				    1) * a_dim1];
 			    i__3 = k + 2;
 			    d__1 = -s;
@@ -984,8 +984,8 @@ L, M )
 			    extra = 0.;
 			    L__1 = jch > k;
 			    d__1 = -s;
-			    dlarot_slu(&c_false, &L__1, &c_true, &il, &c, &d__1, 
-				    &a[irow - iskew * jch + ioffg + jch * 
+			    dlarot_slu(&c_false, &L__1, &c_true, &il, &c, &d__1,
+				    &a[irow - iskew * jch + ioffg + jch *
 				    a_dim1], &ilda, &extra, &temp);
 			    icol = jch;
 /* L150: */
@@ -996,7 +996,7 @@ L, M )
 		}
 
 /*              If we need lower triangle, copy from upper. No
-te that   
+te that
                 the order of copying is chosen to work for 'q'
  -> 'b' */
 
@@ -1008,7 +1008,7 @@ te that
 			i__2 = *n, i__3 = jc + uub;
 			i__4 = min(i__2,i__3);
 			for (jr = jc; jr <= i__4; ++jr) {
-			    a[jr + irow + jc * a_dim1] = a[jc - iskew * jr + 
+			    a[jr + irow + jc * a_dim1] = a[jc - iskew * jr +
 				    ioffg + jr * a_dim1];
 /* L180: */
 			}
@@ -1055,12 +1055,12 @@ te that
 			il = min(i__4,i__2);
 			extra = 0.;
 			temp = a[(1 - iskew) * jc + 1 + ioffg + jc * a_dim1];
-			angle = dlarnd_slu(&c__1, &iseed[1]) * 
+			angle = dlarnd_slu(&c__1, &iseed[1]) *
 				6.2831853071795864769252867663;
 			c = cos(angle);
 			s = -sin(angle);
 			L__1 = *n - jc > k;
-			dlarot_slu(&c_false, &c_true, &L__1, &il, &c, &s, &a[(1 
+			dlarot_slu(&c_false, &c_true, &L__1, &il, &c, &s, &a[(1
 				- iskew) * jc + ioffg + jc * a_dim1], &ilda, &
 				temp, &extra);
 /* Computing MAX */
@@ -1077,15 +1077,15 @@ te that
 			icol = jc;
 			i__4 = *n - 1;
 			i__2 = k;
-			for (jch = jc + k; i__2 < 0 ? jch >= i__4 : jch <= 
+			for (jch = jc + k; i__2 < 0 ? jch >= i__4 : jch <=
 				i__4; jch += i__2) {
-			    dlartg_slu(&a[jch - iskew * icol + ioffg + icol * 
+			    dlartg_slu(&a[jch - iskew * icol + ioffg + icol *
 				    a_dim1], &extra, &c, &s, &dummy);
-			    temp = a[(1 - iskew) * jch + 1 + ioffg + jch * 
+			    temp = a[(1 - iskew) * jch + 1 + ioffg + jch *
 				    a_dim1];
 			    i__3 = k + 2;
-			    dlarot_slu(&c_true, &c_true, &c_true, &i__3, &c, &s, 
-				    &a[jch - iskew * icol + ioffg + icol * 
+			    dlarot_slu(&c_true, &c_true, &c_true, &i__3, &c, &s,
+				    &a[jch - iskew * icol + ioffg + icol *
 				    a_dim1], &ilda, &extra, &temp);
 /* Computing MIN */
 			    i__3 = *n + 1 - jch, i__5 = k + 2;
@@ -1104,7 +1104,7 @@ te that
 		}
 
 /*              If we need upper triangle, copy from lower. No
-te that   
+te that
                 the order of copying is chosen to work for 'b'
  -> 'q' */
 
@@ -1115,7 +1115,7 @@ te that
 			i__2 = 1, i__4 = jc - uub;
 			i__1 = max(i__2,i__4);
 			for (jr = jc; jr >= i__1; --jr) {
-			    a[jr + irow + jc * a_dim1] = a[jc - iskew * jr + 
+			    a[jr + irow + jc * a_dim1] = a[jc - iskew * jr +
 				    ioffg + jr * a_dim1];
 /* L250: */
 			}
@@ -1143,10 +1143,10 @@ te that
 
     } else {
 
-/*        4)      Generate Banded Matrix by first   
-                  Rotating by random Unitary matrices,   
-                  then reducing the bandwidth using Householder   
-                  transformations.   
+/*        4)      Generate Banded Matrix by first
+                  Rotating by random Unitary matrices,
+                  then reducing the bandwidth using Householder
+                  transformations.
 
                   Note: we should get here only if LDA .ge. N */
 
@@ -1246,10 +1246,10 @@ te that
 	} else if (ipack >= 5) {
 
 /*           'B' -- The lower triangle is packed as a band matrix.
-   
+
              'Q' -- The upper triangle is packed as a band matrix.
-   
-             'Z' -- The whole matrix is packed as a band matrix. 
+
+             'Z' -- The whole matrix is packed as a band matrix.
 */
 
 	    if (ipack == 5) {
@@ -1283,9 +1283,9 @@ te that
 	    }
 	}
 
-/*        If packed, zero out extraneous elements.   
+/*        If packed, zero out extraneous elements.
 
-          Symmetric/Triangular Packed --   
+          Symmetric/Triangular Packed --
           zero out everything after A(IROW,ICOL) */
 
 	if (ipack == 3 || ipack == 4) {
@@ -1302,11 +1302,11 @@ te that
 
 	} else if (ipack >= 5) {
 
-/*           Packed Band --   
-                1st row is now in A( UUB+2-j, j), zero above it   
-                m-th row is now in A( M+UUB-j,j), zero below it   
+/*           Packed Band --
+                1st row is now in A( UUB+2-j, j), zero above it
+                m-th row is now in A( M+UUB-j,j), zero below it
                 last non-zero diagonal is now in A( UUB+LLB+1,j ),
-   
+
                    zero below it, too. */
 
 	    ir1 = uub + llb + 2;
@@ -1318,7 +1318,7 @@ te that
 		    a[jr + jc * a_dim1] = 0.;
 /* L430: */
 		}
-/* Computing MAX   
+/* Computing MAX
    Computing MIN */
 		i__3 = ir1, i__5 = ir2 - jc;
 		i__2 = 1, i__4 = min(i__3,i__5);

@@ -12,11 +12,11 @@ static complex c_b2 = {1.f,0.f};
 static integer c__3 = 3;
 static integer c__1 = 1;
 
-/* Subroutine */ int clagsy_slu(integer *n, integer *k, real *d, complex *a, 
+/* Subroutine */ int clagsy_slu(integer *n, integer *k, real *d, complex *a,
 	integer *lda, integer *iseed, complex *work, integer *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6, i__7, i__8, 
+    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6, i__7, i__8,
 	    i__9;
     doublereal d__1;
     complex q__1, q__2, q__3, q__4;
@@ -27,18 +27,18 @@ static integer c__1 = 1;
 
     /* Local variables */
     static integer i, j;
-    extern /* Subroutine */ int cgerc_(integer *, integer *, complex *, 
+    extern /* Subroutine */ int cgerc_(integer *, integer *, complex *,
 	    complex *, integer *, complex *, integer *, complex *, integer *);
     static complex alpha;
-    extern /* Subroutine */ int cscal_(integer *, complex *, complex *, 
+    extern /* Subroutine */ int cscal_(integer *, complex *, complex *,
 	    integer *);
-    extern /* Complex */ VOID cdotc_(complex *, integer *, complex *, integer 
+    extern /* Complex */ VOID cdotc_(complex *, integer *, complex *, integer
 	    *, complex *, integer *);
     extern /* Subroutine */ int cgemv_(char *, integer *, integer *, complex *
 	    , complex *, integer *, complex *, integer *, complex *, complex *
-	    , integer *), caxpy_(integer *, complex *, complex *, 
-	    integer *, complex *, integer *), csymv_sluslu(char *, integer *, 
-	    complex *, complex *, integer *, complex *, integer *, complex *, 
+	    , integer *), caxpy_(integer *, complex *, complex *,
+	    integer *, complex *, integer *), csymv_sluslu(char *, integer *,
+	    complex *, complex *, integer *, complex *, integer *, complex *,
 	    complex *, integer *);
     extern real scnrm2_(integer *, complex *, integer *);
     static integer ii, jj;
@@ -50,58 +50,58 @@ static integer c__1 = 1;
     static complex tau;
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       September 30, 1994   
+/*  -- LAPACK auxiliary test routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       September 30, 1994
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    CLAGSY generates a complex symmetric matrix A, by pre- and post-   
-    multiplying a real diagonal matrix D with a random unitary matrix:   
-    A = U*D*U**T. The semi-bandwidth may then be reduced to k by   
-    additional unitary transformations.   
+    CLAGSY generates a complex symmetric matrix A, by pre- and post-
+    multiplying a real diagonal matrix D with a random unitary matrix:
+    A = U*D*U**T. The semi-bandwidth may then be reduced to k by
+    additional unitary transformations.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    N       (input) INTEGER   
-            The order of the matrix A.  N >= 0.   
+    N       (input) INTEGER
+            The order of the matrix A.  N >= 0.
 
-    K       (input) INTEGER   
-            The number of nonzero subdiagonals within the band of A.   
-            0 <= K <= N-1.   
+    K       (input) INTEGER
+            The number of nonzero subdiagonals within the band of A.
+            0 <= K <= N-1.
 
-    D       (input) REAL array, dimension (N)   
-            The diagonal elements of the diagonal matrix D.   
+    D       (input) REAL array, dimension (N)
+            The diagonal elements of the diagonal matrix D.
 
-    A       (output) COMPLEX array, dimension (LDA,N)   
-            The generated n by n symmetric matrix A (the full matrix is   
-            stored).   
+    A       (output) COMPLEX array, dimension (LDA,N)
+            The generated n by n symmetric matrix A (the full matrix is
+            stored).
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= N.   
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= N.
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    WORK    (workspace) COMPLEX array, dimension (2*N)   
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
 
-    INFO    (output) INTEGER   
-            = 0: successful exit   
-            < 0: if INFO = -i, the i-th argument had an illegal value   
+    WORK    (workspace) COMPLEX array, dimension (2*N)
 
-    ===================================================================== 
-  
+    INFO    (output) INTEGER
+            = 0: successful exit
+            < 0: if INFO = -i, the i-th argument had an illegal value
+
+    =====================================================================
 
 
-       Test the input arguments   
+
+       Test the input arguments
 
        Parameter adjustments */
     --d;
@@ -173,8 +173,8 @@ static integer c__1 = 1;
 	    tau.r = d__1, tau.i = 0.f;
 	}
 
-/*        apply random reflection to A(i:n,i:n) from the left   
-          and the right   
+/*        apply random reflection to A(i:n,i:n) from the left
+          and the right
 
           compute  y := tau * A * conjg(u) */
 
@@ -189,20 +189,20 @@ static integer c__1 = 1;
 /*        compute  v := y - 1/2 * tau * ( u, y ) * u */
 
 	q__3.r = -.5f, q__3.i = 0.f;
-	q__2.r = q__3.r * tau.r - q__3.i * tau.i, q__2.i = q__3.r * tau.i + 
+	q__2.r = q__3.r * tau.r - q__3.i * tau.i, q__2.i = q__3.r * tau.i +
 		q__3.i * tau.r;
 	i__1 = *n - i + 1;
 	cdotc_(&q__4, &i__1, &work[1], &c__1, &work[*n + 1], &c__1);
-	q__1.r = q__2.r * q__4.r - q__2.i * q__4.i, q__1.i = q__2.r * q__4.i 
+	q__1.r = q__2.r * q__4.r - q__2.i * q__4.i, q__1.i = q__2.r * q__4.i
 		+ q__2.i * q__4.r;
 	alpha.r = q__1.r, alpha.i = q__1.i;
 	i__1 = *n - i + 1;
 	caxpy_(&i__1, &alpha, &work[1], &c__1, &work[*n + 1], &c__1);
 
-/*        apply the transformation as a rank-2 update to A(i:n,i:n)   
+/*        apply the transformation as a rank-2 update to A(i:n,i:n)
 
-          CALL CSYR2( 'Lower', N-I+1, -ONE, WORK, 1, WORK( N+1 ), 1, 
-  
+          CALL CSYR2( 'Lower', N-I+1, -ONE, WORK, 1, WORK( N+1 ), 1,
+
           $               A( I, I ), LDA ) */
 
 	i__1 = *n;
@@ -270,11 +270,11 @@ static integer c__1 = 1;
 	i__2 = *n - *k - i + 1;
 	i__3 = *k - 1;
 	q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
-	cgerc_(&i__2, &i__3, &q__1, &a[*k + i + i * a_dim1], &c__1, &work[1], 
+	cgerc_(&i__2, &i__3, &q__1, &a[*k + i + i * a_dim1], &c__1, &work[1],
 		&c__1, &a[*k + i + (i + 1) * a_dim1], lda);
 
 /*        apply reflection to A(k+i:n,k+i:n) from the left and the rig
-ht   
+ht
 
           compute  y := tau * A * conjg(u) */
 
@@ -289,21 +289,21 @@ ht
 /*        compute  v := y - 1/2 * tau * ( u, y ) * u */
 
 	q__3.r = -.5f, q__3.i = 0.f;
-	q__2.r = q__3.r * tau.r - q__3.i * tau.i, q__2.i = q__3.r * tau.i + 
+	q__2.r = q__3.r * tau.r - q__3.i * tau.i, q__2.i = q__3.r * tau.i +
 		q__3.i * tau.r;
 	i__2 = *n - *k - i + 1;
 	cdotc_(&q__4, &i__2, &a[*k + i + i * a_dim1], &c__1, &work[1], &c__1);
-	q__1.r = q__2.r * q__4.r - q__2.i * q__4.i, q__1.i = q__2.r * q__4.i 
+	q__1.r = q__2.r * q__4.r - q__2.i * q__4.i, q__1.i = q__2.r * q__4.i
 		+ q__2.i * q__4.r;
 	alpha.r = q__1.r, alpha.i = q__1.i;
 	i__2 = *n - *k - i + 1;
 	caxpy_(&i__2, &alpha, &a[*k + i + i * a_dim1], &c__1, &work[1], &c__1)
 		;
 
-/*        apply symmetric rank-2 update to A(k+i:n,k+i:n)   
+/*        apply symmetric rank-2 update to A(k+i:n,k+i:n)
 
           CALL CSYR2( 'Lower', N-K-I+1, -ONE, A( K+I, I ), 1, WORK, 1,
-   
+
           $               A( K+I, K+I ), LDA ) */
 
 	i__2 = *n;
@@ -314,13 +314,13 @@ ht
 		i__5 = ii + jj * a_dim1;
 		i__6 = ii + i * a_dim1;
 		i__7 = jj - *k - i + 1;
-		q__3.r = a[i__6].r * work[i__7].r - a[i__6].i * work[i__7].i, 
+		q__3.r = a[i__6].r * work[i__7].r - a[i__6].i * work[i__7].i,
 			q__3.i = a[i__6].r * work[i__7].i + a[i__6].i * work[
 			i__7].r;
 		q__2.r = a[i__5].r - q__3.r, q__2.i = a[i__5].i - q__3.i;
 		i__8 = ii - *k - i + 1;
 		i__9 = jj + i * a_dim1;
-		q__4.r = work[i__8].r * a[i__9].r - work[i__8].i * a[i__9].i, 
+		q__4.r = work[i__8].r * a[i__9].r - work[i__8].i * a[i__9].i,
 			q__4.i = work[i__8].r * a[i__9].i + work[i__8].i * a[
 			i__9].r;
 		q__1.r = q__2.r - q__4.r, q__1.i = q__2.i - q__4.i;

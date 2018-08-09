@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -22,7 +22,7 @@ at the top-level directory.
  * and the preconditioned GMRES is applied to the equilibrated system.
  * The driver routine DGSISX is called twice to perform factorization
  * and apply preconditioner separately.
- * 
+ *
  * Note that DGSISX performs the following factorization:
  *     Pr*Dr*A*Dc*Pc^T ~= LU
  * with Pr being obtained from MC64 statically then partial pivoting
@@ -33,7 +33,7 @@ at the top-level directory.
  * Then GMRES step requires requires 2 procedures:
  *   1) Apply preconditioner M^{-1} = Pc^T*U^{-1}*L^{-1}*Pr
  *   2) Matrix-vector multiplication: w = A1*v
- * 
+ *
  * </pre>
  */
 
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
     NCformat *Astore;
     NCformat *Ustore;
     SCformat *Lstore;
-    GlobalLU_t	   Glu; /* facilitate multiple factorizations with 
+    GlobalLU_t	   Glu; /* facilitate multiple factorizations with
                            SamePattern_SameRowPerm                  */
     double   *a;
     int      *asub, *xa;
@@ -341,7 +341,7 @@ int main(int argc, char *argv[])
 		iter, resid, t);
 
 	/* Scale the solution back if equilibration was performed. */
-	if (*equed == 'C' || *equed == 'B') 
+	if (*equed == 'C' || *equed == 'B')
 	    for (i = 0; i < n; i++) x[i] *= C[i];
 
 	for (i = 0; i < m; i++) {

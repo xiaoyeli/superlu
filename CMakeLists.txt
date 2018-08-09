@@ -7,7 +7,7 @@
 # Required version
 cmake_minimum_required(VERSION 2.8.12)
 
-# Project Version	
+# Project Version
 project(SuperLU NONE)
 set(VERSION_MAJOR "5")
 set(VERSION_MINOR "2")
@@ -39,7 +39,7 @@ SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
 
 # when building, don't use the install RPATH already
 # (but later on when installing)
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 
 # the RPATH to be used when installing
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
@@ -201,38 +201,38 @@ if(enable_doc)
     if(DOXYGEN_DOT_FOUND)
       set(HAVE_DOT "YES")
       set(DOT_EXECUTABLE ${DOXYGEN_DOT_EXECUTABLE})
-      message(STATUS "Graphviz    (dot)                 ${DOXYGEN_DOT_EXECUTABLE}")	
+      message(STATUS "Graphviz    (dot)                 ${DOXYGEN_DOT_EXECUTABLE}")
     else()
       set(HAVE_DOT "NO")
       unset(DOT_EXECUTABLE)
-      message(STATUS "Graphviz    (dot)                 Not Found")	
+      message(STATUS "Graphviz    (dot)                 Not Found")
     endif(DOXYGEN_DOT_FOUND)
     set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 
     # Optional - use mscgen
     find_program(MSCGEN mscgen)
     if(MSCGEN)
-       message(STATUS "mscgen                            ${MSCGEN}")		
-       # Doxygen will use this dir to find mscgen   
+       message(STATUS "mscgen                            ${MSCGEN}")
+       # Doxygen will use this dir to find mscgen
        get_filename_component(MSCGEN_PATH ${MSCGEN} DIRECTORY)
     else()
-       message(STATUS "mscgen                            Not Found")	
-       unset(MSCGEN_PATH)	   
+       message(STATUS "mscgen                            Not Found")
+       unset(MSCGEN_PATH)
     endif(MSCGEN)
     # Optional - use dia
     find_program(DIA dia)
     if(DIA)
-       message(STATUS "dia                               ${DIA}")		
-       # Doxygen will use this dir to find mscgen   
+       message(STATUS "dia                               ${DIA}")
+       # Doxygen will use this dir to find mscgen
        get_filename_component(DIA_PATH ${DIA} DIRECTORY)
     else()
-       message(STATUS "dia                               Not Found")		
+       message(STATUS "dia                               Not Found")
        unset(DIA_PATH)
     endif(DIA)
     # note the option ALL which allows to build the docs together with the application
     # We want to set up the docs in HTML format and the option for it in these conditionals
     if(enable_doc_html)
-	   set(d_enable_doc_html "YES")	   
+	   set(d_enable_doc_html "YES")
            install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc_doxygen/html DESTINATION ${CMAKE_INSTALL_DOCDIR})
     else()
            set(d_enable_doc_html "NO")
@@ -242,14 +242,14 @@ if(enable_doc)
 	   install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc_doxygen/man/ DESTINATION ${CMAKE_INSTALL_MANDIR})
     else()
 	   set(d_enable_doc_man "NO")
-    endif(enable_doc_man)	
+    endif(enable_doc_man)
     # request to configure the file
-    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY) 
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
     add_custom_target( doc_doxygen ALL
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
-        VERBATIM )     
+        VERBATIM )
   else (DOXYGEN_FOUND)
     message("Doxygen need to be installed to generate the doxygen documentation")
   endif (DOXYGEN_FOUND)
@@ -261,7 +261,7 @@ endif()
 configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
 # This is just here in case people compile the same code for different sitatuions.
 file(COPY ${SuperLU_SOURCE_DIR}/make.inc DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
- 
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

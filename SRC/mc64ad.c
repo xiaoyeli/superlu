@@ -114,7 +114,7 @@ static int_t c__2 = 2;
 
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64ad_(int_t *job, int_t *n, int_t *ne, int_t *
-	ip, int_t *irn, double *a, int_t *num, int_t *cperm, 
+	ip, int_t *irn, double *a, int_t *num, int_t *cperm,
 	int_t *liw, int_t *iw, int_t *ldw, double *dw, int_t *
 	icntl, int_t *info)
 {
@@ -129,16 +129,16 @@ static int_t c__2 = 2;
     int_t i__, j, k;
     double fact, rinf;
 
-    extern /* Subroutine */ int_t mc21ad_(int_t *, int_t *, int_t *, 
+    extern /* Subroutine */ int_t mc21ad_(int_t *, int_t *, int_t *,
 	    int_t *, int_t *, int_t *, int_t *, int_t *), mc64bd_(
-	    int_t *, int_t *, int_t *, int_t *, double *, int_t 
-	    *, int_t *, int_t *, int_t *, int_t *, int_t *, 
+	    int_t *, int_t *, int_t *, int_t *, double *, int_t
+	    *, int_t *, int_t *, int_t *, int_t *, int_t *,
 	    double *), mc64rd_(int_t *, int_t *, int_t *, int_t *,
 	     double *), mc64sd_(int_t *, int_t *, int_t *, int_t *
-	    , double *, int_t *, int_t *, int_t *, int_t *, 
+	    , double *, int_t *, int_t *, int_t *, int_t *,
 	    int_t *, int_t *, int_t *, int_t *, int_t *), mc64wd_(
-	    int_t *, int_t *, int_t *, int_t *, double *, int_t 
-	    *, int_t *, int_t *, int_t *, int_t *, int_t *, int_t 
+	    int_t *, int_t *, int_t *, int_t *, double *, int_t
+	    *, int_t *, int_t *, int_t *, int_t *, int_t *, int_t
 	    *, double *, double *);
 
 /* *** Copyright (c) 1999  Council for the Central Laboratory of the */
@@ -506,7 +506,7 @@ static int_t c__2 = 2;
 /* Compute bottleneck matching */
     if (*job == 2) {
 /* IW(1:5N), DW(1:N) are workspaces */
-	mc64bd_(n, ne, &ip[1], &irn[1], &a[1], &cperm[1], num, &iw[1], &iw[*n 
+	mc64bd_(n, ne, &ip[1], &irn[1], &a[1], &cperm[1], num, &iw[1], &iw[*n
 		+ 1], &iw[(*n << 1) + 1], &iw[*n * 3 + 1], &dw[1]);
 	goto L90;
     }
@@ -523,7 +523,7 @@ static int_t c__2 = 2;
 	mc64rd_(n, ne, &ip[1], &iw[1], &dw[1]);
 /* IW(NE+1:NE+10N) is workspace */
 	mc64sd_(n, ne, &ip[1], &iw[1], &dw[1], &cperm[1], num, &iw[*ne + 1], &
-		iw[*ne + *n + 1], &iw[*ne + (*n << 1) + 1], &iw[*ne + *n * 3 
+		iw[*ne + *n + 1], &iw[*ne + (*n << 1) + 1], &iw[*ne + *n * 3
 		+ 1], &iw[*ne + (*n << 2) + 1], &iw[*ne + *n * 5 + 1], &iw[*
 		ne + *n * 6 + 1]);
 	goto L90;
@@ -583,7 +583,7 @@ static int_t c__2 = 2;
 	}
 /* B = DW(3N+1:3N+NE); IW(1:5N) and DW(1:2N) are workspaces */
 	mc64wd_(n, ne, &ip[1], &irn[1], &dw[*n * 3 + 1], &cperm[1], num, &iw[
-		1], &iw[*n + 1], &iw[(*n << 1) + 1], &iw[*n * 3 + 1], &iw[(*n 
+		1], &iw[*n + 1], &iw[(*n << 1) + 1], &iw[*n * 3 + 1], &iw[(*n
 		<< 2) + 1], &dw[1], &dw[*n + 1]);
 	if (*num == *n) {
 	    i__1 = *n;
@@ -657,7 +657,7 @@ L99:
 
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64bd_(int_t *n, int_t *ne, int_t *ip, int_t *
-	irn, double *a, int_t *iperm, int_t *num, int_t *jperm, 
+	irn, double *a, int_t *iperm, int_t *num, int_t *jperm,
 	int_t *pr, int_t *q, int_t *l, double *d__)
 {
     /* System generated locals */
@@ -680,7 +680,7 @@ L99:
     double dnew;
     int_t jord, qlen, idum, jdum;
     double rinf;
-    extern /* Subroutine */ int_t mc64dd_(int_t *, int_t *, int_t *, 
+    extern /* Subroutine */ int_t mc64dd_(int_t *, int_t *, int_t *,
 	    double *, int_t *, int_t *), mc64ed_(int_t *, int_t *,
 	     int_t *, double *, int_t *, int_t *), mc64fd_(int_t *
 	    , int_t *, int_t *, int_t *, double *, int_t *, int_t *);
@@ -972,7 +972,7 @@ L153:
 		    if (dnew >= bv) {
 /* Delete row I from Q (if necessary); add row I to Q2 */
 			if (di != -1.) {
-			    mc64fd_(&l[i__], &qlen, n, &q[1], &d__[1], &l[1], 
+			    mc64fd_(&l[i__], &qlen, n, &q[1], &d__[1], &l[1],
 				    &c__1);
 			}
 			l[i__] = 0;
@@ -1084,7 +1084,7 @@ L1000:
 } /* mc64bd_ */
 
 /* ********************************************************************** */
-/* Subroutine */ int_t mc64dd_(int_t *i__, int_t *n, int_t *q, double 
+/* Subroutine */ int_t mc64dd_(int_t *i__, int_t *n, int_t *q, double
 	*d__, int_t *l, int_t *iway)
 {
     /* System generated locals */
@@ -1163,7 +1163,7 @@ L20:
 } /* mc64dd_ */
 
 /* ********************************************************************** */
-/* Subroutine */ int_t mc64ed_(int_t *qlen, int_t *n, int_t *q, 
+/* Subroutine */ int_t mc64ed_(int_t *qlen, int_t *n, int_t *q,
 	double *d__, int_t *l, int_t *iway)
 {
     /* System generated locals */
@@ -1258,7 +1258,7 @@ L20:
 } /* mc64ed_ */
 
 /* ********************************************************************** */
-/* Subroutine */ int_t mc64fd_(int_t *pos0, int_t *qlen, int_t *n, 
+/* Subroutine */ int_t mc64fd_(int_t *pos0, int_t *qlen, int_t *n,
 	int_t *q, double *d__, int_t *l, int_t *iway)
 {
     /* System generated locals */
@@ -1545,8 +1545,8 @@ L100:
 
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64sd_(int_t *n, int_t *ne, int_t *ip, int_t *
-	irn, double *a, int_t *iperm, int_t *numx, int_t *w, 
-	int_t *len, int_t *lenl, int_t *lenh, int_t *fc, int_t *iw, 
+	irn, double *a, int_t *iperm, int_t *numx, int_t *w,
+	int_t *len, int_t *lenl, int_t *lenh, int_t *fc, int_t *iw,
 	int_t *iw4)
 {
     /* System generated locals */
@@ -1556,10 +1556,10 @@ L100:
     int_t i__, j, k, l, ii, mod, cnt, num;
     double bval, bmin, bmax, rinf;
     int_t nval, wlen, idum1, idum2, idum3;
-    extern /* Subroutine */ int_t mc64qd_(int_t *, int_t *, int_t *, 
-	    int_t *, int_t *, double *, int_t *, double *), 
-	    mc64ud_(int_t *, int_t *, int_t *, int_t *, int_t *, 
-	    int_t *, int_t *, int_t *, int_t *, int_t *, int_t *, 
+    extern /* Subroutine */ int_t mc64qd_(int_t *, int_t *, int_t *,
+	    int_t *, int_t *, double *, int_t *, double *),
+	    mc64ud_(int_t *, int_t *, int_t *, int_t *, int_t *,
+	    int_t *, int_t *, int_t *, int_t *, int_t *, int_t *,
 	    int_t *, int_t *, int_t *, int_t *);
 
 /* *** Copyright (c) 1999  Council for the Central Laboratory of the */
@@ -1860,7 +1860,7 @@ L1000:
 } /* mc64sd_ */
 
 /* ********************************************************************** */
-/* Subroutine */ int_t mc64qd_(int_t *ip, int_t *lenl, int_t *lenh, 
+/* Subroutine */ int_t mc64qd_(int_t *ip, int_t *lenl, int_t *lenh,
 	int_t *w, int_t *wlen, double *a, int_t *nval, double *
 	val)
 {
@@ -1957,14 +1957,14 @@ L11:
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64ud_(int_t *id, int_t *mod, int_t *n, int_t *
 	irn, int_t *lirn, int_t *ip, int_t *lenc, int_t *fc, int_t *
-	iperm, int_t *num, int_t *numx, int_t *pr, int_t *arp, 
+	iperm, int_t *num, int_t *numx, int_t *pr, int_t *arp,
 	int_t *cv, int_t *out)
 {
     /* System generated locals */
     int_t i__1, i__2, i__3, i__4;
 
     /* Local variables */
-    int_t i__, j, k, j1, ii, kk, id0, id1, in1, in2, nfc, num0, num1, num2, 
+    int_t i__, j, k, j1, ii, kk, id0, id1, in1, in2, nfc, num0, num1, num2,
 	    jord, last;
 
 
@@ -2159,8 +2159,8 @@ L101:
 
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64wd_(int_t *n, int_t *ne, int_t *ip, int_t *
-	irn, double *a, int_t *iperm, int_t *num, int_t *jperm, 
-	int_t *out, int_t *pr, int_t *q, int_t *l, double *u, 
+	irn, double *a, int_t *iperm, int_t *num, int_t *jperm,
+	int_t *out, int_t *pr, int_t *q, int_t *l, double *u,
 	double *d__)
 {
     /* System generated locals */
@@ -2179,10 +2179,10 @@ L101:
     double dmin__, dnew;
     int_t jord, qlen, jdum;
     double rinf;
-    extern /* Subroutine */ int_t mc64dd_(int_t *, int_t *, int_t *, 
+    extern /* Subroutine */ int_t mc64dd_(int_t *, int_t *, int_t *,
 	    double *, int_t *, int_t *), mc64ed_(int_t *, int_t *,
 	     int_t *, double *, int_t *, int_t *), mc64fd_(int_t *
-	    , int_t *, int_t *, int_t *, double *, int_t *, 
+	    , int_t *, int_t *, int_t *, double *, int_t *,
 	    int_t *);
 
 
@@ -2514,7 +2514,7 @@ L153:
 		    d__[i__] = dnew;
 		    if (dnew <= dmin__) {
 			if (l[i__] != 0) {
-			    mc64fd_(&l[i__], &qlen, n, &q[1], &d__[1], &l[1], 
+			    mc64fd_(&l[i__], &qlen, n, &q[1], &d__[1], &l[1],
 				    &c__2);
 			}
 			--low;

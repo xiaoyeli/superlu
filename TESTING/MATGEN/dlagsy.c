@@ -13,8 +13,8 @@ static doublereal c_b12 = 0.;
 static doublereal c_b19 = -1.;
 static doublereal c_b26 = 1.;
 
-/* Subroutine */ int dlagsy_slu(integer *n, integer *k, doublereal *d, 
-	doublereal *a, integer *lda, integer *iseed, doublereal *work, 
+/* Subroutine */ int dlagsy_slu(integer *n, integer *k, doublereal *d,
+	doublereal *a, integer *lda, integer *iseed, doublereal *work,
 	integer *info)
 {
     /* System generated locals */
@@ -25,22 +25,22 @@ static doublereal c_b26 = 1.;
     double d_sign(doublereal *, doublereal *);
 
     /* Local variables */
-    extern /* Subroutine */ int dger_(integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
+    extern /* Subroutine */ int dger_(integer *, integer *, doublereal *,
+	    doublereal *, integer *, doublereal *, integer *, doublereal *,
 	    integer *);
-    extern doublereal ddot_(integer *, doublereal *, integer *, doublereal *, 
+    extern doublereal ddot_(integer *, doublereal *, integer *, doublereal *,
 	    integer *), dnrm2_(integer *, doublereal *, integer *);
-    extern /* Subroutine */ int dsyr2_(char *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
+    extern /* Subroutine */ int dsyr2_(char *, integer *, doublereal *,
+	    doublereal *, integer *, doublereal *, integer *, doublereal *,
 	    integer *);
     static integer i, j;
     static doublereal alpha;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
-	    integer *), dgemv_(char *, integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    doublereal *, integer *), daxpy_(integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *), dsymv_(char *, 
-	    integer *, doublereal *, doublereal *, integer *, doublereal *, 
+    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *,
+	    integer *), dgemv_(char *, integer *, integer *, doublereal *,
+	    doublereal *, integer *, doublereal *, integer *, doublereal *,
+	    doublereal *, integer *), daxpy_(integer *, doublereal *,
+	    doublereal *, integer *, doublereal *, integer *), dsymv_(char *,
+	    integer *, doublereal *, doublereal *, integer *, doublereal *,
 	    integer *, doublereal *, doublereal *, integer *);
     static doublereal wa, wb, wn;
     extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
@@ -48,60 +48,60 @@ static doublereal c_b26 = 1.;
     static doublereal tau;
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0)   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       February 29, 1992   
+/*  -- LAPACK auxiliary test routine (version 2.0)
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       February 29, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    DLAGSY generates a real symmetric matrix A, by pre- and post-   
-    multiplying a real diagonal matrix D with a random orthogonal matrix: 
-  
-    A = U*D*U'. The semi-bandwidth may then be reduced to k by additional 
-  
-    orthogonal transformations.   
+    DLAGSY generates a real symmetric matrix A, by pre- and post-
+    multiplying a real diagonal matrix D with a random orthogonal matrix:
 
-    Arguments   
-    =========   
+    A = U*D*U'. The semi-bandwidth may then be reduced to k by additional
 
-    N       (input) INTEGER   
-            The order of the matrix A.  N >= 0.   
+    orthogonal transformations.
 
-    K       (input) INTEGER   
-            The number of nonzero subdiagonals within the band of A.   
-            0 <= K <= N-1.   
+    Arguments
+    =========
 
-    D       (input) DOUBLE PRECISION array, dimension (N)   
-            The diagonal elements of the diagonal matrix D.   
+    N       (input) INTEGER
+            The order of the matrix A.  N >= 0.
 
-    A       (output) DOUBLE PRECISION array, dimension (LDA,N)   
-            The generated n by n symmetric matrix A (the full matrix is   
-            stored).   
+    K       (input) INTEGER
+            The number of nonzero subdiagonals within the band of A.
+            0 <= K <= N-1.
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= N.   
+    D       (input) DOUBLE PRECISION array, dimension (N)
+            The diagonal elements of the diagonal matrix D.
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    A       (output) DOUBLE PRECISION array, dimension (LDA,N)
+            The generated n by n symmetric matrix A (the full matrix is
+            stored).
 
-    WORK    (workspace) DOUBLE PRECISION array, dimension (2*N)   
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= N.
 
-    INFO    (output) INTEGER   
-            = 0: successful exit   
-            < 0: if INFO = -i, the i-th argument had an illegal value   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    ===================================================================== 
-  
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
+
+    WORK    (workspace) DOUBLE PRECISION array, dimension (2*N)
+
+    INFO    (output) INTEGER
+            = 0: successful exit
+            < 0: if INFO = -i, the i-th argument had an illegal value
+
+    =====================================================================
 
 
-       Test the input arguments   
+
+       Test the input arguments
 
        Parameter adjustments */
     --d;
@@ -165,8 +165,8 @@ static doublereal c_b26 = 1.;
 	    tau = wb / wa;
 	}
 
-/*        apply random reflection to A(i:n,i:n) from the left   
-          and the right   
+/*        apply random reflection to A(i:n,i:n) from the left
+          and the right
 
           compute  y := tau * A * u */
 
@@ -185,7 +185,7 @@ static doublereal c_b26 = 1.;
 /*        apply the transformation as a rank-2 update to A(i:n,i:n) */
 
 	i__1 = *n - i + 1;
-	dsyr2_("Lower", &i__1, &c_b19, &work[1], &c__1, &work[*n + 1], &c__1, 
+	dsyr2_("Lower", &i__1, &c_b19, &work[1], &c__1, &work[*n + 1], &c__1,
 		&a[i + i * a_dim1], lda);
 /* L40: */
     }
@@ -215,7 +215,7 @@ static doublereal c_b26 = 1.;
 
 	i__2 = *n - *k - i + 1;
 	i__3 = *k - 1;
-	dgemv_("Transpose", &i__2, &i__3, &c_b26, &a[*k + i + (i + 1) * 
+	dgemv_("Transpose", &i__2, &i__3, &c_b26, &a[*k + i + (i + 1) *
 		a_dim1], lda, &a[*k + i + i * a_dim1], &c__1, &c_b12, &work[1]
 		, &c__1);
 	i__2 = *n - *k - i + 1;
@@ -225,7 +225,7 @@ static doublereal c_b26 = 1.;
 		c__1, &a[*k + i + (i + 1) * a_dim1], lda);
 
 /*        apply reflection to A(k+i:n,k+i:n) from the left and the rig
-ht   
+ht
 
           compute  y := tau * A * u */
 
@@ -236,7 +236,7 @@ ht
 /*        compute  v := y - 1/2 * tau * ( y, u ) * u */
 
 	i__2 = *n - *k - i + 1;
-	alpha = tau * -.5 * ddot_(&i__2, &work[1], &c__1, &a[*k + i + i * 
+	alpha = tau * -.5 * ddot_(&i__2, &work[1], &c__1, &a[*k + i + i *
 		a_dim1], &c__1);
 	i__2 = *n - *k - i + 1;
 	daxpy_(&i__2, &alpha, &a[*k + i + i * a_dim1], &c__1, &work[1], &c__1)

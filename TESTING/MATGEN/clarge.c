@@ -26,7 +26,7 @@ static integer c__1 = 1;
 
     /* Local variables */
     static integer i;
-    extern /* Subroutine */ int cgerc_(integer *, integer *, complex *, 
+    extern /* Subroutine */ int cgerc_(integer *, integer *, complex *,
 	    complex *, integer *, complex *, integer *, complex *, integer *),
 	     cscal_(integer *, complex *, complex *, integer *), cgemv_(char *
 	    , integer *, integer *, complex *, complex *, integer *, complex *
@@ -39,50 +39,50 @@ static integer c__1 = 1;
     static complex tau;
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       September 30, 1994   
+/*  -- LAPACK auxiliary test routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       September 30, 1994
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    CLARGE pre- and post-multiplies a complex general n by n matrix A   
-    with a random unitary matrix: A = U*D*U'.   
+    CLARGE pre- and post-multiplies a complex general n by n matrix A
+    with a random unitary matrix: A = U*D*U'.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    N       (input) INTEGER   
-            The order of the matrix A.  N >= 0.   
+    N       (input) INTEGER
+            The order of the matrix A.  N >= 0.
 
-    A       (input/output) COMPLEX array, dimension (LDA,N)   
-            On entry, the original n by n matrix A.   
-            On exit, A is overwritten by U*A*U' for some random   
-            unitary matrix U.   
+    A       (input/output) COMPLEX array, dimension (LDA,N)
+            On entry, the original n by n matrix A.
+            On exit, A is overwritten by U*A*U' for some random
+            unitary matrix U.
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= N.   
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= N.
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    WORK    (workspace) COMPLEX array, dimension (2*N)   
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
 
-    INFO    (output) INTEGER   
-            = 0: successful exit   
-            < 0: if INFO = -i, the i-th argument had an illegal value   
+    WORK    (workspace) COMPLEX array, dimension (2*N)
 
-    ===================================================================== 
-  
+    INFO    (output) INTEGER
+            = 0: successful exit
+            < 0: if INFO = -i, the i-th argument had an illegal value
+
+    =====================================================================
 
 
-       Test the input arguments   
+
+       Test the input arguments
 
        Parameter adjustments */
     a_dim1 = *lda;
@@ -138,7 +138,7 @@ static integer c__1 = 1;
 		work[1], &c__1, &c_b1, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
 	q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
-	cgerc_(&i__1, n, &q__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i + 
+	cgerc_(&i__1, n, &q__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i +
 		a_dim1], lda);
 
 /*        multiply A(1:n,i:n) by random reflection from the right */
@@ -148,7 +148,7 @@ static integer c__1 = 1;
 		work[1], &c__1, &c_b1, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
 	q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
-	cgerc_(n, &i__1, &q__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i * 
+	cgerc_(n, &i__1, &q__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i *
 		a_dim1 + 1], lda);
 /* L10: */
     }

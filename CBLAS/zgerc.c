@@ -6,8 +6,8 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int zgerc_(integer *m, integer *n, doublecomplex *alpha, 
-	doublecomplex *x, integer *incx, doublecomplex *y, integer *incy, 
+/* Subroutine */ int zgerc_(integer *m, integer *n, doublecomplex *alpha,
+	doublecomplex *x, integer *incx, doublecomplex *y, integer *incy,
 	doublecomplex *a, integer *lda)
 {
 
@@ -27,84 +27,84 @@
     extern int input_error(char *, int *);
 
 
-/*  Purpose   
-    =======   
+/*  Purpose
+    =======
 
-    ZGERC  performs the rank 1 operation   
+    ZGERC  performs the rank 1 operation
 
-       A := alpha*x*conjg( y' ) + A,   
+       A := alpha*x*conjg( y' ) + A,
 
-    where alpha is a scalar, x is an m element vector, y is an n element 
-  
-    vector and A is an m by n matrix.   
+    where alpha is a scalar, x is an m element vector, y is an n element
 
-    Parameters   
-    ==========   
+    vector and A is an m by n matrix.
 
-    M      - INTEGER.   
-             On entry, M specifies the number of rows of the matrix A.   
-             M must be at least zero.   
-             Unchanged on exit.   
+    Parameters
+    ==========
 
-    N      - INTEGER.   
-             On entry, N specifies the number of columns of the matrix A. 
-  
-             N must be at least zero.   
-             Unchanged on exit.   
+    M      - INTEGER.
+             On entry, M specifies the number of rows of the matrix A.
+             M must be at least zero.
+             Unchanged on exit.
 
-    ALPHA  - COMPLEX*16      .   
-             On entry, ALPHA specifies the scalar alpha.   
-             Unchanged on exit.   
+    N      - INTEGER.
+             On entry, N specifies the number of columns of the matrix A.
 
-    X      - COMPLEX*16       array of dimension at least   
-             ( 1 + ( m - 1 )*abs( INCX ) ).   
-             Before entry, the incremented array X must contain the m   
-             element vector x.   
-             Unchanged on exit.   
+             N must be at least zero.
+             Unchanged on exit.
 
-    INCX   - INTEGER.   
-             On entry, INCX specifies the increment for the elements of   
-             X. INCX must not be zero.   
-             Unchanged on exit.   
+    ALPHA  - COMPLEX*16      .
+             On entry, ALPHA specifies the scalar alpha.
+             Unchanged on exit.
 
-    Y      - COMPLEX*16       array of dimension at least   
-             ( 1 + ( n - 1 )*abs( INCY ) ).   
-             Before entry, the incremented array Y must contain the n   
-             element vector y.   
-             Unchanged on exit.   
+    X      - COMPLEX*16       array of dimension at least
+             ( 1 + ( m - 1 )*abs( INCX ) ).
+             Before entry, the incremented array X must contain the m
+             element vector x.
+             Unchanged on exit.
 
-    INCY   - INTEGER.   
-             On entry, INCY specifies the increment for the elements of   
-             Y. INCY must not be zero.   
-             Unchanged on exit.   
+    INCX   - INTEGER.
+             On entry, INCX specifies the increment for the elements of
+             X. INCX must not be zero.
+             Unchanged on exit.
 
-    A      - COMPLEX*16       array of DIMENSION ( LDA, n ).   
-             Before entry, the leading m by n part of the array A must   
-             contain the matrix of coefficients. On exit, A is   
-             overwritten by the updated matrix.   
+    Y      - COMPLEX*16       array of dimension at least
+             ( 1 + ( n - 1 )*abs( INCY ) ).
+             Before entry, the incremented array Y must contain the n
+             element vector y.
+             Unchanged on exit.
 
-    LDA    - INTEGER.   
-             On entry, LDA specifies the first dimension of A as declared 
-  
-             in the calling (sub) program. LDA must be at least   
-             max( 1, m ).   
-             Unchanged on exit.   
+    INCY   - INTEGER.
+             On entry, INCY specifies the increment for the elements of
+             Y. INCY must not be zero.
+             Unchanged on exit.
 
+    A      - COMPLEX*16       array of DIMENSION ( LDA, n ).
+             Before entry, the leading m by n part of the array A must
+             contain the matrix of coefficients. On exit, A is
+             overwritten by the updated matrix.
 
-    Level 2 Blas routine.   
+    LDA    - INTEGER.
+             On entry, LDA specifies the first dimension of A as declared
 
-    -- Written on 22-October-1986.   
-       Jack Dongarra, Argonne National Lab.   
-       Jeremy Du Croz, Nag Central Office.   
-       Sven Hammarling, Nag Central Office.   
-       Richard Hanson, Sandia National Labs.   
+             in the calling (sub) program. LDA must be at least
+             max( 1, m ).
+             Unchanged on exit.
 
 
+    Level 2 Blas routine.
 
-       Test the input parameters.   
+    -- Written on 22-October-1986.
+       Jack Dongarra, Argonne National Lab.
+       Jeremy Du Croz, Nag Central Office.
+       Sven Hammarling, Nag Central Office.
+       Richard Hanson, Sandia National Labs.
 
-    
-   Parameter adjustments   
+
+
+       Test the input parameters.
+
+
+   Parameter adjustments
        Function Body */
 #define X(I) x[(I)-1]
 #define Y(I) y[(I)-1]
@@ -134,7 +134,7 @@
 	return 0;
     }
 
-/*     Start the operations. In this version the elements of A are   
+/*     Start the operations. In this version the elements of A are
        accessed sequentially with one pass through A. */
 
     if (*incy > 0) {
@@ -148,7 +148,7 @@
 	    i__2 = jy;
 	    if (Y(jy).r != 0. || Y(jy).i != 0.) {
 		d_cnjg(&z__2, &Y(jy));
-		z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i = 
+		z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i =
 			alpha->r * z__2.i + alpha->i * z__2.r;
 		temp.r = z__1.r, temp.i = z__1.i;
 		i__2 = *m;
@@ -177,7 +177,7 @@
 	    i__2 = jy;
 	    if (Y(jy).r != 0. || Y(jy).i != 0.) {
 		d_cnjg(&z__2, &Y(jy));
-		z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i = 
+		z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i =
 			alpha->r * z__2.i + alpha->i * z__2.r;
 		temp.r = z__1.r, temp.i = z__1.i;
 		ix = kx;

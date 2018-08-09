@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Complex */ VOID cdotc_(complex * ret_val, integer *n, complex *cx, integer 
+/* Complex */ VOID cdotc_(complex * ret_val, integer *n, complex *cx, integer
 	*incx, complex *cy, integer *incy)
 {
     /* System generated locals */
@@ -21,13 +21,13 @@
     static integer ix, iy;
 
 
-/*     forms the dot product of two vectors, conjugating the first   
-       vector.   
-       jack dongarra, linpack,  3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     forms the dot product of two vectors, conjugating the first
+       vector.
+       jack dongarra, linpack,  3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
+
    Parameter adjustments */
     --cy;
     --cx;
@@ -42,7 +42,7 @@
 	goto L20;
     }
 
-/*        code for unequal increments or equal increments   
+/*        code for unequal increments or equal increments
             not equal to 1 */
 
     ix = 1;
@@ -57,7 +57,7 @@
     for (i = 1; i <= *n; ++i) {
 	r_cnjg(&q__3, &cx[ix]);
 	i__2 = iy;
-	q__2.r = q__3.r * cy[iy].r - q__3.i * cy[iy].i, q__2.i = q__3.r * 
+	q__2.r = q__3.r * cy[iy].r - q__3.i * cy[iy].i, q__2.i = q__3.r *
 		cy[iy].i + q__3.i * cy[iy].r;
 	q__1.r = ctemp.r + q__2.r, q__1.i = ctemp.i + q__2.i;
 	ctemp.r = q__1.r, ctemp.i = q__1.i;
@@ -75,7 +75,7 @@ L20:
     for (i = 1; i <= *n; ++i) {
 	r_cnjg(&q__3, &cx[i]);
 	i__2 = i;
-	q__2.r = q__3.r * cy[i].r - q__3.i * cy[i].i, q__2.i = q__3.r * 
+	q__2.r = q__3.r * cy[i].r - q__3.i * cy[i].i, q__2.i = q__3.r *
 		cy[i].i + q__3.i * cy[i].r;
 	q__1.r = ctemp.r + q__2.r, q__1.i = ctemp.i + q__2.i;
 	ctemp.r = q__1.r, ctemp.i = q__1.i;

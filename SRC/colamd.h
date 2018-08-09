@@ -1,65 +1,65 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 /*! @file colamd.h
  *     \brief Colamd prototypes and definitions
- * 
+ *
  * <pre>
  *     ==========================================================================
  *     === colamd/symamd prototypes and definitions =============================
  *     ==========================================================================
- * 
+ *
  *     You must include this file (colamd.h) in any routine that uses colamd,
  *     symamd, or the related macros and definitions.
- * 
+ *
  *     Authors:
- * 
- * 	The authors of the code itself are Stefan I. Larimore and Timothy A.
- * 	Davis (davis@cise.ufl.edu), University of Florida.  The algorithm was
- * 	developed in collaboration with John Gilbert, Xerox PARC, and Esmond
- * 	Ng, Oak Ridge National Laboratory.
- * 
+ *
+ *      The authors of the code itself are Stefan I. Larimore and Timothy A.
+ *      Davis (davis@cise.ufl.edu), University of Florida.  The algorithm was
+ *      developed in collaboration with John Gilbert, Xerox PARC, and Esmond
+ *      Ng, Oak Ridge National Laboratory.
+ *
  *     Date:
- * 
- * 	September 8, 2003.  Version 2.3.
- * 
+ *
+ *      September 8, 2003.  Version 2.3.
+ *
  *     Acknowledgements:
- * 
- * 	This work was supported by the National Science Foundation, under
- * 	grants DMS-9504974 and DMS-9803599.
- * 
+ *
+ *      This work was supported by the National Science Foundation, under
+ *      grants DMS-9504974 and DMS-9803599.
+ *
  *     Notice:
- * 
- * 	Copyright (c) 1998-2003 by the University of Florida.
- * 	All Rights Reserved.
- * 
- * 	THIS MATERIAL IS PROVIDED AS IS, WITH ABSOLUTELY NO WARRANTY
- * 	EXPRESSED OR IMPLIED.  ANY USE IS AT YOUR OWN RISK.
- * 
- * 	Permission is hereby granted to use, copy, modify, and/or distribute
- * 	this program, provided that the Copyright, this License, and the
- * 	Availability of the original version is retained on all copies and made
- * 	accessible to the end-user of any code or package that includes COLAMD
- * 	or any modified version of COLAMD. 
- * 
+ *
+ *      Copyright (c) 1998-2003 by the University of Florida.
+ *      All Rights Reserved.
+ *
+ *      THIS MATERIAL IS PROVIDED AS IS, WITH ABSOLUTELY NO WARRANTY
+ *      EXPRESSED OR IMPLIED.  ANY USE IS AT YOUR OWN RISK.
+ *
+ *      Permission is hereby granted to use, copy, modify, and/or distribute
+ *      this program, provided that the Copyright, this License, and the
+ *      Availability of the original version is retained on all copies and made
+ *      accessible to the end-user of any code or package that includes COLAMD
+ *      or any modified version of COLAMD.
+ *
  *     Availability:
- * 
- * 	The colamd/symamd library is available at
- * 
- * 	    http://www.cise.ufl.edu/research/sparse/colamd/
- * 
- * 	This is the http://www.cise.ufl.edu/research/sparse/colamd/colamd.h
- * 	file.  It is required by the colamd.c, colamdmex.c, and symamdmex.c
- * 	files, and by any C code that calls the routines whose prototypes are
- * 	listed below, or that uses the colamd/symamd definitions listed below.
- * </pre> 
+ *
+ *      The colamd/symamd library is available at
+ *
+ *          http://www.cise.ufl.edu/research/sparse/colamd/
+ *
+ *      This is the http://www.cise.ufl.edu/research/sparse/colamd/colamd.h
+ *      file.  It is required by the colamd.c, colamdmex.c, and symamdmex.c
+ *      files, and by any C code that calls the routines whose prototypes are
+ *      listed below, or that uses the colamd/symamd definitions listed below.
+ * </pre>
  */
 
 #ifndef COLAMD_H
@@ -93,7 +93,7 @@ at the top-level directory.
 /* stats [3]: colamd status:  zero OK, > 0 warning or notice, < 0 error */
 #define COLAMD_STATUS 3
 
-/* stats [4..6]: error info, or info on jumbled columns */ 
+/* stats [4..6]: error info, or info on jumbled columns */
 #define COLAMD_INFO1 4
 #define COLAMD_INFO2 5
 #define COLAMD_INFO3 6

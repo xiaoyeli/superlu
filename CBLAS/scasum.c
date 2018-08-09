@@ -22,15 +22,15 @@ real scasum_(integer *n, complex *cx, integer *incx)
     static real stemp;
 
 
-/*     takes the sum of the absolute values of a complex vector and   
-       returns a single precision result.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 3/93 to return if incx .le. 0.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     takes the sum of the absolute values of a complex vector and
+       returns a single precision result.
+       jack dongarra, linpack, 3/11/78.
+       modified 3/93 to return if incx .le. 0.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define CX(I) cx[(I)-1]
 

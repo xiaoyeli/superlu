@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -26,7 +26,7 @@ at the top-level directory.
 
 #define NTESTS    5      /* Number of test types */
 #define NTYPES    11     /* Number of matrix types */
-#define NTRAN     2    
+#define NTRAN     2
 #define THRESH    20.0
 #define FMT1      "%10s:n=%d, test(%d)=%12.5g\n"
 #define	FMT2      "%10s:fact=%4d, trans=%4d, equed=%c, n=%d, imat=%d, test(%d)=%12.5g\n"
@@ -39,13 +39,13 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
 
 int main(int argc, char *argv[])
 {
-/* 
+/*
  * Purpose
  * =======
  *
- * SDRIVE is the main test program for the FLOAT linear 
+ * SDRIVE is the main test program for the FLOAT linear
  * equation driver routines SGSSV and SGSSVX.
- * 
+ *
  * The program is invoked by a shell script file -- stest.csh.
  * The output from the tests are written into a file -- stest.out.
  *
@@ -100,17 +100,17 @@ int main(int argc, char *argv[])
 			      SamePattern_SameRowPerm};
     static trans_t transs[]  = {NOTRANS, TRANS, CONJ};
 
-    /* Some function prototypes */ 
-    extern int sgst01(int, int, SuperMatrix *, SuperMatrix *, 
+    /* Some function prototypes */
+    extern int sgst01(int, int, SuperMatrix *, SuperMatrix *,
 		      SuperMatrix *, int *, int *, float *);
     extern int sgst02(trans_t, int, int, int, SuperMatrix *, float *,
                       int, float *, int, float *resid);
-    extern int sgst04(int, int, float *, int, 
+    extern int sgst04(int, int, float *, int,
                       float *, int, float rcond, float *resid);
     extern int sgst07(trans_t, int, int, SuperMatrix *, float *, int,
-                         float *, int, float *, int, 
+                         float *, int, float *, int,
                          float *, float *, float *);
-    extern int slatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
+    extern int slatb4_slu(char *, int *, int *, int *, char *, int *, int *,
 	               float *, int *, float *, char *);
     extern int slatms_slu(int *, int *, char *, int *, char *, float *d,
                        int *, float *, float *, int *, int *,
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
     options.PivotGrowth = YES;
     options.ConditionNumber = YES;
     options.IterRefine = SLU_SINGLE;
-    
+
     if ( strcmp(matrix_type, "LA") == 0 ) {
 	/* Test LAPACK matrix suite. */
 	m = n;
@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
     C       = (float *) SUPERLU_MALLOC(n*sizeof(float));
     ferr    = (float *) SUPERLU_MALLOC(nrhs*sizeof(float));
     berr    = (float *) SUPERLU_MALLOC(nrhs*sizeof(float));
-    j = SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs);    
+    j = SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs);
     rwork   = (float *) SUPERLU_MALLOC(j*sizeof(float));
     for (i = 0; i < j; ++i) rwork[i] = 0.;
     if ( !R ) ABORT("SUPERLU_MALLOC fails for R");
@@ -199,14 +199,14 @@ int main(int argc, char *argv[])
     options.ColPerm = MY_PERMC;
 
     for (imat = fimat; imat <= nimat; ++imat) { /* All matrix types */
-	
+
 	if ( imat ) {
 
 	    /* Skip types 5, 6, or 7 if the matrix size is too small. */
 	    zerot = (imat >= 5 && imat <= 7);
 	    if ( zerot && n < imat-4 )
 		continue;
-	    
+
 	    /* Set up parameters with SLATB4 and generate a test matrix
 	       with SLATMS.  */
 	    slatb4_slu(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
@@ -246,17 +246,17 @@ int main(int argc, char *argv[])
 	    izero = 0;
 	    zerot = 0;
 	}
-	
+
 	sCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_S, SLU_GE);
 
 	/* Save a copy of matrix A in ASAV */
 	sCreate_CompCol_Matrix(&ASAV, m, n, nnz, a_save, asub_save, xa_save,
 			      SLU_NC, SLU_S, SLU_GE);
 	sCopy_CompCol_Matrix(&A, &ASAV);
-	
+
 	/* Form exact solution. */
 	sGenXtrue(n, nrhs, xact, ldx);
-	
+
 	StatInit(&stat);
 
 	for (iequed = 0; iequed < 4; ++iequed) {
@@ -277,7 +277,7 @@ int main(int argc, char *argv[])
 
 		    /* Restore the matrix A. */
 		    sCopy_CompCol_Matrix(&ASAV, &A);
-			
+
 		    if ( zerot ) {
                         if ( prefact ) continue;
 		    } else if ( options.Fact == FACTORED ) {
@@ -299,14 +299,14 @@ int main(int argc, char *argv[])
 				    colcnd = 0.;
 				}
 			    }
-			
+
 			    /* Equilibrate the matrix. */
 			    slaqgs(&A, R, C, rowcnd, colcnd, amax, equed);
 			}
 		    }
-		    
+
 		    if ( prefact ) { /* Need a factor for the first time */
-			
+
 		        /* Save Fact option. */
 		        fact = options.Fact;
 			options.Fact = DOFACT;
@@ -319,7 +319,7 @@ int main(int argc, char *argv[])
                                etree, work, lwork, perm_c, perm_r, &L, &U,
                                &Glu, &stat, &info);
 
-			if ( info ) { 
+			if ( info ) {
                             printf("** First factor: info %d, equed %c\n",
 				   info, *equed);
                             if ( lwork == -1 ) {
@@ -328,20 +328,20 @@ int main(int argc, char *argv[])
                                 exit(0);
                             }
                         }
-	
+
                         Destroy_CompCol_Permuted(&AC);
-			
+
 		        /* Restore Fact option. */
 			options.Fact = fact;
 		    } /* if .. first time factor */
-		    
+
 		    for (itran = 0; itran < NTRAN; ++itran) {
 			trans = transs[itran];
                         options.Trans = trans;
 
 			/* Restore the matrix A. */
 			sCopy_CompCol_Matrix(&ASAV, &A);
-			
+
  			/* Set the right hand side. */
 			sFillRHS(trans, nrhs, xact, ldx, &A, &B);
 			sCopy_Dense_Matrix(m, nrhs, rhsb, ldb, bsav, ldb);
@@ -351,11 +351,11 @@ int main(int argc, char *argv[])
 			 *----------------*/
 			if ( options.Fact == DOFACT && itran == 0) {
                             /* Not yet factored, and untransposed */
-	
+
 			    sCopy_Dense_Matrix(m, nrhs, rhsb, ldb, solx, ldx);
 			    sgssv(&options, &A, perm_c, perm_r, &L, &U, &X,
                                   &stat, &info);
-			    
+
 			    if ( info && info != izero ) {
                                 printf(FMT3, "sgssv",
 				       info, izero, n, nrhs, imat, nfail);
@@ -374,7 +374,7 @@ int main(int argc, char *argv[])
                                               ldx, wwork,ldb, &result[1]);
 				    nt = 2;
 				}
-				
+
 				/* Print information about the tests that
 				   did not pass the threshold.      */
 				for (i = 0; i < nt; ++i) {
@@ -395,18 +395,18 @@ int main(int argc, char *argv[])
 			        Destroy_CompCol_Matrix(&U);
 			    }
 			} /* if .. end of testing sgssv */
-    
+
 			/*----------------
 			 * Test sgssvx
 			 *----------------*/
-    
+
 			/* Equilibrate the matrix if fact = FACTORED and
 			   equed = 'R', 'C', or 'B'.   */
 			if ( options.Fact == FACTORED &&
 			     (equil || iequed) && n > 0 ) {
 			    slaqgs(&A, R, C, rowcnd, colcnd, amax, equed);
 			}
-			
+
 			/* Solve the system and compute the condition number
 			   and error bounds using sgssvx.      */
 			sgssvx(&options, &A, perm_c, perm_r, etree,
@@ -475,7 +475,7 @@ int main(int argc, char *argv[])
 		} /* for equil ... */
 	    } /* for ifact ... */
 	} /* for iequed ... */
-#if 0    
+#if 0
     if ( !info ) {
 	PrintPerf(&L, &U, &mem_usage, rpg, rcond, ferr, berr, equed);
     }
@@ -492,7 +492,7 @@ int main(int argc, char *argv[])
     if ( strcmp(matrix_type, "LA") == 0 ) SUPERLU_FREE (Afull);
     SUPERLU_FREE (rhsb);
     SUPERLU_FREE (bsav);
-    SUPERLU_FREE (solx);    
+    SUPERLU_FREE (solx);
     SUPERLU_FREE (xact);
     SUPERLU_FREE (etree);
     SUPERLU_FREE (perm_r);
@@ -522,7 +522,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-/*  
+/*
  * Parse command line options to get relaxed snode size, panel size, etc.
  */
 static void
@@ -547,19 +547,19 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
 	            break;
 	  case 'w': *w = atoi(optarg);
 	            break;
-	  case 'r': *relax = atoi(optarg); 
+	  case 'r': *relax = atoi(optarg);
 	            break;
-	  case 's': *nrhs = atoi(optarg); 
+	  case 's': *nrhs = atoi(optarg);
 	            break;
-	  case 'm': *maxsuper = atoi(optarg); 
+	  case 'm': *maxsuper = atoi(optarg);
 	            break;
-	  case 'b': *rowblk = atoi(optarg); 
+	  case 'b': *rowblk = atoi(optarg);
 	            break;
-	  case 'c': *colblk = atoi(optarg); 
+	  case 'c': *colblk = atoi(optarg);
 	            break;
-	  case 'l': *lwork = atoi(optarg); 
+	  case 'l': *lwork = atoi(optarg);
 	            break;
-	  case 'u': *u = atof(optarg); 
+	  case 'u': *u = atof(optarg);
 	            break;
           case 'f':
                     if ( !(*fp = fopen(optarg, "r")) ) {

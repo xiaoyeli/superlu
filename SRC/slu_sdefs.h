@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -11,63 +11,63 @@ at the top-level directory.
 
 /*! @file slu_sdefs.h
  * \brief Header file for real operations
- * 
- * <pre> 
+ *
+ * <pre>
  * -- SuperLU routine (version 4.1) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * November, 2010
- * 
+ *
  * Global data structures used in LU factorization -
- * 
+ *
  *   nsuper: \#supernodes = nsuper + 1, numbered [0, nsuper].
  *   (xsup,supno): supno[i] is the supernode no to which i belongs;
- *	xsup(s) points to the beginning of the s-th supernode.
- *	e.g.   supno 0 1 2 2 3 3 3 4 4 4 4 4   (n=12)
- *	        xsup 0 1 2 4 7 12
- *	Note: dfs will be performed on supernode rep. relative to the new 
- *	      row pivoting ordering
+ *      xsup(s) points to the beginning of the s-th supernode.
+ *      e.g.   supno 0 1 2 2 3 3 3 4 4 4 4 4   (n=12)
+ *              xsup 0 1 2 4 7 12
+ *      Note: dfs will be performed on supernode rep. relative to the new
+ *            row pivoting ordering
  *
  *   (xlsub,lsub): lsub[*] contains the compressed subscript of
- *	rectangular supernodes; xlsub[j] points to the starting
- *	location of the j-th column in lsub[*]. Note that xlsub 
- *	is indexed by column.
- *	Storage: original row subscripts
+ *      rectangular supernodes; xlsub[j] points to the starting
+ *      location of the j-th column in lsub[*]. Note that xlsub
+ *      is indexed by column.
+ *      Storage: original row subscripts
  *
  *      During the course of sparse LU factorization, we also use
- *	(xlsub,lsub) for the purpose of symmetric pruning. For each
- *	supernode {s,s+1,...,t=s+r} with first column s and last
- *	column t, the subscript set
- *		lsub[j], j=xlsub[s], .., xlsub[s+1]-1
- *	is the structure of column s (i.e. structure of this supernode).
- *	It is used for the storage of numerical values.
- *	Furthermore,
- *		lsub[j], j=xlsub[t], .., xlsub[t+1]-1
- *	is the structure of the last column t of this supernode.
- *	It is for the purpose of symmetric pruning. Therefore, the
- *	structural subscripts can be rearranged without making physical
- *	interchanges among the numerical values.
+ *      (xlsub,lsub) for the purpose of symmetric pruning. For each
+ *      supernode {s,s+1,...,t=s+r} with first column s and last
+ *      column t, the subscript set
+ *              lsub[j], j=xlsub[s], .., xlsub[s+1]-1
+ *      is the structure of column s (i.e. structure of this supernode).
+ *      It is used for the storage of numerical values.
+ *      Furthermore,
+ *              lsub[j], j=xlsub[t], .., xlsub[t+1]-1
+ *      is the structure of the last column t of this supernode.
+ *      It is for the purpose of symmetric pruning. Therefore, the
+ *      structural subscripts can be rearranged without making physical
+ *      interchanges among the numerical values.
  *
- *	However, if the supernode has only one column, then we
- *	only keep one set of subscripts. For any subscript interchange
- *	performed, similar interchange must be done on the numerical
- *	values.
+ *      However, if the supernode has only one column, then we
+ *      only keep one set of subscripts. For any subscript interchange
+ *      performed, similar interchange must be done on the numerical
+ *      values.
  *
- *	The last column structures (for pruning) will be removed
- *	after the numercial LU factorization phase.
+ *      The last column structures (for pruning) will be removed
+ *      after the numercial LU factorization phase.
  *
  *   (xlusup,lusup): lusup[*] contains the numerical values of the
- *	rectangular supernodes; xlusup[j] points to the starting
- *	location of the j-th column in storage vector lusup[*]
- *	Note: xlusup is indexed by column.
- *	Each rectangular supernode is stored by column-major
- *	scheme, consistent with Fortran 2-dim array storage.
+ *      rectangular supernodes; xlusup[j] points to the starting
+ *      location of the j-th column in storage vector lusup[*]
+ *      Note: xlusup is indexed by column.
+ *      Each rectangular supernode is stored by column-major
+ *      scheme, consistent with Fortran 2-dim array storage.
  *
  *   (xusub,ucol,usub): ucol[*] stores the numerical values of
- *	U-columns outside the rectangular supernodes. The row
- *	subscript of nonzero ucol[k] is stored in usub[k].
- *	xusub[i] points to the starting location of column i in ucol.
- *	Storage: new row subscripts; that is subscripts of PA.
+ *      U-columns outside the rectangular supernodes. The row
+ *      subscript of nonzero ucol[k] is stored in usub[k].
+ *      xusub[i] points to the starting location of column i in ucol.
+ *      Storage: new row subscripts; that is subscripts of PA.
  * </pre>
  */
 #ifndef __SUPERLU_sSP_DEFS /* allow multiple inclusions */
@@ -137,7 +137,7 @@ extern void
 sCreate_Dense_Matrix(SuperMatrix *, int, int, float *, int,
 		     Stype_t, Dtype_t, Mtype_t);
 extern void
-sCreate_SuperNode_Matrix(SuperMatrix *, int, int, int, float *, 
+sCreate_SuperNode_Matrix(SuperMatrix *, int, int, int, float *,
 		         int *, int *, int *, int *, int *,
 			 Stype_t, Dtype_t, Mtype_t);
 extern void
@@ -149,7 +149,7 @@ extern void    fixupL (const int, const int *, GlobalLU_t *);
 
 extern void    sallocateA (int, int, float **, int **, int **);
 extern void    sgstrf (superlu_options_t*, SuperMatrix*,
-                       int, int, int*, void *, int, int *, int *, 
+                       int, int, int*, void *, int, int *, int *,
                        SuperMatrix *, SuperMatrix *, GlobalLU_t *,
 		       SuperLUStat_t*, int *);
 extern int     ssnode_dfs (const int, const int, const int *, const int *,
@@ -168,8 +168,8 @@ extern int     scolumn_bmod (const int, const int, float *,
 			   float *, int *, int *, int,
                            GlobalLU_t *, SuperLUStat_t*);
 extern int     scopy_to_ucol (int, int, int *, int *, int *,
-                              float *, GlobalLU_t *);         
-extern int     spivotL (const int, const double, int *, int *, 
+                              float *, GlobalLU_t *);
+extern int     spivotL (const int, const double, int *, int *,
                          int *, int *, int *, GlobalLU_t *, SuperLUStat_t*);
 extern void    spruneL (const int, const int *, const int, const int,
 			  const int *, const int *, int *, GlobalLU_t *);
@@ -200,7 +200,7 @@ extern int     ilu_spivotL (const int, const double, int *, int *, int, int *,
 			    int *, int *, int *, double, milu_t,
                             float, GlobalLU_t *, SuperLUStat_t*);
 extern int     ilu_sdrop_row (superlu_options_t *, int, int, double,
-                              int, int *, double *, GlobalLU_t *, 
+                              int, int *, double *, GlobalLU_t *,
                               float *, float *, int);
 
 
@@ -210,12 +210,12 @@ extern void    sgsequ (SuperMatrix *, float *, float *, float *,
 			float *, float *, int *);
 extern void    slaqgs (SuperMatrix *, float *, float *, float,
                         float, float, char *);
-extern void    sgscon (char *, SuperMatrix *, SuperMatrix *, 
+extern void    sgscon (char *, SuperMatrix *, SuperMatrix *,
 		         float, float *, SuperLUStat_t*, int *);
-extern float   sPivotGrowth(int, SuperMatrix *, int *, 
+extern float   sPivotGrowth(int, SuperMatrix *, int *,
                             SuperMatrix *, SuperMatrix *);
 extern void    sgsrfs (trans_t, SuperMatrix *, SuperMatrix *,
-                       SuperMatrix *, int *, int *, char *, float *, 
+                       SuperMatrix *, int *, int *, char *, float *,
                        float *, SuperMatrix *, SuperMatrix *,
                        float *, float *, SuperLUStat_t*, int *);
 
@@ -225,7 +225,7 @@ extern int     sp_sgemv (char *, float, SuperMatrix *, float *,
 			int, float, float *, int);
 
 extern int     sp_sgemm (char *, char *, int, int, int, float,
-			SuperMatrix *, float *, int, float, 
+			SuperMatrix *, float *, int, float,
 			float *, int);
 extern         float smach(char *);   /* from C99 standard, in float.h */
 

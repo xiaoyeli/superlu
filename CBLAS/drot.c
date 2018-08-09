@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int drot_(integer *n, doublereal *dx, integer *incx, 
+/* Subroutine */ int drot_(integer *n, doublereal *dx, integer *incx,
 	doublereal *dy, integer *incy, doublereal *c, doublereal *s)
 {
 
@@ -20,13 +20,13 @@
     static integer ix, iy;
 
 
-/*     applies a plane rotation.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     applies a plane rotation.
+       jack dongarra, linpack, 3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define DY(I) dy[(I)-1]
 #define DX(I) dx[(I)-1]
@@ -39,7 +39,7 @@
 	goto L20;
     }
 
-/*       code for unequal increments or equal increments not equal   
+/*       code for unequal increments or equal increments not equal
            to 1 */
 
     ix = 1;

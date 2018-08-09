@@ -17,15 +17,15 @@
     static integer i, m, nincx, mp1;
 
 
-/*     scales a vector by a constant.   
-       uses unrolled loops for increment equal to 1.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 3/93 to return if incx .le. 0.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     scales a vector by a constant.
+       uses unrolled loops for increment equal to 1.
+       jack dongarra, linpack, 3/11/78.
+       modified 3/93 to return if incx .le. 0.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define SX(I) sx[(I)-1]
 
@@ -48,7 +48,7 @@
     }
     return 0;
 
-/*        code for increment equal to 1   
+/*        code for increment equal to 1
 
 
           clean-up loop */

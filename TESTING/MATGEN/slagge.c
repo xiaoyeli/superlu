@@ -24,12 +24,12 @@ static real c_b13 = 0.f;
     double r_sign(real *, real *);
 
     /* Local variables */
-    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *, 
+    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *,
 	    integer *, real *, integer *, real *, integer *);
     extern real snrm2_(integer *, real *, integer *);
     static integer i, j;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *), 
-	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
+    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *),
+	    sgemv_(char *, integer *, integer *, real *, real *, integer *,
 	    real *, integer *, real *, real *, integer *);
     static real wa, wb, wn;
     extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real *);
@@ -37,65 +37,65 @@ static real c_b13 = 0.f;
     static real tau;
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0)   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       February 29, 1992   
+/*  -- LAPACK auxiliary test routine (version 2.0)
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       February 29, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    SLAGGE generates a real general m by n matrix A, by pre- and post-   
-    multiplying a real diagonal matrix D with random orthogonal matrices: 
-  
-    A = U*D*V. The lower and upper bandwidths may then be reduced to   
-    kl and ku by additional orthogonal transformations.   
+    SLAGGE generates a real general m by n matrix A, by pre- and post-
+    multiplying a real diagonal matrix D with random orthogonal matrices:
 
-    Arguments   
-    =========   
+    A = U*D*V. The lower and upper bandwidths may then be reduced to
+    kl and ku by additional orthogonal transformations.
 
-    M       (input) INTEGER   
-            The number of rows of the matrix A.  M >= 0.   
+    Arguments
+    =========
 
-    N       (input) INTEGER   
-            The number of columns of the matrix A.  N >= 0.   
+    M       (input) INTEGER
+            The number of rows of the matrix A.  M >= 0.
 
-    KL      (input) INTEGER   
-            The number of nonzero subdiagonals within the band of A.   
-            0 <= KL <= M-1.   
+    N       (input) INTEGER
+            The number of columns of the matrix A.  N >= 0.
 
-    KU      (input) INTEGER   
-            The number of nonzero superdiagonals within the band of A.   
-            0 <= KU <= N-1.   
+    KL      (input) INTEGER
+            The number of nonzero subdiagonals within the band of A.
+            0 <= KL <= M-1.
 
-    D       (input) REAL array, dimension (min(M,N))   
-            The diagonal elements of the diagonal matrix D.   
+    KU      (input) INTEGER
+            The number of nonzero superdiagonals within the band of A.
+            0 <= KU <= N-1.
 
-    A       (output) REAL array, dimension (LDA,N)   
-            The generated m by n matrix A.   
+    D       (input) REAL array, dimension (min(M,N))
+            The diagonal elements of the diagonal matrix D.
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= M.   
+    A       (output) REAL array, dimension (LDA,N)
+            The generated m by n matrix A.
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= M.
 
-    WORK    (workspace) REAL array, dimension (M+N)   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    INFO    (output) INTEGER   
-            = 0: successful exit   
-            < 0: if INFO = -i, the i-th argument had an illegal value   
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
 
-    ===================================================================== 
-  
+    WORK    (workspace) REAL array, dimension (M+N)
+
+    INFO    (output) INTEGER
+            = 0: successful exit
+            < 0: if INFO = -i, the i-th argument had an illegal value
+
+    =====================================================================
 
 
-       Test the input arguments   
+
+       Test the input arguments
 
        Parameter adjustments */
     --d;
@@ -174,7 +174,7 @@ t */
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
 	    r__1 = -(doublereal)tau;
-	    sger_(&i__1, &i__2, &r__1, &work[1], &c__1, &work[*m + 1], &c__1, 
+	    sger_(&i__1, &i__2, &r__1, &work[1], &c__1, &work[*m + 1], &c__1,
 		    &a[i + i * a_dim1], lda);
 	}
 	if (i < *n) {
@@ -202,19 +202,19 @@ ht */
 
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
-	    sgemv_("No transpose", &i__1, &i__2, &c_b11, &a[i + i * a_dim1], 
+	    sgemv_("No transpose", &i__1, &i__2, &c_b11, &a[i + i * a_dim1],
 		    lda, &work[1], &c__1, &c_b13, &work[*n + 1], &c__1);
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
 	    r__1 = -(doublereal)tau;
-	    sger_(&i__1, &i__2, &r__1, &work[*n + 1], &c__1, &work[1], &c__1, 
+	    sger_(&i__1, &i__2, &r__1, &work[*n + 1], &c__1, &work[1], &c__1,
 		    &a[i + i * a_dim1], lda);
 	}
 /* L40: */
     }
 
-/*     Reduce number of subdiagonals to KL and number of superdiagonals   
-       to KU   
+/*     Reduce number of subdiagonals to KL and number of superdiagonals
+       to KU
 
    Computing MAX */
     i__2 = *m - 1 - *kl, i__3 = *n - 1 - *ku;
@@ -223,7 +223,7 @@ ht */
 	if (*kl <= *ku) {
 
 /*           annihilate subdiagonal elements first (necessary if K
-L = 0)   
+L = 0)
 
    Computing MIN */
 	    i__2 = *m - 1 - *kl;
@@ -288,8 +288,8 @@ ight */
 
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
-		sgemv_("No transpose", &i__2, &i__3, &c_b11, &a[i + 1 + (*ku 
-			+ i) * a_dim1], lda, &a[i + (*ku + i) * a_dim1], lda, 
+		sgemv_("No transpose", &i__2, &i__3, &c_b11, &a[i + 1 + (*ku
+			+ i) * a_dim1], lda, &a[i + (*ku + i) * a_dim1], lda,
 			&c_b13, &work[1], &c__1);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
@@ -301,8 +301,8 @@ ight */
 	} else {
 
 /*           annihilate superdiagonal elements first (necessary if
-   
-             KU = 0)   
+
+             KU = 0)
 
    Computing MIN */
 	    i__2 = *n - 1 - *ku;
@@ -330,8 +330,8 @@ ight */
 
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
-		sgemv_("No transpose", &i__2, &i__3, &c_b11, &a[i + 1 + (*ku 
-			+ i) * a_dim1], lda, &a[i + (*ku + i) * a_dim1], lda, 
+		sgemv_("No transpose", &i__2, &i__3, &c_b11, &a[i + 1 + (*ku
+			+ i) * a_dim1], lda, &a[i + (*ku + i) * a_dim1], lda,
 			&c_b13, &work[1], &c__1);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;

@@ -20,14 +20,14 @@ real sdot_(integer *n, real *sx, integer *incx, real *sy, integer *incy)
     static integer ix, iy, mp1;
 
 
-/*     forms the dot product of two vectors.   
-       uses unrolled loops for increments equal to one.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     forms the dot product of two vectors.
+       uses unrolled loops for increments equal to one.
+       jack dongarra, linpack, 3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define SY(I) sy[(I)-1]
 #define SX(I) sx[(I)-1]
@@ -42,7 +42,7 @@ real sdot_(integer *n, real *sx, integer *incx, real *sy, integer *incy)
 	goto L20;
     }
 
-/*        code for unequal increments or equal increments   
+/*        code for unequal increments or equal increments
             not equal to 1 */
 
     ix = 1;
@@ -63,7 +63,7 @@ real sdot_(integer *n, real *sx, integer *incx, real *sy, integer *incy)
     ret_val = stemp;
     return ret_val;
 
-/*        code for both increments equal to 1   
+/*        code for both increments equal to 1
 
 
           clean-up loop */
@@ -85,7 +85,7 @@ L40:
     mp1 = m + 1;
     i__1 = *n;
     for (i = mp1; i <= *n; i += 5) {
-	stemp = stemp + SX(i) * SY(i) + SX(i + 1) * SY(i + 1) + SX(i + 2) * 
+	stemp = stemp + SX(i) * SY(i) + SX(i + 1) * SY(i + 1) + SX(i + 2) *
 		SY(i + 2) + SX(i + 3) * SY(i + 3) + SX(i + 4) * SY(i + 4);
 /* L50: */
     }

@@ -23,12 +23,12 @@ static real c_b10 = 0.f;
     double r_sign(real *, real *);
 
     /* Local variables */
-    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *, 
+    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *,
 	    integer *, real *, integer *, real *, integer *);
     extern real snrm2_(integer *, real *, integer *);
     static integer i;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *), 
-	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
+    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *),
+	    sgemv_(char *, integer *, integer *, real *, real *, integer *,
 	    real *, integer *, real *, real *, integer *);
     static real wa, wb, wn;
     extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real *);
@@ -36,50 +36,50 @@ static real c_b10 = 0.f;
     static real tau;
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0)   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       February 29, 1992   
+/*  -- LAPACK auxiliary test routine (version 2.0)
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       February 29, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    SLARGE pre- and post-multiplies a real general n by n matrix A   
-    with a random orthogonal matrix: A = U*D*U'.   
+    SLARGE pre- and post-multiplies a real general n by n matrix A
+    with a random orthogonal matrix: A = U*D*U'.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    N       (input) INTEGER   
-            The order of the matrix A.  N >= 0.   
+    N       (input) INTEGER
+            The order of the matrix A.  N >= 0.
 
-    A       (input/output) REAL array, dimension (LDA,N)   
-            On entry, the original n by n matrix A.   
-            On exit, A is overwritten by U*A*U' for some random   
-            orthogonal matrix U.   
+    A       (input/output) REAL array, dimension (LDA,N)
+            On entry, the original n by n matrix A.
+            On exit, A is overwritten by U*A*U' for some random
+            orthogonal matrix U.
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= N.   
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= N.
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    WORK    (workspace) REAL array, dimension (2*N)   
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
 
-    INFO    (output) INTEGER   
-            = 0: successful exit   
-            < 0: if INFO = -i, the i-th argument had an illegal value   
+    WORK    (workspace) REAL array, dimension (2*N)
 
-    ===================================================================== 
-  
+    INFO    (output) INTEGER
+            = 0: successful exit
+            < 0: if INFO = -i, the i-th argument had an illegal value
+
+    =====================================================================
 
 
-       Test the input arguments   
+
+       Test the input arguments
 
        Parameter adjustments */
     a_dim1 = *lda;
@@ -130,7 +130,7 @@ static real c_b10 = 0.f;
 		c__1, &c_b10, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
 	r__1 = -(doublereal)tau;
-	sger_(&i__1, n, &r__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i + 
+	sger_(&i__1, n, &r__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i +
 		a_dim1], lda);
 
 /*        multiply A(1:n,i:n) by random reflection from the right */
@@ -140,7 +140,7 @@ static real c_b10 = 0.f;
 		work[1], &c__1, &c_b10, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
 	r__1 = -(doublereal)tau;
-	sger_(n, &i__1, &r__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i * 
+	sger_(n, &i__1, &r__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i *
 		a_dim1 + 1], lda);
 /* L10: */
     }

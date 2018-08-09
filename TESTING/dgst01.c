@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -19,29 +19,29 @@ at the top-level directory.
 #include <math.h>
 #include "slu_ddefs.h"
 
-int dgst01(int m, int n, SuperMatrix *A, SuperMatrix *L, 
+int dgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
 		SuperMatrix *U, int *perm_c, int *perm_r, double *resid)
 {
-/* 
-    Purpose   
-    =======   
+/*
+    Purpose
+    =======
 
-    DGST01 reconstructs a matrix A from its L*U factorization and   
-    computes the residual   
-       norm(L*U - A) / ( N * norm(A) * EPS ),   
-    where EPS is the machine epsilon.   
+    DGST01 reconstructs a matrix A from its L*U factorization and
+    computes the residual
+       norm(L*U - A) / ( N * norm(A) * EPS ),
+    where EPS is the machine epsilon.
 
-    Arguments   
-    ==========   
+    Arguments
+    ==========
 
-    M       (input) INT   
-            The number of rows of the matrix A.  M >= 0.   
+    M       (input) INT
+            The number of rows of the matrix A.  M >= 0.
 
-    N       (input) INT   
-            The number of columns of the matrix A.  N >= 0.   
+    N       (input) INT
+            The number of columns of the matrix A.  N >= 0.
 
     A       (input) SuperMatrix *, dimension (A->nrow, A->ncol)
-            The original M x N matrix A.   
+            The original M x N matrix A.
 
     L       (input) SuperMatrix *, dimension (L->nrow, L->ncol)
             The factor matrix L.
@@ -50,16 +50,16 @@ int dgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
             The factor matrix U.
 
     perm_c (input) INT array, dimension (N)
-            The column permutation from DGSTRF.   
+            The column permutation from DGSTRF.
 
     perm_r  (input) INT array, dimension (M)
-            The pivot indices from DGSTRF.   
+            The pivot indices from DGSTRF.
 
     RESID   (output) DOUBLE*
-            norm(L*U - A) / ( N * norm(A) * EPS )   
+            norm(L*U - A) / ( N * norm(A) * EPS )
 
-    ===================================================================== 
-*/  
+    =====================================================================
+*/
 
     /* Local variables */
     double zero = 0.0;
@@ -96,10 +96,10 @@ int dgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
     colend = intMalloc(n);
 
         for (i = 0; i < n; i++) {
-            colbeg[perm_c[i]] = Astore->colptr[i]; 
+            colbeg[perm_c[i]] = Astore->colptr[i];
 	    colend[perm_c[i]] = Astore->colptr[i+1];
         }
-	
+
     /* Determine EPS and the norm of A. */
     eps = dmach("Epsilon");
     anorm = dlangs("1", A);

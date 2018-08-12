@@ -30,11 +30,14 @@ For information on ITSOL contact saad@cs.umn.edu
 */
 
 #include "slu_zdefs.h"
+#include "slu_Cnames.h"
 
 #define  epsmac  1.0e-16
 
 extern void zdotc_(doublecomplex *, int *, doublecomplex [], int *, doublecomplex [], int *);
 extern double dznrm2_(int *, doublecomplex [], int *);
+extern void zcopy_(int *, doublecomplex [], int *, doublecomplex [], int *);
+extern void zaxpy_(int *, doublecomplex *, doublecomplex [], int *, doublecomplex [], int *);
 
 
 int zfgmr(int n,

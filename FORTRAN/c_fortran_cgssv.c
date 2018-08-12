@@ -18,11 +18,12 @@ at the top-level directory.
  */
 
 #include "slu_cdefs.h"
+#include <stddef.h> /* for ptrdiff_t */
 
 #define HANDLE_SIZE  8
 
-/* kind of integer to hold a pointer.  Use 64-bit. */
-typedef long long int fptr;
+/* kind of integer to hold a pointer.  Use appropriate bit size. */
+typedef ptrdiff_t fptr;
 
 typedef struct {
     SuperMatrix *L;
@@ -31,16 +32,9 @@ typedef struct {
     int *perm_r;
 } factors_t;
 
-void
-c_fortran_cgssv_(int *iopt, int *n, int *nnz, int *nrhs,
-                 complex *values, int *rowind, int *colptr,
-                 complex *b, int *ldb,
-		 fptr *f_factors, /* a handle containing the address
-				     pointing to the factored matrices */
-		 int *info)
-
 {
-/*
+/*!
+ * <pre>
  * This routine can be called from Fortran.
  *
  * iopt (input) int
@@ -53,8 +47,16 @@ c_fortran_cgssv_(int *iopt, int *n, int *nnz, int *nrhs,
  *      If iopt == 1, it is an output and contains the pointer pointing to
  *                    the structure of the factored matrices.
  *      Otherwise, it it an input.
- *
+ * </pre>
  */
+
+void
+c_fortran_cgssv_(int *iopt, int *n, int *nnz, int *nrhs,
+                 complex *values, int *rowind, int *colptr,
+                 complex *b, int *ldb,
+		 fptr *f_factors, /* a handle containing the address
+				     pointing to the factored matrices */
+		 int *info)
 
     SuperMatrix A, AC, B;
     SuperMatrix *L, *U;

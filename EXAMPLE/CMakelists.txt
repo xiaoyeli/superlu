@@ -1,0 +1,74 @@
+macro(add_exe _exename _sources)
+  add_executable(${_exename} ${_sources})
+  target_link_libraries(${_exename} superlu)
+  install(TARGETS ${_exename}
+  #In Cygwin, MSYS, and Win32 Mingw, the run-time .dll is placed in the bin directory, not lib.
+#  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+endmacro(add_exe)
+macro(add_exe2 _exename _sources1 _sources2)
+  add_executable(${_exename} ${_sources1} ${_sources2})
+  target_link_libraries(${_exename} superlu)
+  install(TARGETS ${_exename}
+  #In Cygwin, MSYS, and Win32 Mingw, the run-time .dll is placed in the bin directory, not lib.
+#  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+endmacro(add_exe2)
+
+if(enable_single)
+  add_exe(slinsol slinsol.c)
+  add_exe(slinsol1 slinsol1.c)
+   add_exe(slinsolx slinsolx.c) 
+  add_exe(slinsolx1 slinsolx1.c)
+  add_exe(slinsolx2 slinsolx2.c)
+  add_exe(slinsolx3 slinsolx3.c)
+  add_exe2(sitersol sitersol.c sfgmr.c)
+  add_exe2(sitersol1 sitersol1.c sfgmr.c)
+endif(enable_single)
+if(enable_double)
+  add_exe(dlinsol dlinsol.c)
+  add_exe(dlinsol1 dlinsol1.c)
+  add_exe(dlinsolx dlinsolx.c)
+  add_exe(dlinsolx1 dlinsolx1.c)
+  add_exe(dlinsolx2 dlinsolx2.c)
+  add_exe(dlinsolx3 dlinsolx3.c)
+  add_exe2(superlu_exe superlu.c sp_ienv.c)
+  set_target_properties(superlu_exe PROPERTIES OUTPUT_NAME "superlu")
+  add_exe2( ditersol ditersol.c dfgmr.c)
+  add_exe2( ditersol1 ditersol1.c dfgmr.c)
+endif(enable_double)
+if(enable_complex)
+  add_exe(clinsol clinsol.c)
+  add_exe(clinsol1 clinsol1.c)
+  add_exe(clinsolx clinsolx.c)
+  add_exe(clinsolx1 clinsolx1.c)
+  add_exe(clinsolx2 clinsolx2.c)
+  add_exe(clinsolx3 clinsolx3.c)
+  add_exe2(	citersol citersol.c cfgmr.c)
+  add_exe2(	citersol1 citersol1.c cfgmr.c)
+endif(enable_complex)
+if(enable_complex16)
+  add_exe(zlinsol zlinsol.c)
+  add_exe(zlinsol1 zlinsol1.c)
+  add_exe(zlinsolx zlinsolx.c)
+  add_exe(zlinsolx1 zlinsolx1.c)
+  add_exe(zlinsolx2 zlinsolx2.c)
+  add_exe(zlinsolx3 zlinsolx3.c)
+  add_exe2(zitersol zitersol.c zfgmr.c)
+  add_exe2(zitersol1 zitersol1.c zfgmr.c)
+endif(enable_complex16)
+
+#single:    slinsol slinsol1 slinsolx slinsolx1 slinsolx2 slinsolx3 \
+#		sitersol sitersol1
+#double:    dlinsol dlinsol1 dlinsolx dlinsolx1 dlinsolx2 dlinsolx3 \
+#		superlu ditersol ditersol1
+#complex:   clinsol clinsol1 clinsolx clinsolx1 clinsolx2 clinsolx3 \
+#		citersol citersol1
+#complex16: zlinsol zlinsol1 zlinsolx zlinsolx1 zlinsolx2 zlinsolx3 \
+#		zitersol zitersol1

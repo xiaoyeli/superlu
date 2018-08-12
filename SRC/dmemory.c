@@ -13,7 +13,7 @@ at the top-level directory.
  * \brief Memory details
  *
  * <pre>
- * -- SuperLU routine (version 4.0) --
+ * \-- SuperLU routine (version 4.0) \--
  * Lawrence Berkeley National Laboratory.
  * June 30, 2009
  * </pre>
@@ -50,7 +50,7 @@ extern void    user_bcopy      (char *, char *, int);
  *
  * <pre>
  *    lwork = 0: use system malloc;
- *    lwork > 0: use user-supplied work[] space.
+ *    lwork \> 0: use user-supplied work[] space\.
  * </pre>
  */
 void dSetupSpace(void *work, int lwork, GlobalLU_t *Glu)
@@ -104,10 +104,10 @@ void duser_free(int bytes, int which_end, GlobalLU_t *Glu)
  *
  * <pre>
  * mem_usage consists of the following fields:
- *    - for_lu (float)
- *      The amount of space used in bytes for the L\\U data structures.
- *    - total_needed (float)
- *      The amount of space needed in bytes to perform factorization.
+ *    &ndash; for_lu (float)
+ *      The amount of space used in bytes for the L\\U data structures\.
+ *    &ndash; total_needed (float)
+ *      The amount of space needed in bytes to perform factorization\.
  * </pre>
  */
 int dQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
@@ -142,10 +142,10 @@ int dQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
  *
  * <pre>
  * mem_usage consists of the following fields:
- *    - for_lu (float)
- *      The amount of space used in bytes for the L\\U data structures.
- *    - total_needed (float)
- *      The amount of space needed in bytes to perform factorization.
+ *    &ndash; for_lu (float)
+ *      The amount of space used in bytes for the L\\U data structures\.
+ *    &ndash; total_needed (float)
+ *      The amount of space needed in bytes to perform factorization\.
  * </pre>
  */
 int ilu_dQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
@@ -185,7 +185,7 @@ int ilu_dQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
  * Return value:
  *     If lwork = -1, return the estimated amount of space required, plus n;
  *     otherwise, return the amount of space actually allocated when
- *     memory allocation failure occurred.
+ *     memory allocation failure occurred\.
  * </pre>
  */
 int
@@ -339,7 +339,7 @@ dLUMemInit(fact_t fact, void *work, int lwork, int m, int n, int annz,
  *
  * <pre>
  * Returns 0 if success, otherwise
- * returns the number of bytes allocated so far when failure occurred.
+ * returns the number of bytes allocated so far when failure occurred\.
  * </pre>
  */
 int
@@ -426,7 +426,7 @@ void dLUWorkFree(int *iwork, double *dwork, GlobalLU_t *Glu)
  *
  * <pre>
  * Return value:   0 - successful return
- *               > 0 - number of bytes allocated when run out of space
+ *               \> 0 - number of bytes allocated when run out of space
  * </pre>
  */
 int

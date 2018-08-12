@@ -12,9 +12,6 @@ at the top-level directory.
  *     \brief Colamd prototypes and definitions
  *
  * <pre>
- *     ==========================================================================
- *     === colamd/symamd prototypes and definitions =============================
- *     ==========================================================================
  *
  *     You must include this file (colamd.h) in any routine that uses colamd,
  *     symamd, or the related macros and definitions.
@@ -90,7 +87,7 @@ at the top-level directory.
 /* stats [2]: memory defragmentation count output statistic */
 #define COLAMD_DEFRAG_COUNT 2
 
-/* stats [3]: colamd status:  zero OK, > 0 warning or notice, < 0 error */
+/* stats [3]: colamd status:  zero OK, \> 0 warning or notice, \< 0 error */
 #define COLAMD_STATUS 3
 
 /* stats [4..6]: error info, or info on jumbled columns */

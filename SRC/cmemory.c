@@ -13,7 +13,7 @@ at the top-level directory.
  * \brief Memory details
  *
  * <pre>
- * -- SuperLU routine (version 4.0) --
+ * \-- SuperLU routine (version 4.0) \--
  * Lawrence Berkeley National Laboratory.
  * June 30, 2009
  * </pre>
@@ -49,7 +49,7 @@ extern void    user_bcopy      (char *, char *, int);
 /*! \brief Setup the memory model to be used for factorization.
  *
  *    lwork = 0: use system malloc;
- *    lwork > 0: use user-supplied work[] space.
+ *    lwork \> 0: use user-supplied work[] space\.
  */
 void cSetupSpace(void *work, int lwork, GlobalLU_t *Glu)
 {
@@ -102,10 +102,10 @@ void cuser_free(int bytes, int which_end, GlobalLU_t *Glu)
  *
  * <pre>
  * mem_usage consists of the following fields:
- *    - for_lu (float)
- *      The amount of space used in bytes for the L\\U data structures.
- *    - total_needed (float)
- *      The amount of space needed in bytes to perform factorization.
+ *    &ndash; for_lu (float)
+ *      The amount of space used in bytes for the L\\U data structures\.
+ *    &ndash; total_needed (float)
+ *      The amount of space needed in bytes to perform factorization\.
  * </pre>
  */
 int cQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
@@ -140,10 +140,10 @@ int cQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
  *
  * <pre>
  * mem_usage consists of the following fields:
- *    - for_lu (float)
- *      The amount of space used in bytes for the L\\U data structures.
- *    - total_needed (float)
- *      The amount of space needed in bytes to perform factorization.
+ *    &ndash; for_lu (float)
+ *      The amount of space used in bytes for the L\\U data structures\.
+ *    &ndash; total_needed (float)
+ *      The amount of space needed in bytes to perform factorization\.
  * </pre>
  */
 int ilu_cQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
@@ -419,7 +419,7 @@ void cLUWorkFree(int *iwork, complex *dwork, GlobalLU_t *Glu)
  *
  * <pre>
  * Return value:   0 - successful return
- *               > 0 - number of bytes allocated when run out of space
+ *               \> 0 - number of bytes allocated when run out of space
  * </pre>
  */
 int

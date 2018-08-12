@@ -19,6 +19,11 @@ at the top-level directory.
  *
  */
 #include "slu_ddefs.h"
+#include "slu_Cnames.h"
+
+#ifdef __MINGW32__
+#include "getopt.h"
+#endif
 
 int main(int argc, char *argv[])
 {

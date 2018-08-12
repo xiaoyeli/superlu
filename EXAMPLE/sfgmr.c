@@ -30,12 +30,14 @@ For information on ITSOL contact saad@cs.umn.edu
 */
 
 #include "slu_sdefs.h"
+#include "slu_Cnames.h"
 
 #define  epsmac  1.0e-16
 
 extern float sdot_(int *, float [], int *, float [], int *);
 extern float snrm2_(int *, float [], int *);
-
+extern int scopy_(int *, float *, int *, float *, int *);
+extern void saxpy_(int *, float *, float [], int *, float [], int *);
 
 int sfgmr(int n,
      void (*smatvec) (float, float[], float, float[]),

@@ -18,6 +18,10 @@ at the top-level directory.
  */
 #include "slu_sdefs.h"
 
+#ifdef __MINGW32__
+#include "getopt.h"
+#endif
+
 int main(int argc, char *argv[])
 {
     char           equed[1];

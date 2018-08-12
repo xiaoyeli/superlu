@@ -100,7 +100,7 @@ option(enable_single    "Enable single precision library" ON)
 option(enable_double    "Enable double precision library" ON)
 option(enable_complex   "Enable complex precision library" ON)
 option(enable_complex16 "Enable complex16 precision library" ON)
-# option(enable_examples  "Build examples" ON)
+option(enable_examples  "Build examples" ON)
 
 # setup required compiler defines and options.
 ## add_definitions(-DPRNTlevel=0 -DAdd_)
@@ -167,6 +167,7 @@ endif()
 ######################################################################
 
 include_directories(${CMAKE_SOURCE_DIR}/SRC)
+include_directories(${CMAKE_SOURCE_DIR}/FORTRAN)
 
 ######################################################################
 #
@@ -175,6 +176,8 @@ include_directories(${CMAKE_SOURCE_DIR}/SRC)
 ######################################################################
 
 add_subdirectory(SRC)
+add_subdirectory(EXAMPLE)
+add_subdirectory(FORTRAN)
 
 if(enable_matlabmex)
   add_subdirectory(MATLAB)

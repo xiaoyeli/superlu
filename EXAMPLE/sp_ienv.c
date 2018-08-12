@@ -25,6 +25,8 @@ at the top-level directory.
  */
 #include "slu_Cnames.h"
 
+extern int input_error(char *, int *);
+
 /*! \brief
 
  <pre>

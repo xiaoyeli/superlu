@@ -4,10 +4,11 @@ macro(add_exe _exename _sources)
   install(TARGETS ${_exename}
   #In Cygwin, MSYS, and Win32 Mingw, the run-time .dll is placed in the bin directory, not lib.
 #  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
 )
+
 endmacro(add_exe)
 macro(add_exe2 _exename _sources1 _sources2)
   add_executable(${_exename} ${_sources1} ${_sources2})
@@ -15,9 +16,9 @@ macro(add_exe2 _exename _sources1 _sources2)
   install(TARGETS ${_exename}
   #In Cygwin, MSYS, and Win32 Mingw, the run-time .dll is placed in the bin directory, not lib.
 #  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
 )
 endmacro(add_exe2)
 

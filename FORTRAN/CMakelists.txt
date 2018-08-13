@@ -4,9 +4,9 @@ macro(add_exe3 _exename _sources _sources2 _sources3)
   install(TARGETS ${_exename}
   #In Cygwin, MSYS, and Win32 Mingw, the run-time .dll is placed in the bin directory, not lib.
 #  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
 )
 endmacro(add_exe3)
 

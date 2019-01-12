@@ -73,7 +73,7 @@ sp_ienv(int ispec)
     switch (ispec) {
 	case 1: return (1);
 	case 2: return (1);
-	case 3: return (200);
+        case 3: return (1);
 	case 4: return (200);
 	case 5: return (100);
         case 6: return (30);

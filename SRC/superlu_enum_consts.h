@@ -73,6 +73,9 @@ typedef enum {
     COMM_RIGHT, /* communicate L panel */
     COMM_DOWN, /* communicate U panel */
     SOL_COMM,/* communication for solve */
+    SOL_GEMM,/* gemm for solve */
+    SOL_TRSM,/* trsm for solve */
+    SOL_TOT,	/* LU-solve time*/
     RCOND,   /* estimate reciprocal condition number */
     SOLVE,   /* forward and back solves */
     REFINE,  /* perform iterative refinement */
@@ -81,6 +84,5 @@ typedef enum {
     FERR,    /* estimate error bounds after iterative refinement */
     NPHASES  /* total number of phases */
 } PhaseType;
-
 
 #endif /* __SUPERLU_ENUM_CONSTS */

@@ -1,15 +1,15 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 
-/*! @file 
+/*! @file
  * \brief Read a matrix stored in Harwell-Boeing format.
  * Contributed by Francois-Henry Rouet.
  *
@@ -51,7 +51,7 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
      *    Triplet in the rest of lines: row    col    value
      */
 
-     /* 1/ read header */ 
+     /* 1/ read header */
      fgets(line,512,fp);
      for (p=line; *p!='\0'; *p=tolower(*p),p++);
 
@@ -59,7 +59,7 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
        printf("Invalid header (first line does not contain 5 tokens)\n");
        exit;
      }
- 
+
      if(strcmp(banner,"%%matrixmarket")) {
        printf("Invalid header (first token is not \"%%%%MatrixMarket\")\n");
        exit(-1);
@@ -164,7 +164,7 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
 	          val[nz] = val[nz-1];
 	          ++xa[col[nz]];
 	        }
-            }	
+            }
 	    ++nz;
 	}
     }
@@ -173,7 +173,7 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
     if(expand) {
       printf("new_nonz after symmetric expansion:\t%d\n", *nonz);
     }
-    
+
 
     /* Initialize the array of column pointers */
     k = 0;
@@ -184,7 +184,7 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
 	jsize = xa[j];
 	xa[j] = k;
     }
-    
+
     /* Copy the triplets into the column oriented storage */
     for (nz = 0; nz < *nonz; ++nz) {
 	j = col[nz];

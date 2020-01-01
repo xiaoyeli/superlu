@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -19,6 +19,11 @@ at the top-level directory.
  *
  */
 #include "slu_cdefs.h"
+#include "slu_Cnames.h"
+
+#ifdef __MINGW32__
+#include "getopt.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -33,7 +38,7 @@ int main(int argc, char *argv[])
  * In this case, the column permutation vector perm_c is computed once.
  * The following data structures will be reused in the subsequent call to
  * CGSSVX: perm_c, etree
- * 
+ *
  */
     char           equed[1];
     yes_no_t       equil;
@@ -43,7 +48,7 @@ int main(int argc, char *argv[])
     NCformat       *Astore;
     NCformat       *Ustore;
     SCformat       *Lstore;
-    GlobalLU_t	   Glu; /* facilitate multiple factorizations with 
+    GlobalLU_t	   Glu; /* facilitate multiple factorizations with
                            SamePattern_SameRowPerm                  */
     complex         *a, *a1;
     int            *asub, *xa, *asub1, *xa1;
@@ -71,7 +76,7 @@ int main(int argc, char *argv[])
     /* Defaults */
     lwork = 0;
     nrhs  = 1;
-    equil = YES;	
+    equil = YES;
     u     = 1.0;
     trans = NOTRANS;
 
@@ -112,11 +117,11 @@ int main(int argc, char *argv[])
 	asub1[i] = asub[i];
     }
     for (i = 0; i < n+1; ++i) xa1[i] = xa[i];
-    
+
     cCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_C, SLU_GE);
     Astore = A.Store;
     printf("Dimension %dx%d; # nonzeros %d\n", A.nrow, A.ncol, Astore->nnz);
-    
+
     if ( !(rhsb = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
     if ( !(rhsb1 = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb1[].");
     if ( !(rhsx = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
@@ -128,22 +133,22 @@ int main(int argc, char *argv[])
     cFillRHS(trans, nrhs, xact, ldx, &A, &B);
     for (j = 0; j < nrhs; ++j)
         for (i = 0; i < m; ++i) rhsb1[i+j*m] = rhsb[i+j*m];
-    
+
     if ( !(perm_c = intMalloc(n)) ) ABORT("Malloc fails for perm_c[].");
     if ( !(perm_r = intMalloc(m)) ) ABORT("Malloc fails for perm_r[].");
     if ( !(etree = intMalloc(n)) ) ABORT("Malloc fails for etree[].");
-    if ( !(R = (float *) SUPERLU_MALLOC(A.nrow * sizeof(float))) ) 
+    if ( !(R = (float *) SUPERLU_MALLOC(A.nrow * sizeof(float))) )
         ABORT("SUPERLU_MALLOC fails for R[].");
     if ( !(C = (float *) SUPERLU_MALLOC(A.ncol * sizeof(float))) )
         ABORT("SUPERLU_MALLOC fails for C[].");
     if ( !(ferr = (float *) SUPERLU_MALLOC(nrhs * sizeof(float))) )
         ABORT("SUPERLU_MALLOC fails for ferr[].");
-    if ( !(berr = (float *) SUPERLU_MALLOC(nrhs * sizeof(float))) ) 
+    if ( !(berr = (float *) SUPERLU_MALLOC(nrhs * sizeof(float))) )
         ABORT("SUPERLU_MALLOC fails for berr[].");
 
     /* Initialize the statistics variables. */
     StatInit(&stat);
-    
+
     /* ------------------------------------------------------------
        WE SOLVE THE LINEAR SYSTEM FOR THE FIRST TIME: AX = B
        ------------------------------------------------------------*/
@@ -156,7 +161,7 @@ int main(int argc, char *argv[])
     if ( info == 0 || info == n+1 ) {
 
         /* This is how you could access the solution matrix. */
-        complex *sol = (complex*) ((DNformat*) X.Store)->nzval; 
+        complex *sol = (complex*) ((DNformat*) X.Store)->nzval;
 
 	if ( options.PivotGrowth ) printf("Recip. pivot growth = %e\n", rpg);
 	if ( options.ConditionNumber )
@@ -211,7 +216,7 @@ int main(int argc, char *argv[])
     if ( info == 0 || info == n+1 ) {
 
         /* This is how you could access the solution matrix. */
-        complex *sol = (complex*) ((DNformat*) X.Store)->nzval; 
+        complex *sol = (complex*) ((DNformat*) X.Store)->nzval;
 
 	if ( options.PivotGrowth ) printf("Recip. pivot growth = %e\n", rpg);
 	if ( options.ConditionNumber )
@@ -260,7 +265,7 @@ int main(int argc, char *argv[])
 #endif
 }
 
-/*  
+/*
  * Parse command line options to get relaxed snode size, panel size, etc.
  */
 void
@@ -282,9 +287,9 @@ parse_command_line(int argc, char *argv[], int *lwork,
 	    break;
 	  case 'l': *lwork = atoi(optarg);
 	            break;
-	  case 'u': *u = atof(optarg); 
+	  case 'u': *u = atof(optarg);
 	            break;
-	  case 'e': *equil = atoi(optarg); 
+	  case 'e': *equil = atoi(optarg);
 	            break;
 	  case 't': *trans = atoi(optarg);
 	            break;

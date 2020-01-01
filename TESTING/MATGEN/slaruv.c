@@ -2,55 +2,55 @@
 
 /* Subroutine */ int slaruv_slu(integer *iseed, integer *n, real *x)
 {
-/*  -- LAPACK auxiliary routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       October 31, 1992   
+/*  -- LAPACK auxiliary routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       October 31, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    SLARUV returns a vector of n random real numbers from a uniform (0,1) 
-  
-    distribution (n <= 128).   
+    SLARUV returns a vector of n random real numbers from a uniform (0,1)
 
-    This is an auxiliary routine called by SLARNV and CLARNV.   
+    distribution (n <= 128).
 
-    Arguments   
-    =========   
+    This is an auxiliary routine called by SLARNV and CLARNV.
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    Arguments
+    =========
 
-    N       (input) INTEGER   
-            The number of random numbers to be generated. N <= 128.   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    X       (output) REAL array, dimension (N)   
-            The generated random numbers.   
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
 
-    Further Details   
-    ===============   
+    N       (input) INTEGER
+            The number of random numbers to be generated. N <= 128.
 
-    This routine uses a multiplicative congruential method with modulus   
-    2**48 and multiplier 33952834046453 (see G.S.Fishman,   
-    'Multiplicative congruential random number generators with modulus   
-    2**b: an exhaustive analysis for b = 32 and a partial analysis for   
-    b = 48', Math. Comp. 189, pp 331-344, 1990).   
+    X       (output) REAL array, dimension (N)
+            The generated random numbers.
 
-    48-bit integers are stored in 4 integer array elements with 12 bits   
-    per element. Hence the routine is portable across machines with   
-    integers of 32 bits or more.   
+    Further Details
+    ===============
 
-    ===================================================================== 
-  
+    This routine uses a multiplicative congruential method with modulus
+    2**48 and multiplier 33952834046453 (see G.S.Fishman,
+    'Multiplicative congruential random number generators with modulus
+    2**b: an exhaustive analysis for b = 32 and a partial analysis for
+    b = 48', Math. Comp. 189, pp 331-344, 1990).
 
-    
-   Parameter adjustments   
+    48-bit integers are stored in 4 integer array elements with 12 bits
+    per element. Hence the routine is portable across machines with
+    integers of 32 bits or more.
+
+    =====================================================================
+
+
+
+   Parameter adjustments
        Function Body */
     /* Initialized data */
     static integer mm[512]	/* was [128][4] */ = { 494,2637,255,2008,1253,
@@ -125,15 +125,15 @@
 	it2 = it2 + i2 * MM(i + 383) + i3 * MM(i + 255) + i4 * MM(i + 127);
 	it1 = it2 / 4096;
 	it2 -= it1 << 12;
-	it1 = it1 + i1 * MM(i + 383) + i2 * MM(i + 255) + i3 * MM(i + 127) + 
+	it1 = it1 + i1 * MM(i + 383) + i2 * MM(i + 255) + i3 * MM(i + 127) +
 		i4 * MM(i - 1);
 	it1 %= 4096;
 
 /*        Convert 48-bit integer to a real number in the interval (0,1
 ) */
 
-	X(i) = ((real) it1 + ((real) it2 + ((real) it3 + (real) it4 * 
-		2.44140625e-4f) * 2.44140625e-4f) * 2.44140625e-4f) * 
+	X(i) = ((real) it1 + ((real) it2 + ((real) it3 + (real) it4 *
+		2.44140625e-4f) * 2.44140625e-4f) * 2.44140625e-4f) *
 		2.44140625e-4f;
 /* L10: */
     }

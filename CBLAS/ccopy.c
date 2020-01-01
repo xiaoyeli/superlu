@@ -18,13 +18,13 @@
     static integer i, ix, iy;
 
 
-/*     copies a vector, x, to a vector, y.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     copies a vector, x, to a vector, y.
+       jack dongarra, linpack, 3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define CY(I) cy[(I)-1]
 #define CX(I) cx[(I)-1]
@@ -37,7 +37,7 @@
 	goto L20;
     }
 
-/*        code for unequal increments or equal increments   
+/*        code for unequal increments or equal increments
             not equal to 1 */
 
     ix = 1;

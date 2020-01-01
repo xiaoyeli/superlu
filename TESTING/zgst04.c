@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -23,47 +23,47 @@ int zgst04(int n, int nrhs, doublecomplex *x, int ldx, doublecomplex *xact,
 	      int ldxact, double rcond, double *resid)
 {
 /*
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    ZGST04 computes the difference between a computed solution and the   
-    true solution to a system of linear equations.   
-    RESID =  ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS ),   
-    where RCOND is the reciprocal of the condition number and EPS is the 
-    machine epsilon.   
+    ZGST04 computes the difference between a computed solution and the
+    true solution to a system of linear equations.
+    RESID =  ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS ),
+    where RCOND is the reciprocal of the condition number and EPS is the
+    machine epsilon.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    N       (input) INT   
-            The number of rows of the matrices X and XACT.  N >= 0.   
+    N       (input) INT
+            The number of rows of the matrices X and XACT.  N >= 0.
 
-    NRHS    (input) INT   
-            The number of columns of the matrices X and XACT.  NRHS >= 0. 
+    NRHS    (input) INT
+            The number of columns of the matrices X and XACT.  NRHS >= 0.
 
-    X       (input) DOUBLE COMPLEX PRECISION array, dimension (LDX,NRHS)   
-            The computed solution vectors.  Each vector is stored as a   
-            column of the matrix X.   
+    X       (input) DOUBLE COMPLEX PRECISION array, dimension (LDX,NRHS)
+            The computed solution vectors.  Each vector is stored as a
+            column of the matrix X.
 
-    LDX     (input) INT   
-            The leading dimension of the array X.  LDX >= max(1,N).   
+    LDX     (input) INT
+            The leading dimension of the array X.  LDX >= max(1,N).
 
-    XACT    (input) DOUBLE COMPLEX PRECISION array, dimension( LDX, NRHS )   
-            The exact solution vectors.  Each vector is stored as a   
-            column of the matrix XACT.   
+    XACT    (input) DOUBLE COMPLEX PRECISION array, dimension( LDX, NRHS )
+            The exact solution vectors.  Each vector is stored as a
+            column of the matrix XACT.
 
-    LDXACT  (input) INT   
-            The leading dimension of the array XACT.  LDXACT >= max(1,N). 
+    LDXACT  (input) INT
+            The leading dimension of the array XACT.  LDXACT >= max(1,N).
 
-    RCOND   (input) DOUBLE COMPLEX PRECISION   
-            The reciprocal of the condition number of the coefficient   
-            matrix in the system of equations.   
+    RCOND   (input) DOUBLE COMPLEX PRECISION
+            The reciprocal of the condition number of the coefficient
+            matrix in the system of equations.
 
-    RESID   (output) DOUBLE PRECISION   
-            The maximum over the NRHS solution vectors of   
-            ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS )   
+    RESID   (output) DOUBLE PRECISION
+            The maximum over the NRHS solution vectors of
+            ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS )
 
-    ===================================================================== 
+    =====================================================================
 */
     /* Table of constant values */
     int c__1 = 1;
@@ -94,7 +94,7 @@ int zgst04(int n, int nrhs, doublecomplex *x, int ldx, doublecomplex *xact,
 	return 0;
     }
 
-    /* Compute the maximum of norm(X - XACT) / ( norm(XACT) * EPS )   
+    /* Compute the maximum of norm(X - XACT) / ( norm(XACT) * EPS )
        over all the vectors X and XACT . */
 
     *resid = 0.;

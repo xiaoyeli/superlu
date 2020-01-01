@@ -23,20 +23,20 @@ real snrm2_(integer *n, real *x, integer *incx)
     static real ssq;
 
 
-/*  SNRM2 returns the euclidean norm of a vector via the function   
-    name, so that   
+/*  SNRM2 returns the euclidean norm of a vector via the function
+    name, so that
 
-       SNRM2 := sqrt( x'*x )   
-
-
-
-    -- This version written on 25-October-1982.   
-       Modified on 14-October-1993 to inline the call to SLASSQ.   
-       Sven Hammarling, Nag Ltd.   
+       SNRM2 := sqrt( x'*x )
 
 
-    
-   Parameter adjustments   
+
+    -- This version written on 25-October-1982.
+       Modified on 14-October-1993 to inline the call to SLASSQ.
+       Sven Hammarling, Nag Ltd.
+
+
+
+   Parameter adjustments
        Function Body */
 #define X(I) x[(I)-1]
 
@@ -48,9 +48,9 @@ real snrm2_(integer *n, real *x, integer *incx)
     } else {
 	scale = 0.f;
 	ssq = 1.f;
-/*        The following loop is equivalent to this call to the LAPACK 
-  
-          auxiliary routine:   
+/*        The following loop is equivalent to this call to the LAPACK
+
+          auxiliary routine:
           CALL SLASSQ( N, X, INCX, SCALE, SSQ ) */
 
 	i__1 = (*n - 1) * *incx + 1;

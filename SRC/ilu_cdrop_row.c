@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -31,6 +31,7 @@ extern float scnrm2_(int *, complex *, int *);
 extern void scopy_(int *, float [], int *, float [], int *);
 extern double dnrm2_(int *, double [], int *);
 extern int icamax_(int *, complex [], int *);
+extern int input_error(char *, int *);
 
 static float *A;  /* used in _compare_ only */
 static int _compare_(const void *a, const void *b)
@@ -45,7 +46,7 @@ static int _compare_(const void *a, const void *b)
  * <pre>
  * Purpose
  * =======
- *    ilu_cdrop_row() - Drop some small rows from the previous 
+ *    ilu_cdrop_row() - Drop some small rows from the previous
  *    supernode (L-part only).
  * </pre>
  */

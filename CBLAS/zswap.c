@@ -1,7 +1,7 @@
 #include "f2c.h"
 /*#include "blaswrap.h"*/
 
-/* Subroutine */ int zswap_(integer *n, doublecomplex *zx, integer *incx, 
+/* Subroutine */ int zswap_(integer *n, doublecomplex *zx, integer *incx,
 	doublecomplex *zy, integer *incy)
 {
     /* System generated locals */

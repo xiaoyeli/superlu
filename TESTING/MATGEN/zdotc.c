@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Double Complex */ VOID zdotc_(doublecomplex * ret_val, integer *n, 
+/* Double Complex */ VOID zdotc_(doublecomplex * ret_val, integer *n,
 	doublecomplex *zx, integer *incx, doublecomplex *zy, integer *incy)
 {
     /* System generated locals */
@@ -21,11 +21,11 @@
     static integer ix, iy;
 
 
-/*     forms the dot product of a vector.   
-       jack dongarra, 3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     forms the dot product of a vector.
+       jack dongarra, 3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
-    
+
    Parameter adjustments */
     --zy;
     --zx;
@@ -40,7 +40,7 @@
 	goto L20;
     }
 
-/*        code for unequal increments or equal increments   
+/*        code for unequal increments or equal increments
             not equal to 1 */
 
     ix = 1;
@@ -55,7 +55,7 @@
     for (i = 1; i <= *n; ++i) {
 	d_cnjg(&z__3, &zx[ix]);
 	i__2 = iy;
-	z__2.r = z__3.r * zy[iy].r - z__3.i * zy[iy].i, z__2.i = z__3.r * 
+	z__2.r = z__3.r * zy[iy].r - z__3.i * zy[iy].i, z__2.i = z__3.r *
 		zy[iy].i + z__3.i * zy[iy].r;
 	z__1.r = ztemp.r + z__2.r, z__1.i = ztemp.i + z__2.i;
 	ztemp.r = z__1.r, ztemp.i = z__1.i;
@@ -73,7 +73,7 @@ L20:
     for (i = 1; i <= *n; ++i) {
 	d_cnjg(&z__3, &zx[i]);
 	i__2 = i;
-	z__2.r = z__3.r * zy[i].r - z__3.i * zy[i].i, z__2.i = z__3.r * 
+	z__2.r = z__3.r * zy[i].r - z__3.i * zy[i].i, z__2.i = z__3.r *
 		zy[i].i + z__3.i * zy[i].r;
 	z__1.r = ztemp.r + z__2.r, z__1.i = ztemp.i + z__2.i;
 	ztemp.r = z__1.r, ztemp.i = z__1.i;

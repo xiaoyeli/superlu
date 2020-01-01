@@ -20,15 +20,15 @@ real sasum_(integer *n, real *sx, integer *incx)
     static integer mp1;
 
 
-/*     takes the sum of the absolute values.   
-       uses unrolled loops for increment equal to one.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 3/93 to return if incx .le. 0.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     takes the sum of the absolute values.
+       uses unrolled loops for increment equal to one.
+       jack dongarra, linpack, 3/11/78.
+       modified 3/93 to return if incx .le. 0.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define SX(I) sx[(I)-1]
 
@@ -54,7 +54,7 @@ real sasum_(integer *n, real *sx, integer *incx)
     ret_val = stemp;
     return ret_val;
 
-/*        code for increment equal to 1   
+/*        code for increment equal to 1
 
 
           clean-up loop */
@@ -77,8 +77,8 @@ L40:
     i__2 = *n;
     for (i = mp1; i <= *n; i += 6) {
 	stemp = stemp + (r__1 = SX(i), dabs(r__1)) + (r__2 = SX(i + 1), dabs(
-		r__2)) + (r__3 = SX(i + 2), dabs(r__3)) + (r__4 = SX(i + 3), 
-		dabs(r__4)) + (r__5 = SX(i + 4), dabs(r__5)) + (r__6 = SX(i + 
+		r__2)) + (r__3 = SX(i + 2), dabs(r__3)) + (r__4 = SX(i + 3),
+		dabs(r__4)) + (r__5 = SX(i + 4), dabs(r__5)) + (r__6 = SX(i +
 		5), dabs(r__6));
 /* L50: */
     }

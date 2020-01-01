@@ -1,0 +1,16 @@
+macro(add_exe3 _exename _sources _sources2 _sources3)
+  add_executable(${_exename} ${_sources} ${_sources2} ${_sources3})
+  target_link_libraries(${_exename} superlu)
+  install(TARGETS ${_exename}
+  #In Cygwin, MSYS, and Win32 Mingw, the run-time .dll is placed in the bin directory, not lib.
+#  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+)
+endmacro(add_exe3)
+
+add_exe3(df77exm f77_main.f hbcode1.f c_fortran_dgssv.c)
+add_exe3(test_omp test_omp.f hbcode1.f c_fortran_dgssv.c)
+add_exe3(zf77exm z_f77_main.f zhbcode1.f c_fortran_zgssv.c)
+

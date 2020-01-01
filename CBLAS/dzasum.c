@@ -21,14 +21,14 @@ doublereal dzasum_(integer *n, doublecomplex *zx, integer *incx)
     static integer ix;
 
 
-/*     takes the sum of the absolute values.   
-       jack dongarra, 3/11/78.   
-       modified 3/93 to return if incx .le. 0.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     takes the sum of the absolute values.
+       jack dongarra, 3/11/78.
+       modified 3/93 to return if incx .le. 0.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define ZX(I) zx[(I)-1]
 

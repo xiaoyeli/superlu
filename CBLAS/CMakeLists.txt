@@ -1,4 +1,8 @@
-set(headers 
+find_library(F2C f2c)
+if (NOT F2C)
+message(FATAL_ERROR "f2c required.  It is available at http://www.netlib.org/f2c/index.html ")
+endif()
+set(headers
     f2c.h
     slu_Cnames.h
 )
@@ -12,8 +16,8 @@ set(sources "")
       scopy.c
       sdot.c
       snrm2.c
-      srot.c 
-      sscal.c 
+      srot.c
+      sscal.c
       sswap.c
       sgemv
       ssymv
@@ -79,4 +83,6 @@ set(sources "")
     )
 #endif()
 
-add_library(blas ${sources} ${HEADERS})
+#This must be compiled as a static library
+add_library(blas STATIC ${sources} ${HEADERS})
+target_link_libraries(blas ${F2C} m)

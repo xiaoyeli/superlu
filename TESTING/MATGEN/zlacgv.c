@@ -2,37 +2,37 @@
 
 /* Subroutine */ int zlacgv_slu(integer *n, doublecomplex *x, integer *incx)
 {
-/*  -- LAPACK auxiliary routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       October 31, 1992   
+/*  -- LAPACK auxiliary routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       October 31, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    ZLACGV conjugates a complex vector of length N.   
+    ZLACGV conjugates a complex vector of length N.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    N       (input) INTEGER   
-            The length of the vector X.  N >= 0.   
+    N       (input) INTEGER
+            The length of the vector X.  N >= 0.
 
-    X       (input/output) COMPLEX*16 array, dimension   
-                           (1+(N-1)*abs(INCX))   
-            On entry, the vector of length N to be conjugated.   
-            On exit, X is overwritten with conjg(X).   
+    X       (input/output) COMPLEX*16 array, dimension
+                           (1+(N-1)*abs(INCX))
+            On entry, the vector of length N to be conjugated.
+            On exit, X is overwritten with conjg(X).
 
-    INCX    (input) INTEGER   
-            The spacing between successive elements of X.   
+    INCX    (input) INTEGER
+            The spacing between successive elements of X.
 
-   ===================================================================== 
-  
+   =====================================================================
 
 
-    
-   Parameter adjustments   
+
+
+   Parameter adjustments
        Function Body */
     /* System generated locals */
     integer i__1, i__2;

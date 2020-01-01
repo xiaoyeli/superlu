@@ -10,12 +10,12 @@ integer icamax_(integer *n, complex *cx, integer *incx)
     /* Local variables */
     static real smax;
     static integer i, ix;
-/*     finds the index of element having max. absolute value.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 3/93 to return if incx .le. 0.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
-    
-   Parameter adjustments   
+/*     finds the index of element having max. absolute value.
+       jack dongarra, linpack, 3/11/78.
+       modified 3/93 to return if incx .le. 0.
+       modified 12/3/93, array(1) declarations changed to array(*)
+
+   Parameter adjustments
        Function Body */
 #define CX(I) cx[(I)-1]
     ret_val = 0;
@@ -42,7 +42,7 @@ integer icamax_(integer *n, complex *cx, integer *incx)
 	}
 	ret_val = i;
 	i__2 = ix;
-	smax = (r__1 = CX(ix).r, dabs(r__1)) + (r__2 = r_imag(&CX(ix)), 
+	smax = (r__1 = CX(ix).r, dabs(r__1)) + (r__2 = r_imag(&CX(ix)),
 		dabs(r__2));
 L5:
 	ix += *incx;

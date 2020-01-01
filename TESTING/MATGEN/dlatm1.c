@@ -26,92 +26,92 @@
     extern int input_error(char *, int *);
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       September 30, 1994   
+/*  -- LAPACK auxiliary test routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       September 30, 1994
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-       DLATM1 computes the entries of D(1..N) as specified by   
-       MODE, COND and IRSIGN. IDIST and ISEED determine the generation   
-       of random numbers. DLATM1 is called by SLATMR to generate   
-       random test matrices for LAPACK programs.   
+       DLATM1 computes the entries of D(1..N) as specified by
+       MODE, COND and IRSIGN. IDIST and ISEED determine the generation
+       of random numbers. DLATM1 is called by SLATMR to generate
+       random test matrices for LAPACK programs.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    MODE   - INTEGER   
-             On entry describes how D is to be computed:   
-             MODE = 0 means do not change D.   
-             MODE = 1 sets D(1)=1 and D(2:N)=1.0/COND   
-             MODE = 2 sets D(1:N-1)=1 and D(N)=1.0/COND   
-             MODE = 3 sets D(I)=COND**(-(I-1)/(N-1))   
-             MODE = 4 sets D(i)=1 - (i-1)/(N-1)*(1 - 1/COND)   
-             MODE = 5 sets D to random numbers in the range   
-                      ( 1/COND , 1 ) such that their logarithms   
-                      are uniformly distributed.   
-             MODE = 6 set D to random numbers from same distribution   
-                      as the rest of the matrix.   
-             MODE < 0 has the same meaning as ABS(MODE), except that   
-                the order of the elements of D is reversed.   
-             Thus if MODE is positive, D has entries ranging from   
-                1 to 1/COND, if negative, from 1/COND to 1,   
-             Not modified.   
+    MODE   - INTEGER
+             On entry describes how D is to be computed:
+             MODE = 0 means do not change D.
+             MODE = 1 sets D(1)=1 and D(2:N)=1.0/COND
+             MODE = 2 sets D(1:N-1)=1 and D(N)=1.0/COND
+             MODE = 3 sets D(I)=COND**(-(I-1)/(N-1))
+             MODE = 4 sets D(i)=1 - (i-1)/(N-1)*(1 - 1/COND)
+             MODE = 5 sets D to random numbers in the range
+                      ( 1/COND , 1 ) such that their logarithms
+                      are uniformly distributed.
+             MODE = 6 set D to random numbers from same distribution
+                      as the rest of the matrix.
+             MODE < 0 has the same meaning as ABS(MODE), except that
+                the order of the elements of D is reversed.
+             Thus if MODE is positive, D has entries ranging from
+                1 to 1/COND, if negative, from 1/COND to 1,
+             Not modified.
 
-    COND   - DOUBLE PRECISION   
-             On entry, used as described under MODE above.   
-             If used, it must be >= 1. Not modified.   
+    COND   - DOUBLE PRECISION
+             On entry, used as described under MODE above.
+             If used, it must be >= 1. Not modified.
 
-    IRSIGN - INTEGER   
-             On entry, if MODE neither -6, 0 nor 6, determines sign of   
-             entries of D   
-             0 => leave entries of D unchanged   
-             1 => multiply each entry of D by 1 or -1 with probability .5 
-  
-
-    IDIST  - CHARACTER*1   
-             On entry, IDIST specifies the type of distribution to be   
-             used to generate a random matrix .   
-             1 => UNIFORM( 0, 1 )   
-             2 => UNIFORM( -1, 1 )   
-             3 => NORMAL( 0, 1 )   
-             Not modified.   
-
-    ISEED  - INTEGER array, dimension ( 4 )   
-             On entry ISEED specifies the seed of the random number   
-             generator. The random number generator uses a   
-             linear congruential sequence limited to small   
-             integers, and so should produce machine independent   
-             random numbers. The values of ISEED are changed on   
-             exit, and can be used in the next call to DLATM1   
-             to continue the same random number sequence.   
-             Changed on exit.   
-
-    D      - DOUBLE PRECISION array, dimension ( MIN( M , N ) )   
-             Array to be computed according to MODE, COND and IRSIGN.   
-             May be changed on exit if MODE is nonzero.   
-
-    N      - INTEGER   
-             Number of entries of D. Not modified.   
-
-    INFO   - INTEGER   
-              0  => normal termination   
-             -1  => if MODE not in range -6 to 6   
-             -2  => if MODE neither -6, 0 nor 6, and   
-                    IRSIGN neither 0 nor 1   
-             -3  => if MODE neither -6, 0 nor 6 and COND less than 1   
-             -4  => if MODE equals 6 or -6 and IDIST not in range 1 to 3 
-  
-             -7  => if N negative   
-
-    ===================================================================== 
-  
+    IRSIGN - INTEGER
+             On entry, if MODE neither -6, 0 nor 6, determines sign of
+             entries of D
+             0 => leave entries of D unchanged
+             1 => multiply each entry of D by 1 or -1 with probability .5
 
 
-       Decode and Test the input parameters. Initialize flags & seed.   
+    IDIST  - CHARACTER*1
+             On entry, IDIST specifies the type of distribution to be
+             used to generate a random matrix .
+             1 => UNIFORM( 0, 1 )
+             2 => UNIFORM( -1, 1 )
+             3 => NORMAL( 0, 1 )
+             Not modified.
+
+    ISEED  - INTEGER array, dimension ( 4 )
+             On entry ISEED specifies the seed of the random number
+             generator. The random number generator uses a
+             linear congruential sequence limited to small
+             integers, and so should produce machine independent
+             random numbers. The values of ISEED are changed on
+             exit, and can be used in the next call to DLATM1
+             to continue the same random number sequence.
+             Changed on exit.
+
+    D      - DOUBLE PRECISION array, dimension ( MIN( M , N ) )
+             Array to be computed according to MODE, COND and IRSIGN.
+             May be changed on exit if MODE is nonzero.
+
+    N      - INTEGER
+             Number of entries of D. Not modified.
+
+    INFO   - INTEGER
+              0  => normal termination
+             -1  => if MODE not in range -6 to 6
+             -2  => if MODE neither -6, 0 nor 6, and
+                    IRSIGN neither 0 nor 1
+             -3  => if MODE neither -6, 0 nor 6 and COND less than 1
+             -4  => if MODE equals 6 or -6 and IDIST not in range 1 to 3
+
+             -7  => if N negative
+
+    =====================================================================
+
+
+
+       Decode and Test the input parameters. Initialize flags & seed.
 
        Parameter adjustments */
     --d;
@@ -230,7 +230,7 @@ L110:
 
 L120:
 
-/*        If MODE neither -6 nor 0 nor 6, and IRSIGN = 1, assign   
+/*        If MODE neither -6 nor 0 nor 6, and IRSIGN = 1, assign
           random signs to D */
 
 	if (*mode != -6 && *mode != 0 && *mode != 6 && *irsign == 1) {

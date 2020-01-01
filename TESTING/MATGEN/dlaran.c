@@ -14,46 +14,46 @@ doublereal dlaran_slu(integer *iseed)
     static integer it1, it2, it3, it4;
 
 
-/*  -- LAPACK auxiliary routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       February 29, 1992   
+/*  -- LAPACK auxiliary routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       February 29, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    DLARAN returns a random real number from a uniform (0,1)   
-    distribution.   
+    DLARAN returns a random real number from a uniform (0,1)
+    distribution.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    ISEED   (input/output) INTEGER array, dimension (4)   
-            On entry, the seed of the random number generator; the array 
-  
-            elements must be between 0 and 4095, and ISEED(4) must be   
-            odd.   
-            On exit, the seed is updated.   
+    ISEED   (input/output) INTEGER array, dimension (4)
+            On entry, the seed of the random number generator; the array
 
-    Further Details   
-    ===============   
+            elements must be between 0 and 4095, and ISEED(4) must be
+            odd.
+            On exit, the seed is updated.
 
-    This routine uses a multiplicative congruential method with modulus   
-    2**48 and multiplier 33952834046453 (see G.S.Fishman,   
-    'Multiplicative congruential random number generators with modulus   
-    2**b: an exhaustive analysis for b = 32 and a partial analysis for   
-    b = 48', Math. Comp. 189, pp 331-344, 1990).   
+    Further Details
+    ===============
 
-    48-bit integers are stored in 4 integer array elements with 12 bits   
-    per element. Hence the routine is portable across machines with   
-    integers of 32 bits or more.   
+    This routine uses a multiplicative congruential method with modulus
+    2**48 and multiplier 33952834046453 (see G.S.Fishman,
+    'Multiplicative congruential random number generators with modulus
+    2**b: an exhaustive analysis for b = 32 and a partial analysis for
+    b = 48', Math. Comp. 189, pp 331-344, 1990).
 
-    ===================================================================== 
-  
+    48-bit integers are stored in 4 integer array elements with 12 bits
+    per element. Hence the routine is portable across machines with
+    integers of 32 bits or more.
+
+    =====================================================================
 
 
-       multiply the seed by the multiplier modulo 2**48   
+
+       multiply the seed by the multiplier modulo 2**48
 
        Parameter adjustments */
     --iseed;
@@ -68,7 +68,7 @@ doublereal dlaran_slu(integer *iseed)
     it2 = it2 + iseed[2] * 2549 + iseed[3] * 2508 + iseed[4] * 322;
     it1 = it2 / 4096;
     it2 -= it1 << 12;
-    it1 = it1 + iseed[1] * 2549 + iseed[2] * 2508 + iseed[3] * 322 + iseed[4] 
+    it1 = it1 + iseed[1] * 2549 + iseed[2] * 2508 + iseed[3] * 322 + iseed[4]
 	    * 494;
     it1 %= 4096;
 

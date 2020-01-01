@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -22,7 +22,7 @@ at the top-level directory.
  * but the preconditioned GMRES is applied to the original system.
  * The driver routine ZGSISX is called twice to perform factorization
  * and apply preconditioner separately.
- * 
+ *
  * Note that ZGSISX performs the following factorization:
  *     Pr*Dr*A*Dc*Pc^T ~= LU
  * with Pr being obtained from MC64 statically then partial pivoting
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
     NCformat *Astore;
     NCformat *Ustore;
     SCformat *Lstore;
-    GlobalLU_t	   Glu; /* facilitate multiple factorizations with 
+    GlobalLU_t	   Glu; /* facilitate multiple factorizations with
                            SamePattern_SameRowPerm                  */
     doublecomplex   *a, *a_orig;
     int      *asub, *xa, *asub_orig, *xa_orig;
@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
     for (i = 0; i <= n; ++i) xa_orig[i] = Astore->colptr[i];
     zCreate_CompCol_Matrix(&AA, m, n, nnz, a_orig, asub_orig, xa_orig,
 			   SLU_NC, SLU_Z, SLU_GE);
-    
+
     /* Generate the right-hand side */
     if ( !(rhsb = doublecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
     if ( !(rhsx = doublecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");

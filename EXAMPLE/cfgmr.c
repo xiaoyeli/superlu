@@ -5,18 +5,18 @@
 
 /* ITSOL COPYRIGHT
 
-Copyright (C) 2006, the University of Minnesota 
+Copyright (C) 2006, the University of Minnesota
 
 ITSOL is free software; you can redistribute it and/or modify it under
 the terms of  the GNU General Public License as  published by the Free
 Software Foundation [version 2 of the License, or any later version]
-For details, see 
+For details, see
 
 http://www.gnu.org/licenses/gpl-2.0.txt
 
 A copy of the GNU licencing agreement is attached to the ITSOL package
 in the file GNU.  For additional information contact the Free Software
-Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. 
+Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 DISCLAIMER
 ----------
@@ -24,18 +24,20 @@ DISCLAIMER
 This program  is distributed in the  hope that it will  be useful, but
 WITHOUT   ANY  WARRANTY;   without  even   the  implied   warranty  of
 MERCHANTABILITY  or FITNESS  FOR A  PARTICULAR PURPOSE.   See  the GNU
-General Public License for more details. 
+General Public License for more details.
 
 For information on ITSOL contact saad@cs.umn.edu
 */
 
 #include "slu_cdefs.h"
+#include "slu_Cnames.h"
 
 #define  epsmac  1.0e-16
 
 extern void cdotc_(complex *, int *, complex [], int *, complex [], int *);
 extern float scnrm2_(int *, complex [], int *);
-
+extern int ccopy_(int *, complex *, int *, complex [], int *);
+extern void caxpy_(int *, complex *, complex [], int *, complex [], int *);
 
 int cfgmr(int n,
      void (*cmatvec) (complex, complex[], complex, complex[]),

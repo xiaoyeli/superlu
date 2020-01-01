@@ -10,10 +10,10 @@ volatile double _dummy;
 
 int main()
 {
-    /* Parameters */    
+    /* Parameters */
 #define NMAX    1000
 #define ITS     100000
-    
+
     int      i, j, iters;
     double   alpha, avg, t1, t2, tnotim;
     double   x[NMAX], y[NMAX];
@@ -27,7 +27,7 @@ int main()
     alpha = 0.315;
 
     /* Time DAXPY operations */
-    iters = ITS; 
+    iters = ITS;
     tnotim = 0.0;
     while ( tnotim <= 0.0 ) {
       t1 = SuperLU_timer_();
@@ -56,7 +56,7 @@ int main()
 
     /* Force gcc not to optimize away the previous loop (DCS) */
     printf("y[0]=%g\n", y[0]) ;
-    
+
     t1 = SuperLU_timer_();
     for (j = 0; j < ITS; ++j) {
 	for (i = 0; i < NMAX; ++i)
@@ -66,7 +66,7 @@ int main()
     t2 = SuperLU_timer_();
     tnotim = t2 - t1;
 
-    /* Time 1,000,000 DAXPY operations with SuperLU_timer_() 
+    /* Time 1,000,000 DAXPY operations with SuperLU_timer_()
        in the outer loop */
     t1 = SuperLU_timer_();
     for (j = 0; j < ITS; ++j) {
@@ -76,7 +76,7 @@ int main()
 	t2 = SuperLU_timer_();
     }
 
-    /* Compute the time in milliseconds used by an average call to 
+    /* Compute the time in milliseconds used by an average call to
        SuperLU_timer_(). */
     printf("Including DSECND, time        = %10.3g seconds\n", t2-t1);
     avg = ( (t2 - t1) - tnotim )*1000. / (double)ITS;

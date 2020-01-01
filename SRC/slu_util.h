@@ -1,15 +1,15 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 /** @file slu_util.h
- * \brief Utility header file 
+ * \brief Utility header file
  *
  * -- SuperLU routine (version 4.1) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
@@ -24,6 +24,15 @@ at the top-level directory.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+/*
+needed for ptrdiff_t type.  This is for typecasting points to integers
+of the correct size.  On Windows 64-bit, an int or long is 4 bytes wide
+while a pointer is 8 bytes.  GCC and several other compilers will warn
+you about this.
+*/
+#include <stddef.h>
+
 /*
 #ifndef __STDC__
 #include <malloc.h>
@@ -36,15 +45,15 @@ at the top-level directory.
 /***********************************************************************
  * Macros
  ***********************************************************************/
-/*                                                                                           
- * You can support older version of SuperLU.                                              
- * At compile-time, you can catch the new release as:                                          
- *   #ifdef SUPERLU_MAIN_VERSION == 5                                                     
- *       use the new interface                                                                 
- *   #else                                                                                     
- *       use the old interface                                                                 
- *   #endif                                                                                    
- * Versions 4.x and earlier do not include a #define'd version numbers.                        
+/*
+ * You can support older version of SuperLU.
+ * At compile-time, you can catch the new release as:
+ *   #ifdef SUPERLU_MAIN_VERSION == 5
+ *       use the new interface
+ *   #else
+ *       use the old interface
+ *   #endif
+ * Versions 4.x and earlier do not include a #define'd version numbers.
  */
 #define SUPERLU_MAJOR_VERSION     5
 #define SUPERLU_MINOR_VERSION     2
@@ -105,7 +114,7 @@ at the top-level directory.
 
 
 /***********************************************************************
- * Constants 
+ * Constants
  ***********************************************************************/
 #define EMPTY	(-1)
 /*#define NO	(-1)*/
@@ -123,7 +132,7 @@ at the top-level directory.
 #define  NODROP	        ( 0x0000 )
 #define	 DROP_BASIC	( 0x0001 )  /* ILU(tau) */
 #define  DROP_PROWS	( 0x0002 )  /* ILUTP: keep p maximum rows */
-#define  DROP_COLUMN	( 0x0004 )  /* ILUTP: for j-th column, 
+#define  DROP_COLUMN	( 0x0004 )  /* ILUTP: for j-th column,
 				              p = gamma * nnz(A(:,j)) */
 #define  DROP_AREA 	( 0x0008 )  /* ILUTP: for j-th column, use
  		 			      nnz(F(:,1:j)) / nnz(A(:,1:j))
@@ -146,7 +155,7 @@ at the top-level directory.
 typedef float    flops_t;
 typedef unsigned char Logical;
 
-/* 
+/*
  *-- This contains the options used to control the solution process.
  *
  * Fact   (fact_t)
@@ -158,7 +167,7 @@ typedef unsigned char Logical;
  *        = SamePattern: The matrix A will be factorized assuming
  *             that a factorization of a matrix with the same sparsity
  *             pattern was performed prior to this one. Therefore, this
- *             factorization will reuse column permutation vector 
+ *             factorization will reuse column permutation vector
  *             ScalePermstruct->perm_c and the column elimination tree
  *             LUstruct->etree.
  *        = SamePattern_SameRowPerm: The matrix A will be factorized
@@ -168,7 +177,7 @@ typedef unsigned char Logical;
  *             both row and column scaling factors R and C, both row and
  *             column permutation vectors perm_r and perm_c, and the
  *             L & U data structures set up from the previous factorization.
- *        = FACTORED: On entry, L, U, perm_r and perm_c contain the 
+ *        = FACTORED: On entry, L, U, perm_r and perm_c contain the
  *              factored form of A. If DiagScale is not NOEQUIL, the matrix
  *              A has been equilibrated with scaling factors R and C.
  *
@@ -178,12 +187,12 @@ typedef unsigned char Logical;
  *
  * ColPerm (colperm_t)
  *        Specifies what type of column permutation to use to reduce fill.
- *        = NATURAL: use the natural ordering 
+ *        = NATURAL: use the natural ordering
  *        = MMD_ATA: use minimum degree ordering on structure of A'*A
  *        = MMD_AT_PLUS_A: use minimum degree ordering on structure of A'+A
  *        = COLAMD: use approximate minimum degree column ordering
  *        = MY_PERMC: use the ordering specified by the user
- *         
+ *
  * Trans  (trans_t)
  *        Specifies the form of the system of equations:
  *        = NOTRANS: A * X = B        (No transpose)
@@ -202,7 +211,7 @@ typedef unsigned char Logical;
  *        acceptable pivot.
  *
  * SymmetricMode (yest_no_t)
- *        Specifies whether to use symmetric mode. Symmetric mode gives 
+ *        Specifies whether to use symmetric mode. Symmetric mode gives
  *        preference to diagonal pivots, and uses an (A'+A)-based column
  *        permutation algorithm.
  *
@@ -220,30 +229,30 @@ typedef unsigned char Logical;
  *
  * ILU_DropRule (int)
  *        Specifies the dropping rule:
- *	  = DROP_BASIC:   Basic dropping rule, supernodal based ILUTP(tau).
- *	  = DROP_PROWS:   Supernodal based ILUTP(p,tau), p = gamma * nnz(A)/n.
- *	  = DROP_COLUMN:  Variant of ILUTP(p,tau), for j-th column,
- *			      p = gamma * nnz(A(:,j)).
- *	  = DROP_AREA:    Variation of ILUTP, for j-th column, use
- *			      nnz(F(:,1:j)) / nnz(A(:,1:j)) to control memory.
- *	  = DROP_DYNAMIC: Modify the threshold tau during factorizaion:
- *			  If nnz(L(:,1:j)) / nnz(A(:,1:j)) > gamma
- *				  tau_L(j) := MIN(tau_0, tau_L(j-1) * 2);
- *			  Otherwise
- *				  tau_L(j) := MAX(tau_0, tau_L(j-1) / 2);
- *			  tau_U(j) uses the similar rule.
- *			  NOTE: the thresholds used by L and U are separate.
- *	  = DROP_INTERP:  Compute the second dropping threshold by
- *	                  interpolation instead of sorting (default).
- *  		          In this case, the actual fill ratio is not
- *			  guaranteed to be smaller than gamma.
- *   	  Note: DROP_PROWS, DROP_COLUMN and DROP_AREA are mutually exclusive.
- *	  ( Default: DROP_BASIC | DROP_AREA )
+ *        = DROP_BASIC:   Basic dropping rule, supernodal based ILUTP(tau).
+ *        = DROP_PROWS:   Supernodal based ILUTP(p,tau), p = gamma * nnz(A)/n.
+ *        = DROP_COLUMN:  Variant of ILUTP(p,tau), for j-th column,
+ *                            p = gamma * nnz(A(:,j)).
+ *        = DROP_AREA:    Variation of ILUTP, for j-th column, use
+ *                           nnz(F(:,1:j)) / nnz(A(:,1:j)) to control memory.
+ *        = DROP_DYNAMIC: Modify the threshold tau during factorizaion:
+ *                        If nnz(L(:,1:j)) / nnz(A(:,1:j)) > gamma
+ *                                tau_L(j) := MIN(tau_0, tau_L(j-1) * 2);
+ *                        Otherwise
+ *                                tau_L(j) := MAX(tau_0, tau_L(j-1) / 2);
+ *                        tau_U(j) uses the similar rule.
+ *                        NOTE: the thresholds used by L and U are separate.
+ *        = DROP_INTERP:  Compute the second dropping threshold by
+ *                        interpolation instead of sorting (default).
+ *                        In this case, the actual fill ratio is not
+ *                        guaranteed to be smaller than gamma.
+ *        Note: DROP_PROWS, DROP_COLUMN and DROP_AREA are mutually exclusive.
+ *        ( Default: DROP_BASIC | DROP_AREA )
  *
  * ILU_DropTol (double)
  *        numerical threshold for dropping.
  *
- * ILU_FillFactor (double) 
+ * ILU_FillFactor (double)
  *        Gamma in the secondary dropping.
  *
  * ILU_Norm (norm_t)
@@ -256,7 +265,7 @@ typedef unsigned char Logical;
  * ILU_MILU (milu_t)
  *        Specifies which version of MILU to use.
  *
- * ILU_MILU_Dim (double) 
+ * ILU_MILU_Dim (double)
  *        Dimension of the PDE if available.
  *
  * ReplaceTinyPivot (yes_no_t) (only for SuperLU_DIST)
@@ -307,16 +316,16 @@ typedef struct {
 
 /*! \brief Headers for 4 types of dynamatically managed memory */
 typedef struct e_node {
-    int size;      /* length of the memory that has been used */
-    void *mem;     /* pointer to the new malloc'd store */
+    ptrdiff_t size;      /* length of the memory that has been used */
+    void      *mem;     /* pointer to the new malloc'd store */
 } ExpHeader;
 
 typedef struct {
-    int  size;
-    int  used;
-    int  top1;  /* grow upward, relative to &array[0] */
-    int  top2;  /* grow downward */
-    void *array;
+    ptrdiff_t  size;
+    ptrdiff_t  used;
+    ptrdiff_t  top1;  /* grow upward, relative to &array[0] */
+    ptrdiff_t  top2;  /* grow downward */
+    void       *array;
 } LU_stack_t;
 
 typedef struct {
@@ -336,7 +345,7 @@ typedef struct {
 
 typedef struct {
     int     *xsup;    /* supernode and column mapping */
-    int     *supno;   
+    int     *supno;
     int     *lsub;    /* compressed L subscripts */
     int	    *xlsub;
     void    *lusup;   /* L supernodes */

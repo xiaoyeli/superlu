@@ -20,14 +20,14 @@ integer izamax_(integer *n, doublecomplex *zx, integer *incx)
     static integer ix;
 
 
-/*     finds the index of element having max. absolute value.   
-       jack dongarra, 1/15/85.   
-       modified 3/93 to return if incx .le. 0.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     finds the index of element having max. absolute value.
+       jack dongarra, 1/15/85.
+       modified 3/93 to return if incx .le. 0.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define ZX(I) zx[(I)-1]
 

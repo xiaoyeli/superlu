@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int zscal_(integer *n, doublecomplex *za, doublecomplex *zx, 
+/* Subroutine */ int zscal_(integer *n, doublecomplex *za, doublecomplex *zx,
 	integer *incx)
 {
 
@@ -19,14 +19,14 @@
     static integer i, ix;
 
 
-/*     scales a vector by a constant.   
-       jack dongarra, 3/11/78.   
-       modified 3/93 to return if incx .le. 0.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     scales a vector by a constant.
+       jack dongarra, 3/11/78.
+       modified 3/93 to return if incx .le. 0.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define ZX(I) zx[(I)-1]
 

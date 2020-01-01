@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -20,6 +20,10 @@ at the top-level directory.
  */
 #include "slu_zdefs.h"
 
+#ifdef __MINGW32__
+#include "getopt.h"
+#endif
+
 int main(int argc, char *argv[])
 {
 /*
@@ -33,7 +37,7 @@ int main(int argc, char *argv[])
  * In this case, we factorize A only once in the first call to DGSSVX,
  * and reuse the following data structures in the subsequent call to ZGSSVX:
  *     perm_c, perm_r, R, C, L, U.
- * 
+ *
  */
     char           equed[1];
     yes_no_t       equil;
@@ -43,7 +47,7 @@ int main(int argc, char *argv[])
     NCformat       *Astore;
     NCformat       *Ustore;
     SCformat       *Lstore;
-    GlobalLU_t	   Glu; /* facilitate multiple factorizations with 
+    GlobalLU_t	   Glu; /* facilitate multiple factorizations with
                            SamePattern_SameRowPerm                  */
     doublecomplex         *a;
     int            *asub, *xa;
@@ -71,7 +75,7 @@ int main(int argc, char *argv[])
     /* Defaults */
     lwork = 0;
     nrhs  = 1;
-    equil = YES;	
+    equil = YES;
     u     = 1.0;
     trans = NOTRANS;
 
@@ -94,7 +98,7 @@ int main(int argc, char *argv[])
     options.Equil = equil;
     options.DiagPivotThresh = u;
     options.Trans = trans;
-    
+
     if ( lwork > 0 ) {
 	work = SUPERLU_MALLOC(lwork);
 	if ( !work ) {
@@ -104,11 +108,11 @@ int main(int argc, char *argv[])
 
     /* Read matrix A from a file in Harwell-Boeing format.*/
     zreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
-    
+
     zCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_Z, SLU_GE);
     Astore = A.Store;
     printf("Dimension %dx%d; # nonzeros %d\n", A.nrow, A.ncol, Astore->nnz);
-    
+
     if ( !(rhsb = doublecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
     if ( !(rhsx = doublecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
     zCreate_Dense_Matrix(&B, m, nrhs, rhsb, m, SLU_DN, SLU_Z, SLU_GE);
@@ -117,22 +121,22 @@ int main(int argc, char *argv[])
     ldx = n;
     zGenXtrue(n, nrhs, xact, ldx);
     zFillRHS(trans, nrhs, xact, ldx, &A, &B);
-    
+
     if ( !(etree = intMalloc(n)) ) ABORT("Malloc fails for etree[].");
     if ( !(perm_r = intMalloc(m)) ) ABORT("Malloc fails for perm_r[].");
     if ( !(perm_c = intMalloc(n)) ) ABORT("Malloc fails for perm_c[].");
-    if ( !(R = (double *) SUPERLU_MALLOC(A.nrow * sizeof(double))) ) 
+    if ( !(R = (double *) SUPERLU_MALLOC(A.nrow * sizeof(double))) )
         ABORT("SUPERLU_MALLOC fails for R[].");
     if ( !(C = (double *) SUPERLU_MALLOC(A.ncol * sizeof(double))) )
         ABORT("SUPERLU_MALLOC fails for C[].");
     if ( !(ferr = (double *) SUPERLU_MALLOC(nrhs * sizeof(double))) )
         ABORT("SUPERLU_MALLOC fails for ferr[].");
-    if ( !(berr = (double *) SUPERLU_MALLOC(nrhs * sizeof(double))) ) 
+    if ( !(berr = (double *) SUPERLU_MALLOC(nrhs * sizeof(double))) )
         ABORT("SUPERLU_MALLOC fails for berr[].");
 
     /* Initialize the statistics variables. */
     StatInit(&stat);
-    
+
     /* ONLY PERFORM THE LU DECOMPOSITION */
     B.ncol = 0;  /* Indicate not to solve the system */
     zgssvx(&options, &A, perm_c, perm_r, etree, equed, R, C,
@@ -182,7 +186,7 @@ int main(int argc, char *argv[])
     if ( info == 0 || info == n+1 ) {
 
         /* This is how you could access the solution matrix. */
-        doublecomplex *sol = (doublecomplex*) ((DNformat*) X.Store)->nzval; 
+        doublecomplex *sol = (doublecomplex*) ((DNformat*) X.Store)->nzval;
 
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
@@ -224,7 +228,7 @@ int main(int argc, char *argv[])
 #endif
 }
 
-/*  
+/*
  * Parse command line options to get relaxed snode size, panel size, etc.
  */
 void
@@ -246,9 +250,9 @@ parse_command_line(int argc, char *argv[], int *lwork,
 	    break;
 	  case 'l': *lwork = atoi(optarg);
 	            break;
-	  case 'u': *u = atof(optarg); 
+	  case 'u': *u = atof(optarg);
 	            break;
-	  case 'e': *equil = atoi(optarg); 
+	  case 'e': *equil = atoi(optarg);
 	            break;
 	  case 't': *trans = atoi(optarg);
 	            break;

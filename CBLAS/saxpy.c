@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int saxpy_(integer *n, real *sa, real *sx, integer *incx, 
+/* Subroutine */ int saxpy_(integer *n, real *sa, real *sx, integer *incx,
 	real *sy, integer *incy)
 {
 
@@ -18,14 +18,14 @@
     static integer i, m, ix, iy, mp1;
 
 
-/*     constant times a vector plus a vector.   
-       uses unrolled loop for increments equal to one.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     constant times a vector plus a vector.
+       uses unrolled loop for increments equal to one.
+       jack dongarra, linpack, 3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define SY(I) sy[(I)-1]
 #define SX(I) sx[(I)-1]
@@ -41,7 +41,7 @@
 	goto L20;
     }
 
-/*        code for unequal increments or equal increments   
+/*        code for unequal increments or equal increments
             not equal to 1 */
 
     ix = 1;
@@ -61,7 +61,7 @@
     }
     return 0;
 
-/*        code for both increments equal to 1   
+/*        code for both increments equal to 1
 
 
           clean-up loop */

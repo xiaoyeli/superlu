@@ -23,20 +23,20 @@ doublereal dznrm2_(integer *n, doublecomplex *x, integer *incx)
     static doublereal ssq;
 
 
-/*  DZNRM2 returns the euclidean norm of a vector via the function   
-    name, so that   
+/*  DZNRM2 returns the euclidean norm of a vector via the function
+    name, so that
 
-       DZNRM2 := sqrt( conjg( x' )*x )   
-
-
-
-    -- This version written on 25-October-1982.   
-       Modified on 14-October-1993 to inline the call to ZLASSQ.   
-       Sven Hammarling, Nag Ltd.   
+       DZNRM2 := sqrt( conjg( x' )*x )
 
 
-    
-   Parameter adjustments   
+
+    -- This version written on 25-October-1982.
+       Modified on 14-October-1993 to inline the call to ZLASSQ.
+       Sven Hammarling, Nag Ltd.
+
+
+
+   Parameter adjustments
        Function Body */
 #define X(I) x[(I)-1]
 
@@ -46,9 +46,9 @@ doublereal dznrm2_(integer *n, doublecomplex *x, integer *incx)
     } else {
 	scale = 0.;
 	ssq = 1.;
-/*        The following loop is equivalent to this call to the LAPACK 
-  
-          auxiliary routine:   
+/*        The following loop is equivalent to this call to the LAPACK
+
+          auxiliary routine:
           CALL ZLASSQ( N, X, INCX, SCALE, SSQ ) */
 
 	i__1 = (*n - 1) * *incx + 1;

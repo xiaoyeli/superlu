@@ -1,61 +1,61 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int zlaset_slu(char *uplo, integer *m, integer *n, 
+/* Subroutine */ int zlaset_slu(char *uplo, integer *m, integer *n,
 	doublecomplex *alpha, doublecomplex *beta, doublecomplex *a, integer *
 	lda)
 {
-/*  -- LAPACK auxiliary routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       October 31, 1992   
+/*  -- LAPACK auxiliary routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       October 31, 1992
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-    ZLASET initializes a 2-D array A to BETA on the diagonal and   
-    ALPHA on the offdiagonals.   
+    ZLASET initializes a 2-D array A to BETA on the diagonal and
+    ALPHA on the offdiagonals.
 
-    Arguments   
-    =========   
+    Arguments
+    =========
 
-    UPLO    (input) CHARACTER*1   
-            Specifies the part of the matrix A to be set.   
-            = 'U':      Upper triangular part is set. The lower triangle 
-  
-                        is unchanged.   
-            = 'L':      Lower triangular part is set. The upper triangle 
-  
-                        is unchanged.   
-            Otherwise:  All of the matrix A is set.   
+    UPLO    (input) CHARACTER*1
+            Specifies the part of the matrix A to be set.
+            = 'U':      Upper triangular part is set. The lower triangle
 
-    M       (input) INTEGER   
-            On entry, M specifies the number of rows of A.   
+                        is unchanged.
+            = 'L':      Lower triangular part is set. The upper triangle
 
-    N       (input) INTEGER   
-            On entry, N specifies the number of columns of A.   
+                        is unchanged.
+            Otherwise:  All of the matrix A is set.
 
-    ALPHA   (input) COMPLEX*16   
-            All the offdiagonal array elements are set to ALPHA.   
+    M       (input) INTEGER
+            On entry, M specifies the number of rows of A.
 
-    BETA    (input) COMPLEX*16   
-            All the diagonal array elements are set to BETA.   
+    N       (input) INTEGER
+            On entry, N specifies the number of columns of A.
 
-    A       (input/output) COMPLEX*16 array, dimension (LDA,N)   
-            On entry, the m by n matrix A.   
-            On exit, A(i,j) = ALPHA, 1 <= i <= m, 1 <= j <= n, i.ne.j;   
-                     A(i,i) = BETA , 1 <= i <= min(m,n)   
+    ALPHA   (input) COMPLEX*16
+            All the offdiagonal array elements are set to ALPHA.
 
-    LDA     (input) INTEGER   
-            The leading dimension of the array A.  LDA >= max(1,M).   
+    BETA    (input) COMPLEX*16
+            All the diagonal array elements are set to BETA.
 
-    ===================================================================== 
-  
+    A       (input/output) COMPLEX*16 array, dimension (LDA,N)
+            On entry, the m by n matrix A.
+            On exit, A(i,j) = ALPHA, 1 <= i <= m, 1 <= j <= n, i.ne.j;
+                     A(i,i) = BETA , 1 <= i <= min(m,n)
+
+    LDA     (input) INTEGER
+            The leading dimension of the array A.  LDA >= max(1,M).
+
+    =====================================================================
 
 
-    
-   Parameter adjustments   
+
+
+   Parameter adjustments
        Function Body */
     /* System generated locals */
     integer a_dim1, a_offset, i__1, i__2, i__3;
@@ -67,8 +67,8 @@
 
     if (strncmp(uplo, "U", 1)==0) {
 
-/*        Set the diagonal to BETA and the strictly upper triangular 
-  
+/*        Set the diagonal to BETA and the strictly upper triangular
+
           part of the array to ALPHA. */
 
 	i__1 = *n;
@@ -92,8 +92,8 @@
 
     } else if (strncmp(uplo, "L", 1)==0) {
 
-/*        Set the diagonal to BETA and the strictly lower triangular 
-  
+/*        Set the diagonal to BETA and the strictly lower triangular
+
           part of the array to ALPHA. */
 
 	i__1 = min(*m,*n);
@@ -115,7 +115,7 @@
 
     } else {
 
-/*        Set the array to BETA on the diagonal and ALPHA on the   
+/*        Set the array to BETA on the diagonal and ALPHA on the
           offdiagonal. */
 
 	i__1 = *n;

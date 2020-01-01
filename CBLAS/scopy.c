@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int scopy_(integer *n, real *sx, integer *incx, real *sy, 
+/* Subroutine */ int scopy_(integer *n, real *sx, integer *incx, real *sy,
 	integer *incy)
 {
 
@@ -18,14 +18,14 @@
     static integer i, m, ix, iy, mp1;
 
 
-/*     copies a vector, x, to a vector, y.   
-       uses unrolled loops for increments equal to 1.   
-       jack dongarra, linpack, 3/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     copies a vector, x, to a vector, y.
+       uses unrolled loops for increments equal to 1.
+       jack dongarra, linpack, 3/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define SY(I) sy[(I)-1]
 #define SX(I) sx[(I)-1]
@@ -38,7 +38,7 @@
 	goto L20;
     }
 
-/*        code for unequal increments or equal increments   
+/*        code for unequal increments or equal increments
             not equal to 1 */
 
     ix = 1;
@@ -58,7 +58,7 @@
     }
     return 0;
 
-/*        code for both increments equal to 1   
+/*        code for both increments equal to 1
 
 
           clean-up loop */

@@ -1,9 +1,9 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
@@ -18,11 +18,13 @@ at the top-level directory.
  */
 
 #include "slu_sdefs.h"
+#include <stddef.h> /* for ptrdiff_t */
 
 #define HANDLE_SIZE  8
 
-/* kind of integer to hold a pointer.  Use 64-bit. */
-typedef long long int fptr;
+
+/* kind of integer to hold a pointer.  Use appropriate bit size. */
+typedef ptrdiff_t fptr;
 
 typedef struct {
     SuperMatrix *L;
@@ -31,16 +33,8 @@ typedef struct {
     int *perm_r;
 } factors_t;
 
-void
-c_fortran_sgssv_(int *iopt, int *n, int *nnz, int *nrhs, 
-                 float *values, int *rowind, int *colptr,
-                 float *b, int *ldb,
-		 fptr *f_factors, /* a handle containing the address
-				     pointing to the factored matrices */
-		 int *info)
-
-{
-/* 
+/*!
+ * <pre>
  * This routine can be called from Fortran.
  *
  * iopt (input) int
@@ -49,13 +43,22 @@ c_fortran_sgssv_(int *iopt, int *n, int *nnz, int *nrhs,
  *      = 2, performs triangular solve
  *      = 3, free all the storage in the end
  *
- * f_factors (input/output) fptr* 
+ * f_factors (input/output) fptr*
  *      If iopt == 1, it is an output and contains the pointer pointing to
  *                    the structure of the factored matrices.
  *      Otherwise, it it an input.
- *
+ * </pre>
  */
- 
+void
+c_fortran_sgssv_(int *iopt, int *n, int *nnz, int *nrhs,
+                 float *values, int *rowind, int *colptr,
+                 float *b, int *ldb,
+		 fptr *f_factors, /* a handle containing the address
+				     pointing to the factored matrices */
+		 int *info)
+
+{
+
     SuperMatrix A, AC, B;
     SuperMatrix *L, *U;
     int *perm_r; /* row permutations from partial pivoting */
@@ -71,7 +74,7 @@ c_fortran_sgssv_(int *iopt, int *n, int *nnz, int *nrhs,
     factors_t *LUfactors;
     GlobalLU_t Glu;   /* Not needed on return. */
     int    *rowind0;  /* counter 1-based indexing from Frotran arrays. */
-    int    *colptr0;  
+    int    *colptr0;
 
     trans = NOTRANS;
 
@@ -100,14 +103,14 @@ c_fortran_sgssv_(int *iopt, int *n, int *nnz, int *nrhs,
 
 	/*
 	 * Get column permutation vector perm_c[], according to permc_spec:
-	 *   permc_spec = 0: natural ordering 
+	 *   permc_spec = 0: natural ordering
 	 *   permc_spec = 1: minimum degree on structure of A'*A
 	 *   permc_spec = 2: minimum degree on structure of A'+A
 	 *   permc_spec = 3: approximate minimum degree for unsymmetric matrices
-	 */    	
+	 */
 	permc_spec = options.ColPerm;
 	get_perm_c(permc_spec, &A, perm_c);
-	
+
 	sp_preorder(&options, &A, perm_c, etree, &AC);
 
 	panel_size = sp_ienv(1);
@@ -133,7 +136,7 @@ c_fortran_sgssv_(int *iopt, int *n, int *nnz, int *nrhs,
 		       mem_usage.for_lu/1e6, mem_usage.total_needed/1e6);
 	    }
 	}
-	
+
 	/* Save the LU factors in the factors handle */
 	LUfactors = (factors_t*) SUPERLU_MALLOC(sizeof(factors_t));
 	LUfactors->L = L;

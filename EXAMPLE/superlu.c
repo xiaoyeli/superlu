@@ -1,16 +1,16 @@
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
+Lawrence Berkeley National Laboratory (subject to receipt of any required
+approvals from U.S. Dept. of Energy)
 
-All rights reserved. 
+All rights reserved.
 
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 /*! @file superlu.c
  * \brief a small 5x5 example
- * 
+ *
  * <pre>
  * * -- SuperLU routine (version 2.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
@@ -20,13 +20,13 @@ at the top-level directory.
  */
 #include "slu_ddefs.h"
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 /*
  * Purpose
  * =======
- * 
- * This is the small 5x5 example used in the Sections 2 and 3 of the 
+ *
+ * This is the small 5x5 example used in the Sections 2 and 3 of the
  * Users' Guide to illustrate how to call a SuperLU routine, and the
  * matrix data structures used by SuperLU.
  *
@@ -57,7 +57,7 @@ main(int argc, char *argv[])
 
     /* Create matrix A in the format expected by SuperLU. */
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);
-    
+
     /* Create right-hand side matrix B. */
     nrhs = 1;
     if ( !(rhs = doubleMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
@@ -76,7 +76,7 @@ main(int argc, char *argv[])
 
     /* Solve the linear system. */
     dgssv(&options, &A, perm_c, perm_r, &L, &U, &B, &stat, &info);
-    
+
     dPrint_CompCol_Matrix("A", &A);
     dPrint_CompCol_Matrix("U", &U);
     dPrint_SuperNode_Matrix("L", &L);

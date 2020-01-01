@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int zcopy_(integer *n, doublecomplex *zx, integer *incx, 
+/* Subroutine */ int zcopy_(integer *n, doublecomplex *zx, integer *incx,
 	doublecomplex *zy, integer *incy)
 {
 
@@ -18,13 +18,13 @@
     static integer i, ix, iy;
 
 
-/*     copies a vector, x, to a vector, y.   
-       jack dongarra, linpack, 4/11/78.   
-       modified 12/3/93, array(1) declarations changed to array(*)   
+/*     copies a vector, x, to a vector, y.
+       jack dongarra, linpack, 4/11/78.
+       modified 12/3/93, array(1) declarations changed to array(*)
 
 
-    
-   Parameter adjustments   
+
+   Parameter adjustments
        Function Body */
 #define ZY(I) zy[(I)-1]
 #define ZX(I) zx[(I)-1]
@@ -37,7 +37,7 @@
 	goto L20;
     }
 
-/*        code for unequal increments or equal increments   
+/*        code for unequal increments or equal increments
             not equal to 1 */
 
     ix = 1;

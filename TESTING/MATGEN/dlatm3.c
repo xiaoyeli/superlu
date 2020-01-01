@@ -6,8 +6,8 @@
 #include "f2c.h"
 
 doublereal dlatm3_slu(integer *m, integer *n, integer *i, integer *j, integer *
-	isub, integer *jsub, integer *kl, integer *ku, integer *idist, 
-	integer *iseed, doublereal *d, integer *igrade, doublereal *dl, 
+	isub, integer *jsub, integer *kl, integer *ku, integer *idist,
+	integer *iseed, doublereal *d, integer *igrade, doublereal *dl,
 	doublereal *dr, integer *ipvtng, integer *iwork, doublereal *sparse)
 {
     /* System generated locals */
@@ -18,152 +18,152 @@ doublereal dlatm3_slu(integer *m, integer *n, integer *i, integer *j, integer *
     extern doublereal dlaran_slu(integer *), dlarnd_slu(integer *, integer *);
 
 
-/*  -- LAPACK auxiliary test routine (version 2.0) --   
-       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
-       Courant Institute, Argonne National Lab, and Rice University   
-       February 29, 1992   
+/*  -- LAPACK auxiliary test routine (version 2.0) --
+       Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+       Courant Institute, Argonne National Lab, and Rice University
+       February 29, 1992
 
 
 
 
 
-    Purpose   
-    =======   
+    Purpose
+    =======
 
-       DLATM3 returns the (ISUB,JSUB) entry of a random matrix of   
-       dimension (M, N) described by the other paramters. (ISUB,JSUB)   
-       is the final position of the (I,J) entry after pivoting   
-       according to IPVTNG and IWORK. DLATM3 is called by the   
-       DLATMR routine in order to build random test matrices. No error   
-       checking on parameters is done, because this routine is called in 
-  
-       a tight loop by DLATMR which has already checked the parameters.   
+       DLATM3 returns the (ISUB,JSUB) entry of a random matrix of
+       dimension (M, N) described by the other paramters. (ISUB,JSUB)
+       is the final position of the (I,J) entry after pivoting
+       according to IPVTNG and IWORK. DLATM3 is called by the
+       DLATMR routine in order to build random test matrices. No error
+       checking on parameters is done, because this routine is called in
 
-       Use of DLATM3 differs from SLATM2 in the order in which the random 
-  
-       number generator is called to fill in random matrix entries.   
-       With DLATM2, the generator is called to fill in the pivoted matrix 
-  
-       columnwise. With DLATM3, the generator is called to fill in the   
-       matrix columnwise, after which it is pivoted. Thus, DLATM3 can   
-       be used to construct random matrices which differ only in their   
-       order of rows and/or columns. DLATM2 is used to construct band   
-       matrices while avoiding calling the random number generator for   
-       entries outside the band (and therefore generating random numbers 
-  
-       in different orders for different pivot orders).   
+       a tight loop by DLATMR which has already checked the parameters.
 
-       The matrix whose (ISUB,JSUB) entry is returned is constructed as   
-       follows (this routine only computes one entry):   
+       Use of DLATM3 differs from SLATM2 in the order in which the random
 
-         If ISUB is outside (1..M) or JSUB is outside (1..N), return zero 
-  
-            (this is convenient for generating matrices in band format). 
-  
+       number generator is called to fill in random matrix entries.
+       With DLATM2, the generator is called to fill in the pivoted matrix
 
-         Generate a matrix A with random entries of distribution IDIST.   
+       columnwise. With DLATM3, the generator is called to fill in the
+       matrix columnwise, after which it is pivoted. Thus, DLATM3 can
+       be used to construct random matrices which differ only in their
+       order of rows and/or columns. DLATM2 is used to construct band
+       matrices while avoiding calling the random number generator for
+       entries outside the band (and therefore generating random numbers
 
-         Set the diagonal to D.   
+       in different orders for different pivot orders).
 
-         Grade the matrix, if desired, from the left (by DL) and/or   
-            from the right (by DR or DL) as specified by IGRADE.   
+       The matrix whose (ISUB,JSUB) entry is returned is constructed as
+       follows (this routine only computes one entry):
 
-         Permute, if desired, the rows and/or columns as specified by   
-            IPVTNG and IWORK.   
+         If ISUB is outside (1..M) or JSUB is outside (1..N), return zero
 
-         Band the matrix to have lower bandwidth KL and upper   
-            bandwidth KU.   
+            (this is convenient for generating matrices in band format).
 
-         Set random entries to zero as specified by SPARSE.   
 
-    Arguments   
-    =========   
+         Generate a matrix A with random entries of distribution IDIST.
 
-    M      - INTEGER   
-             Number of rows of matrix. Not modified.   
+         Set the diagonal to D.
 
-    N      - INTEGER   
-             Number of columns of matrix. Not modified.   
+         Grade the matrix, if desired, from the left (by DL) and/or
+            from the right (by DR or DL) as specified by IGRADE.
 
-    I      - INTEGER   
-             Row of unpivoted entry to be returned. Not modified.   
+         Permute, if desired, the rows and/or columns as specified by
+            IPVTNG and IWORK.
 
-    J      - INTEGER   
-             Column of unpivoted entry to be returned. Not modified.   
+         Band the matrix to have lower bandwidth KL and upper
+            bandwidth KU.
 
-    ISUB   - INTEGER   
-             Row of pivoted entry to be returned. Changed on exit.   
+         Set random entries to zero as specified by SPARSE.
 
-    JSUB   - INTEGER   
-             Column of pivoted entry to be returned. Changed on exit.   
+    Arguments
+    =========
 
-    KL     - INTEGER   
-             Lower bandwidth. Not modified.   
+    M      - INTEGER
+             Number of rows of matrix. Not modified.
 
-    KU     - INTEGER   
-             Upper bandwidth. Not modified.   
+    N      - INTEGER
+             Number of columns of matrix. Not modified.
 
-    IDIST  - INTEGER   
-             On entry, IDIST specifies the type of distribution to be   
-             used to generate a random matrix .   
-             1 => UNIFORM( 0, 1 )   
-             2 => UNIFORM( -1, 1 )   
-             3 => NORMAL( 0, 1 )   
-             Not modified.   
+    I      - INTEGER
+             Row of unpivoted entry to be returned. Not modified.
 
-    ISEED  - INTEGER array of dimension ( 4 )   
-             Seed for random number generator.   
-             Changed on exit.   
+    J      - INTEGER
+             Column of unpivoted entry to be returned. Not modified.
 
-    D      - DOUBLE PRECISION array of dimension ( MIN( I , J ) )   
-             Diagonal entries of matrix. Not modified.   
+    ISUB   - INTEGER
+             Row of pivoted entry to be returned. Changed on exit.
 
-    IGRADE - INTEGER   
-             Specifies grading of matrix as follows:   
-             0  => no grading   
-             1  => matrix premultiplied by diag( DL )   
-             2  => matrix postmultiplied by diag( DR )   
-             3  => matrix premultiplied by diag( DL ) and   
-                           postmultiplied by diag( DR )   
-             4  => matrix premultiplied by diag( DL ) and   
-                           postmultiplied by inv( diag( DL ) )   
-             5  => matrix premultiplied by diag( DL ) and   
-                           postmultiplied by diag( DL )   
-             Not modified.   
+    JSUB   - INTEGER
+             Column of pivoted entry to be returned. Changed on exit.
 
-    DL     - DOUBLE PRECISION array ( I or J, as appropriate )   
-             Left scale factors for grading matrix.  Not modified.   
+    KL     - INTEGER
+             Lower bandwidth. Not modified.
 
-    DR     - DOUBLE PRECISION array ( I or J, as appropriate )   
-             Right scale factors for grading matrix.  Not modified.   
+    KU     - INTEGER
+             Upper bandwidth. Not modified.
 
-    IPVTNG - INTEGER   
-             On entry specifies pivoting permutations as follows:   
-             0 => none.   
-             1 => row pivoting.   
-             2 => column pivoting.   
-             3 => full pivoting, i.e., on both sides.   
-             Not modified.   
+    IDIST  - INTEGER
+             On entry, IDIST specifies the type of distribution to be
+             used to generate a random matrix .
+             1 => UNIFORM( 0, 1 )
+             2 => UNIFORM( -1, 1 )
+             3 => NORMAL( 0, 1 )
+             Not modified.
 
-    IWORK  - INTEGER array ( I or J, as appropriate )   
-             This array specifies the permutation used. The   
-             row (or column) originally in position K is in   
-             position IWORK( K ) after pivoting.   
-             This differs from IWORK for DLATM2. Not modified.   
+    ISEED  - INTEGER array of dimension ( 4 )
+             Seed for random number generator.
+             Changed on exit.
 
-    SPARSE - DOUBLE PRECISION between 0. and 1.   
-             On entry specifies the sparsity of the matrix   
-             if sparse matix is to be generated.   
-             SPARSE should lie between 0 and 1.   
-             A uniform ( 0, 1 ) random number x is generated and   
-             compared to SPARSE; if x is larger the matrix entry   
-             is unchanged and if x is smaller the entry is set   
-             to zero. Thus on the average a fraction SPARSE of the   
-             entries will be set to zero.   
-             Not modified.   
+    D      - DOUBLE PRECISION array of dimension ( MIN( I , J ) )
+             Diagonal entries of matrix. Not modified.
 
-    ===================================================================== 
-  
+    IGRADE - INTEGER
+             Specifies grading of matrix as follows:
+             0  => no grading
+             1  => matrix premultiplied by diag( DL )
+             2  => matrix postmultiplied by diag( DR )
+             3  => matrix premultiplied by diag( DL ) and
+                           postmultiplied by diag( DR )
+             4  => matrix premultiplied by diag( DL ) and
+                           postmultiplied by inv( diag( DL ) )
+             5  => matrix premultiplied by diag( DL ) and
+                           postmultiplied by diag( DL )
+             Not modified.
+
+    DL     - DOUBLE PRECISION array ( I or J, as appropriate )
+             Left scale factors for grading matrix.  Not modified.
+
+    DR     - DOUBLE PRECISION array ( I or J, as appropriate )
+             Right scale factors for grading matrix.  Not modified.
+
+    IPVTNG - INTEGER
+             On entry specifies pivoting permutations as follows:
+             0 => none.
+             1 => row pivoting.
+             2 => column pivoting.
+             3 => full pivoting, i.e., on both sides.
+             Not modified.
+
+    IWORK  - INTEGER array ( I or J, as appropriate )
+             This array specifies the permutation used. The
+             row (or column) originally in position K is in
+             position IWORK( K ) after pivoting.
+             This differs from IWORK for DLATM2. Not modified.
+
+    SPARSE - DOUBLE PRECISION between 0. and 1.
+             On entry specifies the sparsity of the matrix
+             if sparse matix is to be generated.
+             SPARSE should lie between 0 and 1.
+             A uniform ( 0, 1 ) random number x is generated and
+             compared to SPARSE; if x is larger the matrix entry
+             is unchanged and if x is smaller the entry is set
+             to zero. Thus on the average a fraction SPARSE of the
+             entries will be set to zero.
+             Not modified.
+
+    =====================================================================
+
 
 
 
@@ -172,11 +172,11 @@ doublereal dlatm3_slu(integer *m, integer *n, integer *i, integer *j, integer *
 
 
    -----------------------------------------------------------------------
-   
 
 
 
-       Check for I and J in range   
+
+       Check for I and J in range
 
        Parameter adjustments */
     --iwork;

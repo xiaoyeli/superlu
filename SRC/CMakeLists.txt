@@ -232,7 +232,11 @@ if(enable_complex16)
 endif()
 
 add_library(superlu ${sources} ${HEADERS})
-target_link_libraries(superlu ${BLAS_LIB} m)
+target_link_libraries(superlu PUBLIC ${BLAS_LIB} m)
+target_include_directories(superlu PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  $<INSTALL_INTERFACE:include>
+  )
 
 set_target_properties(superlu PROPERTIES
   VERSION ${PROJECT_VERSION} SOVERSION ${VERSION_MAJOR}
@@ -242,11 +246,43 @@ set_target_properties(superlu PROPERTIES
 include(GNUInstallDirs)
 
 install(TARGETS superlu
-#  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  EXPORT superluTargets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )
 
 install(FILES ${headers}
-#  DESTINATION ${CMAKE_INSTALL_PREFIX}/include
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  superluConfigVersion.cmake
+  VERSION ${PACKAGE_VERSION}
+  COMPATIBILITY SameMajorVersion
+  )
+
+install(EXPORT superluTargets
+  FILE superluTargets.cmake
+  NAMESPACE superlu::
+  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/superlu"
+  )
+
+configure_package_config_file(
+  superluConfig.cmake.in superluConfig.cmake
+  INSTALL_DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/superluConfig.cmake"
+  )
+install(
+  FILES
+      "${CMAKE_CURRENT_BINARY_DIR}/superluConfig.cmake"
+      "${CMAKE_CURRENT_BINARY_DIR}/superluConfigVersion.cmake"
+  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/superlu"
+  )
+
+export(EXPORT superluTargets
+  FILE "${CMAKE_CURRENT_BINARY_DIR}/superluTargets.cmake"
+  NAMESPACE superlu::
+  )
+
+export(PACKAGE superlu)

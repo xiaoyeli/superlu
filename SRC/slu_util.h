@@ -39,7 +39,7 @@ at the top-level directory.
 /*                                                                                           
  * You can support older version of SuperLU.                                              
  * At compile-time, you can catch the new release as:                                          
- *   #ifdef SUPERLU_MAIN_VERSION == 5                                                     
+ *   #ifdef SUPERLU_MAJOR_VERSION == 5
  *       use the new interface                                                                 
  *   #else                                                                                     
  *       use the old interface                                                                 

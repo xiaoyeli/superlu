@@ -232,12 +232,14 @@ if(enable_complex16)
 endif()
 
 add_library(superlu ${sources} ${HEADERS})
-target_link_libraries(superlu PUBLIC ${BLAS_LIB} m)
+target_link_libraries(superlu PUBLIC ${BLAS_LIB})
+if (NOT WIN32)
+  target_link_libraries(superlu PUBLIC m)
+endif ()
 target_include_directories(superlu PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<INSTALL_INTERFACE:include>
   )
-
 set_target_properties(superlu PROPERTIES
   VERSION ${PROJECT_VERSION} SOVERSION ${VERSION_MAJOR}
   )

@@ -60,7 +60,7 @@ DLUSRC = \
 	dmemory.o dutil.o dmyblas2.o dgsisx.o dgsitrf.o dldperm.o \
 	ilu_ddrop_row.o ilu_dsnode_dfs.o \
 	ilu_dcolumn_dfs.o ilu_dpanel_dfs.o ilu_dcopy_to_ucol.o \
-	ilu_dpivotL.o ddiagonal.o dlacon2.o
+	ilu_dpivotL.o ddiagonal.o dlacon2.o dGetDiagU.o
         ## dgstrsL.o dgstrsU.o
 
 CLUSRC = \

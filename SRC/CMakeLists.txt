@@ -125,6 +125,7 @@ if(enable_double)
     ilu_dcopy_to_ucol.c
     ilu_dpivotL.c
     ddiagonal.c
+    dGetDiagU.c
   )
   set_source_files_properties(dmach.c PROPERTIES COMPILE_FLAGS -O0)
 endif()

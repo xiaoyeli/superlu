@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SuperLU
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.2</span>
    </div>
   </td>
  </tr>
@@ -63,6 +63,8 @@ Include dependency graph for sp_ienv.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a89d63af74d9accdbcd7e859b687130cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SRC_2sp__ienv_8c.html#a89d63af74d9accdbcd7e859b687130cc">input_error</a> (char *, int *)</td></tr>
+<tr class="separator:a89d63af74d9accdbcd7e859b687130cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21109476f1261abd6b256a393f5fd9e7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SRC_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7">sp_ienv</a> (int ispec)</td></tr>
 <tr class="separator:a21109476f1261abd6b256a393f5fd9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -71,6 +73,41 @@ Functions</h2></td></tr>
 <p>All rights reserved.</p>
 <p>The source code is distributed under BSD license, see the file License.txt at the top-level directory. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a89d63af74d9accdbcd7e859b687130cc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int input_error </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>srname</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>info</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre>
+<h1>Purpose   
+</h1>
+</pre><pre></pre><pre>INPUT_ERROR is called if an input parameter has an   
+invalid value.  A message is printed and execution stops.</pre><pre><h1>Arguments   
+</h1>
+</pre><pre></pre><pre>srname  (input) character*6
+        The name of the routine which called INPUT_ERROR.</pre><pre>info    (input) int
+        The position of the invalid parameter in the parameter list   
+        of the calling routine.</pre><pre></pre> 
+</div>
+</div>
 <a class="anchor" id="a21109476f1261abd6b256a393f5fd9e7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -119,7 +156,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="SRC_2sp__ienv_8c_a21109476f1261abd6b256a393f5fd9e7_cgraph.png" border="0" usemap="#SRC_2sp__ienv_8c_a21109476f1261abd6b256a393f5fd9e7_cgraph" alt=""/></div>
 <map name="SRC_2sp__ienv_8c_a21109476f1261abd6b256a393f5fd9e7_cgraph" id="SRC_2sp__ienv_8c_a21109476f1261abd6b256a393f5fd9e7_cgraph">
-<area shape="rect" id="node2" href="input__error_8c.html#a5832852b8f6777484b6f55dd79e67d86" title="input_error" alt="" coords="120,5,203,32"/></map>
+<area shape="rect" id="node2" href="SRC_2sp__ienv_8c.html#a89d63af74d9accdbcd7e859b687130cc" title="input_error" alt="" coords="120,5,203,32"/></map>
 </div>
 </p>
 
@@ -128,7 +165,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 8 2016 18:40:08 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 17 2020 14:25:33 for SuperLU by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

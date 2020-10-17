@@ -130,6 +130,12 @@ are described below.
         cmake .. \
 	      -DCMAKE_INSTALL_PREFIX=../build
 	      -DCMAKE_INSTALL_INCLUDEDIR=/my/custom/path
+   
+   You should link with a fast BLAS library by specifying the following:
+              -DTPL_BLAS_LIBRARIES=<blas_library_name>
+	      
+   If you do not have a BLAS library, you may use the internal CBLAS/ distribution, which can be very slow:
+              -Denable_internal_blaslib=YES
 
    To actually build, type:
    	make

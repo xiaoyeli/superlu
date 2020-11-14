@@ -57,7 +57,7 @@ dreadMM(FILE *fp, int *m, int *n, int *nonz,
 
      if (sscanf(line, "%s %s %s %s %s", banner, mtx, crd, arith, sym) != 5) {
        printf("Invalid header (first line does not contain 5 tokens)\n");
-       exit;
+       exit(-1);
      }
  
      if(strcmp(banner,"%%matrixmarket")) {

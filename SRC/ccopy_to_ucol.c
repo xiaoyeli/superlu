@@ -84,10 +84,12 @@ ccopy_to_ucol(
 
 		new_next = nextu + segsze;
 		while ( new_next > nzumax ) {
-		    if (mem_error = cLUMemXpand(jcol, nextu, UCOL, &nzumax, Glu))
+		    mem_error = cLUMemXpand(jcol, nextu, UCOL, &nzumax, Glu);
+		    if (mem_error)
 			return (mem_error);
 		    ucol = (complex *) Glu->ucol;
-		    if (mem_error = cLUMemXpand(jcol, nextu, USUB, &nzumax, Glu))
+		    mem_error = cLUMemXpand(jcol, nextu, USUB, &nzumax, Glu);
+		    if (mem_error)
 			return (mem_error);
 		    usub = Glu->usub;
 		    lsub = Glu->lsub;

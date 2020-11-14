@@ -136,7 +136,8 @@ ccolumn_dfs(
    	if ( kperm == EMPTY ) {
 	    lsub[nextl++] = krow; 	/* krow is indexed into A */
 	    if ( nextl >= nzlmax ) {
-		if ( mem_error = cLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu) )
+		mem_error = cLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu);
+		if (mem_error)
 		    return (mem_error);
 		lsub = Glu->lsub;
 	    }
@@ -178,8 +179,8 @@ ccolumn_dfs(
 		   	    if ( chperm == EMPTY ) {
 			    	lsub[nextl++] = kchild;
 				if ( nextl >= nzlmax ) {
-				    if ( mem_error =
-					 cLUMemXpand(jcol,nextl,LSUB,&nzlmax,Glu) )
+				    mem_error = cLUMemXpand(jcol,nextl,LSUB,&nzlmax,Glu);
+				    if (mem_error)
 					return (mem_error);
 				    lsub = Glu->lsub;
 				}

@@ -88,7 +88,8 @@ ssnode_dfs (
 		marker[krow] = kcol;
 		lsub[nextl++] = krow;
 		if ( nextl >= nzlmax ) {
-		    if ( mem_error = sLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu) )
+		    mem_error = sLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu);
+		    if (mem_error)
 			return (mem_error);
 		    lsub = Glu->lsub;
 		}
@@ -101,7 +102,8 @@ ssnode_dfs (
     if ( jcol < kcol ) {
 	new_next = nextl + (nextl - xlsub[jcol]);
 	while ( new_next > nzlmax ) {
-	    if ( mem_error = sLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu) )
+	    mem_error = sLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu);
+	    if (mem_error)
 		return (mem_error);
 	    lsub = Glu->lsub;
 	}

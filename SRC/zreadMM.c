@@ -142,13 +142,14 @@ zreadMM(FILE *fp, int *m, int *n, int *nonz,
 	fscanf(fp, "%d%d%lf%lf\n", &row[nz], &col[nz], &val[nz].r, &val[nz].i);
 #endif
 
-	if ( nnz == 0 ) /* first nonzero */
+	if ( nnz == 0 ) { /* first nonzero */
 	    if ( row[0] == 0 || col[0] == 0 ) {
 		zero_base = 1;
 		printf("triplet file: row/col indices are zero-based.\n");
 	    } else {
 		printf("triplet file: row/col indices are one-based.\n");
             }
+	}
 
 	if ( !zero_base ) {
 	    /* Change to 0-based indexing. */

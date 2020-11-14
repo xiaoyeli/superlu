@@ -33,7 +33,7 @@ at the top-level directory.
 
 
 #include "slu_sdefs.h"
-
+#include "scolumn_bmod.c"
 
 /*! \brief Performs numeric block updates within the relaxed snode. 
  */

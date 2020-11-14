@@ -33,6 +33,7 @@ at the top-level directory.
 
 
 #include "slu_zdefs.h"
+#include "zcolumn_bmod.c"
 
 
 /*! \brief Performs numeric block updates within the relaxed snode. 

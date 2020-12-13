@@ -28,13 +28,6 @@ at the top-level directory.
 
 #include "slu_sdefs.h"
 
-/* 
- * Function prototypes 
- */
-void susolve(int, int, float*, float*);
-void slsolve(int, int, float*, float*);
-void smatvec(int, int, int, float*, float*, float*);
-
 /*! \brief Solves one of the systems of equations A*x = b,   or   A'*x = b
  * 
  * <pre>

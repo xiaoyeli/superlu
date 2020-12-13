@@ -275,6 +275,10 @@ extern int strsm_(char*, char*, char*, char*, int*, int*,
 extern int sgemv_(char *, int *, int *, float *, float *a, int *,
                   float *, int *, float *, float *, int *);
 
+extern void susolve(int, int, float*, float*);
+extern void slsolve(int, int, float*, float*);
+extern void smatvec(int, int, int, float*, float*, float*);
+
 #ifdef __cplusplus
   }
 #endif

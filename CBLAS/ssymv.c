@@ -145,7 +145,7 @@
 
 /*     Quick return if possible. */
 
-    if (*n == 0 || *alpha == 0.f && *beta == 1.f) {
+    if (*n == 0 || (*alpha == 0.f && *beta == 1.f)) {
 	return 0;
     }
 

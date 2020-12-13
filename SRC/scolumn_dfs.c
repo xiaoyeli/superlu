@@ -136,8 +136,8 @@ scolumn_dfs(
    	if ( kperm == EMPTY ) {
 	    lsub[nextl++] = krow; 	/* krow is indexed into A */
 	    if ( nextl >= nzlmax ) {
-		if ( mem_error = sLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu) )
-		    return (mem_error);
+		mem_error = sLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu);
+		if ( mem_error ) return (mem_error);
 		lsub = Glu->lsub;
 	    }
             if ( kmark != jcolm1 ) jsuper = EMPTY;/* Row index subset testing */
@@ -178,9 +178,9 @@ scolumn_dfs(
 		   	    if ( chperm == EMPTY ) {
 			    	lsub[nextl++] = kchild;
 				if ( nextl >= nzlmax ) {
-				    if ( mem_error =
-					 sLUMemXpand(jcol,nextl,LSUB,&nzlmax,Glu) )
-					return (mem_error);
+				    mem_error =
+					 sLUMemXpand(jcol,nextl,LSUB,&nzlmax,Glu);
+				    if ( mem_error ) return (mem_error);
 				    lsub = Glu->lsub;
 				}
 				if ( chmark != jcolm1 ) jsuper = EMPTY;

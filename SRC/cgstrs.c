@@ -34,13 +34,6 @@ at the top-level directory.
 #include "slu_cdefs.h"
 
 
-/* 
- * Function prototypes 
- */
-void cusolve(int, int, complex*, complex*);
-void clsolve(int, int, complex*, complex*);
-void cmatvec(int, int, int, complex*, complex*, complex*);
-
 /*! \brief
  *
  * <pre>

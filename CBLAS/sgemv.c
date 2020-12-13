@@ -150,7 +150,7 @@
 
 /*     Quick return if possible. */
 
-    if (*m == 0 || *n == 0 || *alpha == 0.f && *beta == 1.f) {
+    if (*m == 0 || *n == 0 || (*alpha == 0.f && *beta == 1.f)) {
 	return 0;
     }
 

@@ -28,13 +28,6 @@ at the top-level directory.
 
 #include "slu_zdefs.h"
 
-/* 
- * Function prototypes 
- */
-void zusolve(int, int, doublecomplex*, doublecomplex*);
-void zlsolve(int, int, doublecomplex*, doublecomplex*);
-void zmatvec(int, int, int, doublecomplex*, doublecomplex*, doublecomplex*);
-
 /*! \brief Solves one of the systems of equations A*x = b,   or   A'*x = b
  * 
  * <pre>
@@ -498,9 +491,8 @@ sp_zgemv(char *trans, doublecomplex alpha, SuperMatrix *A, doublecomplex *x,
     }
 
     /* Quick return if possible. */
-    if (A->nrow == 0 || A->ncol == 0 || 
-	z_eq(&alpha, &comp_zero) && 
-	z_eq(&beta, &comp_one))
+    if ( A->nrow == 0 || A->ncol == 0 || 
+	 (z_eq(&alpha, &comp_zero) && z_eq(&beta, &comp_one)) )
 	return 0;
 
     /* Set  LENX  and  LENY, the lengths of the vectors x and y, and set 

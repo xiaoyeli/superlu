@@ -35,14 +35,6 @@ at the top-level directory.
 #include <stdlib.h>
 #include "slu_zdefs.h"
 
-/* 
- * Function prototypes 
- */
-void zusolve(int, int, doublecomplex*, doublecomplex*);
-void zlsolve(int, int, doublecomplex*, doublecomplex*);
-void zmatvec(int, int, int, doublecomplex*, doublecomplex*, doublecomplex*);
-
-
 
 /*! \brief 
  *
@@ -295,8 +287,8 @@ zcolumn_bmod (
     /* Copy the SPA dense into L\U[*,j] */
     new_next = nextlu + xlsub[fsupc+1] - xlsub[fsupc];
     while ( new_next > nzlumax ) {
-	if (mem_error = zLUMemXpand(jcol, nextlu, LUSUP, &nzlumax, Glu))
-	    return (mem_error);
+	mem_error = zLUMemXpand(jcol, nextlu, LUSUP, &nzlumax, Glu);
+	if (mem_error) return (mem_error);
 	lusup = (doublecomplex *) Glu->lusup;
 	lsub = Glu->lsub;
     }

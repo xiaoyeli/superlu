@@ -34,13 +34,6 @@ at the top-level directory.
 #include "slu_sdefs.h"
 
 
-/* 
- * Function prototypes 
- */
-void susolve(int, int, float*, float*);
-void slsolve(int, int, float*, float*);
-void smatvec(int, int, int, float*, float*, float*);
-
 /*! \brief
  *
  * <pre>

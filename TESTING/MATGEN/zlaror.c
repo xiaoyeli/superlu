@@ -192,7 +192,7 @@ static integer c__1 = 1;
 	*info = -1;
     } else if (*m < 0) {
 	*info = -3;
-    } else if (*n < 0 || itype == 3 && *n != *m) {
+    } else if (*n < 0 || (itype == 3 && *n != *m)) {
 	*info = -4;
     } else if (*lda < *m) {
 	*info = -6;

@@ -277,7 +277,7 @@ static integer c__8 = 8;
 	input_error("ZLAROT", &c__4);
 	return 0;
     }
-    if (*lda <= 0 || ! (*lrows) && *lda < *nl - nt) {
+    if (*lda <= 0 || (!(*lrows) && *lda < *nl - nt)) {
 	input_error("ZLAROT", &c__8);
 	return 0;
     }

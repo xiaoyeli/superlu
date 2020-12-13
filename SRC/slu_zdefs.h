@@ -278,6 +278,10 @@ extern int ztrsm_(char*, char*, char*, char*, int*, int*,
 extern int zgemv_(char *, int *, int *, doublecomplex *, doublecomplex *a, int *,
                   doublecomplex *, int *, doublecomplex *, doublecomplex *, int *);
 
+extern void zusolve(int, int, doublecomplex*, doublecomplex*);
+extern void zlsolve(int, int, doublecomplex*, doublecomplex*);
+extern void zmatvec(int, int, int, doublecomplex*, doublecomplex*, doublecomplex*);
+
 #ifdef __cplusplus
   }
 #endif

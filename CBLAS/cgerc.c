@@ -128,7 +128,7 @@
 
 /*     Quick return if possible. */
 
-    if (*m == 0 || *n == 0 || alpha->r == 0.f && alpha->i == 0.f) {
+    if (*m == 0 || *n == 0 || (alpha->r == 0.f && alpha->i == 0.f)) {
 	return 0;
     }
 

@@ -153,8 +153,8 @@
 
 /*     Quick return if possible. */
 
-    if (*n == 0 || alpha->r == 0.f && alpha->i == 0.f && (beta->r == 1.f && 
-	    beta->i == 0.f)) {
+    if (*n == 0 || (alpha->r == 0.f && alpha->i == 0.f && beta->r == 1.f && 
+		    beta->i == 0.f)) {
 	return 0;
     }
 

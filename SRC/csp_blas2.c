@@ -28,13 +28,6 @@ at the top-level directory.
 
 #include "slu_cdefs.h"
 
-/* 
- * Function prototypes 
- */
-void cusolve(int, int, complex*, complex*);
-void clsolve(int, int, complex*, complex*);
-void cmatvec(int, int, int, complex*, complex*, complex*);
-
 /*! \brief Solves one of the systems of equations A*x = b,   or   A'*x = b
  * 
  * <pre>
@@ -498,9 +491,8 @@ sp_cgemv(char *trans, complex alpha, SuperMatrix *A, complex *x,
     }
 
     /* Quick return if possible. */
-    if (A->nrow == 0 || A->ncol == 0 || 
-	c_eq(&alpha, &comp_zero) && 
-	c_eq(&beta, &comp_one))
+    if ( A->nrow == 0 || A->ncol == 0 || 
+	 (c_eq(&alpha, &comp_zero) && c_eq(&beta, &comp_one)) )
 	return 0;
 
     /* Set  LENX  and  LENY, the lengths of the vectors x and y, and set 

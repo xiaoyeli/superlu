@@ -34,13 +34,6 @@ at the top-level directory.
 #include "slu_zdefs.h"
 
 
-/* 
- * Function prototypes 
- */
-void zusolve(int, int, doublecomplex*, doublecomplex*);
-void zlsolve(int, int, doublecomplex*, doublecomplex*);
-void zmatvec(int, int, int, doublecomplex*, doublecomplex*, doublecomplex*);
-
 /*! \brief
  *
  * <pre>

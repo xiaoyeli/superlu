@@ -585,7 +585,7 @@ cgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 	    utime[EQUIL] = SuperLU_timer_() - t0;
 	}
 
-	if ( !mc64 & equil ) { /* Only perform equilibration, no row perm */
+	if ( mc64==0 && equil ) { /* Only perform equilibration, no row perm */
 	    t0 = SuperLU_timer_();
 	    /* Compute row and column scalings to equilibrate the matrix A. */
 	    cgsequ(AA, R, C, &rowcnd, &colcnd, &amax, &info1);

@@ -57,7 +57,7 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
 
      if (sscanf(line, "%s %s %s %s %s", banner, mtx, crd, arith, sym) != 5) {
        printf("Invalid header (first line does not contain 5 tokens)\n");
-       exit;
+       exit(-1);
      }
  
      if(strcmp(banner,"%%matrixmarket")) {
@@ -137,13 +137,14 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
     /* 4/ Read triplets of values */
     for (nnz = 0, nz = 0; nnz < *nonz; ++nnz) {
 
-	if ( nnz == 0 ) /* first nonzero */
+	if ( nnz == 0 ) { /* first nonzero */
 	    if ( row[0] == 0 || col[0] == 0 ) {
 		zero_base = 1;
 		printf("triplet file: row/col indices are zero-based.\n");
 	    } else {
 		printf("triplet file: row/col indices are one-based.\n");
             }
+	}
 
 	if ( !zero_base ) {
 	    /* Change to 0-based indexing. */

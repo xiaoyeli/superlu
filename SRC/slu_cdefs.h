@@ -278,6 +278,10 @@ extern int ctrsm_(char*, char*, char*, char*, int*, int*,
 extern int cgemv_(char *, int *, int *, complex *, complex *a, int *,
                   complex *, int *, complex *, complex *, int *);
 
+extern void cusolve(int, int, complex*, complex*);
+extern void clsolve(int, int, complex*, complex*);
+extern void cmatvec(int, int, int, complex*, complex*, complex*);
+
 #ifdef __cplusplus
   }
 #endif

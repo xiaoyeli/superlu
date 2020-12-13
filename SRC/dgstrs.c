@@ -34,13 +34,6 @@ at the top-level directory.
 #include "slu_ddefs.h"
 
 
-/* 
- * Function prototypes 
- */
-void dusolve(int, int, double*, double*);
-void dlsolve(int, int, double*, double*);
-void dmatvec(int, int, int, double*, double*, double*);
-
 /*! \brief
  *
  * <pre>

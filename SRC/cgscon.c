@@ -99,7 +99,7 @@ cgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     /* Test the input parameters. */
     *info = 0;
     onenrm = *(unsigned char *)norm == '1' || strncmp(norm, "O", 1)==0;
-    if (! onenrm && ! strncmp(norm, "I", 1)==0) *info = -1;
+    if (! onenrm && strncmp(norm, "I", 1)!=0) *info = -1;
     else if (L->nrow < 0 || L->nrow != L->ncol ||
              L->Stype != SLU_SC || L->Dtype != SLU_C || L->Mtype != SLU_TRLU)
 	 *info = -2;

@@ -467,6 +467,7 @@ zLUMemXpand(int jcol,
 	Glu->usub   = (int *) new_mem;
 	Glu->nzumax = *maxlen;
 	break;
+      default: break;
     }
     
     return 0;

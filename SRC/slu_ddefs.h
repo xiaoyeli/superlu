@@ -275,6 +275,10 @@ extern int dtrsm_(char*, char*, char*, char*, int*, int*,
 extern int dgemv_(char *, int *, int *, double *, double *a, int *,
                   double *, int *, double *, double *, int *);
 
+extern void dusolve(int, int, double*, double*);
+extern void dlsolve(int, int, double*, double*);
+extern void dmatvec(int, int, int, double*, double*, double*);
+
 #ifdef __cplusplus
   }
 #endif

@@ -35,14 +35,6 @@ at the top-level directory.
 #include <stdlib.h>
 #include "slu_cdefs.h"
 
-/* 
- * Function prototypes 
- */
-void cusolve(int, int, complex*, complex*);
-void clsolve(int, int, complex*, complex*);
-void cmatvec(int, int, int, complex*, complex*, complex*);
-
-
 
 /*! \brief 
  *
@@ -293,8 +285,8 @@ ccolumn_bmod (
     /* Copy the SPA dense into L\U[*,j] */
     new_next = nextlu + xlsub[fsupc+1] - xlsub[fsupc];
     while ( new_next > nzlumax ) {
-	if (mem_error = cLUMemXpand(jcol, nextlu, LUSUP, &nzlumax, Glu))
-	    return (mem_error);
+	mem_error = cLUMemXpand(jcol, nextlu, LUSUP, &nzlumax, Glu);
+	if (mem_error) return (mem_error);
 	lusup = (complex *) Glu->lusup;
 	lsub = Glu->lsub;
     }

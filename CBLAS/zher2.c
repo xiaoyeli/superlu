@@ -153,7 +153,7 @@
 
 /*     Quick return if possible. */
 
-    if (*n == 0 || alpha->r == 0. && alpha->i == 0.) {
+    if (*n == 0 || (alpha->r == 0. && alpha->i == 0.)) {
 	return 0;
     }
 

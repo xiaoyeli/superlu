@@ -118,7 +118,7 @@
 #define A(I,J) a[(I)-1 + ((J)-1)* ( *lda)]
 
     info = 0;
-    if ( strncmp(uplo, "U", 1)!=0 && ! strncmp(uplo, "L", 1)!=0) {
+    if ( strncmp(uplo, "U", 1)!=0 && strncmp(uplo, "L", 1)!=0) {
 	info = 1;
     } else if (*n < 0) {
 	info = 2;
@@ -136,8 +136,8 @@
 
 /*     Quick return if possible. */
 
-    if (*n == 0 || alpha->r == 0.f && alpha->i == 0.f && (beta->r == 1.f && 
-	    beta->i == 0.f)) {
+    if (*n == 0 || (alpha->r == 0.f && alpha->i == 0.f && beta->r == 1.f && 
+		    beta->i == 0.f)) {
 	return 0;
     }
 

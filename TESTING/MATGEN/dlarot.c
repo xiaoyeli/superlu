@@ -268,7 +268,7 @@ static integer c__1 = 1;
 	input_error("DLAROT", &c__4);
 	return 0;
     }
-    if (*lda <= 0 || ! (*lrows) && *lda < *nl - nt) {
+    if (*lda <= 0 || (!(*lrows) && *lda < *nl - nt)) {
 	input_error("DLAROT", &c__8);
 	return 0;
     }

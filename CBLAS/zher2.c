@@ -13,7 +13,7 @@
 
 
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
+
     doublereal d__1;
     doublecomplex z__1, z__2, z__3, z__4;
 
@@ -185,33 +185,24 @@
 /*        Form  A  when A is stored in the upper triangle. */
 
 	if (*incx == 1 && *incy == 1) {
-	    i__1 = *n;
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = j;
-		i__3 = j;
 		if (X(j).r != 0. || X(j).i != 0. || (Y(j).r != 0. || 
 			Y(j).i != 0.)) {
 		    d_cnjg(&z__2, &Y(j));
 		    z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i = 
 			    alpha->r * z__2.i + alpha->i * z__2.r;
 		    temp1.r = z__1.r, temp1.i = z__1.i;
-		    i__2 = j;
 		    z__2.r = alpha->r * X(j).r - alpha->i * X(j).i, 
 			    z__2.i = alpha->r * X(j).i + alpha->i * X(j)
 			    .r;
 		    d_cnjg(&z__1, &z__2);
 		    temp2.r = z__1.r, temp2.i = z__1.i;
-		    i__2 = j - 1;
 		    for (i = 1; i <= j-1; ++i) {
-			i__3 = i + j * a_dim1;
-			i__4 = i + j * a_dim1;
-			i__5 = i;
 			z__3.r = X(i).r * temp1.r - X(i).i * temp1.i, 
 				z__3.i = X(i).r * temp1.i + X(i).i * 
 				temp1.r;
 			z__2.r = A(i,j).r + z__3.r, z__2.i = A(i,j).i + 
 				z__3.i;
-			i__6 = i;
 			z__4.r = Y(i).r * temp2.r - Y(i).i * temp2.i, 
 				z__4.i = Y(i).r * temp2.i + Y(i).i * 
 				temp2.r;
@@ -219,13 +210,9 @@
 			A(i,j).r = z__1.r, A(i,j).i = z__1.i;
 /* L10: */
 		    }
-		    i__2 = j + j * a_dim1;
-		    i__3 = j + j * a_dim1;
-		    i__4 = j;
 		    z__2.r = X(j).r * temp1.r - X(j).i * temp1.i, 
 			    z__2.i = X(j).r * temp1.i + X(j).i * 
 			    temp1.r;
-		    i__5 = j;
 		    z__3.r = Y(j).r * temp2.r - Y(j).i * temp2.i, 
 			    z__3.i = Y(j).r * temp2.i + Y(j).i * 
 			    temp2.r;
@@ -233,25 +220,19 @@
 		    d__1 = A(j,j).r + z__1.r;
 		    A(j,j).r = d__1, A(j,j).i = 0.;
 		} else {
-		    i__2 = j + j * a_dim1;
-		    i__3 = j + j * a_dim1;
 		    d__1 = A(j,j).r;
 		    A(j,j).r = d__1, A(j,j).i = 0.;
 		}
 /* L20: */
 	    }
 	} else {
-	    i__1 = *n;
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = jx;
-		i__3 = jy;
 		if (X(jx).r != 0. || X(jx).i != 0. || (Y(jy).r != 0. || 
 			Y(jy).i != 0.)) {
 		    d_cnjg(&z__2, &Y(jy));
 		    z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i = 
 			    alpha->r * z__2.i + alpha->i * z__2.r;
 		    temp1.r = z__1.r, temp1.i = z__1.i;
-		    i__2 = jx;
 		    z__2.r = alpha->r * X(jx).r - alpha->i * X(jx).i, 
 			    z__2.i = alpha->r * X(jx).i + alpha->i * X(jx)
 			    .r;
@@ -259,17 +240,12 @@
 		    temp2.r = z__1.r, temp2.i = z__1.i;
 		    ix = kx;
 		    iy = ky;
-		    i__2 = j - 1;
 		    for (i = 1; i <= j-1; ++i) {
-			i__3 = i + j * a_dim1;
-			i__4 = i + j * a_dim1;
-			i__5 = ix;
 			z__3.r = X(ix).r * temp1.r - X(ix).i * temp1.i, 
 				z__3.i = X(ix).r * temp1.i + X(ix).i * 
 				temp1.r;
 			z__2.r = A(i,j).r + z__3.r, z__2.i = A(i,j).i + 
 				z__3.i;
-			i__6 = iy;
 			z__4.r = Y(iy).r * temp2.r - Y(iy).i * temp2.i, 
 				z__4.i = Y(iy).r * temp2.i + Y(iy).i * 
 				temp2.r;
@@ -279,13 +255,9 @@
 			iy += *incy;
 /* L30: */
 		    }
-		    i__2 = j + j * a_dim1;
-		    i__3 = j + j * a_dim1;
-		    i__4 = jx;
 		    z__2.r = X(jx).r * temp1.r - X(jx).i * temp1.i, 
 			    z__2.i = X(jx).r * temp1.i + X(jx).i * 
 			    temp1.r;
-		    i__5 = jy;
 		    z__3.r = Y(jy).r * temp2.r - Y(jy).i * temp2.i, 
 			    z__3.i = Y(jy).r * temp2.i + Y(jy).i * 
 			    temp2.r;
@@ -293,8 +265,6 @@
 		    d__1 = A(j,j).r + z__1.r;
 		    A(j,j).r = d__1, A(j,j).i = 0.;
 		} else {
-		    i__2 = j + j * a_dim1;
-		    i__3 = j + j * a_dim1;
 		    d__1 = A(j,j).r;
 		    A(j,j).r = d__1, A(j,j).i = 0.;
 		}
@@ -308,46 +278,33 @@
 /*        Form  A  when A is stored in the lower triangle. */
 
 	if (*incx == 1 && *incy == 1) {
-	    i__1 = *n;
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = j;
-		i__3 = j;
 		if (X(j).r != 0. || X(j).i != 0. || (Y(j).r != 0. || 
 			Y(j).i != 0.)) {
 		    d_cnjg(&z__2, &Y(j));
 		    z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i = 
 			    alpha->r * z__2.i + alpha->i * z__2.r;
 		    temp1.r = z__1.r, temp1.i = z__1.i;
-		    i__2 = j;
 		    z__2.r = alpha->r * X(j).r - alpha->i * X(j).i, 
 			    z__2.i = alpha->r * X(j).i + alpha->i * X(j)
 			    .r;
 		    d_cnjg(&z__1, &z__2);
 		    temp2.r = z__1.r, temp2.i = z__1.i;
-		    i__2 = j + j * a_dim1;
-		    i__3 = j + j * a_dim1;
-		    i__4 = j;
 		    z__2.r = X(j).r * temp1.r - X(j).i * temp1.i, 
 			    z__2.i = X(j).r * temp1.i + X(j).i * 
 			    temp1.r;
-		    i__5 = j;
 		    z__3.r = Y(j).r * temp2.r - Y(j).i * temp2.i, 
 			    z__3.i = Y(j).r * temp2.i + Y(j).i * 
 			    temp2.r;
 		    z__1.r = z__2.r + z__3.r, z__1.i = z__2.i + z__3.i;
 		    d__1 = A(j,j).r + z__1.r;
 		    A(j,j).r = d__1, A(j,j).i = 0.;
-		    i__2 = *n;
 		    for (i = j + 1; i <= *n; ++i) {
-			i__3 = i + j * a_dim1;
-			i__4 = i + j * a_dim1;
-			i__5 = i;
 			z__3.r = X(i).r * temp1.r - X(i).i * temp1.i, 
 				z__3.i = X(i).r * temp1.i + X(i).i * 
 				temp1.r;
 			z__2.r = A(i,j).r + z__3.r, z__2.i = A(i,j).i + 
 				z__3.i;
-			i__6 = i;
 			z__4.r = Y(i).r * temp2.r - Y(i).i * temp2.i, 
 				z__4.i = Y(i).r * temp2.i + Y(i).i * 
 				temp2.r;
@@ -356,37 +313,27 @@
 /* L50: */
 		    }
 		} else {
-		    i__2 = j + j * a_dim1;
-		    i__3 = j + j * a_dim1;
 		    d__1 = A(j,j).r;
 		    A(j,j).r = d__1, A(j,j).i = 0.;
 		}
 /* L60: */
 	    }
 	} else {
-	    i__1 = *n;
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = jx;
-		i__3 = jy;
 		if (X(jx).r != 0. || X(jx).i != 0. || (Y(jy).r != 0. || 
 			Y(jy).i != 0.)) {
 		    d_cnjg(&z__2, &Y(jy));
 		    z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i = 
 			    alpha->r * z__2.i + alpha->i * z__2.r;
 		    temp1.r = z__1.r, temp1.i = z__1.i;
-		    i__2 = jx;
 		    z__2.r = alpha->r * X(jx).r - alpha->i * X(jx).i, 
 			    z__2.i = alpha->r * X(jx).i + alpha->i * X(jx)
 			    .r;
 		    d_cnjg(&z__1, &z__2);
 		    temp2.r = z__1.r, temp2.i = z__1.i;
-		    i__2 = j + j * a_dim1;
-		    i__3 = j + j * a_dim1;
-		    i__4 = jx;
 		    z__2.r = X(jx).r * temp1.r - X(jx).i * temp1.i, 
 			    z__2.i = X(jx).r * temp1.i + X(jx).i * 
 			    temp1.r;
-		    i__5 = jy;
 		    z__3.r = Y(jy).r * temp2.r - Y(jy).i * temp2.i, 
 			    z__3.i = Y(jy).r * temp2.i + Y(jy).i * 
 			    temp2.r;
@@ -395,19 +342,14 @@
 		    A(j,j).r = d__1, A(j,j).i = 0.;
 		    ix = jx;
 		    iy = jy;
-		    i__2 = *n;
 		    for (i = j + 1; i <= *n; ++i) {
 			ix += *incx;
 			iy += *incy;
-			i__3 = i + j * a_dim1;
-			i__4 = i + j * a_dim1;
-			i__5 = ix;
 			z__3.r = X(ix).r * temp1.r - X(ix).i * temp1.i, 
 				z__3.i = X(ix).r * temp1.i + X(ix).i * 
 				temp1.r;
 			z__2.r = A(i,j).r + z__3.r, z__2.i = A(i,j).i + 
 				z__3.i;
-			i__6 = iy;
 			z__4.r = Y(iy).r * temp2.r - Y(iy).i * temp2.i, 
 				z__4.i = Y(iy).r * temp2.i + Y(iy).i * 
 				temp2.r;
@@ -416,8 +358,6 @@
 /* L70: */
 		    }
 		} else {
-		    i__2 = j + j * a_dim1;
-		    i__3 = j + j * a_dim1;
 		    d__1 = A(j,j).r;
 		    A(j,j).r = d__1, A(j,j).i = 0.;
 		}

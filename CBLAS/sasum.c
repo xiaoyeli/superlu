@@ -11,7 +11,7 @@ real sasum_(integer *n, real *sx, integer *incx)
 
 
     /* System generated locals */
-    integer i__1, i__2;
+ 
     real ret_val, r__1, r__2, r__3, r__4, r__5, r__6;
 
     /* Local variables */
@@ -45,8 +45,6 @@ real sasum_(integer *n, real *sx, integer *incx)
 /*        code for increment not equal to 1 */
 
     nincx = *n * *incx;
-    i__1 = nincx;
-    i__2 = *incx;
     for (i = 1; *incx < 0 ? i >= nincx : i <= nincx; i += *incx) {
 	stemp += (r__1 = SX(i), dabs(r__1));
 /* L10: */
@@ -64,7 +62,6 @@ L20:
     if (m == 0) {
 	goto L40;
     }
-    i__2 = m;
     for (i = 1; i <= m; ++i) {
 	stemp += (r__1 = SX(i), dabs(r__1));
 /* L30: */
@@ -74,7 +71,6 @@ L20:
     }
 L40:
     mp1 = m + 1;
-    i__2 = *n;
     for (i = mp1; i <= *n; i += 6) {
 	stemp = stemp + (r__1 = SX(i), dabs(r__1)) + (r__2 = SX(i + 1), dabs(
 		r__2)) + (r__3 = SX(i + 2), dabs(r__3)) + (r__4 = SX(i + 3), 

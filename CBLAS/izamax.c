@@ -11,7 +11,7 @@ integer izamax_(integer *n, doublecomplex *zx, integer *incx)
 
 
     /* System generated locals */
-    integer ret_val, i__1;
+integer ret_val, i__1;
 
     /* Local variables */
     doublereal smax;
@@ -49,7 +49,6 @@ integer izamax_(integer *n, doublecomplex *zx, integer *incx)
     ix = 1;
     smax = dcabs1_(&ZX(1));
     ix += *incx;
-    i__1 = *n;
     for (i = 2; i <= *n; ++i) {
 	if (dcabs1_(&ZX(ix)) <= smax) {
 	    goto L5;
@@ -66,7 +65,6 @@ L5:
 
 L20:
     smax = dcabs1_(&ZX(1));
-    i__1 = *n;
     for (i = 2; i <= *n; ++i) {
 	if (dcabs1_(&ZX(i)) <= smax) {
 	    goto L30;

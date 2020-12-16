@@ -9,7 +9,7 @@
 	doublecomplex *zx, integer *incx, doublecomplex *zy, integer *incy)
 {
     /* System generated locals */
-    integer i__1, i__2;
+ 
     doublecomplex z__1, z__2, z__3;
 
     /* Builtin functions */
@@ -51,10 +51,8 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	d_cnjg(&z__3, &zx[ix]);
-	i__2 = iy;
 	z__2.r = z__3.r * zy[iy].r - z__3.i * zy[iy].i, z__2.i = z__3.r * 
 		zy[iy].i + z__3.i * zy[iy].r;
 	z__1.r = ztemp.r + z__2.r, z__1.i = ztemp.i + z__2.i;
@@ -69,10 +67,8 @@
 /*        code for both increments equal to 1 */
 
 L20:
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	d_cnjg(&z__3, &zx[i]);
-	i__2 = i;
 	z__2.r = z__3.r * zy[i].r - z__3.i * zy[i].i, z__2.i = z__3.r * 
 		zy[i].i + z__3.i * zy[i].r;
 	z__1.r = ztemp.r + z__2.r, z__1.i = ztemp.i + z__2.i;

@@ -3,7 +3,7 @@
 integer icamax_(integer *n, complex *cx, integer *incx)
 {
     /* System generated locals */
-    integer ret_val, i__1, i__2;
+integer ret_val, i__1, i__2;
     real r__1, r__2;
     /* Builtin functions */
     double r_imag(complex *);
@@ -33,15 +33,12 @@ integer icamax_(integer *n, complex *cx, integer *incx)
     ix = 1;
     smax = (r__1 = CX(1).r, dabs(r__1)) + (r__2 = r_imag(&CX(1)), dabs(r__2));
     ix += *incx;
-    i__1 = *n;
     for (i = 2; i <= *n; ++i) {
-	i__2 = ix;
 	if ((r__1 = CX(ix).r, dabs(r__1)) + (r__2 = r_imag(&CX(ix)), dabs(
 		r__2)) <= smax) {
 	    goto L5;
 	}
 	ret_val = i;
-	i__2 = ix;
 	smax = (r__1 = CX(ix).r, dabs(r__1)) + (r__2 = r_imag(&CX(ix)), 
 		dabs(r__2));
 L5:
@@ -52,15 +49,12 @@ L5:
 /*        code for increment equal to 1 */
 L20:
     smax = (r__1 = CX(1).r, dabs(r__1)) + (r__2 = r_imag(&CX(1)), dabs(r__2));
-    i__1 = *n;
     for (i = 2; i <= *n; ++i) {
-	i__2 = i;
 	if ((r__1 = CX(i).r, dabs(r__1)) + (r__2 = r_imag(&CX(i)), dabs(
 		r__2)) <= smax) {
 	    goto L30;
 	}
 	ret_val = i;
-	i__2 = i;
 	smax = (r__1 = CX(i).r, dabs(r__1)) + (r__2 = r_imag(&CX(i)), dabs(
 		r__2));
 L30:

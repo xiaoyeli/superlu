@@ -12,7 +12,7 @@
 
 
     /* System generated locals */
-    integer i__1, i__2, i__3;
+
     doublecomplex z__1;
 
     /* Local variables */
@@ -41,10 +41,7 @@
 /*        code for increment not equal to 1 */
 
     ix = 1;
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__2 = ix;
-	i__3 = ix;
 	z__1.r = za->r * ZX(ix).r - za->i * ZX(ix).i, z__1.i = za->r * ZX(
 		ix).i + za->i * ZX(ix).r;
 	ZX(ix).r = z__1.r, ZX(ix).i = z__1.i;
@@ -56,10 +53,7 @@
 /*        code for increment equal to 1 */
 
 L20:
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__2 = i;
-	i__3 = i;
 	z__1.r = za->r * ZX(i).r - za->i * ZX(i).i, z__1.i = za->r * ZX(
 		i).i + za->i * ZX(i).r;
 	ZX(i).r = z__1.r, ZX(i).i = z__1.i;

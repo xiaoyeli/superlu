@@ -11,7 +11,7 @@ real snrm2_(integer *n, real *x, integer *incx)
 
 
     /* System generated locals */
-    integer i__1, i__2;
+ 
     real ret_val, r__1;
 
     /* Builtin functions */
@@ -52,9 +52,6 @@ real snrm2_(integer *n, real *x, integer *incx)
   
           auxiliary routine:   
           CALL SLASSQ( N, X, INCX, SCALE, SSQ ) */
-
-	i__1 = (*n - 1) * *incx + 1;
-	i__2 = *incx;
 	for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
 	    if (X(ix) != 0.f) {
 		absxi = (r__1 = X(ix), dabs(r__1));

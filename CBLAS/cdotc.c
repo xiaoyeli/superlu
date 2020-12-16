@@ -9,7 +9,7 @@
 	*incx, complex *cy, integer *incy)
 {
     /* System generated locals */
-    integer i__1, i__2;
+ 
     complex q__1, q__2, q__3;
 
     /* Builtin functions */
@@ -53,10 +53,8 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	r_cnjg(&q__3, &cx[ix]);
-	i__2 = iy;
 	q__2.r = q__3.r * cy[iy].r - q__3.i * cy[iy].i, q__2.i = q__3.r * 
 		cy[iy].i + q__3.i * cy[iy].r;
 	q__1.r = ctemp.r + q__2.r, q__1.i = ctemp.i + q__2.i;
@@ -71,10 +69,8 @@
 /*        code for both increments equal to 1 */
 
 L20:
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	r_cnjg(&q__3, &cx[i]);
-	i__2 = i;
 	q__2.r = q__3.r * cy[i].r - q__3.i * cy[i].i, q__2.i = q__3.r * 
 		cy[i].i + q__3.i * cy[i].r;
 	q__1.r = ctemp.r + q__2.r, q__1.i = ctemp.i + q__2.i;

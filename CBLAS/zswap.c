@@ -5,7 +5,7 @@
 	doublecomplex *zy, integer *incy)
 {
     /* System generated locals */
-    integer i__1, i__2, i__3;
+    
 
     /* Local variables */
     integer i__, ix, iy;
@@ -49,15 +49,10 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
-    for (i__ = 1; i__ <= i__1; ++i__) {
-	i__2 = ix;
-	ztemp.r = zx[i__2].r, ztemp.i = zx[i__2].i;
-	i__2 = ix;
-	i__3 = iy;
-	zx[i__2].r = zy[i__3].r, zx[i__2].i = zy[i__3].i;
-	i__2 = iy;
-	zy[i__2].r = ztemp.r, zy[i__2].i = ztemp.i;
+    for (i__ = 1; i__ <= *n; ++i__) {
+	ztemp.r = zx[ix].r, ztemp.i = zx[ix].i;
+	zx[ix].r = zy[iy].r, zx[ix].i = zy[iy].i;
+	zy[iy].r = ztemp.r, zy[iy].i = ztemp.i;
 	ix += *incx;
 	iy += *incy;
 /* L10: */
@@ -66,15 +61,10 @@
 
 /*       code for both increments equal to 1 */
 L20:
-    i__1 = *n;
-    for (i__ = 1; i__ <= i__1; ++i__) {
-	i__2 = i__;
-	ztemp.r = zx[i__2].r, ztemp.i = zx[i__2].i;
-	i__2 = i__;
-	i__3 = i__;
-	zx[i__2].r = zy[i__3].r, zx[i__2].i = zy[i__3].i;
-	i__2 = i__;
-	zy[i__2].r = ztemp.r, zy[i__2].i = ztemp.i;
+    for (i__ = 1; i__ <= *n; ++i__) {
+	ztemp.r = zx[i__].r, ztemp.i = zx[i__].i;
+	zx[i__].r = zy[i__].r, zx[i__].i = zy[i__].i;
+	zy[i__].r = ztemp.r, zy[i__].i = ztemp.i;
 /* L30: */
     }
     return 0;

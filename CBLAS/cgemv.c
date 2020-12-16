@@ -13,7 +13,7 @@
 
 
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5;
+
     complex q__1, q__2, q__3;
 
     /* Builtin functions */
@@ -190,17 +190,12 @@
     if (beta->r != 1.f || beta->i != 0.f) {
 	if (*incy == 1) {
 	    if (beta->r == 0.f && beta->i == 0.f) {
-		i__1 = leny;
 		for (i = 1; i <= leny; ++i) {
-		    i__2 = i;
 		    Y(i).r = 0.f, Y(i).i = 0.f;
 /* L10: */
 		}
 	    } else {
-		i__1 = leny;
 		for (i = 1; i <= leny; ++i) {
-		    i__2 = i;
-		    i__3 = i;
 		    q__1.r = beta->r * Y(i).r - beta->i * Y(i).i, 
 			    q__1.i = beta->r * Y(i).i + beta->i * Y(i)
 			    .r;
@@ -211,18 +206,13 @@
 	} else {
 	    iy = ky;
 	    if (beta->r == 0.f && beta->i == 0.f) {
-		i__1 = leny;
 		for (i = 1; i <= leny; ++i) {
-		    i__2 = iy;
 		    Y(iy).r = 0.f, Y(iy).i = 0.f;
 		    iy += *incy;
 /* L30: */
 		}
 	    } else {
-		i__1 = leny;
 		for (i = 1; i <= leny; ++i) {
-		    i__2 = iy;
-		    i__3 = iy;
 		    q__1.r = beta->r * Y(iy).r - beta->i * Y(iy).i, 
 			    q__1.i = beta->r * Y(iy).i + beta->i * Y(iy)
 			    .r;
@@ -242,20 +232,13 @@
 
 	jx = kx;
 	if (*incy == 1) {
-	    i__1 = *n;
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = jx;
 		if (X(jx).r != 0.f || X(jx).i != 0.f) {
-		    i__2 = jx;
 		    q__1.r = alpha->r * X(jx).r - alpha->i * X(jx).i, 
 			    q__1.i = alpha->r * X(jx).i + alpha->i * X(jx)
 			    .r;
 		    temp.r = q__1.r, temp.i = q__1.i;
-		    i__2 = *m;
 		    for (i = 1; i <= *m; ++i) {
-			i__3 = i;
-			i__4 = i;
-			i__5 = i + j * a_dim1;
 			q__2.r = temp.r * A(i,j).r - temp.i * A(i,j).i, 
 				q__2.i = temp.r * A(i,j).i + temp.i * A(i,j)
 				.r;
@@ -269,21 +252,14 @@
 /* L60: */
 	    }
 	} else {
-	    i__1 = *n;
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = jx;
 		if (X(jx).r != 0.f || X(jx).i != 0.f) {
-		    i__2 = jx;
 		    q__1.r = alpha->r * X(jx).r - alpha->i * X(jx).i, 
 			    q__1.i = alpha->r * X(jx).i + alpha->i * X(jx)
 			    .r;
 		    temp.r = q__1.r, temp.i = q__1.i;
 		    iy = ky;
-		    i__2 = *m;
 		    for (i = 1; i <= *m; ++i) {
-			i__3 = iy;
-			i__4 = iy;
-			i__5 = i + j * a_dim1;
 			q__2.r = temp.r * A(i,j).r - temp.i * A(i,j).i, 
 				q__2.i = temp.r * A(i,j).i + temp.i * A(i,j)
 				.r;
@@ -305,14 +281,10 @@
 
 	jy = ky;
 	if (*incx == 1) {
-	    i__1 = *n;
 	    for (j = 1; j <= *n; ++j) {
 		temp.r = 0.f, temp.i = 0.f;
 		if (noconj) {
-		    i__2 = *m;
 		    for (i = 1; i <= *m; ++i) {
-			i__3 = i + j * a_dim1;
-			i__4 = i;
 			q__2.r = A(i,j).r * X(i).r - A(i,j).i * X(i)
 				.i, q__2.i = A(i,j).r * X(i).i + A(i,j)
 				.i * X(i).r;
@@ -321,10 +293,8 @@
 /* L90: */
 		    }
 		} else {
-		    i__2 = *m;
 		    for (i = 1; i <= *m; ++i) {
 			r_cnjg(&q__3, &A(i,j));
-			i__3 = i;
 			q__2.r = q__3.r * X(i).r - q__3.i * X(i).i, 
 				q__2.i = q__3.r * X(i).i + q__3.i * X(i)
 				.r;
@@ -333,8 +303,6 @@
 /* L100: */
 		    }
 		}
-		i__2 = jy;
-		i__3 = jy;
 		q__2.r = alpha->r * temp.r - alpha->i * temp.i, q__2.i = 
 			alpha->r * temp.i + alpha->i * temp.r;
 		q__1.r = Y(jy).r + q__2.r, q__1.i = Y(jy).i + q__2.i;
@@ -343,15 +311,11 @@
 /* L110: */
 	    }
 	} else {
-	    i__1 = *n;
 	    for (j = 1; j <= *n; ++j) {
 		temp.r = 0.f, temp.i = 0.f;
 		ix = kx;
 		if (noconj) {
-		    i__2 = *m;
 		    for (i = 1; i <= *m; ++i) {
-			i__3 = i + j * a_dim1;
-			i__4 = ix;
 			q__2.r = A(i,j).r * X(ix).r - A(i,j).i * X(ix)
 				.i, q__2.i = A(i,j).r * X(ix).i + A(i,j)
 				.i * X(ix).r;
@@ -361,10 +325,8 @@
 /* L120: */
 		    }
 		} else {
-		    i__2 = *m;
 		    for (i = 1; i <= *m; ++i) {
 			r_cnjg(&q__3, &A(i,j));
-			i__3 = ix;
 			q__2.r = q__3.r * X(ix).r - q__3.i * X(ix).i, 
 				q__2.i = q__3.r * X(ix).i + q__3.i * X(ix)
 				.r;
@@ -374,8 +336,6 @@
 /* L130: */
 		    }
 		}
-		i__2 = jy;
-		i__3 = jy;
 		q__2.r = alpha->r * temp.r - alpha->i * temp.i, q__2.i = 
 			alpha->r * temp.i + alpha->i * temp.r;
 		q__1.r = Y(jy).r + q__2.r, q__1.i = Y(jy).i + q__2.i;

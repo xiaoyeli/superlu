@@ -12,7 +12,7 @@
 
 
     /* System generated locals */
-    integer i__1, i__2, i__3;
+
 
     /* Local variables */
     integer i, ix, iy;
@@ -48,10 +48,7 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__2 = iy;
-	i__3 = ix;
 	ZY(iy).r = ZX(ix).r, ZY(iy).i = ZX(ix).i;
 	ix += *incx;
 	iy += *incy;
@@ -62,10 +59,7 @@
 /*        code for both increments equal to 1 */
 
 L20:
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__2 = i;
-	i__3 = i;
 	ZY(i).r = ZX(i).r, ZY(i).i = ZX(i).i;
 /* L30: */
     }

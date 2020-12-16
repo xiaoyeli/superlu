@@ -11,7 +11,7 @@ integer isamax_(integer *n, real *sx, integer *incx)
 
 
     /* System generated locals */
-    integer ret_val, i__1;
+integer ret_val, i__1;
     real r__1;
 
     /* Local variables */
@@ -48,7 +48,6 @@ integer isamax_(integer *n, real *sx, integer *incx)
     ix = 1;
     smax = dabs(SX(1));
     ix += *incx;
-    i__1 = *n;
     for (i = 2; i <= *n; ++i) {
 	if ((r__1 = SX(ix), dabs(r__1)) <= smax) {
 	    goto L5;
@@ -65,7 +64,6 @@ L5:
 
 L20:
     smax = dabs(SX(1));
-    i__1 = *n;
     for (i = 2; i <= *n; ++i) {
 	if ((r__1 = SX(i), dabs(r__1)) <= smax) {
 	    goto L30;

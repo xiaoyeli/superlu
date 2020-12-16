@@ -11,7 +11,7 @@ doublereal dnrm2_(integer *n, doublereal *x, integer *incx)
 
 
     /* System generated locals */
-    integer i__1, i__2;
+ 
     doublereal ret_val, d__1;
 
     /* Builtin functions */
@@ -52,9 +52,6 @@ doublereal dnrm2_(integer *n, doublereal *x, integer *incx)
   
           auxiliary routine:   
           CALL DLASSQ( N, X, INCX, SCALE, SSQ ) */
-
-	i__1 = (*n - 1) * *incx + 1;
-	i__2 = *incx;
 	for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
 	    if (X(ix) != 0.) {
 		absxi = (d__1 = X(ix), abs(d__1));

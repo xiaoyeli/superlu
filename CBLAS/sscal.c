@@ -14,7 +14,7 @@
     integer i__1, i__2;
 
     /* Local variables */
-    static integer i, m, nincx, mp1;
+    integer i, m, nincx, mp1;
 
 
 /*     scales a vector by a constant.   

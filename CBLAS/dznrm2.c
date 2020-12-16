@@ -18,9 +18,9 @@ doublereal dznrm2_(integer *n, doublecomplex *x, integer *incx)
     double d_imag(doublecomplex *), sqrt(doublereal);
 
     /* Local variables */
-    static doublereal temp, norm, scale;
-    static integer ix;
-    static doublereal ssq;
+    doublereal temp, norm, scale;
+    integer ix;
+    doublereal ssq;
 
 
 /*  DZNRM2 returns the euclidean norm of a vector via the function   

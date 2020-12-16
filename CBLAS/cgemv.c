@@ -20,11 +20,11 @@
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer info;
-    static complex temp;
-    static integer lenx, leny, i, j;
-    static integer ix, iy, jx, jy, kx, ky;
-    static logical noconj;
+    integer info;
+    complex temp;
+    integer lenx, leny, i, j;
+    integer ix, iy, jx, jy, kx, ky;
+    logical noconj;
 
     extern int input_error(char *, int *);
 

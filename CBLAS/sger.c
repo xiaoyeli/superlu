@@ -15,9 +15,9 @@
     integer a_dim1, a_offset, i__1, i__2;
 
     /* Local variables */
-    static integer info;
-    static real temp;
-    static integer i, j, ix, jy, kx;
+    integer info;
+    real temp;
+    integer i, j, ix, jy, kx;
 
     extern int input_error(char *, int *);
 

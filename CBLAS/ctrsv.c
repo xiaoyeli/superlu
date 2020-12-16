@@ -19,11 +19,11 @@
     void c_div(complex *, complex *, complex *), r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer info;
-    static complex temp;
-    static integer i, j;
-    static integer ix, jx, kx;
-    static logical noconj, nounit;
+    integer info;
+    complex temp;
+    integer i, j;
+    integer ix, jx, kx;
+    logical noconj, nounit;
 
     extern int input_error(char *, int *);
 

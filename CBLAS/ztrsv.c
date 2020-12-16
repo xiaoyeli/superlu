@@ -19,11 +19,11 @@
 	    doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static integer info;
-    static doublecomplex temp;
-    static integer i, j;
-    static integer ix, jx, kx;
-    static logical noconj, nounit;
+    integer info;
+    doublecomplex temp;
+    integer i, j;
+    integer ix, jx, kx;
+    logical noconj, nounit;
 
     extern int input_error(char *, int *);
 

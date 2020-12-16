@@ -18,9 +18,9 @@ real scnrm2_(integer *n, complex *x, integer *incx)
     double r_imag(complex *), sqrt(doublereal);
 
     /* Local variables */
-    static real temp, norm, scale;
-    static integer ix;
-    static real ssq;
+    real temp, norm, scale;
+    integer ix;
+    real ssq;
 
 
 /*  SCNRM2 returns the euclidean norm of a vector via the function   

@@ -20,7 +20,7 @@
     double r_imag(complex *);
 
     /* Local variables */
-    static integer i, ix, iy;
+    integer i, ix, iy;
 
 
 /*     constant times a vector plus a vector.   

@@ -18,9 +18,9 @@ doublereal dnrm2_(integer *n, doublereal *x, integer *incx)
     double sqrt(doublereal);
 
     /* Local variables */
-    static doublereal norm, scale, absxi;
-    static integer ix;
-    static doublereal ssq;
+    doublereal norm, scale, absxi;
+    integer ix;
+    doublereal ssq;
 
 
 /*  DNRM2 returns the euclidean norm of a vector via the function   

@@ -16,9 +16,9 @@
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer i;
-    static complex ctemp;
-    static integer ix, iy;
+    integer i;
+    complex ctemp;
+    integer ix, iy;
 
 
 /*     forms the dot product of two vectors, conjugating the first   

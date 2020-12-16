@@ -15,8 +15,8 @@ integer isamax_(integer *n, real *sx, integer *incx)
     real r__1;
 
     /* Local variables */
-    static real smax;
-    static integer i, ix;
+    real smax;
+    integer i, ix;
 
 
 /*     finds the index of element having max. absolute value.   

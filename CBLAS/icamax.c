@@ -8,8 +8,8 @@ integer icamax_(integer *n, complex *cx, integer *incx)
     /* Builtin functions */
     double r_imag(complex *);
     /* Local variables */
-    static real smax;
-    static integer i, ix;
+    real smax;
+    integer i, ix;
 /*     finds the index of element having max. absolute value.   
        jack dongarra, linpack, 3/11/78.   
        modified 3/93 to return if incx .le. 0.   

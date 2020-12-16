@@ -15,9 +15,9 @@ real sasum_(integer *n, real *sx, integer *incx)
     real ret_val, r__1, r__2, r__3, r__4, r__5, r__6;
 
     /* Local variables */
-    static integer i, m, nincx;
-    static real stemp;
-    static integer mp1;
+    integer i, m, nincx;
+    real stemp;
+    integer mp1;
 
 
 /*     takes the sum of the absolute values.   

@@ -15,9 +15,9 @@ doublereal dasum_(integer *n, doublereal *dx, integer *incx)
     doublereal ret_val, d__1, d__2, d__3, d__4, d__5, d__6;
 
     /* Local variables */
-    static integer i, m;
-    static doublereal dtemp;
-    static integer nincx, mp1;
+    integer i, m;
+    doublereal dtemp;
+    integer nincx, mp1;
 
 
 /*     takes the sum of the absolute values.   

@@ -16,9 +16,9 @@ doublereal ddot_(integer *n, doublereal *dx, integer *incx, doublereal *dy,
     doublereal ret_val;
 
     /* Local variables */
-    static integer i, m;
-    static doublereal dtemp;
-    static integer ix, iy, mp1;
+    integer i, m;
+    doublereal dtemp;
+    integer ix, iy, mp1;
 
 
 /*     forms the dot product of two vectors.   

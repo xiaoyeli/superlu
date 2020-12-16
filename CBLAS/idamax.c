@@ -15,8 +15,8 @@ integer idamax_(integer *n, doublereal *dx, integer *incx)
     doublereal d__1;
 
     /* Local variables */
-    static doublereal dmax__;
-    static integer i, ix;
+    doublereal dmax__;
+    integer i, ix;
 
 
 /*     finds the index of element having max. absolute value.   

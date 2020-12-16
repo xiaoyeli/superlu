@@ -15,11 +15,11 @@
     integer a_dim1, a_offset, i__1, i__2;
 
     /* Local variables */
-    static integer info;
-    static doublereal temp;
-    static integer i, j;
-    static integer ix, jx, kx;
-    static logical nounit;
+    integer info;
+    doublereal temp;
+    integer i, j;
+    integer ix, jx, kx;
+    logical nounit;
 
     extern int input_error(char *, int *);
 

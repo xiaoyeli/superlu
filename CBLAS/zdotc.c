@@ -16,9 +16,9 @@
     void d_cnjg(doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static integer i;
-    static doublecomplex ztemp;
-    static integer ix, iy;
+    integer i;
+    doublecomplex ztemp;
+    integer ix, iy;
 
 
 /*     forms the dot product of a vector.   

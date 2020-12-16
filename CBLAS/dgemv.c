@@ -16,10 +16,10 @@
     integer a_dim1, a_offset, i__1, i__2;
 
     /* Local variables */
-    static integer info;
-    static doublereal temp;
-    static integer lenx, leny, i, j;
-    static integer ix, iy, jx, jy, kx, ky;
+    integer info;
+    doublereal temp;
+    integer lenx, leny, i, j;
+    integer ix, iy, jx, jy, kx, ky;
 
     extern int input_error(char *, int *);
 

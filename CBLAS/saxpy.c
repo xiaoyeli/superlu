@@ -15,7 +15,7 @@
     integer i__1;
 
     /* Local variables */
-    static integer i, m, ix, iy, mp1;
+    integer i, m, ix, iy, mp1;
 
 
 /*     constant times a vector plus a vector.   

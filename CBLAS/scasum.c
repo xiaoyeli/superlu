@@ -18,8 +18,8 @@ real scasum_(integer *n, complex *cx, integer *incx)
     double r_imag(complex *);
 
     /* Local variables */
-    static integer i, nincx;
-    static real stemp;
+    integer i, nincx;
+    real stemp;
 
 
 /*     takes the sum of the absolute values of a complex vector and   

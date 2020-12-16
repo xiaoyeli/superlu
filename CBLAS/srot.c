@@ -15,9 +15,9 @@
     integer i__1;
 
     /* Local variables */
-    static integer i;
-    static real stemp;
-    static integer ix, iy;
+    integer i;
+    real stemp;
+    integer ix, iy;
 
 
 /*     applies a plane rotation.   

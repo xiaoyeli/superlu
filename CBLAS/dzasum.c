@@ -15,10 +15,10 @@ doublereal dzasum_(integer *n, doublecomplex *zx, integer *incx)
     doublereal ret_val;
 
     /* Local variables */
-    static integer i;
-    static doublereal stemp;
+    integer i;
+    doublereal stemp;
     extern doublereal dcabs1_(doublecomplex *);
-    static integer ix;
+    integer ix;
 
 
 /*     takes the sum of the absolute values.   

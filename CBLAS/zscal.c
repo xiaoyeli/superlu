@@ -16,7 +16,7 @@
     doublecomplex z__1;
 
     /* Local variables */
-    static integer i, ix;
+    integer i, ix;
 
 
 /*     scales a vector by a constant.   

@@ -15,7 +15,7 @@
     integer i__1;
 
     /* Local variables */
-    static integer i, m, ix, iy, mp1;
+    integer i, m, ix, iy, mp1;
 
 
 /*     copies a vector, x, to a vector, y.   

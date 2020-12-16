@@ -19,9 +19,9 @@
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer info;
-    static complex temp;
-    static integer i, j, ix, jy, kx;
+    integer info;
+    complex temp;
+    integer i, j, ix, jy, kx;
 
     extern int input_error(char *, int *);
 

@@ -20,9 +20,9 @@
     void d_cnjg(doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static integer info;
-    static doublecomplex temp;
-    static integer i, j, ix, jy, kx;
+    integer info;
+    doublecomplex temp;
+    integer i, j, ix, jy, kx;
 
     extern int input_error(char *, int *);
 

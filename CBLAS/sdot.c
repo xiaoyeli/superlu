@@ -15,9 +15,9 @@ real sdot_(integer *n, real *sx, integer *incx, real *sy, integer *incy)
     real ret_val;
 
     /* Local variables */
-    static integer i, m;
-    static real stemp;
-    static integer ix, iy, mp1;
+    integer i, m;
+    real stemp;
+    integer ix, iy, mp1;
 
 
 /*     forms the dot product of two vectors.   

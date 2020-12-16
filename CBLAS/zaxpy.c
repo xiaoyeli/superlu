@@ -16,9 +16,9 @@
     doublecomplex z__1, z__2;
 
     /* Local variables */
-    static integer i;
+    integer i;
     extern doublereal dcabs1_(doublecomplex *);
-    static integer ix, iy;
+    integer ix, iy;
 
 
 /*     constant times a vector plus a vector.   

@@ -14,10 +14,10 @@ integer izamax_(integer *n, doublecomplex *zx, integer *incx)
     integer ret_val, i__1;
 
     /* Local variables */
-    static doublereal smax;
-    static integer i;
+    doublereal smax;
+    integer i;
     extern doublereal dcabs1_(doublecomplex *);
-    static integer ix;
+    integer ix;
 
 
 /*     finds the index of element having max. absolute value.   

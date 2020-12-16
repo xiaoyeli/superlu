@@ -16,7 +16,7 @@
     complex q__1;
 
     /* Local variables */
-    static integer i, nincx;
+    integer i, nincx;
 
 
 /*     scales a vector by a constant.   

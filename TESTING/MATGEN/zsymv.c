@@ -103,7 +103,7 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5;
+
     doublecomplex z__1, z__2, z__3, z__4;
     /* Local variables */
     static integer info;
@@ -163,17 +163,17 @@
     if (beta->r != 1. || beta->i != 0.) {
 	if (*incy == 1) {
 	    if (beta->r == 0. && beta->i == 0.) {
-		i__1 = *n;
+
 		for (i = 1; i <= *n; ++i) {
-		    i__2 = i;
+
 		    Y(i).r = 0., Y(i).i = 0.;
 /* L10: */
 		}
 	    } else {
-		i__1 = *n;
+
 		for (i = 1; i <= *n; ++i) {
-		    i__2 = i;
-		    i__3 = i;
+
+
 		    z__1.r = beta->r * Y(i).r - beta->i * Y(i).i, 
 			    z__1.i = beta->r * Y(i).i + beta->i * Y(i)
 			    .r;
@@ -184,18 +184,18 @@
 	} else {
 	    iy = ky;
 	    if (beta->r == 0. && beta->i == 0.) {
-		i__1 = *n;
+
 		for (i = 1; i <= *n; ++i) {
-		    i__2 = iy;
+
 		    Y(iy).r = 0., Y(iy).i = 0.;
 		    iy += *incy;
 /* L30: */
 		}
 	    } else {
-		i__1 = *n;
+
 		for (i = 1; i <= *n; ++i) {
-		    i__2 = iy;
-		    i__3 = iy;
+
+
 		    z__1.r = beta->r * Y(iy).r - beta->i * Y(iy).i, 
 			    z__1.i = beta->r * Y(iy).i + beta->i * Y(iy)
 			    .r;
@@ -214,25 +214,25 @@
 /*        Form  y  when A is stored in upper triangle. */
 
 	if (*incx == 1 && *incy == 1) {
-	    i__1 = *n;
+
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = j;
+
 		z__1.r = alpha->r * X(j).r - alpha->i * X(j).i, z__1.i =
 			 alpha->r * X(j).i + alpha->i * X(j).r;
 		temp1.r = z__1.r, temp1.i = z__1.i;
 		temp2.r = 0., temp2.i = 0.;
-		i__2 = j - 1;
+
 		for (i = 1; i <= j-1; ++i) {
-		    i__3 = i;
-		    i__4 = i;
-		    i__5 = i + j * a_dim1;
+
+
+
 		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i, 
 			    z__2.i = temp1.r * A(i,j).i + temp1.i * A(i,j)
 			    .r;
 		    z__1.r = Y(i).r + z__2.r, z__1.i = Y(i).i + z__2.i;
 		    Y(i).r = z__1.r, Y(i).i = z__1.i;
-		    i__3 = i + j * a_dim1;
-		    i__4 = i;
+
+
 		    z__2.r = A(i,j).r * X(i).r - A(i,j).i * X(i).i, 
 			    z__2.i = A(i,j).r * X(i).i + A(i,j).i * X(
 			    i).r;
@@ -240,9 +240,9 @@
 		    temp2.r = z__1.r, temp2.i = z__1.i;
 /* L50: */
 		}
-		i__2 = j;
-		i__3 = j;
-		i__4 = j + j * a_dim1;
+
+
+
 		z__3.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__3.i = 
 			temp1.r * A(j,j).i + temp1.i * A(j,j).r;
 		z__2.r = Y(j).r + z__3.r, z__2.i = Y(j).i + z__3.i;
@@ -255,27 +255,27 @@
 	} else {
 	    jx = kx;
 	    jy = ky;
-	    i__1 = *n;
+
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = jx;
+
 		z__1.r = alpha->r * X(jx).r - alpha->i * X(jx).i, z__1.i =
 			 alpha->r * X(jx).i + alpha->i * X(jx).r;
 		temp1.r = z__1.r, temp1.i = z__1.i;
 		temp2.r = 0., temp2.i = 0.;
 		ix = kx;
 		iy = ky;
-		i__2 = j - 1;
+
 		for (i = 1; i <= j-1; ++i) {
-		    i__3 = iy;
-		    i__4 = iy;
-		    i__5 = i + j * a_dim1;
+
+
+
 		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i, 
 			    z__2.i = temp1.r * A(i,j).i + temp1.i * A(i,j)
 			    .r;
 		    z__1.r = Y(iy).r + z__2.r, z__1.i = Y(iy).i + z__2.i;
 		    Y(iy).r = z__1.r, Y(iy).i = z__1.i;
-		    i__3 = i + j * a_dim1;
-		    i__4 = ix;
+
+
 		    z__2.r = A(i,j).r * X(ix).r - A(i,j).i * X(ix).i, 
 			    z__2.i = A(i,j).r * X(ix).i + A(i,j).i * X(
 			    ix).r;
@@ -285,9 +285,9 @@
 		    iy += *incy;
 /* L70: */
 		}
-		i__2 = jy;
-		i__3 = jy;
-		i__4 = j + j * a_dim1;
+
+
+
 		z__3.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__3.i = 
 			temp1.r * A(j,j).i + temp1.i * A(j,j).r;
 		z__2.r = Y(jy).r + z__3.r, z__2.i = Y(jy).i + z__3.i;
@@ -305,32 +305,32 @@
 /*        Form  y  when A is stored in lower triangle. */
 
 	if (*incx == 1 && *incy == 1) {
-	    i__1 = *n;
+
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = j;
+
 		z__1.r = alpha->r * X(j).r - alpha->i * X(j).i, z__1.i =
 			 alpha->r * X(j).i + alpha->i * X(j).r;
 		temp1.r = z__1.r, temp1.i = z__1.i;
 		temp2.r = 0., temp2.i = 0.;
-		i__2 = j;
-		i__3 = j;
-		i__4 = j + j * a_dim1;
+
+
+
 		z__2.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__2.i = 
 			temp1.r * A(j,j).i + temp1.i * A(j,j).r;
 		z__1.r = Y(j).r + z__2.r, z__1.i = Y(j).i + z__2.i;
 		Y(j).r = z__1.r, Y(j).i = z__1.i;
-		i__2 = *n;
+
 		for (i = j + 1; i <= *n; ++i) {
-		    i__3 = i;
-		    i__4 = i;
-		    i__5 = i + j * a_dim1;
+
+
+
 		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i, 
 			    z__2.i = temp1.r * A(i,j).i + temp1.i * A(i,j)
 			    .r;
 		    z__1.r = Y(i).r + z__2.r, z__1.i = Y(i).i + z__2.i;
 		    Y(i).r = z__1.r, Y(i).i = z__1.i;
-		    i__3 = i + j * a_dim1;
-		    i__4 = i;
+
+
 		    z__2.r = A(i,j).r * X(i).r - A(i,j).i * X(i).i, 
 			    z__2.i = A(i,j).r * X(i).i + A(i,j).i * X(
 			    i).r;
@@ -338,8 +338,8 @@
 		    temp2.r = z__1.r, temp2.i = z__1.i;
 /* L90: */
 		}
-		i__2 = j;
-		i__3 = j;
+
+
 		z__2.r = alpha->r * temp2.r - alpha->i * temp2.i, z__2.i = 
 			alpha->r * temp2.i + alpha->i * temp2.r;
 		z__1.r = Y(j).r + z__2.r, z__1.i = Y(j).i + z__2.i;
@@ -349,36 +349,36 @@
 	} else {
 	    jx = kx;
 	    jy = ky;
-	    i__1 = *n;
+
 	    for (j = 1; j <= *n; ++j) {
-		i__2 = jx;
+
 		z__1.r = alpha->r * X(jx).r - alpha->i * X(jx).i, z__1.i =
 			 alpha->r * X(jx).i + alpha->i * X(jx).r;
 		temp1.r = z__1.r, temp1.i = z__1.i;
 		temp2.r = 0., temp2.i = 0.;
-		i__2 = jy;
-		i__3 = jy;
-		i__4 = j + j * a_dim1;
+
+
+
 		z__2.r = temp1.r * A(j,j).r - temp1.i * A(j,j).i, z__2.i = 
 			temp1.r * A(j,j).i + temp1.i * A(j,j).r;
 		z__1.r = Y(jy).r + z__2.r, z__1.i = Y(jy).i + z__2.i;
 		Y(jy).r = z__1.r, Y(jy).i = z__1.i;
 		ix = jx;
 		iy = jy;
-		i__2 = *n;
+
 		for (i = j + 1; i <= *n; ++i) {
 		    ix += *incx;
 		    iy += *incy;
-		    i__3 = iy;
-		    i__4 = iy;
-		    i__5 = i + j * a_dim1;
+
+
+
 		    z__2.r = temp1.r * A(i,j).r - temp1.i * A(i,j).i, 
 			    z__2.i = temp1.r * A(i,j).i + temp1.i * A(i,j)
 			    .r;
 		    z__1.r = Y(iy).r + z__2.r, z__1.i = Y(iy).i + z__2.i;
 		    Y(iy).r = z__1.r, Y(iy).i = z__1.i;
-		    i__3 = i + j * a_dim1;
-		    i__4 = ix;
+
+
 		    z__2.r = A(i,j).r * X(ix).r - A(i,j).i * X(ix).i, 
 			    z__2.i = A(i,j).r * X(ix).i + A(i,j).i * X(
 			    ix).r;
@@ -386,8 +386,8 @@
 		    temp2.r = z__1.r, temp2.i = z__1.i;
 /* L110: */
 		}
-		i__2 = jy;
-		i__3 = jy;
+
+
 		z__2.r = alpha->r * temp2.r - alpha->i * temp2.i, z__2.i = 
 			alpha->r * temp2.i + alpha->i * temp2.r;
 		z__1.r = Y(jy).r + z__2.r, z__1.i = Y(jy).i + z__2.i;

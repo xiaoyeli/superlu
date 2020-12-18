@@ -12,12 +12,11 @@
 
 
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2;
 
     /* Local variables */
-    static integer info;
-    static real temp;
-    static integer i, j, ix, jy, kx;
+    integer info;
+    real temp;
+    integer i, j, ix, jy, kx;
 
     extern int input_error(char *, int *);
 
@@ -137,11 +136,9 @@
 	jy = 1 - (*n - 1) * *incy;
     }
     if (*incx == 1) {
-	i__1 = *n;
 	for (j = 1; j <= *n; ++j) {
 	    if (Y(jy) != 0.f) {
 		temp = *alpha * Y(jy);
-		i__2 = *m;
 		for (i = 1; i <= *m; ++i) {
 		    A(i,j) += X(i) * temp;
 /* L10: */
@@ -156,12 +153,10 @@
 	} else {
 	    kx = 1 - (*m - 1) * *incx;
 	}
-	i__1 = *n;
 	for (j = 1; j <= *n; ++j) {
 	    if (Y(jy) != 0.f) {
 		temp = *alpha * Y(jy);
 		ix = kx;
-		i__2 = *m;
 		for (i = 1; i <= *m; ++i) {
 		    A(i,j) += X(ix) * temp;
 		    ix += *incx;

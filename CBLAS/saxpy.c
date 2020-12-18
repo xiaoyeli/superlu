@@ -12,10 +12,9 @@
 
 
     /* System generated locals */
-    integer i__1;
 
     /* Local variables */
-    static integer i, m, ix, iy, mp1;
+    integer i, m, ix, iy, mp1;
 
 
 /*     constant times a vector plus a vector.   
@@ -52,7 +51,6 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	SY(iy) += *sa * SX(ix);
 	ix += *incx;
@@ -71,7 +69,6 @@ L20:
     if (m == 0) {
 	goto L40;
     }
-    i__1 = m;
     for (i = 1; i <= m; ++i) {
 	SY(i) += *sa * SX(i);
 /* L30: */
@@ -81,7 +78,6 @@ L20:
     }
 L40:
     mp1 = m + 1;
-    i__1 = *n;
     for (i = mp1; i <= *n; i += 4) {
 	SY(i) += *sa * SX(i);
 	SY(i + 1) += *sa * SX(i + 1);

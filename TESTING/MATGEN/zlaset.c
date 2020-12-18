@@ -58,7 +58,7 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3;
+
     /* Local variables */
     static integer i, j;
 
@@ -66,71 +66,52 @@
 #define A(I,J) a[(I)-1 + ((J)-1)* ( *lda)]
 
     if (strncmp(uplo, "U", 1)==0) {
-
 /*        Set the diagonal to BETA and the strictly upper triangular 
   
           part of the array to ALPHA. */
-
-	i__1 = *n;
 	for (j = 2; j <= *n; ++j) {
 /* Computing MIN */
-	    i__3 = j - 1;
-	    i__2 = min(i__3,*m);
 	    for (i = 1; i <= min(j-1,*m); ++i) {
-		i__3 = i + j * a_dim1;
 		A(i,j).r = alpha->r, A(i,j).i = alpha->i;
 /* L10: */
 	    }
 /* L20: */
 	}
-	i__1 = min(*n,*m);
+
 	for (i = 1; i <= min(*n,*m); ++i) {
-	    i__2 = i + i * a_dim1;
 	    A(i,i).r = beta->r, A(i,i).i = beta->i;
 /* L30: */
 	}
-
     } else if (strncmp(uplo, "L", 1)==0) {
-
 /*        Set the diagonal to BETA and the strictly lower triangular 
   
           part of the array to ALPHA. */
-
-	i__1 = min(*m,*n);
 	for (j = 1; j <= min(*m,*n); ++j) {
-	    i__2 = *m;
+
 	    for (i = j + 1; i <= *m; ++i) {
-		i__3 = i + j * a_dim1;
 		A(i,j).r = alpha->r, A(i,j).i = alpha->i;
 /* L40: */
 	    }
 /* L50: */
 	}
-	i__1 = min(*n,*m);
+
 	for (i = 1; i <= min(*n,*m); ++i) {
-	    i__2 = i + i * a_dim1;
 	    A(i,i).r = beta->r, A(i,i).i = beta->i;
 /* L60: */
 	}
-
     } else {
-
 /*        Set the array to BETA on the diagonal and ALPHA on the   
           offdiagonal. */
-
-	i__1 = *n;
 	for (j = 1; j <= *n; ++j) {
-	    i__2 = *m;
+
 	    for (i = 1; i <= *m; ++i) {
-		i__3 = i + j * a_dim1;
 		A(i,j).r = alpha->r, A(i,j).i = alpha->i;
 /* L70: */
 	    }
 /* L80: */
 	}
-	i__1 = min(*m,*n);
+
 	for (i = 1; i <= min(*m,*n); ++i) {
-	    i__2 = i + i * a_dim1;
 	    A(i,i).r = beta->r, A(i,i).i = beta->i;
 /* L90: */
 	}

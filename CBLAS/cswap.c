@@ -5,7 +5,7 @@
 	cy, integer *incy)
 {
     /* System generated locals */
-    integer i__1, i__2, i__3;
+    
 
     /* Local variables */
     integer i__, ix, iy;
@@ -49,15 +49,10 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
-    for (i__ = 1; i__ <= i__1; ++i__) {
-	i__2 = ix;
-	ctemp.r = cx[i__2].r, ctemp.i = cx[i__2].i;
-	i__2 = ix;
-	i__3 = iy;
-	cx[i__2].r = cy[i__3].r, cx[i__2].i = cy[i__3].i;
-	i__2 = iy;
-	cy[i__2].r = ctemp.r, cy[i__2].i = ctemp.i;
+    for (i__ = 1; i__ <= *n; ++i__) {
+	ctemp.r = cx[ix].r, ctemp.i = cx[ix].i;
+	cx[ix].r = cy[iy].r, cx[ix].i = cy[iy].i;
+	cy[iy].r = ctemp.r, cy[iy].i = ctemp.i;
 	ix += *incx;
 	iy += *incy;
 /* L10: */
@@ -66,15 +61,10 @@
 
 /*       code for both increments equal to 1 */
 L20:
-    i__1 = *n;
-    for (i__ = 1; i__ <= i__1; ++i__) {
-	i__2 = i__;
-	ctemp.r = cx[i__2].r, ctemp.i = cx[i__2].i;
-	i__2 = i__;
-	i__3 = i__;
-	cx[i__2].r = cy[i__3].r, cx[i__2].i = cy[i__3].i;
-	i__2 = i__;
-	cy[i__2].r = ctemp.r, cy[i__2].i = ctemp.i;
+    for (i__ = 1; i__ <= *n; ++i__) {
+	ctemp.r = cx[i__].r, ctemp.i = cx[i__].i;
+	cx[i__].r = cy[i__].r, cx[i__].i = cy[i__].i;
+	cy[i__].r = ctemp.r, cy[i__].i = ctemp.i;
 /* L30: */
     }
     return 0;

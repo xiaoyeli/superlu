@@ -11,14 +11,13 @@ doublereal dzasum_(integer *n, doublecomplex *zx, integer *incx)
 
 
     /* System generated locals */
-    integer i__1;
-    doublereal ret_val;
+doublereal ret_val;
 
     /* Local variables */
-    static integer i;
-    static doublereal stemp;
+    integer i;
+    doublereal stemp;
     extern doublereal dcabs1_(doublecomplex *);
-    static integer ix;
+    integer ix;
 
 
 /*     takes the sum of the absolute values.   
@@ -45,7 +44,6 @@ doublereal dzasum_(integer *n, doublecomplex *zx, integer *incx)
 /*        code for increment not equal to 1 */
 
     ix = 1;
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	stemp += dcabs1_(&ZX(ix));
 	ix += *incx;
@@ -57,7 +55,6 @@ doublereal dzasum_(integer *n, doublecomplex *zx, integer *incx)
 /*        code for increment equal to 1 */
 
 L20:
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	stemp += dcabs1_(&ZX(i));
 /* L30: */

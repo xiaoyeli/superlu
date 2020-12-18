@@ -12,13 +12,13 @@
 
 
     /* System generated locals */
-    integer i__1, i__2, i__3, i__4;
+
     doublecomplex z__1, z__2;
 
     /* Local variables */
-    static integer i;
+    integer i;
     extern doublereal dcabs1_(doublecomplex *);
-    static integer ix, iy;
+    integer ix, iy;
 
 
 /*     constant times a vector plus a vector.   
@@ -53,11 +53,7 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__2 = iy;
-	i__3 = iy;
-	i__4 = ix;
 	z__2.r = za->r * ZX(ix).r - za->i * ZX(ix).i, z__2.i = za->r * ZX(
 		ix).i + za->i * ZX(ix).r;
 	z__1.r = ZY(iy).r + z__2.r, z__1.i = ZY(iy).i + z__2.i;
@@ -71,11 +67,7 @@
 /*        code for both increments equal to 1 */
 
 L20:
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__2 = i;
-	i__3 = i;
-	i__4 = i;
 	z__2.r = za->r * ZX(i).r - za->i * ZX(i).i, z__2.i = za->r * ZX(
 		i).i + za->i * ZX(i).r;
 	z__1.r = ZY(i).r + z__2.r, z__1.i = ZY(i).i + z__2.i;

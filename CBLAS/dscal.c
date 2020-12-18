@@ -12,10 +12,10 @@
 
 
     /* System generated locals */
-    integer i__1, i__2;
+ 
 
     /* Local variables */
-    static integer i, m, nincx, mp1;
+    integer i, m, nincx, mp1;
 
 
 /*     scales a vector by a constant.   
@@ -41,8 +41,6 @@
 /*        code for increment not equal to 1 */
 
     nincx = *n * *incx;
-    i__1 = nincx;
-    i__2 = *incx;
     for (i = 1; *incx < 0 ? i >= nincx : i <= nincx; i += *incx) {
 	DX(i) = *da * DX(i);
 /* L10: */
@@ -59,7 +57,6 @@ L20:
     if (m == 0) {
 	goto L40;
     }
-    i__2 = m;
     for (i = 1; i <= m; ++i) {
 	DX(i) = *da * DX(i);
 /* L30: */
@@ -69,7 +66,6 @@ L20:
     }
 L40:
     mp1 = m + 1;
-    i__2 = *n;
     for (i = mp1; i <= *n; i += 5) {
 	DX(i) = *da * DX(i);
 	DX(i + 1) = *da * DX(i + 1);

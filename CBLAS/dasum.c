@@ -11,13 +11,13 @@ doublereal dasum_(integer *n, doublereal *dx, integer *incx)
 
 
     /* System generated locals */
-    integer i__1, i__2;
+ 
     doublereal ret_val, d__1, d__2, d__3, d__4, d__5, d__6;
 
     /* Local variables */
-    static integer i, m;
-    static doublereal dtemp;
-    static integer nincx, mp1;
+    integer i, m;
+    doublereal dtemp;
+    integer nincx, mp1;
 
 
 /*     takes the sum of the absolute values.   
@@ -44,8 +44,6 @@ doublereal dasum_(integer *n, doublereal *dx, integer *incx)
 /*        code for increment not equal to 1 */
 
     nincx = *n * *incx;
-    i__1 = nincx;
-    i__2 = *incx;
     for (i = 1; *incx < 0 ? i >= nincx : i <= nincx; i += *incx) {
 	dtemp += (d__1 = DX(i), abs(d__1));
 /* L10: */
@@ -63,7 +61,6 @@ L20:
     if (m == 0) {
 	goto L40;
     }
-    i__2 = m;
     for (i = 1; i <= m; ++i) {
 	dtemp += (d__1 = DX(i), abs(d__1));
 /* L30: */
@@ -73,7 +70,6 @@ L20:
     }
 L40:
     mp1 = m + 1;
-    i__2 = *n;
     for (i = mp1; i <= *n; i += 6) {
 	dtemp = dtemp + (d__1 = DX(i), abs(d__1)) + (d__2 = DX(i + 1), abs(
 		d__2)) + (d__3 = DX(i + 2), abs(d__3)) + (d__4 = DX(i + 3), 

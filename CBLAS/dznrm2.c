@@ -11,16 +11,16 @@ doublereal dznrm2_(integer *n, doublecomplex *x, integer *incx)
 
 
     /* System generated locals */
-    integer i__1, i__2, i__3;
+
     doublereal ret_val, d__1;
 
     /* Builtin functions */
     double d_imag(doublecomplex *), sqrt(doublereal);
 
     /* Local variables */
-    static doublereal temp, norm, scale;
-    static integer ix;
-    static doublereal ssq;
+    doublereal temp, norm, scale;
+    integer ix;
+    doublereal ssq;
 
 
 /*  DZNRM2 returns the euclidean norm of a vector via the function   
@@ -50,13 +50,8 @@ doublereal dznrm2_(integer *n, doublecomplex *x, integer *incx)
   
           auxiliary routine:   
           CALL ZLASSQ( N, X, INCX, SCALE, SSQ ) */
-
-	i__1 = (*n - 1) * *incx + 1;
-	i__2 = *incx;
 	for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
-	    i__3 = ix;
 	    if (X(ix).r != 0.) {
-		i__3 = ix;
 		temp = (d__1 = X(ix).r, abs(d__1));
 		if (scale < temp) {
 /* Computing 2nd power */

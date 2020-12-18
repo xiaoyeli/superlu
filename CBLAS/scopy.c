@@ -12,10 +12,9 @@
 
 
     /* System generated locals */
-    integer i__1;
 
     /* Local variables */
-    static integer i, m, ix, iy, mp1;
+    integer i, m, ix, iy, mp1;
 
 
 /*     copies a vector, x, to a vector, y.   
@@ -49,7 +48,6 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	SY(iy) = SX(ix);
 	ix += *incx;
@@ -68,7 +66,6 @@ L20:
     if (m == 0) {
 	goto L40;
     }
-    i__1 = m;
     for (i = 1; i <= m; ++i) {
 	SY(i) = SX(i);
 /* L30: */
@@ -78,7 +75,6 @@ L20:
     }
 L40:
     mp1 = m + 1;
-    i__1 = *n;
     for (i = mp1; i <= *n; i += 7) {
 	SY(i) = SX(i);
 	SY(i + 1) = SX(i + 1);

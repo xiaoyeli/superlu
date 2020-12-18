@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     float         *ferr, *berr;
     float         *rwork;
     complex	   *wwork;
-    void           *work;
+    void           *work = NULL;
     int            info, lwork, nrhs, panel_size, relax;
     int            m, n, nnz;
     complex         *xact;
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
     int            zerot, izero, ioff;
     double         u;
     float         anorm, cndnum;
-    complex         *Afull;
+    complex         *Afull = NULL;
     float         result[NTESTS];
     superlu_options_t options;
     fact_t         fact;

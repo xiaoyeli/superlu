@@ -11,16 +11,16 @@ real scnrm2_(integer *n, complex *x, integer *incx)
 
 
     /* System generated locals */
-    integer i__1, i__2, i__3;
+
     real ret_val, r__1;
 
     /* Builtin functions */
     double r_imag(complex *), sqrt(doublereal);
 
     /* Local variables */
-    static real temp, norm, scale;
-    static integer ix;
-    static real ssq;
+    real temp, norm, scale;
+    integer ix;
+    real ssq;
 
 
 /*  SCNRM2 returns the euclidean norm of a vector via the function   
@@ -50,13 +50,8 @@ real scnrm2_(integer *n, complex *x, integer *incx)
   
           auxiliary routine:   
           CALL CLASSQ( N, X, INCX, SCALE, SSQ ) */
-
-	i__1 = (*n - 1) * *incx + 1;
-	i__2 = *incx;
 	for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
-	    i__3 = ix;
 	    if (X(ix).r != 0.f) {
-		i__3 = ix;
 		temp = (r__1 = X(ix).r, dabs(r__1));
 		if (scale < temp) {
 /* Computing 2nd power */

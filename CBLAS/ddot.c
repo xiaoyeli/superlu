@@ -12,13 +12,12 @@ doublereal ddot_(integer *n, doublereal *dx, integer *incx, doublereal *dy,
 
 
     /* System generated locals */
-    integer i__1;
-    doublereal ret_val;
+doublereal ret_val;
 
     /* Local variables */
-    static integer i, m;
-    static doublereal dtemp;
-    static integer ix, iy, mp1;
+    integer i, m;
+    doublereal dtemp;
+    integer ix, iy, mp1;
 
 
 /*     forms the dot product of two vectors.   
@@ -54,7 +53,6 @@ doublereal ddot_(integer *n, doublereal *dx, integer *incx, doublereal *dy,
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	dtemp += DX(ix) * DY(iy);
 	ix += *incx;
@@ -74,7 +72,6 @@ L20:
     if (m == 0) {
 	goto L40;
     }
-    i__1 = m;
     for (i = 1; i <= m; ++i) {
 	dtemp += DX(i) * DY(i);
 /* L30: */
@@ -84,7 +81,6 @@ L20:
     }
 L40:
     mp1 = m + 1;
-    i__1 = *n;
     for (i = mp1; i <= *n; i += 5) {
 	dtemp = dtemp + DX(i) * DY(i) + DX(i + 1) * DY(i + 1) + DX(i + 2) * 
 		DY(i + 2) + DX(i + 3) * DY(i + 3) + DX(i + 4) * DY(i + 4);

@@ -12,7 +12,7 @@
 
 
     /* System generated locals */
-    integer i__1, i__2, i__3, i__4;
+
     real r__1, r__2;
     complex q__1, q__2;
 
@@ -20,7 +20,7 @@
     double r_imag(complex *);
 
     /* Local variables */
-    static integer i, ix, iy;
+    integer i, ix, iy;
 
 
 /*     constant times a vector plus a vector.   
@@ -56,11 +56,7 @@
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__2 = iy;
-	i__3 = iy;
-	i__4 = ix;
 	q__2.r = ca->r * CX(ix).r - ca->i * CX(ix).i, q__2.i = ca->r * CX(
 		ix).i + ca->i * CX(ix).r;
 	q__1.r = CY(iy).r + q__2.r, q__1.i = CY(iy).i + q__2.i;
@@ -74,11 +70,7 @@
 /*        code for both increments equal to 1 */
 
 L20:
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__2 = i;
-	i__3 = i;
-	i__4 = i;
 	q__2.r = ca->r * CX(i).r - ca->i * CX(i).i, q__2.i = ca->r * CX(
 		i).i + ca->i * CX(i).r;
 	q__1.r = CY(i).r + q__2.r, q__1.i = CY(i).i + q__2.i;

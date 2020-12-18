@@ -13,16 +13,16 @@
 
 
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5;
+
     doublecomplex z__1, z__2;
 
     /* Builtin functions */
     void d_cnjg(doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static integer info;
-    static doublecomplex temp;
-    static integer i, j, ix, jy, kx;
+    integer info;
+    doublecomplex temp;
+    integer i, j, ix, jy, kx;
 
     extern int input_error(char *, int *);
 
@@ -143,19 +143,13 @@
 	jy = 1 - (*n - 1) * *incy;
     }
     if (*incx == 1) {
-	i__1 = *n;
 	for (j = 1; j <= *n; ++j) {
-	    i__2 = jy;
 	    if (Y(jy).r != 0. || Y(jy).i != 0.) {
 		d_cnjg(&z__2, &Y(jy));
 		z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i = 
 			alpha->r * z__2.i + alpha->i * z__2.r;
 		temp.r = z__1.r, temp.i = z__1.i;
-		i__2 = *m;
 		for (i = 1; i <= *m; ++i) {
-		    i__3 = i + j * a_dim1;
-		    i__4 = i + j * a_dim1;
-		    i__5 = i;
 		    z__2.r = X(i).r * temp.r - X(i).i * temp.i, z__2.i =
 			     X(i).r * temp.i + X(i).i * temp.r;
 		    z__1.r = A(i,j).r + z__2.r, z__1.i = A(i,j).i + z__2.i;
@@ -172,20 +166,14 @@
 	} else {
 	    kx = 1 - (*m - 1) * *incx;
 	}
-	i__1 = *n;
 	for (j = 1; j <= *n; ++j) {
-	    i__2 = jy;
 	    if (Y(jy).r != 0. || Y(jy).i != 0.) {
 		d_cnjg(&z__2, &Y(jy));
 		z__1.r = alpha->r * z__2.r - alpha->i * z__2.i, z__1.i = 
 			alpha->r * z__2.i + alpha->i * z__2.r;
 		temp.r = z__1.r, temp.i = z__1.i;
 		ix = kx;
-		i__2 = *m;
 		for (i = 1; i <= *m; ++i) {
-		    i__3 = i + j * a_dim1;
-		    i__4 = i + j * a_dim1;
-		    i__5 = ix;
 		    z__2.r = X(ix).r * temp.r - X(ix).i * temp.i, z__2.i =
 			     X(ix).r * temp.i + X(ix).i * temp.r;
 		    z__1.r = A(i,j).r + z__2.r, z__1.i = A(i,j).i + z__2.i;

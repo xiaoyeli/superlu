@@ -11,12 +11,12 @@ integer idamax_(integer *n, doublereal *dx, integer *incx)
 
 
     /* System generated locals */
-    integer ret_val, i__1;
+integer ret_val, i__1;
     doublereal d__1;
 
     /* Local variables */
-    static doublereal dmax__;
-    static integer i, ix;
+    doublereal dmax__;
+    integer i, ix;
 
 
 /*     finds the index of element having max. absolute value.   
@@ -48,7 +48,6 @@ integer idamax_(integer *n, doublereal *dx, integer *incx)
     ix = 1;
     dmax__ = abs(DX(1));
     ix += *incx;
-    i__1 = *n;
     for (i = 2; i <= *n; ++i) {
 	if ((d__1 = DX(ix), abs(d__1)) <= dmax__) {
 	    goto L5;
@@ -65,7 +64,6 @@ L5:
 
 L20:
     dmax__ = abs(DX(1));
-    i__1 = *n;
     for (i = 2; i <= *n; ++i) {
 	if ((d__1 = DX(i), abs(d__1)) <= dmax__) {
 	    goto L30;

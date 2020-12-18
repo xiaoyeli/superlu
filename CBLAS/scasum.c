@@ -11,15 +11,15 @@ real scasum_(integer *n, complex *cx, integer *incx)
 
 
     /* System generated locals */
-    integer i__1, i__2, i__3;
+
     real ret_val, r__1, r__2;
 
     /* Builtin functions */
     double r_imag(complex *);
 
     /* Local variables */
-    static integer i, nincx;
-    static real stemp;
+    integer i, nincx;
+    real stemp;
 
 
 /*     takes the sum of the absolute values of a complex vector and   
@@ -47,10 +47,7 @@ real scasum_(integer *n, complex *cx, integer *incx)
 /*        code for increment not equal to 1 */
 
     nincx = *n * *incx;
-    i__1 = nincx;
-    i__2 = *incx;
     for (i = 1; *incx < 0 ? i >= nincx : i <= nincx; i += *incx) {
-	i__3 = i;
 	stemp = stemp + (r__1 = CX(i).r, dabs(r__1)) + (r__2 = r_imag(&CX(
 		i)), dabs(r__2));
 /* L10: */
@@ -61,9 +58,7 @@ real scasum_(integer *n, complex *cx, integer *incx)
 /*        code for increment equal to 1 */
 
 L20:
-    i__2 = *n;
     for (i = 1; i <= *n; ++i) {
-	i__1 = i;
 	stemp = stemp + (r__1 = CX(i).r, dabs(r__1)) + (r__2 = r_imag(&CX(
 		i)), dabs(r__2));
 /* L30: */

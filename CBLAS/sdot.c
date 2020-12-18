@@ -11,13 +11,12 @@ real sdot_(integer *n, real *sx, integer *incx, real *sy, integer *incy)
 
 
     /* System generated locals */
-    integer i__1;
-    real ret_val;
+real ret_val;
 
     /* Local variables */
-    static integer i, m;
-    static real stemp;
-    static integer ix, iy, mp1;
+    integer i, m;
+    real stemp;
+    integer ix, iy, mp1;
 
 
 /*     forms the dot product of two vectors.   
@@ -53,7 +52,6 @@ real sdot_(integer *n, real *sx, integer *incx, real *sy, integer *incy)
     if (*incy < 0) {
 	iy = (-(*n) + 1) * *incy + 1;
     }
-    i__1 = *n;
     for (i = 1; i <= *n; ++i) {
 	stemp += SX(ix) * SY(iy);
 	ix += *incx;
@@ -73,7 +71,6 @@ L20:
     if (m == 0) {
 	goto L40;
     }
-    i__1 = m;
     for (i = 1; i <= m; ++i) {
 	stemp += SX(i) * SY(i);
 /* L30: */
@@ -83,7 +80,6 @@ L20:
     }
 L40:
     mp1 = m + 1;
-    i__1 = *n;
     for (i = mp1; i <= *n; i += 5) {
 	stemp = stemp + SX(i) * SY(i) + SX(i + 1) * SY(i + 1) + SX(i + 2) * 
 		SY(i + 2) + SX(i + 3) * SY(i + 3) + SX(i + 4) * SY(i + 4);

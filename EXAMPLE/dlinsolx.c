@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 	}
     }
 
-#if 1
+#if 0
     /* Read matrix A from a file in Harwell-Boeing format.*/
     dreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
 #else

@@ -8,9 +8,10 @@ All rights reserved.
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
-/*! @file supermatrix.h
- * \brief Defines matrix types
+/*! @file
+ * \brief Matrix type definitions
  */
+
 #ifndef __SUPERLU_SUPERMATRIX /* allow multiple inclusions */
 #define __SUPERLU_SUPERMATRIX
 
@@ -185,6 +186,23 @@ typedef struct {
 			rowptr[] has n_loc + 1 entries, the last one pointing
 			beyond the last row, so that rowptr[n_loc] = nnz_loc.*/
 } NRformat_loc;
+
+
+/* Data structure for storing 3D matrix on layer 0 of the 2D process grid */
+typedef struct NRformat_loc3d
+{
+    NRformat_loc* A_nfmt; 
+    void* B3d;  // on the entire 3D process grid
+    int  ldb;
+    int nrhs;
+    int m_loc; 
+    void* B2d;  // on 2D process layer Grid_0
+
+    int* row_counts_int; // these counts are for {A, B} distributed on 2D layer 0
+    int* row_disp;
+    int* b_counts_int;
+    int* b_disp;
+} NRformat_loc3d;
 
 
 #endif  /* __SUPERLU_SUPERMATRIX */

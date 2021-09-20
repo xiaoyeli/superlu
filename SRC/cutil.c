@@ -36,8 +36,8 @@ at the top-level directory.
 #include "slu_cdefs.h"
 
 void
-cCreate_CompCol_Matrix(SuperMatrix *A, int m, int n, int nnz, 
-		       complex *nzval, int *rowind, int *colptr,
+cCreate_CompCol_Matrix(SuperMatrix *A, int_t m, int_t n, int_t nnz, 
+		       complex *nzval, int_t *rowind, int_t *colptr,
 		       Stype_t stype, Dtype_t dtype, Mtype_t mtype)
 {
     NCformat *Astore;
@@ -57,8 +57,8 @@ cCreate_CompCol_Matrix(SuperMatrix *A, int m, int n, int nnz,
 }
 
 void
-cCreate_CompRow_Matrix(SuperMatrix *A, int m, int n, int nnz, 
-		       complex *nzval, int *colind, int *rowptr,
+cCreate_CompRow_Matrix(SuperMatrix *A, int_t m, int_t n, int_t nnz, 
+		       complex *nzval, int_t *colind, int_t *rowptr,
 		       Stype_t stype, Dtype_t dtype, Mtype_t mtype)
 {
     NRformat *Astore;
@@ -82,7 +82,7 @@ void
 cCopy_CompCol_Matrix(SuperMatrix *A, SuperMatrix *B)
 {
     NCformat *Astore, *Bstore;
-    int      ncol, nnz, i;
+    int_t      ncol, nnz, i;
 
     B->Stype = A->Stype;
     B->Dtype = A->Dtype;
@@ -100,7 +100,7 @@ cCopy_CompCol_Matrix(SuperMatrix *A, SuperMatrix *B)
 
 
 void
-cCreate_Dense_Matrix(SuperMatrix *X, int m, int n, complex *x, int ldx,
+cCreate_Dense_Matrix(SuperMatrix *X, int_t m, int_t n, complex *x, int_t ldx,
 		    Stype_t stype, Dtype_t dtype, Mtype_t mtype)
 {
     DNformat    *Xstore;
@@ -118,12 +118,12 @@ cCreate_Dense_Matrix(SuperMatrix *X, int m, int n, complex *x, int ldx,
 }
 
 void
-cCopy_Dense_Matrix(int M, int N, complex *X, int ldx,
-			complex *Y, int ldy)
+cCopy_Dense_Matrix(int_t M, int_t N, complex *X, int_t ldx,
+			complex *Y, int_t ldy)
 {
 /*! \brief Copies a two-dimensional matrix X to another matrix Y.
  */
-    int    i, j;
+    int_t    i, j;
     
     for (j = 0; j < N; ++j)
         for (i = 0; i < M; ++i)
@@ -131,9 +131,9 @@ cCopy_Dense_Matrix(int M, int N, complex *X, int ldx,
 }
 
 void
-cCreate_SuperNode_Matrix(SuperMatrix *L, int m, int n, int nnz, 
-			complex *nzval, int *nzval_colptr, int *rowind,
-			int *rowind_colptr, int *col_to_sup, int *sup_to_col,
+cCreate_SuperNode_Matrix(SuperMatrix *L, int_t m, int_t n, int_t nnz, 
+			complex *nzval, int_t *nzval_colptr, int_t *rowind,
+			int_t *rowind_colptr, int_t *col_to_sup, int_t *sup_to_col,
 			Stype_t stype, Dtype_t dtype, Mtype_t mtype)
 {
     SCformat *Lstore;
@@ -161,18 +161,18 @@ cCreate_SuperNode_Matrix(SuperMatrix *L, int m, int n, int nnz,
 /*! \brief Convert a row compressed storage into a column compressed storage.
  */
 void
-cCompRow_to_CompCol(int m, int n, int nnz, 
-		    complex *a, int *colind, int *rowptr,
-		    complex **at, int **rowind, int **colptr)
+cCompRow_to_CompCol(int_t m, int_t n, int_t nnz, 
+		    complex *a, int_t *colind, int_t *rowptr,
+		    complex **at, int_t **rowind, int_t **colptr)
 {
-    register int i, j, col, relpos;
-    int *marker;
+    register int_t i, j, col, relpos;
+    int_t *marker;
 
     /* Allocate storage for another copy of the matrix. */
     *at = (complex *) complexMalloc(nnz);
-    *rowind = (int *) intMalloc(nnz);
-    *colptr = (int *) intMalloc(n+1);
-    marker = (int *) intCalloc(n);
+    *rowind = (int_t *) intMalloc(nnz);
+    *colptr = (int_t *) intMalloc(n+1);
+    marker = (int_t *) intCalloc(n);
     
     /* Get counts of each column of A, and set up column pointers */
     for (i = 0; i < m; ++i)
@@ -210,13 +210,13 @@ cPrint_CompCol_Matrix(char *what, SuperMatrix *A)
     n = A->ncol;
     Astore = (NCformat *) A->Store;
     dp = (float *) Astore->nzval;
-    printf("nrow %d, ncol %d, nnz %d\n", A->nrow,A->ncol,Astore->nnz);
+    printf("nrow %lld, ncol %lld, nnz %lld\n", A->nrow,A->ncol,Astore->nnz);
     printf("nzval: ");
     for (i = 0; i < 2*Astore->colptr[n]; ++i) printf("%f  ", dp[i]);
     printf("\nrowind: ");
-    for (i = 0; i < Astore->colptr[n]; ++i) printf("%d  ", Astore->rowind[i]);
+    for (i = 0; i < Astore->colptr[n]; ++i) printf("%lld  ", Astore->rowind[i]);
     printf("\ncolptr: ");
-    for (i = 0; i <= n; ++i) printf("%d  ", Astore->colptr[i]);
+    for (i = 0; i <= n; ++i) printf("%lld  ", Astore->colptr[i]);
     printf("\n");
     fflush(stdout);
 }
@@ -225,9 +225,9 @@ void
 cPrint_SuperNode_Matrix(char *what, SuperMatrix *A)
 {
     SCformat     *Astore;
-    register int i, j, k, c, d, n, nsup;
+    register int_t i, j, k, c, d, n, nsup;
     float       *dp;
-    int *col_to_sup, *sup_to_col, *rowind, *rowind_colptr;
+    int_t *col_to_sup, *sup_to_col, *rowind, *rowind_colptr;
     
     printf("\nSuperNode matrix %s:\n", what);
     printf("Stype %d, Dtype %d, Mtype %d\n", A->Stype,A->Dtype,A->Mtype);
@@ -238,7 +238,7 @@ cPrint_SuperNode_Matrix(char *what, SuperMatrix *A)
     sup_to_col = Astore->sup_to_col;
     rowind_colptr = Astore->rowind_colptr;
     rowind = Astore->rowind;
-    printf("nrow %d, ncol %d, nnz %d, nsuper %d\n", 
+    printf("nrow %lld, ncol %lld, nnz %lld, nsuper %lld\n", 
 	   A->nrow,A->ncol,Astore->nnz,Astore->nsuper);
     printf("nzval:\n");
     for (k = 0; k <= Astore->nsuper; ++k) {
@@ -247,7 +247,7 @@ cPrint_SuperNode_Matrix(char *what, SuperMatrix *A)
       for (j = c; j < c + nsup; ++j) {
 	d = Astore->nzval_colptr[j];
 	for (i = rowind_colptr[c]; i < rowind_colptr[c+1]; ++i) {
-	  printf("%d\t%d\t%e\t%e\n", rowind[i], j, dp[d], dp[d+1]);
+	  printf("%lld\t%lld\t%e\t%e\n", rowind[i], j, dp[d], dp[d+1]);
           d += 2;	
 	}
       }
@@ -256,17 +256,17 @@ cPrint_SuperNode_Matrix(char *what, SuperMatrix *A)
     for (i = 0; i < 2*Astore->nzval_colptr[n]; ++i) printf("%f  ", dp[i]);
 #endif
     printf("\nnzval_colptr: ");
-    for (i = 0; i <= n; ++i) printf("%d  ", Astore->nzval_colptr[i]);
+    for (i = 0; i <= n; ++i) printf("%lld  ", Astore->nzval_colptr[i]);
     printf("\nrowind: ");
     for (i = 0; i < Astore->rowind_colptr[n]; ++i) 
-        printf("%d  ", Astore->rowind[i]);
+        printf("%lld  ", Astore->rowind[i]);
     printf("\nrowind_colptr: ");
-    for (i = 0; i <= n; ++i) printf("%d  ", Astore->rowind_colptr[i]);
+    for (i = 0; i <= n; ++i) printf("%lld  ", Astore->rowind_colptr[i]);
     printf("\ncol_to_sup: ");
-    for (i = 0; i < n; ++i) printf("%d  ", col_to_sup[i]);
+    for (i = 0; i < n; ++i) printf("%lld  ", col_to_sup[i]);
     printf("\nsup_to_col: ");
     for (i = 0; i <= Astore->nsuper+1; ++i) 
-        printf("%d  ", sup_to_col[i]);
+        printf("%lld  ", sup_to_col[i]);
     printf("\n");
     fflush(stdout);
 }
@@ -279,9 +279,9 @@ cPrint_Dense_Matrix(char *what, SuperMatrix *A)
     float       *dp;
     
     printf("\nDense matrix %s:\n", what);
-    printf("Stype %d, Dtype %d, Mtype %d\n", A->Stype,A->Dtype,A->Mtype);
+    printf("Stype %lld, Dtype %lld, Mtype %lld\n", A->Stype,A->Dtype,A->Mtype);
     dp = (float *) Astore->nzval;
-    printf("nrow %d, ncol %d, lda %d\n", A->nrow,A->ncol,lda);
+    printf("nrow %lld, ncol %lld, lda %lld\n", A->nrow,A->ncol,lda);
     printf("\nnzval: ");
     for (j = 0; j < A->ncol; ++j) {
         for (i = 0; i < 2*A->nrow; ++i) printf("%f  ", dp[i + j*2*lda]);
@@ -297,12 +297,12 @@ void
 cprint_lu_col(char *msg, int jcol, int pivrow, int *xprune, GlobalLU_t *Glu)
 {
     int     i, k, fsupc;
-    int     *xsup, *supno;
-    int     *xlsub, *lsub;
+    int_t     *xsup, *supno;
+    int_t     *xlsub, *lsub;
     complex  *lusup;
-    int     *xlusup;
+    int_t     *xlusup;
     complex  *ucol;
-    int     *usub, *xusub;
+    int_t     *usub, *xusub;
 
     xsup    = Glu->xsup;
     supno   = Glu->supno;
@@ -315,18 +315,18 @@ cprint_lu_col(char *msg, int jcol, int pivrow, int *xprune, GlobalLU_t *Glu)
     xusub   = Glu->xusub;
     
     printf("%s", msg);
-    printf("col %d: pivrow %d, supno %d, xprune %d\n", 
+    printf("col %lld: pivrow %lld, supno %lld, xprune %lld\n", 
 	   jcol, pivrow, supno[jcol], xprune[jcol]);
     
     printf("\tU-col:\n");
     for (i = xusub[jcol]; i < xusub[jcol+1]; i++)
-	printf("\t%d%10.4f, %10.4f\n", usub[i], ucol[i].r, ucol[i].i);
+	printf("\t%lld%10.4f, %10.4f\n", usub[i], ucol[i].r, ucol[i].i);
     printf("\tL-col in rectangular snode:\n");
     fsupc = xsup[supno[jcol]];	/* first col of the snode */
     i = xlsub[fsupc];
     k = xlusup[jcol];
     while ( i < xlsub[fsupc+1] && k < xlusup[jcol+1] ) {
-	printf("\t%d\t%10.4f, %10.4f\n", lsub[i], lusup[k].r, lusup[k].i);
+	printf("\t%lld\t%10.4f, %10.4f\n", lsub[i], lusup[k].r, lusup[k].i);
 	i++; k++;
     }
     fflush(stdout);
@@ -342,7 +342,7 @@ void ccheck_tempv(int n, complex *tempv)
     for (i = 0; i < n; i++) {
 	if ((tempv[i].r != 0.0) || (tempv[i].i != 0.0))
 	{
-	    fprintf(stderr,"tempv[%d] = {%f, %f}\n", i, tempv[i].r, tempv[i].i);
+	    fprintf(stderr,"tempv[%lld] = {%f, %f}\n", i, tempv[i].r, tempv[i].i);
 	    ABORT("ccheck_tempv");
 	}
     }
@@ -384,7 +384,7 @@ cFillRHS(trans_t trans, int nrhs, complex *x, int ldx,
     if ( trans == NOTRANS ) *(unsigned char *)transc = 'N';
     else *(unsigned char *)transc = 'T';
 
-    sp_cgemm(transc, "N", A->nrow, nrhs, A->ncol, one, A,
+    sp_cgemm(transc, "N", (int)A->nrow, nrhs, (int)A->ncol, one, A,
 	     x, ldx, zero, rhs, ldc);
 
 }
@@ -452,13 +452,13 @@ cPrintPerf(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage,
     
     Lstore = (SCformat *) L->Store;
     Ustore = (NCformat *) U->Store;
-    printf("\tNo of nonzeros in factor L = %d\n", Lstore->nnz);
-    printf("\tNo of nonzeros in factor U = %d\n", Ustore->nnz);
-    printf("\tNo of nonzeros in L+U = %d\n", Lstore->nnz + Ustore->nnz);
+    printf("\tNo of nonzeros in factor L = %lld\n", Lstore->nnz);
+    printf("\tNo of nonzeros in factor U = %lld\n", Ustore->nnz);
+    printf("\tNo of nonzeros in L+U = %lld\n", Lstore->nnz + Ustore->nnz);
 	
     printf("L\\U MB %.3f\ttotal MB needed %.3f\n",
 	   mem_usage->for_lu/1e6, mem_usage->total_needed/1e6);
-    printf("Number of memory expansions: %d\n", stat->expansions);
+    printf("Number of memory expansions: %lld\n", stat->expansions);
 	
     printf("\tFactor\tMflops\tSolve\tMflops\tEtree\tEquil\tRcond\tRefine\n");
     printf("PERF:%8.2f%8.2f%8.2f%8.2f%8.2f%8.2f%8.2f%8.2f\n",
@@ -478,7 +478,7 @@ int
 print_complex_vec(char *what, int n, complex *vec)
 {
     int i;
-    printf("%s: n %d\n", what, n);
-    for (i = 0; i < n; ++i) printf("%d\t%f%f\n", i, vec[i].r, vec[i].i);
+    printf("%s: n %lld\n", what, n);
+    for (i = 0; i < n; ++i) printf("%lld\t%f%f\n", i, vec[i].r, vec[i].i);
     return 0;
 }

@@ -19,8 +19,8 @@ at the top-level directory.
 #include <math.h>
 #include "slu_sdefs.h"
 
-int sgst01(int m, int n, SuperMatrix *A, SuperMatrix *L, 
-		SuperMatrix *U, int *perm_c, int *perm_r, float *resid)
+int sgst01(int_t m, int_t n, SuperMatrix *A, SuperMatrix *L, 
+		SuperMatrix *U, int_t *perm_c, int_t *perm_r, float *resid)
 {
 /* 
     Purpose   
@@ -71,7 +71,7 @@ int sgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
     SCformat *Lstore;
     NCformat *Astore, *Ustore;
     float *Aval, *Lval, *Uval;
-    int *colbeg, *colend;
+    int_t *colbeg, *colend;
 
     /* Function prototypes */
     extern float slangs(char *, SuperMatrix *);

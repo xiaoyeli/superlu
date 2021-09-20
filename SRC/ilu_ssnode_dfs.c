@@ -38,23 +38,23 @@ at the top-level directory.
  * </pre>
  */
 
-int
+int_t
 ilu_ssnode_dfs(
-	   const int  jcol,	    /* in - start of the supernode */
-	   const int  kcol,	    /* in - end of the supernode */
-	   const int  *asub,	    /* in */
-	   const int  *xa_begin,    /* in */
-	   const int  *xa_end,	    /* in */
-	   int	      *marker,	    /* modified */
+	   const int_t  jcol,	    /* in - start of the supernode */
+	   const int_t  kcol,	    /* in - end of the supernode */
+	   const int_t  *asub,	    /* in */
+	   const int_t  *xa_begin,    /* in */
+	   const int_t  *xa_end,	    /* in */
+	   int_t	      *marker,	    /* modified */
 	   GlobalLU_t *Glu	    /* modified */
 	   )
 {
 
-    register int i, k, nextl;
-    int 	 nsuper, krow, kmark, mem_error;
-    int 	 *xsup, *supno;
-    int 	 *lsub, *xlsub;
-    int 	 nzlmax;
+    register int_t i, k, nextl;
+    int_t 	 nsuper, krow, kmark, mem_error;
+    int_t 	 *xsup, *supno;
+    int_t 	 *lsub, *xlsub;
+    int_t 	 nzlmax;
 
     xsup    = Glu->xsup;
     supno   = Glu->supno;

@@ -23,8 +23,8 @@ at the top-level directory.
 
 
 void
-creadtriple(int *m, int *n, int *nonz,
-	    complex **nzval, int **rowind, int **colptr)
+creadtriple(int_t *m, int_t *n, int_t *nonz,
+	    complex **nzval, int_t **rowind, int_t **colptr)
 {
 /*
  * Output parameters
@@ -34,10 +34,10 @@ creadtriple(int *m, int *n, int *nonz,
  *	row i of A is given by a[k],k=xa[i],...,xa[i+1]-1.
  *
  */
-    int    j, k, jsize, nnz, nz;
+    int_t    j, k, jsize, nnz, nz;
     complex *a, *val;
-    int    *asub, *xa, *row, *col;
-    int    zero_base = 0;
+    int_t    *asub, *xa, *row, *col;
+    int_t    zero_base = 0;
 
     /*  Matrix format:
      *    First line:  #rows, #cols, #non-zero
@@ -45,23 +45,23 @@ creadtriple(int *m, int *n, int *nonz,
      *                 row, col, value
      */
 
-    scanf("%d%d", n, nonz);
+    scanf("%lld%lld", n, nonz);
     *m = *n;
-    printf("m %d, n %d, nonz %d\n", *m, *n, *nonz);
+    printf("m %lld, n %lld, nonz %lld\n", *m, *n, *nonz);
     callocateA(*n, *nonz, nzval, rowind, colptr); /* Allocate storage */
     a    = *nzval;
     asub = *rowind;
     xa   = *colptr;
 
     val = (complex *) SUPERLU_MALLOC(*nonz * sizeof(complex));
-    row = (int *) SUPERLU_MALLOC(*nonz * sizeof(int));
-    col = (int *) SUPERLU_MALLOC(*nonz * sizeof(int));
+    row = (int_t *) SUPERLU_MALLOC(*nonz * sizeof(int_t));
+    col = (int_t *) SUPERLU_MALLOC(*nonz * sizeof(int_t));
 
     for (j = 0; j < *n; ++j) xa[j] = 0;
 
     /* Read into the triplet array from a file */
     for (nnz = 0, nz = 0; nnz < *nonz; ++nnz) {
-	scanf("%d%d%f%f\n", &row[nz], &col[nz], &val[nz].r, &val[nz].i);
+	scanf("%lld%lld%f%f\n", &row[nz], &col[nz], &val[nz].r, &val[nz].i);
 
         if ( nnz == 0 ) { /* first nonzero */
 	    if ( row[0] == 0 || col[0] == 0 ) {
@@ -79,7 +79,7 @@ creadtriple(int *m, int *n, int *nonz,
 
 	if (row[nz] < 0 || row[nz] >= *m || col[nz] < 0 || col[nz] >= *n
 	    /*|| val[nz] == 0.*/) {
-	    fprintf(stderr, "nz %d, (%d, %d) = (%e,%e) out of bound, removed\n",
+	    fprintf(stderr, "nz %lld, (%lld, %lld) = (%e,%e) out of bound, removed\n",
 		    nz, row[nz], col[nz], val[nz].r, val[nz].i);
 	    exit(-1);
 	} else {
@@ -120,11 +120,11 @@ creadtriple(int *m, int *n, int *nonz,
 
 #ifdef CHK_INPUT
     {
-	int i;
+	int_t i;
 	for (i = 0; i < *n; i++) {
-	    printf("Col %d, xa %d\n", i, xa[i]);
+	    printf("Col %lld, xa %lld\n", i, xa[i]);
 	    for (k = xa[i]; k < xa[i+1]; k++)
-		printf("%d\t%16.10f\n", asub[k], a[k]);
+		printf("%lld\t%16.10f\n", asub[k], a[k]);
 	}
     }
 #endif
@@ -132,11 +132,11 @@ creadtriple(int *m, int *n, int *nonz,
 }
 
 
-void creadrhs(int m, complex *b)
+void creadrhs(int_t m, complex *b)
 {
     FILE *fp, *fopen();
-    int i;
-    /*int j;*/
+    int_t i;
+    /*int_t j;*/
 
     if ( !(fp = fopen("b.dat", "r")) ) {
         fprintf(stderr, "dreadrhs: file does not exist\n");

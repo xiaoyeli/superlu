@@ -40,20 +40,20 @@ static int _compare_(const void *a, const void *b)
 }
 #endif
 
-int
+int_t
 ilu_ccopy_to_ucol(
-	      int	 jcol,	   /* in */
-	      int	 nseg,	   /* in */
-	      int	 *segrep,  /* in */
-	      int	 *repfnz,  /* in */
-	      int	 *perm_r,  /* in */
+	      int_t	 jcol,	   /* in */
+	      int_t	 nseg,	   /* in */
+	      int_t	 *segrep,  /* in */
+	      int_t	 *repfnz,  /* in */
+	      int_t	 *perm_r,  /* in */
 	      complex	 *dense,   /* modified - reset to zero on return */
-	      int  	 drop_rule,/* in */
+	      int_t  	 drop_rule,/* in */
 	      milu_t	 milu,	   /* in */
 	      double	 drop_tol, /* in */
-	      int	 quota,    /* maximum nonzero entries allowed */
+	      int_t	 quota,    /* maximum nonzero entries allowed */
 	      complex	 *sum,	   /* out - the sum of dropped entries */
-	      int	 *nnzUj,   /* in - out */
+	      int_t	 *nnzUj,   /* in - out */
 	      GlobalLU_t *Glu,	   /* modified */
 	      float	 *work	   /* working space with minimum size n,
 				    * used by the second dropping rule */
@@ -62,21 +62,21 @@ ilu_ccopy_to_ucol(
 /*
  * Gather from SPA dense[*] to global ucol[*].
  */
-    int       ksub, krep, ksupno;
-    int       i, k, kfnz, segsze;
-    int       fsupc, isub, irow;
-    int       jsupno, nextu;
-    int       new_next, mem_error;
-    int       *xsup, *supno;
-    int       *lsub, *xlsub;
+    int_t       ksub, krep, ksupno;
+    int_t       i, k, kfnz, segsze;
+    int_t       fsupc, isub, irow;
+    int_t       jsupno, nextu;
+    int_t       new_next, mem_error;
+    int_t       *xsup, *supno;
+    int_t       *lsub, *xlsub;
     complex    *ucol;
-    int       *usub, *xusub;
-    int       nzumax;
-    int       m; /* number of entries in the nonzero U-segments */
+    int_t       *usub, *xusub;
+    int_t       nzumax;
+    int_t       m; /* number of entries in the nonzero U-segments */
     register float d_max = 0.0, d_min = 1.0 / smach("Safe minimum");
     register double tmp;
     complex zero = {0.0, 0.0};
-    int i_1 = 1;
+    int_t i_1 = 1;
 
     xsup    = Glu->xsup;
     supno   = Glu->supno;
@@ -164,7 +164,7 @@ ilu_ccopy_to_ucol(
     /* second dropping rule */
     if (drop_rule & DROP_SECONDARY && m > quota) {
 	register double tol = d_max;
-	register int m0 = xusub[jcol] + m - 1;
+	register int_t m0 = xusub[jcol] + m - 1;
 
 	if (quota > 0) {
 	    if (drop_rule & DROP_INTERP) {

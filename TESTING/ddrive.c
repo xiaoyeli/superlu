@@ -34,7 +34,7 @@ at the top-level directory.
 
 static void
 parse_command_line(int argc, char *argv[], char *matrix_type,
-		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
+		   int_t *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int *lwork, double *u, FILE **fp);
 
 int main(int argc, char *argv[])
@@ -52,23 +52,24 @@ int main(int argc, char *argv[])
  * =====================================================================
  */
     double         *a, *a_save;
-    int            *asub, *asub_save;
-    int            *xa, *xa_save;
+    int_t            *asub, *asub_save;
+    int_t            *xa, *xa_save;
     SuperMatrix  A, B, X, L, U;
     SuperMatrix  ASAV, AC;
     GlobalLU_t   Glu; /* Not needed on return. */
     mem_usage_t    mem_usage;
-    int            *perm_r; /* row permutation from partial pivoting */
-    int            *perm_c, *pc_save; /* column permutation */
-    int            *etree;
+    int_t            *perm_r; /* row permutation from partial pivoting */
+    int_t            *perm_c, *pc_save; /* column permutation */
+    int_t            *etree;
     double  zero = 0.0;
     double         *R, *C;
     double         *ferr, *berr;
     double         *rwork;
     double	   *wwork;
     void           *work = NULL;
-    int            info, lwork, nrhs, panel_size, relax;
-    int            m, n, nnz;
+	int_t 			info;
+    int            lwork, nrhs, panel_size, relax;
+    int_t            m, n, nnz;
     double         *xact;
     double         *rhsb, *solx, *bsav;
     int            ldb, ldx;
@@ -101,8 +102,8 @@ int main(int argc, char *argv[])
     static trans_t transs[]  = {NOTRANS, TRANS, CONJ};
 
     /* Some function prototypes */ 
-    extern int dgst01(int, int, SuperMatrix *, SuperMatrix *, 
-		      SuperMatrix *, int *, int *, double *);
+    extern int_t dgst01(int_t, int_t, SuperMatrix *, SuperMatrix *, 
+		      SuperMatrix *, int_t *, int_t *, double *);
     extern int dgst02(trans_t, int, int, int, SuperMatrix *, double *,
                       int, double *, int, double *resid);
     extern int dgst04(int, int, double *, int, 
@@ -115,8 +116,8 @@ int main(int argc, char *argv[])
     extern int dlatms_slu(int *, int *, char *, int *, char *, double *d,
                        int *, double *, double *, int *, int *,
                        char *, double *, int *, double *, int *);
-    extern int sp_dconvert(int, int, double *, int, int, int,
-	                   double *a, int *, int *, int *);
+    extern int sp_dconvert(int_t, int_t, double *, int, int, int,
+	                   double *a, int_t *, int_t *, int_t *);
 
 
     /* Executable statements */
@@ -209,12 +210,12 @@ int main(int argc, char *argv[])
 	    
 	    /* Set up parameters with DLATB4 and generate a test matrix
 	       with DLATMS.  */
-	    dlatb4_slu(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
+	    dlatb4_slu(path, &imat, (int*)&n, (int*)&n, sym, &kl, &ku, &anorm, &mode,
 		    &cndnum, dist);
 
-	    dlatms_slu(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
+	    dlatms_slu((int*)&n, (int*)&n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
 		    &anorm, &kl, &ku, "No packing", Afull, &lda,
-		    &wwork[0], &info);
+		    &wwork[0], (int*)&info);
 
 	    if ( info ) {
 		printf(FMT3, "DLATMS", info, izero, n, nrhs, imat, nfail);
@@ -317,7 +318,7 @@ int main(int argc, char *argv[])
 			/* Factor the matrix AC. */
 			dgstrf(&options, &AC, relax, panel_size,
                                etree, work, lwork, perm_c, perm_r, &L, &U,
-                               &Glu, &stat, &info);
+                               &Glu, &stat, (int_t*)&info);
 
 			if ( info ) { 
                             printf("** First factor: info %d, equed %c\n",
@@ -354,7 +355,7 @@ int main(int argc, char *argv[])
 	
 			    dCopy_Dense_Matrix(m, nrhs, rhsb, ldb, solx, ldx);
 			    dgssv(&options, &A, perm_c, perm_r, &L, &U, &X,
-                                  &stat, &info);
+                                  &stat, (int_t*)&info);
 			    
 			    if ( info && info != izero ) {
                                 printf(FMT3, "dgssv",
@@ -527,7 +528,7 @@ int main(int argc, char *argv[])
  */
 static void
 parse_command_line(int argc, char *argv[], char *matrix_type,
-		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
+		   int_t *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int *lwork, double *u, FILE **fp)
 {
     int c;

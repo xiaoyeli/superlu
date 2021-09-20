@@ -34,7 +34,7 @@ at the top-level directory.
 
 static void
 parse_command_line(int argc, char *argv[], char *matrix_type,
-		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
+		   int_t *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int *lwork, double *u, FILE **fp);
 
 int main(int argc, char *argv[])
@@ -52,23 +52,24 @@ int main(int argc, char *argv[])
  * =====================================================================
  */
     float         *a, *a_save;
-    int            *asub, *asub_save;
-    int            *xa, *xa_save;
+    int_t            *asub, *asub_save;
+    int_t            *xa, *xa_save;
     SuperMatrix  A, B, X, L, U;
     SuperMatrix  ASAV, AC;
     GlobalLU_t   Glu; /* Not needed on return. */
     mem_usage_t    mem_usage;
-    int            *perm_r; /* row permutation from partial pivoting */
-    int            *perm_c, *pc_save; /* column permutation */
-    int            *etree;
+    int_t            *perm_r; /* row permutation from partial pivoting */
+    int_t            *perm_c, *pc_save; /* column permutation */
+    int_t            *etree;
     float  zero = 0.0;
     float         *R, *C;
     float         *ferr, *berr;
     float         *rwork;
     float	   *wwork;
     void           *work = NULL;
-    int            info, lwork, nrhs, panel_size, relax;
-    int            m, n, nnz;
+	int_t 			info;
+    int            lwork, nrhs, panel_size, relax;
+    int_t            m, n, nnz;
     float         *xact;
     float         *rhsb, *solx, *bsav;
     int            ldb, ldx;
@@ -101,8 +102,8 @@ int main(int argc, char *argv[])
     static trans_t transs[]  = {NOTRANS, TRANS, CONJ};
 
     /* Some function prototypes */ 
-    extern int sgst01(int, int, SuperMatrix *, SuperMatrix *, 
-		      SuperMatrix *, int *, int *, float *);
+    extern int sgst01(int_t, int_t, SuperMatrix *, SuperMatrix *, 
+		      SuperMatrix *, int_t *, int_t *, float *);
     extern int sgst02(trans_t, int, int, int, SuperMatrix *, float *,
                       int, float *, int, float *resid);
     extern int sgst04(int, int, float *, int, 
@@ -115,8 +116,8 @@ int main(int argc, char *argv[])
     extern int slatms_slu(int *, int *, char *, int *, char *, float *d,
                        int *, float *, float *, int *, int *,
                        char *, float *, int *, float *, int *);
-    extern int sp_sconvert(int, int, float *, int, int, int,
-	                   float *a, int *, int *, int *);
+    extern int sp_sconvert(int_t, int_t, float *, int, int, int,
+	                   float *a, int_t *, int_t *, int_t *);
 
 
     /* Executable statements */
@@ -209,12 +210,12 @@ int main(int argc, char *argv[])
 	    
 	    /* Set up parameters with SLATB4 and generate a test matrix
 	       with SLATMS.  */
-	    slatb4_slu(path, &imat, &n, &n, sym, &kl, &ku, &anorm, &mode,
+	    slatb4_slu(path, &imat, (int*)&n, (int*)&n, sym, &kl, &ku, &anorm, &mode,
 		    &cndnum, dist);
 
-	    slatms_slu(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
+	    slatms_slu((int*)&n, (int*)&n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
 		    &anorm, &kl, &ku, "No packing", Afull, &lda,
-		    &wwork[0], &info);
+		    &wwork[0], (int*)&info);
 
 	    if ( info ) {
 		printf(FMT3, "SLATMS", info, izero, n, nrhs, imat, nfail);
@@ -317,7 +318,7 @@ int main(int argc, char *argv[])
 			/* Factor the matrix AC. */
 			sgstrf(&options, &AC, relax, panel_size,
                                etree, work, lwork, perm_c, perm_r, &L, &U,
-                               &Glu, &stat, &info);
+                               &Glu, &stat, (int_t*)&info);
 
 			if ( info ) { 
                             printf("** First factor: info %d, equed %c\n",
@@ -354,7 +355,7 @@ int main(int argc, char *argv[])
 	
 			    sCopy_Dense_Matrix(m, nrhs, rhsb, ldb, solx, ldx);
 			    sgssv(&options, &A, perm_c, perm_r, &L, &U, &X,
-                                  &stat, &info);
+                                  &stat, (int_t*)&info);
 			    
 			    if ( info && info != izero ) {
                                 printf(FMT3, "sgssv",
@@ -527,7 +528,7 @@ int main(int argc, char *argv[])
  */
 static void
 parse_command_line(int argc, char *argv[], char *matrix_type,
-		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
+		   int_t *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int *lwork, double *u, FILE **fp)
 {
     int c;

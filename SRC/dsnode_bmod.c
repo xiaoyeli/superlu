@@ -37,11 +37,11 @@ at the top-level directory.
 
 /*! \brief Performs numeric block updates within the relaxed snode. 
  */
-int
+int_t
 dsnode_bmod (
-	    const int  jcol,	  /* in */
-	    const int  jsupno,    /* in */
-	    const int  fsupc,     /* in */
+	    const int_t  jcol,	  /* in */
+	    const int_t  jsupno,    /* in */
+	    const int_t  fsupc,     /* in */
 	    double     *dense,    /* in */
 	    double     *tempv,    /* working array */
 	    GlobalLU_t *Glu,      /* modified */
@@ -54,16 +54,16 @@ dsnode_bmod (
 	 ftcs2 = _cptofcd("N", strlen("N")),
 	 ftcs3 = _cptofcd("U", strlen("U"));
 #endif
-    int            incx = 1, incy = 1;
+    int_t            incx = 1, incy = 1;
     double         alpha = -1.0, beta = 1.0;
 #endif
 
-    int            luptr, nsupc, nsupr, nrow;
-    int            isub, irow, i, iptr; 
-    register int   ufirst, nextlu;
-    int            *lsub, *xlsub;
+    int_t            luptr, nsupc, nsupr, nrow;
+    int_t            isub, irow, i, iptr; 
+    register int_t   ufirst, nextlu;
+    int_t            *lsub, *xlsub;
     double         *lusup;
-    int            *xlusup;
+    int_t            *xlusup;
     flops_t *ops = stat->ops;
 
     lsub    = Glu->lsub;
@@ -104,10 +104,10 @@ dsnode_bmod (
 	SGEMV( ftcs2, &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr, 
 		&lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );
 #else
-	dtrsv_( "L", "N", "U", &nsupc, &lusup[luptr], &nsupr, 
-	      &lusup[ufirst], &incx );
-	dgemv_( "N", &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr, 
-		&lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );
+	dtrsv_( "L", "N", "U", (int*)&nsupc, &lusup[luptr], (int*)&nsupr, 
+	      &lusup[ufirst], (int*)&incx );
+	dgemv_( "N", (int*)&nrow, (int*)&nsupc, &alpha, &lusup[luptr+nsupc], (int*)&nsupr, 
+		&lusup[ufirst], (int*)&incx, &beta, &lusup[ufirst+nsupc], (int*)&incy );
 #endif
 #else
 	dlsolve ( nsupr, nsupc, &lusup[luptr], &lusup[ufirst] );

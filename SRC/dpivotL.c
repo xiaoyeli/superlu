@@ -62,34 +62,34 @@ at the top-level directory.
  * </pre>
  */
 
-int
+int_t
 dpivotL(
-        const int  jcol,     /* in */
+        const int_t  jcol,     /* in */
         const double u,      /* in - diagonal pivoting threshold */
-        int        *usepr,   /* re-use the pivot sequence given by perm_r/iperm_r */
-        int        *perm_r,  /* may be modified */
-        int        *iperm_r, /* in - inverse of perm_r */
-        int        *iperm_c, /* in - used to find diagonal of Pc*A*Pc' */
-        int        *pivrow,  /* out */
+        int_t        *usepr,   /* re-use the pivot sequence given by perm_r/iperm_r */
+        int_t        *perm_r,  /* may be modified */
+        int_t        *iperm_r, /* in - inverse of perm_r */
+        int_t        *iperm_c, /* in - used to find diagonal of Pc*A*Pc' */
+        int_t        *pivrow,  /* out */
         GlobalLU_t *Glu,     /* modified - global LU data structures */
 	SuperLUStat_t *stat  /* output */
        )
 {
 
-    int          fsupc;	    /* first column in the supernode */
-    int          nsupc;	    /* no of columns in the supernode */
-    int          nsupr;     /* no of rows in the supernode */
-    int          lptr;	    /* points to the starting subscript of the supernode */
-    int          pivptr, old_pivptr, diag, diagind;
+    int_t          fsupc;	    /* first column in the supernode */
+    int_t          nsupc;	    /* no of columns in the supernode */
+    int_t          nsupr;     /* no of rows in the supernode */
+    int_t          lptr;	    /* points to the starting subscript of the supernode */
+    int_t          pivptr, old_pivptr, diag, diagind;
     double       pivmax, rtemp, thresh;
     double       temp;
     double       *lu_sup_ptr; 
     double       *lu_col_ptr;
-    int          *lsub_ptr;
-    int          isub, icol, k, itemp;
-    int          *lsub, *xlsub;
+    int_t          *lsub_ptr;
+    int_t          isub, icol, k, itemp;
+    int_t          *lsub, *xlsub;
     double       *lusup;
-    int          *xlusup;
+    int_t          *xlusup;
     flops_t      *ops = stat->ops;
 
     /* Initialize pointers */

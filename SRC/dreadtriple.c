@@ -23,8 +23,8 @@ at the top-level directory.
 
 
 void
-dreadtriple(int *m, int *n, int *nonz,
-	    double **nzval, int **rowind, int **colptr)
+dreadtriple(int_t *m, int_t *n, int_t *nonz,
+	    double **nzval, int_t **rowind, int_t **colptr)
 {
 /*
  * Output parameters
@@ -34,10 +34,10 @@ dreadtriple(int *m, int *n, int *nonz,
  *	row i of A is given by a[k],k=xa[i],...,xa[i+1]-1.
  *
  */
-    int    j, k, jsize, nnz, nz;
+    int_t    j, k, jsize, nnz, nz;
     double *a, *val;
-    int    *asub, *xa, *row, *col;
-    int    zero_base = 0;
+    int_t    *asub, *xa, *row, *col;
+    int_t    zero_base = 0;
 
     /*  Matrix format:
      *    First line:  #rows, #cols, #non-zero
@@ -47,15 +47,15 @@ dreadtriple(int *m, int *n, int *nonz,
 
     scanf("%d%d", n, nonz);
     *m = *n;
-    printf("m %d, n %d, nonz %d\n", *m, *n, *nonz);
+    printf("m %lld, n %lld, nonz %lld\n", *m, *n, *nonz);
     dallocateA(*n, *nonz, nzval, rowind, colptr); /* Allocate storage */
     a    = *nzval;
     asub = *rowind;
     xa   = *colptr;
 
     val = (double *) SUPERLU_MALLOC(*nonz * sizeof(double));
-    row = (int *) SUPERLU_MALLOC(*nonz * sizeof(int));
-    col = (int *) SUPERLU_MALLOC(*nonz * sizeof(int));
+    row = (int_t *) SUPERLU_MALLOC(*nonz * sizeof(int_t));
+    col = (int_t *) SUPERLU_MALLOC(*nonz * sizeof(int_t));
 
     for (j = 0; j < *n; ++j) xa[j] = 0;
 
@@ -120,7 +120,7 @@ dreadtriple(int *m, int *n, int *nonz,
 
 #ifdef CHK_INPUT
     {
-	int i;
+	int_t i;
 	for (i = 0; i < *n; i++) {
 	    printf("Col %d, xa %d\n", i, xa[i]);
 	    for (k = xa[i]; k < xa[i+1]; k++)
@@ -132,11 +132,11 @@ dreadtriple(int *m, int *n, int *nonz,
 }
 
 
-void dreadrhs(int m, double *b)
+void dreadrhs(int_t m, double *b)
 {
     FILE *fp, *fopen();
-    int i;
-    /*int j;*/
+    int_t i;
+    /*int_t j;*/
 
     if ( !(fp = fopen("b.dat", "r")) ) {
         fprintf(stderr, "dreadrhs: file does not exist\n");

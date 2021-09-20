@@ -59,14 +59,14 @@ at the top-level directory.
 
 void
 dpanel_bmod (
-	    const int  m,          /* in - number of rows in the matrix */
-	    const int  w,          /* in */
-	    const int  jcol,       /* in */
-	    const int  nseg,       /* in */
+	    const int_t  m,          /* in - number of rows in the matrix */
+	    const int_t  w,          /* in */
+	    const int_t  jcol,       /* in */
+	    const int_t  nseg,       /* in */
 	    double     *dense,     /* out, of size n by w */
 	    double     *tempv,     /* working array */
-	    int        *segrep,    /* in */
-	    int        *repfnz,    /* in, of size n by w */
+	    int_t        *segrep,    /* in */
+	    int_t        *repfnz,    /* in, of size n by w */
 	    GlobalLU_t *Glu,       /* modified */
 	    SuperLUStat_t *stat    /* output */
 	    )
@@ -79,34 +79,34 @@ dpanel_bmod (
          ftcs2 = _cptofcd("N", strlen("N")),
          ftcs3 = _cptofcd("U", strlen("U"));
 #endif
-    int          incx = 1, incy = 1;
+    int_t          incx = 1, incy = 1;
     double       alpha, beta;
 #endif
 
-    register int k, ksub;
-    int          fsupc, nsupc, nsupr, nrow;
-    int          krep, krep_ind;
+    register int_t k, ksub;
+    int_t          fsupc, nsupc, nsupr, nrow;
+    int_t          krep, krep_ind;
     double       ukj, ukj1, ukj2;
-    int          luptr, luptr1, luptr2;
-    int          segsze;
-    int          block_nrow;  /* no of rows in a block row */
-    register int lptr;	      /* Points to the row subscripts of a supernode */
-    int          kfnz, irow, no_zeros; 
-    register int isub, isub1, i;
-    register int jj;	      /* Index through each column in the panel */
-    int          *xsup, *supno;
-    int          *lsub, *xlsub;
+    int_t          luptr, luptr1, luptr2;
+    int_t          segsze;
+    int_t          block_nrow;  /* no of rows in a block row */
+    register int_t lptr;	      /* Points to the row subscripts of a supernode */
+    int_t          kfnz, irow, no_zeros; 
+    register int_t isub, isub1, i;
+    register int_t jj;	      /* Index through each column in the panel */
+    int_t          *xsup, *supno;
+    int_t          *lsub, *xlsub;
     double       *lusup;
-    int          *xlusup;
-    int          *repfnz_col; /* repfnz[] for a column in the panel */
+    int_t          *xlusup;
+    int_t          *repfnz_col; /* repfnz[] for a column in the panel */
     double       *dense_col;  /* dense[] for a column in the panel */
     double       *tempv1;             /* Used in 1-D update */
     double       *TriTmp, *MatvecTmp; /* used in 2-D update */
     double      zero = 0.0;
     double      one = 1.0;
-    register int ldaTmp;
-    register int r_ind, r_hi;
-    int  maxsuper, rowblk, colblk;
+    register int_t ldaTmp;
+    register int_t r_ind, r_hi;
+    int_t  maxsuper, rowblk, colblk;
     flops_t  *ops = stat->ops;
     
     xsup    = Glu->xsup;
@@ -221,8 +221,8 @@ dpanel_bmod (
 		    STRSV( ftcs1, ftcs2, ftcs3, &segsze, &lusup[luptr], 
 			   &nsupr, TriTmp, &incx );
 #else
-		    dtrsv_( "L", "N", "U", &segsze, &lusup[luptr], 
-			   &nsupr, TriTmp, &incx );
+		    dtrsv_( "L", "N", "U", (int*)&segsze, &lusup[luptr], 
+			   (int*)&nsupr, TriTmp, (int*)&incx );
 #endif
 #else		
 		    dlsolve ( nsupr, segsze, &lusup[luptr], TriTmp );
@@ -268,8 +268,8 @@ dpanel_bmod (
 		    SGEMV(ftcs2, &block_nrow, &segsze, &alpha, &lusup[luptr1], 
 			   &nsupr, TriTmp, &incx, &beta, MatvecTmp, &incy);
 #else
-		    dgemv_("N", &block_nrow, &segsze, &alpha, &lusup[luptr1], 
-			   &nsupr, TriTmp, &incx, &beta, MatvecTmp, &incy);
+		    dgemv_("N", (int*)&block_nrow, (int*)&segsze, &alpha, &lusup[luptr1], 
+			   (int*)&nsupr, TriTmp, (int*)&incx, &beta, MatvecTmp, (int*)&incy);
 #endif
 #else
 		    dmatvec(nsupr, block_nrow, segsze, &lusup[luptr1],
@@ -400,8 +400,8 @@ dpanel_bmod (
 		    STRSV( ftcs1, ftcs2, ftcs3, &segsze, &lusup[luptr], 
 			   &nsupr, tempv, &incx );
 #else
-		    dtrsv_( "L", "N", "U", &segsze, &lusup[luptr], 
-			   &nsupr, tempv, &incx );
+		    dtrsv_( "L", "N", "U", (int*)&segsze, &lusup[luptr], 
+			   (int*)&nsupr, tempv, (int*)&incx );
 #endif
 		    
 		    luptr += segsze;	/* Dense matrix-vector */
@@ -412,8 +412,8 @@ dpanel_bmod (
 		    SGEMV( ftcs2, &nrow, &segsze, &alpha, &lusup[luptr], 
 			   &nsupr, tempv, &incx, &beta, tempv1, &incy );
 #else
-		    dgemv_( "N", &nrow, &segsze, &alpha, &lusup[luptr], 
-			   &nsupr, tempv, &incx, &beta, tempv1, &incy );
+		    dgemv_( "N", (int*)&nrow, (int*)&segsze, &alpha, &lusup[luptr], 
+			   (int*)&nsupr, tempv, (int*)&incx, &beta, tempv1, (int*)&incy );
 #endif
 #else
 		    dlsolve ( nsupr, segsze, &lusup[luptr], tempv );

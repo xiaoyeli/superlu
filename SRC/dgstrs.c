@@ -91,14 +91,14 @@ at the top-level directory.
 
 void
 dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
-        int *perm_c, int *perm_r, SuperMatrix *B,
-        SuperLUStat_t *stat, int *info)
+        int_t *perm_c, int_t *perm_r, SuperMatrix *B,
+        SuperLUStat_t *stat, int_t *info)
 {
 
 #ifdef _CRAY
     _fcd ftcs1, ftcs2, ftcs3, ftcs4;
 #endif
-    int      incx = 1, incy = 1;
+    int_t      incx = 1, incy = 1;
 #ifdef USE_VENDOR_BLAS
     double   alpha = 1.0, beta = 1.0;
     double   *work_col;
@@ -108,8 +108,8 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     SCformat *Lstore;
     NCformat *Ustore;
     double   *Lval, *Uval;
-    int      fsupc, nrow, nsupr, nsupc, luptr, istart, irow;
-    int      i, j, k, iptr, jcol, n, ldb, nrhs;
+    int_t      fsupc, nrow, nsupr, nsupc, luptr, istart, irow;
+    int_t      i, j, k, iptr, jcol, n, ldb, nrhs;
     double   *work, *rhs_work, *soln;
     flops_t  solve_ops;
     void dprint_soln();
@@ -131,7 +131,7 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	*info = -6;
     if ( *info ) {
 	i = -(*info);
-	input_error("dgstrs", &i);
+	input_error("dgstrs", (int*)&i);
 	return;
     }
 
@@ -191,12 +191,12 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 			&Lval[luptr+nsupc], &nsupr, &Bmat[fsupc], &ldb, 
 			&beta, &work[0], &n );
 #else
-		dtrsm_("L", "L", "N", "U", &nsupc, &nrhs, &alpha,
-		       &Lval[luptr], &nsupr, &Bmat[fsupc], &ldb);
+		dtrsm_("L", "L", "N", "U", (int*)&nsupc, (int*)&nrhs, &alpha,
+		       &Lval[luptr], (int*)&nsupr, &Bmat[fsupc], (int*)&ldb);
 		
-		dgemm_( "N", "N", &nrow, &nrhs, &nsupc, &alpha, 
-			&Lval[luptr+nsupc], &nsupr, &Bmat[fsupc], &ldb, 
-			&beta, &work[0], &n );
+		dgemm_( "N", "N", (int*)&nrow, (int*)&nrhs, (int*)&nsupc, &alpha, 
+			&Lval[luptr+nsupc], (int*)&nsupr, &Bmat[fsupc], (int*)&ldb, 
+			&beta, &work[0], (int*)&n );
 #endif
 		for (j = 0; j < nrhs; j++) {
 		    rhs_work = &Bmat[j*ldb];
@@ -260,8 +260,8 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 		STRSM( ftcs1, ftcs2, ftcs3, ftcs3, &nsupc, &nrhs, &alpha,
 		       &Lval[luptr], &nsupr, &Bmat[fsupc], &ldb);
 #else
-		dtrsm_("L", "U", "N", "N", &nsupc, &nrhs, &alpha,
-		       &Lval[luptr], &nsupr, &Bmat[fsupc], &ldb);
+		dtrsm_("L", "U", "N", "N", (int*)&nsupc, (int*)&nrhs, &alpha,
+		       &Lval[luptr], (int*)&nsupr, &Bmat[fsupc], (int*)&ldb);
 #endif
 #else		
 		for (j = 0; j < nrhs; j++)
@@ -308,10 +308,10 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	for (k = 0; k < nrhs; ++k) {
 	    
 	    /* Multiply by inv(U'). */
-	    sp_dtrsv("U", "T", "N", L, U, &Bmat[k*ldb], stat, info);
+	    sp_dtrsv("U", "T", "N", L, U, &Bmat[k*ldb], stat, (int*)info);
 	    
 	    /* Multiply by inv(L'). */
-	    sp_dtrsv("L", "T", "U", L, U, &Bmat[k*ldb], stat, info);
+	    sp_dtrsv("L", "T", "U", L, U, &Bmat[k*ldb], stat, (int*)info);
 	    
 	}
 	/* Compute the final solution X := Pr'*X (=inv(Pr)*X) */
@@ -331,10 +331,10 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
  * Diagnostic print of the solution vector 
  */
 void
-dprint_soln(int n, int nrhs, double *soln)
+dprint_soln(int_t n, int_t nrhs, double *soln)
 {
-    int i;
+    int_t i;
 
     for (i = 0; i < n; i++)
-  	printf("\t%d: %.4f\n", i, soln[i]);
+  	printf("\t%lld: %.4f\n", i, soln[i]);
 }

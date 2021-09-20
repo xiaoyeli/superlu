@@ -92,14 +92,14 @@ at the top-level directory.
  */
 void
 cgsequ(SuperMatrix *A, float *r, float *c, float *rowcnd,
-	float *colcnd, float *amax, int *info)
+	float *colcnd, float *amax, int_t *info)
 {
 
 
     /* Local variables */
     NCformat *Astore;
     complex   *Aval;
-    int i, j, irow;
+    int_t i, j, irow;
     float rcmin, rcmax;
     float bignum, smlnum;
     extern float smach(char *);
@@ -111,7 +111,7 @@ cgsequ(SuperMatrix *A, float *r, float *c, float *rowcnd,
 	*info = -1;
     if (*info != 0) {
 	i = -(*info);
-	input_error("cgsequ", &i);
+	input_error("cgsequ", (int*)&i);
 	return;
     }
 

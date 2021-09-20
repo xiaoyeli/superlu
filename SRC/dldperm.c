@@ -113,9 +113,9 @@ dldperm(int_t job, int_t n, int_t nnz, int_t colptr[], int_t adjncy[],
     for (i = 0; i <= n; ++i) ++colptr[i];
     for (i = 0; i < nnz; ++i) ++adjncy[i];
 #if ( DEBUGlevel>=2 )
-    printf("LDPERM(): n %d, nnz %d\n", n, nnz);
-    slu_PrintInt10("colptr", n+1, colptr);
-    slu_PrintInt10("adjncy", nnz, adjncy);
+    printf("LDPERM(): n %lld, nnz %lld\n", n, nnz);
+    slu_PrintInt10("colptr", n+1, (int*)colptr);
+    slu_PrintInt10("adjncy", nnz, (int*)adjncy);
 #endif
 	
     /* 
@@ -145,12 +145,12 @@ dldperm(int_t job, int_t n, int_t nnz, int_t colptr[], int_t adjncy[],
 	    &liw, iw, &ldw, dw, icntl, info);
 
 #if ( DEBUGlevel>=2 )
-    slu_PrintInt10("perm", n, perm);
+    slu_PrintInt10("perm", n, (int*)perm);
     printf(".. After MC64AD info %d\tsize of matching %d\n", info[0], num);
 #endif
     if ( info[0] == 1 ) { /* Structurally singular */
         printf(".. The last %d permutations:\n", n-num);
-	slu_PrintInt10("perm", n-num, &perm[num]);
+	slu_PrintInt10("perm", n-num, (int*)&perm[num]);
     }
 
     /* Restore to 0-based indexing. */

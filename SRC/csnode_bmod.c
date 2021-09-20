@@ -37,11 +37,11 @@ at the top-level directory.
 
 /*! \brief Performs numeric block updates within the relaxed snode. 
  */
-int
+int_t
 csnode_bmod (
-	    const int  jcol,	  /* in */
-	    const int  jsupno,    /* in */
-	    const int  fsupc,     /* in */
+	    const int_t  jcol,	  /* in */
+	    const int_t  jsupno,    /* in */
+	    const int_t  fsupc,     /* in */
 	    complex     *dense,    /* in */
 	    complex     *tempv,    /* working array */
 	    GlobalLU_t *Glu,      /* modified */
@@ -59,12 +59,12 @@ csnode_bmod (
 #endif
 
     complex   comp_zero = {0.0, 0.0};
-    int            luptr, nsupc, nsupr, nrow;
-    int            isub, irow, i, iptr; 
-    register int   ufirst, nextlu;
-    int            *lsub, *xlsub;
+    int_t            luptr, nsupc, nsupr, nrow;
+    int_t            isub, irow, i, iptr; 
+    register int_t   ufirst, nextlu;
+    int_t            *lsub, *xlsub;
     complex         *lusup;
-    int            *xlusup;
+    int_t            *xlusup;
     flops_t *ops = stat->ops;
 
     lsub    = Glu->lsub;
@@ -105,10 +105,10 @@ csnode_bmod (
 	CGEMV( ftcs2, &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr, 
 		&lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );
 #else
-	ctrsv_( "L", "N", "U", &nsupc, &lusup[luptr], &nsupr, 
-	      &lusup[ufirst], &incx );
-	cgemv_( "N", &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr, 
-		&lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );
+	ctrsv_( "L", "N", "U", (int*)&nsupc, &lusup[luptr], (int*)&nsupr, 
+	      &lusup[ufirst], (int*)&incx );
+	cgemv_( "N", (int*)&nrow, (int*)&nsupc, &alpha, &lusup[luptr+nsupc], (int*)&nsupr, 
+		&lusup[ufirst], (int*)&incx, &beta, &lusup[ufirst+nsupc], (int*)&incy );
 #endif
 #else
 	clsolve ( nsupr, nsupc, &lusup[luptr], &lusup[ufirst] );

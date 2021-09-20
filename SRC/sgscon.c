@@ -82,19 +82,19 @@ at the top-level directory.
 
 void
 sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
-       float anorm, float *rcond, SuperLUStat_t *stat, int *info)
+       float anorm, float *rcond, SuperLUStat_t *stat, int_t *info)
 {
 
 
     /* Local variables */
-    int    kase, kase1, onenrm, i;
+    int_t    kase, kase1, onenrm, i;
     float ainvnm;
     float *work;
-    int    *iwork;
-    int    isave[3];
-    extern int srscl_(int *, float *, float *, int *);
+    int_t    *iwork;
+    int_t    isave[3];
+    extern int_t srscl_(int_t *, float *, float *, int_t *);
 
-    extern int slacon2_(int *, float *, float *, int *, float *, int *, int []);
+    extern int_t slacon2_(int_t *, float *, float *, int_t *, float *, int_t *, int_t []);
 
     
     /* Test the input parameters. */
@@ -109,7 +109,7 @@ sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
 	*info = -3;
     if (*info != 0) {
 	i = -(*info);
-	input_error("sgscon", &i);
+	input_error("sgscon", (int*)&i);
 	return;
     }
 

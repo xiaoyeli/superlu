@@ -48,15 +48,15 @@ at the top-level directory.
  *               > 0 - number of bytes allocated when run out of space
  * </pre>
  */
-int
+int_t
 ccolumn_bmod (
-	     const int  jcol,	  /* in */
-	     const int  nseg,	  /* in */
+	     const int_t  jcol,	  /* in */
+	     const int_t  nseg,	  /* in */
 	     complex     *dense,	  /* in */
 	     complex     *tempv,	  /* working array */
-	     int        *segrep,  /* in */
-	     int        *repfnz,  /* in */
-	     int        fpanelc,  /* in -- first column in the current panel */
+	     int_t        *segrep,  /* in */
+	     int_t        *repfnz,  /* in */
+	     int_t        fpanelc,  /* in -- first column in the current panel */
 	     GlobalLU_t *Glu,     /* modified */
 	     SuperLUStat_t *stat  /* output */
 	     )
@@ -79,27 +79,27 @@ ccolumn_bmod (
      * no_zeros = no of leading zeros in a supernodal U-segment
      */
     complex       ukj, ukj1, ukj2;
-    int          luptr, luptr1, luptr2;
-    int          fsupc, nsupc, nsupr, segsze;
-    int          nrow;	  /* No of rows in the matrix of matrix-vector */
-    int          jcolp1, jsupno, k, ksub, krep, krep_ind, ksupno;
-    register int lptr, kfnz, isub, irow, i;
-    register int no_zeros, new_next; 
-    int          ufirst, nextlu;
-    int          fst_col; /* First column within small LU update */
-    int          d_fsupc; /* Distance between the first column of the current
+    int_t          luptr, luptr1, luptr2;
+    int_t          fsupc, nsupc, nsupr, segsze;
+    int_t          nrow;	  /* No of rows in the matrix of matrix-vector */
+    int_t          jcolp1, jsupno, k, ksub, krep, krep_ind, ksupno;
+    register int_t lptr, kfnz, isub, irow, i;
+    register int_t no_zeros, new_next; 
+    int_t          ufirst, nextlu;
+    int_t          fst_col; /* First column within small LU update */
+    int_t          d_fsupc; /* Distance between the first column of the current
 			     panel and the first column of the current snode. */
-    int          *xsup, *supno;
-    int          *lsub, *xlsub;
+    int_t          *xsup, *supno;
+    int_t          *lsub, *xlsub;
     complex       *lusup;
-    int          *xlusup;
-    int          nzlumax;
+    int_t          *xlusup;
+    int_t          nzlumax;
     complex       *tempv1;
     complex      zero = {0.0, 0.0};
     complex      one = {1.0, 0.0};
     complex      none = {-1.0, 0.0};
     complex	 comp_temp, comp_temp1;
-    int          mem_error;
+    int_t          mem_error;
     flops_t      *ops = stat->ops;
 
     xsup    = Glu->xsup;
@@ -231,8 +231,8 @@ ccolumn_bmod (
 		CTRSV( ftcs1, ftcs2, ftcs3, &segsze, &lusup[luptr], 
 		       &nsupr, tempv, &incx );
 #else		
-		ctrsv_( "L", "N", "U", &segsze, &lusup[luptr], 
-		       &nsupr, tempv, &incx );
+		ctrsv_( "L", "N", "U", (int*)&segsze, &lusup[luptr], 
+		       (int*)&nsupr, tempv, (int*)&incx );
 #endif		
  		luptr += segsze;  /* Dense matrix-vector */
 		tempv1 = &tempv[segsze];
@@ -242,8 +242,8 @@ ccolumn_bmod (
 		CGEMV( ftcs2, &nrow, &segsze, &alpha, &lusup[luptr], 
 		       &nsupr, tempv, &incx, &beta, tempv1, &incy );
 #else
-		cgemv_( "N", &nrow, &segsze, &alpha, &lusup[luptr], 
-		       &nsupr, tempv, &incx, &beta, tempv1, &incy );
+		cgemv_( "N", (int*)&nrow, (int*)&segsze, &alpha, &lusup[luptr], 
+		       (int*)&nsupr, tempv, (int*)&incx, &beta, tempv1, (int*)&incy );
 #endif
 #else
 		clsolve ( nsupr, segsze, &lusup[luptr], tempv );
@@ -331,8 +331,8 @@ ccolumn_bmod (
 	CTRSV( ftcs1, ftcs2, ftcs3, &nsupc, &lusup[luptr], 
 	       &nsupr, &lusup[ufirst], &incx );
 #else
-	ctrsv_( "L", "N", "U", &nsupc, &lusup[luptr], 
-	       &nsupr, &lusup[ufirst], &incx );
+	ctrsv_( "L", "N", "U", (int*)&nsupc, &lusup[luptr], 
+	       (int*)&nsupr, &lusup[ufirst], (int*)&incx );
 #endif
 	
 	alpha = none; beta = one; /* y := beta*y + alpha*A*x */
@@ -341,8 +341,8 @@ ccolumn_bmod (
 	CGEMV( ftcs2, &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr,
 	       &lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );
 #else
-	cgemv_( "N", &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr,
-	       &lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );
+	cgemv_( "N", (int*)&nrow, (int*)&nsupc, &alpha, &lusup[luptr+nsupc], (int*)&nsupr,
+	       &lusup[ufirst], (int*)&incx, &beta, &lusup[ufirst+nsupc], (int*)&incy );
 #endif
 #else
 	clsolve ( nsupr, nsupc, &lusup[luptr], &lusup[ufirst] );

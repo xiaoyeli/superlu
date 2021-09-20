@@ -184,36 +184,36 @@ int num_drop_L;
  */
 
 void
-zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
-	int *etree, void *work, int lwork, int *perm_c, int *perm_r,
+zgsitrf(superlu_options_t *options, SuperMatrix *A, int_t relax, int_t panel_size,
+	int_t *etree, void *work, int_t lwork, int_t *perm_c, int_t *perm_r,
 	SuperMatrix *L, SuperMatrix *U, 
     	GlobalLU_t *Glu, /* persistent to facilitate multiple factorizations */
-	SuperLUStat_t *stat, int *info)
+	SuperLUStat_t *stat, int_t *info)
 {
     /* Local working arrays */
     NCPformat *Astore;
-    int       *iperm_r = NULL; /* inverse of perm_r; used when
+    int_t       *iperm_r = NULL; /* inverse of perm_r; used when
 				  options->Fact == SamePattern_SameRowPerm */
-    int       *iperm_c; /* inverse of perm_c */
-    int       *swap, *iswap; /* swap is used to store the row permutation
+    int_t       *iperm_c; /* inverse of perm_c */
+    int_t       *swap, *iswap; /* swap is used to store the row permutation
 				during the factorization. Initially, it is set
 				to iperm_c (row indeces of Pc*A*Pc').
 				iswap is the inverse of swap. After the
 				factorization, it is equal to perm_r. */
-    int       *iwork;
+    int_t       *iwork;
     doublecomplex   *zwork;
-    int       *segrep, *repfnz, *parent, *xplore;
-    int       *panel_lsub; /* dense[]/panel_lsub[] pair forms a w-wide SPA */
-    int       *marker, *marker_relax;
+    int_t       *segrep, *repfnz, *parent, *xplore;
+    int_t       *panel_lsub; /* dense[]/panel_lsub[] pair forms a w-wide SPA */
+    int_t       *marker, *marker_relax;
     doublecomplex    *dense, *tempv;
     double *dtempv;
-    int       *relax_end, *relax_fsupc;
+    int_t       *relax_end, *relax_fsupc;
     doublecomplex    *a;
-    int       *asub;
-    int       *xa_begin, *xa_end;
-    int       *xsup, *supno;
-    int       *xlsub, *xlusup, *xusub;
-    int       nzlumax;
+    int_t       *asub;
+    int_t       *xa_begin, *xa_end;
+    int_t       *xsup, *supno;
+    int_t       *xlsub, *xlusup, *xusub;
+    int_t       nzlumax;
     double    *amax; 
     doublecomplex    drop_sum;
     double alpha, omega;  /* used in MILU, mimicing DRIC */
@@ -225,27 +225,27 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     double    drop_tol = options->ILU_DropTol; /* tau */
     double    fill_ini = options->ILU_FillTol; /* tau^hat */
     double    gamma = options->ILU_FillFactor;
-    int       drop_rule = options->ILU_DropRule;
+    int_t       drop_rule = options->ILU_DropRule;
     milu_t    milu = options->ILU_MILU;
     double    fill_tol;
-    int       pivrow;	/* pivotal row number in the original matrix A */
-    int       nseg1;	/* no of segments in U-column above panel row jcol */
-    int       nseg;	/* no of segments in each U-column */
-    register int jcol;
-    register int kcol;	/* end column of a relaxed snode */
-    register int icol;
-    register int i, k, jj, new_next, iinfo;
-    int       m, n, min_mn, jsupno, fsupc, nextlu, nextu;
-    int       w_def;	/* upper bound on panel width */
-    int       usepr, iperm_r_allocated = 0;
-    int       nnzL, nnzU;
-    int       *panel_histo = stat->panel_histo;
+    int_t       pivrow;	/* pivotal row number in the original matrix A */
+    int_t       nseg1;	/* no of segments in U-column above panel row jcol */
+    int_t       nseg;	/* no of segments in each U-column */
+    register int_t jcol;
+    register int_t kcol;	/* end column of a relaxed snode */
+    register int_t icol;
+    register int_t i, k, jj, new_next, iinfo;
+    int_t       m, n, min_mn, jsupno, fsupc, nextlu, nextu;
+    int_t       w_def;	/* upper bound on panel width */
+    int_t       usepr, iperm_r_allocated = 0;
+    int_t       nnzL, nnzU;
+    int_t       *panel_histo = stat->panel_histo;
     flops_t   *ops = stat->ops;
 
-    int       last_drop;/* the last column which the dropping rules applied */
-    int       quota;
-    int       nnzAj;	/* number of nonzeros in A(:,1:j) */
-    int       nnzLj, nnzUj;
+    int_t       last_drop;/* the last column which the dropping rules applied */
+    int_t       quota;
+    int_t       nnzAj;	/* number of nonzeros in A(:,1:j) */
+    int_t       nnzLj, nnzUj;
     double    tol_L = drop_tol, tol_U = drop_tol;
     doublecomplex zero = {0.0, 0.0};
     double one = 1.0;
@@ -279,16 +279,16 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     usepr = (fact == SamePattern_SameRowPerm);
     if ( usepr ) {
 	/* Compute the inverse of perm_r */
-	iperm_r = (int *) intMalloc(m);
+	iperm_r = (int_t *) intMalloc(m);
 	for (k = 0; k < m; ++k) iperm_r[perm_r[k]] = k;
 	iperm_r_allocated = 1;
     }
 
-    iperm_c = (int *) intMalloc(n);
+    iperm_c = (int_t *) intMalloc(n);
     for (k = 0; k < n; ++k) iperm_c[perm_c[k]] = k;
-    swap = (int *)intMalloc(n);
+    swap = (int_t *)intMalloc(n);
     for (k = 0; k < n; k++) swap[k] = iperm_c[k];
-    iswap = (int *)intMalloc(n);
+    iswap = (int_t *)intMalloc(n);
     for (k = 0; k < n; k++) iswap[k] = perm_c[k];
     amax = (double *) SUPERLU_MALLOC(panel_size * sizeof(double));
     if (drop_rule & DROP_SECONDARY)
@@ -299,12 +299,12 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     nnzAj = 0;
     nnzLj = 0;
     nnzUj = 0;
-    last_drop = SUPERLU_MAX(min_mn - 2 * sp_ienv(7), (int)(min_mn * 0.95));
+    last_drop = SUPERLU_MAX(min_mn - 2 * sp_ienv(7), (int_t)(min_mn * 0.95));
     alpha = pow((double)n, -1.0 / options->ILU_MILU_Dim);
 
     /* Identify relaxed snodes */
-    relax_end = (int *) intMalloc(n);
-    relax_fsupc = (int *) intMalloc(n);
+    relax_end = (int_t *) intMalloc(n);
+    relax_fsupc = (int_t *) intMalloc(n);
     if ( options->SymmetricMode == YES )
 	ilu_heap_relax_snode(n, etree, relax, marker, relax_end, relax_fsupc);
     else
@@ -337,16 +337,16 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 
 	    /* Drop small rows in the previous supernode. */
 	    if (jcol > 0 && jcol < last_drop) {
-		int first = xsup[supno[jcol - 1]];
-		int last = jcol - 1;
-		int quota;
+		int_t first = xsup[supno[jcol - 1]];
+		int_t last = jcol - 1;
+		int_t quota;
 
 		/* Compute the quota */
 		if (drop_rule & DROP_PROWS)
 		    quota = gamma * Astore->nnz / m * (m - first) / m
 			    * (last - first + 1);
 		else if (drop_rule & DROP_COLUMN) {
-		    int i;
+		    int_t i;
 		    quota = 0;
 		    for (i = first; i <= last; i++)
 			quota += xa_end[i] - xa_begin[i];
@@ -370,7 +370,7 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 		    else
 			tol_L = SUPERLU_MAX(drop_tol, tol_L * 0.5);
 		}
-		if (fill_tol < 0) iinfo -= (int)fill_tol;
+		if (fill_tol < 0) iinfo -= (int_t)fill_tol;
 #ifdef DEBUG
 		num_drop_L += i * (last - first + 1);
 #endif
@@ -476,16 +476,16 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 
 		/* Make a fill-in position if the column is entirely zero */
 		if (xlsub[jj + 1] == xlsub[jj]) {
-		    register int i, row;
-		    int nextl;
-		    int nzlmax = Glu->nzlmax;
-		    int *lsub = Glu->lsub;
-		    int *marker2 = marker + 2 * m;
+		    register int_t i, row;
+		    int_t nextl;
+		    int_t nzlmax = Glu->nzlmax;
+		    int_t *lsub = Glu->lsub;
+		    int_t *marker2 = marker + 2 * m;
 
 		    /* Allocate memory */
 		    nextl = xlsub[jj] + 1;
 		    if (nextl >= nzlmax) {
-			int error = zLUMemXpand(jj, nextl, LSUB, &nzlmax, Glu);
+			int_t error = zLUMemXpand(jj, nextl, LSUB, &nzlmax, Glu);
 			if (error) { *info = error; return; }
 			lsub = Glu->lsub;
 		    }
@@ -555,16 +555,16 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 
 		/* Start a new supernode, drop the previous one */
 		if (jj > 0 && supno[jj] > supno[jj - 1] && jj < last_drop) {
-		    int first = xsup[supno[jj - 1]];
-		    int last = jj - 1;
-		    int quota;
+		    int_t first = xsup[supno[jj - 1]];
+		    int_t last = jj - 1;
+		    int_t quota;
 
 		    /* Compute the quota */
 		    if (drop_rule & DROP_PROWS)
 			quota = gamma * Astore->nnz / m * (m - first) / m
 				* (last - first + 1);
 		    else if (drop_rule & DROP_COLUMN) {
-			int i;
+			int_t i;
 			quota = 0;
 			for (i = first; i <= last; i++)
 			    quota += xa_end[i] - xa_begin[i];
@@ -591,7 +591,7 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 			else
 			    tol_L = SUPERLU_MAX(drop_tol, tol_L * 0.5);
 		    }
-		    if (fill_tol < 0) iinfo -= (int)fill_tol;
+		    if (fill_tol < 0) iinfo -= (int_t)fill_tol;
 #ifdef DEBUG
 		    num_drop_L += i * (last - first + 1);
 #endif

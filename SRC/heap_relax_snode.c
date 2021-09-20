@@ -44,29 +44,29 @@ at the top-level directory.
 
 void
 heap_relax_snode (
-	     const     int n,
-	     int       *et,           /* column elimination tree */
-	     const int relax_columns, /* max no of columns allowed in a
+	     const     int_t n,
+	     int_t       *et,           /* column elimination tree */
+	     const int_t relax_columns, /* max no of columns allowed in a
 					 relaxed snode */
-	     int       *descendants,  /* no of descendants of each node
+	     int_t       *descendants,  /* no of descendants of each node
 					 in the etree */
-	     int       *relax_end     /* last column in a supernode */
+	     int_t       *relax_end     /* last column in a supernode */
 	     )
 {
-    register int i, j, k, l, parent;
-    register int snode_start;	/* beginning of a snode */
-    int *et_save, *post, *inv_post, *iwork;
-    int nsuper_et = 0, nsuper_et_post = 0;
+    register int_t i, j, k, l, parent;
+    register int_t snode_start;	/* beginning of a snode */
+    int_t *et_save, *post, *inv_post, *iwork;
+    int_t nsuper_et = 0, nsuper_et_post = 0;
 
     /* The etree may not be postordered, but is heap ordered. */
 
-    iwork = (int*) intMalloc(3*n+2); 
+    iwork = (int_t*) intMalloc(3*n+2); 
     if ( !iwork ) ABORT("SUPERLU_MALLOC fails for iwork[]");
     inv_post = iwork + n+1;
     et_save = inv_post + n+1;
 
     /* Post order etree */
-    post = (int *) TreePostorder(n, et);
+    post = (int_t *) TreePostorder(n, et);
     for (i = 0; i < n+1; ++i) inv_post[post[i]] = i;
 
     /* Renumber etree in postorder */

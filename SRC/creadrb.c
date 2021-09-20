@@ -92,16 +92,16 @@ static int cDumpLine(FILE *fp)
     return 0;
 }
 
-static int cParseIntFormat(char *buf, int *num, int *size)
+static int_t cParseIntFormat(char *buf, int_t *num, int_t *size)
 {
     char *tmp;
 
     tmp = buf;
     while (*tmp++ != '(') ;
-    sscanf(tmp, "%d", num);
+    sscanf(tmp, "%lld", num);
     while (*tmp != 'I' && *tmp != 'i') ++tmp;
     ++tmp;
-    sscanf(tmp, "%d", size);
+    sscanf(tmp, "%lld", size);
     return 0;
 }
 
@@ -111,14 +111,14 @@ static int cParseFloatFormat(char *buf, int *num, int *size)
 
     tmp = buf;
     while (*tmp++ != '(') ;
-    *num = atoi(tmp); /*sscanf(tmp, "%d", num);*/
+    *num = atoi(tmp); /*sscanf(tmp, "%lld", num);*/
     while (*tmp != 'E' && *tmp != 'e' && *tmp != 'D' && *tmp != 'd'
            && *tmp != 'F' && *tmp != 'f') {
         /* May find kP before nE/nD/nF, like (1P6F13.6). In this case the
            num picked up refers to P, which should be skipped. */
         if (*tmp=='p' || *tmp=='P') {
            ++tmp;
-           *num = atoi(tmp); /*sscanf(tmp, "%d", num);*/
+           *num = atoi(tmp); /*sscanf(tmp, "%lld", num);*/
         } else {
            ++tmp;
         }
@@ -194,22 +194,22 @@ static int cReadValues(FILE *fp, int n, complex *destination, int perline, int p
  * </pre>
  */
 static void
-FormFullA(int n, int *nonz, complex **nzval, int **rowind, int **colptr)
+FormFullA(int_t n, int_t *nonz, complex **nzval, int_t **rowind, int_t **colptr)
 {
-    register int i, j, k, col, new_nnz;
-    int *t_rowind, *t_colptr, *al_rowind, *al_colptr, *a_rowind, *a_colptr;
-    int *marker;
+    register int_t i, j, k, col, new_nnz;
+    int_t *t_rowind, *t_colptr, *al_rowind, *al_colptr, *a_rowind, *a_colptr;
+    int_t *marker;
     complex *t_val, *al_val, *a_val;
 
     al_rowind = *rowind;
     al_colptr = *colptr;
     al_val = *nzval;
 
-    if ( !(marker =(int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(marker =(int_t *) SUPERLU_MALLOC( (n+1) * sizeof(int_t)) ) )
 	ABORT("SUPERLU_MALLOC fails for marker[]");
-    if ( !(t_colptr = (int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(t_colptr = (int_t *) SUPERLU_MALLOC( (n+1) * sizeof(int_t)) ) )
 	ABORT("SUPERLU_MALLOC t_colptr[]");
-    if ( !(t_rowind = (int *) SUPERLU_MALLOC( *nonz * sizeof(int)) ) )
+    if ( !(t_rowind = (int_t *) SUPERLU_MALLOC( *nonz * sizeof(int_t)) ) )
 	ABORT("SUPERLU_MALLOC fails for t_rowind[]");
     if ( !(t_val = (complex*) SUPERLU_MALLOC( *nonz * sizeof(complex)) ) )
 	ABORT("SUPERLU_MALLOC fails for t_val[]");
@@ -236,9 +236,9 @@ FormFullA(int n, int *nonz, complex **nzval, int **rowind, int **colptr)
 	}
 
     new_nnz = *nonz * 2 - n;
-    if ( !(a_colptr = (int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(a_colptr = (int_t *) SUPERLU_MALLOC( (n+1) * sizeof(int_t)) ) )
 	ABORT("SUPERLU_MALLOC a_colptr[]");
-    if ( !(a_rowind = (int *) SUPERLU_MALLOC( new_nnz * sizeof(int)) ) )
+    if ( !(a_rowind = (int_t *) SUPERLU_MALLOC( new_nnz * sizeof(int_t)) ) )
 	ABORT("SUPERLU_MALLOC fails for a_rowind[]");
     if ( !(a_val = (complex*) SUPERLU_MALLOC( new_nnz * sizeof(complex)) ) )
 	ABORT("SUPERLU_MALLOC fails for a_val[]");
@@ -271,7 +271,7 @@ FormFullA(int n, int *nonz, complex **nzval, int **rowind, int **colptr)
       a_colptr[j+1] = k;
     }
 
-    printf("FormFullA: new_nnz = %d, k = %d\n", new_nnz, k);
+    printf("FormFullA: new_nnz = %lld, k = %lld\n", new_nnz, k);
 
     SUPERLU_FREE(al_val);
     SUPERLU_FREE(al_rowind);
@@ -288,14 +288,14 @@ FormFullA(int n, int *nonz, complex **nzval, int **rowind, int **colptr)
 }
 
 void
-creadrb(int *nrow, int *ncol, int *nonz,
-        complex **nzval, int **rowind, int **colptr)
+creadrb(int_t *nrow, int_t *ncol, int_t *nonz,
+        complex **nzval, int_t **rowind, int_t **colptr)
 {
 
-    register int i, numer_lines = 0;
-    int tmp, colnum, colsize, rownum, rowsize, valnum, valsize;
+    register int_t i, numer_lines = 0;
+    int_t tmp, colnum, colsize, rownum, rowsize, valnum, valsize;
     char buf[100], type[4];
-    int sym;
+    int_t sym;
     FILE *fp;
 
     fp = stdin;
@@ -307,7 +307,7 @@ creadrb(int *nrow, int *ncol, int *nonz,
     /* Line 2 */
     for (i=0; i<4; i++) {
         fscanf(fp, "%14c", buf); buf[14] = 0;
-        sscanf(buf, "%d", &tmp);
+        sscanf(buf, "%lld", &tmp);
         if (i == 3) numer_lines = tmp;
     }
     cDumpLine(fp);
@@ -320,10 +320,10 @@ creadrb(int *nrow, int *ncol, int *nonz,
     printf("Matrix type %s\n", type);
 #endif
 
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", nrow);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", ncol);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", nonz);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", &tmp);
+    fscanf(fp, "%14c", buf); sscanf(buf, "%lld", nrow);
+    fscanf(fp, "%14c", buf); sscanf(buf, "%lld", ncol);
+    fscanf(fp, "%14c", buf); sscanf(buf, "%lld", nonz);
+    fscanf(fp, "%14c", buf); sscanf(buf, "%lld", &tmp);
 
     if (tmp != 0)
         printf("This is not an assembled matrix!\n");
@@ -340,18 +340,18 @@ creadrb(int *nrow, int *ncol, int *nonz,
     fscanf(fp, "%16c", buf);
     cParseIntFormat(buf, &rownum, &rowsize);
     fscanf(fp, "%20c", buf);
-    cParseFloatFormat(buf, &valnum, &valsize);
+    cParseFloatFormat(buf, (int*)&valnum, (int*)&valsize);
     cDumpLine(fp);
 
 #ifdef DEBUG
-    printf("%d rows, %d nonzeros\n", *nrow, *nonz);
-    printf("colnum %d, colsize %d\n", colnum, colsize);
-    printf("rownum %d, rowsize %d\n", rownum, rowsize);
-    printf("valnum %d, valsize %d\n", valnum, valsize);
+    printf("%lld rows, %lld nonzeros\n", *nrow, *nonz);
+    printf("colnum %lld, colsize %lld\n", colnum, colsize);
+    printf("rownum %lld, rowsize %lld\n", rownum, rowsize);
+    printf("valnum %lld, valsize %lld\n", valnum, valsize);
 #endif
 
-    ReadVector(fp, *ncol+1, *colptr, colnum, colsize);
-    ReadVector(fp, *nonz, *rowind, rownum, rowsize);
+    ReadVector(fp, *ncol+1, (int*)*colptr, colnum, colsize);
+    ReadVector(fp, *nonz, (int*)*rowind, rownum, rowsize);
     if ( numer_lines ) {
         cReadValues(fp, *nonz, *nzval, valnum, valsize);
     }

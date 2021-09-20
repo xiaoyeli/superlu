@@ -123,7 +123,7 @@ at the top-level directory.
  *           any element of A or B that makes X(j) an exact solution).
  *
  *   stat     (output) SuperLUStat_t*
- *            Record the statistics on runtime and floating-point operation count.
+ *            Record the statistics on runtime and floating-point_t operation count.
  *            See util.h for the definition of 'SuperLUStat_t'.
  *
  *   info    (output) int*   
@@ -139,16 +139,16 @@ at the top-level directory.
  */
 void
 sgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
-       int *perm_c, int *perm_r, char *equed, float *R, float *C,
+       int_t *perm_c, int_t *perm_r, char *equed, float *R, float *C,
        SuperMatrix *B, SuperMatrix *X, float *ferr, float *berr,
-       SuperLUStat_t *stat, int *info)
+       SuperLUStat_t *stat, int_t *info)
 {
 
 
 #define ITMAX 5
     
     /* Table of constant values */
-    int    ione = 1;
+    int_t    ione = 1;
     float ndone = -1.;
     float done = 1.;
     
@@ -158,25 +158,25 @@ sgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
     SuperMatrix Bjcol;
     DNformat *Bstore, *Xstore, *Bjcol_store;
     float   *Bmat, *Xmat, *Bptr, *Xptr;
-    int      kase;
+    int_t      kase;
     float   safe1, safe2;
-    int      i, j, k, irow, nz, count, notran, rowequ, colequ;
-    int      ldb, ldx, nrhs;
+    int_t      i, j, k, irow, nz, count, notran, rowequ, colequ;
+    int_t      ldb, ldx, nrhs;
     float   s, xk, lstres, eps, safmin;
     char     transc[1];
     trans_t  transt;
     float   *work;
     float   *rwork;
-    int      *iwork;
-    int      isave[3];
+    int_t      *iwork;
+    int_t      isave[3];
 
-    extern int slacon2_(int *, float *, float *, int *, float *, int *, int []);
+    extern int_t slacon2_(int_t *, float *, float *, int_t *, float *, int_t *, int_t []);
 #ifdef _CRAY
-    extern int SCOPY(int *, float *, int *, float *, int *);
-    extern int SSAXPY(int *, float *, float *, int *, float *, int *);
+    extern int_t SCOPY(int_t *, float *, int_t *, float *, int_t *);
+    extern int_t SSAXPY(int_t *, float *, float *, int_t *, float *, int_t *);
 #else
-    extern int scopy_(int *, float *, int *, float *, int *);
-    extern int saxpy_(int *, float *, float *, int *, float *, int *);
+    extern int_t scopy_(int_t *, float *, int_t *, float *, int_t *);
+    extern int_t saxpy_(int_t *, float *, float *, int_t *, float *, int_t *);
 #endif
 
     Astore = A->Store;
@@ -210,7 +210,7 @@ sgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 	*info = -11;
     if (*info != 0) {
 	i = -(*info);
-	input_error("sgsrfs", &i);
+	input_error("sgsrfs", (int*)&i);
 	return;
     }
 

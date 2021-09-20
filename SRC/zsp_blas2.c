@@ -115,7 +115,7 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
     else if ( U->nrow != U->ncol || U->nrow < 0 ) *info = -5;
     if ( *info ) {
 	i = -(*info);
-	input_error("sp_ztrsv", &i);
+	input_error("sp_ztrsv", (int*)&i);
 	return 0;
     }
 
@@ -165,8 +165,8 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    ztrsv_("L", "N", "U", &nsupc, &Lval[luptr], &nsupr,
 		       	&x[fsupc], &incx);
 		
-		    zgemv_("N", &nrow, &nsupc, &alpha, &Lval[luptr+nsupc], 
-		       	&nsupr, &x[fsupc], &incx, &beta, &work[0], &incy);
+		    zgemv_("N", (int*)&nrow, (int*)&nsupc, &alpha, &Lval[luptr+nsupc], 
+		       	(int*)&nsupr, &x[fsupc], (int*)&incx, &beta, &work[0], (int*)&incy);
 #endif
 #else
 		    zlsolve ( nsupr, nsupc, &Lval[luptr], &x[fsupc]);
@@ -212,8 +212,8 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    CTRSV(ftcs3, ftcs2, ftcs2, &nsupc, &Lval[luptr], &nsupr,
 		       &x[fsupc], &incx);
 #else
-		    ztrsv_("U", "N", "N", &nsupc, &Lval[luptr], &nsupr,
-                           &x[fsupc], &incx);
+		    ztrsv_("U", "N", "N", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+                           &x[fsupc], (int*)&incx);
 #endif
 #else		
 		    zusolve ( nsupr, nsupc, &Lval[luptr], &x[fsupc] );
@@ -267,8 +267,8 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    CTRSV(ftcs1, ftcs2, ftcs3, &nsupc, &Lval[luptr], &nsupr,
 			&x[fsupc], &incx);
 #else
-		    ztrsv_("L", "T", "U", &nsupc, &Lval[luptr], &nsupr,
-			&x[fsupc], &incx);
+		    ztrsv_("L", "T", "U", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+			&x[fsupc], (int*)&incx);
 #endif
 		}
 	    }
@@ -304,8 +304,8 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    CTRSV( ftcs1, ftcs2, ftcs3, &nsupc, &Lval[luptr], &nsupr,
 			    &x[fsupc], &incx);
 #else
-		    ztrsv_("U", "T", "N", &nsupc, &Lval[luptr], &nsupr,
-			    &x[fsupc], &incx);
+		    ztrsv_("U", "T", "N", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+			    &x[fsupc], (int*)&incx);
 #endif
 		}
 	    } /* for k ... */
@@ -346,8 +346,8 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    ZTRSV(ftcs1, ftcs2, ftcs3, &nsupc, &Lval[luptr], &nsupr,
 			&x[fsupc], &incx);
 #else
-                    ztrsv_("L", trans, "U", &nsupc, &Lval[luptr], &nsupr,
-                           &x[fsupc], &incx);
+                    ztrsv_("L", trans, "U", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+                           &x[fsupc], (int*)&incx);
 #endif
 		}
 	    }
@@ -385,8 +385,8 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    ZTRSV( ftcs1, ftcs2, ftcs3, &nsupc, &Lval[luptr], &nsupr,
 			    &x[fsupc], &incx);
 #else
-                    ztrsv_("U", trans, "N", &nsupc, &Lval[luptr], &nsupr,
-                               &x[fsupc], &incx);
+                    ztrsv_("U", trans, "N", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+                               &x[fsupc], (int*)&incx);
 #endif
   		}
   	    } /* for k ... */
@@ -486,7 +486,7 @@ sp_zgemv(char *trans, doublecomplex alpha, SuperMatrix *A, doublecomplex *x,
     else if (incx == 0) info = 5;
     else if (incy == 0)	info = 8;
     if (info != 0) {
-	input_error("sp_zgemv ", &info);
+	input_error("sp_zgemv ", (int*)&info);
 	return 0;
     }
 

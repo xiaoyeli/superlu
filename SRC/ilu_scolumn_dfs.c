@@ -57,36 +57,36 @@ at the top-level directory.
  *   > 0  number of bytes allocated when run out of space.
  * </pre>
  */
-int
+int_t
 ilu_scolumn_dfs(
-	   const int  m,	 /* in - number of rows in the matrix */
-	   const int  jcol,	 /* in */
-	   int	      *perm_r,	 /* in */
-	   int	      *nseg,	 /* modified - with new segments appended */
-	   int	      *lsub_col, /* in - defines the RHS vector to start the
+	   const int_t  m,	 /* in - number of rows in the matrix */
+	   const int_t  jcol,	 /* in */
+	   int_t	      *perm_r,	 /* in */
+	   int_t	      *nseg,	 /* modified - with new segments appended */
+	   int_t	      *lsub_col, /* in - defines the RHS vector to start the
 				    dfs */
-	   int	      *segrep,	 /* modified - with new segments appended */
-	   int	      *repfnz,	 /* modified */
-	   int	      *marker,	 /* modified */
-	   int	      *parent,	 /* working array */
-	   int	      *xplore,	 /* working array */
+	   int_t	      *segrep,	 /* modified - with new segments appended */
+	   int_t	      *repfnz,	 /* modified */
+	   int_t	      *marker,	 /* modified */
+	   int_t	      *parent,	 /* working array */
+	   int_t	      *xplore,	 /* working array */
 	   GlobalLU_t *Glu	 /* modified */
 	   )
 {
 
-    int     jcolp1, jcolm1, jsuper, nsuper, nextl;
-    int     k, krep, krow, kmark, kperm;
-    int     *marker2;		/* Used for small panel LU */
-    int     fsupc;		/* First column of a snode */
-    int     myfnz;		/* First nonz column of a U-segment */
-    int     chperm, chmark, chrep, kchild;
-    int     xdfs, maxdfs, kpar, oldrep;
-    int     jptr, jm1ptr;
-    int     ito, ifrom; 	/* Used to compress row subscripts */
-    int     mem_error;
-    int     *xsup, *supno, *lsub, *xlsub;
-    int     nzlmax;
-    int     maxsuper;
+    int_t     jcolp1, jcolm1, jsuper, nsuper, nextl;
+    int_t     k, krep, krow, kmark, kperm;
+    int_t     *marker2;		/* Used for small panel LU */
+    int_t     fsupc;		/* First column of a snode */
+    int_t     myfnz;		/* First nonz column of a U-segment */
+    int_t     chperm, chmark, chrep, kchild;
+    int_t     xdfs, maxdfs, kpar, oldrep;
+    int_t     jptr, jm1ptr;
+    int_t     ito, ifrom; 	/* Used to compress row subscripts */
+    int_t     mem_error;
+    int_t     *xsup, *supno, *lsub, *xlsub;
+    int_t     nzlmax;
+    int_t     maxsuper;
 
     xsup    = Glu->xsup;
     supno   = Glu->supno;

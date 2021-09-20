@@ -46,25 +46,25 @@ at the top-level directory.
 
 void
 cpruneL(
-       const int  jcol,	     /* in */
-       const int  *perm_r,   /* in */
-       const int  pivrow,    /* in */
-       const int  nseg,	     /* in */
-       const int  *segrep,   /* in */
-       const int  *repfnz,   /* in */
-       int        *xprune,   /* out */
+       const int_t  jcol,	     /* in */
+       const int_t  *perm_r,   /* in */
+       const int_t  pivrow,    /* in */
+       const int_t  nseg,	     /* in */
+       const int_t  *segrep,   /* in */
+       const int_t  *repfnz,   /* in */
+       int_t        *xprune,   /* out */
        GlobalLU_t *Glu       /* modified - global LU data structures */
        )
 {
 
     complex     utemp;
-    int        jsupno, irep, irep1, kmin, kmax, krow, movnum;
-    int        i, ktemp, minloc, maxloc;
-    int        do_prune; /* logical variable */
-    int        *xsup, *supno;
-    int        *lsub, *xlsub;
+    int_t        jsupno, irep, irep1, kmin, kmax, krow, movnum;
+    int_t        i, ktemp, minloc, maxloc;
+    int_t        do_prune; /* logical variable */
+    int_t        *xsup, *supno;
+    int_t        *lsub, *xlsub;
     complex     *lusup;
-    int        *xlusup;
+    int_t        *xlusup;
 
     xsup       = Glu->xsup;
     supno      = Glu->supno;
@@ -153,7 +153,7 @@ cpruneL(
 	        xprune[irep] = kmin;	/* Pruning */
 
 #ifdef CHK_PRUNE
-	printf("    After cpruneL(),using col %d:  xprune[%d] = %d\n", 
+	printf("    After cpruneL(),using col %lld:  xprune[%lld] = %lld\n", 
 			jcol, irep, kmin);
 #endif
 	    } /* if do_prune */

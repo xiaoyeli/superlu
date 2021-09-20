@@ -57,12 +57,12 @@ at the top-level directory.
 
 
 static 
-int *mxCallocInt(int n)
+int_t *mxCallocInt(int_t n)
 {
-    register int i;
-    int *buf;
+    register int_t i;
+    int_t *buf;
 
-    buf = (int *) SUPERLU_MALLOC( n * sizeof(int) );
+    buf = (int_t *) SUPERLU_MALLOC( n * sizeof(int_t) );
     if ( !buf ) {
          ABORT("SUPERLU_MALLOC fails for buf in mxCallocInt()");
        }
@@ -72,8 +72,8 @@ int *mxCallocInt(int n)
       
 static
 void initialize_disjoint_sets (
-			       int n,
-			       int **pp
+			       int_t n,
+			       int_t **pp
 			       )
 {
 	(*pp) = mxCallocInt(n);
@@ -81,9 +81,9 @@ void initialize_disjoint_sets (
 
 
 static
-int make_set (
-	      int i,
-	      int *pp
+int_t make_set (
+	      int_t i,
+	      int_t *pp
 	      )
 {
 	pp[i] = i;
@@ -92,10 +92,10 @@ int make_set (
 
 
 static
-int link (
-	  int s,
-	  int t,
-	  int *pp
+int_t link (
+	  int_t s,
+	  int_t t,
+	  int_t *pp
 	  )
 {
 	pp[s] = t;
@@ -105,12 +105,12 @@ int link (
 
 /* PATH HALVING */
 static
-int find (
-	  int i,
-	  int *pp
+int_t find (
+	  int_t i,
+	  int_t *pp
 	  )
 {
-    register int p, gp;
+    register int_t p, gp;
     
     p = pp[i];
     gp = pp[p];
@@ -138,7 +138,7 @@ int find (
 
 static
 void finalize_disjoint_sets (
-			     int *pp
+			     int_t *pp
 			     )
 {
 	SUPERLU_FREE(pp);
@@ -165,21 +165,21 @@ void finalize_disjoint_sets (
 /*
  * Nonsymmetric elimination tree
  */
-int
+int_t
 sp_coletree(
-	    int *acolst, int *acolend, /* column start and end past 1 */
-	    int *arow,                 /* row indices of A */
-	    int nr, int nc,            /* dimension of A */
-	    int *parent	               /* parent in elim tree */
+	    int_t *acolst, int_t *acolend, /* column start and end past 1 */
+	    int_t *arow,                 /* row indices of A */
+	    int_t nr, int_t nc,            /* dimension of A */
+	    int_t *parent	               /* parent in elim tree */
 	    )
 {
-	int	*root;			/* root of subtee of etree 	*/
-	int     *firstcol;		/* first nonzero col in each row*/
-	int	rset, cset;             
-	int	row, col;
-	int	rroot;
-	int	p;
-	int     *pp;
+	int_t	*root;			/* root of subtee of etree 	*/
+	int_t     *firstcol;		/* first nonzero col in each row*/
+	int_t	rset, cset;             
+	int_t	row, col;
+	int_t	rroot;
+	int_t	p;
+	int_t     *pp;
 
 	root = mxCallocInt (nc);
 	initialize_disjoint_sets (nc, &pp);
@@ -251,14 +251,14 @@ static
  * Depth-first search from vertex v.
  */
 void etdfs (
-	    int	  v,
-	    int   first_kid[],
-	    int   next_kid[],
-	    int   post[], 
-	    int   *postnum
+	    int_t	  v,
+	    int_t   first_kid[],
+	    int_t   next_kid[],
+	    int_t   post[], 
+	    int_t   *postnum
 	    )
 {
-	int	w;
+	int_t	w;
 
 	for (w = first_kid[v]; w != -1; w = next_kid[w]) {
 		etdfs (w, first_kid, next_kid, post, postnum);
@@ -273,11 +273,11 @@ static
  * Depth-first search from vertex n.  No recursion.
  * This routine was contributed by Cédric Doucet, CEDRAT Group, Meylan, France.
  */
-void nr_etdfs (int n, int *parent,
-	       int *first_kid, int *next_kid,
-	       int *post, int postnum)
+void nr_etdfs (int_t n, int_t *parent,
+	       int_t *first_kid, int_t *next_kid,
+	       int_t *post, int_t postnum)
 {
-    int current = n, first, next;
+    int_t current = n, first, next;
 
     while (postnum != n){
      
@@ -321,14 +321,14 @@ void nr_etdfs (int n, int *parent,
 /*
  * Post order a tree
  */
-int *TreePostorder(
-		   int n,
-		   int *parent
+int_t *TreePostorder(
+		   int_t n,
+		   int_t *parent
 		   )
 {
-        int	*first_kid, *next_kid;	/* Linked list of children.	*/
-        int	*post, postnum;
-	int	v, dad;
+        int_t	*first_kid, *next_kid;	/* Linked list of children.	*/
+        int_t	*post, postnum;
+	int_t	v, dad;
 
 	/* Allocate storage for working arrays and results	*/
 	first_kid = 	mxCallocInt (n+1);
@@ -389,20 +389,20 @@ int *TreePostorder(
 /*
  * Symmetric elimination tree
  */
-int
+int_t
 sp_symetree(
-	    int *acolst, int *acolend, /* column starts and ends past 1 */
-	    int *arow,            /* row indices of A */
-	    int n,                /* dimension of A */
-	    int *parent	    /* parent in elim tree */
+	    int_t *acolst, int_t *acolend, /* column starts and ends past 1 */
+	    int_t *arow,            /* row indices of A */
+	    int_t n,                /* dimension of A */
+	    int_t *parent	    /* parent in elim tree */
 	    )
 {
-	int	*root;		    /* root of subtree of etree 	*/
-	int	rset, cset;             
-	int	row, col;
-	int	rroot;
-	int	p;
-	int     *pp;
+	int_t	*root;		    /* root of subtree of etree 	*/
+	int_t	rset, cset;             
+	int_t	row, col;
+	int_t	rroot;
+	int_t	p;
+	int_t     *pp;
 
 	root = mxCallocInt (n);
 	initialize_disjoint_sets (n, &pp);

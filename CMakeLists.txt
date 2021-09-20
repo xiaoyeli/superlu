@@ -85,6 +85,7 @@ option(enable_single    "Enable single precision library" ON)
 option(enable_double    "Enable double precision library" ON)
 option(enable_complex   "Enable complex precision library" ON)
 option(enable_complex16 "Enable complex16 precision library" ON)
+option(enable_longint   "Enable 64-bit ints" OFF)
 # option(enable_examples  "Build examples" ON)
 
 # setup required compiler defines and options.
@@ -92,6 +93,9 @@ option(enable_complex16 "Enable complex16 precision library" ON)
 ## get_directory_property( DirDefs COMPILE_DEFINITIONS )
 set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DDEBUGlevel=0 ${CMAKE_C_FLAGS}")
 set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
+if (enable_longint)
+	add_compile_definitions(_LONGINT)
+endif()
 
 ######################################################################
 #

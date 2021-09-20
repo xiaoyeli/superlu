@@ -32,8 +32,8 @@ at the top-level directory.
  */
 
 void
-zreadMM(FILE *fp, int *m, int *n, int *nonz,
-	    doublecomplex **nzval, int **rowind, int **colptr)
+zreadMM(FILE *fp, int_t *m, int_t *n, int_t *nonz,
+	    doublecomplex **nzval, int_t **rowind, int_t **colptr)
 {
     int_t    j, k, jsize, nnz, nz, new_nonz;
     doublecomplex *a, *val;

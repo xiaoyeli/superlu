@@ -140,21 +140,21 @@ at the top-level directory.
  */
 
 void
-cgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
+cgssv(superlu_options_t *options, SuperMatrix *A, int_t *perm_c, int_t *perm_r,
       SuperMatrix *L, SuperMatrix *U, SuperMatrix *B,
-      SuperLUStat_t *stat, int *info )
+      SuperLUStat_t *stat, int_t *info )
 {
 
     DNformat *Bstore;
     SuperMatrix *AA;/* A in SLU_NC format used by the factorization routine.*/
     SuperMatrix AC; /* Matrix postmultiplied by Pc */
-    int      lwork = 0, *etree, i;
+    int_t      lwork = 0, *etree, i;
     GlobalLU_t Glu; /* Not needed on return. */
     
     /* Set default values for some parameters */
-    int      panel_size;     /* panel size */
-    int      relax;          /* no of columns in a relaxed snodes */
-    int      permc_spec;
+    int_t      panel_size;     /* panel size */
+    int_t      relax;          /* no of columns in a relaxed snodes */
+    int_t      permc_spec;
     trans_t  trans = NOTRANS;
     double   *utime;
     double   t;	/* Temporary time */
@@ -172,7 +172,7 @@ cgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 	*info = -7;
     if ( *info != 0 ) {
 	i = -(*info);
-	input_error("cgssv", &i);
+	input_error("cgssv", (int*)&i);
 	return;
     }
 

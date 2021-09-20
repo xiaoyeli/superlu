@@ -27,23 +27,23 @@ at the top-level directory.
  *    mark_relax() - record the rows used by the relaxed supernodes.
  * </pre>
  */
-int mark_relax(
-	int n,		    /* order of the matrix A */
-	int *relax_end,     /* last column in a relaxed supernode.
+int_t mark_relax(
+	int_t n,		    /* order of the matrix A */
+	int_t *relax_end,     /* last column in a relaxed supernode.
 			     * if j-th column starts a relaxed supernode,
 			     * relax_end[j] represents the last column of
 			     * this supernode. */
-	int *relax_fsupc,   /* first column in a relaxed supernode.
+	int_t *relax_fsupc,   /* first column in a relaxed supernode.
 			     * relax_fsupc[j] represents the first column of
 			     * j-th supernode. */
-	int *xa_begin,	    /* Astore->colbeg */
-	int *xa_end,	    /* Astore->colend */
-	int *asub,	    /* row index of A */
-	int *marker	    /* marker[j] is the maximum column index if j-th
+	int_t *xa_begin,	    /* Astore->colbeg */
+	int_t *xa_end,	    /* Astore->colend */
+	int_t *asub,	    /* row index of A */
+	int_t *marker	    /* marker[j] is the maximum column index if j-th
 			     * row belongs to a relaxed supernode. */ )
 {
-    register int jcol, kcol;
-    register int i, j, k;
+    register int_t jcol, kcol;
+    register int_t i, j, k;
 
     for (i = 0; i < n && relax_fsupc[i] != EMPTY; i++)
     {

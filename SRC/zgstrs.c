@@ -91,8 +91,8 @@ at the top-level directory.
 
 void
 zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
-        int *perm_c, int *perm_r, SuperMatrix *B,
-        SuperLUStat_t *stat, int *info)
+        int_t *perm_c, int_t *perm_r, SuperMatrix *B,
+        SuperLUStat_t *stat, int_t *info)
 {
 
 #ifdef _CRAY
@@ -109,8 +109,8 @@ zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     SCformat *Lstore;
     NCformat *Ustore;
     doublecomplex   *Lval, *Uval;
-    int      fsupc, nrow, nsupr, nsupc, luptr, istart, irow;
-    int      i, j, k, iptr, jcol, n, ldb, nrhs;
+    int_t      fsupc, nrow, nsupr, nsupc, luptr, istart, irow;
+    int_t      i, j, k, iptr, jcol, n, ldb, nrhs;
     doublecomplex   *work, *rhs_work, *soln;
     flops_t  solve_ops;
     void zprint_soln();
@@ -132,7 +132,7 @@ zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	*info = -6;
     if ( *info ) {
 	i = -(*info);
-	input_error("zgstrs", &i);
+	input_error("zgstrs", (int*)&i);
 	return;
     }
 
@@ -193,12 +193,12 @@ zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 			&Lval[luptr+nsupc], &nsupr, &Bmat[fsupc], &ldb, 
 			&beta, &work[0], &n );
 #else
-		ztrsm_("L", "L", "N", "U", &nsupc, &nrhs, &alpha,
-		       &Lval[luptr], &nsupr, &Bmat[fsupc], &ldb);
+		ztrsm_("L", "L", "N", "U", (int*)&nsupc, (int*)&nrhs, &alpha,
+		       &Lval[luptr], (int*)&nsupr, &Bmat[fsupc], (int*)&ldb);
 		
-		zgemm_( "N", "N", &nrow, &nrhs, &nsupc, &alpha, 
-			&Lval[luptr+nsupc], &nsupr, &Bmat[fsupc], &ldb, 
-			&beta, &work[0], &n );
+		zgemm_( "N", "N", (int*)&nrow, (int*)&nrhs, (int*)&nsupc, &alpha, 
+			&Lval[luptr+nsupc], (int*)&nsupr, &Bmat[fsupc], (int*)&ldb, 
+			&beta, &work[0], (int*)&n );
 #endif
 		for (j = 0; j < nrhs; j++) {
 		    rhs_work = &Bmat[j*ldb];
@@ -264,8 +264,8 @@ zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 		CTRSM( ftcs1, ftcs2, ftcs3, ftcs3, &nsupc, &nrhs, &alpha,
 		       &Lval[luptr], &nsupr, &Bmat[fsupc], &ldb);
 #else
-		ztrsm_("L", "U", "N", "N", &nsupc, &nrhs, &alpha,
-		       &Lval[luptr], &nsupr, &Bmat[fsupc], &ldb);
+		ztrsm_("L", "U", "N", "N", (int*)&nsupc, (int*)&nrhs, &alpha,
+		       &Lval[luptr], (int*)&nsupr, &Bmat[fsupc], (int*)&ldb);
 #endif
 #else		
 		for (j = 0; j < nrhs; j++)
@@ -313,18 +313,18 @@ zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
         if (trans == TRANS) {
 	    for (k = 0; k < nrhs; ++k) {
 	        /* Multiply by inv(U'). */
-	        sp_ztrsv("U", "T", "N", L, U, &Bmat[k*ldb], stat, info);
+	        sp_ztrsv("U", "T", "N", L, U, &Bmat[k*ldb], stat, (int*)info);
 	    
 	        /* Multiply by inv(L'). */
-	        sp_ztrsv("L", "T", "U", L, U, &Bmat[k*ldb], stat, info);
+	        sp_ztrsv("L", "T", "U", L, U, &Bmat[k*ldb], stat, (int*)info);
 	    }
          } else { /* trans == CONJ */
             for (k = 0; k < nrhs; ++k) {                
                 /* Multiply by conj(inv(U')). */
-                sp_ztrsv("U", "C", "N", L, U, &Bmat[k*ldb], stat, info);
+                sp_ztrsv("U", "C", "N", L, U, &Bmat[k*ldb], stat, (int*)info);
                 
                 /* Multiply by conj(inv(L')). */
-                sp_ztrsv("L", "C", "U", L, U, &Bmat[k*ldb], stat, info);
+                sp_ztrsv("L", "C", "U", L, U, &Bmat[k*ldb], stat, (int*)info);
 	    }
          }
 	/* Compute the final solution X := Pr'*X (=inv(Pr)*X) */
@@ -344,10 +344,10 @@ zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
  * Diagnostic print of the solution vector 
  */
 void
-zprint_soln(int n, int nrhs, doublecomplex *soln)
+zprint_soln(int_t n, int_t nrhs, doublecomplex *soln)
 {
-    int i;
+    int_t i;
 
     for (i = 0; i < n; i++)
-  	printf("\t%d: %.4f\t%.4f\n", i, soln[i].r, soln[i].i);
+  	printf("\t%lld: %.4f\t%.4f\n", i, soln[i].r, soln[i].i);
 }

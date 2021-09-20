@@ -32,15 +32,15 @@ at the top-level directory.
  */
 
 void
-sreadMM(FILE *fp, int *m, int *n, int *nonz,
-	    float **nzval, int **rowind, int **colptr)
+sreadMM(FILE *fp, int_t *m, int_t *n, int_t *nonz,
+	    float **nzval, int_t **rowind, int_t **colptr)
 {
     int_t    j, k, jsize, nnz, nz, new_nonz;
     float *a, *val;
     int_t    *asub, *xa, *row, *col;
     int_t    zero_base = 0;
     char *p, line[512], banner[64], mtx[64], crd[64], arith[64], sym[64];
-    int expand;
+    int_t expand;
 
     /* 	File format:
      *    %%MatrixMarket matrix coordinate real general/symmetric/...
@@ -205,7 +205,7 @@ sreadMM(FILE *fp, int *m, int *n, int *nonz,
     SUPERLU_FREE(col);
 
 #ifdef CHK_INPUT
-    int i;
+    int_t i;
     for (i = 0; i < *n; i++) {
 	printf("Col %d, xa %d\n", i, xa[i]);
 	for (k = xa[i]; k < xa[i+1]; k++)
@@ -216,10 +216,10 @@ sreadMM(FILE *fp, int *m, int *n, int *nonz,
 }
 
 
-static void sreadrhs(int m, float *b)
+static void sreadrhs(int_t m, float *b)
 {
     FILE *fp, *fopen();
-    int i;
+    int_t i;
 
     if ( !(fp = fopen("b.dat", "r")) ) {
         fprintf(stderr, "sreadrhs: file does not exist\n");

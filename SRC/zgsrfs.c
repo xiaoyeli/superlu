@@ -139,9 +139,9 @@ at the top-level directory.
  */
 void
 zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
-       int *perm_c, int *perm_r, char *equed, double *R, double *C,
+       int_t *perm_c, int_t *perm_r, char *equed, double *R, double *C,
        SuperMatrix *B, SuperMatrix *X, double *ferr, double *berr,
-       SuperLUStat_t *stat, int *info)
+       SuperLUStat_t *stat, int_t *info)
 {
 
 
@@ -158,17 +158,17 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
     SuperMatrix Bjcol;
     DNformat *Bstore, *Xstore, *Bjcol_store;
     doublecomplex   *Bmat, *Xmat, *Bptr, *Xptr;
-    int      kase;
+    int_t      kase;
     double   safe1, safe2;
-    int      i, j, k, irow, nz, count, notran, rowequ, colequ;
-    int      ldb, ldx, nrhs;
+    int_t      i, j, k, irow, nz, count, notran, rowequ, colequ;
+    int_t      ldb, ldx, nrhs;
     double   s, xk, lstres, eps, safmin;
     char     transc[1];
     trans_t  transt;
     doublecomplex   *work;
     double   *rwork;
-    int      *iwork;
-    int      isave[3];
+    int_t      *iwork;
+    int_t      isave[3];
 
     extern int zlacon2_(int *, doublecomplex *, doublecomplex *, double *, int *, int []);
 #ifdef _CRAY
@@ -210,7 +210,7 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 	*info = -11;
     if (*info != 0) {
 	i = -(*info);
-	input_error("zgsrfs", &i);
+	input_error("zgsrfs", (int*)&i);
 	return;
     }
 
@@ -292,7 +292,7 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 #ifdef _CRAY
 	    CCOPY(&A->nrow, Bptr, &ione, work, &ione);
 #else
-	    zcopy_(&A->nrow, Bptr, &ione, work, &ione);
+	    zcopy_((int*)&A->nrow, Bptr, (int*)&ione, work, (int*)&ione);
 #endif
 	    sp_zgemv(transc, ndone, A, Xptr, ione, done, work, ione);
 
@@ -348,8 +348,8 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 		CAXPY(&A->nrow, &done, work, &ione,
 		       &Xmat[j*ldx], &ione);
 #else
-		zaxpy_(&A->nrow, &done, work, &ione,
-		       &Xmat[j*ldx], &ione);
+		zaxpy_((int*)&A->nrow, &done, work, (int*)&ione,
+		       &Xmat[j*ldx], (int*)&ione);
 #endif
 		lstres = berr[j];
 		++count;
@@ -409,7 +409,7 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
 	kase = 0;
 
 	do {
-	    zlacon2_(&A->nrow, &work[A->nrow], work, &ferr[j], &kase, isave);
+	    zlacon2_((int*)&A->nrow, &work[A->nrow], work, &ferr[j], (int*)&kase, (int*)isave);
 	    if (kase == 0) break;
 
 	    if (kase == 1) {

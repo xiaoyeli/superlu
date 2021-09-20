@@ -67,39 +67,39 @@ at the top-level directory.
 
 void
 spanel_dfs (
-	   const int  m,           /* in - number of rows in the matrix */
-	   const int  w,           /* in */
-	   const int  jcol,        /* in */
+	   const int_t  m,           /* in - number of rows in the matrix */
+	   const int_t  w,           /* in */
+	   const int_t  jcol,        /* in */
 	   SuperMatrix *A,       /* in - original matrix */
-	   int        *perm_r,     /* in */
-	   int        *nseg,	   /* out */
+	   int_t        *perm_r,     /* in */
+	   int_t        *nseg,	   /* out */
 	   float     *dense,      /* out */
-	   int        *panel_lsub, /* out */
-	   int        *segrep,     /* out */
-	   int        *repfnz,     /* out */
-	   int        *xprune,     /* out */
-	   int        *marker,     /* out */     
-	   int        *parent,     /* working array */
-	   int        *xplore,     /* working array */
+	   int_t        *panel_lsub, /* out */
+	   int_t        *segrep,     /* out */
+	   int_t        *repfnz,     /* out */
+	   int_t        *xprune,     /* out */
+	   int_t        *marker,     /* out */     
+	   int_t        *parent,     /* working array */
+	   int_t        *xplore,     /* working array */
 	   GlobalLU_t *Glu         /* modified */
 	   )
 {
 
     NCPformat *Astore;
     float    *a;
-    int       *asub;
-    int       *xa_begin, *xa_end;
-    int	      krep, chperm, chmark, chrep, oldrep, kchild, myfnz;
-    int       k, krow, kmark, kperm;
-    int       xdfs, maxdfs, kpar;
-    int       jj;	   /* index through each column in the panel */
-    int       *marker1;	   /* marker1[jj] >= jcol if vertex jj was visited 
+    int_t       *asub;
+    int_t       *xa_begin, *xa_end;
+    int_t	      krep, chperm, chmark, chrep, oldrep, kchild, myfnz;
+    int_t       k, krow, kmark, kperm;
+    int_t       xdfs, maxdfs, kpar;
+    int_t       jj;	   /* index through each column in the panel */
+    int_t       *marker1;	   /* marker1[jj] >= jcol if vertex jj was visited 
 			      by a previous column within this panel.   */
-    int       *repfnz_col; /* start of each column in the panel */
+    int_t       *repfnz_col; /* start of each column in the panel */
     float    *dense_col;  /* start of each column in the panel */
-    int       nextl_col;   /* next available position in panel_lsub[*,jj] */
-    int       *xsup, *supno;
-    int       *lsub, *xlsub;
+    int_t       nextl_col;   /* next available position in panel_lsub[*,jj] */
+    int_t       *xsup, *supno;
+    int_t       *lsub, *xlsub;
 
     /* Initialize pointers */
     Astore     = A->Store;

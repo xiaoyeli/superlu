@@ -23,12 +23,12 @@ at the top-level directory.
  * Convert a full matrix into a sparse matrix format. 
  */
 int
-sp_sconvert(int m, int n, float *A, int lda, int kl, int ku,
-	   float *a, int *asub, int *xa, int *nnz)
+sp_sconvert(int_t m, int_t n, float *A, int lda, int kl, int ku,
+	   float *a, int_t *asub, int_t *xa, int_t *nnz)
 {
     int     lasta = 0;
     int     i, j, ilow, ihigh;
-    int     *row;
+    int_t     *row;
     float  *val;
 
     for (j = 0; j < n; ++j) {

@@ -32,13 +32,13 @@ at the top-level directory.
 
 #include "slu_sdefs.h"
 
-int
+int_t
 scopy_to_ucol(
-	      int        jcol,	  /* in */
-	      int        nseg,	  /* in */
-	      int        *segrep,  /* in */
-	      int        *repfnz,  /* in */
-	      int        *perm_r,  /* in */
+	      int_t        jcol,	  /* in */
+	      int_t        nseg,	  /* in */
+	      int_t        *segrep,  /* in */
+	      int_t        *repfnz,  /* in */
+	      int_t        *perm_r,  /* in */
 	      float     *dense,   /* modified - reset to zero on return */
 	      GlobalLU_t *Glu      /* modified */
 	      )
@@ -46,16 +46,16 @@ scopy_to_ucol(
 /* 
  * Gather from SPA dense[*] to global ucol[*].
  */
-    int ksub, krep, ksupno;
-    int i, k, kfnz, segsze;
-    int fsupc, isub, irow;
-    int jsupno, nextu;
-    int new_next, mem_error;
-    int       *xsup, *supno;
-    int       *lsub, *xlsub;
+    int_t ksub, krep, ksupno;
+    int_t i, k, kfnz, segsze;
+    int_t fsupc, isub, irow;
+    int_t jsupno, nextu;
+    int_t new_next, mem_error;
+    int_t       *xsup, *supno;
+    int_t       *lsub, *xlsub;
     float    *ucol;
-    int       *usub, *xusub;
-    int       nzumax;
+    int_t       *usub, *xusub;
+    int_t       nzumax;
     float zero = 0.0;
 
     xsup    = Glu->xsup;

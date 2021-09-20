@@ -82,15 +82,15 @@ at the top-level directory.
 
 void
 zgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
-       double anorm, double *rcond, SuperLUStat_t *stat, int *info)
+       double anorm, double *rcond, SuperLUStat_t *stat, int_t *info)
 {
 
 
     /* Local variables */
-    int    kase, kase1, onenrm, i;
+    int_t    kase, kase1, onenrm, i;
     double ainvnm;
     doublecomplex *work;
-    int    isave[3];
+    int_t    isave[3];
     extern int zrscl_(int *, doublecomplex *, doublecomplex *, int *);
 
     extern int zlacon2_(int *, doublecomplex *, doublecomplex *, double *, int *, int []);
@@ -108,7 +108,7 @@ zgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
 	*info = -3;
     if (*info != 0) {
 	i = -(*info);
-	input_error("zgscon", &i);
+	input_error("zgscon", (int*)&i);
 	return;
     }
 
@@ -132,24 +132,24 @@ zgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     kase = 0;
 
     do {
-	zlacon2_(&L->nrow, &work[L->nrow], &work[0], &ainvnm, &kase, isave);
+	zlacon2_((int*)&L->nrow, &work[L->nrow], &work[0], &ainvnm, (int*)&kase, (int*)isave);
 
 	if (kase == 0) break;
 
 	if (kase == kase1) {
 	    /* Multiply by inv(L). */
-	    sp_ztrsv("L", "No trans", "Unit", L, U, &work[0], stat, info);
+	    sp_ztrsv("L", "No trans", "Unit", L, U, &work[0], stat, (int*)info);
 
 	    /* Multiply by inv(U). */
-	    sp_ztrsv("U", "No trans", "Non-unit", L, U, &work[0], stat, info);
+	    sp_ztrsv("U", "No trans", "Non-unit", L, U, &work[0], stat, (int*)info);
 	    
 	} else {
 
 	    /* Multiply by inv(U'). */
-	    sp_ztrsv("U", "Transpose", "Non-unit", L, U, &work[0], stat, info);
+	    sp_ztrsv("U", "Transpose", "Non-unit", L, U, &work[0], stat,(int*) info);
 
 	    /* Multiply by inv(L'). */
-	    sp_ztrsv("L", "Transpose", "Unit", L, U, &work[0], stat, info);
+	    sp_ztrsv("L", "Transpose", "Unit", L, U, &work[0], stat, (int*)info);
 	    
 	}
 

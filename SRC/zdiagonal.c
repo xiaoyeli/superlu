@@ -21,19 +21,19 @@ at the top-level directory.
 
 #include "slu_zdefs.h"
 
-int zfill_diag(int n, NCformat *Astore)
+int_t zfill_diag(int_t n, NCformat *Astore)
 /* fill explicit zeros on the diagonal entries, so that the matrix is not
    structurally singular. */
 {
     doublecomplex *nzval = (doublecomplex *)Astore->nzval;
-    int *rowind = Astore->rowind;
-    int *colptr = Astore->colptr;
-    int nnz = colptr[n];
-    int fill = 0;
+    int_t *rowind = Astore->rowind;
+    int_t *colptr = Astore->colptr;
+    int_t nnz = colptr[n];
+    int_t fill = 0;
     doublecomplex *nzval_new;
     doublecomplex zero = {0.0, 0.0};
-    int *rowind_new;
-    int i, j, diag;
+    int_t *rowind_new;
+    int_t i, j, diag;
 
     for (i = 0; i < n; i++)
     {
@@ -72,17 +72,17 @@ int zfill_diag(int n, NCformat *Astore)
     return fill;
 }
 
-int zdominate(int n, NCformat *Astore)
+int_t zdominate(int_t n, NCformat *Astore)
 /* make the matrix diagonally dominant */
 {
     doublecomplex *nzval = (doublecomplex *)Astore->nzval;
-    int *rowind = Astore->rowind;
-    int *colptr = Astore->colptr;
-    int nnz = colptr[n];
-    int fill = 0;
+    int_t *rowind = Astore->rowind;
+    int_t *colptr = Astore->colptr;
+    int_t nnz = colptr[n];
+    int_t fill = 0;
     doublecomplex *nzval_new;
-    int *rowind_new;
-    int i, j, diag;
+    int_t *rowind_new;
+    int_t i, j, diag;
     double s;
 
     for (i = 0; i < n; i++)

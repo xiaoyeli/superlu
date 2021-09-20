@@ -113,7 +113,7 @@ sp_dtrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
     else if ( U->nrow != U->ncol || U->nrow < 0 ) *info = -5;
     if ( *info ) {
 	i = -(*info);
-	input_error("sp_dtrsv", &i);
+	input_error("sp_dtrsv", (int*)&i);
 	return 0;
     }
 
@@ -395,7 +395,7 @@ sp_dgemv(char *trans, double alpha, SuperMatrix *A, double *x,
     else if (incx == 0) info = 5;
     else if (incy == 0)	info = 8;
     if (info != 0) {
-	input_error("sp_dgemv ", &info);
+	input_error("sp_dgemv ", (int*)&info);
 	return 0;
     }
 

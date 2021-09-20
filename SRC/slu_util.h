@@ -320,12 +320,12 @@ typedef struct {
 } LU_stack_t;
 
 typedef struct {
-    int     *panel_histo; /* histogram of panel size distribution */
+    int_t     *panel_histo; /* histogram of panel size distribution */
     double  *utime;       /* running time at various phases */
     flops_t *ops;         /* operation count at various phases */
-    int     TinyPivots;   /* number of tiny pivots */
-    int     RefineSteps;  /* number of iterative refinement steps */
-    int     expansions;   /* number of memory expansions */
+    int_t     TinyPivots;   /* number of tiny pivots */
+    int_t     RefineSteps;  /* number of iterative refinement steps */
+    int_t     expansions;   /* number of memory expansions */
 } SuperLUStat_t;
 
 typedef struct {
@@ -335,21 +335,21 @@ typedef struct {
 
 
 typedef struct {
-    int     *xsup;    /* supernode and column mapping */
-    int     *supno;   
-    int     *lsub;    /* compressed L subscripts */
-    int	    *xlsub;
+    int_t     *xsup;    /* supernode and column mapping */
+    int_t     *supno;   
+    int_t     *lsub;    /* compressed L subscripts */
+    int_t	    *xlsub;
     void    *lusup;   /* L supernodes */
-    int     *xlusup;
+    int_t     *xlusup;
     void    *ucol;    /* U columns */
-    int     *usub;
-    int	    *xusub;
-    int     nzlmax;   /* current max size of lsub */
-    int     nzumax;   /*    "    "    "      ucol */
-    int     nzlumax;  /*    "    "    "     lusup */
-    int     n;        /* number of columns in the matrix */
+    int_t     *usub;
+    int_t	    *xusub;
+    int_t     nzlmax;   /* current max size of lsub */
+    int_t     nzumax;   /*    "    "    "      ucol */
+    int_t     nzlumax;  /*    "    "    "     lusup */
+    int_t     n;        /* number of columns in the matrix */
     LU_space_t MemModel; /* 0 - system malloc'd; 1 - user provided */
-    int     num_expansions;
+    int_t     num_expansions;
     ExpHeader *expanders; /* Array of pointers to 4 types of memory */
     LU_stack_t stack;     /* use user supplied memory */
 } GlobalLU_t;
@@ -371,33 +371,33 @@ extern void    Destroy_CompRow_Matrix(SuperMatrix *);
 extern void    Destroy_SuperNode_Matrix(SuperMatrix *);
 extern void    Destroy_CompCol_Permuted(SuperMatrix *);
 extern void    Destroy_Dense_Matrix(SuperMatrix *);
-extern void    get_perm_c(int, SuperMatrix *, int *);
+extern void    get_perm_c(int_t, SuperMatrix *, int_t *);
 extern void    set_default_options(superlu_options_t *options);
 extern void    ilu_set_default_options(superlu_options_t *options);
-extern void    sp_preorder (superlu_options_t *, SuperMatrix*, int*, int*,
+extern void    sp_preorder (superlu_options_t *, SuperMatrix*, int_t*, int_t*,
 			    SuperMatrix*);
 extern void    superlu_abort_and_exit(char*);
-extern void    *superlu_malloc (size_t);
-extern int     *intMalloc (int);
-extern int     *intCalloc (int);
+extern void    *superlu_malloc (int_t);
+extern int_t     *intMalloc (int_t);
+extern int_t     *intCalloc (int_t);
 extern void    superlu_free (void*);
-extern void    SetIWork (int, int, int, int *, int **, int **, int **,
-                         int **, int **, int **, int **);
-extern int     sp_coletree (int *, int *, int *, int, int, int *);
-extern void    relax_snode (const int, int *, const int, int *, int *);
-extern void    heap_relax_snode (const int, int *, const int, int *, int *);
-extern int     mark_relax(int, int *, int *, int *, int *, int *, int *);
-extern void    ilu_relax_snode (const int, int *, const int, int *,
-				int *, int *);
-extern void    ilu_heap_relax_snode (const int, int *, const int, int *,
-				     int *, int*);
-extern void    resetrep_col (const int, const int *, int *);
+extern void    SetIWork (int_t, int_t, int_t, int_t *, int_t **, int_t **, int_t **,
+                         int_t **, int_t **, int_t **, int_t **);
+extern int_t     sp_coletree (int_t *, int_t *, int_t *, int_t, int_t, int_t *);
+extern void    relax_snode (const int_t, int_t *, const int_t, int_t *, int_t *);
+extern void    heap_relax_snode (const int_t, int_t *, const int_t, int_t *, int_t *);
+extern int_t     mark_relax(int_t, int_t *, int_t *, int_t *, int_t *, int_t *, int_t *);
+extern void    ilu_relax_snode (const int_t, int_t *, const int_t, int_t *,
+				int_t *, int_t *);
+extern void    ilu_heap_relax_snode (const int_t, int_t *, const int_t, int_t *,
+				     int_t *, int_t*);
+extern void    resetrep_col (const int_t, const int_t *, int_t *);
 extern int     spcoletree (int *, int *, int *, int, int, int *);
-extern int     *TreePostorder (int, int *);
+extern int_t     *TreePostorder (int_t, int_t *);
 extern double  SuperLU_timer_ ();
 extern int     sp_ienv (int);
 extern int     xerbla_ (char *, int *);
-extern void    ifill (int *, int, int);
+extern void    ifill (int_t *, int_t, int_t);
 extern void    snode_profile (int, int *);
 extern void    super_stats (int, int *);
 extern void    check_repfnz(int, int, int, int *);

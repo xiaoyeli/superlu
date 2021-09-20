@@ -34,7 +34,7 @@ extern int idamax_(int *, double [], int *);
 static double *A;  /* used in _compare_ only */
 static int _compare_(const void *a, const void *b)
 {
-    register int *x = (int *)a, *y = (int *)b;
+    register int_t *x = (int_t *)a, *y = (int_t *)b;
     if (A[*x] - A[*y] > 0.0) return -1;
     else if (A[*x] - A[*y] < 0.0) return 1;
     else return 0;
@@ -48,13 +48,13 @@ static int _compare_(const void *a, const void *b)
  *    supernode (L-part only).
  * </pre>
  */
-int ilu_ddrop_row(
+int_t ilu_ddrop_row(
 	superlu_options_t *options, /* options */
-	int    first,	    /* index of the first column in the supernode */
-	int    last,	    /* index of the last column in the supernode */
+	int_t    first,	    /* index of the first column in the supernode */
+	int_t    last,	    /* index of the last column in the supernode */
 	double drop_tol,    /* dropping parameter */
-	int    quota,	    /* maximum nonzero entries allowed */
-	int    *nnzLj,	    /* in/out number of nonzeros in L(:, 1:last) */
+	int_t    quota,	    /* maximum nonzero entries allowed */
+	int_t    *nnzLj,	    /* in/out number of nonzeros in L(:, 1:last) */
 	double *fill_tol,   /* in/out - on exit, fill_tol=-num_zero_pivots,
 			     * does not change if options->ILU_MILU != SMILU1 */
 	GlobalLU_t *Glu,    /* modified */
@@ -63,31 +63,31 @@ int ilu_ddrop_row(
 			     * the number of rows in the supernode */
 	double dwork2[], /* working space with the same size as dwork[],
 			     * used only by the second dropping rule */
-	int    lastc	    /* if lastc == 0, there is nothing after the
+	int_t    lastc	    /* if lastc == 0, there is nothing after the
 			     * working supernode [first:last];
 			     * if lastc == 1, there is one more column after
 			     * the working supernode. */ )
 {
-    register int i, j, k, m1;
-    register int nzlc; /* number of nonzeros in column last+1 */
-    register int xlusup_first, xlsub_first;
-    int m, n; /* m x n is the size of the supernode */
-    int r = 0; /* number of dropped rows */
+    register int_t i, j, k, m1;
+    register int_t nzlc; /* number of nonzeros in column last+1 */
+    register int_t xlusup_first, xlsub_first;
+    int_t m, n; /* m x n is the size of the supernode */
+    int_t r = 0; /* number of dropped rows */
     register double *temp;
     register double *lusup = (double *) Glu->lusup;
-    register int *lsub = Glu->lsub;
-    register int *xlsub = Glu->xlsub;
-    register int *xlusup = Glu->xlusup;
+    register int_t *lsub = Glu->lsub;
+    register int_t *xlsub = Glu->xlsub;
+    register int_t *xlusup = Glu->xlusup;
     register double d_max = 0.0, d_min = 1.0;
-    int    drop_rule = options->ILU_DropRule;
+    int_t    drop_rule = options->ILU_DropRule;
     milu_t milu = options->ILU_MILU;
     norm_t nrm = options->ILU_Norm;
     double zero = 0.0;
     double one = 1.0;
     double none = -1.0;
-    int i_1 = 1;
-    int inc_diag; /* inc_diag = m + 1 */
-    int nzp = 0;  /* number of zero pivots */
+    int_t i_1 = 1;
+    int_t inc_diag; /* inc_diag = m + 1 */
+    int_t nzp = 0;  /* number of zero pivots */
     double alpha = pow((double)(Glu->n), -1.0 / options->ILU_MILU_Dim);
 
     xlusup_first = xlusup[first];
@@ -113,15 +113,15 @@ int ilu_ddrop_row(
 	switch (nrm)
 	{
 	    case ONE_NORM:
-		temp[i] = dasum_(&n, &lusup[xlusup_first + i], &m) / (double)n;
+		temp[i] = dasum_((int*)&n, &lusup[xlusup_first + i], (int*)&m) / (double)n;
 		break;
 	    case TWO_NORM:
-		temp[i] = dnrm2_(&n, &lusup[xlusup_first + i], &m)
+		temp[i] = dnrm2_((int*)&n, &lusup[xlusup_first + i], (int*)&m)
 		    / sqrt((double)n);
 		break;
 	    case INF_NORM:
 	    default:
-		k = idamax_(&n, &lusup[xlusup_first + i], &m) - 1;
+		k = idamax_((int*)&n, &lusup[xlusup_first + i], (int*)&m) - 1;
 		temp[i] = fabs(lusup[xlusup_first + i + m * k]);
 		break;
 	}
@@ -138,8 +138,8 @@ int ilu_ddrop_row(
 		{
 		    case SMILU_1:
 		    case SMILU_2:
-			daxpy_(&n, &one, &lusup[xlusup_first + i], &m,
-				&lusup[xlusup_first + m - 1], &m);
+			daxpy_((int*)&n, &one, &lusup[xlusup_first + i], (int*)&m,
+				&lusup[xlusup_first + m - 1], (int*)&m);
 			break;
 		    case SMILU_3:
 			for (j = 0; j < n; j++)
@@ -150,13 +150,13 @@ int ilu_ddrop_row(
 		    default:
 			break;
 		}
-		dcopy_(&n, &lusup[xlusup_first + m1], &m,
-                       &lusup[xlusup_first + i], &m);
+		dcopy_((int*)&n, &lusup[xlusup_first + m1], (int*)&m,
+                       &lusup[xlusup_first + i], (int*)&m);
 	    } /* if (r > 1) */
 	    else /* move to last row */
 	    {
-		dswap_(&n, &lusup[xlusup_first + m1], &m,
-			&lusup[xlusup_first + i], &m);
+		dswap_((int*)&n, &lusup[xlusup_first + m1], (int*)&m,
+			&lusup[xlusup_first + i], (int*)&m);
 		if (milu == SMILU_3)
 		    for (j = 0; j < n; j++) {
 			lusup[xlusup_first + m1 + j * m] =
@@ -191,8 +191,8 @@ int ilu_ddrop_row(
 	    }
 	    else /* by quick select */
 	    {
-		int len = m1 - n + 1;
-		dcopy_(&len, dwork, &i_1, dwork2, &i_1);
+		int_t len = m1 - n + 1;
+		dcopy_((int*)&len, dwork, (int*)&i_1, dwork2, (int*)&i_1);
 		tol = dqselect(len, dwork2, quota - n);
 #if 0
 		register int *itemp = iwork - n;
@@ -208,7 +208,7 @@ int ilu_ddrop_row(
 	{
 	    if (temp[i] <= tol)
 	    {
-		register int j;
+		register int_t j;
 		r++;
 		/* drop the current row and move the last undropped row here */
 		if (r > 1) /* add to last row */
@@ -218,8 +218,8 @@ int ilu_ddrop_row(
 		    {
 			case SMILU_1:
 			case SMILU_2:
-			    daxpy_(&n, &one, &lusup[xlusup_first + i], &m,
-				    &lusup[xlusup_first + m - 1], &m);
+			    daxpy_((int*)&n, &one, &lusup[xlusup_first + i], (int*)&m,
+				    &lusup[xlusup_first + m - 1], (int*)&m);
 			    break;
 			case SMILU_3:
 			    for (j = 0; j < n; j++)
@@ -230,13 +230,13 @@ int ilu_ddrop_row(
 			default:
 			    break;
 		    }
-		    dcopy_(&n, &lusup[xlusup_first + m1], &m,
-			    &lusup[xlusup_first + i], &m);
+		    dcopy_((int*)&n, &lusup[xlusup_first + m1], (int*)&m,
+			    &lusup[xlusup_first + i], (int*)&m);
 		} /* if (r > 1) */
 		else /* move to last row */
 		{
-		    dswap_(&n, &lusup[xlusup_first + m1], &m,
-			    &lusup[xlusup_first + i], &m);
+		    dswap_((int*)&n, &lusup[xlusup_first + m1], (int*)&m,
+			    &lusup[xlusup_first + i], (int*)&m);
 		    if (milu == SMILU_3)
 			for (j = 0; j < n; j++) {
 			    lusup[xlusup_first + m1 + j * m] =
@@ -266,7 +266,7 @@ int ilu_ddrop_row(
     /* add dropped entries to the diagnal */
     if (milu != SILU)
     {
-	register int j;
+	register int_t j;
 	double t;
 	double omega;
 	for (j = 0; j < n; j++)
@@ -313,7 +313,7 @@ int ilu_ddrop_row(
     m1 = m - r;
     for (j = 1; j < n; j++)
     {
-	register int tmp1, tmp2;
+	register int_t tmp1, tmp2;
 	tmp1 = xlusup_first + j * m1;
 	tmp2 = xlusup_first + j * m;
 	for (i = 0; i < m1; i++)

@@ -82,9 +82,9 @@ at the top-level directory.
  *             If *info = -i, the i-th argument had an illegal value.
  * </pre>
  */
-int
+int_t
 sp_strsv(char *uplo, char *trans, char *diag, SuperMatrix *L, 
-         SuperMatrix *U, float *x, SuperLUStat_t *stat, int *info)
+         SuperMatrix *U, float *x, SuperLUStat_t *stat, int_t *info)
 {
 #ifdef _CRAY
     _fcd ftcs1 = _cptofcd("L", strlen("L")),
@@ -94,11 +94,11 @@ sp_strsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
     SCformat *Lstore;
     NCformat *Ustore;
     float   *Lval, *Uval;
-    int incx = 1, incy = 1;
+    int_t incx = 1, incy = 1;
     float alpha = 1.0, beta = 1.0;
-    int nrow;
-    int fsupc, nsupr, nsupc, luptr, istart, irow;
-    int i, k, iptr, jcol;
+    int_t nrow;
+    int_t fsupc, nsupr, nsupc, luptr, istart, irow;
+    int_t i, k, iptr, jcol;
     float *work;
     flops_t solve_ops;
 
@@ -113,7 +113,7 @@ sp_strsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
     else if ( U->nrow != U->ncol || U->nrow < 0 ) *info = -5;
     if ( *info ) {
 	i = -(*info);
-	input_error("sp_strsv", &i);
+	input_error("sp_strsv", (int*)&i);
 	return 0;
     }
 
@@ -158,11 +158,11 @@ sp_strsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    SGEMV(ftcs2, &nrow, &nsupc, &alpha, &Lval[luptr+nsupc], 
 		       	&nsupr, &x[fsupc], &incx, &beta, &work[0], &incy);
 #else
-		    strsv_("L", "N", "U", &nsupc, &Lval[luptr], &nsupr,
-		       	&x[fsupc], &incx);
+		    strsv_("L", "N", "U", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+		       	&x[fsupc], (int*)&incx);
 		
-		    sgemv_("N", &nrow, &nsupc, &alpha, &Lval[luptr+nsupc], 
-		       	&nsupr, &x[fsupc], &incx, &beta, &work[0], &incy);
+		    sgemv_("N", (int*)&nrow, (int*)&nsupc, &alpha, &Lval[luptr+nsupc], 
+		       	(int*)&nsupr, &x[fsupc], (int*)&incx, &beta, &work[0], (int*)&incy);
 #endif
 #else
 		    slsolve ( nsupr, nsupc, &Lval[luptr], &x[fsupc]);
@@ -206,8 +206,8 @@ sp_strsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    STRSV(ftcs3, ftcs2, ftcs2, &nsupc, &Lval[luptr], &nsupr,
 		       &x[fsupc], &incx);
 #else
-		    strsv_("U", "N", "N", &nsupc, &Lval[luptr], &nsupr,
-                           &x[fsupc], &incx);
+		    strsv_("U", "N", "N", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+                           &x[fsupc], (int*)&incx);
 #endif
 #else		
 		    susolve ( nsupr, nsupc, &Lval[luptr], &x[fsupc] );
@@ -259,8 +259,8 @@ sp_strsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    STRSV(ftcs1, ftcs2, ftcs3, &nsupc, &Lval[luptr], &nsupr,
 			&x[fsupc], &incx);
 #else
-		    strsv_("L", "T", "U", &nsupc, &Lval[luptr], &nsupr,
-			&x[fsupc], &incx);
+		    strsv_("L", "T", "U", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+			&x[fsupc], (int*)&incx);
 #endif
 		}
 	    }
@@ -294,8 +294,8 @@ sp_strsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
 		    STRSV( ftcs1, ftcs2, ftcs3, &nsupc, &Lval[luptr], &nsupr,
 			    &x[fsupc], &incx);
 #else
-		    strsv_("U", "T", "N", &nsupc, &Lval[luptr], &nsupr,
-			    &x[fsupc], &incx);
+		    strsv_("U", "T", "N", (int*)&nsupc, &Lval[luptr], (int*)&nsupr,
+			    &x[fsupc], (int*)&incx);
 #endif
 		}
 	    } /* for k ... */
@@ -395,7 +395,7 @@ sp_sgemv(char *trans, float alpha, SuperMatrix *A, float *x,
     else if (incx == 0) info = 5;
     else if (incy == 0)	info = 8;
     if (info != 0) {
-	input_error("sp_sgemv ", &info);
+	input_error("sp_sgemv ", (int*)&info);
 	return 0;
     }
 

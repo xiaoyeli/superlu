@@ -82,19 +82,19 @@ at the top-level directory.
 
 void
 dgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
-       double anorm, double *rcond, SuperLUStat_t *stat, int *info)
+       double anorm, double *rcond, SuperLUStat_t *stat, int_t *info)
 {
 
 
     /* Local variables */
-    int    kase, kase1, onenrm, i;
+    int_t    kase, kase1, onenrm, i;
     double ainvnm;
     double *work;
-    int    *iwork;
-    int    isave[3];
+    int_t    *iwork;
+    int_t    isave[3];
     extern int drscl_(int *, double *, double *, int *);
 
-    extern int dlacon2_(int *, double *, double *, int *, double *, int *, int []);
+    extern int_t dlacon2_(int_t *, double *, double *, int_t *, double *, int_t *, int_t []);
 
     
     /* Test the input parameters. */
@@ -109,7 +109,7 @@ dgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
 	*info = -3;
     if (*info != 0) {
 	i = -(*info);
-	input_error("dgscon", &i);
+	input_error("dgscon", (int*)&i);
 	return;
     }
 
@@ -140,18 +140,18 @@ dgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
 
 	if (kase == kase1) {
 	    /* Multiply by inv(L). */
-	    sp_dtrsv("L", "No trans", "Unit", L, U, &work[0], stat, info);
+	    sp_dtrsv("L", "No trans", "Unit", L, U, &work[0], stat, (int*)info);
 
 	    /* Multiply by inv(U). */
-	    sp_dtrsv("U", "No trans", "Non-unit", L, U, &work[0], stat, info);
+	    sp_dtrsv("U", "No trans", "Non-unit", L, U, &work[0], stat, (int*)info);
 	    
 	} else {
 
 	    /* Multiply by inv(U'). */
-	    sp_dtrsv("U", "Transpose", "Non-unit", L, U, &work[0], stat, info);
+	    sp_dtrsv("U", "Transpose", "Non-unit", L, U, &work[0], stat, (int*)info);
 
 	    /* Multiply by inv(L'). */
-	    sp_dtrsv("L", "Transpose", "Unit", L, U, &work[0], stat, info);
+	    sp_dtrsv("L", "Transpose", "Unit", L, U, &work[0], stat, (int*)info);
 	    
 	}
 

@@ -354,26 +354,26 @@ at the top-level directory.
  */
 
 void
-cgssvx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
-       int *etree, char *equed, float *R, float *C,
-       SuperMatrix *L, SuperMatrix *U, void *work, int lwork,
+cgssvx(superlu_options_t *options, SuperMatrix *A, int_t *perm_c, int_t *perm_r,
+       int_t *etree, char *equed, float *R, float *C,
+       SuperMatrix *L, SuperMatrix *U, void *work, int_t lwork,
        SuperMatrix *B, SuperMatrix *X, float *recip_pivot_growth, 
        float *rcond, float *ferr, float *berr, 
-       GlobalLU_t *Glu, mem_usage_t *mem_usage, SuperLUStat_t *stat, int *info )
+       GlobalLU_t *Glu, mem_usage_t *mem_usage, SuperLUStat_t *stat, int_t *info )
 {
 
 
     DNformat  *Bstore, *Xstore;
     complex    *Bmat, *Xmat;
-    int       ldb, ldx, nrhs;
+    int_t       ldb, ldx, nrhs;
     SuperMatrix *AA;/* A in SLU_NC format used by the factorization routine.*/
     SuperMatrix AC; /* Matrix postmultiplied by Pc */
-    int       colequ, equil, nofact, notran, rowequ, permc_spec;
+    int_t       colequ, equil, nofact, notran, rowequ, permc_spec;
     trans_t   trant;
     char      norm[1];
-    int       i, j, info1;
+    int_t       i, j, info1;
     float    amax, anorm, bignum, smlnum, colcnd, rowcnd, rcmax, rcmin;
-    int       relax, panel_size;
+    int_t       relax, panel_size;
     float    diag_pivot_thresh;
     double    t0;      /* temporary time */
     double    *utime;
@@ -470,7 +470,7 @@ printf("dgssvx: Fact=%4d, Trans=%4d, equed=%c\n",
     }
     if (*info != 0) {
 	i = -(*info);
-	input_error("cgssvx", &i);
+	input_error("cgssvx", (int*)&i);
 	return;
     }
     

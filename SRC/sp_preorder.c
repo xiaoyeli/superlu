@@ -69,13 +69,13 @@ at the top-level directory.
  * </pre>
  */
 void
-sp_preorder(superlu_options_t *options,  SuperMatrix *A, int *perm_c, 
-	    int *etree, SuperMatrix *AC)
+sp_preorder(superlu_options_t *options,  SuperMatrix *A, int_t *perm_c, 
+	    int_t *etree, SuperMatrix *AC)
 {
     NCformat  *Astore;
     NCPformat *ACstore;
-    int       *iwork, *post;
-    register  int n, i;
+    int_t       *iwork, *post;
+    register  int_t n, i;
 
     n = A->ncol;
     
@@ -87,14 +87,16 @@ sp_preorder(superlu_options_t *options,  SuperMatrix *A, int *perm_c,
     AC->nrow        = A->nrow;
     AC->ncol        = A->ncol;
     Astore          = A->Store;
-    ACstore = AC->Store = (void *) SUPERLU_MALLOC( sizeof(NCPformat) );
+    /* ACstore = AC->Store = (void *) SUPERLU_MALLOC( sizeof(NCPformat) ); */
+	ACstore = AC->Store = malloc(sizeof(NCPformat));
     if ( !ACstore ) ABORT("SUPERLU_MALLOC fails for ACstore");
     ACstore->nnz    = Astore->nnz;
     ACstore->nzval  = Astore->nzval;
     ACstore->rowind = Astore->rowind;
-    ACstore->colbeg = (int*) SUPERLU_MALLOC(n*sizeof(int));
+    /* ACstore->colbeg = (int_t*) SUPERLU_MALLOC(n*sizeof(int_t*)); */
+	ACstore->colbeg = (int_t*)calloc(n, sizeof(int_t*));
     if ( !(ACstore->colbeg) ) ABORT("SUPERLU_MALLOC fails for ACstore->colbeg");
-    ACstore->colend = (int*) SUPERLU_MALLOC(n*sizeof(int));
+    ACstore->colend = (int_t*) SUPERLU_MALLOC(n*sizeof(int_t*));
     if ( !(ACstore->colend) ) ABORT("SUPERLU_MALLOC fails for ACstore->colend");
 
 #ifdef DEBUG
@@ -113,8 +115,8 @@ sp_preorder(superlu_options_t *options,  SuperMatrix *A, int *perm_c,
         /*--------------------------------------------
 	  COMPUTE THE ETREE OF Pc*(A'+A)*Pc'.
 	  --------------------------------------------*/
-        int *b_colptr, *b_rowind, bnz, j;
-	int *c_colbeg, *c_colend;
+        int_t *b_colptr, *b_rowind, bnz, j;
+	int_t *c_colbeg, *c_colend;
 
         /*printf("Use etree(A'+A)\n");*/
 
@@ -123,7 +125,7 @@ sp_preorder(superlu_options_t *options,  SuperMatrix *A, int *perm_c,
 		  &bnz, &b_colptr, &b_rowind);
 
 	/* Form C = Pc*B*Pc'. */
-	c_colbeg = (int*) SUPERLU_MALLOC(2*n*sizeof(int));
+	c_colbeg = (int_t*) SUPERLU_MALLOC(2*n*sizeof(int_t));
 	c_colend = c_colbeg + n;
 	if (!c_colbeg ) ABORT("SUPERLU_MALLOC fails for c_colbeg/c_colend");
 	for (i = 0; i < n; i++) {
@@ -157,7 +159,7 @@ sp_preorder(superlu_options_t *options,  SuperMatrix *A, int *perm_c,
 	/* In symmetric mode, do not do postorder here. */
 	if ( options->SymmetricMode == NO ) {
 	    /* Post order etree */
-	    post = (int *) TreePostorder(n, etree);
+	    post = (int_t *) TreePostorder(n, etree);
 	    /* for (i = 0; i < n+1; ++i) inv_post[post[i]] = i;
 	       iwork = post; */
 
@@ -165,7 +167,7 @@ sp_preorder(superlu_options_t *options,  SuperMatrix *A, int *perm_c,
 	    print_int_vec("post:", n+1, post);
 	    check_perm("post", n, post);	
 #endif	
-	    iwork = (int*) SUPERLU_MALLOC((n+1)*sizeof(int)); 
+	    iwork = (int_t*) SUPERLU_MALLOC((n+1)*sizeof(int_t)); 
 	    if ( !iwork ) ABORT("SUPERLU_MALLOC fails for iwork[]");
 
 	    /* Renumber etree in postorder */
@@ -198,12 +200,12 @@ sp_preorder(superlu_options_t *options,  SuperMatrix *A, int *perm_c,
 
 }
 
-int check_perm(char *what, int n, int *perm)
+int_t check_perm(char *what, int_t n, int_t *perm)
 {
-    register int i;
-    int          *marker;
-    /*marker = (int *) calloc(n, sizeof(int));*/
-    marker = (int *) malloc(n * sizeof(int));
+    register int_t i;
+    int_t          *marker;
+    /*marker = (int_t *) calloc(n, sizeof(int_t));*/
+    marker = (int_t *) malloc(n * sizeof(int_t));
     for (i = 0; i < n; ++i) marker[i] = 0;
 
     for (i = 0; i < n; ++i) {

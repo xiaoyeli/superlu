@@ -673,22 +673,22 @@ sallocateA(int n, int nnz, float **a, int **asub, int **xa)
 }
 
 
-float *floatMalloc(int n)
+float *floatMalloc(size_t n)
 {
     float *buf;
-    buf = (float *) SUPERLU_MALLOC((size_t)n * sizeof(float)); 
+    buf = (float *) SUPERLU_MALLOC(n * (size_t) sizeof(float)); 
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC failed for buf in floatMalloc()\n");
     }
     return (buf);
 }
 
-float *floatCalloc(int n)
+float *floatCalloc(size_t n)
 {
     float *buf;
-    register int i;
+    register size_t i;
     float zero = 0.0;
-    buf = (float *) SUPERLU_MALLOC((size_t)n * sizeof(float));
+    buf = (float *) SUPERLU_MALLOC(n * (size_t) sizeof(float));
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC failed for buf in floatCalloc()\n");
     }

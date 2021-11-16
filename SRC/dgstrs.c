@@ -136,9 +136,9 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     }
 
     n = L->nrow;
-    work = doubleCalloc((size_t)n * (size_t)nrhs);
+    work = doubleCalloc((size_t) n * (size_t) nrhs);
     if ( !work ) ABORT("Malloc fails for local work[].");
-    soln = doubleMalloc((size_t)n);
+    soln = doubleMalloc((size_t) n);
     if ( !soln ) ABORT("Malloc fails for local soln[].");
 
     Bmat = Bstore->nzval;

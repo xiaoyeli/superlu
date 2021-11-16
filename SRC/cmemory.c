@@ -673,22 +673,22 @@ callocateA(int n, int nnz, complex **a, int **asub, int **xa)
 }
 
 
-complex *complexMalloc(int n)
+complex *complexMalloc(size_t n)
 {
     complex *buf;
-    buf = (complex *) SUPERLU_MALLOC((size_t)n * sizeof(complex)); 
+    buf = (complex *) SUPERLU_MALLOC(n * (size_t) sizeof(complex)); 
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC failed for buf in complexMalloc()\n");
     }
     return (buf);
 }
 
-complex *complexCalloc(int n)
+complex *complexCalloc(size_t n)
 {
     complex *buf;
-    register int i;
+    register size_t i;
     complex zero = {0.0, 0.0};
-    buf = (complex *) SUPERLU_MALLOC((size_t)n * sizeof(complex));
+    buf = (complex *) SUPERLU_MALLOC(n * (size_t) sizeof(complex));
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC failed for buf in complexCalloc()\n");
     }

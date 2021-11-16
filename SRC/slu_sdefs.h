@@ -237,8 +237,8 @@ extern void    sSetRWork (int, int, float *, float **, float **);
 extern void    sLUWorkFree (int *, float *, GlobalLU_t *);
 extern int     sLUMemXpand (int, int, MemType, int *, GlobalLU_t *);
 
-extern float  *floatMalloc(int);
-extern float  *floatCalloc(int);
+extern float  *floatMalloc(size_t);
+extern float  *floatCalloc(size_t);
 extern int     smemory_usage(const int, const int, const int, const int);
 extern int     sQuerySpace (SuperMatrix *, SuperMatrix *, mem_usage_t *);
 extern int     ilu_sQuerySpace (SuperMatrix *, SuperMatrix *, mem_usage_t *);

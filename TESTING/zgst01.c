@@ -64,7 +64,8 @@ int zgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
     /* Local variables */
     doublecomplex zero = {0.0, 0.0};
     int i, j, k, arow, lptr,isub,  urow, superno, fsupc, u_part;
-    doublecomplex utemp, comp_temp;
+    doublecomplex utemp;
+    doublecomplex comp_temp;
     double anorm, tnorm, cnorm;
     double eps;
     doublecomplex *work;

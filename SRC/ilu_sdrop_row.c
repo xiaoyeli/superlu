@@ -31,6 +31,7 @@ extern float snrm2_(int *, float *, int *);
 extern double dnrm2_(int *, double [], int *);
 extern int isamax_(int *, float [], int *);
 
+#if 0
 static float *A;  /* used in _compare_ only */
 static int _compare_(const void *a, const void *b)
 {
@@ -39,6 +40,7 @@ static int _compare_(const void *a, const void *b)
     else if (A[*x] - A[*y] < 0.0) return 1;
     else return 0;
 }
+#endif
 
 /*! \brief
  * <pre>

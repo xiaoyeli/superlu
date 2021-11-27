@@ -8,8 +8,6 @@
 
 /* Table of constant values */
 
-static integer c__2 = 2;
-
 /* Subroutine */ int slatb4_slu(char *path, integer *imat, integer *m, integer *
 	n, char *type, integer *kl, integer *ku, real *anorm, integer *mode, 
 	real *cndnum, char *dist)

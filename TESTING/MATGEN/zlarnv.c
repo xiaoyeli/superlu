@@ -56,7 +56,7 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    integer i__1, i__2, i__3, i__4, i__5;
+    integer i__2, i__3;
     doublereal d__1, d__2;
     doublecomplex z__1, z__2, z__3;
     /* Builtin functions */
@@ -74,7 +74,6 @@
 #define ISEED(I) iseed[(I)-1]
 
 
-    i__1 = *n;
     for (iv = 1; iv <= *n; iv += 64) {
 /* Computing MIN */
 	i__2 = 64, i__3 = *n - iv + 1;
@@ -94,8 +93,6 @@
 	    i__2 = il;
 	    for (i = 1; i <= il; ++i) {
 		i__3 = iv + i - 1;
-		i__4 = (i << 1) - 2;
-		i__5 = (i << 1) - 1;
 		z__1.r = U((i<<1)-2), z__1.i = U((i<<1)-1);
 		X(iv+i-1).r = z__1.r, X(iv+i-1).i = z__1.i;
 /* L10: */

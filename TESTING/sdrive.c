@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     float         *ferr, *berr;
     float         *rwork;
     float	   *wwork;
-    void           *work = NULL;
+    void           *work;
     int            info, lwork, nrhs, panel_size, relax;
     int            m, n, nnz;
     float         *xact;
@@ -76,14 +76,14 @@ int main(int argc, char *argv[])
     int            i, j, k1;
     float         rowcnd, colcnd, amax;
     int            maxsuper, rowblk, colblk;
-    int            prefact, nofact, equil, iequed;
+    int            prefact, equil, iequed;
     int            nt, nrun, nfail, nerrs, imat, fimat, nimat;
     int            nfact, ifact, itran;
     int            kl, ku, mode, lda;
     int            zerot, izero, ioff;
     double         u;
     float         anorm, cndnum;
-    float         *Afull = NULL;
+    float         *Afull;
     float         result[NTESTS];
     superlu_options_t options;
     fact_t         fact;
@@ -273,7 +273,6 @@ int main(int argc, char *argv[])
 		    prefact   = ( options.Fact == FACTORED ||
 				  options.Fact == SamePattern_SameRowPerm );
                                 /* Need a first factor */
-		    nofact    = (options.Fact != FACTORED);  /* Not factored */
 
 		    /* Restore the matrix A. */
 		    sCopy_CompCol_Matrix(&ASAV, &A);

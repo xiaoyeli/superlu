@@ -221,7 +221,7 @@ void
 ilu_countnz(const int n, int *nnzL, int *nnzU, GlobalLU_t *Glu)
 {
     int          nsuper, fsupc, i, j;
-    int          jlen, irep;
+    int          jlen;
     int          *xsup, *xlsub;
 
     xsup   = Glu->xsup;
@@ -244,7 +244,7 @@ ilu_countnz(const int n, int *nnzL, int *nnzU, GlobalLU_t *Glu)
 	    *nnzU += j - fsupc + 1;
 	    jlen--;
 	}
-	irep = xsup[i+1] - 1;
+	//irep = xsup[i+1] - 1;
     }
 }
 

@@ -26,12 +26,13 @@ at the top-level directory.
 extern void zswap_(int *, doublecomplex [], int *, doublecomplex [], int *);
 extern void zaxpy_(int *, doublecomplex *, doublecomplex [], int *, doublecomplex [], int *);
 extern void zcopy_(int *, doublecomplex [], int *, doublecomplex [], int *);
+extern void dcopy_(int *, double [], int *, double [], int *);
 extern double dzasum_(int *, doublecomplex *, int *);
 extern double dznrm2_(int *, doublecomplex *, int *);
 extern double dnrm2_(int *, double [], int *);
-extern void dcopy_(int *, double [], int *, double [], int *);
 extern int izamax_(int *, doublecomplex [], int *);
 
+#if 0
 static double *A;  /* used in _compare_ only */
 static int _compare_(const void *a, const void *b)
 {
@@ -40,6 +41,7 @@ static int _compare_(const void *a, const void *b)
     else if (A[*x] - A[*y] < 0.0) return 1;
     else return 0;
 }
+#endif
 
 /*! \brief
  * <pre>
@@ -83,7 +85,6 @@ int ilu_zdrop_row(
     int    drop_rule = options->ILU_DropRule;
     milu_t milu = options->ILU_MILU;
     norm_t nrm = options->ILU_Norm;
-    doublecomplex zero = {0.0, 0.0};
     doublecomplex one = {1.0, 0.0};
     doublecomplex none = {-1.0, 0.0};
     int i_1 = 1;

@@ -53,7 +53,7 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    integer i__1, i__2, i__3;
+    integer i__2, i__3;
     /* Builtin functions */
     double log(doublereal), sqrt(doublereal), cos(doublereal);
     /* Local variables */
@@ -67,7 +67,6 @@
 #define ISEED(I) iseed[(I)-1]
 
 
-    i__1 = *n;
     for (iv = 1; iv <= *n; iv += 64) {
 /* Computing MIN */
 	i__2 = 64, i__3 = *n - iv + 1;

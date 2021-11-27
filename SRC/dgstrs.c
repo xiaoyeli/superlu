@@ -98,7 +98,6 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 #ifdef _CRAY
     _fcd ftcs1, ftcs2, ftcs3, ftcs4;
 #endif
-    int      incx = 1, incy = 1;
 #ifdef USE_VENDOR_BLAS
     double   alpha = 1.0, beta = 1.0;
     double   *work_col;

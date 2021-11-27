@@ -63,7 +63,6 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3;
     /* Local variables */
     static integer i, j;
 
@@ -76,11 +75,8 @@
    
           array to ALPHA. */
 
-	i__1 = *n;
 	for (j = 2; j <= *n; ++j) {
 /* Computing MIN */
-	    i__3 = j - 1;
-	    i__2 = min(i__3,*m);
 	    for (i = 1; i <= min(j-1,*m); ++i) {
 		A(i,j) = *alpha;
 /* L10: */
@@ -94,9 +90,7 @@
    
           array to ALPHA. */
 
-	i__1 = min(*m,*n);
 	for (j = 1; j <= min(*m,*n); ++j) {
-	    i__2 = *m;
 	    for (i = j + 1; i <= *m; ++i) {
 		A(i,j) = *alpha;
 /* L30: */
@@ -108,9 +102,7 @@
 
 /*        Set the leading m-by-n submatrix to ALPHA. */
 
-	i__1 = *n;
 	for (j = 1; j <= *n; ++j) {
-	    i__2 = *m;
 	    for (i = 1; i <= *m; ++i) {
 		A(i,j) = *alpha;
 /* L50: */
@@ -121,7 +113,6 @@
 
 /*     Set the first min(M,N) diagonal elements to BETA. */
 
-    i__1 = min(*m,*n);
     for (i = 1; i <= min(*m,*n); ++i) {
 	A(i,i) = *beta;
 /* L70: */

@@ -98,7 +98,6 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 #ifdef _CRAY
     _fcd ftcs1, ftcs2, ftcs3, ftcs4;
 #endif
-    int      incx = 1, incy = 1;
 #ifdef USE_VENDOR_BLAS
     complex   alpha = {1.0, 0.0}, beta = {1.0, 0.0};
     complex   *work_col;
@@ -137,9 +136,9 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     }
 
     n = L->nrow;
-    work = complexCalloc(n * nrhs);
+    work = complexCalloc((size_t) n * (size_t) nrhs);
     if ( !work ) ABORT("Malloc fails for local work[].");
-    soln = complexMalloc(n);
+    soln = complexMalloc((size_t) n);
     if ( !soln ) ABORT("Malloc fails for local soln[].");
 
     Bmat = Bstore->nzval;
@@ -152,7 +151,7 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     if ( trans == NOTRANS ) {
 	/* Permute right hand sides to form Pr*B */
 	for (i = 0; i < nrhs; i++) {
-	    rhs_work = &Bmat[i*ldb];
+	    rhs_work = &Bmat[(size_t)i * (size_t)ldb];
 	    for (k = 0; k < n; k++) soln[perm_r[k]] = rhs_work[k];
 	    for (k = 0; k < n; k++) rhs_work[k] = soln[k];
 	}
@@ -170,7 +169,7 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	    
 	    if ( nsupc == 1 ) {
 		for (j = 0; j < nrhs; j++) {
-		    rhs_work = &Bmat[j*ldb];
+		    rhs_work = &Bmat[(size_t)j * (size_t)ldb];
 	    	    luptr = L_NZ_START(fsupc);
 		    for (iptr=istart+1; iptr < L_SUB_START(fsupc+1); iptr++){
 			irow = L_SUB(iptr);
@@ -201,8 +200,8 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 			&beta, &work[0], &n );
 #endif
 		for (j = 0; j < nrhs; j++) {
-		    rhs_work = &Bmat[j*ldb];
-		    work_col = &work[j*n];
+		    rhs_work = &Bmat[(size_t)j * (size_t)ldb];
+		    work_col = &work[(size_t)j * (size_t)n];
 		    iptr = istart + nsupc;
 		    for (i = 0; i < nrow; i++) {
 			irow = L_SUB(iptr);
@@ -214,7 +213,7 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 		}
 #else		
 		for (j = 0; j < nrhs; j++) {
-		    rhs_work = &Bmat[j*ldb];
+		    rhs_work = &Bmat[(size_t)j * (size_t)ldb];
 		    clsolve (nsupr, nsupc, &Lval[luptr], &rhs_work[fsupc]);
 		    cmatvec (nsupr, nrow, nsupc, &Lval[luptr+nsupc],
 			    &rhs_work[fsupc], &work[0] );
@@ -269,12 +268,12 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 #endif
 #else		
 		for (j = 0; j < nrhs; j++)
-		    cusolve ( nsupr, nsupc, &Lval[luptr], &Bmat[fsupc+j*ldb] );
+		    cusolve ( nsupr, nsupc, &Lval[luptr], &Bmat[(size_t)fsupc + (size_t)j * (size_t)ldb] );
 #endif		
 	    }
 
 	    for (j = 0; j < nrhs; ++j) {
-		rhs_work = &Bmat[j*ldb];
+		rhs_work = &Bmat[(size_t)j * (size_t)ldb];
 		for (jcol = fsupc; jcol < fsupc + nsupc; jcol++) {
 		    solve_ops += 8*(U_NZ_START(jcol+1) - U_NZ_START(jcol));
 		    for (i = U_NZ_START(jcol); i < U_NZ_START(jcol+1); i++ ){
@@ -294,7 +293,7 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 
 	/* Compute the final solution X := Pc*X. */
 	for (i = 0; i < nrhs; i++) {
-	    rhs_work = &Bmat[i*ldb];
+	    rhs_work = &Bmat[(size_t)i * (size_t)ldb];
 	    for (k = 0; k < n; k++) soln[k] = rhs_work[perm_c[k]];
 	    for (k = 0; k < n; k++) rhs_work[k] = soln[k];
 	}
@@ -304,7 +303,7 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     } else { /* Solve A'*X=B or CONJ(A)*X=B */
 	/* Permute right hand sides to form Pc'*B. */
 	for (i = 0; i < nrhs; i++) {
-	    rhs_work = &Bmat[i*ldb];
+	    rhs_work = &Bmat[(size_t)i * (size_t)ldb];
 	    for (k = 0; k < n; k++) soln[perm_c[k]] = rhs_work[k];
 	    for (k = 0; k < n; k++) rhs_work[k] = soln[k];
 	}
@@ -313,23 +312,23 @@ cgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
         if (trans == TRANS) {
 	    for (k = 0; k < nrhs; ++k) {
 	        /* Multiply by inv(U'). */
-	        sp_ctrsv("U", "T", "N", L, U, &Bmat[k*ldb], stat, info);
+	        sp_ctrsv("U", "T", "N", L, U, &Bmat[(size_t)k * (size_t)ldb], stat, info);
 	    
 	        /* Multiply by inv(L'). */
-	        sp_ctrsv("L", "T", "U", L, U, &Bmat[k*ldb], stat, info);
+	        sp_ctrsv("L", "T", "U", L, U, &Bmat[(size_t)k * (size_t)ldb], stat, info);
 	    }
          } else { /* trans == CONJ */
             for (k = 0; k < nrhs; ++k) {                
                 /* Multiply by conj(inv(U')). */
-                sp_ctrsv("U", "C", "N", L, U, &Bmat[k*ldb], stat, info);
+                sp_ctrsv("U", "C", "N", L, U, &Bmat[(size_t)k * (size_t)ldb], stat, info);
                 
                 /* Multiply by conj(inv(L')). */
-                sp_ctrsv("L", "C", "U", L, U, &Bmat[k*ldb], stat, info);
+                sp_ctrsv("L", "C", "U", L, U, &Bmat[(size_t)k * (size_t)ldb], stat, info);
 	    }
          }
 	/* Compute the final solution X := Pr'*X (=inv(Pr)*X) */
 	for (i = 0; i < nrhs; i++) {
-	    rhs_work = &Bmat[i*ldb];
+	    rhs_work = &Bmat[(size_t)i * (size_t)ldb];
 	    for (k = 0; k < n; k++) soln[k] = rhs_work[perm_r[k]];
 	    for (k = 0; k < n; k++) rhs_work[k] = soln[k];
 	}

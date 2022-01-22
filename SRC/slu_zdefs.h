@@ -238,8 +238,8 @@ extern void    zSetRWork (int, int, doublecomplex *, doublecomplex **, doublecom
 extern void    zLUWorkFree (int *, doublecomplex *, GlobalLU_t *);
 extern int     zLUMemXpand (int, int, MemType, int *, GlobalLU_t *);
 
-extern doublecomplex  *doublecomplexMalloc(int);
-extern doublecomplex  *doublecomplexCalloc(int);
+extern doublecomplex  *doublecomplexMalloc(size_t);
+extern doublecomplex  *doublecomplexCalloc(size_t);
 extern double  *doubleMalloc(int);
 extern double  *doubleCalloc(int);
 extern int     zmemory_usage(const int, const int, const int, const int);

@@ -673,22 +673,22 @@ zallocateA(int n, int nnz, doublecomplex **a, int **asub, int **xa)
 }
 
 
-doublecomplex *doublecomplexMalloc(int n)
+doublecomplex *doublecomplexMalloc(size_t n)
 {
     doublecomplex *buf;
-    buf = (doublecomplex *) SUPERLU_MALLOC((size_t)n * sizeof(doublecomplex));
+    buf = (doublecomplex *) SUPERLU_MALLOC(n * (size_t) sizeof(doublecomplex));
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC failed for buf in doublecomplexMalloc()\n");
     }
     return (buf);
 }
 
-doublecomplex *doublecomplexCalloc(int n)
+doublecomplex *doublecomplexCalloc(size_t n)
 {
     doublecomplex *buf;
-    register int i;
+    register size_t i;
     doublecomplex zero = {0.0, 0.0};
-    buf = (doublecomplex *) SUPERLU_MALLOC((size_t)n * sizeof(doublecomplex));
+    buf = (doublecomplex *) SUPERLU_MALLOC(n * (size_t) sizeof(doublecomplex));
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC failed for buf in doublecomplexCalloc()\n");
     }

@@ -64,7 +64,7 @@ int sgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
     /* Local variables */
     float zero = 0.0;
     int i, j, k, arow, lptr,isub,  urow, superno, fsupc, u_part;
-    float utemp, comp_temp;
+    float utemp;
     float anorm, tnorm, cnorm;
     float eps;
     float *work;

@@ -293,7 +293,7 @@ dPrint_Dense_Matrix(char *what, SuperMatrix *A)
 /*! \brief Diagnostic print of column "jcol" in the U/L factor.
  */
 void
-dprint_t_lu_col(char *msg, int_t jcol, int_t pivrow, int_t *xprune, GlobalLU_t *Glu)
+dprint_lu_col(char *msg, int_t jcol, int_t pivrow, int_t *xprune, GlobalLU_t *Glu)
 {
     int_t     i, k, fsupc;
     int_t     *xsup, *supno;

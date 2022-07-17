@@ -33,14 +33,14 @@ int_t superlu_malloc_total = 0;
 
 void *superlu_malloc(int_t size)
 {
-    buf = (char *) malloc(size + DWORD);
+    char* buf = (char *) malloc(size + DWORD);
     if ( !buf ) {
 	printf("superlu_malloc fails: malloc_total %.0f MB, size %lld\n",
 	       superlu_malloc_total*1e-6, size);
 	ABORT("superlu_malloc: out of memory");
     }
 
-    ((size_t_t *) buf)[0] = size;
+    ((size_t *) buf)[0] = size;
 #if 0
     superlu_malloc_total += size + DWORD;
 #else

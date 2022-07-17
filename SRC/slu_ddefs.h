@@ -264,9 +264,9 @@ extern double  dqselect(int, double *, int);
 /*! \brief Routines for debugging */
 extern void    dPrint_CompCol_Matrix(char *, SuperMatrix *);
 extern void    dPrint_SuperNode_Matrix(char *, SuperMatrix *);
-extern void    dPrint_t_Dense_Matrix(char *, SuperMatrix *);
-extern void    dprint_lu_col(char *, int, int, int *, GlobalLU_t *);
-extern int_t     print_t_double_vec(char *, int_t, double *);
+extern void    dPrint_Dense_Matrix(char *, SuperMatrix *);
+extern void    dprint_lu_col(char *, int_t, int_t, int_t *, GlobalLU_t *);
+extern int_t     print_double_vec(char *, int_t, double *);
 extern void    dcheck_tempv(int, double *);
 
 /*! \brief BLAS */

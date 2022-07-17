@@ -336,7 +336,7 @@ cLUMemInit(fact_t fact, void *work, int_t lwork, int_t m, int_t n, int_t annz,
 /*! \brief Allocate known working storage. Returns 0 if success, otherwise
    returns the number of bytes allocated so far when failure occurred. */
 int_t
-cLUWorkInit(int m, int n, int panel_size, int_t**iworkptr,
+cLUWorkInit(int_t m, int_t n, int_t panel_size, int_t**iworkptr,
             complex **dworkptr, GlobalLU_t *Glu)
 {
     int_t    isize, dsize, extra;
@@ -697,7 +697,7 @@ complex *complexCalloc(int_t n)
 }
 
 
-int cmemory_usage(const int_t nzlmax, const int_t nzumax,
+int_t cmemory_usage(const int_t nzlmax, const int_t nzumax,
 		  const int_t nzlumax, const int_t n)
 {
     register int_t iword, dword;

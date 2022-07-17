@@ -136,9 +136,9 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     }
 
     n = L->nrow;
-    work = doubleCalloc(n * nrhs);
+    work = doubleCalloc((size_t) n * (size_t) nrhs);
     if ( !work ) ABORT("Malloc fails for local work[].");
-    soln = doubleMalloc(n);
+    soln = doubleMalloc((size_t) n);
     if ( !soln ) ABORT("Malloc fails for local soln[].");
 
     Bmat = Bstore->nzval;
@@ -151,7 +151,7 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     if ( trans == NOTRANS ) {
 	/* Permute right hand sides to form Pr*B */
 	for (i = 0; i < nrhs; i++) {
-	    rhs_work = &Bmat[i*ldb];
+	    rhs_work = &Bmat[(size_t)i * (size_t)ldb];
 	    for (k = 0; k < n; k++) soln[perm_r[k]] = rhs_work[k];
 	    for (k = 0; k < n; k++) rhs_work[k] = soln[k];
 	}
@@ -169,7 +169,7 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	    
 	    if ( nsupc == 1 ) {
 		for (j = 0; j < nrhs; j++) {
-		    rhs_work = &Bmat[j*ldb];
+		    rhs_work = &Bmat[(size_t)j * (size_t)ldb];
 	    	    luptr = L_NZ_START(fsupc);
 		    for (iptr=istart+1; iptr < L_SUB_START(fsupc+1); iptr++){
 			irow = L_SUB(iptr);
@@ -199,8 +199,8 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 			&beta, &work[0], (int*)&n );
 #endif
 		for (j = 0; j < nrhs; j++) {
-		    rhs_work = &Bmat[j*ldb];
-		    work_col = &work[j*n];
+		    rhs_work = &Bmat[(size_t)j * (size_t)ldb];
+		    work_col = &work[(size_t)j * (size_t)n];
 		    iptr = istart + nsupc;
 		    for (i = 0; i < nrow; i++) {
 			irow = L_SUB(iptr);
@@ -211,7 +211,7 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 		}
 #else		
 		for (j = 0; j < nrhs; j++) {
-		    rhs_work = &Bmat[j*ldb];
+		    rhs_work = &Bmat[(size_t)j * (size_t)ldb];
 		    dlsolve (nsupr, nsupc, &Lval[luptr], &rhs_work[fsupc]);
 		    dmatvec (nsupr, nrow, nsupc, &Lval[luptr+nsupc],
 			    &rhs_work[fsupc], &work[0] );
@@ -265,12 +265,12 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 #endif
 #else		
 		for (j = 0; j < nrhs; j++)
-		    dusolve ( nsupr, nsupc, &Lval[luptr], &Bmat[fsupc+j*ldb] );
+		    dusolve ( nsupr, nsupc, &Lval[luptr], &Bmat[(size_t)fsupc + (size_t)j * (size_t)ldb] );
 #endif		
 	    }
 
 	    for (j = 0; j < nrhs; ++j) {
-		rhs_work = &Bmat[j*ldb];
+		rhs_work = &Bmat[(size_t)j * (size_t)ldb];
 		for (jcol = fsupc; jcol < fsupc + nsupc; jcol++) {
 		    solve_ops += 2*(U_NZ_START(jcol+1) - U_NZ_START(jcol));
 		    for (i = U_NZ_START(jcol); i < U_NZ_START(jcol+1); i++ ){
@@ -289,7 +289,7 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 
 	/* Compute the final solution X := Pc*X. */
 	for (i = 0; i < nrhs; i++) {
-	    rhs_work = &Bmat[i*ldb];
+	    rhs_work = &Bmat[(size_t)i * (size_t)ldb];
 	    for (k = 0; k < n; k++) soln[k] = rhs_work[perm_c[k]];
 	    for (k = 0; k < n; k++) rhs_work[k] = soln[k];
 	}
@@ -299,7 +299,7 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     } else { /* Solve A'*X=B or CONJ(A)*X=B */
 	/* Permute right hand sides to form Pc'*B. */
 	for (i = 0; i < nrhs; i++) {
-	    rhs_work = &Bmat[i*ldb];
+	    rhs_work = &Bmat[(size_t)i * (size_t)ldb];
 	    for (k = 0; k < n; k++) soln[perm_c[k]] = rhs_work[k];
 	    for (k = 0; k < n; k++) rhs_work[k] = soln[k];
 	}
@@ -308,15 +308,15 @@ dgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	for (k = 0; k < nrhs; ++k) {
 	    
 	    /* Multiply by inv(U'). */
-	    sp_dtrsv("U", "T", "N", L, U, &Bmat[k*ldb], stat, (int*)info);
+	    sp_dtrsv("U", "T", "N", L, U, &Bmat[(size_t)k * (size_t)ldb], stat, (int*)info);
 	    
 	    /* Multiply by inv(L'). */
-	    sp_dtrsv("L", "T", "U", L, U, &Bmat[k*ldb], stat, (int*)info);
+	    sp_dtrsv("L", "T", "U", L, U, &Bmat[(size_t)k * (size_t)ldb], stat, (int*)info);
 	    
 	}
 	/* Compute the final solution X := Pr'*X (=inv(Pr)*X) */
 	for (i = 0; i < nrhs; i++) {
-	    rhs_work = &Bmat[i*ldb];
+	    rhs_work = &Bmat[(size_t)i * (size_t)ldb];
 	    for (k = 0; k < n; k++) soln[k] = rhs_work[perm_r[k]];
 	    for (k = 0; k < n; k++) rhs_work[k] = soln[k];
 	}

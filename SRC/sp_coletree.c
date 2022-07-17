@@ -246,6 +246,7 @@ sp_coletree(
  *  Based on code written by John Gilbert at CMI in 1987.
  */
 
+#if 0  // replaced by a non-recursive version 
 static
 /*
  * Depth-first search from vertex v.
@@ -266,7 +267,7 @@ void etdfs (
 	/* post[postnum++] = v; in Matlab */
 	post[v] = (*postnum)++;    /* Modified by X. Li on 08/10/07 */
 }
-
+#endif
 
 static
 /*

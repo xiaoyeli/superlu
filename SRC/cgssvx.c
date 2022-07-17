@@ -374,7 +374,6 @@ cgssvx(superlu_options_t *options, SuperMatrix *A, int_t *perm_c, int_t *perm_r,
     int_t       i, j, info1;
     float    amax, anorm, bignum, smlnum, colcnd, rowcnd, rcmax, rcmin;
     int_t       relax, panel_size;
-    float    diag_pivot_thresh;
     double    t0;      /* temporary time */
     double    *utime;
 
@@ -477,7 +476,6 @@ printf("dgssvx: Fact=%4d, Trans=%4d, equed=%c\n",
     /* Initialization for factor parameters */
     panel_size = sp_ienv(1);
     relax      = sp_ienv(2);
-    diag_pivot_thresh = options->DiagPivotThresh;
 
     utime = stat->utime;
     

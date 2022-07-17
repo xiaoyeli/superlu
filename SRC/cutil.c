@@ -366,8 +366,6 @@ void
 cFillRHS(trans_t trans, int nrhs, complex *x, int ldx,
          SuperMatrix *A, SuperMatrix *B)
 {
-    NCformat *Astore;
-    complex   *Aval;
     DNformat *Bstore;
     complex   *rhs;
     complex one = {1.0, 0.0};
@@ -375,8 +373,8 @@ cFillRHS(trans_t trans, int nrhs, complex *x, int ldx,
     int      ldc;
     char transc[1];
 
-    Astore = A->Store;
-    Aval   = (complex *) Astore->nzval;
+    //Astore = A->Store;
+    //Aval   = (complex *) Astore->nzval;
     Bstore = B->Store;
     rhs    = Bstore->nzval;
     ldc    = Bstore->lda;

@@ -188,20 +188,32 @@ typedef struct {
 } NRformat_loc;
 
 
-/* Data structure for storing 3D matrix on layer 0 of the 2D process grid */
+/* Data structure for storing 3D matrix on layer 0 of the 2D process grid
+   Only grid-0 has meanful values of these data structures.   */
 typedef struct NRformat_loc3d
 {
-    NRformat_loc* A_nfmt; 
-    void* B3d;  // on the entire 3D process grid
-    int  ldb;
+    NRformat_loc *A_nfmt; // Gathered A matrix on 2D grid-0 
+    void *B3d;  // on the entire 3D process grid
+    int  ldb;   // relative to 3D process grid
     int nrhs;
-    int m_loc; 
-    void* B2d;  // on 2D process layer Grid_0
+    int m_loc;  // relative to 3D process grid
+    void *B2d;  // on 2D process layer grid-0
 
-    int* row_counts_int; // these counts are for {A, B} distributed on 2D layer 0
-    int* row_disp;
-    int* b_counts_int;
-    int* b_disp;
+    int *row_counts_int; // these counts are stored on 2D layer grid-0,
+    int *row_disp;       // but count the number of {A, B} rows along Z-dimension
+    int *nnz_counts_int; 
+    int *nnz_disp;
+    int *b_counts_int;
+    int *b_disp;
+
+    /* The following 4 structures are used for scattering
+       solution X from 2D grid-0 back to 3D processes */
+    int num_procs_to_send;  
+    int *procs_to_send_list;
+    int *send_count_list;
+    int num_procs_to_recv;
+    int *procs_recv_from_list;
+    int *recv_count_list;
 } NRformat_loc3d;
 
 

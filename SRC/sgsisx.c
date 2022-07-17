@@ -420,7 +420,6 @@ sgsisx(superlu_options_t *options, SuperMatrix *A, int_t *perm_c, int_t *perm_r,
     int_t       i, j, info1;
     float    amax, anorm, bignum, smlnum, colcnd, rowcnd, rcmax, rcmin;
     int_t       relax, panel_size;
-    float    diag_pivot_thresh;
     double    t0;      /* temporary time */
     double    *utime;
 
@@ -516,7 +515,6 @@ sgsisx(superlu_options_t *options, SuperMatrix *A, int_t *perm_c, int_t *perm_r,
     /* Initialization for factor parameters */
     panel_size = sp_ienv(1);
     relax      = sp_ienv(2);
-    diag_pivot_thresh = options->DiagPivotThresh;
 
     utime = stat->utime;
 
@@ -674,7 +672,6 @@ sgsisx(superlu_options_t *options, SuperMatrix *A, int_t *perm_c, int_t *perm_r,
     }
 
     if ( nrhs > 0 ) { /* Solve the system */
-        float *rhs_work;
 
 	/* Scale and permute the right-hand side if equilibration
            and permutation from MC64 were performed. */

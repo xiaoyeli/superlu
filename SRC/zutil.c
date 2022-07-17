@@ -366,8 +366,6 @@ void
 zFillRHS(trans_t trans, int nrhs, doublecomplex *x, int ldx,
          SuperMatrix *A, SuperMatrix *B)
 {
-    NCformat *Astore;
-    doublecomplex   *Aval;
     DNformat *Bstore;
     doublecomplex   *rhs;
     doublecomplex one = {1.0, 0.0};
@@ -375,8 +373,8 @@ zFillRHS(trans_t trans, int nrhs, doublecomplex *x, int ldx,
     int      ldc;
     char transc[1];
 
-    Astore = A->Store;
-    Aval   = (doublecomplex *) Astore->nzval;
+    //Astore = A->Store;
+    //Aval   = (doublecomplex *) Astore->nzval;
     Bstore = B->Store;
     rhs    = Bstore->nzval;
     ldc    = Bstore->lda;

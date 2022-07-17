@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         compiler:
-          - clang
           - gcc
 
     steps:

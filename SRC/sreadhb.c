@@ -288,13 +288,14 @@ sreadhb(FILE *fp, int_t *nrow, int_t *ncol, int_t *nonz,
 
     register int_t i, numer_lines = 0, rhscrd = 0;
     int_t tmp, colnum, colsize, rownum, rowsize, valnum, valsize;
-    char buf[100], type[4], key[10];
+    char buf[100], type[4];
     int_t sym;
 
     /* Line 1 */
     fgets(buf, 100, fp);
     fputs(buf, stdout);
 #if 0
+    char key[10];
     fscanf(fp, "%72c", buf); buf[72] = 0;
     printf("Title: %s", buf);
     fscanf(fp, "%8c", key);  key[8] = 0;

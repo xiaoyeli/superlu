@@ -93,7 +93,6 @@
 	    157,2881,3637,1465,2829,2161,3365,361,2685,3745,2325,3609,3821,
 	    3537,517,3017,2141,1537 };
     /* System generated locals */
-    integer i__1;
     /* Local variables */
     static integer i, i1, i2, i3, i4, it1, it2, it3, it4;
 
@@ -110,7 +109,6 @@
     i3 = ISEED(3);
     i4 = ISEED(4);
 
-    i__1 = min(*n,128);
     for (i = 1; i <= min(*n,128); ++i) {
 
 /*        Multiply the seed by i-th power of the multiplier modulo 2**

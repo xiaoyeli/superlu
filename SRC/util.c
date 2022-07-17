@@ -244,7 +244,7 @@ ilu_countnz(const int_t n, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
 	    *nnzU += j - fsupc + 1;
 	    jlen--;
 	}
-	irep = xsup[i+1] - 1;
+	//irep = xsup[i+1] - 1;
     }
 }
 

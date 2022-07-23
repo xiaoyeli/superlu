@@ -15,11 +15,11 @@ set(sources "")
       srot.c 
       sscal.c 
       sswap.c
-      sgemv
-      ssymv
-      strsv
-      sger
-      ssyr2
+      sgemv.c
+      ssymv.c
+      strsv.c
+      sger.c
+      ssyr2.c
     )
 #endif()
 

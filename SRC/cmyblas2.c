@@ -112,12 +112,7 @@ void clsolve ( int ldm, int ncol, complex *M, complex *rhs )
  * stored in a 2-dim array M(1:ldm,1:ncol). The solution will be returned
  * in the rhs vector.
  */
-void
-cusolve ( ldm, ncol, M, rhs )
-int ldm;	/* in */
-int ncol;	/* in */
-complex *M;	/* in */
-complex *rhs;	/* modified */
+void cusolve (int ldm, int ncol, complex *M, complex *rhs)
 {
     complex xj, temp;
     int jcol, j, irow;
@@ -144,13 +139,7 @@ complex *rhs;	/* modified */
  *
  * The input matrix is M(1:nrow,1:ncol); The product is returned in Mxvec[].
  */
-void cmatvec ( ldm, nrow, ncol, M, vec, Mxvec )
-int ldm;	/* in -- leading dimension of M */
-int nrow;	/* in */ 
-int ncol;	/* in */
-complex *M;	/* in */
-complex *vec;	/* in */
-complex *Mxvec;	/* in/out */
+void cmatvec (int ldm, int nrow, int ncol, complex *M, complex *vec, complex *Mxvec)
 {
     complex vi0, vi1, vi2, vi3;
     complex *M0, temp;

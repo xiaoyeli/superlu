@@ -134,11 +134,11 @@ zreadtriple(int *m, int *n, int *nonz,
 
 void zreadrhs(int m, doublecomplex *b)
 {
-    FILE *fp, *fopen();
+    FILE *fp = fopen("b.dat", "r");
     int i;
     /*int j;*/
 
-    if ( !(fp = fopen("b.dat", "r")) ) {
+    if (!fp) {
         fprintf(stderr, "dreadrhs: file does not exist\n");
 	exit(-1);
     }

@@ -225,10 +225,10 @@ zreadMM(FILE *fp, int *m, int *n, int *nonz,
 
 static void zreadrhs(int m, doublecomplex *b)
 {
-    FILE *fp, *fopen();
+    FILE *fp = fopen("b.dat", "r");
     int i;
 
-    if ( !(fp = fopen("b.dat", "r")) ) {
+    if (!fp) {
         fprintf(stderr, "zreadrhs: file does not exist\n");
 	exit(-1);
     }

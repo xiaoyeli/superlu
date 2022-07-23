@@ -79,7 +79,7 @@ set(sources "")
     )
 #endif()
 
-add_library(blas ${sources} ${HEADERS})
+add_library(blas ${sources})
 
 include(GNUInstallDirs)
 install(TARGETS blas

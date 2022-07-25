@@ -84,7 +84,7 @@ double SuperLU_timer_()
 
 /*! \brief Timer function
  */ 
-double SuperLU_timer_()
+double SuperLU_timer_(void)
 {
     struct timeval tp;
     double tmp;

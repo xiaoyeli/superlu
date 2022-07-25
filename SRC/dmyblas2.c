@@ -132,12 +132,7 @@ void dlsolve ( int ldm, int ncol, double *M, double *rhs )
  * stored in a 2-dim array M(1:ldm,1:ncol). The solution will be returned
  * in the rhs vector.
  */
-void
-dusolve ( ldm, ncol, M, rhs )
-int ldm;	/* in */
-int ncol;	/* in */
-double *M;	/* in */
-double *rhs;	/* modified */
+void dusolve (int ldm, int ncol, double *M, double *rhs)
 {
     double xj;
     int jcol, j, irow;
@@ -162,15 +157,7 @@ double *rhs;	/* modified */
  * 
  * The input matrix is M(1:nrow,1:ncol); The product is returned in Mxvec[].
  */
-void dmatvec ( ldm, nrow, ncol, M, vec, Mxvec )
-
-int ldm;	/* in -- leading dimension of M */
-int nrow;	/* in */ 
-int ncol;	/* in */
-double *M;	/* in */
-double *vec;	/* in */
-double *Mxvec;	/* in/out */
-
+void dmatvec (int ldm, int nrow, int ncol, double *M, double *vec, double *Mxvec)
 {
     double vi0, vi1, vi2, vi3, vi4, vi5, vi6, vi7;
     double *M0;

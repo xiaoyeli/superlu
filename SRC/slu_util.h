@@ -394,7 +394,7 @@ extern void    ilu_heap_relax_snode (const int, int *, const int, int *,
 extern void    resetrep_col (const int, const int *, int *);
 extern int     spcoletree (int *, int *, int *, int, int, int *);
 extern int     *TreePostorder (int, int *);
-extern double  SuperLU_timer_ ();
+extern double  SuperLU_timer_ (void);
 extern int     sp_ienv (int);
 extern int     xerbla_ (char *, int *);
 extern void    ifill (int *, int, int);

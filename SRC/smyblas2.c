@@ -133,11 +133,7 @@ void slsolve ( int ldm, int ncol, float *M, float *rhs )
  * in the rhs vector.
  */
 void
-susolve ( ldm, ncol, M, rhs )
-int ldm;	/* in */
-int ncol;	/* in */
-float *M;	/* in */
-float *rhs;	/* modified */
+susolve (int ldm, int ncol, float *M, float *rhs)
 {
     float xj;
     int jcol, j, irow;
@@ -162,15 +158,7 @@ float *rhs;	/* modified */
  * 
  * The input matrix is M(1:nrow,1:ncol); The product is returned in Mxvec[].
  */
-void smatvec ( ldm, nrow, ncol, M, vec, Mxvec )
-
-int ldm;	/* in -- leading dimension of M */
-int nrow;	/* in */ 
-int ncol;	/* in */
-float *M;	/* in */
-float *vec;	/* in */
-float *Mxvec;	/* in/out */
-
+void smatvec (int ldm, int nrow, int ncol, float *M, float *vec, float *Mxvec)
 {
     float vi0, vi1, vi2, vi3, vi4, vi5, vi6, vi7;
     float *M0;

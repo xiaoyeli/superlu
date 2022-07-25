@@ -15,11 +15,11 @@ set(sources "")
       srot.c 
       sscal.c 
       sswap.c
-      sgemv
-      ssymv
-      strsv
-      sger
-      ssyr2
+      sgemv.c
+      ssymv.c
+      strsv.c
+      sger.c
+      ssyr2.c
     )
 #endif()
 
@@ -79,7 +79,7 @@ set(sources "")
     )
 #endif()
 
-add_library(blas ${sources} ${HEADERS})
+add_library(blas ${sources})
 
 include(GNUInstallDirs)
 install(TARGETS blas

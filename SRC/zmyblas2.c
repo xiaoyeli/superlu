@@ -112,12 +112,7 @@ void zlsolve ( int ldm, int ncol, doublecomplex *M, doublecomplex *rhs )
  * stored in a 2-dim array M(1:ldm,1:ncol). The solution will be returned
  * in the rhs vector.
  */
-void
-zusolve ( ldm, ncol, M, rhs )
-int ldm;	/* in */
-int ncol;	/* in */
-doublecomplex *M;	/* in */
-doublecomplex *rhs;	/* modified */
+void zusolve (int ldm, int ncol, doublecomplex *M, doublecomplex *rhs)
 {
     doublecomplex xj, temp;
     int jcol, j, irow;
@@ -144,13 +139,7 @@ doublecomplex *rhs;	/* modified */
  *
  * The input matrix is M(1:nrow,1:ncol); The product is returned in Mxvec[].
  */
-void zmatvec ( ldm, nrow, ncol, M, vec, Mxvec )
-int ldm;	/* in -- leading dimension of M */
-int nrow;	/* in */ 
-int ncol;	/* in */
-doublecomplex *M;	/* in */
-doublecomplex *vec;	/* in */
-doublecomplex *Mxvec;	/* in/out */
+void zmatvec (int ldm, int nrow, int ncol, doublecomplex *M, doublecomplex *vec, doublecomplex *Mxvec)
 {
     doublecomplex vi0, vi1, vi2, vi3;
     doublecomplex *M0, temp;

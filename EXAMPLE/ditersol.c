@@ -37,6 +37,7 @@ at the top-level directory.
  * </pre>
  */
 
+#include <unistd.h>
 #include "slu_ddefs.h"
 
 superlu_options_t *GLOBAL_OPTIONS;

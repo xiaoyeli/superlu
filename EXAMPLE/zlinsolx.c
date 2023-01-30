@@ -16,6 +16,7 @@ at the top-level directory.
  * August 1, 2008
  *
  */
+#include <unistd.h>
 #include "slu_zdefs.h"
 
 int main(int argc, char *argv[])
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
     int            *perm_r; /* row permutations from partial pivoting */
     int            *perm_c; /* column permutation vector */
     int            *etree;
-    void           *work = NULL;
+    void           *work;
     int            info, lwork, nrhs, ldx;
     int            i, m, n, nnz;
     doublecomplex         *rhsb, *rhsx, *xact;

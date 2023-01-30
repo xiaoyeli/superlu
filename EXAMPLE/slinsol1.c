@@ -16,6 +16,7 @@ at the top-level directory.
  * October 15, 2003
  *
  */
+#include <unistd.h>
 #include "slu_sdefs.h"
 
 int main(int argc, char *argv[])

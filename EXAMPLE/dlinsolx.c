@@ -16,6 +16,7 @@ at the top-level directory.
  * August 1, 2008
  *
  */
+#include <unistd.h>
 #include "slu_ddefs.h"
 
 int main(int argc, char *argv[])
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
     int            *perm_r; /* row permutations from partial pivoting */
     int            *perm_c; /* column permutation vector */
     int            *etree;
-    void           *work = NULL;
+    void           *work;
     int            info, lwork, nrhs, ldx;
     int            i, m, n, nnz;
     double         *rhsb, *rhsx, *xact;
@@ -92,13 +93,8 @@ int main(int argc, char *argv[])
 	}
     }
 
-#if 0
     /* Read matrix A from a file in Harwell-Boeing format.*/
     dreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
-#else
-    /* Read matrix A from a file in Matrix Market format.*/
-    dreadMM(fp, &m, &n, &nnz, &a, &asub, &xa);
-#endif
     
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);
     Astore = A.Store;

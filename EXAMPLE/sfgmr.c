@@ -28,7 +28,7 @@ General Public License for more details.
 
 For information on ITSOL contact saad@cs.umn.edu
 */
-
+#include <unistd.h>
 #include "slu_sdefs.h"
 
 #define  epsmac  1.0e-16

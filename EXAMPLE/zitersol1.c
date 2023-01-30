@@ -37,6 +37,7 @@ at the top-level directory.
  * </pre>
  */
 
+#include <unistd.h>
 #include "slu_zdefs.h"
 
 char *GLOBAL_EQUED;

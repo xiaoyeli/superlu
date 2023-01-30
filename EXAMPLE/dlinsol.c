@@ -18,6 +18,9 @@ at the top-level directory.
  */
 #include "slu_ddefs.h"
 
+extern void dreadtriple_noheader(int *m, int *n, int *nonz,
+				 double **nzval, int **rowind, int **colptr);
+
 int main(int argc, char *argv[])
 {
     SuperMatrix A;
@@ -55,13 +58,20 @@ int main(int argc, char *argv[])
     	options.PrintStat = YES;
      */
     set_default_options(&options);
+    #if 0
+    options.SymmetricMode = YES;
+    options.ColPerm = MMD_AT_PLUS_A;
+    options.DiagPivotThresh = 0.0; /* or 0.001, 0.01, etc. */
+    #endif
+    //options.ColPerm = MMD_ATA;
 
-#if 1
+#if 0
     /* Read the matrix in Harwell-Boeing format. */
     dreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
 #else
     /* Read the matrix in Matrix Market format. */
-    dreadtriple(&m, &n, &nnz, &a, &asub, &xa);
+    //dreadtriple(&m, &n, &nnz, &a, &asub, &xa);
+    dreadtriple_noheader(&m, &n, &nnz, &a, &asub, &xa);
 #endif
 
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);

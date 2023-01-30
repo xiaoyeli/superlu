@@ -131,10 +131,10 @@ Functions</h2></td></tr>
 <tr class="memitem:aeed250713fbfb3fac567d7a503774ccc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dmemory_8c.html#aeed250713fbfb3fac567d7a503774ccc">dallocateA</a> (int n, int nnz, double **a, int **asub, int **xa)</td></tr>
 <tr class="memdesc:aeed250713fbfb3fac567d7a503774ccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for original matrix A.  <a href="#aeed250713fbfb3fac567d7a503774ccc">More...</a><br /></td></tr>
 <tr class="separator:aeed250713fbfb3fac567d7a503774ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f2b9305cb611c37e7f627da902451a8"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dmemory_8c.html#a8f2b9305cb611c37e7f627da902451a8">doubleMalloc</a> (int n)</td></tr>
-<tr class="separator:a8f2b9305cb611c37e7f627da902451a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8b6d99155644578a5e5542c32040cfe"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dmemory_8c.html#ac8b6d99155644578a5e5542c32040cfe">doubleCalloc</a> (int n)</td></tr>
-<tr class="separator:ac8b6d99155644578a5e5542c32040cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d160a8a261ccf021b7b096b242f347e"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dmemory_8c.html#a4d160a8a261ccf021b7b096b242f347e">doubleMalloc</a> (size_t n)</td></tr>
+<tr class="separator:a4d160a8a261ccf021b7b096b242f347e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeeea19b74f6d044fb3c6b52018e0102"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dmemory_8c.html#aaeeea19b74f6d044fb3c6b52018e0102">doubleCalloc</a> (size_t n)</td></tr>
+<tr class="separator:aaeeea19b74f6d044fb3c6b52018e0102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c9b1e24d07635068c014999d44672aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dmemory_8c.html#a5c9b1e24d07635068c014999d44672aa">dmemory_usage</a> (const int nzlmax, const int nzumax, const int nzlumax, const int n)</td></tr>
 <tr class="separator:a5c9b1e24d07635068c014999d44672aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -366,7 +366,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="dmemory_8c_aeed250713fbfb3fac567d7a503774ccc_cgraph.png" border="0" usemap="#dmemory_8c_aeed250713fbfb3fac567d7a503774ccc_cgraph" alt=""/></div>
 <map name="dmemory_8c_aeed250713fbfb3fac567d7a503774ccc_cgraph" id="dmemory_8c_aeed250713fbfb3fac567d7a503774ccc_cgraph">
 <area shape="rect"  title="Allocate storage for original matrix A." alt="" coords="5,31,89,57"/>
-<area shape="rect"  href="dmemory_8c.html#a8f2b9305cb611c37e7f627da902451a8" title=" " alt="" coords="137,5,237,32"/>
+<area shape="rect"  href="dmemory_8c.html#a4d160a8a261ccf021b7b096b242f347e" title=" " alt="" coords="137,5,237,32"/>
 <area shape="rect"  href="memory_8c.html#a49bbe20102e5b541c8e8963afa2bd46a" title=" " alt="" coords="150,56,225,83"/>
 </map>
 </div>
@@ -754,8 +754,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ac8b6d99155644578a5e5542c32040cfe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8b6d99155644578a5e5542c32040cfe">&#9670;&nbsp;</a></span>doubleCalloc()</h2>
+<a id="aaeeea19b74f6d044fb3c6b52018e0102"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeeea19b74f6d044fb3c6b52018e0102">&#9670;&nbsp;</a></span>doubleCalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -763,7 +763,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">double* doubleCalloc </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>
@@ -772,8 +772,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a8f2b9305cb611c37e7f627da902451a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f2b9305cb611c37e7f627da902451a8">&#9670;&nbsp;</a></span>doubleMalloc()</h2>
+<a id="a4d160a8a261ccf021b7b096b242f347e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d160a8a261ccf021b7b096b242f347e">&#9670;&nbsp;</a></span>doubleMalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -781,7 +781,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">double* doubleMalloc </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>

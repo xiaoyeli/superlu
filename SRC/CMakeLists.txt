@@ -266,6 +266,7 @@ write_basic_package_version_file(
   VERSION ${PACKAGE_VERSION}
   COMPATIBILITY SameMajorVersion
   )
+#  VERSION ${PROJECT_VERSION}
 
 install(EXPORT superluTargets
   FILE superluTargets.cmake

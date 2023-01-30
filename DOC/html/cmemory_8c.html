@@ -132,10 +132,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ad952b424acd036108ca2f5a0bd9d3739"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#ad952b424acd036108ca2f5a0bd9d3739">callocateA</a> (int n, int nnz, <a class="el" href="structcomplex.html">complex</a> **a, int **asub, int **xa)</td></tr>
 <tr class="memdesc:ad952b424acd036108ca2f5a0bd9d3739"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for original matrix A.  <a href="#ad952b424acd036108ca2f5a0bd9d3739">More...</a><br /></td></tr>
 <tr class="separator:ad952b424acd036108ca2f5a0bd9d3739"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0af029f557e5014a2d6797436b925f53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcomplex.html">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a0af029f557e5014a2d6797436b925f53">complexMalloc</a> (int n)</td></tr>
-<tr class="separator:a0af029f557e5014a2d6797436b925f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e625ecaeb259e2dd79667ffbfb816c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcomplex.html">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a1e625ecaeb259e2dd79667ffbfb816c0">complexCalloc</a> (int n)</td></tr>
-<tr class="separator:a1e625ecaeb259e2dd79667ffbfb816c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6095a32e3869f8818437e1665b20b02c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcomplex.html">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a6095a32e3869f8818437e1665b20b02c">complexMalloc</a> (size_t n)</td></tr>
+<tr class="separator:a6095a32e3869f8818437e1665b20b02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a9bdd7a80e916f2d1c61e7d2c7aed32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcomplex.html">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a9a9bdd7a80e916f2d1c61e7d2c7aed32">complexCalloc</a> (size_t n)</td></tr>
+<tr class="separator:a9a9bdd7a80e916f2d1c61e7d2c7aed32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43ff5010762c14ea7591d23cf48403a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a43ff5010762c14ea7591d23cf48403a3">cmemory_usage</a> (const int nzlmax, const int nzumax, const int nzlumax, const int n)</td></tr>
 <tr class="separator:a43ff5010762c14ea7591d23cf48403a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -300,7 +300,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="cmemory_8c_ad952b424acd036108ca2f5a0bd9d3739_cgraph.png" border="0" usemap="#cmemory_8c_ad952b424acd036108ca2f5a0bd9d3739_cgraph" alt=""/></div>
 <map name="cmemory_8c_ad952b424acd036108ca2f5a0bd9d3739_cgraph" id="cmemory_8c_ad952b424acd036108ca2f5a0bd9d3739_cgraph">
 <area shape="rect"  title="Allocate storage for original matrix A." alt="" coords="5,31,89,57"/>
-<area shape="rect"  href="cmemory_8c.html#a0af029f557e5014a2d6797436b925f53" title=" " alt="" coords="137,5,248,32"/>
+<area shape="rect"  href="cmemory_8c.html#a6095a32e3869f8818437e1665b20b02c" title=" " alt="" coords="137,5,248,32"/>
 <area shape="rect"  href="memory_8c.html#a49bbe20102e5b541c8e8963afa2bd46a" title=" " alt="" coords="155,56,230,83"/>
 </map>
 </div>
@@ -688,8 +688,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a1e625ecaeb259e2dd79667ffbfb816c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e625ecaeb259e2dd79667ffbfb816c0">&#9670;&nbsp;</a></span>complexCalloc()</h2>
+<a id="a9a9bdd7a80e916f2d1c61e7d2c7aed32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a9bdd7a80e916f2d1c61e7d2c7aed32">&#9670;&nbsp;</a></span>complexCalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -697,7 +697,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname"><a class="el" href="structcomplex.html">complex</a>* complexCalloc </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>
@@ -706,8 +706,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a0af029f557e5014a2d6797436b925f53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0af029f557e5014a2d6797436b925f53">&#9670;&nbsp;</a></span>complexMalloc()</h2>
+<a id="a6095a32e3869f8818437e1665b20b02c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6095a32e3869f8818437e1665b20b02c">&#9670;&nbsp;</a></span>complexMalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -715,7 +715,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname"><a class="el" href="structcomplex.html">complex</a>* complexMalloc </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>

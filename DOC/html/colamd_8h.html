@@ -70,9 +70,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="colamd_8h__dep__incl.png" border="0" usemap="#SRC_2colamd_8hdep" alt=""/></div>
 <map name="SRC_2colamd_8hdep" id="SRC_2colamd_8hdep">
-<area shape="rect"  title="Colamd prototypes and definitions." alt="" coords="77,5,185,32"/>
-<area shape="rect"  href="colamd_8c.html" title="A sparse matrix column ordering algorithm." alt="" coords="5,80,112,107"/>
-<area shape="rect"  href="get__perm__c_8c.html" title="Matrix permutation operations." alt="" coords="137,80,271,107"/>
+<area shape="rect"  title="Colamd prototypes and definitions." alt="" coords="231,5,339,32"/>
+<area shape="rect"  href="SRC_2colamd_8c.html" title=" " alt="" coords="5,80,112,107"/>
+<area shape="rect"  href="SRC_2get__perm__c_8c.html" title=" " alt="" coords="137,80,271,107"/>
+<area shape="rect"  href="EXAMPLE_2colamd_8c.html" title=" " alt="" coords="295,80,438,107"/>
+<area shape="rect"  href="EXAMPLE_2get__perm__c_8c.html" title=" " alt="" coords="462,80,631,107"/>
 </map>
 </div>
 </div>
@@ -151,9 +153,9 @@ Functions</h2></td></tr>
 <tr class="separator:a9b48c9b9eb5dce7e9ca42174208b1015"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff32d80d7741f2708a21e6c557506f81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#aff32d80d7741f2708a21e6c557506f81">colamd_set_defaults</a> (double knobs [<a class="el" href="colamd_8h.html#ae92bb10d09f7cd004f07d1baddf90548">COLAMD_KNOBS</a>])</td></tr>
 <tr class="separator:aff32d80d7741f2708a21e6c557506f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aadfd233c897f3dc29bed76e3d13de0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#a6aadfd233c897f3dc29bed76e3d13de0">colamd</a> (int n_row, int n_col, int Alen, int <a class="el" href="ilu__zdrop__row_8c.html#ac900805a486cbb8489e3c176ed6e0d8e">A</a> [], int p [], double knobs [<a class="el" href="colamd_8h.html#ae92bb10d09f7cd004f07d1baddf90548">COLAMD_KNOBS</a>], int stats [<a class="el" href="colamd_8h.html#a411703fc0a994b83ec0e00df1abfc0f7">COLAMD_STATS</a>])</td></tr>
+<tr class="memitem:a6aadfd233c897f3dc29bed76e3d13de0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#a6aadfd233c897f3dc29bed76e3d13de0">colamd</a> (int n_row, int n_col, int Alen, int A [], int p [], double knobs [<a class="el" href="colamd_8h.html#ae92bb10d09f7cd004f07d1baddf90548">COLAMD_KNOBS</a>], int stats [<a class="el" href="colamd_8h.html#a411703fc0a994b83ec0e00df1abfc0f7">COLAMD_STATS</a>])</td></tr>
 <tr class="separator:a6aadfd233c897f3dc29bed76e3d13de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e5c6cd107cb8b87f20ac97690212d9c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#a3e5c6cd107cb8b87f20ac97690212d9c">symamd</a> (int n, int <a class="el" href="ilu__zdrop__row_8c.html#ac900805a486cbb8489e3c176ed6e0d8e">A</a> [], int p [], int perm [], double knobs [<a class="el" href="colamd_8h.html#ae92bb10d09f7cd004f07d1baddf90548">COLAMD_KNOBS</a>], int stats [<a class="el" href="colamd_8h.html#a411703fc0a994b83ec0e00df1abfc0f7">COLAMD_STATS</a>], void *(*allocate)(size_t, size_t), void(*release)(void *))</td></tr>
+<tr class="memitem:a3e5c6cd107cb8b87f20ac97690212d9c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#a3e5c6cd107cb8b87f20ac97690212d9c">symamd</a> (int n, int A [], int p [], int perm [], double knobs [<a class="el" href="colamd_8h.html#ae92bb10d09f7cd004f07d1baddf90548">COLAMD_KNOBS</a>], int stats [<a class="el" href="colamd_8h.html#a411703fc0a994b83ec0e00df1abfc0f7">COLAMD_STATS</a>], void *(*allocate)(size_t, size_t), void(*release)(void *))</td></tr>
 <tr class="separator:a3e5c6cd107cb8b87f20ac97690212d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa8b09d7b86d997f32d86003bbb968c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#afa8b09d7b86d997f32d86003bbb968c3">colamd_report</a> (int stats [<a class="el" href="colamd_8h.html#a411703fc0a994b83ec0e00df1abfc0f7">COLAMD_STATS</a>])</td></tr>
 <tr class="separator:afa8b09d7b86d997f32d86003bbb968c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,7 +181,7 @@ Functions</h2></td></tr>
        Availability of the original version is retained on all copies and made
        accessible to the end-user of any code or package that includes COLAMD
        or any modified version of COLAMD.</pre><pre>   Availability:</pre><pre>       The colamd/symamd library is available at</pre><pre>           <a href="http://www.cise.ufl.edu/research/sparse/colamd/">http://www.cise.ufl.edu/research/sparse/colamd/</a></pre><pre>       This is the <a href="http://www.cise.ufl.edu/research/sparse/colamd/colamd.h">http://www.cise.ufl.edu/research/sparse/colamd/colamd.h</a>
-       file.  It is required by the <a class="el" href="colamd_8c.html" title="A sparse matrix column ordering algorithm.">colamd.c</a>, colamdmex.c, and symamdmex.c
+       file.  It is required by the colamd.c, colamdmex.c, and symamdmex.c
        files, and by any C code that calls the routines whose prototypes are
        listed below, or that uses the colamd/symamd definitions listed below.
 </pre> </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -653,15 +655,20 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="colamd_8h_a6aadfd233c897f3dc29bed76e3d13de0_cgraph.png" border="0" usemap="#colamd_8h_a6aadfd233c897f3dc29bed76e3d13de0_cgraph" alt=""/></div>
 <map name="colamd_8h_a6aadfd233c897f3dc29bed76e3d13de0_cgraph" id="colamd_8h_a6aadfd233c897f3dc29bed76e3d13de0_cgraph">
-<area shape="rect"  title=" " alt="" coords="5,107,71,133"/>
-<area shape="rect"  href="colamd_8c.html#a8aebd019704b4cce3ce8bd82f0010535" title=" " alt="" coords="119,5,263,32"/>
-<area shape="rect"  href="colamd_8c.html#a1c93df1c3f01297d4af1026c0b086f29" title=" " alt="" coords="138,56,243,83"/>
-<area shape="rect"  href="colamd_8c.html#a2bb1c21b6a3861fe0677cbbd3e7ac5ca" title=" " alt="" coords="146,107,235,133"/>
-<area shape="rect"  href="colamd_8c.html#ace71106e51e627435bfeb787195a6f3f" title=" " alt="" coords="141,157,241,184"/>
-<area shape="rect"  href="colamd_8c.html#a0ad2478d19823ff05b464e86c228972c" title=" " alt="" coords="137,208,244,235"/>
-<area shape="rect"  href="colamd_8c.html#a05786fecfba1f4e6036d7ce60205346e" title=" " alt="" coords="333,107,421,133"/>
-<area shape="rect"  href="colamd_8c.html#a01a7110cd62521cf51fdd041fcf962a2" title=" " alt="" coords="311,157,444,184"/>
-<area shape="rect"  href="colamd_8c.html#acbf06c14f73616f0b82b09abdc58a135" title=" " alt="" coords="312,208,443,235"/>
+<area shape="rect"  title=" " alt="" coords="5,132,71,159"/>
+<area shape="rect"  href="EXAMPLE_2colamd_8c.html#a637a42b0535f2ba5ef8f1e7534048cc5" title=" " alt="" coords="123,5,259,32"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a8aebd019704b4cce3ce8bd82f0010535" title=" " alt="" coords="119,56,263,83"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a1c93df1c3f01297d4af1026c0b086f29" title=" " alt="" coords="138,107,243,133"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a2bb1c21b6a3861fe0677cbbd3e7ac5ca" title=" " alt="" coords="146,157,235,184"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#ace71106e51e627435bfeb787195a6f3f" title=" " alt="" coords="141,220,241,247"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a0ad2478d19823ff05b464e86c228972c" title=" " alt="" coords="137,271,244,297"/>
+<area shape="rect"  href="EXAMPLE_2colamd_8c.html#a25b6e7111401a9cd3a087bfeca6c3c29" title=" " alt="" coords="315,93,440,120"/>
+<area shape="rect"  href="EXAMPLE_2colamd_8c.html#a5f650ce72d29ac2b7e4a948f9a5944a4" title=" " alt="" coords="318,144,437,171"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a05786fecfba1f4e6036d7ce60205346e" title=" " alt="" coords="333,195,421,221"/>
+<area shape="rect"  href="EXAMPLE_2colamd_8c.html#a33b939adb95c607cade1858223bb1e93" title=" " alt="" coords="326,245,429,272"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a01a7110cd62521cf51fdd041fcf962a2" title=" " alt="" coords="311,296,444,323"/>
+<area shape="rect"  href="EXAMPLE_2colamd_8c.html#a31af67dba4dacf2238059e9ec47cb596" title=" " alt="" coords="329,347,425,373"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#acbf06c14f73616f0b82b09abdc58a135" title=" " alt="" coords="312,397,443,424"/>
 </map>
 </div>
 
@@ -722,7 +729,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="colamd_8h_afa8b09d7b86d997f32d86003bbb968c3_cgraph.png" border="0" usemap="#colamd_8h_afa8b09d7b86d997f32d86003bbb968c3_cgraph" alt=""/></div>
 <map name="colamd_8h_afa8b09d7b86d997f32d86003bbb968c3_cgraph" id="colamd_8h_afa8b09d7b86d997f32d86003bbb968c3_cgraph">
 <area shape="rect"  title=" " alt="" coords="5,5,112,32"/>
-<area shape="rect"  href="colamd_8c.html#a31ac7029f4ff124e9bba5005b35912fc" title=" " alt="" coords="160,5,251,32"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a31ac7029f4ff124e9bba5005b35912fc" title=" " alt="" coords="160,5,251,32"/>
 </map>
 </div>
 
@@ -812,17 +819,11 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="colamd_8h_a3e5c6cd107cb8b87f20ac97690212d9c_cgraph.png" border="0" usemap="#colamd_8h_a3e5c6cd107cb8b87f20ac97690212d9c_cgraph" alt=""/></div>
 <map name="colamd_8h_a3e5c6cd107cb8b87f20ac97690212d9c_cgraph" id="colamd_8h_a3e5c6cd107cb8b87f20ac97690212d9c_cgraph">
-<area shape="rect"  title=" " alt="" coords="5,56,77,83"/>
-<area shape="rect"  href="colamd_8c.html#a8aebd019704b4cce3ce8bd82f0010535" title=" " alt="" coords="331,5,475,32"/>
-<area shape="rect"  href="colamd_8c.html#aac7214b99bcf4db1b13547521367817f" title=" " alt="" coords="125,56,283,83"/>
-<area shape="rect"  href="colamd_8c.html#aec153dfdadd03b9135645c132408a052" title=" " alt="" coords="171,107,237,133"/>
-<area shape="rect"  href="colamd_8c.html#a1c93df1c3f01297d4af1026c0b086f29" title=" " alt="" coords="350,56,455,83"/>
-<area shape="rect"  href="colamd_8c.html#a2bb1c21b6a3861fe0677cbbd3e7ac5ca" title=" " alt="" coords="358,107,447,133"/>
-<area shape="rect"  href="colamd_8c.html#ace71106e51e627435bfeb787195a6f3f" title=" " alt="" coords="353,157,453,184"/>
-<area shape="rect"  href="colamd_8c.html#a0ad2478d19823ff05b464e86c228972c" title=" " alt="" coords="349,208,456,235"/>
-<area shape="rect"  href="colamd_8c.html#a05786fecfba1f4e6036d7ce60205346e" title=" " alt="" coords="545,107,633,133"/>
-<area shape="rect"  href="colamd_8c.html#a01a7110cd62521cf51fdd041fcf962a2" title=" " alt="" coords="523,157,656,184"/>
-<area shape="rect"  href="colamd_8c.html#acbf06c14f73616f0b82b09abdc58a135" title=" " alt="" coords="524,208,655,235"/>
+<area shape="rect"  title=" " alt="" coords="5,81,77,108"/>
+<area shape="rect"  href="EXAMPLE_2colamd_8c.html#a637a42b0535f2ba5ef8f1e7534048cc5" title=" " alt="" coords="136,5,272,32"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a8aebd019704b4cce3ce8bd82f0010535" title=" " alt="" coords="132,56,276,83"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#aac7214b99bcf4db1b13547521367817f" title=" " alt="" coords="125,107,283,133"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#aec153dfdadd03b9135645c132408a052" title=" " alt="" coords="171,157,237,184"/>
 </map>
 </div>
 
@@ -849,7 +850,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="colamd_8h_ae33afe190cf8fbde0e4b27516ff043df_cgraph.png" border="0" usemap="#colamd_8h_ae33afe190cf8fbde0e4b27516ff043df_cgraph" alt=""/></div>
 <map name="colamd_8h_ae33afe190cf8fbde0e4b27516ff043df_cgraph" id="colamd_8h_ae33afe190cf8fbde0e4b27516ff043df_cgraph">
 <area shape="rect"  title=" " alt="" coords="5,5,120,32"/>
-<area shape="rect"  href="colamd_8c.html#a31ac7029f4ff124e9bba5005b35912fc" title=" " alt="" coords="168,5,259,32"/>
+<area shape="rect"  href="SRC_2colamd_8c.html#a31ac7029f4ff124e9bba5005b35912fc" title=" " alt="" coords="168,5,259,32"/>
 </map>
 </div>
 

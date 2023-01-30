@@ -2,7 +2,8 @@ set(headers
     f2c.h
     slu_Cnames.h
 )
-set(sources "")
+
+set(sources input_error.c)
 
 #if (enable_single)
     list(APPEND sources

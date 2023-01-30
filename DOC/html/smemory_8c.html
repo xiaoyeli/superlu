@@ -131,10 +131,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a9754e5504550ae4ab763721ebcb7055b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smemory_8c.html#a9754e5504550ae4ab763721ebcb7055b">sallocateA</a> (int n, int nnz, float **a, int **asub, int **xa)</td></tr>
 <tr class="memdesc:a9754e5504550ae4ab763721ebcb7055b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for original matrix A.  <a href="#a9754e5504550ae4ab763721ebcb7055b">More...</a><br /></td></tr>
 <tr class="separator:a9754e5504550ae4ab763721ebcb7055b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a866452c5dcba66083ef463662955ee"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smemory_8c.html#a4a866452c5dcba66083ef463662955ee">floatMalloc</a> (int n)</td></tr>
-<tr class="separator:a4a866452c5dcba66083ef463662955ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6dc7fd90a3d13e0c9a8ca8d62def27f"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smemory_8c.html#ab6dc7fd90a3d13e0c9a8ca8d62def27f">floatCalloc</a> (int n)</td></tr>
-<tr class="separator:ab6dc7fd90a3d13e0c9a8ca8d62def27f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3681c42541ced2f7bdfeff085d6cb502"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smemory_8c.html#a3681c42541ced2f7bdfeff085d6cb502">floatMalloc</a> (size_t n)</td></tr>
+<tr class="separator:a3681c42541ced2f7bdfeff085d6cb502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ce74d89bdcb86b1a9f151be6c3e3ae4"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smemory_8c.html#a3ce74d89bdcb86b1a9f151be6c3e3ae4">floatCalloc</a> (size_t n)</td></tr>
+<tr class="separator:a3ce74d89bdcb86b1a9f151be6c3e3ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a658f955c5532813bd0490502efae563f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smemory_8c.html#a658f955c5532813bd0490502efae563f">smemory_usage</a> (const int nzlmax, const int nzumax, const int nzlumax, const int n)</td></tr>
 <tr class="separator:a658f955c5532813bd0490502efae563f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -317,8 +317,8 @@ June 30, 2009
 
 </div>
 </div>
-<a id="ab6dc7fd90a3d13e0c9a8ca8d62def27f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6dc7fd90a3d13e0c9a8ca8d62def27f">&#9670;&nbsp;</a></span>floatCalloc()</h2>
+<a id="a3ce74d89bdcb86b1a9f151be6c3e3ae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ce74d89bdcb86b1a9f151be6c3e3ae4">&#9670;&nbsp;</a></span>floatCalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -326,7 +326,7 @@ June 30, 2009
         <tr>
           <td class="memname">float* floatCalloc </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>
@@ -335,8 +335,8 @@ June 30, 2009
 
 </div>
 </div>
-<a id="a4a866452c5dcba66083ef463662955ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a866452c5dcba66083ef463662955ee">&#9670;&nbsp;</a></span>floatMalloc()</h2>
+<a id="a3681c42541ced2f7bdfeff085d6cb502"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3681c42541ced2f7bdfeff085d6cb502">&#9670;&nbsp;</a></span>floatMalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -344,7 +344,7 @@ June 30, 2009
         <tr>
           <td class="memname">float* floatMalloc </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>
@@ -455,7 +455,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="smemory_8c_a9754e5504550ae4ab763721ebcb7055b_cgraph.png" border="0" usemap="#smemory_8c_a9754e5504550ae4ab763721ebcb7055b_cgraph" alt=""/></div>
 <map name="smemory_8c_a9754e5504550ae4ab763721ebcb7055b_cgraph" id="smemory_8c_a9754e5504550ae4ab763721ebcb7055b_cgraph">
 <area shape="rect"  title="Allocate storage for original matrix A." alt="" coords="5,31,89,57"/>
-<area shape="rect"  href="smemory_8c.html#a4a866452c5dcba66083ef463662955ee" title=" " alt="" coords="137,5,223,32"/>
+<area shape="rect"  href="smemory_8c.html#a3681c42541ced2f7bdfeff085d6cb502" title=" " alt="" coords="137,5,223,32"/>
 <area shape="rect"  href="memory_8c.html#a49bbe20102e5b541c8e8963afa2bd46a" title=" " alt="" coords="143,56,217,83"/>
 </map>
 </div>

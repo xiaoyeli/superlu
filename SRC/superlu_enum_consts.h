@@ -39,8 +39,11 @@ typedef enum {USUB, LSUB, UCOL, LUSUP, LLVL, ULVL, NO_MEMTYPE}  MemType;
 typedef enum {HEAD, TAIL}                                       stack_end_t;
 typedef enum {SYSTEM, USER}                                     LU_space_t;
 typedef enum {ONE_NORM, TWO_NORM, INF_NORM}			norm_t;
+
+/*
+ * The following are for ILUTP in serial SuperLU
+ */
 typedef enum {SILU, SMILU_1, SMILU_2, SMILU_3}			milu_t;
-#if 0
 typedef enum {NODROP		= 0x0000,
 	      DROP_BASIC	= 0x0001, /* ILU(tau) */
 	      DROP_PROWS	= 0x0002, /* ILUTP: keep p maximum rows */
@@ -52,7 +55,6 @@ typedef enum {NODROP		= 0x0000,
 	      DROP_SECONDARY	= 0x000E, /* PROWS | COLUMN | AREA */
 	      DROP_DYNAMIC	= 0x0010,
 	      DROP_INTERP	= 0x0100}			rule_t;
-#endif
 
 
 /* 

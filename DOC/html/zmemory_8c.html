@@ -132,10 +132,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a46bbbd9396593820fd01a6d3dea08d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zmemory_8c.html#a46bbbd9396593820fd01a6d3dea08d31">zallocateA</a> (int n, int nnz, <a class="el" href="structdoublecomplex.html">doublecomplex</a> **a, int **asub, int **xa)</td></tr>
 <tr class="memdesc:a46bbbd9396593820fd01a6d3dea08d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for original matrix A.  <a href="#a46bbbd9396593820fd01a6d3dea08d31">More...</a><br /></td></tr>
 <tr class="separator:a46bbbd9396593820fd01a6d3dea08d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad681359ed37ac809cc0e456e05655823"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdoublecomplex.html">doublecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zmemory_8c.html#ad681359ed37ac809cc0e456e05655823">doublecomplexMalloc</a> (int n)</td></tr>
-<tr class="separator:ad681359ed37ac809cc0e456e05655823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c839d769dd079aab4bf852533d96933"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdoublecomplex.html">doublecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zmemory_8c.html#a7c839d769dd079aab4bf852533d96933">doublecomplexCalloc</a> (int n)</td></tr>
-<tr class="separator:a7c839d769dd079aab4bf852533d96933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3abe9b8e26a63ad47bccea844aac1c4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdoublecomplex.html">doublecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zmemory_8c.html#a3abe9b8e26a63ad47bccea844aac1c4f">doublecomplexMalloc</a> (size_t n)</td></tr>
+<tr class="separator:a3abe9b8e26a63ad47bccea844aac1c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1fcb08083a7950e21b98488bb90722d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdoublecomplex.html">doublecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zmemory_8c.html#af1fcb08083a7950e21b98488bb90722d">doublecomplexCalloc</a> (size_t n)</td></tr>
+<tr class="separator:af1fcb08083a7950e21b98488bb90722d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17416eb78c42063624b6859d9f88820b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zmemory_8c.html#a17416eb78c42063624b6859d9f88820b">zmemory_usage</a> (const int nzlmax, const int nzumax, const int nzlumax, const int n)</td></tr>
 <tr class="separator:a17416eb78c42063624b6859d9f88820b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -319,8 +319,8 @@ June 30, 2009
 
 </div>
 </div>
-<a id="a7c839d769dd079aab4bf852533d96933"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c839d769dd079aab4bf852533d96933">&#9670;&nbsp;</a></span>doublecomplexCalloc()</h2>
+<a id="af1fcb08083a7950e21b98488bb90722d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1fcb08083a7950e21b98488bb90722d">&#9670;&nbsp;</a></span>doublecomplexCalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -328,7 +328,7 @@ June 30, 2009
         <tr>
           <td class="memname"><a class="el" href="structdoublecomplex.html">doublecomplex</a>* doublecomplexCalloc </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>
@@ -337,8 +337,8 @@ June 30, 2009
 
 </div>
 </div>
-<a id="ad681359ed37ac809cc0e456e05655823"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad681359ed37ac809cc0e456e05655823">&#9670;&nbsp;</a></span>doublecomplexMalloc()</h2>
+<a id="a3abe9b8e26a63ad47bccea844aac1c4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3abe9b8e26a63ad47bccea844aac1c4f">&#9670;&nbsp;</a></span>doublecomplexMalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,7 +346,7 @@ June 30, 2009
         <tr>
           <td class="memname"><a class="el" href="structdoublecomplex.html">doublecomplex</a>* doublecomplexMalloc </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>
@@ -491,7 +491,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="zmemory_8c_a46bbbd9396593820fd01a6d3dea08d31_cgraph.png" border="0" usemap="#zmemory_8c_a46bbbd9396593820fd01a6d3dea08d31_cgraph" alt=""/></div>
 <map name="zmemory_8c_a46bbbd9396593820fd01a6d3dea08d31_cgraph" id="zmemory_8c_a46bbbd9396593820fd01a6d3dea08d31_cgraph">
 <area shape="rect"  title="Allocate storage for original matrix A." alt="" coords="5,31,89,57"/>
-<area shape="rect"  href="zmemory_8c.html#ad681359ed37ac809cc0e456e05655823" title=" " alt="" coords="137,5,288,32"/>
+<area shape="rect"  href="zmemory_8c.html#a3abe9b8e26a63ad47bccea844aac1c4f" title=" " alt="" coords="137,5,288,32"/>
 <area shape="rect"  href="memory_8c.html#a49bbe20102e5b541c8e8963afa2bd46a" title=" " alt="" coords="175,56,250,83"/>
 </map>
 </div>

@@ -88,9 +88,9 @@ option(enable_complex16 "Enable complex16 precision library" ON)
 # option(enable_examples  "Build examples" ON)
 
 # setup required compiler defines and options.
-## add_definitions(-DPRNTlevel=0 -DAdd_)
 ## get_directory_property( DirDefs COMPILE_DEFINITIONS )
-set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DDEBUGlevel=0 ${CMAKE_C_FLAGS}")
+#set(CMAKE_C_FLAGS "-DPRNTlevel=0 -DDEBUGlevel=0 ${CMAKE_C_FLAGS}")
+
 set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 
 ######################################################################

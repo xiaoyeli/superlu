@@ -92,8 +92,6 @@ Functions</h2></td></tr>
 <tr class="separator:aa34f31c4fe6ec2e5ee33f3d04ad9c209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0494ba5c3e08e41a10ce8a2d96f8c49"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sp__coletree_8c.html#aa0494ba5c3e08e41a10ce8a2d96f8c49">sp_coletree</a> (int *acolst, int *acolend, int *arow, int nr, int nc, int *parent)</td></tr>
 <tr class="separator:aa0494ba5c3e08e41a10ce8a2d96f8c49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9da0c72a7b8eaf7a2a69fb6c3340131a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sp__coletree_8c.html#a9da0c72a7b8eaf7a2a69fb6c3340131a">etdfs</a> (int v, int first_kid[], int next_kid[], int post[], int *postnum)</td></tr>
-<tr class="separator:a9da0c72a7b8eaf7a2a69fb6c3340131a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fec305add1f9f4c611eacdb2b744bfd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sp__coletree_8c.html#a7fec305add1f9f4c611eacdb2b744bfd">nr_etdfs</a> (int n, int *parent, int *first_kid, int *next_kid, int *post, int postnum)</td></tr>
 <tr class="separator:a7fec305add1f9f4c611eacdb2b744bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bf99818533bf5c192e1e4791b4700cc"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sp__coletree_8c.html#a8bf99818533bf5c192e1e4791b4700cc">TreePostorder</a> (int n, int *parent)</td></tr>
@@ -116,60 +114,6 @@ Functions</h2></td></tr>
  granted, provided the above notices are retained, and a notice that
  the code was modified is included with the above copyright notice.
  </pre> </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a9da0c72a7b8eaf7a2a69fb6c3340131a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9da0c72a7b8eaf7a2a69fb6c3340131a">&#9670;&nbsp;</a></span>etdfs()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void etdfs </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>v</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>first_kid</em>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>next_kid</em>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>post</em>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>postnum</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aa34f31c4fe6ec2e5ee33f3d04ad9c209"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa34f31c4fe6ec2e5ee33f3d04ad9c209">&#9670;&nbsp;</a></span>finalize_disjoint_sets()</h2>
 
@@ -597,10 +541,9 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sp__coletree_8c_a8bf99818533bf5c192e1e4791b4700cc_cgraph.png" border="0" usemap="#sp__coletree_8c_a8bf99818533bf5c192e1e4791b4700cc_cgraph" alt=""/></div>
 <map name="sp__coletree_8c_a8bf99818533bf5c192e1e4791b4700cc_cgraph" id="sp__coletree_8c_a8bf99818533bf5c192e1e4791b4700cc_cgraph">
-<area shape="rect"  title=" " alt="" coords="5,56,112,83"/>
+<area shape="rect"  title=" " alt="" coords="5,31,112,57"/>
 <area shape="rect"  href="sp__coletree_8c.html#a45fdfbf54106113728e1a036977ccf5b" title=" " alt="" coords="160,5,252,32"/>
-<area shape="rect"  href="sp__coletree_8c.html#a9da0c72a7b8eaf7a2a69fb6c3340131a" title=" " alt="" coords="181,56,231,83"/>
-<area shape="rect"  href="sp__coletree_8c.html#a7fec305add1f9f4c611eacdb2b744bfd" title=" " alt="" coords="171,107,241,133"/>
+<area shape="rect"  href="sp__coletree_8c.html#a7fec305add1f9f4c611eacdb2b744bfd" title=" " alt="" coords="171,56,241,83"/>
 </map>
 </div>
 

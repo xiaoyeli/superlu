@@ -76,7 +76,7 @@ Include dependency graph for dgsisx.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a895611a0135f2212f505986a6384f1b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dgsisx_8c.html#a895611a0135f2212f505986a6384f1b9">dgsisx</a> (<a class="el" href="structsuperlu__options__t.html">superlu_options_t</a> *options, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="ilu__zdrop__row_8c.html#ac900805a486cbb8489e3c176ed6e0d8e">A</a>, int *perm_c, int *perm_r, int *etree, char *equed, double *R, double *C, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *U, void *work, int lwork, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *B, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *X, double *recip_pivot_growth, double *rcond, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat, int *info)</td></tr>
+<tr class="memitem:a895611a0135f2212f505986a6384f1b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dgsisx_8c.html#a895611a0135f2212f505986a6384f1b9">dgsisx</a> (<a class="el" href="structsuperlu__options__t.html">superlu_options_t</a> *options, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *A, int *perm_c, int *perm_r, int *etree, char *equed, double *R, double *C, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *U, void *work, int lwork, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *B, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *X, double *recip_pivot_growth, double *rcond, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat, int *info)</td></tr>
 <tr class="separator:a895611a0135f2212f505986a6384f1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -511,52 +511,52 @@ Here is the call graph for this function:</div>
 <area shape="rect"  href="dlangs_8c.html#a75a53f4464b95c63adad9e1f63f44d1c" title=" " alt="" coords="181,5,242,32"/>
 <area shape="rect"  href="dmach_8c.html#a9619845d75710daa0aa4549c2862bae5" title=" " alt="" coords="607,157,670,184"/>
 <area shape="rect"  href="input__error_8c.html#a5832852b8f6777484b6f55dd79e67d86" title=" " alt="" coords="402,259,489,285"/>
-<area shape="rect"  href="slu__util_8h.html#a72be96e75e58564c4322ef9ef73ca65f" title=" " alt="" coords="605,867,673,893"/>
-<area shape="rect"  href="dutil_8c.html#a4a177c54dafbe3640c26caa49eeee1de" title="Supernodal LU factor related." alt="" coords="357,1677,533,1704"/>
-<area shape="rect"  href="slu__util_8h.html#a0c6777573bbfe81917cd381e0090d355" title="Timer function." alt="" coords="386,1728,505,1755"/>
-<area shape="rect"  href="memory_8c.html#a49bbe20102e5b541c8e8963afa2bd46a" title=" " alt="" coords="601,588,676,615"/>
+<area shape="rect"  href="slu__util_8h.html#a72be96e75e58564c4322ef9ef73ca65f" title=" " alt="" coords="605,943,673,969"/>
+<area shape="rect"  href="dutil_8c.html#a4a177c54dafbe3640c26caa49eeee1de" title="Supernodal LU factor related." alt="" coords="357,1829,533,1856"/>
+<area shape="rect"  href="slu__util_8h.html#a0c6777573bbfe81917cd381e0090d355" title="Timer function." alt="" coords="152,1931,271,1957"/>
+<area shape="rect"  href="memory_8c.html#a49bbe20102e5b541c8e8963afa2bd46a" title=" " alt="" coords="601,664,676,691"/>
 <area shape="rect"  href="dldperm_8c.html#a5c6a8de5e809f2094735965027adf532" title=" " alt="" coords="176,461,247,488"/>
 <area shape="rect"  href="dgsequ_8c.html#aaf22b247cc134fb0ba90285e84ccebb4" title="Driver related." alt="" coords="179,247,244,273"/>
-<area shape="rect"  href="dlaqgs_8c.html#a07e1fa4926680eb02069087f0aa26fa1" title=" " alt="" coords="181,119,242,145"/>
-<area shape="rect"  href="get__perm__c_8c.html#aaecb6e6e7a3e97356050bcfdf2573796" title=" " alt="" coords="165,1804,257,1831"/>
-<area shape="rect"  href="slu__util_8h.html#adf9c573cbfb4520a5ea820702d27cfa5" title=" " alt="" coords="165,1981,258,2008"/>
-<area shape="rect"  href="dgsitrf_8c.html#ac36e874ce15790ca0b059fab7eed0466" title=" " alt="" coords="182,1171,241,1197"/>
-<area shape="rect"  href="dpivotgrowth_8c.html#a770618182a3841e8d10a26a4eb97418a" title=" " alt="" coords="160,183,263,209"/>
+<area shape="rect"  href="dlaqgs_8c.html#a07e1fa4926680eb02069087f0aa26fa1" title=" " alt="" coords="181,183,242,209"/>
+<area shape="rect"  href="SRC_2get__perm__c_8c.html#aaecb6e6e7a3e97356050bcfdf2573796" title=" " alt="" coords="165,1981,257,2008"/>
+<area shape="rect"  href="slu__util_8h.html#adf9c573cbfb4520a5ea820702d27cfa5" title=" " alt="" coords="165,1880,258,1907"/>
+<area shape="rect"  href="dgsitrf_8c.html#ac36e874ce15790ca0b059fab7eed0466" title=" " alt="" coords="182,1247,241,1273"/>
+<area shape="rect"  href="dpivotgrowth_8c.html#a770618182a3841e8d10a26a4eb97418a" title=" " alt="" coords="160,56,263,83"/>
 <area shape="rect"  href="dgscon_8c.html#a2c7a4267d306243d3ceb15531522033e" title=" " alt="" coords="179,399,244,425"/>
 <area shape="rect"  href="dgstrs_8c.html#a6e3eace519372b7dfcd053e0d3614fc1" title=" " alt="" coords="182,297,241,324"/>
-<area shape="rect"  href="dmemory_8c.html#a61aaccf587a78d15d79c4cc79f80e8b0" title=" " alt="" coords="149,715,273,741"/>
+<area shape="rect"  href="dmemory_8c.html#a61aaccf587a78d15d79c4cc79f80e8b0" title=" " alt="" coords="149,613,273,640"/>
 <area shape="rect"  href="slu__util_8h.html#a4de38e1c0ef18dd0791cb206c7f5348f" title="A is of type Stype==NCP." alt="" coords="113,2032,309,2059"/>
 <area shape="rect"  href="slu__util_8h.html#a2c43be55861c6e4ee5b806ac16cc382c" title="Deallocate the structure pointing to the actual storage of the matrix." alt="" coords="138,2083,285,2125"/>
-<area shape="rect"  href="SRC_2sp__ienv_8c.html#a89d63af74d9accdbcd7e859b687130cc" title=" " alt="" coords="744,867,831,893"/>
-<area shape="rect"  href="slu__util_8h.html#ade363dcb4babb66fa0e5f51bd2e6e42c" title=" " alt="" coords="393,512,497,539"/>
-<area shape="rect"  href="dldperm_8c.html#a1e6fb0c8dd36aef071ef165136ece781" title=" " alt="" coords="409,411,481,437"/>
-<area shape="rect"  href="dldperm_8c.html#a4e7ad390efe21b3fb50607aed500777d" title=" " alt="" coords="407,461,484,488"/>
-<area shape="rect"  href="get__perm__c_8c.html#a90f30e2b284864f6a800a98ceaff8fbc" title=" " alt="" coords="416,1779,475,1805"/>
-<area shape="rect"  href="get__perm__c_8c.html#a486ee50799ff66abe91efa46a5950a57" title=" " alt="" coords="405,1931,485,1957"/>
-<area shape="rect"  href="get__perm__c_8c.html#ae92c26cd488b7a86b8277cee2773d8ef" title=" " alt="" coords="400,1829,491,1856"/>
-<area shape="rect"  href="get__perm__c_8c.html#a792508355b6bef974fcd9e214de40c8e" title=" " alt="" coords="405,1880,486,1907"/>
-<area shape="rect"  href="slu__util_8h.html#a8a3ba6cbe163f9c12f6f10ee8ba98fc7" title=" " alt="" coords="397,1981,494,2008"/>
-<area shape="rect"  href="sp__preorder_8c.html#ac79059104ae6abf212c41986820d358c" title=" " alt="" coords="398,2032,493,2059"/>
+<area shape="rect"  href="SRC_2sp__ienv_8c.html#a89d63af74d9accdbcd7e859b687130cc" title=" " alt="" coords="744,943,831,969"/>
+<area shape="rect"  href="slu__util_8h.html#ade363dcb4babb66fa0e5f51bd2e6e42c" title=" " alt="" coords="393,411,497,437"/>
+<area shape="rect"  href="dldperm_8c.html#a1e6fb0c8dd36aef071ef165136ece781" title=" " alt="" coords="409,461,481,488"/>
+<area shape="rect"  href="dldperm_8c.html#a4e7ad390efe21b3fb50607aed500777d" title=" " alt="" coords="407,360,484,387"/>
+<area shape="rect"  href="slu__util_8h.html#a8a3ba6cbe163f9c12f6f10ee8ba98fc7" title=" " alt="" coords="397,1931,494,1957"/>
+<area shape="rect"  href="sp__preorder_8c.html#ac79059104ae6abf212c41986820d358c" title=" " alt="" coords="398,1981,493,2008"/>
+<area shape="rect"  href="SRC_2get__perm__c_8c.html#a486ee50799ff66abe91efa46a5950a57" title=" " alt="" coords="405,2032,485,2059"/>
 <area shape="rect"  href="sp__coletree_8c.html#a657d6b291654432e815392c2a00d2b84" title=" " alt="" coords="396,2083,495,2109"/>
 <area shape="rect"  href="slu__util_8h.html#af8198f26bef3c82fbb8601fc5a8e0d9e" title=" " alt="" coords="400,2133,491,2160"/>
-<area shape="rect"  href="slu__util_8h.html#a44084fde835d2ccaa25e9fd942a72b7a" title=" " alt="" coords="585,1753,692,1780"/>
-<area shape="rect"  href="dmemory_8c.html#ae2ca2ac5e9a763fd3f07487343e4522e" title="Allocate storage for the data structures common to all factor routines." alt="" coords="399,765,492,792"/>
-<area shape="rect"  href="memory_8c.html#adbbe5a57b4ed64564c887fb52d798c54" title="Set up pointers for integer working arrays." alt="" coords="407,1627,484,1653"/>
-<area shape="rect"  href="slu__util_8h.html#ab0dfb6551008bcad5e758defdbd13006" title="Fills an integer array with a given value." alt="" coords="619,1297,658,1324"/>
-<area shape="rect"  href="dmemory_8c.html#aaa5359da217b433b43bf6c8e2d29aa45" title="Set up pointers for real working arrays." alt="" coords="400,968,491,995"/>
-<area shape="rect"  href="ilu__heap__relax__snode_8c.html#aac1a978dda622cdb58c3c2eaee4b4030" title=" " alt="" coords="369,1323,521,1349"/>
-<area shape="rect"  href="ilu__relax__snode_8c.html#ae0e2bbb8507d800766030635a3bd5a7e" title=" " alt="" coords="387,1221,503,1248"/>
-<area shape="rect"  href="mark__relax_8c.html#a5e85b0273eec011f0027d8506a20350e" title=" " alt="" coords="401,1373,489,1400"/>
-<area shape="rect"  href="ilu__ddrop__row_8c.html#a380317801e05b11930fd1e094db34179" title=" " alt="" coords="393,1424,498,1451"/>
-<area shape="rect"  href="ilu__dsnode__dfs_8c.html#a66dbc4626e59d14b4d3458c4eb841829" title=" " alt="" coords="389,1069,501,1096"/>
-<area shape="rect"  href="dmemory_8c.html#a9aff5dfe301496ef7c9234789975c043" title="Expand the data structures for L and U during the factorization." alt="" coords="581,1069,696,1096"/>
-<area shape="rect"  href="dsnode__bmod_8c.html#a1466b84198911ff34e828a811e70831e" title="Performs numeric block updates within the relaxed snode." alt="" coords="392,1475,499,1501"/>
-<area shape="rect"  href="ilu__dpivotL_8c.html#a058d843996bb36b73784b80aae05f04b" title=" " alt="" coords="403,1525,488,1552"/>
-<area shape="rect"  href="ilu__dpanel__dfs_8c.html#a0a3d016444b041668956824248d22439" title=" " alt="" coords="391,1576,499,1603"/>
-<area shape="rect"  href="dpanel__bmod_8c.html#a192df249a9fc13ad49bf3f2cd79aba65" title=" " alt="" coords="394,917,497,944"/>
-<area shape="rect"  href="ilu__dcolumn__dfs_8c.html#af164b7b553eed616e2ed95144698fe7a" title=" " alt="" coords="386,1019,505,1045"/>
-<area shape="rect"  href="dcolumn__bmod_8c.html#a5ca322682f98f276feb3c50b31ca56b8" title=" " alt="" coords="389,1120,502,1147"/>
-<area shape="rect"  href="ilu__dcopy__to__ucol_8c.html#ab1802613180b46ffdb7b058a42c38716" title=" " alt="" coords="381,867,510,893"/>
+<area shape="rect"  href="slu__util_8h.html#a44084fde835d2ccaa25e9fd942a72b7a" title=" " alt="" coords="585,1804,692,1831"/>
+<area shape="rect"  href="dmemory_8c.html#ae2ca2ac5e9a763fd3f07487343e4522e" title="Allocate storage for the data structures common to all factor routines." alt="" coords="399,816,492,843"/>
+<area shape="rect"  href="memory_8c.html#adbbe5a57b4ed64564c887fb52d798c54" title="Set up pointers for integer working arrays." alt="" coords="407,1728,484,1755"/>
+<area shape="rect"  href="slu__util_8h.html#ab0dfb6551008bcad5e758defdbd13006" title="Fills an integer array with a given value." alt="" coords="619,1703,658,1729"/>
+<area shape="rect"  href="dmemory_8c.html#aaa5359da217b433b43bf6c8e2d29aa45" title="Set up pointers for real working arrays." alt="" coords="400,917,491,944"/>
+<area shape="rect"  href="ilu__heap__relax__snode_8c.html#aac1a978dda622cdb58c3c2eaee4b4030" title=" " alt="" coords="369,1677,521,1704"/>
+<area shape="rect"  href="ilu__relax__snode_8c.html#ae0e2bbb8507d800766030635a3bd5a7e" title=" " alt="" coords="387,1779,503,1805"/>
+<area shape="rect"  href="mark__relax_8c.html#a5e85b0273eec011f0027d8506a20350e" title=" " alt="" coords="401,1120,489,1147"/>
+<area shape="rect"  href="ilu__ddrop__row_8c.html#a380317801e05b11930fd1e094db34179" title=" " alt="" coords="393,1171,498,1197"/>
+<area shape="rect"  href="ilu__dsnode__dfs_8c.html#a66dbc4626e59d14b4d3458c4eb841829" title=" " alt="" coords="389,1424,501,1451"/>
+<area shape="rect"  href="dmemory_8c.html#a9aff5dfe301496ef7c9234789975c043" title="Expand the data structures for L and U during the factorization." alt="" coords="581,1424,696,1451"/>
+<area shape="rect"  href="dsnode__bmod_8c.html#a1466b84198911ff34e828a811e70831e" title="Performs numeric block updates within the relaxed snode." alt="" coords="392,1221,499,1248"/>
+<area shape="rect"  href="ilu__dpivotL_8c.html#a058d843996bb36b73784b80aae05f04b" title=" " alt="" coords="403,1272,488,1299"/>
+<area shape="rect"  href="ilu__dpanel__dfs_8c.html#a0a3d016444b041668956824248d22439" title=" " alt="" coords="391,1323,499,1349"/>
+<area shape="rect"  href="dpanel__bmod_8c.html#a192df249a9fc13ad49bf3f2cd79aba65" title=" " alt="" coords="394,968,497,995"/>
+<area shape="rect"  href="ilu__dcolumn__dfs_8c.html#af164b7b553eed616e2ed95144698fe7a" title=" " alt="" coords="386,1069,505,1096"/>
+<area shape="rect"  href="dcolumn__bmod_8c.html#a5ca322682f98f276feb3c50b31ca56b8" title=" " alt="" coords="389,1475,502,1501"/>
+<area shape="rect"  href="ilu__dcopy__to__ucol_8c.html#ab1802613180b46ffdb7b058a42c38716" title=" " alt="" coords="381,715,510,741"/>
+<area shape="rect"  href="slu__util_8h.html#ab71db926d60d7b8fd739df197b766366" title="Reset repfnz[] for the current column." alt="" coords="397,1373,493,1400"/>
+<area shape="rect"  href="slu__cdefs_8h.html#aae8eb367a0a2fcdf734738bc9630df85" title="Count the total number of nonzeros in factors L and U." alt="" coords="401,1576,490,1603"/>
+<area shape="rect"  href="slu__cdefs_8h.html#a7061332d759d7e4d73c1b2e5cb0bf2bf" title="Fix up the data storage lsub for L&#45;subscripts. It removes the subscript sets for structural pruning,..." alt="" coords="417,867,474,893"/>
 </map>
 </div>
 

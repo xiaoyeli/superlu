@@ -90,6 +90,10 @@ int dfgmr(int n,
     double zero = 0.0;
     double one = 1.0;
 
+    /* prototypes */
+    extern int dcopy_(int *, double *, int *, double *, int *);
+    extern int daxpy_(int *, double *, double [], int *, double [], int *);
+
     its = 0;
     vv = (double **)SUPERLU_MALLOC((im + 1) * sizeof(double *));
     for (i = 0; i <= im; i++) vv[i] = doubleMalloc(n);

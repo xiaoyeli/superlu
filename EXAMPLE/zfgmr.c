@@ -91,6 +91,10 @@ int zfgmr(int n,
     doublecomplex one = {1.0, 0.0};
     doublecomplex tt1, tt2;
 
+    /* prototypes */
+    extern int zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
+    extern int zaxpy_(int *, doublecomplex *, doublecomplex [], int *, doublecomplex [], int *);
+
     its = 0;
     vv = (doublecomplex **)SUPERLU_MALLOC((im + 1) * sizeof(doublecomplex *));
     for (i = 0; i <= im; i++) vv[i] = doublecomplexMalloc(n);

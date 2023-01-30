@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     #endif
     //options.ColPerm = MMD_ATA;
 
-#if 0
+#if 1
     /* Read the matrix in Harwell-Boeing format. */
     dreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
 #else

@@ -25,6 +25,7 @@ at the top-level directory.
  */
 #include "slu_Cnames.h"
 
+
 /*! \brief
 
  <pre>
@@ -69,6 +70,7 @@ int
 sp_ienv(int ispec)
 {
     int i;
+    extern int input_error(char *, int *);
 
     switch (ispec) {
 	case 1: return (1);

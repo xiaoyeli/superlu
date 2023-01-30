@@ -18,7 +18,7 @@ set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 #
 # IDEAS: xSDK standards module
 MESSAGE("\nProcess XSDK defaults ...")
-# SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
+SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
 INCLUDE("cmake/XSDKDefaults.cmake")
 INCLUDE(CTest)
 

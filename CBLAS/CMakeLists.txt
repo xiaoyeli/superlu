@@ -3,7 +3,8 @@ set(headers
     slu_Cnames.h
 )
 
-set(sources input_error.c)
+# set(sources input_error.c)
+set(sources "")
 
 #if (enable_single)
     list(APPEND sources

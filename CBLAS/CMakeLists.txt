@@ -84,7 +84,6 @@ if (enable_complex16)
 endif()
 
 add_library(blas ${sources})
-target_link_options(blas PRIVATE "-lm" "-Wl,--no-undefined" "-Wl,--no-allow-shlib-undefined")
 
 include(GNUInstallDirs)
 install(TARGETS blas

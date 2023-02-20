@@ -233,7 +233,7 @@ if(enable_complex16)
   )
 endif()
 
-add_library(superlu ${sources})
+add_library(superlu STATIC ${sources})
 target_link_libraries(superlu PUBLIC ${BLAS_LIB})
 if (NOT WIN32)
   target_link_libraries(superlu PUBLIC m)

@@ -83,7 +83,7 @@ if (enable_complex16)
     )
 endif()
 
-add_library(blas ${sources})
+add_library(blas STATIC ${sources})
 
 include(GNUInstallDirs)
 install(TARGETS blas

@@ -3,10 +3,10 @@ set(headers
     slu_Cnames.h
 )
 
-# set(sources input_error.c)
-set(sources "")
+set(sources ../SRC/input_error.c)
+# set(sources "")
 
-#if (enable_single)
+if (enable_single)
     list(APPEND sources
       isamax.c
       sasum.c
@@ -23,9 +23,9 @@ set(sources "")
       sger.c
       ssyr2.c
     )
-#endif()
+endif()
 
-#if (enable_double)
+if (enable_double)
     list(APPEND sources
       idamax.c
       dasum.c
@@ -42,10 +42,11 @@ set(sources "")
       dger.c
       dsyr2.c
     )
-#endif()
+endif()
 
-#if (enable_complex)
+if (enable_complex)
     list(APPEND sources
+      ../SRC/scomplex.c
       icamax.c
       scasum.c
       caxpy.c
@@ -60,10 +61,11 @@ set(sources "")
       cgerc.c
       cher2.c
     )
-#endif()
+endif()
 
-#if (enable_complex16)
+if (enable_complex16)
     list(APPEND sources
+      ../SRC/dcomplex.c
       izamax.c
       dzasum.c
       zaxpy.c
@@ -79,9 +81,10 @@ set(sources "")
       zgerc.c
       zher2.c
     )
-#endif()
+endif()
 
 add_library(blas ${sources})
+target_link_options(blas PRIVATE "-lm" "-Wl,--no-undefined" "-Wl,--no-allow-shlib-undefined")
 
 include(GNUInstallDirs)
 install(TARGETS blas

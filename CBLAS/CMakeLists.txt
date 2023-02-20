@@ -82,3 +82,4 @@ if (enable_complex16)
 endif()
 
 set(CBLAS_SOURCES ${sources} CACHE INTERNAL "")
+set(CBLAS_HEADERS ${headers} CACHE INTERNAL "")

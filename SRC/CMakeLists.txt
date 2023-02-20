@@ -235,6 +235,7 @@ endif()
 
 if(NOT BLAS_FOUND)
   list(APPEND sources ${CBLAS_SOURCES})
+  list(APPEND headers ${CBLAS_HEADERS})
 endif()
 
 add_library(superlu ${sources})

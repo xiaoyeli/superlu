@@ -234,7 +234,7 @@ if(enable_complex16)
 endif()
 
 if(NOT BLAS_FOUND)
-  list(APPEND sources ${CBLAS_sources})
+  list(APPEND sources ${CBLAS_SOURCES})
 endif()
 
 add_library(superlu ${sources})

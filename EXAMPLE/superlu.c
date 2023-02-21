@@ -20,7 +20,7 @@ at the top-level directory.
  */
 #include "slu_ddefs.h"
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 /*
  * Purpose

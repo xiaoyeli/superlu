@@ -19,6 +19,8 @@ at the top-level directory.
 #include <unistd.h>
 #include "slu_ddefs.h"
 
+#include <unistd.h>
+
 int main(int argc, char *argv[])
 {
     char           equed[1];

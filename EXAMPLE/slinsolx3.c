@@ -21,6 +21,8 @@ at the top-level directory.
 #include <unistd.h>
 #include "slu_sdefs.h"
 
+#include <unistd.h>
+
 int main(int argc, char *argv[])
 {
 /*

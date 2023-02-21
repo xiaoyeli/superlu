@@ -33,6 +33,8 @@ For information on ITSOL contact saad@cs.umn.edu
 
 #define  epsmac  1.0e-16
 
+extern int scopy_(int *, float *, int *, float *, int *);
+extern void saxpy_(int *, float *, float *, int *, float *, int *);
 extern float sdot_(int *, float [], int *, float [], int *);
 extern float snrm2_(int *, float [], int *);
 

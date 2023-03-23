@@ -95,9 +95,9 @@ cpanel_bmod (
     register int isub, isub1, i;
     register int jj;	      /* Index through each column in the panel */
     int          *xsup, *supno;
-    int          *lsub, *xlsub;
+    int_t        *lsub, *xlsub;
     complex       *lusup;
-    int          *xlusup;
+    int_t        *xlusup;
     int          *repfnz_col; /* repfnz[] for a column in the panel */
     complex       *dense_col;  /* dense[] for a column in the panel */
     complex       *tempv1;             /* Used in 1-D update */

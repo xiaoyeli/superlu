@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     SuperMatrix A;
     NCformat *Astore;
     float   *a;
-    int      *asub, *xa;
+    int_t    *asub, *xa;
     int      *perm_c; /* column permutation vector */
     int      *perm_r; /* row permutations from partial pivoting */
     SuperMatrix L;      /* factor L */
@@ -32,7 +32,8 @@ int main(int argc, char *argv[])
     SuperMatrix U;      /* factor U */
     NCformat *Ustore;
     SuperMatrix B;
-    int      nrhs, ldx, info, m, n, nnz;
+    int      nrhs, ldx, m, n;
+    int_t    nnz, info;
     float   *xact, *rhs;
     mem_usage_t   mem_usage;
     superlu_options_t options;
@@ -62,7 +63,7 @@ int main(int argc, char *argv[])
 
     sCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_S, SLU_GE);
     Astore = A.Store;
-    printf("Dimension %dx%d; # nonzeros %d\n", A.nrow, A.ncol, Astore->nnz);
+    printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
     
     nrhs   = 1;
     if ( !(rhs = floatMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
@@ -72,8 +73,8 @@ int main(int argc, char *argv[])
     sGenXtrue(n, nrhs, xact, ldx);
     sFillRHS(options.Trans, nrhs, xact, ldx, &A, &B);
 
-    if ( !(perm_c = intMalloc(n)) ) ABORT("Malloc fails for perm_c[].");
-    if ( !(perm_r = intMalloc(m)) ) ABORT("Malloc fails for perm_r[].");
+    if ( !(perm_c = int32Malloc(n)) ) ABORT("Malloc fails for perm_c[].");
+    if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");
 
     /* Initialize the statistics variables. */
     StatInit(&stat);
@@ -90,9 +91,9 @@ int main(int argc, char *argv[])
 
 	Lstore = (SCformat *) L.Store;
 	Ustore = (NCformat *) U.Store;
-    	printf("No of nonzeros in factor L = %d\n", Lstore->nnz);
-    	printf("No of nonzeros in factor U = %d\n", Ustore->nnz);
-    	printf("No of nonzeros in L+U = %d\n", Lstore->nnz + Ustore->nnz - n);
+    	printf("No of nonzeros in factor L = %lld\n", (long long) Lstore->nnz);
+    	printf("No of nonzeros in factor U = %lld\n", (long long) Ustore->nnz);
+    	printf("No of nonzeros in L+U = %lld\n", (long long) Lstore->nnz + Ustore->nnz - n);
     	printf("FILL ratio = %.1f\n", (float)(Lstore->nnz + Ustore->nnz - n)/nnz);
 	
 	sQuerySpace(&L, &U, &mem_usage);
@@ -100,7 +101,7 @@ int main(int argc, char *argv[])
 	       mem_usage.for_lu/1e6, mem_usage.total_needed/1e6);
 	
     } else {
-	printf("sgssv() error returns INFO= %d\n", info);
+	printf("sgssv() error returns INFO= %lld\n", (long long)info);
 	if ( info <= n ) { /* factorization completes */
 	    sQuerySpace(&L, &U, &mem_usage);
 	    printf("L\\U MB %.3f\ttotal MB needed %.3f\n",

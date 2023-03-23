@@ -59,12 +59,12 @@ zsnode_bmod (
 #endif
 
     doublecomplex   comp_zero = {0.0, 0.0};
-    int            luptr, nsupc, nsupr, nrow;
+    int            nsupc, nsupr, nrow;
     int            isub, irow;
     register int   ufirst, nextlu;
-    int            *lsub, *xlsub;
+    int_t          *lsub, *xlsub;
     doublecomplex         *lusup;
-    int            *xlusup;
+    int_t          *xlusup, luptr;
     flops_t *ops = stat->ops;
 
     lsub    = Glu->lsub;

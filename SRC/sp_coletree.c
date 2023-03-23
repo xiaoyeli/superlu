@@ -167,8 +167,8 @@ void finalize_disjoint_sets (
  */
 int
 sp_coletree(
-	    int *acolst, int *acolend, /* column start and end past 1 */
-	    int *arow,                 /* row indices of A */
+	    int_t *acolst, int_t *acolend, /* column start and end past 1 */
+	    int_t *arow,                 /* row indices of A */
 	    int nr, int nc,            /* dimension of A */
 	    int *parent	               /* parent in elim tree */
 	    )

@@ -131,8 +131,10 @@ zgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     else kase1 = 2;
     kase = 0;
 
+    int nrow = L->nrow;
+
     do {
-	zlacon2_(&L->nrow, &work[L->nrow], &work[0], &ainvnm, &kase, isave);
+	zlacon2_(&nrow, &work[L->nrow], &work[0], &ainvnm, &kase, isave);
 
 	if (kase == 0) break;
 

@@ -59,7 +59,7 @@ void cpsolve(int n,
     float *R = GLOBAL_R, *C = GLOBAL_C;
     superlu_options_t *options = GLOBAL_OPTIONS;
     mem_usage_t  *mem_usage = GLOBAL_MEM_USAGE;
-    int info;
+    int_t info;
     static DNformat X, Y;
     static SuperMatrix XX = {SLU_DN, SLU_C, SLU_GE, 1, 1, &X};
     static SuperMatrix YY = {SLU_DN, SLU_C, SLU_GE, 1, 1, &Y};
@@ -109,11 +109,12 @@ int main(int argc, char *argv[])
     GlobalLU_t	   Glu; /* facilitate multiple factorizations with 
                            SamePattern_SameRowPerm                  */
     complex   *a;
-    int      *asub, *xa;
+    int_t    *asub, *xa;
     int      *etree;
     int      *perm_c; /* column permutation vector */
     int      *perm_r; /* row permutations from partial pivoting */
-    int      nrhs, ldx, lwork, info, m, n, nnz;
+    int      nrhs, ldx, m, n;
+    int_t    info, nnz, lwork;
     complex   *rhsb, *rhsx, *xact;
     complex   *work = NULL;
     float   *R, *C;
@@ -212,7 +213,7 @@ int main(int argc, char *argv[])
                                 SLU_NC, SLU_C, SLU_GE);
     Astore = A.Store;
     cfill_diag(n, Astore);
-    printf("Dimension %dx%d; # nonzeros %d\n", A.nrow, A.ncol, Astore->nnz);
+    printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
     fflush(stdout);
 
     /* Generate the right-hand side */
@@ -225,9 +226,9 @@ int main(int argc, char *argv[])
     cGenXtrue(n, nrhs, xact, ldx);
     cFillRHS(trans, nrhs, xact, ldx, &A, &B);
 
-    if ( !(etree = intMalloc(n)) ) ABORT("Malloc fails for etree[].");
-    if ( !(perm_r = intMalloc(m)) ) ABORT("Malloc fails for perm_r[].");
-    if ( !(perm_c = intMalloc(n)) ) ABORT("Malloc fails for perm_c[].");
+    if ( !(etree = int32Malloc(n)) ) ABORT("Malloc fails for etree[].");
+    if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");
+    if ( !(perm_c = int32Malloc(n)) ) ABORT("Malloc fails for perm_c[].");
     if ( !(R = (float *) SUPERLU_MALLOC(A.nrow * sizeof(float))) )
 	ABORT("SUPERLU_MALLOC fails for R[].");
     if ( !(C = (float *) SUPERLU_MALLOC(A.ncol * sizeof(float))) )
@@ -256,7 +257,7 @@ int main(int argc, char *argv[])
 	for (i = 0; i < m; i++) b[i] = rhsb[i];
     }
 
-    printf("cgsisx(): info %d, equed %c\n", info, equed[0]);
+    printf("cgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
     if (info > 0 || rcond < 1e-8 || rpg > 1e8)
 	printf("WARNING: This preconditioner might be unstable.\n");
 
@@ -266,16 +267,16 @@ int main(int argc, char *argv[])
 	if ( options.ConditionNumber == YES )
 	    printf("Recip. condition number = %e\n", rcond);
     } else if ( info > 0 && lwork == -1 ) {
-	printf("** Estimated memory: %d bytes\n", info - n);
+	printf("** Estimated memory: %lld bytes\n", (long long)info - n);
     }
 
     Lstore = (SCformat *) L.Store;
     Ustore = (NCformat *) U.Store;
-    printf("n(A) = %d, nnz(A) = %d\n", n, Astore->nnz);
-    printf("No of nonzeros in factor L = %d\n", Lstore->nnz);
-    printf("No of nonzeros in factor U = %d\n", Ustore->nnz);
-    printf("No of nonzeros in L+U = %d\n", Lstore->nnz + Ustore->nnz - n);
-    printf("Fill ratio: nnz(F)/nnz(A) = %.3f\n",
+    printf("n(A) = %d, nnz(A) = %lld\n", n, (long long) Astore->nnz);
+    printf("No of nonzeros in factor L = %lld\n", (long long) Lstore->nnz);
+    printf("No of nonzeros in factor U = %lld\n", (long long) Ustore->nnz);
+    printf("No of nonzeros in L+U = %lld\n", (long long) Lstore->nnz + Ustore->nnz - n);
+    printf("Fill ratio: nnz(F)/nnz(A) = %.1f\n",
 	    ((double)(Lstore->nnz) + (double)(Ustore->nnz) - (double)n)
 	    / (double)Astore->nnz);
     printf("L\\U MB %.3f\ttotal MB needed %.3f\n",
@@ -308,7 +309,7 @@ int main(int argc, char *argv[])
 
     if (info <= n + 1)
     {
-	int i_1 = 1;
+	int i_1 = 1, nnz32;
 	double maxferr = 0.0, nrmA, nrmB, res, t;
         complex temp;
 	extern float scnrm2_(int *, complex [], int *);
@@ -325,7 +326,8 @@ int main(int argc, char *argv[])
 	t = SuperLU_timer_() - t;
 
 	/* Output the result. */
-	nrmA = scnrm2_(&(Astore->nnz), (complex *)((DNformat *)A.Store)->nzval,
+	nnz32 = Astore->nnz;
+	nrmA = scnrm2_(&nnz32, (complex *)((DNformat *)A.Store)->nzval,
 		&i_1);
 	nrmB = scnrm2_(&m, b, &i_1);
 	sp_cgemv("N", none, &A, x, 1, one, b, 1);

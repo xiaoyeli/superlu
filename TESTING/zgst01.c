@@ -63,7 +63,8 @@ int zgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
 
     /* Local variables */
     doublecomplex zero = {0.0, 0.0};
-    int i, j, k, arow, lptr,isub,  urow, superno, fsupc, u_part;
+    int i, j, k, arow, superno, fsupc, u_part;
+    int_t urow, lptr, isub;
     doublecomplex utemp;
     doublecomplex comp_temp;
     double anorm, tnorm, cnorm;
@@ -72,7 +73,7 @@ int zgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
     SCformat *Lstore;
     NCformat *Astore, *Ustore;
     doublecomplex *Aval, *Lval, *Uval;
-    int *colbeg, *colend;
+    int_t *colbeg, *colend;
 
     /* Function prototypes */
     extern double zlangs(char *, SuperMatrix *);

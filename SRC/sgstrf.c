@@ -198,10 +198,10 @@ at the top-level directory.
 
 void
 sgstrf (superlu_options_t *options, SuperMatrix *A,
-        int relax, int panel_size, int *etree, void *work, int lwork,
+        int relax, int panel_size, int *etree, void *work, int_t lwork,
         int *perm_c, int *perm_r, SuperMatrix *L, SuperMatrix *U,
     	GlobalLU_t *Glu, /* persistent to facilitate multiple factorizations */
-        SuperLUStat_t *stat, int *info)
+        SuperLUStat_t *stat, int_t *info)
 {
     /* Local working arrays */
     NCPformat *Astore;
@@ -210,18 +210,17 @@ sgstrf (superlu_options_t *options, SuperMatrix *A,
     int       *iperm_c; /* inverse of perm_c */
     int       *iwork;
     float    *swork;
-    int	      *segrep, *repfnz, *parent, *xplore;
+    int	      *segrep, *repfnz, *parent;
     int	      *panel_lsub; /* dense[]/panel_lsub[] pair forms a w-wide SPA */
-    int	      *xprune;
+    int_t     *xprune, *xplore;
     int	      *marker;
     float    *dense, *tempv;
     int       *relax_end;
     float    *a;
-    int       *asub;
-    int       *xa_begin, *xa_end;
+    int_t      *asub, *xa_begin, *xa_end;
     int       *xsup, *supno;
-    int       *xlsub, *xlusup, *xusub;
-    int       nzlumax;
+    int_t     *xlsub, *xlusup, *xusub;
+    int_t     nzlumax;
     float fill_ratio = sp_ienv(6);  /* estimated fill ratio */
 
     /* Local scalars */
@@ -237,7 +236,7 @@ sgstrf (superlu_options_t *options, SuperMatrix *A,
     int       m, n, min_mn, jsupno, fsupc, nextlu, nextu;
     int       w_def;	/* upper bound on panel width */
     int       usepr, iperm_r_allocated = 0;
-    int       nnzL, nnzU;
+    int_t     nnzL, nnzU;
     int       *panel_histo = stat->panel_histo;
     flops_t   *ops = stat->ops;
 
@@ -269,11 +268,11 @@ sgstrf (superlu_options_t *options, SuperMatrix *A,
     usepr = (fact == SamePattern_SameRowPerm);
     if ( usepr ) {
 	/* Compute the inverse of perm_r */
-	iperm_r = (int *) intMalloc(m);
+	iperm_r = (int *) int32Malloc(m);
 	for (k = 0; k < m; ++k) iperm_r[perm_r[k]] = k;
 	iperm_r_allocated = 1;
     }
-    iperm_c = (int *) intMalloc(n);
+    iperm_c = (int *) int32Malloc(n);
     for (k = 0; k < n; ++k) iperm_c[perm_c[k]] = k;
 
     /* Identify relaxed snodes */
@@ -334,7 +333,7 @@ sgstrf (superlu_options_t *options, SuperMatrix *A,
 				      iperm_r, iperm_c, &pivrow, Glu, stat)) )
 		    if ( iinfo == 0 ) iinfo = *info;
 		
-#ifdef DEBUG
+#if ( DEBUGlevel>=2 )
 		sprint_lu_col("[1]: ", icol, pivrow, xprune, Glu);
 #endif
 
@@ -396,7 +395,7 @@ sgstrf (superlu_options_t *options, SuperMatrix *A,
 		/* Reset repfnz[] for this column */
 	    	resetrep_col (nseg, segrep, &repfnz[k]);
 		
-#ifdef DEBUG
+#if ( DEBUGlevel>=2 )
 		sprint_lu_col("[2]: ", jj, pivrow, xprune, Glu);
 #endif
 
@@ -423,6 +422,8 @@ sgstrf (superlu_options_t *options, SuperMatrix *A,
     fixupL(min_mn, perm_r, Glu);
 
     sLUWorkFree(iwork, swork, Glu); /* Free work space and compress storage */
+    SUPERLU_FREE(xplore);
+    SUPERLU_FREE(xprune);
 
     if ( fact == SamePattern_SameRowPerm ) {
         /* L and U structures may have changed due to possibly different

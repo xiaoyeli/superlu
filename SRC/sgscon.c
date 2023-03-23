@@ -121,7 +121,7 @@ sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     }
 
     work = floatCalloc( 3*L->nrow );
-    iwork = intMalloc( L->nrow );
+    iwork = int32Malloc( L->nrow );
 
 
     if ( !work || !iwork )
@@ -133,8 +133,10 @@ sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     else kase1 = 2;
     kase = 0;
 
+    int nrow = L->nrow;
+
     do {
-	slacon2_(&L->nrow, &work[L->nrow], &work[0], &iwork[0], &ainvnm, &kase, isave);
+	slacon2_(&nrow, &work[L->nrow], &work[0], &iwork[0], &ainvnm, &kase, isave);
 
 	if (kase == 0) break;
 

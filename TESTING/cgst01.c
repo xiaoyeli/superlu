@@ -63,7 +63,8 @@ int cgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
 
     /* Local variables */
     complex zero = {0.0, 0.0};
-    int i, j, k, arow, lptr,isub,  urow, superno, fsupc, u_part;
+    int i, j, k, arow, superno, fsupc, u_part;
+    int_t urow, lptr, isub;
     complex utemp;
     complex comp_temp;
     float anorm, tnorm, cnorm;
@@ -72,7 +73,7 @@ int cgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
     SCformat *Lstore;
     NCformat *Astore, *Ustore;
     complex *Aval, *Lval, *Uval;
-    int *colbeg, *colend;
+    int_t *colbeg, *colend;
 
     /* Function prototypes */
     extern float clangs(char *, SuperMatrix *);

@@ -35,7 +35,7 @@ at the top-level directory.
 static void
 parse_command_line(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
-		   int *rowblk, int *colblk, int *lwork, double *u, FILE **fp);
+		   int *rowblk, int *colblk, int_t *lwork, double *u, FILE **fp);
 
 int main(int argc, char *argv[])
 {
@@ -52,8 +52,8 @@ int main(int argc, char *argv[])
  * =====================================================================
  */
     float         *a, *a_save;
-    int            *asub, *asub_save;
-    int            *xa, *xa_save;
+    int_t          *asub, *asub_save;
+    int_t          *xa, *xa_save;
     SuperMatrix  A, B, X, L, U;
     SuperMatrix  ASAV, AC;
     GlobalLU_t   Glu; /* Not needed on return. */
@@ -67,8 +67,9 @@ int main(int argc, char *argv[])
     float         *rwork;
     float	   *wwork;
     void           *work;
-    int            info, lwork, nrhs, panel_size, relax;
-    int            m, n, nnz;
+    int            nrhs, panel_size, relax;
+    int            m, n, info1;
+    int_t          nnz, lwork, info;
     float         *xact;
     float         *rhsb, *solx, *bsav;
     int            ldb, ldx;
@@ -116,7 +117,7 @@ int main(int argc, char *argv[])
                        int *, float *, float *, int *, int *,
                        char *, float *, int *, float *, int *);
     extern int sp_sconvert(int, int, float *, int, int, int,
-	                   float *a, int *, int *, int *);
+	                   float *a, int_t *, int_t *, int_t *);
 
 
     /* Executable statements */
@@ -140,7 +141,7 @@ int main(int argc, char *argv[])
     if ( lwork > 0 ) {
 	work = SUPERLU_MALLOC(lwork);
 	if ( !work ) {
-	    fprintf(stderr, "expert: cannot allocate %d bytes\n", lwork);
+	    fprintf(stderr, "expert: cannot allocate %lld bytes\n", (long long) lwork);
 	    exit (-1);
 	}
     }
@@ -177,10 +178,10 @@ int main(int argc, char *argv[])
     sCreate_Dense_Matrix(&B, m, nrhs, rhsb, ldb, SLU_DN, SLU_S, SLU_GE);
     sCreate_Dense_Matrix(&X, n, nrhs, solx, ldx, SLU_DN, SLU_S, SLU_GE);
     xact = floatMalloc(n * nrhs);
-    etree   = intMalloc(n);
-    perm_r  = intMalloc(n);
-    perm_c  = intMalloc(n);
-    pc_save = intMalloc(n);
+    etree   = int32Malloc(n);
+    perm_r  = int32Malloc(n);
+    perm_c  = int32Malloc(n);
+    pc_save = int32Malloc(n);
     R       = (float *) SUPERLU_MALLOC(m*sizeof(float));
     C       = (float *) SUPERLU_MALLOC(n*sizeof(float));
     ferr    = (float *) SUPERLU_MALLOC(nrhs*sizeof(float));
@@ -214,10 +215,10 @@ int main(int argc, char *argv[])
 
 	    slatms_slu(&n, &n, dist, iseed, sym, &rwork[0], &mode, &cndnum,
 		    &anorm, &kl, &ku, "No packing", Afull, &lda,
-		    &wwork[0], &info);
+		    &wwork[0], &info1);
 
-	    if ( info ) {
-		printf(FMT3, "SLATMS", info, izero, n, nrhs, imat, nfail);
+	    if ( info1 ) {
+		printf(FMT3, "SLATMS", info1, izero, n, nrhs, imat, nfail);
 		continue;
 	    }
 
@@ -283,7 +284,7 @@ int main(int argc, char *argv[])
                         if ( equil || iequed ) {
 			    /* Compute row and column scale factors to
 			       equilibrate matrix A.    */
-			    sgsequ(&A, R, C, &rowcnd, &colcnd, &amax, &info);
+			    sgsequ(&A, R, C, &rowcnd, &colcnd, &amax, &info1);
 
 			    /* Force equilibration. */
 			    if ( !info && n > 0 ) {
@@ -319,11 +320,11 @@ int main(int argc, char *argv[])
                                &Glu, &stat, &info);
 
 			if ( info ) { 
-                            printf("** First factor: info %d, equed %c\n",
-				   info, *equed);
+                            printf("** First factor: info %lld, equed %c\n",
+				   (long long) info, *equed);
                             if ( lwork == -1 ) {
-                                printf("** Estimated memory: %d bytes\n",
-                                        info - n);
+                                printf("** Estimated memory: %lld bytes\n",
+                                        (long long) info - n);
                                 exit(0);
                             }
                         }
@@ -357,7 +358,7 @@ int main(int argc, char *argv[])
 			    
 			    if ( info && info != izero ) {
                                 printf(FMT3, "sgssv",
-				       info, izero, n, nrhs, imat, nfail);
+				       (int) info, izero, n, nrhs, imat, nfail);
 			    } else {
                                 /* Reconstruct matrix from factors and
 	                           compute residual. */
@@ -415,7 +416,7 @@ int main(int argc, char *argv[])
 
 			if ( info && info != izero ) {
 			    printf(FMT3, "sgssvx",
-				   info, izero, n, nrhs, imat, nfail);
+				   (int) info, izero, n, nrhs, imat, nfail);
                             if ( lwork == -1 ) {
                                 printf("** Estimated memory: %.0f bytes\n",
                                         mem_usage.total_needed);
@@ -527,7 +528,7 @@ int main(int argc, char *argv[])
 static void
 parse_command_line(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
-		   int *rowblk, int *colblk, int *lwork, double *u, FILE **fp)
+		   int *rowblk, int *colblk, int_t *lwork, double *u, FILE **fp)
 {
     int c;
     extern char *optarg;

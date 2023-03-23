@@ -227,7 +227,7 @@ sgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	    } /* else ... */
 	} /* for L-solve */
 
-#ifdef DEBUG
+#if ( DEBUGlevel>=2 )
   	printf("After L-solve: y=\n");
 	sprint_soln(n, nrhs, Bmat);
 #endif
@@ -281,7 +281,7 @@ sgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	    
 	} /* for U-solve */
 
-#ifdef DEBUG
+#if ( DEBUGlevel>=2 )
   	printf("After U-solve: x=\n");
 	sprint_soln(n, nrhs, Bmat);
 #endif

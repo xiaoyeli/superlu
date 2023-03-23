@@ -23,8 +23,8 @@ at the top-level directory.
 
 
 void
-zreadtriple(int *m, int *n, int *nonz,
-	    doublecomplex **nzval, int **rowind, int **colptr)
+zreadtriple(int *m, int *n, int_t *nonz,
+	    doublecomplex **nzval, int_t **rowind, int_t **colptr)
 {
 /*
  * Output parameters
@@ -36,7 +36,8 @@ zreadtriple(int *m, int *n, int *nonz,
  */
     int    j, k, jsize, nnz, nz;
     doublecomplex *a, *val;
-    int    *asub, *xa, *row, *col;
+    int_t  *asub, *xa;
+    int    *row, *col;
     int    zero_base = 0;
 
     /*  Matrix format:
@@ -45,22 +46,27 @@ zreadtriple(int *m, int *n, int *nonz,
      *                 row, col, value
      */
 
+#ifdef _LONGINT
+    scanf("%d%lld", n, nonz);
+#else
     scanf("%d%d", n, nonz);
+#endif    
     *m = *n;
-    printf("m %d, n %d, nonz %d\n", *m, *n, *nonz);
+    printf("m %d, n %d, nonz %ld\n", *m, *n, (long) *nonz);
     zallocateA(*n, *nonz, nzval, rowind, colptr); /* Allocate storage */
     a    = *nzval;
     asub = *rowind;
     xa   = *colptr;
 
     val = (doublecomplex *) SUPERLU_MALLOC(*nonz * sizeof(doublecomplex));
-    row = (int *) SUPERLU_MALLOC(*nonz * sizeof(int));
-    col = (int *) SUPERLU_MALLOC(*nonz * sizeof(int));
+    row = int32Malloc(*nonz);
+    col = int32Malloc(*nonz);
 
     for (j = 0; j < *n; ++j) xa[j] = 0;
 
     /* Read into the triplet array from a file */
     for (nnz = 0, nz = 0; nnz < *nonz; ++nnz) {
+    
 	scanf("%d%d%lf%lf\n", &row[nz], &col[nz], &val[nz].r, &val[nz].i);
 
         if ( nnz == 0 ) { /* first nonzero */
@@ -134,11 +140,12 @@ zreadtriple(int *m, int *n, int *nonz,
 
 void zreadrhs(int m, doublecomplex *b)
 {
+    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
     int i;
     /*int j;*/
 
-    if (!fp) {
+    if ( !fp ) {
         fprintf(stderr, "dreadrhs: file does not exist\n");
 	exit(-1);
     }

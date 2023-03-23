@@ -24,11 +24,11 @@ at the top-level directory.
  */
 int
 sp_sconvert(int m, int n, float *A, int lda, int kl, int ku,
-	   float *a, int *asub, int *xa, int *nnz)
+	   float *a, int_t *asub, int_t *xa, int_t *nnz)
 {
-    int     lasta = 0;
-    int     i, j, ilow, ihigh;
-    int     *row;
+    int_t     lasta = 0;
+    int_t     i, j, ilow, ihigh;
+    int_t     *row;
     float  *val;
 
     for (j = 0; j < n; ++j) {

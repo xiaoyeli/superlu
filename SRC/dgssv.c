@@ -142,7 +142,7 @@ at the top-level directory.
 void
 dgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
       SuperMatrix *L, SuperMatrix *U, SuperMatrix *B,
-      SuperLUStat_t *stat, int *info )
+      SuperLUStat_t *stat, int_t *info )
 {
 
     DNformat *Bstore;
@@ -204,7 +204,7 @@ dgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
       get_perm_c(permc_spec, AA, perm_c);
     utime[COLPERM] = SuperLU_timer_() - t;
 
-    etree = intMalloc(A->ncol);
+    etree = int32Malloc(A->ncol);
 
     t = SuperLU_timer_();
     sp_preorder(options, AA, perm_c, etree, &AC);
@@ -213,8 +213,8 @@ dgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     panel_size = sp_ienv(1);
     relax = sp_ienv(2);
 
-    /*printf("Factor PA = LU ... relax %d\tw %d\tmaxsuper %d\trowblk %d\n", 
-	  relax, panel_size, sp_ienv(3), sp_ienv(4));*/
+    printf("Factor PA = LU ... relax %d\tw %d\tmaxsuper %d\trowblk %d\n", 
+	  relax, panel_size, sp_ienv(3), sp_ienv(4));
     t = SuperLU_timer_(); 
     /* Compute the LU factorization of A. */
     dgstrf(options, &AC, relax, panel_size, etree,
@@ -224,8 +224,12 @@ dgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     t = SuperLU_timer_();
     if ( *info == 0 ) {
         /* Solve the system A*X=B, overwriting B with X. */
-        dgstrs (trans, L, U, perm_c, perm_r, B, stat, info);
+	int info1;
+        dgstrs (trans, L, U, perm_c, perm_r, B, stat, &info1);
+    } else {
+	printf("dgstrf info %d\n", (int) *info); fflush(stdout);
     }
+	
     utime[SOLVE] = SuperLU_timer_() - t;
 
     SUPERLU_FREE (etree);

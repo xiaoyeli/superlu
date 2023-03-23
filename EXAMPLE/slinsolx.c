@@ -32,13 +32,14 @@ int main(int argc, char *argv[])
     GlobalLU_t	   Glu; /* facilitate multiple factorizations with 
                            SamePattern_SameRowPerm                  */
     float         *a;
-    int            *asub, *xa;
+    int_t          *asub, *xa;
     int            *perm_r; /* row permutations from partial pivoting */
     int            *perm_c; /* column permutation vector */
     int            *etree;
     void           *work;
-    int            info, lwork, nrhs, ldx;
-    int            i, m, n, nnz;
+    int            nrhs, ldx;
+    int_t          info, lwork, nnz;
+    int            i, m, n;
     float         *rhsb, *rhsx, *xact;
     float         *R, *C;
     float         *ferr, *berr;
@@ -98,7 +99,7 @@ int main(int argc, char *argv[])
     
     sCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_S, SLU_GE);
     Astore = A.Store;
-    printf("Dimension %dx%d; # nonzeros %d\n", A.nrow, A.ncol, Astore->nnz);
+    printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
     
     if ( !(rhsb = floatMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
     if ( !(rhsx = floatMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
@@ -109,9 +110,9 @@ int main(int argc, char *argv[])
     sGenXtrue(n, nrhs, xact, ldx);
     sFillRHS(trans, nrhs, xact, ldx, &A, &B);
     
-    if ( !(etree = intMalloc(n)) ) ABORT("Malloc fails for etree[].");
-    if ( !(perm_r = intMalloc(m)) ) ABORT("Malloc fails for perm_r[].");
-    if ( !(perm_c = intMalloc(n)) ) ABORT("Malloc fails for perm_c[].");
+    if ( !(etree = int32Malloc(n)) ) ABORT("Malloc fails for etree[].");
+    if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");
+    if ( !(perm_c = int32Malloc(n)) ) ABORT("Malloc fails for perm_c[].");
     if ( !(R = (float *) SUPERLU_MALLOC(A.nrow * sizeof(float))) ) 
         ABORT("SUPERLU_MALLOC fails for R[].");
     if ( !(C = (float *) SUPERLU_MALLOC(A.ncol * sizeof(float))) )
@@ -132,7 +133,7 @@ int main(int argc, char *argv[])
            &L, &U, work, lwork, &B, &X, &rpg, &rcond, ferr, berr,
            &Glu, &mem_usage, &stat, &info);
 
-    printf("sgssvx(): info %d\n", info);
+    printf("sgssvx(): info %lld\n", (long long) info);
 
     if ( info == 0 || info == n+1 ) {
 
@@ -151,9 +152,9 @@ int main(int argc, char *argv[])
 	}
         Lstore = (SCformat *) L.Store;
         Ustore = (NCformat *) U.Store;
-	printf("No of nonzeros in factor L = %d\n", Lstore->nnz);
-    	printf("No of nonzeros in factor U = %d\n", Ustore->nnz);
-    	printf("No of nonzeros in L+U = %d\n", Lstore->nnz + Ustore->nnz - n);
+	printf("No of nonzeros in factor L = %lld\n", (long long) Lstore->nnz);
+    	printf("No of nonzeros in factor U = %lld\n", (long long) Ustore->nnz);
+    	printf("No of nonzeros in L+U = %lld\n", (long long) Lstore->nnz + Ustore->nnz - n);
     	printf("FILL ratio = %.1f\n", (float)(Lstore->nnz + Ustore->nnz - n)/nnz);
 
 	printf("L\\U MB %.3f\ttotal MB needed %.3f\n",
@@ -162,7 +163,7 @@ int main(int argc, char *argv[])
 	fflush(stdout);
 
     } else if ( info > 0 && lwork == -1 ) {
-        printf("** Estimated memory: %d bytes\n", info - n);
+        printf("** Estimated memory: %lld bytes\n", (long long)info - n);
     }
 
     if ( options.PrintStat ) StatPrint(&stat);

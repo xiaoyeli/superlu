@@ -181,11 +181,12 @@ resetrep_col (const int nseg, const int *segrep, int *repfnz)
 /*! \brief Count the total number of nonzeros in factors L and U,  and in the symmetrically reduced L. 
  */
 void
-countnz(const int n, int *xprune, int *nnzL, int *nnzU, GlobalLU_t *Glu)
+countnz(const int n, int_t *xprune, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
 {
     int          nsuper, fsupc, i, j;
     int          nnzL0, jlen, irep;
-    int          *xsup, *xlsub;
+    int          *xsup;
+    int_t        *xlsub;
 
     xsup   = Glu->xsup;
     xlsub  = Glu->xlsub;
@@ -218,11 +219,12 @@ countnz(const int n, int *xprune, int *nnzL, int *nnzU, GlobalLU_t *Glu)
 /*! \brief Count the total number of nonzeros in factors L and U.
  */
 void
-ilu_countnz(const int n, int *nnzL, int *nnzU, GlobalLU_t *Glu)
+ilu_countnz(const int n, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
 {
     int          nsuper, fsupc, i, j;
     int          jlen;
-    int          *xsup, *xlsub;
+    int          *xsup;
+    int_t        *xlsub;
 
     xsup   = Glu->xsup;
     xlsub  = Glu->xlsub;
@@ -255,7 +257,8 @@ void
 fixupL(const int n, const int *perm_r, GlobalLU_t *Glu)
 {
     register int nsuper, fsupc, nextl, i, j, k, jstrt;
-    int          *xsup, *lsub, *xlsub;
+    int   *xsup;
+    int_t *lsub, *xlsub;
 
     if ( n <= 1 ) return;
 
@@ -310,7 +313,7 @@ StatInit(SuperLUStat_t *stat)
     panel_size = sp_ienv(1);
     relax = sp_ienv(2);
     w = SUPERLU_MAX(panel_size, relax);
-    stat->panel_histo = intCalloc(w+1);
+    stat->panel_histo = int32Calloc(w+1);
     stat->utime = (double *) SUPERLU_MALLOC(NPHASES * sizeof(double));
     if (!stat->utime) ABORT("SUPERLU_MALLOC fails for stat->utime");
     stat->ops = (flops_t *) SUPERLU_MALLOC(NPHASES * sizeof(flops_t));
@@ -500,4 +503,24 @@ int slu_PrintInt10(char *name, int len, int *x)
     return 0;
 }
 
+int check_perm(char *what, int n, int *perm)
+{
+    register int i;
+    int          *marker;
+    /*marker = (int *) calloc(n, sizeof(int));*/
+    marker = int32Malloc(n);
+    for (i = 0; i < n; ++i) marker[i] = 0;
 
+    for (i = 0; i < n; ++i) {
+	if ( marker[perm[i]] == 1 || perm[i] >= n ) {
+	    printf("%s: Not a valid PERM[%d] = %d\n", what, i, perm[i]);
+	    ABORT("check_perm");
+	} else {
+	    marker[perm[i]] = 1;
+	}
+    }
+
+    SUPERLU_FREE(marker);
+    printf("check_perm: %s: n %d\n", what, n);
+    return 0;
+}

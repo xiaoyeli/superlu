@@ -142,7 +142,7 @@ at the top-level directory.
 void
 zgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
       SuperMatrix *L, SuperMatrix *U, SuperMatrix *B,
-      SuperLUStat_t *stat, int *info )
+      SuperLUStat_t *stat, int_t *info )
 {
 
     DNformat *Bstore;
@@ -204,7 +204,7 @@ zgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
       get_perm_c(permc_spec, AA, perm_c);
     utime[COLPERM] = SuperLU_timer_() - t;
 
-    etree = intMalloc(A->ncol);
+    etree = int32Malloc(A->ncol);
 
     t = SuperLU_timer_();
     sp_preorder(options, AA, perm_c, etree, &AC);
@@ -224,7 +224,8 @@ zgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     t = SuperLU_timer_();
     if ( *info == 0 ) {
         /* Solve the system A*X=B, overwriting B with X. */
-        zgstrs (trans, L, U, perm_c, perm_r, B, stat, info);
+	int info1;
+        zgstrs (trans, L, U, perm_c, perm_r, B, stat, &info1);
     }
     utime[SOLVE] = SuperLU_timer_() - t;
 

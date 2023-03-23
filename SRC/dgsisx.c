@@ -403,10 +403,10 @@ at the top-level directory.
 void
 dgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
        int *etree, char *equed, double *R, double *C,
-       SuperMatrix *L, SuperMatrix *U, void *work, int lwork,
+       SuperMatrix *L, SuperMatrix *U, void *work, int_t lwork,
        SuperMatrix *B, SuperMatrix *X,
        double *recip_pivot_growth, double *rcond,
-       GlobalLU_t *Glu, mem_usage_t *mem_usage, SuperLUStat_t *stat, int *info)
+       GlobalLU_t *Glu, mem_usage_t *mem_usage, SuperLUStat_t *stat, int_t *info)
 {
 
     DNformat  *Bstore, *Xstore;
@@ -417,9 +417,9 @@ dgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     int       colequ, equil, nofact, notran, rowequ, permc_spec, mc64;
     trans_t   trant;
     char      norm[1];
-    int       i, j, info1;
+    int_t     i, j;
     double    amax, anorm, bignum, smlnum, colcnd, rowcnd, rcmax, rcmin;
-    int       relax, panel_size;
+    int       relax, panel_size, info1;
     double    t0;      /* temporary time */
     double    *utime;
 
@@ -507,8 +507,8 @@ dgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 	}
     }
     if (*info != 0) {
-	i = -(*info);
-	input_error("dgsisx", &i);
+	int ii = -(*info);
+	input_error("dgsisx", &ii);
 	return;
     }
 
@@ -540,14 +540,14 @@ dgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     if ( nofact ) {
 	register int i, j;
 	NCformat *Astore = AA->Store;
-	int nnz = Astore->nnz;
-	int *colptr = Astore->colptr;
-	int *rowind = Astore->rowind;
+	int_t nnz = Astore->nnz;
+	int_t *colptr = Astore->colptr;
+	int_t *rowind = Astore->rowind;
 	double *nzval = (double *)Astore->nzval;
 
 	if ( mc64 ) {
 	    t0 = SuperLU_timer_();
-	    if ((perm = intMalloc(n)) == NULL)
+	    if ((perm = int32Malloc(n)) == NULL)
 		ABORT("SUPERLU_MALLOC fails for perm[]");
 
 	    info1 = dldperm(5, n, nnz, colptr, rowind, nzval, perm, R, C);
@@ -632,9 +632,9 @@ dgsisx(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 
 	if ( mc64 ) { /* Fold MC64's perm[] into perm_r[]. */
 	    NCformat *Astore = AA->Store;
-	    int nnz = Astore->nnz, *rowind = Astore->rowind;
+	    int_t nnz = Astore->nnz, *rowind = Astore->rowind;
 	    int *perm_tmp, *iperm;
-	    if ((perm_tmp = intMalloc(2*n)) == NULL)
+	    if ((perm_tmp = int32Malloc(2*n)) == NULL)
 		ABORT("SUPERLU_MALLOC fails for perm_tmp[]");
 	    iperm = perm_tmp + n;
 	    for (i = 0; i < n; ++i) perm_tmp[i] = perm_r[perm[i]];

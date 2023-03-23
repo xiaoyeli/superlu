@@ -101,9 +101,9 @@ typedef struct {
   int_t *rowind;     /* pointer to array of compressed row indices of 
 			rectangular supernodes */
   int_t *rowind_colptr;/* pointer to array of beginning of columns in rowind[] */
-  int_t *col_to_sup;   /* col_to_sup[j] is the supernode number to which column 
+  int   *col_to_sup;   /* col_to_sup[j] is the supernode number to which column 
 			j belongs; mapping from column to supernode number. */
-  int_t *sup_to_col;   /* sup_to_col[s] points to the start of the s-th 
+  int   *sup_to_col;   /* sup_to_col[s] points to the start of the s-th 
 			supernode; mapping from supernode number to column.
 		        e.g.: col_to_sup: 0 1 2 2 3 3 3 4 4 4 4 4 4 (ncol=12)
 		              sup_to_col: 0 1 2 4 7 12           (nsuper=4) */
@@ -132,11 +132,11 @@ typedef struct {
 			  in rowind[] */
   int_t *rowind_colend;/* rowind_colend[j] points to one past the last element
 			  of column j in rowind[] */
-  int_t *col_to_sup;   /* col_to_sup[j] is the supernode number to which column
+  int   *col_to_sup;   /* col_to_sup[j] is the supernode number to which column
 			  j belongs; mapping from column to supernode. */
-  int_t *sup_to_colbeg; /* sup_to_colbeg[s] points to the start of the s-th 
+  int   *sup_to_colbeg; /* sup_to_colbeg[s] points to the start of the s-th 
 			   supernode; mapping from supernode to column.*/
-  int_t *sup_to_colend; /* sup_to_colend[s] points to one past the end of the
+  int   *sup_to_colend; /* sup_to_colend[s] points to one past the end of the
 			   s-th supernode; mapping from supernode number to
 			   column.
 		        e.g.: col_to_sup: 0 1 2 2 3 3 3 4 4 4 4 4 4 (ncol=12)

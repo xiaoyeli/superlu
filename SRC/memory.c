@@ -42,7 +42,7 @@ void *superlu_malloc(size_t size)
 	ABORT("superlu_malloc: out of memory");
     }
 
-    ((size_t_t *) buf)[0] = size;
+    ((size_t *) buf)[0] = size;
 #if 0
     superlu_malloc_total += size + DWORD;
 #else
@@ -103,18 +103,23 @@ void superlu_free(void *addr)
  */
 void
 SetIWork(int m, int n, int panel_size, int *iworkptr, int **segrep,
-	 int **parent, int **xplore, int **repfnz, int **panel_lsub,
-	 int **xprune, int **marker)
+	 int **parent, int_t **xplore, int **repfnz, int **panel_lsub,
+	 int_t **xprune, int **marker)
 {
     *segrep = iworkptr;
     *parent = iworkptr + m;
-    *xplore = *parent + m;
-    *repfnz = *xplore + m;
+    //    *xplore = *parent + m;
+    *repfnz = *parent + m;
     *panel_lsub = *repfnz + panel_size * m;
-    *xprune = *panel_lsub + panel_size * m;
-    *marker = *xprune + n;
+    //    *xprune = *panel_lsub + panel_size * m;
+    // *marker = *xprune + n;
+    *marker = *panel_lsub + panel_size * m;
+    
     ifill (*repfnz, m * panel_size, EMPTY);
     ifill (*panel_lsub, m * panel_size, EMPTY);
+    
+    *xplore = intMalloc(m); /* can be 64 bit */
+    *xprune = intMalloc(n);
 }
 
 
@@ -138,19 +143,27 @@ user_bcopy(char *src, char *dest, int bytes)
     for (; d_ptr >= dest; --s_ptr, --d_ptr ) *d_ptr = *s_ptr;
 }
 
-
-
-int *intMalloc(int n)
+int *int32Malloc(int n)
 {
     int *buf;
     buf = (int *) SUPERLU_MALLOC((size_t) n * sizeof(int));
+    if ( !buf ) {
+	ABORT("SUPERLU_MALLOC fails for buf in int32Malloc()");
+    }
+    return (buf);
+}
+
+int_t *intMalloc(int_t n)
+{
+    int_t *buf;
+    buf = (int_t *) SUPERLU_MALLOC((size_t) n * sizeof(int_t));
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC fails for buf in intMalloc()");
     }
     return (buf);
 }
 
-int *intCalloc(int n)
+int *int32Calloc(int n)
 {
     int *buf;
     register int i;
@@ -162,6 +175,17 @@ int *intCalloc(int n)
     return (buf);
 }
 
+int_t *intCalloc(int_t n)
+{
+    int_t *buf;
+    register int_t i;
+    buf = (int_t *) SUPERLU_MALLOC(n * sizeof(int_t));
+    if ( !buf ) {
+	ABORT("SUPERLU_MALLOC fails for buf in intCalloc()");
+    }
+    for (i = 0; i < n; ++i) buf[i] = 0;
+    return (buf);
+}
 
 
 #if 0

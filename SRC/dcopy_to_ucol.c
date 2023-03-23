@@ -48,14 +48,13 @@ dcopy_to_ucol(
  */
     int ksub, krep, ksupno;
     int i, k, kfnz, segsze;
-    int fsupc, isub, irow;
-    int jsupno, nextu;
-    int new_next, mem_error;
+    int fsupc, irow, jsupno;
+    int_t isub, nextu, new_next, mem_error;
     int       *xsup, *supno;
-    int       *lsub, *xlsub;
+    int_t     *lsub, *xlsub;
     double    *ucol;
-    int       *usub, *xusub;
-    int       nzumax;
+    int_t     *usub, *xusub;
+    int_t       nzumax;
     double zero = 0.0;
 
     xsup    = Glu->xsup;

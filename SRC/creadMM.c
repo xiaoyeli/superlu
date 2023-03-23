@@ -32,13 +32,14 @@ at the top-level directory.
  */
 
 void
-creadMM(FILE *fp, int *m, int *n, int *nonz,
-	    complex **nzval, int **rowind, int **colptr)
+creadMM(FILE *fp, int *m, int *n, int_t *nonz,
+	    complex **nzval, int_t **rowind, int_t **colptr)
 {
     int_t    j, k, jsize, nnz, nz, new_nonz;
     complex *a, *val;
-    int_t    *asub, *xa, *row, *col;
-    int_t    zero_base = 0;
+    int_t    *asub, *xa;
+    int      *row, *col;
+    int    zero_base = 0;
     char *p, line[512], banner[64], mtx[64], crd[64], arith[64], sym[64];
     int expand;
 
@@ -103,7 +104,7 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
 
      /* 3/ Read n and nnz */
 #ifdef _LONGINT
-    sscanf(line, "%ld%ld%ld",m, n, nonz);
+    sscanf(line, "%d%d%lld",m, n, nonz);
 #else
     sscanf(line, "%d%d%d",m, n, nonz);
 #endif
@@ -127,15 +128,16 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
 
     if ( !(val = (complex *) SUPERLU_MALLOC(new_nonz * sizeof(double))) )
         ABORT("Malloc fails for val[]");
-    if ( !(row = (int_t *) SUPERLU_MALLOC(new_nonz * sizeof(int_t))) )
+    if ( !(row = int32Malloc(new_nonz)) )
         ABORT("Malloc fails for row[]");
-    if ( !(col = (int_t *) SUPERLU_MALLOC(new_nonz * sizeof(int_t))) )
+    if ( !(col = int32Malloc(new_nonz)) )
         ABORT("Malloc fails for col[]");
 
     for (j = 0; j < *n; ++j) xa[j] = 0;
 
     /* 4/ Read triplets of values */
     for (nnz = 0, nz = 0; nnz < *nonz; ++nnz) {
+	fscanf(fp, "%d%d%f%f\n", &row[nz], &col[nz], &val[nz].r, &val[nz].i);
 
 	if ( nnz == 0 ) { /* first nonzero */
 	    if ( row[0] == 0 || col[0] == 0 ) {
@@ -154,6 +156,8 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
 
 	if (row[nz] < 0 || row[nz] >= *m || col[nz] < 0 || col[nz] >= *n
 	    /*|| val[nz] == 0.*/) {
+	    fprintf(stderr, "nz %d, (%d, %d) = {%e,%e} out of bound, removed\n",
+          	    (int) nz, row[nz], col[nz], val[nz].r, val[nz].i);
 	    exit(-1);
 	} else {
 	    ++xa[col[nz]];
@@ -172,7 +176,7 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
 
     *nonz = nz;
     if(expand) {
-      printf("new_nonz after symmetric expansion:\t%d\n", *nonz);
+      printf("new_nonz after symmetric expansion:\t%lld\n", (long long)*nonz);
     }
     
 
@@ -218,10 +222,11 @@ creadMM(FILE *fp, int *m, int *n, int *nonz,
 
 static void creadrhs(int m, complex *b)
 {
+    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
-    int i;
 
-    if (!fp) {
+    int i;
+    if ( !fp ) {
         fprintf(stderr, "creadrhs: file does not exist\n");
 	exit(-1);
     }

@@ -63,7 +63,8 @@ int dgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
 
     /* Local variables */
     double zero = 0.0;
-    int i, j, k, arow, lptr,isub,  urow, superno, fsupc, u_part;
+    int i, j, k, arow, superno, fsupc, u_part;
+    int_t urow, lptr, isub;
     double utemp;
     double anorm, tnorm, cnorm;
     double eps;
@@ -71,7 +72,7 @@ int dgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
     SCformat *Lstore;
     NCformat *Astore, *Ustore;
     double *Aval, *Lval, *Uval;
-    int *colbeg, *colend;
+    int_t *colbeg, *colend;
 
     /* Function prototypes */
     extern double dlangs(char *, SuperMatrix *);

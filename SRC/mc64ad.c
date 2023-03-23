@@ -114,7 +114,7 @@ static int_t c__2 = 2;
 
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64ad_(int_t *job, int_t *n, int_t *ne, int_t *
-	ip, int_t *irn, double *a, int_t *num, int_t *cperm, 
+	ip, int_t *irn, double *a, int_t *num, int *cperm, 
 	int_t *liw, int_t *iw, int_t *ldw, double *dw, int_t *
 	icntl, int_t *info)
 {
@@ -130,16 +130,17 @@ static int_t c__2 = 2;
     double fact, rinf;
 
     extern /* Subroutine */ int_t mc21ad_(int_t *, int_t *, int_t *, 
-	    int_t *, int_t *, int_t *, int_t *, int_t *), mc64bd_(
-	    int_t *, int_t *, int_t *, int_t *, double *, int_t 
-	    *, int_t *, int_t *, int_t *, int_t *, int_t *, 
-	    double *), mc64rd_(int_t *, int_t *, int_t *, int_t *,
-	     double *), mc64sd_(int_t *, int_t *, int_t *, int_t *
-	    , double *, int_t *, int_t *, int_t *, int_t *, 
-	    int_t *, int_t *, int_t *, int_t *, int_t *), mc64wd_(
-	    int_t *, int_t *, int_t *, int_t *, double *, int_t 
-	    *, int_t *, int_t *, int_t *, int_t *, int_t *, int_t 
-	    *, double *, double *);
+	    int_t *, int_t *, int_t *, int_t *, int_t *),
+	mc64bd_(int_t *n, int_t *ne, int_t *ip, int_t *irn, double *a,
+		int *iperm, int_t *num, int_t *jperm, 
+		int_t *pr, int_t *q, int_t *l, double *d__),
+	mc64rd_(int_t *n, int_t *ne, int_t *ip, int_t *irn, double *a),
+	mc64sd_(int_t *n, int_t *ne, int_t *ip, int_t *irn, double *a,
+		int *iperm, int_t *numx, int_t *w, int_t *len, int_t *lenl,
+		int_t *lenh, int_t *fc, int_t *iw, int_t *iw4),
+	mc64wd_(int_t *n, int_t *ne, int_t *ip, int_t *irn, double *a,
+		int *iperm, int_t *num, int_t *jperm, int_t *out,
+		int_t *pr, int_t *q, int_t *l, double *u, double *d__);
 
 /* *** Copyright (c) 1999  Council for the Central Laboratory of the */
 /*     Research Councils                                             *** */
@@ -341,7 +342,7 @@ static int_t c__2 = 2;
 	info[2] = *job;
 	if (icntl[1] >= 0) {
 	    printf(" ****** Error in MC64A/AD. INFO(1) = %2d"
-		   " because JOB = %d\n", info[1], *job);
+		   " because JOB = %d\n", (int) info[1], (int) *job);
 	}
 	goto L99;
     }
@@ -351,7 +352,7 @@ static int_t c__2 = 2;
 	info[2] = *n;
 	if (icntl[1] >= 0) {
 	    printf(" ****** Error in MC64A/AD. INFO(1) = %2d"
-		   " because N = %d\n", info[1], *job);
+		   " because N = %d\n", (int) info[1], (int) *job);
 	}
 	goto L99;
     }
@@ -361,7 +362,7 @@ static int_t c__2 = 2;
 	info[2] = *ne;
 	if (icntl[1] >= 0) {
 	    printf(" ****** Error in MC64A/AD. INFO(1) = %2d"
-		   " because NE = %d\n", info[1], *job);
+		   " because NE = %d\n", (int) info[1], (int) *job);
 	}
 	goto L99;
     }
@@ -386,7 +387,7 @@ static int_t c__2 = 2;
 	info[2] = k;
 	if (icntl[1] >= 0) {
 	    printf(" ****** Error in MC64A/AD. INFO(1) = %2d"
-		   " LIW too small, must be at least %8d\n", info[1], k);
+		   " LIW too small, must be at least %8d\n", (int) info[1], (int) k);
 	}
 	goto L99;
     }
@@ -410,7 +411,7 @@ static int_t c__2 = 2;
 	    info[2] = k;
 	    if (icntl[1] >= 0) {
 		printf(" ****** Error in MC64A/AD. INFO(1) = %2d"
-		       " LDW too small, must be at least %8d\n", info[1], k);
+		       " LDW too small, must be at least %8d\n", (int) info[1], (int) k);
 	    }
 	    goto L99;
 	}
@@ -434,7 +435,7 @@ static int_t c__2 = 2;
 		    if (icntl[1] >= 0) {
 			printf(" ****** Error in MC64A/AD. INFO(1) = %2d Column %8d"
 			       " contains an entry with invalid row index %8d\n",
-			       info[1], j, i__);
+			       (int) info[1], (int) j, (int) i__);
 		    }
 		    goto L99;
 		}
@@ -446,7 +447,7 @@ static int_t c__2 = 2;
 			printf(" ****** Error in MC64A/AD. INFO(1) = %2d"
 			       "        Column %8d"
 			       " contains two or more entries with row index %8d\n",
-			       info[1], j, i__);
+			       (int) info[1], (int) j, (int) i__);
 		    }
 		    goto L99;
 		} else {
@@ -460,15 +461,15 @@ static int_t c__2 = 2;
 /* Print diagnostics on input */
     if (icntl[3] >= 0) {
 	printf("  ****** Input parameters for MC64A/AD: JOB = %8d,"
-	       " N = %d, NE = %8d\n", *job, *n, *ne);
+	       " N = %d, NE = %8d\n", (int) *job, (int) *n, (int) *ne);
 	printf(" IP(1:N+1)   = ");
 	for (j=1; j<=(*n+1); ++j) {
-	    printf("%8d", ip[j]);
+	    printf("%8d", (int) ip[j]);
 	    if (j%8 == 0) printf("\n");
 	}
 	printf("\n IRN(1:NE) = ");
 	for (j=1; j<=(*ne); ++j) {
-	    printf("%8d", irn[j]);
+	    printf("%8d", (int) irn[j]);
 	    if (j%8 == 0) printf("\n");
 	}
 	printf("\n");
@@ -616,24 +617,24 @@ L90:
 	info[1] = 1;
 	if (icntl[2] >= 0) {
 	    printf(" ****** Warning from MC64A/AD. INFO(1) = %2d"
-		   " The matrix is structurally singular.\n", info[1]);
+		   " The matrix is structurally singular.\n", (int)info[1]);
 	}
     }
     if (info[1] == 2) {
 /* Scaling factors are large, return with warning */
 	if (icntl[2] >= 0) {
 	    printf(" ****** Warning from MC64A/AD. INFO(1) = %2d\n"
-		   "        Some scaling factors may be too large.\n", info[1]);
+		   "        Some scaling factors may be too large.\n", (int) info[1]);
 	}
     }
 /* Print diagnostics on output */
     if (icntl[3] >= 0) {
 	printf(" ****** Output parameters for MC64A/AD: INFO(1:2)  = %8d%8d\n",
-	       info[1], info[2]);
-	printf(" NUM        = %8d", *num);
+	       (int) info[1], (int) info[2]);
+	printf(" NUM        = %8d", (int) *num);
 	printf(" CPERM(1:N) = ");
 	for (j=1; j<=*n; ++j) {
-	    printf("%8d", cperm[j]);
+	    printf("%8d", (int) cperm[j]);
 	    if (j%8 == 0) printf("\n");
 	}
 	if (*job == 5) {
@@ -657,7 +658,7 @@ L99:
 
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64bd_(int_t *n, int_t *ne, int_t *ip, int_t *
-	irn, double *a, int_t *iperm, int_t *num, int_t *jperm, 
+	irn, double *a, int *iperm, int_t *num, int_t *jperm, 
 	int_t *pr, int_t *q, int_t *l, double *d__)
 {
     /* System generated locals */
@@ -680,10 +681,10 @@ L99:
     double dnew;
     int_t jord, qlen, idum, jdum;
     double rinf;
-    extern /* Subroutine */ int_t mc64dd_(int_t *, int_t *, int_t *, 
-	    double *, int_t *, int_t *), mc64ed_(int_t *, int_t *,
-	     int_t *, double *, int_t *, int_t *), mc64fd_(int_t *
-	    , int_t *, int_t *, int_t *, double *, int_t *, int_t *);
+    extern /* Subroutine */ int_t
+	mc64dd_(int_t *, int_t *, int_t *, double *, int_t *, int_t *),
+	mc64ed_(int_t *, int_t *, int_t *, double *, int_t *, int_t *),
+	mc64fd_(int_t *, int_t *, int_t *, int_t *, double *, int_t *, int_t *);
 
 
 /* *** Copyright (c) 1999  Council for the Central Laboratory of the */
@@ -1545,7 +1546,7 @@ L100:
 
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64sd_(int_t *n, int_t *ne, int_t *ip, int_t *
-	irn, double *a, int_t *iperm, int_t *numx, int_t *w, 
+	irn, double *a, int *iperm, int_t *numx, int_t *w, 
 	int_t *len, int_t *lenl, int_t *lenh, int_t *fc, int_t *iw, 
 	int_t *iw4)
 {
@@ -1556,11 +1557,12 @@ L100:
     int_t i__, j, k, l, ii, mod, cnt, num;
     double bval, bmin, bmax, rinf;
     int_t nval, wlen, idum1, idum2, idum3;
-    extern /* Subroutine */ int_t mc64qd_(int_t *, int_t *, int_t *, 
-	    int_t *, int_t *, double *, int_t *, double *), 
-	    mc64ud_(int_t *, int_t *, int_t *, int_t *, int_t *, 
-	    int_t *, int_t *, int_t *, int_t *, int_t *, int_t *, 
-	    int_t *, int_t *, int_t *, int_t *);
+    extern /* Subroutine */ int_t
+	mc64qd_(int_t *, int_t *, int_t *, int_t *, int_t *, double *,
+		int_t *, double *), 
+	mc64ud_(int_t *, int_t *, int_t *, int_t *, int_t *, 
+		int_t *, int_t *, int_t *, int_t *, int_t *, int_t *, 
+		int_t *, int_t *, int_t *, int_t *);
 
 /* *** Copyright (c) 1999  Council for the Central Laboratory of the */
 /*     Research Councils                                             *** */
@@ -2159,7 +2161,7 @@ L101:
 
 /* ********************************************************************** */
 /* Subroutine */ int_t mc64wd_(int_t *n, int_t *ne, int_t *ip, int_t *
-	irn, double *a, int_t *iperm, int_t *num, int_t *jperm, 
+	irn, double *a, int *iperm, int_t *num, int_t *jperm, 
 	int_t *out, int_t *pr, int_t *q, int_t *l, double *u, 
 	double *d__)
 {
@@ -2179,11 +2181,10 @@ L101:
     double dmin__, dnew;
     int_t jord, qlen, jdum;
     double rinf;
-    extern /* Subroutine */ int_t mc64dd_(int_t *, int_t *, int_t *, 
-	    double *, int_t *, int_t *), mc64ed_(int_t *, int_t *,
-	     int_t *, double *, int_t *, int_t *), mc64fd_(int_t *
-	    , int_t *, int_t *, int_t *, double *, int_t *, 
-	    int_t *);
+    extern /* Subroutine */ int_t
+	mc64dd_(int_t *, int_t *, int_t *, double *, int_t *, int_t *),
+	mc64ed_(int_t *, int_t *, int_t *, double *, int_t *, int_t *),
+	mc64fd_(int_t *, int_t *, int_t *, int_t *, double *, int_t *, int_t *);
 
 
 /* *** Copyright (c) 1999  Council for the Central Laboratory of the */

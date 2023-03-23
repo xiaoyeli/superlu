@@ -137,9 +137,9 @@ int dParseFloatFormat(char *buf, int *num, int *size)
     return 0;
 }
 
-static int ReadVector(FILE *fp, int n, int *where, int perline, int persize)
+static int ReadVector(FILE *fp, int_t n, int_t *where, int perline, int persize)
 {
-    register int i, j, item;
+    int_t i, j, item;
     char tmp, buf[100];
     
     i = 0;
@@ -188,22 +188,22 @@ int dReadValues(FILE *fp, int n, double *destination, int perline, int persize)
  * </pre>
  */
 static void
-FormFullA(int n, int *nonz, double **nzval, int **rowind, int **colptr)
+FormFullA(int n, int_t *nonz, double **nzval, int_t **rowind, int_t **colptr)
 {
-    register int i, j, k, col, new_nnz;
-    int *t_rowind, *t_colptr, *al_rowind, *al_colptr, *a_rowind, *a_colptr;
-    int *marker;
+    int_t i, j, k, col, new_nnz;
+    int_t *t_rowind, *t_colptr, *al_rowind, *al_colptr, *a_rowind, *a_colptr;
+    int_t *marker;
     double *t_val, *al_val, *a_val;
 
     al_rowind = *rowind;
     al_colptr = *colptr;
     al_val = *nzval;
 
-    if ( !(marker =(int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(marker = intMalloc( (n+1) ) ) )
 	ABORT("SUPERLU_MALLOC fails for marker[]");
-    if ( !(t_colptr = (int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(t_colptr = intMalloc( (n+1) ) ) )
 	ABORT("SUPERLU_MALLOC t_colptr[]");
-    if ( !(t_rowind = (int *) SUPERLU_MALLOC( *nonz * sizeof(int)) ) )
+    if ( !(t_rowind = intMalloc( *nonz ) ) )
 	ABORT("SUPERLU_MALLOC fails for t_rowind[]");
     if ( !(t_val = (double*) SUPERLU_MALLOC( *nonz * sizeof(double)) ) )
 	ABORT("SUPERLU_MALLOC fails for t_val[]");
@@ -230,9 +230,9 @@ FormFullA(int n, int *nonz, double **nzval, int **rowind, int **colptr)
 	}
 
     new_nnz = *nonz * 2 - n;
-    if ( !(a_colptr = (int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(a_colptr = intMalloc(n+1) ) )
 	ABORT("SUPERLU_MALLOC a_colptr[]");
-    if ( !(a_rowind = (int *) SUPERLU_MALLOC( new_nnz * sizeof(int)) ) )
+    if ( !(a_rowind = intMalloc( new_nnz ) ) )
 	ABORT("SUPERLU_MALLOC fails for a_rowind[]");
     if ( !(a_val = (double*) SUPERLU_MALLOC( new_nnz * sizeof(double)) ) )
 	ABORT("SUPERLU_MALLOC fails for a_val[]");
@@ -244,10 +244,8 @@ FormFullA(int n, int *nonz, double **nzval, int **rowind, int **colptr)
 	if ( t_rowind[i] != j ) { /* not diagonal */
 	  a_rowind[k] = t_rowind[i];
 	  a_val[k] = t_val[i];
-#ifdef DEBUG
-	  if ( fabs(a_val[k]) < 4.047e-300 )
-	      printf("%5d: %e\n", k, a_val[k]);
-#endif
+	if ( fabs(a_val[k]) < 4.047e-300 )
+	    printf("%5d: %e\n", (int)k, a_val[k]);
 	  ++k;
 	}
       }
@@ -257,7 +255,7 @@ FormFullA(int n, int *nonz, double **nzval, int **rowind, int **colptr)
 	a_val[k] = al_val[i];
 #ifdef DEBUG
 	if ( fabs(a_val[k]) < 4.047e-300 )
-	    printf("%5d: %e\n", k, a_val[k]);
+	    printf("%5d: %e\n", (int)k, a_val[k]);
 #endif
 	++k;
       }
@@ -265,7 +263,7 @@ FormFullA(int n, int *nonz, double **nzval, int **rowind, int **colptr)
       a_colptr[j+1] = k;
     }
 
-    printf("FormFullA: new_nnz = %d, k = %d\n", new_nnz, k);
+    printf("FormFullA: new_nnz = %lld\n", (long long) new_nnz);
 
     SUPERLU_FREE(al_val);
     SUPERLU_FREE(al_rowind);
@@ -282,8 +280,8 @@ FormFullA(int n, int *nonz, double **nzval, int **rowind, int **colptr)
 }
 
 void
-dreadhb(FILE *fp, int *nrow, int *ncol, int *nonz,
-	double **nzval, int **rowind, int **colptr)
+dreadhb(FILE *fp, int *nrow, int *ncol, int_t *nonz,
+	double **nzval, int_t **rowind, int_t **colptr)
 {
 
     register int i, numer_lines = 0, rhscrd = 0;
@@ -294,14 +292,6 @@ dreadhb(FILE *fp, int *nrow, int *ncol, int *nonz,
     /* Line 1 */
     fgets(buf, 100, fp);
     fputs(buf, stdout);
-#if 0
-    char key[10];
-    fscanf(fp, "%72c", buf); buf[72] = 0;
-    printf("Title: %s", buf);
-    fscanf(fp, "%8c", key);  key[8] = 0;
-    printf("Key: %s\n", key);
-    dDumpLine(fp);
-#endif
 
     /* Line 2 */
     for (i=0; i<5; i++) {
@@ -316,14 +306,14 @@ dreadhb(FILE *fp, int *nrow, int *ncol, int *nonz,
     fscanf(fp, "%3c", type);
     fscanf(fp, "%11c", buf); /* pad */
     type[3] = 0;
-#ifdef DEBUG
+#if ( DEBUGlevel>=1 )
     printf("Matrix type %s\n", type);
 #endif
     
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", nrow);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", ncol);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", nonz);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", &tmp);
+    fscanf(fp, "%14c", buf); *nrow = atoi(buf);
+    fscanf(fp, "%14c", buf); *ncol = atoi(buf);
+    fscanf(fp, "%14c", buf); *nonz = atoi(buf);
+    fscanf(fp, "%14c", buf); tmp = atoi(buf);
     
     if (tmp != 0)
 	  printf("This is not an assembled matrix!\n");
@@ -348,7 +338,7 @@ dreadhb(FILE *fp, int *nrow, int *ncol, int *nonz,
     if ( rhscrd ) dDumpLine(fp); /* skip RHSFMT */
     
 #ifdef DEBUG
-    printf("%d rows, %d nonzeros\n", *nrow, *nonz);
+    printf("%d rows, %lld nonzeros\n", *nrow, (long long) *nonz);
     printf("colnum %d, colsize %d\n", colnum, colsize);
     printf("rownum %d, rowsize %d\n", rownum, rowsize);
     printf("valnum %d, valsize %d\n", valnum, valsize);

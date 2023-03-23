@@ -132,9 +132,9 @@ static int zParseFloatFormat(char *buf, int *num, int *size)
     return 0;
 }
 
-static int ReadVector(FILE *fp, int n, int *where, int perline, int persize)
+static int ReadVector(FILE *fp, int n, int_t *where, int perline, int persize)
 {
-    register int i, j, item;
+    int_t i, j, item;
     char tmp, buf[100];
 
     i = 0;
@@ -194,22 +194,22 @@ static int zReadValues(FILE *fp, int n, doublecomplex *destination, int perline,
  * </pre>
  */
 static void
-FormFullA(int n, int *nonz, doublecomplex **nzval, int **rowind, int **colptr)
+FormFullA(int n, int_t *nonz, doublecomplex **nzval, int_t **rowind, int_t **colptr)
 {
-    register int i, j, k, col, new_nnz;
-    int *t_rowind, *t_colptr, *al_rowind, *al_colptr, *a_rowind, *a_colptr;
-    int *marker;
+    int_t i, j, k, col, new_nnz;
+    int_t *t_rowind, *t_colptr, *al_rowind, *al_colptr, *a_rowind, *a_colptr;
+    int_t *marker;
     doublecomplex *t_val, *al_val, *a_val;
 
     al_rowind = *rowind;
     al_colptr = *colptr;
     al_val = *nzval;
 
-    if ( !(marker =(int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(marker = intMalloc( n+1 ) ) )
 	ABORT("SUPERLU_MALLOC fails for marker[]");
-    if ( !(t_colptr = (int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(t_colptr = intMalloc( n+1 ) ) )
 	ABORT("SUPERLU_MALLOC t_colptr[]");
-    if ( !(t_rowind = (int *) SUPERLU_MALLOC( *nonz * sizeof(int)) ) )
+    if ( !(t_rowind = intMalloc( *nonz ) ) )
 	ABORT("SUPERLU_MALLOC fails for t_rowind[]");
     if ( !(t_val = (doublecomplex*) SUPERLU_MALLOC( *nonz * sizeof(doublecomplex)) ) )
 	ABORT("SUPERLU_MALLOC fails for t_val[]");
@@ -236,9 +236,9 @@ FormFullA(int n, int *nonz, doublecomplex **nzval, int **rowind, int **colptr)
 	}
 
     new_nnz = *nonz * 2 - n;
-    if ( !(a_colptr = (int *) SUPERLU_MALLOC( (n+1) * sizeof(int)) ) )
+    if ( !(a_colptr = intMalloc( n+1 ) ) )
 	ABORT("SUPERLU_MALLOC a_colptr[]");
-    if ( !(a_rowind = (int *) SUPERLU_MALLOC( new_nnz * sizeof(int)) ) )
+    if ( !(a_rowind = intMalloc( new_nnz) ) )
 	ABORT("SUPERLU_MALLOC fails for a_rowind[]");
     if ( !(a_val = (doublecomplex*) SUPERLU_MALLOC( new_nnz * sizeof(doublecomplex)) ) )
 	ABORT("SUPERLU_MALLOC fails for a_val[]");
@@ -251,8 +251,8 @@ FormFullA(int n, int *nonz, doublecomplex **nzval, int **rowind, int **colptr)
 	  a_rowind[k] = t_rowind[i];
 	  a_val[k] = t_val[i];
 #ifdef DEBUG
-	  if ( fabs(a_val[k]) < 4.047e-300 )
-	      printf("%5d: %e\n", k, a_val[k]);
+	  if ( z_abs1(&a_val[k]) < 4.047e-300 )
+	      printf("%5d: %e\t%e\n", (int)k, a_val[k].r, a_val[k].i);
 #endif
 	  ++k;
 	}
@@ -261,17 +261,15 @@ FormFullA(int n, int *nonz, doublecomplex **nzval, int **rowind, int **colptr)
       for (i = al_colptr[j]; i < al_colptr[j+1]; ++i) {
 	a_rowind[k] = al_rowind[i];
 	a_val[k] = al_val[i];
-#ifdef DEBUG
-	if ( fabs(a_val[k]) < 4.047e-300 )
-	    printf("%5d: %e\n", k, a_val[k]);
-#endif
+	  if ( z_abs1(&a_val[k]) < 4.047e-300 )
+	      printf("%5d: %e\t%e\n", (int)k, a_val[k].r, a_val[k].i);
 	++k;
       }
       
       a_colptr[j+1] = k;
     }
 
-    printf("FormFullA: new_nnz = %d, k = %d\n", new_nnz, k);
+    printf("FormFullA: new_nnz = %lld\n", (long long) new_nnz);
 
     SUPERLU_FREE(al_val);
     SUPERLU_FREE(al_rowind);
@@ -288,8 +286,8 @@ FormFullA(int n, int *nonz, doublecomplex **nzval, int **rowind, int **colptr)
 }
 
 void
-zreadrb(int *nrow, int *ncol, int *nonz,
-        doublecomplex **nzval, int **rowind, int **colptr)
+zreadrb(int *nrow, int *ncol, int_t *nonz,
+        doublecomplex **nzval, int_t **rowind, int_t **colptr)
 {
 
     register int i, numer_lines = 0;
@@ -320,10 +318,10 @@ zreadrb(int *nrow, int *ncol, int *nonz,
     printf("Matrix type %s\n", type);
 #endif
 
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", nrow);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", ncol);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", nonz);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", &tmp);
+    fscanf(fp, "%14c", buf); *nrow = atoi(buf);
+    fscanf(fp, "%14c", buf); *ncol = atoi(buf);
+    fscanf(fp, "%14c", buf); *nonz = atoi(buf);
+    fscanf(fp, "%14c", buf); tmp = atoi(buf);
 
     if (tmp != 0)
         printf("This is not an assembled matrix!\n");
@@ -344,7 +342,7 @@ zreadrb(int *nrow, int *ncol, int *nonz,
     zDumpLine(fp);
 
 #ifdef DEBUG
-    printf("%d rows, %d nonzeros\n", *nrow, *nonz);
+    printf("%d rows, %lld nonzeros\n", *nrow, (long long) *nonz);
     printf("colnum %d, colsize %d\n", colnum, colsize);
     printf("rownum %d, rowsize %d\n", rownum, rowsize);
     printf("valnum %d, valsize %d\n", valnum, valsize);

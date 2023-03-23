@@ -337,23 +337,22 @@ typedef struct {
 typedef struct {
     int     *xsup;    /* supernode and column mapping */
     int     *supno;   
-    int     *lsub;    /* compressed L subscripts */
-    int	    *xlsub;
+    int_t   *lsub;    /* compressed L subscripts */
+    int_t   *xlsub;
     void    *lusup;   /* L supernodes */
-    int     *xlusup;
+    int_t   *xlusup;
     void    *ucol;    /* U columns */
-    int     *usub;
-    int	    *xusub;
-    int     nzlmax;   /* current max size of lsub */
-    int     nzumax;   /*    "    "    "      ucol */
-    int     nzlumax;  /*    "    "    "     lusup */
+    int_t   *usub;
+    int_t   *xusub;
+    int_t   nzlmax;   /* current max size of lsub */
+    int_t   nzumax;   /*    "    "    "      ucol */
+    int_t   nzlumax;  /*    "    "    "     lusup */
     int     n;        /* number of columns in the matrix */
     LU_space_t MemModel; /* 0 - system malloc'd; 1 - user provided */
     int     num_expansions;
     ExpHeader *expanders; /* Array of pointers to 4 types of memory */
     LU_stack_t stack;     /* use user supplied memory */
 } GlobalLU_t;
-
 
 
 /***********************************************************************
@@ -378,15 +377,20 @@ extern void    sp_preorder (superlu_options_t *, SuperMatrix*, int*, int*,
 			    SuperMatrix*);
 extern void    superlu_abort_and_exit(char*);
 extern void    *superlu_malloc (size_t);
-extern int     *intMalloc (int);
-extern int     *intCalloc (int);
+extern int     *int32Malloc (int);
+extern int     *int32Calloc (int);
+extern int_t   *intMalloc (int_t);
+extern int_t   *intCalloc (int_t);
 extern void    superlu_free (void*);
-extern void    SetIWork (int, int, int, int *, int **, int **, int **,
-                         int **, int **, int **, int **);
-extern int     sp_coletree (int *, int *, int *, int, int, int *);
+extern void    SetIWork (int, int, int, int *, int **, int **, int_t **xplore,
+                         int **, int **, int_t **xprune, int **);
+extern int     sp_coletree (int_t *, int_t *, int_t *, int, int, int *);
 extern void    relax_snode (const int, int *, const int, int *, int *);
 extern void    heap_relax_snode (const int, int *, const int, int *, int *);
-extern int     mark_relax(int, int *, int *, int *, int *, int *, int *);
+extern int     mark_relax(int, int *, int *, int_t *, int_t *, int_t *, int *);
+extern void    countnz(const int n, int_t *xprune, int_t *nnzL, int_t *nnzU, GlobalLU_t *);
+extern void    ilu_countnz (const int, int_t *, int_t *, GlobalLU_t *);
+extern void    fixupL (const int, const int *, GlobalLU_t *);
 extern void    ilu_relax_snode (const int, int *, const int, int *,
 				int *, int *);
 extern void    ilu_heap_relax_snode (const int, int *, const int, int *,
@@ -408,6 +412,7 @@ extern void    StatFree(SuperLUStat_t *);
 extern void    print_panel_seg(int, int, int, int, int *, int *);
 extern int     print_int_vec(char *,int, int *);
 extern int     slu_PrintInt10(char *, int, int *);
+extern int     check_perm(char *what, int n, int *perm);
 
 #ifdef __cplusplus
   }

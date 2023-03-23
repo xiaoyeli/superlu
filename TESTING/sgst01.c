@@ -63,7 +63,8 @@ int sgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
 
     /* Local variables */
     float zero = 0.0;
-    int i, j, k, arow, lptr,isub,  urow, superno, fsupc, u_part;
+    int i, j, k, arow, superno, fsupc, u_part;
+    int_t urow, lptr, isub;
     float utemp;
     float anorm, tnorm, cnorm;
     float eps;
@@ -71,7 +72,7 @@ int sgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
     SCformat *Lstore;
     NCformat *Astore, *Ustore;
     float *Aval, *Lval, *Uval;
-    int *colbeg, *colend;
+    int_t *colbeg, *colend;
 
     /* Function prototypes */
     extern float slangs(char *, SuperMatrix *);

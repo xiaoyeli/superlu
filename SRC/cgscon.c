@@ -131,8 +131,10 @@ cgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
     else kase1 = 2;
     kase = 0;
 
+    int nrow = L->nrow;
+
     do {
-	clacon2_(&L->nrow, &work[L->nrow], &work[0], &ainvnm, &kase, isave);
+	clacon2_(&nrow, &work[L->nrow], &work[0], &ainvnm, &kase, isave);
 
 	if (kase == 0) break;
 

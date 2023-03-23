@@ -90,16 +90,16 @@ ccolumn_bmod (
     int          d_fsupc; /* Distance between the first column of the current
 			     panel and the first column of the current snode. */
     int          *xsup, *supno;
-    int          *lsub, *xlsub;
+    int_t        *lsub, *xlsub;
     complex       *lusup;
-    int          *xlusup;
-    int          nzlumax;
+    int_t        *xlusup;
+    int_t        nzlumax;
     complex       *tempv1;
     complex      zero = {0.0, 0.0};
     complex      one = {1.0, 0.0};
     complex      none = {-1.0, 0.0};
     complex	 comp_temp, comp_temp1;
-    int          mem_error;
+    int_t        mem_error;
     flops_t      *ops = stat->ops;
 
     xsup    = Glu->xsup;

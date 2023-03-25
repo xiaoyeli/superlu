@@ -90,14 +90,14 @@ ccolumn_dfs(
 {
 
     int     jcolp1, jcolm1, jsuper, nsuper;
-    int     k, krep, krow, kmark, kperm;
+    int     krep, krow, kmark, kperm;
     int     *marker2;           /* Used for small panel LU */
     int	    fsupc;		/* First column of a snode */
     int     myfnz;		/* First nonz column of a U-segment */
     int	    chperm, chmark, chrep, kchild;
-    int_t   xdfs, maxdfs, nextl;
+    int_t   xdfs, maxdfs, nextl, k;
     int     kpar, oldrep;
-    int     jptr, jm1ptr;
+    int_t   jptr, jm1ptr;
     int_t   ito, ifrom, istop;	/* Used to compress row subscripts */
     int     *xsup, *supno;
     int_t   *lsub, *xlsub;

@@ -233,10 +233,10 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     int       pivrow;	/* pivotal row number in the original matrix A */
     int       nseg1;	/* no of segments in U-column above panel row jcol */
     int       nseg;	/* no of segments in each U-column */
-    register int jcol;
+    register int jcol, jj;
     register int kcol;	/* end column of a relaxed snode */
     register int icol;
-    int_t     i, k, jj, iinfo;
+    int_t     i, k, iinfo;
     int       m, n, min_mn, jsupno, fsupc;
     int_t     new_next, nextlu, nextu;
     int       w_def;	/* upper bound on panel width */

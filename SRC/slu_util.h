@@ -307,15 +307,15 @@ typedef struct {
 
 /*! \brief Headers for 4 types of dynamatically managed memory */
 typedef struct e_node {
-    int size;      /* length of the memory that has been used */
+    int_t size;    /* length of the memory mem[] that has been used */
     void *mem;     /* pointer to the new malloc'd store */
 } ExpHeader;
 
 typedef struct {
-    int  size;
-    int  used;
-    int  top1;  /* grow upward, relative to &array[0] */
-    int  top2;  /* grow downward */
+    int_t  size;
+    int_t  used;
+    int_t  top1;  /* grow upward, relative to &array[0] */
+    int_t top2;  /* grow downward */
     void *array;
 } LU_stack_t;
 

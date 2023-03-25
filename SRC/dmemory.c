@@ -225,8 +225,8 @@ dLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
 	}
 	
 #if ( PRNTlevel >= 1 )
-	printf("dLUMemInit() called: fill_ratio %.0f, nzlmax %ld, nzumax %ld\n", 
-	       fill_ratio, (long) nzlmax, (long) nzumax);
+	printf("dLUMemInit() called: fill_ratio %.0f, nzlmax %lld, nzumax %lld\n", 
+	       fill_ratio, (long long) nzlmax, (long long) nzumax);
 	fflush(stdout);
 #endif	
 	
@@ -446,9 +446,9 @@ dLUMemXpand(int jcol,
 	new_mem = dexpand(maxlen, mem_type, next, 0, Glu);
     
     if ( !new_mem ) {
-	int    nzlmax  = Glu->nzlmax;
-	int    nzumax  = Glu->nzumax;
-	int    nzlumax = Glu->nzlumax;
+	int_t    nzlmax  = Glu->nzlmax;
+	int_t    nzumax  = Glu->nzumax;
+	int_t    nzlumax = Glu->nzlumax;
     	fprintf(stderr, "Can't expand MemType %d: jcol %d\n", mem_type, jcol);
     	return (dmemory_usage(nzlmax, nzumax, nzlumax, Glu->n) + Glu->n);
     }
@@ -514,7 +514,7 @@ void
 	new_len = alpha * *prev_len;
     }
     
-    if ( type == LSUB || type == USUB ) lword = sizeof(int);
+    if ( type == LSUB || type == USUB ) lword = sizeof(int_t);
     else lword = sizeof(double);
 
     if ( Glu->MemModel == SYSTEM ) {

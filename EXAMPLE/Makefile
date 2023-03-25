@@ -42,7 +42,7 @@ SLINXEXM3	= slinsolx3.o
 SITSOL	     	= sitersol.o sfgmr.o
 SITSOL1	     	= sitersol1.o sfgmr.o
 
-DLINEXM		= dlinsol.o dreadtriple_noheader.o dgstrf.o sp_ienv.o
+DLINEXM		= dlinsol.o dreadtriple_noheader.o #dgstrf.o dcolumn_dfs.o #sp_ienv.o
 DLINEXM1	= dlinsol1.o
 DLINXEXM 	= dlinsolx.o
 DLINXEXM1 	= dlinsolx1.o

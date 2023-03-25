@@ -124,11 +124,11 @@ SetIWork(int m, int n, int panel_size, int *iworkptr, int **segrep,
 
 
 void
-copy_mem_int(int howmany, void *old, void *new)
+copy_mem_int(int_t howmany, void *old, void *new)
 {
-    register int i;
-    int *iold = old;
-    int *inew = new;
+    register int_t i;
+    int_t *iold = old;
+    int_t *inew = new;
     for (i = 0; i < howmany; i++) inew[i] = iold[i];
 }
 

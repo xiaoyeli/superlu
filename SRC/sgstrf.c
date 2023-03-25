@@ -229,11 +229,11 @@ sgstrf (superlu_options_t *options, SuperMatrix *A,
     int       pivrow;   /* pivotal row number in the original matrix A */
     int       nseg1;	/* no of segments in U-column above panel row jcol */
     int       nseg;	/* no of segments in each U-column */
-    register int jcol;	
+    register int jcol, jj;
     register int kcol;	/* end column of a relaxed snode */
     register int icol;
-    register int i, k, jj, new_next, iinfo;
-    int       m, n, min_mn, jsupno, fsupc, nextlu, nextu;
+    int_t     i, k, iinfo, new_next, nextlu, nextu;
+    int       m, n, min_mn, jsupno, fsupc;
     int       w_def;	/* upper bound on panel width */
     int       usepr, iperm_r_allocated = 0;
     int_t     nnzL, nnzU;

@@ -152,7 +152,7 @@ sldperm(int job, int n, int_t nnz, int_t colptr[], int_t adjncy[],
 
 #if ( DEBUGlevel>=2 )
     slu_PrintInt10("perm", n, perm);
-    printf(".. After MC64AD info %d\tsize of matching %d\n", info[0], num);
+    printf(".. After MC64AD info %lld\tsize of matching %d\n", (long long)info[0], num);
 #endif
     if ( info[0] == 1 ) { /* Structurally singular */
         printf(".. The last %d permutations:\n", (int)(n-num));

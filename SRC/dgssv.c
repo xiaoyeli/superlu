@@ -213,8 +213,8 @@ dgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
     panel_size = sp_ienv(1);
     relax = sp_ienv(2);
 
-    printf("Factor PA = LU ... relax %d\tw %d\tmaxsuper %d\trowblk %d\n", 
-	  relax, panel_size, sp_ienv(3), sp_ienv(4));
+    /*printf("Factor PA = LU ... relax %d\tw %d\tmaxsuper %d\trowblk %d\n", 
+	  relax, panel_size, sp_ienv(3), sp_ienv(4));*/
     t = SuperLU_timer_(); 
     /* Compute the LU factorization of A. */
     dgstrf(options, &AC, relax, panel_size, etree,
@@ -227,9 +227,9 @@ dgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 	int info1;
         dgstrs (trans, L, U, perm_c, perm_r, B, stat, &info1);
     } else {
-	printf("dgstrf info %d\n", (int) *info); fflush(stdout);
+        printf("dgstrf info %lld\n", (long long) *info); fflush(stdout);
     }
-	
+    
     utime[SOLVE] = SuperLU_timer_() - t;
 
     SUPERLU_FREE (etree);

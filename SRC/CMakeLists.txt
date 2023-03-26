@@ -4,7 +4,9 @@ set(headers
     slu_dcomplex.h
     slu_scomplex.h
     slu_util.h
-    superlu_enum_consts.h)
+    superlu_enum_consts.h
+    ${CMAKE_CURRENT_BINARY_DIR}/superlu_config.h
+)
 
 set(sources
   superlu_timer.c
@@ -234,7 +236,7 @@ if(enable_complex16)
 endif()
 
 add_library(superlu ${sources})
-target_link_libraries(superlu PUBLIC ${BLAS_LIB})
+target_link_libraries(superlu PUBLIC ${BLAS_LIB} ${METIS_LIB})
 if (NOT WIN32)
   target_link_libraries(superlu PUBLIC m)
 endif ()

@@ -25,7 +25,7 @@ at the top-level directory.
 
 
 #if ( DEBUGlevel>=1 )           /* Debug malloc/free. */
-int superlu_malloc_total = 0;
+int_t superlu_malloc_total = 0;
 
 #define PAD_FACTOR  2
 #define DWORD  (sizeof(double)) /* Be sure it's no smaller than double. */
@@ -37,8 +37,8 @@ void *superlu_malloc(size_t size)
 
     buf = (char *) malloc(size + DWORD);
     if ( !buf ) {
-	printf("superlu_malloc fails: malloc_total %.0f MB, size %ld\n",
-	       superlu_malloc_total*1e-6, size);
+	printf("superlu_malloc fails: malloc_total %.0f MB, size %lld\n",
+	       superlu_malloc_total*1e-6, (long long)size);
 	ABORT("superlu_malloc: out of memory");
     }
 

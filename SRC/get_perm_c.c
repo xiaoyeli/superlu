@@ -16,10 +16,12 @@ at the top-level directory.
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * August 1, 2008
+ * March 25, 2023  add METIS option
  * </pre>
  */
 #include "slu_ddefs.h"
 #include "colamd.h"
+
 
 extern int genmmd_(int *neqns, int_t *xadj, int_t *adjncy, 
 		   int *invp, int *perm, int_t *delta, int_t *dhead, 
@@ -61,6 +63,59 @@ get_colamd(
     SUPERLU_FREE(A);
     SUPERLU_FREE(p);
 } /* end get_colamd */
+
+void
+get_metis(
+	  int n,           /* dimension of matrix B */
+	  int_t bnz,       /* number of nonzeros in matrix A. */
+	  int_t *b_colptr, /* column pointer of size n+1 for matrix B. */
+	  int_t *b_rowind, /* row indices of size bnz for matrix B. */
+	  int *perm_c      /* out - the column permutation vector. */
+	  )
+{
+#ifdef HAVE_METIS
+    /*#define METISOPTIONS 8*/
+#define METISOPTIONS 40
+    int_t metis_options[METISOPTIONS];
+    int numflag = 0; /* C-Style ordering */
+    int_t i, nm;
+    int_t *perm, *iperm;
+
+    extern int METIS_NodeND(int_t*, int_t*, int_t*, int_t*, int_t*,
+			    int_t*, int_t*);
+
+    metis_options[0] = 0; /* Use Defaults for now */
+
+    perm = intMalloc(2*n);
+    if (!perm) ABORT("intMalloc fails for perm.");
+    iperm = perm + n;
+    nm = n;
+
+    /* Call metis */
+#undef USEEND
+#ifdef USEEND
+    METIS_EdgeND(&nm, b_colptr, b_rowind, &numflag, metis_options,
+		 perm, iperm);
+#else
+
+    /* Earlier version 3.x.x */
+    /* METIS_NodeND(&nm, b_colptr, b_rowind, &numflag, metis_options,
+       perm, iperm);*/
+
+    /* Latest version 4.x.x */
+    METIS_NodeND(&nm, b_colptr, b_rowind, NULL, NULL, perm, iperm);
+
+    /*check_perm_dist("metis perm",  n, perm);*/
+#endif
+
+    /* Copy the permutation vector into SuperLU data structure. */
+    for (i = 0; i < n; ++i) perm_c[i] = iperm[i];
+
+    SUPERLU_FREE(b_colptr);
+    SUPERLU_FREE(b_rowind);
+    SUPERLU_FREE(perm);
+#endif /* HAVE_METIS */
+}
 
 /*! \brief
  *
@@ -424,7 +479,26 @@ get_perm_c(int ispec, SuperMatrix *A, int *perm_c)
 #if ( PRNTlevel>=1 )
 	printf(".. Use approximate minimum degree column ordering.\n");
 #endif
-	return; 
+	return;
+#ifdef HAVE_METIS
+        case METIS_ATA: /* METIS ordering on A'*A */
+	    getata(m, n, Astore->nnz, Astore->colptr, Astore->rowind,
+		     &bnz, &b_colptr, &b_rowind);
+
+	    if ( bnz ) { /* non-empty adjacency structure */
+		  get_metis(n, bnz, b_colptr, b_rowind, perm_c);
+	    } else { /* e.g., diagonal matrix */
+		for (i = 0; i < n; ++i) perm_c[i] = i;
+		SUPERLU_FREE(b_colptr);
+		/* b_rowind is not allocated in this case */
+	    }
+
+#if ( PRNTlevel>=1 )
+	    printf(".. Use METIS ordering on A'*A\n");
+#endif
+	    return;
+#endif
+	
     default:
 	ABORT("Invalid ISPEC");
     }

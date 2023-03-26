@@ -3,14 +3,14 @@
 #ifndef SUPERLU_CONFIG_H
 #define SUPERLU_CONFIG_H
 
-/* Enable parmetis */
-/* #undef HAVE_PARMETIS */
+/* Enable metis */
+/* #undef HAVE_METIS */
 
 /* Enable colamd */
 /* #undef HAVE_COLAMD */
 
 /* enable 64bit index mode */
-/* #undef XSDK_INDEX_SIZE */
+#define XSDK_INDEX_SIZE 64
 
 /*
  * Integer type for indexing sparse matrix meta structure

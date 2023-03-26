@@ -3,8 +3,8 @@
 #ifndef SUPERLU_CONFIG_H
 #define SUPERLU_CONFIG_H
 
-/* Enable parmetis */
-#cmakedefine HAVE_PARMETIS @HAVE_PARMETIS@
+/* Enable metis */
+#cmakedefine HAVE_METIS @HAVE_METIS@
 
 /* Enable colamd */
 #cmakedefine HAVE_COLAMD @HAVE_COLAMD@

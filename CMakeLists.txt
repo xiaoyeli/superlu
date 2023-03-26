@@ -9,17 +9,18 @@ cmake_minimum_required(VERSION 2.8.12)
 
 # Project Version	
 project(SuperLU NONE)
-set(VERSION_MAJOR "5")
-set(VERSION_MINOR "3")
+set(VERSION_MAJOR "6")
+set(VERSION_MINOR "0")
 set(VERSION_BugFix "0")
 set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 
 ######################################################################
 #
 # IDEAS: xSDK standards module
-MESSAGE("\nProcess XSDK defaults ...")
-SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
-INCLUDE("cmake/XSDKDefaults.cmake")
+#MESSAGE("\nProcess XSDK defaults ...")
+#SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
+#INCLUDE("cmake/XSDKDefaults.cmake")
+SET(USE_XSDK_DEFAULTS TRUE)
 INCLUDE(CTest)
 
 ######################################################################
@@ -76,7 +77,7 @@ if (NOT CMAKE_INSTALL_PREFIX)
   set(CMAKE_INSTALL_PREFIX /usr/local)
 endif()
 
-# setup options
+# set up options
 option(enable_internal_blaslib  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
 option(enable_matlabmex "Build the Matlab mex library" OFF)
 option(enable_tests     "Build tests" ON)
@@ -86,6 +87,14 @@ option(enable_double    "Enable double precision library" ON)
 option(enable_complex   "Enable complex precision library" ON)
 option(enable_complex16 "Enable complex16 precision library" ON)
 # option(enable_examples  "Build examples" ON)
+
+#-- BLAS
+option(TPL_ENABLE_INTERNAL_BLASLIB  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
+option(TPL_BLAS_LIBRARIES "List of absolute paths to blas libraries [].")
+#-- METIS
+option(TPL_ENABLE_METISLIB   "Build the METIS library" OFF)
+option(TPL_METIS_LIBRARIES "List of absolute paths to METIS link libraries [].")
+option(TPL_METIS_INCLUDE_DIRS "List of absolute paths to METIS include directories [].")
 
 # setup required compiler defines and options.
 ## get_directory_property( DirDefs COMPILE_DEFINITIONS )
@@ -134,12 +143,55 @@ else()
   endif()
 endif()
 
+#--------------------- METIS ---------------------
+if (TPL_ENABLE_METISLIB)   ## want to use metis
+  if (NOT TPL_METIS_LIBRARIES)
+    message(FATAL_ERROR "TPL_METIS_LIBRARIES option should be set for METIS support to be enabled.")
+  endif()
+
+  if (NOT TPL_METIS_INCLUDE_DIRS)
+    message(FATAL_ERROR "TPL_METIS_INCLUDE_DIRS option be set for METIS support to be enabled.")
+  endif()
+  foreach(dir ${TPL_METIS_INCLUDE_DIRS})
+    if (NOT MINGW AND NOT EXISTS ${dir})
+      message(FATAL_ERROR "METIS include directory not found: ${dir}")
+    endif()
+    set(CMAKE_C_FLAGS "-I${dir} ${CMAKE_C_FLAGS}")
+  endforeach()
+
+  message("-- Enabled support for METIS.")
+  set(METIS_FOUND TRUE)
+
+  set(METIS_LIB ${TPL_METIS_LIBRARIES})
+  # fix up METIS library names
+  string (REPLACE ";" " " METIS_LIB_STR "${METIS_LIB}")
+  set(METIS_LIB_EXPORT ${METIS_LIB_STR})
+else()
+  message("-- Will not link with METIS.")
+endif()
+
+if(TPL_ENABLE_METISLIB AND NOT METIS_FOUND)
+  find_package(METIS)
+  if(METIS_FOUND)
+    set(METIS_LIB METIS::METIS)
+    set(TPL_METIS_INCLUDE_DIRS "")
+  endif()
+endif()
+
+if(METIS_FOUND)
+  set(HAVE_METIS TRUE)
+endif()
+
+
 ######################################################################
 #
 # Include directories
 #
 ######################################################################
 include_directories(${CMAKE_BINARY_DIR}/SRC) # For superlu_config.h
+if (TPL_METIS_INCLUDE_DIRS)
+  include_directories(${TPL_METIS_INCLUDE_DIRS})  ## metis
+endif ()
 
 ######################################################################
 #
@@ -158,19 +210,31 @@ if(enable_tests)
   add_subdirectory(TESTING)
 endif()
 
+if(enable_examples)
+  enable_testing()
+  add_subdirectory(EXAMPLE)
+endif()
+
+if (XSDK_ENABLE_Fortran)
+  add_subdirectory(FORTRAN)
+endif()
+
 if(enable_doc)
   message(FATAL_ERROR "Documentation build requested but not implemented.")
   #implement doxygen
 endif()
+
+# Generate various configure files with proper definitions
 
 # file(WRITE "make.defs" "# can be exposed to users"
 #  ${CMAKE_C_COMPILER}  )
 # configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
 configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
  
-configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/SRC/superlu_config.h)
-configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_SOURCE_DIR}/SRC/superlu_config.h)
-
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+	
+configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/SRC/superlu_config.h)
+configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_SOURCE_DIR}/SRC/superlu_config.h)
+

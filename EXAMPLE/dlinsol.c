@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
     	options.PrintStat = YES;
      */
     set_default_options(&options);
+    //options.ColPerm = METIS_ATA;
 
     /* Read the matrix in Harwell-Boeing format. */
 #if 1

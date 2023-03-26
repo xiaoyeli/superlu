@@ -369,7 +369,7 @@ cLUWorkInit(int m, int n, int panel_size, int **iworkptr,
 	    *dworkptr = (complex*) DoubleAlign(*dworkptr);
 	    *dworkptr = (complex*) ((double*)*dworkptr - 1);
 	    extra = (char*)old_ptr - (char*)*dworkptr;
-#ifdef DEBUG	    
+#if ( DEBUGlevel>=1 )
 	    printf("cLUWorkInit: not aligned, extra %d\n", extra);
 #endif	    
 	    Glu->stack.top2 -= extra;
@@ -435,9 +435,9 @@ cLUMemXpand(int jcol,
 {
     void   *new_mem;
     
-#ifdef DEBUG    
-    printf("cLUMemXpand(): jcol %d, next %ld, maxlen %ld, MemType %d\n",
-	   jcol, (long) next, (long) *maxlen, mem_type);
+#if ( DEBUGlevel>=1 ) 
+    printf("cLUMemXpand(): jcol %d, next %lld, maxlen %lld, MemType %d\n",
+	   jcol, (long long) next, (long long) *maxlen, mem_type);
 #endif    
 
     if (mem_type == USUB) 
@@ -548,7 +548,7 @@ void
 		old_mem = new_mem;
 		new_mem = (void *)DoubleAlign(new_mem);
 		extra = (char*)new_mem - (char*)old_mem;
-#ifdef DEBUG		
+#if ( DEBUGlevel>=1 )
 		printf("expand(): not aligned, extra %d\n", extra);
 #endif		
 		Glu->stack.top1 += extra;
@@ -656,7 +656,7 @@ cStackCompress(GlobalLU_t *Glu)
     Glu->lsub = lsub;
     Glu->usub = usub;
     
-#ifdef DEBUG
+#if ( DEBUGlevel>=1 )
     printf("cStackCompress: fragment %lld\n", (long long) fragment);
     /* for (last = 0; last < ndim; ++last)
 	print_lu_col("After compress:", last, 0);*/

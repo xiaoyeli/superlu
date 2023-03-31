@@ -112,10 +112,12 @@ at the top-level directory.
 #define FALSE	0
 #define TRUE	1
 
+#if 0 // this was old; new one is 6, defined in superlu_enum_consts.h 
 #define NO_MEMTYPE  4      /* 0: lusup;
 			      1: ucol;
 			      2: lsub;
 			      3: usub */
+#endif
 
 #define GluIntArray(n)   (5 * (n) + 5)
 

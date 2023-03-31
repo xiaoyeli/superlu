@@ -81,7 +81,7 @@ ilu_dcolumn_dfs(
     int     myfnz;		/* First nonz column of a U-segment */
     int     chperm, chmark, chrep, kchild, kpar, oldrep;
     int_t   xdfs, maxdfs; 
-    int     jptr, jm1ptr;
+    int_t   jptr, jm1ptr;
     int_t   ito, ifrom; 	/* Used to compress row subscripts */
     int_t   mem_error, nextl;
     int     *xsup, *supno;

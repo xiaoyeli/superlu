@@ -49,12 +49,11 @@ ilu_ssnode_dfs(
 	   GlobalLU_t *Glu	    /* modified */
 	   )
 {
-
-    register int_t i, k, nextl, mem_error;
-    int 	 nsuper, krow, kmark;
-    int 	 *xsup, *supno;
-    int_t 	 *lsub, *xlsub;
-    int_t 	 nzlmax;
+    int_t i, k, nextl, mem_error;
+    int   nsuper, krow, kmark;
+    int   *xsup, *supno;
+    int_t *lsub, *xlsub;
+    int_t nzlmax;
 
     xsup    = Glu->xsup;
     supno   = Glu->supno;

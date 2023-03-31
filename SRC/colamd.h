@@ -72,6 +72,7 @@ extern "C" {
 /* ========================================================================== */
 
 #include <stdlib.h>
+    /*#include <stdint.h>*/
 
 /* ========================================================================== */
 /* === COLAMD version ======================================================= */
@@ -173,7 +174,12 @@ extern "C" {
 #define SuiteSparse_long_max LONG_MAX
 #define SuiteSparse_long_idd "ld"
 #endif
+
+#if 1
 #define SuiteSparse_long long long int
+#else
+#define SuiteSparse_long int64_t
+#endif
 #define SuiteSparse_long_max LONG_MAX
 #define SuiteSparse_long_idd "lld"
 

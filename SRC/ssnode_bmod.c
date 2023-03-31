@@ -58,12 +58,12 @@ ssnode_bmod (
     float         alpha = -1.0, beta = 1.0;
 #endif
 
-    int            nsupc, nsupr, nrow;
-    int            isub, irow;
-    register int   ufirst, nextlu;
-    int_t          *lsub, *xlsub;
-    float         *lusup;
-    int_t          *xlusup, luptr;
+    int     nsupc, nsupr, nrow;
+    int_t   isub, irow;
+    int_t   ufirst, nextlu;
+    int_t   *lsub, *xlsub;
+    float *lusup;
+    int_t   *xlusup, luptr;
     flops_t *ops = stat->ops;
 
     lsub    = Glu->lsub;

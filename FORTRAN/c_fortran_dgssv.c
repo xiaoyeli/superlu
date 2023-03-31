@@ -1,20 +1,11 @@
-/*! \file
-Copyright (c) 2003, The Regents of the University of California, through
-Lawrence Berkeley National Laboratory (subject to receipt of any required 
-approvals from U.S. Dept. of Energy) 
-
-All rights reserved. 
-
-The source code is distributed under BSD license, see the file License.txt
-at the top-level directory.
-*/
 
 /*
- * -- SuperLU routine (version 5.0) --
+ * -- SuperLU routine (version 6.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * October 15, 2003
  *
+ * March 26, 2023  Add 64-bit indexing and METIS ordering
  */
 
 #include "slu_ddefs.h"
@@ -32,12 +23,12 @@ typedef struct {
 } factors_t;
 
 void
-c_fortran_dgssv_(int *iopt, int *n, int *nnz, int *nrhs, 
-                 double *values, int *rowind, int *colptr,
+c_fortran_dgssv_(int *iopt, int *n, int_t *nnz, int *nrhs, 
+                 double *values, int_t *rowind, int_t *colptr,
                  double *b, int *ldb,
 		 fptr *f_factors, /* a handle containing the address
 				     pointing to the factored matrices */
-		 int *info)
+		 int_t *info)
 
 {
 /* 
@@ -70,8 +61,8 @@ c_fortran_dgssv_(int *iopt, int *n, int *nnz, int *nrhs,
     SuperLUStat_t stat;
     factors_t *LUfactors;
     GlobalLU_t Glu;   /* Not needed on return. */
-    int    *rowind0;  /* counter 1-based indexing from Frotran arrays. */
-    int    *colptr0;  
+    int_t    *rowind0;  /* counter 1-based indexing from Frotran arrays. */
+    int_t    *colptr0;  
 
     trans = NOTRANS;
 
@@ -94,19 +85,22 @@ c_fortran_dgssv_(int *iopt, int *n, int *nnz, int *nrhs,
 			       SLU_NC, SLU_D, SLU_GE);
 	L = (SuperMatrix *) SUPERLU_MALLOC( sizeof(SuperMatrix) );
 	U = (SuperMatrix *) SUPERLU_MALLOC( sizeof(SuperMatrix) );
-	if ( !(perm_r = intMalloc(*n)) ) ABORT("Malloc fails for perm_r[].");
-	if ( !(perm_c = intMalloc(*n)) ) ABORT("Malloc fails for perm_c[].");
-	if ( !(etree = intMalloc(*n)) ) ABORT("Malloc fails for etree[].");
-
+	if ( !(perm_r = int32Malloc(*n)) ) ABORT("Malloc fails for perm_r[].");
+	if ( !(perm_c = int32Malloc(*n)) ) ABORT("Malloc fails for perm_c[].");
+	if ( !(etree = int32Malloc(*n)) ) ABORT("Malloc fails for etree[].");
 	/*
 	 * Get column permutation vector perm_c[], according to permc_spec:
 	 *   permc_spec = 0: natural ordering 
 	 *   permc_spec = 1: minimum degree on structure of A'*A
 	 *   permc_spec = 2: minimum degree on structure of A'+A
 	 *   permc_spec = 3: approximate minimum degree for unsymmetric matrices
+	 *   permc_spec = 6: METIS ordering on structure of A'*A
 	 */    	
 	permc_spec = options.ColPerm;
+	//	permc_spec = 0;
+	//printf("before get_perm_c: permc_spec %d, *n %d\n", permc_spec, *n);
 	get_perm_c(permc_spec, &A, perm_c);
+	//printf("after get_perm_c: permc_spec %d\n", permc_spec);
 	
 	sp_preorder(&options, &A, perm_c, etree, &AC);
 
@@ -119,14 +113,14 @@ c_fortran_dgssv_(int *iopt, int *n, int *nnz, int *nrhs,
 	if ( *info == 0 ) {
 	    Lstore = (SCformat *) L->Store;
 	    Ustore = (NCformat *) U->Store;
-	    printf("No of nonzeros in factor L = %d\n", Lstore->nnz);
-	    printf("No of nonzeros in factor U = %d\n", Ustore->nnz);
-	    printf("No of nonzeros in L+U = %d\n", Lstore->nnz + Ustore->nnz);
+	    printf("No of nonzeros in factor L = %lld\n", (long long) Lstore->nnz);
+	    printf("No of nonzeros in factor U = %lld\n", (long long) Ustore->nnz);
+	    printf("No of nonzeros in L+U = %lld\n", (long long) Lstore->nnz + Ustore->nnz);
 	    dQuerySpace(L, U, &mem_usage);
 	    printf("L\\U MB %.3f\ttotal MB needed %.3f\n",
 		   mem_usage.for_lu/1e6, mem_usage.total_needed/1e6);
 	} else {
-	    printf("dgstrf() error returns INFO= %d\n", *info);
+	    printf("dgstrf() error returns INFO= %lld\n", (long long) *info);
 	    if ( *info <= *n ) { /* factorization completes */
 		dQuerySpace(L, U, &mem_usage);
 		printf("L\\U MB %.3f\ttotal MB needed %.3f\n",
@@ -151,6 +145,8 @@ c_fortran_dgssv_(int *iopt, int *n, int *nnz, int *nrhs,
 	StatFree(&stat);
 
     } else if ( *iopt == 2 ) { /* Triangular solve */
+	int iinfo;
+    
 	/* Initialize the statistics variables. */
 	StatInit(&stat);
 
@@ -164,7 +160,8 @@ c_fortran_dgssv_(int *iopt, int *n, int *nnz, int *nrhs,
 	dCreate_Dense_Matrix(&B, *n, *nrhs, b, *ldb, SLU_DN, SLU_D, SLU_GE);
 
         /* Solve the system A*X=B, overwriting B with X. */
-        dgstrs (trans, L, U, perm_c, perm_r, &B, &stat, info);
+        dgstrs (trans, L, U, perm_c, perm_r, &B, &stat, &iinfo);
+	*info = iinfo;
 
 	Destroy_SuperMatrix_Store(&B);
 	StatFree(&stat);

@@ -1,4 +1,3 @@
-
 /*! \file
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
@@ -502,7 +501,8 @@ void
     float    EXPAND = 1.5;
     float    alpha;
     void     *new_mem, *old_mem;
-    int      new_len, tries, lword, extra, bytes_to_copy;
+    int_t    new_len, bytes_to_copy;
+    int      tries, lword, extra;
     ExpHeader *expanders = Glu->expanders; /* Array of 4 types of memory */
 
     alpha = EXPAND;

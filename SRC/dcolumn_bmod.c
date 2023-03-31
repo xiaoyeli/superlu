@@ -78,14 +78,13 @@ dcolumn_bmod (
      * kfnz = first nonz in the k-th supernodal segment
      * no_zeros = no of leading zeros in a supernodal U-segment
      */
-    double       ukj, ukj1, ukj2;
-    int          luptr, luptr1, luptr2;
+    double      ukj, ukj1, ukj2;
+    int_t        luptr, luptr1, luptr2;
     int          fsupc, nsupc, nsupr, segsze;
     int          nrow;	  /* No of rows in the matrix of matrix-vector */
     int          jcolp1, jsupno, k, ksub, krep, krep_ind, ksupno;
-    register int lptr, kfnz, isub, irow, i;
-    register int no_zeros, new_next; 
-    int          ufirst, nextlu;
+    int_t        lptr, kfnz, isub, irow, i;
+    int_t        no_zeros, new_next, ufirst, nextlu;
     int          fst_col; /* First column within small LU update */
     int          d_fsupc; /* Distance between the first column of the current
 			     panel and the first column of the current snode. */

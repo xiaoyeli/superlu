@@ -1,3 +1,4 @@
+
 ######################################################################
 #
 # CMakeLists.txt for SUPERLU
@@ -238,3 +239,5 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc
 configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/SRC/superlu_config.h)
 configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_SOURCE_DIR}/SRC/superlu_config.h)
 
+# Following is to configure a header file for FORTRAN code
+configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/FORTRAN/superlu_config.h)

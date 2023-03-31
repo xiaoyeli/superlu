@@ -7,8 +7,8 @@ To compile the examples, type:
 	% make
 
 To run the examples, type:
-  	% df77exm < ../EXAMPLE/g20.rua		-- double precision example
-	% zf77exm < ../EXAMPLE/cg20.cua   	-- double complex example
+  	% dfexm < ../EXAMPLE/g20.rua		-- double precision example
+	% zfexm < ../EXAMPLE/cg20.cua   	-- double complex example
 	% test_omp < ../EXAMPLE/g20.rua		-- solve multiple systems with different threads
 
 Useful envorinment variables for running OpenMP example:

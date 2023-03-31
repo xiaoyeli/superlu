@@ -60,11 +60,11 @@ int main(int argc, char *argv[])
     //options.ColPerm = METIS_ATA;
 
     /* Read the matrix in Harwell-Boeing format. */
-#if 1
+#if 0
     dreadMM(fp, &m, &n, &nnz, &a, &asub, &xa);
 #else    
     dreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
-    dreadtriple_noheader(&m, &n, &nnz, &a, &asub, &xa);
+    //dreadtriple_noheader(&m, &n, &nnz, &a, &asub, &xa);
 #endif    
 
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);

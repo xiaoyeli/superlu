@@ -217,9 +217,9 @@ zgstrf (superlu_options_t *options, SuperMatrix *A,
     doublecomplex    *dense, *tempv;
     int       *relax_end;
     doublecomplex    *a;
-    int_t      *asub, *xa_begin, *xa_end;
-    int       *xsup, *supno;
+    int_t     *asub, *xa_begin, *xa_end;
     int_t     *xlsub, *xlusup, *xusub;
+    int       *xsup, *supno;
     int_t     nzlumax;
     double fill_ratio = sp_ienv(6);  /* estimated fill ratio */
 

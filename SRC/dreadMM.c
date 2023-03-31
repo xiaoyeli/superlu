@@ -108,7 +108,7 @@ dreadMM(FILE *fp, int *m, int *n, int_t *nonz,
 #else
     sscanf(line, "%d%d%d",m, n, nonz);
 #endif
-
+    printf("m %lld, n %lld, nonz %lld\n", (long long) *m, (long long) *n, (long long) *nonz);
     if(*m!=*n) {
       printf("Rectangular matrix!. Abort\n");
       exit(-1);
@@ -119,8 +119,7 @@ dreadMM(FILE *fp, int *m, int *n, int_t *nonz,
     else
       new_nonz = *nonz;
 
-    *m = *n;
-    printf("m %lld, n %lld, nonz %lld\n", (long long) *m, (long long) *n, (long long) *nonz);
+
     dallocateA(*n, new_nonz, nzval, rowind, colptr); /* Allocate storage */
     a    = *nzval;
     asub = *rowind;

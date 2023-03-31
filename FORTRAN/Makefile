@@ -1,3 +1,5 @@
+.SUFFIXES:
+.SUFFIXES: .f90 .F90 .c .o .f .F
 include ../make.inc
 
 #######################################################################
@@ -9,25 +11,31 @@ HEADER   = ../SRC
 LIBS	+= -lm
 
 # double real
-DF77EXM	= f77_main.o hbcode1.o c_fortran_dgssv.o
-TEST_OMP= test_omp.o hbcode1.o c_fortran_dgssv.o
+DFEXMOBJ = f_main.o hbcode1.o c_fortran_dgssv.o
+TESTOMPOBJ= test_omp.o hbcode1.o c_fortran_dgssv.o
 
 # double complex
-ZF77EXM	= z_f77_main.o zhbcode1.o c_fortran_zgssv.o
+ZFEXMOBJ = z_f_main.o zhbcode1.o c_fortran_zgssv.o
 
-all:	df77exm zf77exm test_omp
+all:	dfexm zfexm test_omp
 
-df77exm: $(DF77EXM) $(SUPERLULIB)
-	$(FORTRAN) $(LOADOPTS) $(DF77EXM) $(LIBS) -o $@
+dfexm: $(DFEXMOBJ) $(SUPERLULIB)
+	$(FORTRAN) $(LOADOPTS) $(DFEXMOBJ) $(LIBS) -o $@
 
-zf77exm: $(ZF77EXM) $(SUPERLULIB)
-	$(FORTRAN) $(LOADOPTS) $(ZF77EXM) $(LIBS) -o $@
+zfexm: $(ZFEXMOBJ) $(SUPERLULIB)
+	$(FORTRAN) $(LOADOPTS) $(ZFEXMOBJ) $(LIBS) -o $@
 
-test_omp: $(TEST_OMP) $(SUPERLULIB)
-	$(FORTRAN) $(LOADOPTS) $(TEST_OMP)  $(LIBS) -o $@
+test_omp: $(TESTOMPOBJ) $(SUPERLULIB)
+	$(FORTRAN) $(LOADOPTS) $(TESTOMPOBJ)  $(LIBS) -o $@
 
 .c.o:
 	$(CC) $(CFLAGS) $(CDEFS) -I$(HEADER) -c $< $(VERBOSE)
+
+.f90.o:
+	$(FORTRAN) $(FFLAGS) -c $< $(VERBOSE)
+
+.F90.o:
+	$(FORTRAN) $(FFLAGS) -c $< $(VERBOSE)
 
 .f.o:
 	$(FORTRAN) $(FFLAGS) -c $< $(VERBOSE)
@@ -36,5 +44,5 @@ test_omp: $(TEST_OMP) $(SUPERLULIB)
 	$(FORTRAN) $(FFLAGS) -c $< $(VERBOSE)
 
 clean:	
-	rm -f *.o *f77exm test_omp
+	rm -f *.o *fexm test_omp
 

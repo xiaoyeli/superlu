@@ -23,6 +23,7 @@ set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 #INCLUDE("cmake/XSDKDefaults.cmake")
 set(USE_XSDK_DEFAULTS TRUE)
 include(CTest)
+include(GNUInstallDirs)
 
 ######################################################################
 

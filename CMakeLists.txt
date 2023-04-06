@@ -32,8 +32,6 @@ include(GNUInstallDirs)
 # Usual initialization stuff
 #
 ######################################################################
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
-set(CMAKE_INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 
 #---- For shared library
 
@@ -73,10 +71,6 @@ if (USE_XSDK_DEFAULTS)
   set(enable_blaslib_DEFAULT OFF)
 else()
   set(enable_blaslib_DEFAULT ON)
-endif()
-
-if (NOT CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX /usr/local)
 endif()
 
 # set up options

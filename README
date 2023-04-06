@@ -47,9 +47,10 @@ are described below.
    	cmake ..
 
      or with more options, e.g.,
-        cmake .. \
+        cmake \
 	      -DCMAKE_INSTALL_PREFIX=../build \
 	      -DCMAKE_INSTALL_INCLUDEDIR=/my/custom/path \
+	      ..
    
    You should link with a fast BLAS library by specifying the following:
               -DTPL_BLAS_LIBRARIES=<blas_library_name>

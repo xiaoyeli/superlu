@@ -169,7 +169,7 @@ Destroy_Dense_Matrix(SuperMatrix *A)
 void
 resetrep_col (const int nseg, const int *segrep, int *repfnz)
 {
-    int i, irep;
+    int_t i, irep;
     
     for (i = 0; i < nseg; i++) {
 	irep = segrep[i];
@@ -184,7 +184,7 @@ void
 countnz(const int n, int_t *xprune, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
 {
     int          nsuper, fsupc, i, j;
-    int          nnzL0, jlen, irep;
+    int_t        nnzL0, jlen, irep;
     int          *xsup;
     int_t        *xlsub;
 
@@ -212,8 +212,10 @@ countnz(const int n, int_t *xprune, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
 	irep = xsup[i+1] - 1;
 	nnzL0 += xprune[irep] - xlsub[irep];
     }
-    
-    /* printf("\tNo of nonzeros in symm-reduced L = %d\n", nnzL0);*/
+
+#if ( DEBUGlevel>=1 )    
+    printf("\tNo of nonzeros in symm-reduced L = %lld\n", (long long) nnzL0); fflush(stdout);
+#endif
 }
 
 /*! \brief Count the total number of nonzeros in factors L and U.
@@ -256,7 +258,8 @@ ilu_countnz(const int n, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
 void
 fixupL(const int n, const int *perm_r, GlobalLU_t *Glu)
 {
-    register int nsuper, fsupc, nextl, i, j, k, jstrt;
+    int nsuper, fsupc, i, k;
+    int_t nextl, j, jstrt;
     int   *xsup;
     int_t *lsub, *xlsub;
 

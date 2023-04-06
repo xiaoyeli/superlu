@@ -107,8 +107,8 @@ zgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
              U->Stype != SLU_NC || U->Dtype != SLU_Z || U->Mtype != SLU_TRU) 
 	*info = -3;
     if (*info != 0) {
-	i = -(*info);
-	input_error("zgscon", &i);
+	int ii = -(*info);
+	input_error("zgscon", &ii);
 	return;
     }
 

@@ -108,8 +108,8 @@ sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
              U->Stype != SLU_NC || U->Dtype != SLU_S || U->Mtype != SLU_TRU) 
 	*info = -3;
     if (*info != 0) {
-	i = -(*info);
-	input_error("sgscon", &i);
+	int ii = -(*info);
+	input_error("sgscon", &ii);
 	return;
     }
 

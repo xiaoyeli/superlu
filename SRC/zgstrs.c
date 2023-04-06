@@ -108,8 +108,9 @@ zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
     SCformat *Lstore;
     NCformat *Ustore;
     doublecomplex   *Lval, *Uval;
-    int      fsupc, nrow, nsupr, nsupc, luptr, istart, irow;
-    int      i, j, k, iptr, jcol, n, ldb, nrhs;
+    int      fsupc, nrow, nsupr, nsupc, irow;
+    int_t    i, j, k, luptr, istart, iptr;
+    int      jcol, n, ldb, nrhs;
     doublecomplex   *work, *rhs_work, *soln;
     flops_t  solve_ops;
     void zprint_soln(int n, int nrhs, doublecomplex *soln);
@@ -130,8 +131,8 @@ zgstrs (trans_t trans, SuperMatrix *L, SuperMatrix *U,
 	      B->Stype != SLU_DN || B->Dtype != SLU_Z || B->Mtype != SLU_GE )
 	*info = -6;
     if ( *info ) {
-	i = -(*info);
-	input_error("zgstrs", &i);
+	int ii = -(*info);
+	input_error("zgstrs", &ii);
 	return;
     }
 

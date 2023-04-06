@@ -84,7 +84,7 @@ ilu_zpanel_dfs(
 			      by a previous column within this panel. */
     int       *repfnz_col; /* start of each column in the panel */
     doublecomplex    *dense_col;  /* start of each column in the panel */
-    int       nextl_col;   /* next available position in panel_lsub[*,jj] */
+    int_t     nextl_col;   /* next available position in panel_lsub[*,jj] */
     int       *xsup, *supno;
     int_t     *lsub, *xlsub;
     double    *amax_col;

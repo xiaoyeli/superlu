@@ -87,7 +87,7 @@ zpanel_bmod (
     int          fsupc, nsupc, nsupr, nrow;
     int          krep, krep_ind;
     doublecomplex       ukj, ukj1, ukj2;
-    int          luptr, luptr1, luptr2;
+    int_t        luptr, luptr1, luptr2;
     int          segsze;
     int          block_nrow;  /* no of rows in a block row */
     register int lptr;	      /* Points to the row subscripts of a supernode */
@@ -482,6 +482,4 @@ zpanel_bmod (
     } /* for each updating supernode ... */
 
 }
-
-
 

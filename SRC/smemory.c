@@ -213,8 +213,8 @@ sLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
     
     if ( fact != SamePattern_SameRowPerm ) {
 	/* Guess for L\U factors */
-	nzumax = nzlumax = fill_ratio * annz;
-	nzlmax = SUPERLU_MAX(1, fill_ratio/4.) * annz;
+	nzumax = nzlumax = nzlmax = fill_ratio * annz;
+	//nzlmax = SUPERLU_MAX(1, fill_ratio/4.) * annz;
 
 	if ( lwork == -1 ) {
 	    return ( GluIntArray(n) * iword + TempSpace(m, panel_size)

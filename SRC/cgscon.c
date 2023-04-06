@@ -107,8 +107,8 @@ cgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
              U->Stype != SLU_NC || U->Dtype != SLU_C || U->Mtype != SLU_TRU) 
 	*info = -3;
     if (*info != 0) {
-	i = -(*info);
-	input_error("cgscon", &i);
+	int ii = -(*info);
+	input_error("cgscon", &ii);
 	return;
     }
 

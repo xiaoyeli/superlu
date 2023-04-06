@@ -114,7 +114,7 @@ ssnode_bmod (
 	smatvec ( nsupr, nrow, nsupc, &lusup[luptr+nsupc], 
 			&lusup[ufirst], &tempv[0] );
 
-	int i, iptr; 
+	int_t i, iptr; 
         /* Scatter tempv[*] into lusup[*] */
 	iptr = ufirst + nsupc;
 	for (i = 0; i < nrow; i++) {

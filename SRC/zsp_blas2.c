@@ -98,9 +98,9 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
     doublecomplex temp;
     doublecomplex alpha = {1.0, 0.0}, beta = {1.0, 0.0};
     doublecomplex comp_zero = {0.0, 0.0};
-    int nrow;
-    int fsupc, nsupr, nsupc, luptr, istart, irow;
-    int i, k, iptr, jcol;
+    int nrow, irow, jcol;
+    int fsupc, nsupr, nsupc;
+    int_t luptr, istart, i, k, iptr;
     doublecomplex *work;
     flops_t solve_ops;
 
@@ -114,8 +114,8 @@ sp_ztrsv(char *uplo, char *trans, char *diag, SuperMatrix *L,
     else if ( L->nrow != L->ncol || L->nrow < 0 ) *info = -4;
     else if ( U->nrow != U->ncol || U->nrow < 0 ) *info = -5;
     if ( *info ) {
-	i = -(*info);
-	input_error("sp_ztrsv", &i);
+	int ii = -(*info);
+	input_error("sp_ztrsv", &ii);
 	return 0;
     }
 

@@ -20,6 +20,7 @@ at the top-level directory.
  * File name:		cdrive.c
  * Purpose:             MAIN test program
  */
+#include <getopt.h>
 #include <string.h>
 #include <unistd.h>
 #include "slu_cdefs.h"

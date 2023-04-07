@@ -20,6 +20,7 @@ at the top-level directory.
  * File name:		ddrive.c
  * Purpose:             MAIN test program
  */
+#include <getopt.h>
 #include <string.h>
 #include <unistd.h>
 #include "slu_ddefs.h"

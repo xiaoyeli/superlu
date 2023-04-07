@@ -140,7 +140,6 @@ dreadtriple(int *m, int *n, int_t *nonz,
 
 void dreadrhs(int m, double *b)
 {
-    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
     int i;
     /*int j;*/

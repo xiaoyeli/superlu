@@ -222,7 +222,6 @@ sreadMM(FILE *fp, int *m, int *n, int_t *nonz,
 
 static void sreadrhs(int m, float *b)
 {
-    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
 
     int i;

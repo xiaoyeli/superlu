@@ -222,7 +222,6 @@ creadMM(FILE *fp, int *m, int *n, int_t *nonz,
 
 static void creadrhs(int m, complex *b)
 {
-    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
 
     int i;

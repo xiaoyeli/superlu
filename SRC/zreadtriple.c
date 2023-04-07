@@ -140,7 +140,6 @@ zreadtriple(int *m, int *n, int_t *nonz,
 
 void zreadrhs(int m, doublecomplex *b)
 {
-    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
     int i;
     /*int j;*/

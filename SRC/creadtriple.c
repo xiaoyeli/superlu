@@ -140,7 +140,6 @@ creadtriple(int *m, int *n, int_t *nonz,
 
 void creadrhs(int m, complex *b)
 {
-    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
     int i;
     /*int j;*/

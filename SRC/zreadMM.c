@@ -222,7 +222,6 @@ zreadMM(FILE *fp, int *m, int *n, int_t *nonz,
 
 static void zreadrhs(int m, doublecomplex *b)
 {
-    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
 
     int i;

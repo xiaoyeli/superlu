@@ -21,8 +21,9 @@ set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 #MESSAGE("\nProcess XSDK defaults ...")
 #SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
 #INCLUDE("cmake/XSDKDefaults.cmake")
-SET(USE_XSDK_DEFAULTS TRUE)
-INCLUDE(CTest)
+set(USE_XSDK_DEFAULTS TRUE)
+include(CTest)
+include(GNUInstallDirs)
 
 ######################################################################
 
@@ -31,26 +32,23 @@ INCLUDE(CTest)
 # Usual initialization stuff
 #
 ######################################################################
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)    ## ????
-set(CMAKE_INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 
-#---- For shared library
-
+#---- set RPATH handling
 # use, i.e. don't skip the full RPATH for the build tree
-SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
+set(CMAKE_SKIP_BUILD_RPATH FALSE)
 
 # when building, don't use the install RPATH already
 # (but later on when installing)
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 
 # the RPATH to be used when installing
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 
 # add the automatically determined parts of the RPATH
 # which point to directories outside the build tree to the install RPATH
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-#----
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+#---- For shared library
 if (BUILD_SHARED_LIBS)
   message("-- SuperLU will be built as a shared library.")
   set(PROJECT_NAME_LIB_EXPORT libsuperlu.so)
@@ -72,10 +70,6 @@ if (USE_XSDK_DEFAULTS)
   set(enable_blaslib_DEFAULT OFF)
 else()
   set(enable_blaslib_DEFAULT ON)
-endif()
-
-if (NOT CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX /usr/local)
 endif()
 
 # set up options

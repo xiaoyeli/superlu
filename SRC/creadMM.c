@@ -230,6 +230,8 @@ static void creadrhs(int m, complex *b)
 	exit(-1);
     }
     for (i = 0; i < m; ++i)
+      fscanf(fp, "%f%f\n", &b[i].r, &b[i].i);
+
     fclose(fp);
 }
 

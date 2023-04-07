@@ -230,6 +230,8 @@ static void sreadrhs(int m, float *b)
 	exit(-1);
     }
     for (i = 0; i < m; ++i)
+      fscanf(fp, "%f\n", &b[i]);
+
     fclose(fp);
 }
 

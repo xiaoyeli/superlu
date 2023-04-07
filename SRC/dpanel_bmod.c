@@ -90,7 +90,7 @@ dpanel_bmod (
     int_t        luptr, luptr1, luptr2;
     int          segsze;
     int          block_nrow;  /* no of rows in a block row */
-    register int lptr;	      /* Points to the row subscripts of a supernode */
+    int_t        lptr;	      /* Points to the row subscripts of a supernode */
     int          kfnz, irow, no_zeros; 
     register int isub, isub1, i;
     register int jj;	      /* Index through each column in the panel */

@@ -221,19 +221,15 @@ dreadMM(FILE *fp, int *m, int *n, int_t *nonz,
 
 static void dreadrhs(int m, double *b)
 {
-    FILE *fopen();
     FILE *fp = fopen("b.dat", "r");
-
     int i;
+
     if ( !fp ) {
         fprintf(stderr, "dreadrhs: file does not exist\n");
 	exit(-1);
     }
     for (i = 0; i < m; ++i)
       fscanf(fp, "%lf\n", &b[i]);
-      /*fscanf(fp, "%d%lf\n", &j, &b[i]);*/
-    /*        readpair_(j, &b[i]);*/
+
     fclose(fp);
 }
-
-

@@ -142,7 +142,6 @@ void sreadrhs(int m, float *b)
 {
     FILE *fp = fopen("b.dat", "r");
     int i;
-    /*int j;*/
 
     if ( !fp ) {
         fprintf(stderr, "dreadrhs: file does not exist\n");
@@ -151,6 +150,5 @@ void sreadrhs(int m, float *b)
     for (i = 0; i < m; ++i)
       fscanf(fp, "%f\n", &b[i]);
 
-    /*        readpair_(j, &b[i]);*/
     fclose(fp);
 }

@@ -142,7 +142,6 @@ void dreadrhs(int m, double *b)
 {
     FILE *fp = fopen("b.dat", "r");
     int i;
-    /*int j;*/
 
     if ( !fp ) {
         fprintf(stderr, "dreadrhs: file does not exist\n");
@@ -151,6 +150,5 @@ void dreadrhs(int m, double *b)
     for (i = 0; i < m; ++i)
       fscanf(fp, "%lf\n", &b[i]);
 
-    /*        readpair_(j, &b[i]);*/
     fclose(fp);
 }

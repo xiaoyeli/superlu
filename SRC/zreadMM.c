@@ -231,7 +231,6 @@ static void zreadrhs(int m, doublecomplex *b)
     }
     for (i = 0; i < m; ++i)
       fscanf(fp, "%lf%lf\n", &b[i].r, &b[i].i);
+
     fclose(fp);
 }
-
-

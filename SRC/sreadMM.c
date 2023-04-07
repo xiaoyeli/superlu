@@ -223,8 +223,8 @@ sreadMM(FILE *fp, int *m, int *n, int_t *nonz,
 static void sreadrhs(int m, float *b)
 {
     FILE *fp = fopen("b.dat", "r");
-
     int i;
+
     if ( !fp ) {
         fprintf(stderr, "sreadrhs: file does not exist\n");
 	exit(-1);
@@ -234,5 +234,3 @@ static void sreadrhs(int m, float *b)
 
     fclose(fp);
 }
-
-

@@ -142,7 +142,6 @@ void zreadrhs(int m, doublecomplex *b)
 {
     FILE *fp = fopen("b.dat", "r");
     int i;
-    /*int j;*/
 
     if ( !fp ) {
         fprintf(stderr, "dreadrhs: file does not exist\n");
@@ -151,6 +150,5 @@ void zreadrhs(int m, doublecomplex *b)
     for (i = 0; i < m; ++i)
       fscanf(fp, "%lf%lf\n", &b[i].r, &b[i].i);
 
-    /*        readpair_(j, &b[i]);*/
     fclose(fp);
 }

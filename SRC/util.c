@@ -184,7 +184,10 @@ void
 countnz(const int n, int_t *xprune, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
 {
     int          nsuper, fsupc, i, j;
-    int_t        nnzL0, jlen, irep;
+    int_t        jlen;
+#if ( DEBUGlevel>=1 )
+    int_t        irep = 0, nnzL0 = 0;
+#endif
     int          *xsup;
     int_t        *xlsub;
 
@@ -192,7 +195,6 @@ countnz(const int n, int_t *xprune, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
     xlsub  = Glu->xlsub;
     *nnzL  = 0;
     *nnzU  = (Glu->xusub)[n];
-    nnzL0  = 0;
     nsuper = (Glu->supno)[n];
 
     if ( n <= 0 ) return;
@@ -209,11 +211,13 @@ countnz(const int n, int_t *xprune, int_t *nnzL, int_t *nnzU, GlobalLU_t *Glu)
 	    *nnzU += j - fsupc + 1;
 	    jlen--;
 	}
-	irep = xsup[i+1] - 1;
-	nnzL0 += xprune[irep] - xlsub[irep];
+#if ( DEBUGlevel>=1 )
+        irep = xsup[i+1] - 1;
+        nnzL0 += xprune[irep] - xlsub[irep];
+#endif
     }
 
-#if ( DEBUGlevel>=1 )    
+#if ( DEBUGlevel>=1 )
     printf("\tNo of nonzeros in symm-reduced L = %lld\n", (long long) nnzL0); fflush(stdout);
 #endif
 }

@@ -35,7 +35,6 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    integer i__2;
     doublecomplex z__1;
     /* Builtin functions */
     void d_cnjg(doublecomplex *, doublecomplex *);
@@ -48,7 +47,6 @@
 
     if (*incx == 1) {
 	for (i = 1; i <= *n; ++i) {
-	    i__2 = i;
 	    d_cnjg(&z__1, &X(i));
 	    X(i).r = z__1.r, X(i).i = z__1.i;
 /* L10: */
@@ -59,7 +57,6 @@
 	    ioff = 1 - (*n - 1) * *incx;
 	}
 	for (i = 1; i <= *n; ++i) {
-	    i__2 = ioff;
 	    d_cnjg(&z__1, &X(ioff));
 	    X(ioff).r = z__1.r, X(ioff).i = z__1.i;
 	    ioff += *incx;

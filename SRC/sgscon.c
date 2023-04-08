@@ -87,7 +87,7 @@ sgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
 
 
     /* Local variables */
-    int    kase, kase1, onenrm, i;
+    int    kase, kase1, onenrm;
     float ainvnm;
     float *work;
     int    *iwork;

@@ -69,20 +69,16 @@ doublereal dlarnd_slu(integer *idist, integer *iseed)
     /* Function Body */
     t1 = dlaran_slu(&iseed[1]);
 
-    if (*idist == 1) {
-
 /*        uniform (0,1) */
-
+    if (*idist == 1) {
 	ret_val = t1;
-    } else if (*idist == 2) {
 
 /*        uniform (-1,1) */
-
+    } else if (*idist == 2) {
 	ret_val = t1 * 2. - 1.;
-    } else if (*idist == 3) {
 
 /*        normal (0,1) */
-
+    } else if (*idist == 3) {
 	t2 = dlaran_slu(&iseed[1]);
 	ret_val = sqrt(log(t1) * -2.) * cos(t2 * 
 		6.2831853071795864769252867663);

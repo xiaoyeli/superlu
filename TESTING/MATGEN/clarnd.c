@@ -75,44 +75,38 @@
     t1 = dlaran_sluslu(&iseed[1]);
     t2 = dlaran_sluslu(&iseed[1]);
 
-    if (*idist == 1) {
-
 /*        real and imaginary parts each uniform (0,1) */
-
+    if (*idist == 1) {
 	q__1.r = t1, q__1.i = t2;
 	 ret_val->r = q__1.r,  ret_val->i = q__1.i;
-    } else if (*idist == 2) {
 
 /*        real and imaginary parts each uniform (-1,1) */
-
+    } else if (*idist == 2) {
 	d__1 = t1 * 2.f - 1.f;
 	d__2 = t2 * 2.f - 1.f;
 	q__1.r = d__1, q__1.i = d__2;
 	 ret_val->r = q__1.r,  ret_val->i = q__1.i;
-    } else if (*idist == 3) {
 
 /*        real and imaginary parts each normal (0,1) */
-
+    } else if (*idist == 3) {
 	d__1 = sqrt(log(t1) * -2.f);
 	d__2 = t2 * 6.2831853071795864769252867663f;
 	q__3.r = 0.f, q__3.i = d__2;
 	c_exp(&q__2, &q__3);
 	q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 	 ret_val->r = q__1.r,  ret_val->i = q__1.i;
-    } else if (*idist == 4) {
 
 /*        uniform distribution on the unit disc abs(z) <= 1 */
-
+    } else if (*idist == 4) {
 	d__1 = sqrt(t1);
 	d__2 = t2 * 6.2831853071795864769252867663f;
 	q__3.r = 0.f, q__3.i = d__2;
 	c_exp(&q__2, &q__3);
 	q__1.r = d__1 * q__2.r, q__1.i = d__1 * q__2.i;
 	 ret_val->r = q__1.r,  ret_val->i = q__1.i;
-    } else if (*idist == 5) {
 
 /*        uniform distribution on the unit circle abs(z) = 1 */
-
+    } else if (*idist == 5) {
 	d__1 = t2 * 6.2831853071795864769252867663f;
 	q__2.r = 0.f, q__2.i = d__1;
 	c_exp(&q__1, &q__2);

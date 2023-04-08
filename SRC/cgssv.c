@@ -186,8 +186,14 @@ cgssv(superlu_options_t *options, SuperMatrix *A, int *perm_c, int *perm_r,
 			       Astore->nzval, Astore->colind, Astore->rowptr,
 			       SLU_NC, A->Dtype, A->Mtype);
 	trans = TRANS;
-    } else {
-        if ( A->Stype == SLU_NC ) AA = A;
+    } else if ( A->Stype == SLU_NC ) {
+        AA = A;
+    }
+    /* A is of unsupported matrix format. */
+    else {
+        AA = NULL;
+        *info = 1;
+        input_error("cgssv", &i);
     }
 
     t = SuperLU_timer_();

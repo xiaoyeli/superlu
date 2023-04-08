@@ -1090,7 +1090,6 @@ L1000:
 {
     /* System generated locals */
     int_t i__1;
-    int_t c__1 = 1;
 
     /* Local variables */
     double di;

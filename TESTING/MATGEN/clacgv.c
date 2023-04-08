@@ -35,7 +35,6 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    integer i__2;
     complex q__1;
     /* Builtin functions */
     void r_cnjg(complex *, complex *);
@@ -48,7 +47,6 @@
 
     if (*incx == 1) {
 	for (i = 1; i <= *n; ++i) {
-	    i__2 = i;
 	    r_cnjg(&q__1, &X(i));
 	    X(i).r = q__1.r, X(i).i = q__1.i;
 /* L10: */
@@ -59,7 +57,6 @@
 	    ioff = 1 - (*n - 1) * *incx;
 	}
 	for (i = 1; i <= *n; ++i) {
-	    i__2 = ioff;
 	    r_cnjg(&q__1, &X(ioff));
 	    X(ioff).r = q__1.r, X(ioff).i = q__1.i;
 	    ioff += *incx;

@@ -19,6 +19,7 @@
     /* Local variables */
     static doublereal t1, t2;
     extern doublereal dlaran_slu(integer *);
+    extern int input_error(char *, int *);
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -75,50 +76,50 @@
     t1 = dlaran_slu(&iseed[1]);
     t2 = dlaran_slu(&iseed[1]);
 
-    if (*idist == 1) {
-
 /*        real and imaginary parts each uniform (0,1) */
-
+    if (*idist == 1) {
 	z__1.r = t1, z__1.i = t2;
 	 ret_val->r = z__1.r,  ret_val->i = z__1.i;
-    } else if (*idist == 2) {
 
 /*        real and imaginary parts each uniform (-1,1) */
-
+    } else if (*idist == 2) {
 	d__1 = t1 * 2. - 1.;
 	d__2 = t2 * 2. - 1.;
 	z__1.r = d__1, z__1.i = d__2;
 	 ret_val->r = z__1.r,  ret_val->i = z__1.i;
-    } else if (*idist == 3) {
 
 /*        real and imaginary parts each normal (0,1) */
-
+    } else if (*idist == 3) {
 	d__1 = sqrt(log(t1) * -2.);
 	d__2 = t2 * 6.2831853071795864769252867663;
 	z__3.r = 0., z__3.i = d__2;
 	z_exp(&z__2, &z__3);
 	z__1.r = d__1 * z__2.r, z__1.i = d__1 * z__2.i;
 	 ret_val->r = z__1.r,  ret_val->i = z__1.i;
-    } else if (*idist == 4) {
 
 /*        uniform distribution on the unit disc abs(z) <= 1 */
-
+    } else if (*idist == 4) {
 	d__1 = sqrt(t1);
 	d__2 = t2 * 6.2831853071795864769252867663;
 	z__3.r = 0., z__3.i = d__2;
 	z_exp(&z__2, &z__3);
 	z__1.r = d__1 * z__2.r, z__1.i = d__1 * z__2.i;
 	 ret_val->r = z__1.r,  ret_val->i = z__1.i;
-    } else if (*idist == 5) {
 
 /*        uniform distribution on the unit circle abs(z) = 1 */
-
+    } else if (*idist == 5) {
 	d__1 = t2 * 6.2831853071795864769252867663;
 	z__2.r = 0., z__2.i = d__1;
 	z_exp(&z__1, &z__2);
 	 ret_val->r = z__1.r,  ret_val->i = z__1.i;
     }
-    return ;
+
+/*        invalid input, *idist must be 1, 2, 3, 4, or 5  */
+    else {
+        int argument = 0;
+        input_error("zlarnd", &argument);
+        ret_val = 0;
+    }
 
 /*     End of ZLARND */
 

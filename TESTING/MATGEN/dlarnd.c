@@ -16,6 +16,7 @@ doublereal dlarnd_slu(integer *idist, integer *iseed)
     /* Local variables */
     static doublereal t1, t2;
     extern doublereal dlaran_slu(integer *);
+    extern int input_error(char *, int *);
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -68,24 +69,28 @@ doublereal dlarnd_slu(integer *idist, integer *iseed)
     /* Function Body */
     t1 = dlaran_slu(&iseed[1]);
 
-    if (*idist == 1) {
-
 /*        uniform (0,1) */
-
+    if (*idist == 1) {
 	ret_val = t1;
-    } else if (*idist == 2) {
 
 /*        uniform (-1,1) */
-
+    } else if (*idist == 2) {
 	ret_val = t1 * 2. - 1.;
-    } else if (*idist == 3) {
 
 /*        normal (0,1) */
-
+    } else if (*idist == 3) {
 	t2 = dlaran_slu(&iseed[1]);
 	ret_val = sqrt(log(t1) * -2.) * cos(t2 * 
 		6.2831853071795864769252867663);
     }
+
+/*        invalid input, *idist must be 1, 2, or 3  */
+    else {
+        int argument = 0;
+        input_error("dlarnd", &argument);
+        ret_val = 0;
+    }
+
     return ret_val;
 
 /*     End of DLARND */

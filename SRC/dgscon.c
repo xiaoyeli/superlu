@@ -87,7 +87,7 @@ dgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
 
 
     /* Local variables */
-    int    kase, kase1, onenrm, i;
+    int    kase, kase1, onenrm;
     double ainvnm;
     double *work;
     int    *iwork;

@@ -179,7 +179,7 @@ L70:
     *est = dzsum1_slu(n, v, &c__1);
 
 
-L90:
+/* L90: */
     /*     TEST FOR CYCLING. */
     if (*est <= estold) goto L120;
 

@@ -251,7 +251,6 @@ zgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     int       nnzLj, nnzUj;
     double    tol_L = drop_tol, tol_U = drop_tol;
     doublecomplex zero = {0.0, 0.0};
-    double one = 1.0;
 
     /* Executable */	   
     iinfo    = 0;

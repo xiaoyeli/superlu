@@ -8,6 +8,8 @@ All rights reserved.
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
+#include "slu_ddefs.h"
+
 #include <float.h>
 #include <math.h>
 #include <stdio.h>
@@ -87,6 +89,10 @@ double dmach(char *cmach)
 	rmach = DBL_MAX_EXP;
     } else if (strncmp(cmach, "O", 1)==0) {
 	rmach = DBL_MAX;
+    } else {
+        int argument = 0;
+        input_error("dmach", &argument);
+        rmach = 0;
     }
 
     return rmach;

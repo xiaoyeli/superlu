@@ -118,7 +118,6 @@
 	z_exp(&z__1, &z__2);
 	 ret_val->r = z__1.r,  ret_val->i = z__1.i;
     }
-    return ;
 
 /*     End of ZLARND */
 

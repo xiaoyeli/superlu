@@ -117,7 +117,6 @@
 	c_exp(&q__1, &q__2);
 	 ret_val->r = q__1.r,  ret_val->i = q__1.i;
     }
-    return ;
 
 /*     End of CLARND */
 

@@ -16,6 +16,7 @@ doublereal slarnd_slu(integer *idist, integer *iseed)
     /* Local variables */
     static real t1, t2;
     extern doublereal dlaran_sluslu(integer *);
+    extern int input_error(char *, int *);
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -86,6 +87,14 @@ doublereal slarnd_slu(integer *idist, integer *iseed)
 	ret_val = sqrt(log(t1) * -2.f) * cos(t2 * 
 		6.2831853071795864769252867663f);
     }
+
+/*        invalid input, *idist must be 1, 2, or 3  */
+    else {
+        int argument = 0;
+        input_error("slarnd", &argument);
+        ret_val = 0;
+    }
+
     return ret_val;
 
 /*     End of SLARND */

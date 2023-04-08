@@ -18,6 +18,7 @@
     /* Local variables */
     static real t1, t2;
     extern doublereal dlaran_sluslu(integer *);
+    extern int input_error(char *, int *);
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -116,6 +117,13 @@
 	q__2.r = 0.f, q__2.i = d__1;
 	c_exp(&q__1, &q__2);
 	 ret_val->r = q__1.r,  ret_val->i = q__1.i;
+    }
+
+/*        invalid input, *idist must be 1, 2, 3, 4, or 5  */
+    else {
+        int argument = 0;
+        input_error("clarnd", &argument);
+        ret_val = 0;
     }
 
 /*     End of CLARND */

@@ -19,6 +19,7 @@
     /* Local variables */
     static doublereal t1, t2;
     extern doublereal dlaran_slu(integer *);
+    extern int input_error(char *, int *);
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -117,6 +118,13 @@
 	z__2.r = 0., z__2.i = d__1;
 	z_exp(&z__1, &z__2);
 	 ret_val->r = z__1.r,  ret_val->i = z__1.i;
+    }
+
+/*        invalid input, *idist must be 1, 2, 3, 4, or 5  */
+    else {
+        int argument = 0;
+        input_error("zlarnd", &argument);
+        ret_val = 0;
     }
 
 /*     End of ZLARND */

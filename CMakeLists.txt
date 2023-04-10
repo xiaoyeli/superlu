@@ -6,7 +6,7 @@
 ######################################################################
 
 # Required version
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.9)
 
 # Project Version	
 project(SuperLU C)
@@ -24,6 +24,7 @@ set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 set(USE_XSDK_DEFAULTS TRUE)
 include(CTest)
 include(GNUInstallDirs)
+include(FeatureSummary)
 
 ######################################################################
 
@@ -76,7 +77,7 @@ endif()
 option(enable_internal_blaslib  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
 option(enable_matlabmex "Build the Matlab mex library" OFF)
 option(enable_tests     "Build tests" ON)
-option(enable_doc       "Build doxygen documentation" OFF)
+option(enable_doc       "Add target 'doc' to build Doxygen documentation" OFF)
 option(enable_single    "Enable single precision library" ON)
 option(enable_double    "Enable double precision library" ON)
 option(enable_complex   "Enable complex precision library" ON)
@@ -215,8 +216,7 @@ if (XSDK_ENABLE_Fortran)
 endif()
 
 if(enable_doc)
-  message(FATAL_ERROR "Documentation build requested but not implemented.")
-  #implement doxygen
+  add_subdirectory(DOC)
 endif()
 
 # Generate various configure files with proper definitions

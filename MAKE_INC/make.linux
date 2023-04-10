@@ -21,8 +21,8 @@ PLAT = _linux
 #
 #  The name of the libraries to be created/linked to
 #
-SuperLUroot	= $(HOME)/Dropbox/Codes/SuperLU/SuperLU
-SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_5.1.a
+SuperLUroot	= @superlu_home@
+SUPERLULIB	= @superlu_lib@
 
 #BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 

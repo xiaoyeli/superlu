@@ -47,7 +47,7 @@ extern void    user_bcopy      (char *, char *, int);
 
 
 /*! \brief Setup the memory model to be used for factorization.
- *  
+ *
  *    lwork = 0: use system malloc;
  *    lwork > 0: use user-supplied work[] space.
  */
@@ -103,7 +103,7 @@ void zuser_free(int bytes, int which_end, GlobalLU_t *Glu)
  * <pre>
  * mem_usage consists of the following fields:
  *    - for_lu (float)
- *      The amount of space used in bytes for the L\U data structures.
+ *      The amount of space used in bytes for the L\\U data structures.
  *    - total_needed (float)
  *      The amount of space needed in bytes to perform factorization.
  * </pre>
@@ -141,7 +141,7 @@ int zQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
  * <pre>
  * mem_usage consists of the following fields:
  *    - for_lu (float)
- *      The amount of space used in bytes for the L\U data structures.
+ *      The amount of space used in bytes for the L\\U data structures.
  *    - total_needed (float)
  *      The amount of space needed in bytes to perform factorization.
  * </pre>
@@ -333,8 +333,12 @@ zLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
     
 } /* zLUMemInit */
 
-/*! \brief Allocate known working storage. Returns 0 if success, otherwise
-   returns the number of bytes allocated so far when failure occurred. */
+/*! \brief Allocate known working storage.
+ *
+ * Returns 0 if success, otherwise returns the number of bytes 
+ * allocated so far when failure occurred. 
+*/
+
 int
 zLUWorkInit(int m, int n, int panel_size, int **iworkptr, 
             doublecomplex **dworkptr, GlobalLU_t *Glu)

@@ -21,7 +21,9 @@ at the top-level directory.
  */
 #include "slu_cdefs.h"
 
-/*! \brief
+/*!
+ * Solves the system of linear equations using
+ * the LU factorization from cgstrf()
  *
  * <pre>
  * Purpose

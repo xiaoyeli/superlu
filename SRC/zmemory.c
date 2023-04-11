@@ -98,15 +98,14 @@ void zuser_free(int bytes, int which_end, GlobalLU_t *Glu)
 
 
 
-/*! \brief 
+/*!
+ * Calculate memory usage
  *
- * <pre>
- * mem_usage consists of the following fields:
- *    - for_lu (float)
+ * \param mem_usage consists of the following fields:
+ *    - <tt>for_lu (float)</tt>
  *      The amount of space used in bytes for the L\\U data structures.
- *    - total_needed (float)
+ *    - <tt>total_needed (float)</tt>
  *      The amount of space needed in bytes to perform factorization.
- * </pre>
  */
 int zQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
 {
@@ -136,15 +135,14 @@ int zQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
 } /* zQuerySpace */
 
 
-/*! \brief
+/*!
+ * Calculate memory usage
  *
- * <pre>
- * mem_usage consists of the following fields:
- *    - for_lu (float)
+ * \param mem_usage consists of the following fields:
+ *    - <tt>for_lu (float)</tt>
  *      The amount of space used in bytes for the L\\U data structures.
- *    - total_needed (float)
+ *    - <tt>total_needed (float)</tt>
  *      The amount of space needed in bytes to perform factorization.
- * </pre>
  */
 int ilu_zQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
 {

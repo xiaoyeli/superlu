@@ -21,7 +21,8 @@ at the top-level directory.
  */
 #include "slu_cdefs.h"
 
-/*! \brief
+/*!
+ * Computes approximate solutions using the ILU factorization from cgsitrf()
  *
  * <pre>
  * Purpose

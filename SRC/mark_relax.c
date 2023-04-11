@@ -15,7 +15,7 @@ at the top-level directory.
  * -- SuperLU routine (version 4.0) --
  * Lawrence Berkeley National Laboratory
  * June 1, 2009
- * <\pre>
+ * </pre>
  */
 #include "slu_ddefs.h"
 

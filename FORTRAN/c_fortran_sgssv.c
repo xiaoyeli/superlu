@@ -22,16 +22,7 @@ typedef struct {
     int *perm_r;
 } factors_t;
 
-void
-c_fortran_sgssv_(int *iopt, int *n, int_t *nnz, int *nrhs, 
-                 float *values, int_t *rowind, int_t *colptr,
-                 float *b, int *ldb,
-		 fptr *f_factors, /* a handle containing the address
-				     pointing to the factored matrices */
-		 int_t *info)
-
-{
-/* 
+/*!
  * This routine can be called from Fortran.
  *
  * iopt (input) int
@@ -44,9 +35,15 @@ c_fortran_sgssv_(int *iopt, int *n, int_t *nnz, int *nrhs,
  *      If iopt == 1, it is an output and contains the pointer pointing to
  *                    the structure of the factored matrices.
  *      Otherwise, it it an input.
- *
  */
- 
+void
+c_fortran_sgssv_(int *iopt, int *n, int_t *nnz, int *nrhs,
+                 float *values, int_t *rowind, int_t *colptr,
+                 float *b, int *ldb,
+                 fptr *f_factors, /* a handle containing the address
+                                     pointing to the factored matrices */
+                 int_t *info)
+{
     SuperMatrix A, AC, B;
     SuperMatrix *L, *U;
     int *perm_r; /* row permutations from partial pivoting */

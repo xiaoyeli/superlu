@@ -18,6 +18,7 @@ at the top-level directory.
  * and Lawrence Berkeley National Lab.
  * November 15, 1997
  * </pre>
+ * <pre>
  * Purpose:
  *     Level 2 BLAS operations: solves and matvec, written in C.
  * Note:

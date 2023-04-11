@@ -21,7 +21,8 @@ at the top-level directory.
  */
 #include "slu_cdefs.h"
 
-/*! \brief
+/*!
+ * Computes approximate solutions using the ILU factorization from cgsitrf()
  *
  * <pre>
  * Purpose
@@ -373,7 +374,7 @@ at the top-level directory.
  * mem_usage (output) mem_usage_t*
  *	   Record the memory usage statistics, consisting of following fields:
  *	   - for_lu (float)
- *	     The amount of space used in bytes for L\U data structures.
+ *	     The amount of space used in bytes for L\\U data structures.
  *	   - total_needed (float)
  *	     The amount of space needed in bytes to perform factorization.
  *	   - expansions (int)

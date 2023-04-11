@@ -6,6 +6,11 @@ set_package_properties("Doxygen" PROPERTIES
   URL "www.doxygen.org"
   PURPOSE "Generate HTML documentation from C sources")
 
+# set Doxygen options
+set(DOXYGEN_WARN_LOGFILE "doxygen.log")
+
 doxygen_add_docs(doc
+                 "${PROJECT_SOURCE_DIR}/EXAMPLE"
+                 "${PROJECT_SOURCE_DIR}/FORTRAN"
                  "${PROJECT_SOURCE_DIR}/SRC"
                  COMMENT "Generate HTML documentation with Doxygen")

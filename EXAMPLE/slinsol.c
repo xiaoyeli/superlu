@@ -129,9 +129,10 @@ int main(int argc, char *argv[])
 	}
     }
 
-    if ( options.PrintStat ) StatPrint(&stat);
-    StatFree(&stat);
+    if (options.PrintStat)
+        StatPrint(&stat);
 
+    StatFree(&stat);
     SUPERLU_FREE (rhs);
     SUPERLU_FREE (xact);
     SUPERLU_FREE (perm_r);
@@ -144,5 +145,6 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
-}
 
+    return EXIT_SUCCESS;
+}

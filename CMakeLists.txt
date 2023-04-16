@@ -219,11 +219,12 @@ if(enable_doc)
   add_subdirectory(DOC)
 endif()
 
+######################################################################
+#
 # Generate various configure files with proper definitions
+#
+######################################################################
 
-# file(WRITE "make.defs" "# can be exposed to users"
-#  ${CMAKE_C_COMPILER}  )
-# configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
 configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
  
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)

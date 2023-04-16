@@ -16,11 +16,27 @@ at the top-level directory.
  * October 15, 2003
  *
  */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "slu_sdefs.h"
 
 int main(int argc, char *argv[])
 {
+    // ensure right number of arguments are passed
+    if (argc != 2) {
+        printf("slinsol requires one additional argument, the path to the matrix file %i\n", argc);
+        return EXIT_FAILURE;
+    }
+
+    // print out help
+    if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
+        printf("use simple driver DGSSV to solve a linear system one time\n");
+        printf("requires one additional argument, the path to the matrix file\n");
+        return EXIT_SUCCESS;
+    }
+
     SuperMatrix A;
     NCformat *Astore;
     float   *a;
@@ -38,7 +54,7 @@ int main(int argc, char *argv[])
     mem_usage_t   mem_usage;
     superlu_options_t options;
     SuperLUStat_t stat;
-    FILE      *fp = stdin;
+    FILE    *fp = fopen(argv[1], "r");
     
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Enter main()");

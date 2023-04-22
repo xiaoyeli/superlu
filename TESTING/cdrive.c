@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -16,10 +16,17 @@ at the top-level directory.
  * October 15, 2003
  *
  */
-/*
- * File name:		cdrive.c
- * Purpose:             MAIN test program
+
+/*! \file
+ * CDRIVE is the main test program for the COMPLEX linear
+ * equation driver routines CGSSV and CGSSVX.
+ *
+ * The program is invoked by a shell script file -- ctest.csh.
+ * The output from the tests are written into a file -- ctest.out.
+ *
+ * \ingroup TestingC
  */
+
 #include <getopt.h>
 #include <string.h>
 #include <unistd.h>
@@ -38,20 +45,11 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int_t *lwork, double *u, FILE **fp);
 
+/*!
+ * Entry point of test program.
+ */
 int main(int argc, char *argv[])
 {
-/* 
- * Purpose
- * =======
- *
- * CDRIVE is the main test program for the COMPLEX linear 
- * equation driver routines CGSSV and CGSSVX.
- * 
- * The program is invoked by a shell script file -- ctest.csh.
- * The output from the tests are written into a file -- ctest.out.
- *
- * =====================================================================
- */
     complex         *a, *a_save;
     int_t          *asub, *asub_save;
     int_t          *xa, *xa_save;
@@ -523,7 +521,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-/*  
+/*!
  * Parse command line options to get relaxed snode size, panel size, etc.
  */
 static void

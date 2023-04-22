@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -38,20 +38,15 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int_t *lwork, double *u, FILE **fp);
 
-int main(int argc, char *argv[])
-{
-/* 
- * Purpose
- * =======
- *
- * DDRIVE is the main test program for the DOUBLE linear 
+/*! \file
+ * DDRIVE is the main test program for the DOUBLE linear
  * equation driver routines DGSSV and DGSSVX.
- * 
+ *
  * The program is invoked by a shell script file -- dtest.csh.
  * The output from the tests are written into a file -- dtest.out.
- *
- * =====================================================================
  */
+int main(int argc, char *argv[])
+{
     double         *a, *a_save;
     int_t          *asub, *asub_save;
     int_t          *xa, *xa_save;

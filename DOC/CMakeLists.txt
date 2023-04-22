@@ -11,6 +11,6 @@ set(DOXYGEN_WARN_LOGFILE "doxygen.log")
 
 doxygen_add_docs(doc
                  "${PROJECT_SOURCE_DIR}/EXAMPLE"
-                 "${PROJECT_SOURCE_DIR}/FORTRAN"
                  "${PROJECT_SOURCE_DIR}/SRC"
+                 "${PROJECT_SOURCE_DIR}/TESTING"
                  COMMENT "Generate HTML documentation with Doxygen")

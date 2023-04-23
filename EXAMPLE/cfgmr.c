@@ -33,8 +33,6 @@ For information on ITSOL contact saad@cs.umn.edu
 
 #define  epsmac  1.0e-16
 
-extern int ccopy_(int *, complex *, int *, complex *, int *);
-extern void caxpy_(int *, complex *, complex *, int *, complex *, int *);
 extern void cdotc_(complex *, int *, complex [], int *, complex [], int *);
 extern float scnrm2_(int *, complex [], int *);
 

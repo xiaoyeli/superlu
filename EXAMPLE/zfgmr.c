@@ -33,8 +33,6 @@ For information on ITSOL contact saad@cs.umn.edu
 
 #define  epsmac  1.0e-16
 
-extern int zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
-extern void zaxpy_(int *, doublecomplex *, doublecomplex *, int *, doublecomplex *, int *);
 extern void zdotc_(doublecomplex *, int *, doublecomplex [], int *, doublecomplex [], int *);
 extern double dznrm2_(int *, doublecomplex [], int *);
 

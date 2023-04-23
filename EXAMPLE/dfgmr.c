@@ -33,8 +33,6 @@ For information on ITSOL contact saad@cs.umn.edu
 
 #define  epsmac  1.0e-16
 
-extern int dcopy_(int *, double *, int *, double *, int *);
-extern void daxpy_(int *, double *, double *, int *, double *, int *);
 extern double ddot_(int *, double [], int *, double [], int *);
 extern double dnrm2_(int *, double [], int *);
 

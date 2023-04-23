@@ -55,7 +55,7 @@ get_colamd(
     
     info = COLAMD_MAIN(m, n, Alen, A, p, knobs, stats);
 
-    printf("after COLAMD_MAIN info %d\n", info);
+    //printf("after COLAMD_MAIN info %d\n", info);
     if ( info == FALSE ) ABORT("COLAMD failed");
 
     for (i = 0; i < n; ++i) perm_c[p[i]] = i;

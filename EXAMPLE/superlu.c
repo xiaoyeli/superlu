@@ -34,10 +34,11 @@ int main(int argc, char *argv[])
     SuperMatrix A, L, U, B;
     double   *a, *rhs;
     double   s, u, p, e, r, l;
-    int      *asub, *xa;
+    int_t    *asub, *xa;
     int      *perm_r; /* row permutations from partial pivoting */
     int      *perm_c; /* column permutation vector */
-    int      nrhs, info, i, m, n, nnz, permc_spec;
+    int      nrhs, i, m, n, permc_spec;
+    int_t    info, nnz;
     superlu_options_t options;
     SuperLUStat_t stat;
 
@@ -64,8 +65,8 @@ int main(int argc, char *argv[])
     for (i = 0; i < m; ++i) rhs[i] = 1.0;
     dCreate_Dense_Matrix(&B, m, nrhs, rhs, m, SLU_DN, SLU_D, SLU_GE);
 
-    if ( !(perm_r = intMalloc(m)) ) ABORT("Malloc fails for perm_r[].");
-    if ( !(perm_c = intMalloc(n)) ) ABORT("Malloc fails for perm_c[].");
+    if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");
+    if ( !(perm_c = int32Malloc(n)) ) ABORT("Malloc fails for perm_c[].");
 
     /* Set the default input options. */
     set_default_options(&options);

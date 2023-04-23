@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -16,55 +16,40 @@ at the top-level directory.
  * November 15, 1997
  *
  */
+
+/*! \file
+ * DGST04 computes the difference between a computed solution and the
+ * true solution to a system of linear equations.
+ *
+ * \ingroup TestingD
+ */
+
 #include <math.h>
 #include "slu_ddefs.h"
 
+/*!
+ * DGST04 computes the difference between a computed solution and the
+ * true solution to a system of linear equations.
+ * RESID =  ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS ),
+ * where RCOND is the reciprocal of the condition number and EPS is the
+ * machine epsilon.
+ *
+ * \param[in] n       The number of rows of the matrices X and XACT.  N >= 0.
+ * \param[in] nrhs    The number of columns of the matrices X and XACT.  NRHS >= 0.
+ * \param[in] x       The computed solution vectors, dimension (LDX,NRHS).
+ *                    Each vector is stored as a column of the matrix X.
+ * \param[in] ldx     The leading dimension of the array X.  LDX >= max(1,N).
+ * \param[in] xact    The exact solution vectors, dimension(LDX,NRHS).
+ *                    Each vector is stored as a column of the matrix XACT.
+ * \param[in] ldxact  The leading dimension of the array XACT.  LDXACT >= max(1,N).
+ * \param[in] rcond   The reciprocal of the condition number of the coefficient
+ *                    matrix in the system of equations.
+ * \param[out] resid  The maximum over the NRHS solution vectors of
+ *                    ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS )
+ */
 int dgst04(int n, int nrhs, double *x, int ldx, double *xact,
-	      int ldxact, double rcond, double *resid)
+           int ldxact, double rcond, double *resid)
 {
-/*
-    Purpose   
-    =======   
-
-    DGST04 computes the difference between a computed solution and the   
-    true solution to a system of linear equations.   
-    RESID =  ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS ),   
-    where RCOND is the reciprocal of the condition number and EPS is the 
-    machine epsilon.   
-
-    Arguments   
-    =========   
-
-    N       (input) INT   
-            The number of rows of the matrices X and XACT.  N >= 0.   
-
-    NRHS    (input) INT   
-            The number of columns of the matrices X and XACT.  NRHS >= 0. 
-
-    X       (input) DOUBLE PRECISION array, dimension (LDX,NRHS)   
-            The computed solution vectors.  Each vector is stored as a   
-            column of the matrix X.   
-
-    LDX     (input) INT   
-            The leading dimension of the array X.  LDX >= max(1,N).   
-
-    XACT    (input) DOUBLE PRECISION array, dimension( LDX, NRHS )   
-            The exact solution vectors.  Each vector is stored as a   
-            column of the matrix XACT.   
-
-    LDXACT  (input) INT   
-            The leading dimension of the array XACT.  LDXACT >= max(1,N). 
-
-    RCOND   (input) DOUBLE PRECISION   
-            The reciprocal of the condition number of the coefficient   
-            matrix in the system of equations.   
-
-    RESID   (output) DOUBLE PRECISION   
-            The maximum over the NRHS solution vectors of   
-            ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS )   
-
-    ===================================================================== 
-*/
     /* Table of constant values */
     int c__1 = 1;
 

@@ -16,9 +16,15 @@ at the top-level directory.
  * October 15, 2003
  *
  */
-/*
- * File name:		ddrive.c
- * Purpose:             MAIN test program
+
+/*! \file
+ * DDRIVE is the main test program for the DOUBLE linear
+ * equation driver routines DGSSV and DGSSVX.
+ *
+ * The program is invoked by a shell script file -- dtest.csh.
+ * The output from the tests are written into a file -- dtest.out.
+ *
+ * \ingroup TestingD
  */
 #include <getopt.h>
 #include <string.h>
@@ -38,12 +44,8 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int_t *lwork, double *u, FILE **fp);
 
-/*! \file
- * DDRIVE is the main test program for the DOUBLE linear
- * equation driver routines DGSSV and DGSSVX.
- *
- * The program is invoked by a shell script file -- dtest.csh.
- * The output from the tests are written into a file -- dtest.out.
+/*!
+ * Entry point of test program.
  */
 int main(int argc, char *argv[])
 {
@@ -518,7 +520,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-/*  
+/*!
  * Parse command line options to get relaxed snode size, panel size, etc.
  */
 static void

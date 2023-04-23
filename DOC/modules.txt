@@ -1,0 +1,44 @@
+/*!
+ \page modules Modules
+ */
+
+/*!
+ \defgroup Testing
+ \brief Test that SuperLU works as inteded.
+
+ Tests should be run and remain working when SuperLU code is modified.
+ Regressions are easier found with continuously tested code.
+ The tests can also serve as working examples.
+ */
+
+/*!
+ \defgroup TestingC
+ \ingroup Testing
+ \brief Tests for complex float.
+
+ These tests start with the letter c.
+ */
+
+/*!
+ \defgroup TestingD
+ \ingroup Testing
+ \brief Tests for double.
+
+ These tests start with the letter d.
+ */
+
+/*!
+ \defgroup TestingS
+ \ingroup Testing
+ \brief Tests for float.
+
+ These tests start with the letter s.
+ */
+
+/*!
+ \defgroup TestingZ
+ \ingroup Testing
+ \brief Tests for complex double.
+
+ These tests start with the letter z.
+ */

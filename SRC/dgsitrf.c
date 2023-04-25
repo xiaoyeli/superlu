@@ -629,6 +629,8 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     fixupL(min_mn, perm_r, Glu);
 
     dLUWorkFree(iwork, dwork, Glu); /* Free work space and compress storage */
+    SUPERLU_FREE(xplore);
+    SUPERLU_FREE(marker_relax);
 
     if ( fact == SamePattern_SameRowPerm ) {
 	/* L and U structures may have changed due to possibly different

@@ -251,6 +251,7 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     int       nnzLj, nnzUj;
     double    tol_L = drop_tol, tol_U = drop_tol;
     complex zero = {0.0, 0.0};
+    float one = 1.0;
 
     /* Executable */	   
     iinfo    = 0;
@@ -626,6 +627,8 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     fixupL(min_mn, perm_r, Glu);
 
     cLUWorkFree(iwork, cwork, Glu); /* Free work space and compress storage */
+    SUPERLU_FREE (xplore);
+    SUPERLU_FREE (marker_relax);
 
     if ( fact == SamePattern_SameRowPerm ) {
 	/* L and U structures may have changed due to possibly different

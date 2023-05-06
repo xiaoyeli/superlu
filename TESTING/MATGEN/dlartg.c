@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <math.h>
 #include "f2c.h"
 
 /* Subroutine */ int dlartg_slu(doublereal *f, doublereal *g, doublereal *cs, 
@@ -86,7 +87,7 @@
 	f1 = *f;
 	g1 = *g;
 /* Computing MAX */
-	d__1 = abs(f1), d__2 = abs(g1);
+	d__1 = fabs(f1), d__2 = fabs(g1);
 	scale = max(d__1,d__2);
 	if (scale >= safmx2) {
 	    count = 0;
@@ -95,7 +96,7 @@ L10:
 	    f1 *= safmn2;
 	    g1 *= safmn2;
 /* Computing MAX */
-	    d__1 = abs(f1), d__2 = abs(g1);
+	    d__1 = fabs(f1), d__2 = fabs(g1);
 	    scale = max(d__1,d__2);
 	    if (scale >= safmx2) {
 		goto L10;
@@ -119,7 +120,7 @@ L30:
 	    f1 *= safmx2;
 	    g1 *= safmx2;
 /* Computing MAX */
-	    d__1 = abs(f1), d__2 = abs(g1);
+	    d__1 = fabs(f1), d__2 = fabs(g1);
 	    scale = max(d__1,d__2);
 	    if (scale <= safmn2) {
 		goto L30;
@@ -145,7 +146,7 @@ L30:
 	    *cs = f1 / *r;
 	    *sn = g1 / *r;
 	}
-	if (abs(*f) > abs(*g) && *cs < 0.) {
+	if (fabs(*f) > fabs(*g) && *cs < 0.) {
 	    *cs = -(*cs);
 	    *sn = -(*sn);
 	    *r = -(*r);

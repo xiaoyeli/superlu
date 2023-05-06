@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdbool.h>
 #include "f2c.h"
 
@@ -84,7 +85,7 @@
 	f1 = *f;
 	g1 = *g;
 /* Computing MAX */
-	r__1 = dabs(f1), r__2 = dabs(g1);
+	r__1 = fabs(f1), r__2 = fabs(g1);
 	scale = dmax(r__1,r__2);
 	if (scale >= safmx2) {
 	    count = 0;
@@ -93,7 +94,7 @@ L10:
 	    f1 *= safmn2;
 	    g1 *= safmn2;
 /* Computing MAX */
-	    r__1 = dabs(f1), r__2 = dabs(g1);
+	    r__1 = fabs(f1), r__2 = fabs(g1);
 	    scale = dmax(r__1,r__2);
 	    if (scale >= safmx2) {
 		goto L10;
@@ -117,7 +118,7 @@ L30:
 	    f1 *= safmx2;
 	    g1 *= safmx2;
 /* Computing MAX */
-	    r__1 = dabs(f1), r__2 = dabs(g1);
+	    r__1 = fabs(f1), r__2 = fabs(g1);
 	    scale = dmax(r__1,r__2);
 	    if (scale <= safmn2) {
 		goto L30;
@@ -143,7 +144,7 @@ L30:
 	    *cs = f1 / *r;
 	    *sn = g1 / *r;
 	}
-	if (dabs(*f) > dabs(*g) && *cs < 0.f) {
+	if (fabs(*f) > fabs(*g) && *cs < 0.f) {
 	    *cs = -(doublereal)(*cs);
 	    *sn = -(doublereal)(*sn);
 	    *r = -(doublereal)(*r);

@@ -2,6 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <math.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -225,7 +226,7 @@ static integer c__1 = 1;
 	d__1 = -x[kbeg];
 	x[kbeg + nxfrm] = d_sign(&c_b10, &d__1);
 	factor = xnorms * (xnorms + x[kbeg]);
-	if (abs(factor) < 1e-20) {
+	if (fabs(factor) < 1e-20) {
 	    *info = 1;
 	    input_error("DLAROR", info);
 	    return 0;

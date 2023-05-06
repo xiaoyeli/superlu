@@ -3,6 +3,7 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <math.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -257,7 +258,7 @@ static integer c__1 = 1;
 	q__1.r = -(doublereal)csign.r, q__1.i = -(doublereal)csign.i;
 	x[i__2].r = q__1.r, x[i__2].i = q__1.i;
 	factor = xnorm * (xnorm + xabs);
-	if (dabs(factor) < 1e-20f) {
+	if (fabs(factor) < 1e-20f) {
 	    *info = 1;
 	    i__2 = -(*info);
 	    input_error("CLAROR", &i__2);

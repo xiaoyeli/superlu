@@ -2,7 +2,9 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <math.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -532,7 +534,7 @@ static bool c_false = false;
 /*     Choose Top-Down if D is (apparently) increasing,   
        Bottom-Up if D is (apparently) decreasing. */
 
-    if (dabs(d[1]) <= (r__1 = d[mnmin], dabs(r__1))) {
+    if (fabs(d[1]) <= (r__1 = d[mnmin], fabs(r__1))) {
 	topdwn = true;
     } else {
 	topdwn = false;
@@ -542,11 +544,11 @@ static bool c_false = false;
 
 /*        Scale by DMAX */
 
-	temp = dabs(d[1]);
+	temp = fabs(d[1]);
 	i__1 = mnmin;
 	for (i = 2; i <= i__1; ++i) {
 /* Computing MAX */
-	    r__2 = temp, r__3 = (r__1 = d[i], dabs(r__1));
+	    r__2 = temp, r__3 = (r__1 = d[i], fabs(r__1));
 	    temp = dmax(r__2,r__3);
 /* L20: */
 	}

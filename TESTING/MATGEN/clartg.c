@@ -1,3 +1,4 @@
+#include <math.h>
 #include "f2c.h"
 
 /* Subroutine */ int clartg_slu(complex *f, complex *g, real *cs, complex *sn, 
@@ -78,8 +79,8 @@
            R = G */
 
     } else {
-	f1 = (r__1 = f->r, dabs(r__1)) + (r__2 = r_imag(f), dabs(r__2));
-	g1 = (r__1 = g->r, dabs(r__1)) + (r__2 = r_imag(g), dabs(r__2));
+	f1 = (r__1 = f->r, fabs(r__1)) + (r__2 = r_imag(f), fabs(r__2));
+	g1 = (r__1 = g->r, fabs(r__1)) + (r__2 = r_imag(g), fabs(r__2));
 	if (f1 >= g1) {
 	    q__1.r = g->r / f1, q__1.i = g->i / f1;
 	    gs.r = q__1.r, gs.i = q__1.i;

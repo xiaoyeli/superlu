@@ -3,6 +3,7 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <stdlib.h>
 #include "f2c.h"
 
 /* Subroutine */ int dlatm1_slu(integer *mode, doublereal *cond, integer *irsign,

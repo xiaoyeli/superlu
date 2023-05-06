@@ -3,6 +3,7 @@
 	-lf2c -lm   (in that order)
 */
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include "f2c.h"
 

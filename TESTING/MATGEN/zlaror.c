@@ -2,6 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <stdlib.h>
 #include <string.h>
 #include "f2c.h"
 

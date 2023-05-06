@@ -2,6 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -428,7 +429,7 @@ static integer c__5 = 5;
 	for (i = 2; i <= i__1; ++i) {
 /* Computing MAX */
 	    r__1 = temp, r__2 = c_abs(&d[i]);
-	    temp = dmax(r__1,r__2);
+	    temp = fmax(r__1,r__2);
 /* L30: */
 	}
 

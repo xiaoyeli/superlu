@@ -86,7 +86,7 @@
 	g1 = *g;
 /* Computing MAX */
 	r__1 = fabs(f1), r__2 = fabs(g1);
-	scale = dmax(r__1,r__2);
+	scale = fmax(r__1,r__2);
 	if (scale >= safmx2) {
 	    count = 0;
 L10:
@@ -95,7 +95,7 @@ L10:
 	    g1 *= safmn2;
 /* Computing MAX */
 	    r__1 = fabs(f1), r__2 = fabs(g1);
-	    scale = dmax(r__1,r__2);
+	    scale = fmax(r__1,r__2);
 	    if (scale >= safmx2) {
 		goto L10;
 	    }
@@ -119,7 +119,7 @@ L30:
 	    g1 *= safmx2;
 /* Computing MAX */
 	    r__1 = fabs(f1), r__2 = fabs(g1);
-	    scale = dmax(r__1,r__2);
+	    scale = fmax(r__1,r__2);
 	    if (scale <= safmn2) {
 		goto L30;
 	    }

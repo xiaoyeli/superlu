@@ -549,7 +549,7 @@ static bool c_false = false;
 	for (i = 2; i <= i__1; ++i) {
 /* Computing MAX */
 	    r__2 = temp, r__3 = (r__1 = d[i], fabs(r__1));
-	    temp = dmax(r__2,r__3);
+	    temp = fmax(r__2,r__3);
 /* L20: */
 	}
 

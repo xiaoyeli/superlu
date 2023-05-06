@@ -33,7 +33,5 @@ typedef char integer1;
 
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #define max(a,b) ((a) >= (b) ? (a) : (b))
-#define dmin(a,b) (doublereal)min(a,b)
-#define dmax(a,b) (doublereal)max(a,b)
 
 #endif

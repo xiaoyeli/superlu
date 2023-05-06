@@ -4,7 +4,7 @@
 
 /*!
  \defgroup Testing
- \brief Test that SuperLU works as inteded.
+ \brief Test that SuperLU works as intended.
 
  Tests should be run and remain working when SuperLU code is modified.
  Regressions are easier found with continuously tested code.

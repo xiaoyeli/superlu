@@ -3,6 +3,7 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <stdbool.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -10,7 +11,8 @@
 static integer c__4 = 4;
 static integer c__8 = 8;
 
-/* Subroutine */ int zlarot_slu(logical *lrows, logical *lleft, logical *lright, 
+/* Subroutine */
+int zlarot_slu(bool *lrows, bool *lleft, bool *lright,
 	integer *nl, doublecomplex *c, doublecomplex *s, doublecomplex *a, 
 	integer *lda, doublecomplex *xleft, doublecomplex *xright)
 {

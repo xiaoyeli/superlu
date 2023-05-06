@@ -2,6 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <stdbool.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -10,8 +11,8 @@
 static doublecomplex c_b1 = {0.,0.};
 static integer c__1 = 1;
 static integer c__5 = 5;
-static logical c_true = TRUE_;
-static logical c_false = FALSE_;
+static bool c_true = true;
+static bool c_false = false;
 
 /* Subroutine */ int zlatms_slu(integer *m, integer *n, char *dist, integer *
 	iseed, char *sym, doublereal *d, integer *mode, doublereal *cond, 
@@ -22,7 +23,7 @@ static logical c_false = FALSE_;
     integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     doublereal d__1, d__2, d__3;
     doublecomplex z__1, z__2, z__3;
-    logical L__1;
+    bool L__1;
 
     /* Builtin functions */
     double cos(doublereal), sin(doublereal);
@@ -32,7 +33,7 @@ static logical c_false = FALSE_;
     static integer ilda, icol;
     static doublereal temp;
     static integer irow, isym;
-    static logical zsym;
+    static bool zsym;
     static doublecomplex c;
     static integer i, j, k;
     static doublecomplex s;
@@ -59,20 +60,20 @@ static logical c_false = FALSE_;
 	    doublereal *, doublecomplex *, integer *, integer *, 
 						 doublecomplex *, integer *);
     extern int input_error(char *, int *);
-    static logical iltemp, givens;
+    static bool iltemp, givens;
     static integer ioffst, irsign;
     extern /* Double Complex */ void zlarnd_slu(doublecomplex *, integer *, 
 	    integer *);
     extern /* Subroutine */ int zlaset_slu(char *, integer *, integer *, 
 	    doublecomplex *, doublecomplex *, doublecomplex *, integer *), zlartg_slu(doublecomplex *, doublecomplex *, doublereal *, 
 	    doublecomplex *, doublecomplex *);
-    static logical ilextr;
+    static bool ilextr;
     extern /* Subroutine */ int zlagsy_slu(integer *, integer *, doublereal *, 
 	    doublecomplex *, integer *, integer *, doublecomplex *, integer *)
 	    ;
-    static logical topdwn;
+    static bool topdwn;
     static integer ir1, ir2, isympk;
-    extern /* Subroutine */ int zlarot_slu(logical *, logical *, logical *, 
+    extern /* Subroutine */ int zlarot_slu(bool *, bool *, bool *,
 	    integer *, doublecomplex *, doublecomplex *, doublecomplex *, 
 	    integer *, doublecomplex *, doublecomplex *);
     static integer jch, llb, jkl, jku, uub;
@@ -386,19 +387,19 @@ static logical c_false = FALSE_;
     if (strncmp(sym, "N", 1)==0) {
 	isym = 1;
 	irsign = 0;
-	zsym = FALSE_;
+	zsym = false;
     } else if (strncmp(sym, "P", 1)==0) {
 	isym = 2;
 	irsign = 0;
-	zsym = FALSE_;
+	zsym = false;
     } else if (strncmp(sym, "S", 1)==0) {
 	isym = 2;
 	irsign = 0;
-	zsym = TRUE_;
+	zsym = true;
     } else if (strncmp(sym, "H", 1)==0) {
 	isym = 2;
 	irsign = 1;
-	zsym = FALSE_;
+	zsym = false;
     } else {
 	isym = -1;
     }
@@ -459,20 +460,20 @@ static logical c_false = FALSE_;
 /*     Use Givens rotation method if bandwidth small enough,   
        or if LDA is too small to store the matrix unpacked. */
 
-    givens = FALSE_;
+    givens = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
 	if ((doublereal) (llb + uub) < (doublereal) max(i__1,i__2) * .3) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     } else {
 	if (llb << 1 < *m) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     }
     if (*lda < *m && *lda >= minlda) {
-	givens = TRUE_;
+	givens = true;
     }
 
 /*     Set INFO if an error */
@@ -535,9 +536,9 @@ static logical c_false = FALSE_;
        Bottom-Up if D is (apparently) decreasing. */
 
     if (abs(d[1]) <= (d__1 = d[mnmin], abs(d__1))) {
-	topdwn = TRUE_;
+	topdwn = true;
     } else {
-	topdwn = FALSE_;
+	topdwn = false;
     }
 
     if (*mode != 0 && abs(*mode) != 6) {

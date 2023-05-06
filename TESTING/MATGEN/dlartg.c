@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include "f2c.h"
 
 /* Subroutine */ int dlartg_slu(doublereal *f, doublereal *g, doublereal *cs, 
@@ -48,7 +49,7 @@
     ===================================================================== 
 */
     /* Initialized data */
-    static logical first = TRUE_;
+    static bool first = true;
     /* System generated locals */
     integer i__1;
     doublereal d__1, d__2;
@@ -65,7 +66,7 @@
 
 
     if (first) {
-	first = FALSE_;
+	first = false;
 	safmin = dmach("S");
 	eps = dmach("E");
 	d__1 = dmach("B");

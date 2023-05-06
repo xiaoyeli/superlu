@@ -11,11 +11,9 @@
 
 #if 0
 typedef long int integer; /* 64 on 64-bit machine */
-typedef long int logical;
 #endif
 
 typedef int integer;
-typedef int logical;
 
 typedef char *address;
 typedef short int shortint;
@@ -27,9 +25,6 @@ typedef short int shortlogical;
 typedef char logical1;
 typedef char integer1;
 /* typedef long long longint; */ /* system-dependent */
-
-#define TRUE_ (1)
-#define FALSE_ (0)
 
 /* Extern is for use with -E */
 #ifndef Extern

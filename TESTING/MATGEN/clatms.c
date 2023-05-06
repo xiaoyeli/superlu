@@ -2,6 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <stdbool.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -10,8 +11,8 @@
 static complex c_b1 = {0.f,0.f};
 static integer c__1 = 1;
 static integer c__5 = 5;
-static logical c_true = TRUE_;
-static logical c_false = FALSE_;
+static bool c_true = true;
+static bool c_false = false;
 
 /* Subroutine */ int clatms_slu(integer *m, integer *n, char *dist, integer *
 	iseed, char *sym, real *d, integer *mode, real *cond, real *dmax__, 
@@ -23,7 +24,7 @@ static logical c_false = FALSE_;
     real r__1, r__2, r__3;
     doublereal d__1;
     complex q__1, q__2, q__3;
-    logical L__1;
+    bool L__1;
 
     /* Builtin functions */
     double cos(doublereal), sin(doublereal);
@@ -32,7 +33,7 @@ static logical c_false = FALSE_;
     /* Local variables */
     static integer ilda, icol;
     static real temp;
-    static logical csym;
+    static bool csym;
     static integer irow, isym;
     static complex c;
     static integer i, j, k;
@@ -66,12 +67,12 @@ static logical c_false = FALSE_;
 	    integer *, integer *, complex *, integer *);
     extern int input_error(char *, int *);
     extern doublereal slarnd_slu(integer *, integer *);
-    extern /* Subroutine */ int clarot_slu(logical *, logical *, logical *, 
+    extern /* Subroutine */ int clarot_slu(bool *, bool *, bool *,
 	    integer *, complex *, complex *, complex *, integer *, complex *, 
 	    complex *);
-    static logical iltemp, givens;
+    static bool iltemp, givens;
     static integer ioffst, irsign;
-    static logical ilextr, topdwn;
+    static bool ilextr, topdwn;
     static integer ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
 
@@ -383,19 +384,19 @@ static logical c_false = FALSE_;
     if (strncmp(sym, "N", 1)==0) {
 	isym = 1;
 	irsign = 0;
-	csym = FALSE_;
+	csym = false;
     } else if (strncmp(sym, "P", 1)==0) {
 	isym = 2;
 	irsign = 0;
-	csym = FALSE_;
+	csym = false;
     } else if (strncmp(sym, "S", 1)==0) {
 	isym = 2;
 	irsign = 0;
-	csym = TRUE_;
+	csym = true;
     } else if (strncmp(sym, "H", 1)==0) {
 	isym = 2;
 	irsign = 1;
-	csym = FALSE_;
+	csym = false;
     } else {
 	isym = -1;
     }
@@ -456,20 +457,20 @@ static logical c_false = FALSE_;
 /*     Use Givens rotation method if bandwidth small enough,   
        or if LDA is too small to store the matrix unpacked. */
 
-    givens = FALSE_;
+    givens = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
 	if ((real) (llb + uub) < (real) max(i__1,i__2) * .3f) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     } else {
 	if (llb << 1 < *m) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     }
     if (*lda < *m && *lda >= minlda) {
-	givens = TRUE_;
+	givens = true;
     }
 
 /*     Set INFO if an error */
@@ -532,9 +533,9 @@ static logical c_false = FALSE_;
        Bottom-Up if D is (apparently) decreasing. */
 
     if (dabs(d[1]) <= (r__1 = d[mnmin], dabs(r__1))) {
-	topdwn = TRUE_;
+	topdwn = true;
     } else {
-	topdwn = FALSE_;
+	topdwn = false;
     }
 
     if (*mode != 0 && abs(*mode) != 6) {

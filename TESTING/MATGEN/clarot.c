@@ -3,6 +3,7 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <stdbool.h>
 #include "f2c.h"
 
 /* Table of constant values */
@@ -10,7 +11,8 @@
 static integer c__4 = 4;
 static integer c__8 = 8;
 
-/* Subroutine */ int clarot_slu(logical *lrows, logical *lleft, logical *lright, 
+/* Subroutine */
+int clarot_slu(bool *lrows, bool *lleft, bool *lright,
 	integer *nl, complex *c, complex *s, complex *a, integer *lda, 
 	complex *xleft, complex *xright)
 {

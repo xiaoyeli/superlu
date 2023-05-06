@@ -2,6 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <stdbool.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -9,8 +10,8 @@
 
 static integer c__1 = 1;
 static real c_b22 = 0.f;
-static logical c_true = TRUE_;
-static logical c_false = FALSE_;
+static bool c_true = true;
+static bool c_false = false;
 
 /* Subroutine */ int slatms_slu(integer *m, integer *n, char *dist, integer *
 	iseed, char *sym, real *d, integer *mode, real *cond, real *dmax__, 
@@ -20,7 +21,7 @@ static logical c_false = FALSE_;
     /* System generated locals */
     integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     real r__1, r__2, r__3;
-    logical L__1;
+    bool L__1;
 
     /* Builtin functions */
     double cos(doublereal), sin(doublereal);
@@ -47,15 +48,15 @@ static logical c_false = FALSE_;
     static integer minlda;
     extern int input_error(char *, int *);
     extern doublereal slarnd_slu(integer *, integer *);
-    static logical iltemp, givens;
+    static bool iltemp, givens;
     static integer ioffst, irsign;
     extern /* Subroutine */ int slartg_slu(real *, real *, real *, real *, real *
 	    ), slaset_slu(char *, integer *, integer *, real *, real *, real *, 
 	    integer *), slagsy_slu(integer *, integer *, real *, real *, 
-	    integer *, integer *, real *, integer *), slarot_slu(logical *, 
-	    logical *, logical *, integer *, real *, real *, real *, integer *
+	    integer *, integer *, real *, integer *), slarot_slu(bool *,
+	    bool *, bool *, integer *, real *, real *, real *, integer *
 	    , real *, real *);
-    static logical ilextr, topdwn;
+    static bool ilextr, topdwn;
     static integer ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
 
@@ -424,20 +425,20 @@ static logical c_false = FALSE_;
 /*     Use Givens rotation method if bandwidth small enough,   
        or if LDA is too small to store the matrix unpacked. */
 
-    givens = FALSE_;
+    givens = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
 	if ((real) (llb + uub) < (real) max(i__1,i__2) * .3f) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     } else {
 	if (llb << 1 < *m) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     }
     if (*lda < *m && *lda >= minlda) {
-	givens = TRUE_;
+	givens = true;
     }
 
 /*     Set INFO if an error */
@@ -500,9 +501,9 @@ static logical c_false = FALSE_;
        Bottom-Up if D is (apparently) decreasing. */
 
     if (dabs(d[1]) <= (r__1 = d[mnmin], dabs(r__1))) {
-	topdwn = TRUE_;
+	topdwn = true;
     } else {
-	topdwn = FALSE_;
+	topdwn = false;
     }
 
     if (*mode != 0 && abs(*mode) != 6) {

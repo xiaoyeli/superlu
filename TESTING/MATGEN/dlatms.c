@@ -2,6 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <stdbool.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -9,8 +10,8 @@
 
 static integer c__1 = 1;
 static doublereal c_b22 = 0.;
-static logical c_true = TRUE_;
-static logical c_false = FALSE_;
+static bool c_true = true;
+static bool c_false = false;
 
 int
 dlatms_slu(integer *m, integer *n, char *dist, integer *
@@ -21,7 +22,7 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
     /* System generated locals */
     integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     doublereal d__1, d__2, d__3;
-    logical L__1;
+    bool L__1;
 
     /* Builtin functions */
     double cos(doublereal), sin(doublereal);
@@ -54,13 +55,13 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 	    doublereal *, doublereal *, doublereal *, integer *), 
 	    dlartg_slu(doublereal *, doublereal *, doublereal *, doublereal *, doublereal *),
 	    dlagsy_slu(integer *, integer *, doublereal *, doublereal *, integer *, 
-	    integer *, doublereal *, integer *), dlarot_slu(logical *, logical *,
-	     logical *, integer *, doublereal *, doublereal *, doublereal *, 
+	    integer *, doublereal *, integer *), dlarot_slu(bool *, bool *,
+	     bool *, integer *, doublereal *, doublereal *, doublereal *,
 	    integer *, doublereal *, doublereal *);
     extern int input_error(char *, int *);
-    static logical iltemp, givens;
+    static bool iltemp, givens;
     static integer ioffst, irsign;
-    static logical ilextr, topdwn;
+    static bool ilextr, topdwn;
     static integer ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
 
@@ -428,20 +429,20 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
 /*     Use Givens rotation method if bandwidth small enough,   
        or if LDA is too small to store the matrix unpacked. */
 
-    givens = FALSE_;
+    givens = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
 	if ((doublereal) (llb + uub) < (doublereal) max(i__1,i__2) * .3) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     } else {
 	if (llb << 1 < *m) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     }
     if (*lda < *m && *lda >= minlda) {
-	givens = TRUE_;
+	givens = true;
     }
 
 /*     Set INFO if an error */
@@ -504,9 +505,9 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
        Bottom-Up if D is (apparently) decreasing. */
 
     if (abs(d[1]) <= (d__1 = d[mnmin], abs(d__1))) {
-	topdwn = TRUE_;
+	topdwn = true;
     } else {
-	topdwn = FALSE_;
+	topdwn = false;
     }
 
     if (*mode != 0 && abs(*mode) != 6) {

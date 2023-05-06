@@ -2,6 +2,7 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <stdbool.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -29,7 +30,7 @@ static integer c__5 = 5;
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static logical bads;
+    static bool bads;
     static integer isim;
     static real temp;
     static integer i, j;
@@ -350,12 +351,12 @@ static integer c__5 = 5;
 
 /*     Check DS, if MODES=0 and ISIM=1 */
 
-    bads = FALSE_;
+    bads = false;
     if (*modes == 0 && isim == 1) {
 	i__1 = *n;
 	for (j = 1; j <= i__1; ++j) {
 	    if (ds[j] == 0.f) {
-		bads = TRUE_;
+		bads = true;
 	    }
 /* L10: */
 	}

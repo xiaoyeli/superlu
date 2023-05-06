@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Double Complex */ VOID zlarnd_slu(doublecomplex * ret_val, integer *idist, 
+/* Double Complex */ void zlarnd_slu(doublecomplex * ret_val, integer *idist,
 	integer *iseed)
 {
     /* System generated locals */

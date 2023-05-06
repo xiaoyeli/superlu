@@ -44,7 +44,7 @@ static integer c__1 = 1;
     static doublereal factor;
     extern /* Subroutine */ int zlacgv_slu(integer *, doublecomplex *, integer *)
 	    ;
-    extern /* Double Complex */ VOID zlarnd_slu(doublecomplex *, integer *, 
+    extern /* Double Complex */ void zlarnd_slu(doublecomplex *, integer *,
 	    integer *);
     extern /* Subroutine */ int zlaset_slu(char *, integer *, integer *, 
 	    doublecomplex *, doublecomplex *, doublecomplex *, integer *);

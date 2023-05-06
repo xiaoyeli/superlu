@@ -32,7 +32,7 @@ static integer c__1 = 1;
     static complex alpha;
     extern /* Subroutine */ int cscal_(integer *, complex *, complex *, 
 	    integer *);
-    extern /* Complex */ VOID cdotc_(complex *, integer *, complex *, integer 
+    extern /* Complex */ void cdotc_(complex *, integer *, complex *, integer
 	    *, complex *, integer *);
     extern /* Subroutine */ int cgemv_(char *, integer *, integer *, complex *
 	    , complex *, integer *, complex *, integer *, complex *, complex *

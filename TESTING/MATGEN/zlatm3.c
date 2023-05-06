@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Double Complex */ VOID zlatm3_slu(doublecomplex * ret_val, integer *m, 
+/* Double Complex */ void zlatm3_slu(doublecomplex * ret_val, integer *m,
 	integer *n, integer *i, integer *j, integer *isub, integer *jsub, 
 	integer *kl, integer *ku, integer *idist, integer *iseed, 
 	doublecomplex *d, integer *igrade, doublecomplex *dl, doublecomplex *
@@ -22,7 +22,7 @@
     /* Local variables */
     static doublecomplex ctemp;
     extern doublereal dlaran_slu(integer *);
-    extern /* Double Complex */ VOID zlarnd_slu(doublecomplex *, integer *, 
+    extern /* Double Complex */ void zlarnd_slu(doublecomplex *, integer *,
 	    integer *);
 
 

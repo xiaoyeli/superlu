@@ -36,7 +36,7 @@ static integer c__1 = 1;
 	    doublecomplex *, integer *, doublecomplex *, integer *, 
 	    doublecomplex *, integer *), zscal_(integer *, doublecomplex *, 
 	    doublecomplex *, integer *);
-    extern /* Double Complex */ VOID zdotc_(doublecomplex *, integer *, 
+    extern /* Double Complex */ void zdotc_(doublecomplex *, integer *,
 	    doublecomplex *, integer *, doublecomplex *, integer *);
     extern /* Subroutine */ int zgemv_(char *, integer *, integer *, 
 	    doublecomplex *, doublecomplex *, integer *, doublecomplex *, 

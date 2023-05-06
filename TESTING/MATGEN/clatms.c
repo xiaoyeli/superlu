@@ -57,7 +57,7 @@ static bool c_false = false;
     static integer il;
     static complex ct;
     static integer iendch, ir, jr, ipackg, mr;
-    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
+    extern /* Complex */ void clarnd_slu(complex *, integer *, integer *);
     static integer minlda;
     static complex st;
     extern /* Subroutine */ int claset_slu(char *, integer *, integer *, complex 

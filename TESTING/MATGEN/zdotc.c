@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Double Complex */ VOID zdotc_(doublecomplex * ret_val, integer *n, 
+/* Double Complex */ void zdotc_(doublecomplex * ret_val, integer *n,
 	doublecomplex *zx, integer *incx, doublecomplex *zy, integer *incy)
 {
     /* System generated locals */

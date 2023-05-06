@@ -39,7 +39,7 @@ static integer c__1 = 1;
     static real xnorm;
     extern real scnrm2_(integer *, complex *, integer *);
     extern /* Subroutine */ int clacgv_slu(integer *, complex *, integer *);
-    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
+    extern /* Complex */ void clarnd_slu(complex *, integer *, integer *);
     extern /* Subroutine */ int claset_slu(char *, integer *, integer *, complex 
 	    *, complex *, complex *, integer *);
     extern int input_error(char *, int *);

@@ -60,7 +60,7 @@ static integer c__5 = 5;
 	    integer *, complex *, integer *), clarfg_(integer *, complex *, 
 	    complex *, integer *, complex *), clacgv_slu(integer *, complex *, 
 	    integer *);
-    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
+    extern /* Complex */ void clarnd_slu(complex *, integer *, integer *);
     static real ralpha;
     extern /* Subroutine */ int csscal_(integer *, real *, complex *, integer 
 	    *), claset_slu(char *, integer *, integer *, complex *, complex *, 

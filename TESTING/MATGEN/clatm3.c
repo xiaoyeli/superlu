@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Complex */ VOID clatm3_slu(complex * ret_val, integer *m, integer *n, integer 
+/* Complex */ void clatm3_slu(complex * ret_val, integer *m, integer *n, integer
 	*i, integer *j, integer *isub, integer *jsub, integer *kl, integer *
 	ku, integer *idist, integer *iseed, complex *d, integer *igrade, 
 	complex *dl, complex *dr, integer *ipvtng, integer *iwork, real *
@@ -20,7 +20,7 @@
 
     /* Local variables */
     static complex ctemp;
-    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
+    extern /* Complex */ void clarnd_slu(complex *, integer *, integer *);
     extern doublereal dlaran_sluslu(integer *);
 
 

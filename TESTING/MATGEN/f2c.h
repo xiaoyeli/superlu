@@ -38,6 +38,4 @@ typedef char integer1;
 #define dmin(a,b) (doublereal)min(a,b)
 #define dmax(a,b) (doublereal)max(a,b)
 
-#define VOID void
-
 #endif

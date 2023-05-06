@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Complex */ VOID clarnd_slu(complex * ret_val, integer *idist, integer *iseed)
+/* Complex */ void clarnd_slu(complex * ret_val, integer *idist, integer *iseed)
 {
     /* System generated locals */
     doublereal d__1, d__2;

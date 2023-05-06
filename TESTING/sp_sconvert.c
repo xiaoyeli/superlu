@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -17,10 +17,18 @@ at the top-level directory.
  *
  */
 
+/*! \file
+ * Convert a full matrix into a sparse matrix format.
+ *
+ * \ingroup TestingS
+ */
+
 #include "slu_sdefs.h"
 
-/*
- * Convert a full matrix into a sparse matrix format. 
+/*!
+ * Convert a full matrix into a sparse matrix format.
+ *
+ * For float.
  */
 int
 sp_sconvert(int m, int n, float *A, int lda, int kl, int ku,

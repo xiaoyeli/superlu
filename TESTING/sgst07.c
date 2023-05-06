@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -16,90 +16,63 @@ at the top-level directory.
  * October 15, 2003
  *
  */
+
+/*! \file
+ * SGST07 tests the error bounds from iterative refinement for the
+ * computed solution to a system of equations op(A)*X = B, where A is a
+ * general n by n matrix and op(A) = A or A**T, depending on TRANS.
+ *
+ * \ingroup TestingS
+ */
+
 #include <math.h>
 #include "slu_sdefs.h"
 
-int sgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, float *b, 
-	      int ldb, float *x, int ldx, float *xact, 
-              int ldxact, float *ferr, float *berr, float *reslts)
+/*!
+ * SGST07 tests the error bounds from iterative refinement for the
+ * computed solution to a system of equations op(A)*X = B, where A is a
+ * general n by n matrix and op(A) = A or A**T, depending on TRANS.
+ *
+ * RESLTS(1) = test of the error bound
+ *           = norm(X - XACT) / ( norm(X) * FERR )
+ * A large value is returned if this ratio is not less than one.
+ *
+ * RESLTS(2) = residual from the iterative refinement routine
+ *           = the maximum of BERR / ( (n+1)*EPS + (*) ), where
+ *             (*) = (n+1)*UNFL / (min_i (abs(op(A))*abs(X) +abs(b))_i )
+ *
+ * \param[in] trans   Specifies the form of the system of equations.
+ *                    = NOTRANS:  A *x = b
+ *                    = TRANS  :  A'*x = b, where A' is the transpose of A
+ *                    = CONJ   :  A'*x = b, where A' is the transpose of A
+ * \param[in] n       The number of rows of the matrices X and XACT.  N >= 0.
+ * \param[in] nrhs    The number of columns of the matrices X and XACT.  NRHS >= 0.
+ * \param[in] A       The original n by n matrix A, dimension(A->nrow, A->ncol).
+ * \param[in] b       The right hand side vectors for the system of linear
+ *                    equations, dimension (LDB,NRHS).
+ * \param[in] ldb     The leading dimension of the array B.  LDB >= max(1,N).
+ * \param[in] x       The computed solution vectors, dimension(LDX,NRHS).
+ *                    Each vector is stored as a column of the matrix X.
+ * \param[in] ldx     The leading dimension of the array X.  LDX >= max(1,N).
+ * \param[in] xact    The exact solution vectors, dimension(LDX,NRHS).
+ *                    Each vector is stored as a column of the matrix XACT.
+ * \param[in] ldxact  The leading dimension of the array XACT.  LDXACT >= max(1,N).
+ * \param[in] ferr    The estimated forward error bounds for each solution
+ *                    vector X, dimension(NRHS).
+ *                    If XTRUE is the true solution, FERR bounds the magnitude of
+ *                    the largest entry in (X - XTRUE) divided by the magnitude
+ *                    of the largest entry in X.
+ * \param[in] berr    The componentwise relative backward error of each solution
+ *                    vector (i.e., the smallest relative change in any entry of A
+ *                    or B that makes X an exact solution), dimension(NRHS).
+ * \param[out] reslts The maximum over the NRHS solution vectors of the ratios, dimension (2):
+ *                    RESLTS(1) = norm(X - XACT) / ( norm(X) * FERR )
+ *                    RESLTS(2) = BERR / ( (n+1)*EPS + (*) )
+ */
+int sgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, float *b,
+           int ldb, float *x, int ldx, float *xact,
+           int ldxact, float *ferr, float *berr, float *reslts)
 {
-/*
-    Purpose   
-    =======   
-
-    SGST07 tests the error bounds from iterative refinement for the   
-    computed solution to a system of equations op(A)*X = B, where A is a 
-    general n by n matrix and op(A) = A or A**T, depending on TRANS.
-    
-    RESLTS(1) = test of the error bound   
-              = norm(X - XACT) / ( norm(X) * FERR )   
-    A large value is returned if this ratio is not less than one.   
-
-    RESLTS(2) = residual from the iterative refinement routine   
-              = the maximum of BERR / ( (n+1)*EPS + (*) ), where   
-                (*) = (n+1)*UNFL / (min_i (abs(op(A))*abs(X) +abs(b))_i ) 
-
-    Arguments   
-    =========   
-
-    TRANS   (input) trans_t
-            Specifies the form of the system of equations.   
-            = NOTRANS:  A *x = b   
-            = TRANS  :  A'*x = b, where A' is the transpose of A   
-            = CONJ   :  A'*x = b, where A' is the transpose of A   
-
-    N       (input) INT
-            The number of rows of the matrices X and XACT.  N >= 0.   
-
-    NRHS    (input) INT   
-            The number of columns of the matrices X and XACT.  NRHS >= 0. 
-  
-
-    A       (input) SuperMatrix *, dimension (A->nrow, A->ncol)
-            The original n by n matrix A.   
-
-    B       (input) FLOAT PRECISION array, dimension (LDB,NRHS)   
-            The right hand side vectors for the system of linear   
-            equations.   
-
-    LDB     (input) INT   
-            The leading dimension of the array B.  LDB >= max(1,N).   
-
-    X       (input) FLOAT PRECISION array, dimension (LDX,NRHS)   
-            The computed solution vectors.  Each vector is stored as a   
-            column of the matrix X.   
-
-    LDX     (input) INT   
-            The leading dimension of the array X.  LDX >= max(1,N).   
-
-    XACT    (input) FLOAT PRECISION array, dimension (LDX,NRHS)   
-            The exact solution vectors.  Each vector is stored as a   
-            column of the matrix XACT.   
-
-    LDXACT  (input) INT   
-            The leading dimension of the array XACT.  LDXACT >= max(1,N). 
-  
-
-    FERR    (input) FLOAT PRECISION array, dimension (NRHS)   
-            The estimated forward error bounds for each solution vector   
-            X.  If XTRUE is the true solution, FERR bounds the magnitude 
-            of the largest entry in (X - XTRUE) divided by the magnitude 
-            of the largest entry in X.   
-
-    BERR    (input) FLOAT PRECISION array, dimension (NRHS)   
-            The componentwise relative backward error of each solution   
-            vector (i.e., the smallest relative change in any entry of A 
-  
-            or B that makes X an exact solution).   
-
-    RESLTS  (output) FLOAT PRECISION array, dimension (2)   
-            The maximum over the NRHS solution vectors of the ratios:   
-            RESLTS(1) = norm(X - XACT) / ( norm(X) * FERR )   
-            RESLTS(2) = BERR / ( (n+1)*EPS + (*) )   
-
-    ===================================================================== 
-*/
-    
     /* Table of constant values */
     int c__1 = 1;
 

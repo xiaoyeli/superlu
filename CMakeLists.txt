@@ -34,6 +34,14 @@ include(FeatureSummary)
 #
 ######################################################################
 
+# set C standard to C99 without GNU extensions, if not specified by the user
+if ("${CMAKE_C_STANDARD}" STREQUAL "")
+  set(CMAKE_C_STANDARD 99)
+endif()
+if ("${CMAKE_C_EXTENSIONS}" STREQUAL "")
+  set(CMAKE_C_EXTENSIONS FALSE)
+endif()
+
 #---- set RPATH handling
 # use, i.e. don't skip the full RPATH for the build tree
 set(CMAKE_SKIP_BUILD_RPATH FALSE)

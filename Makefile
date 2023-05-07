@@ -45,7 +45,7 @@ testing:
 	( cd TESTING ; $(MAKE) )
 
 doc:
-	doxygen Doxyfile
+	doxygen DoxyConfig
 
 cleanlib:
 	( cd SRC; $(MAKE) clean )

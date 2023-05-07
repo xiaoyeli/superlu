@@ -51,14 +51,14 @@
     /* Initialized data */
     static bool first = true;
     /* System generated locals */
-    integer i__1;
+    int i__1;
     real r__1, r__2;
     /* Builtin functions */
-    double log(doublereal), pow_ri(real *, integer *), sqrt(doublereal);
+    double log(doublereal), pow_ri(real *, int *), sqrt(doublereal);
     /* Local variables */
-    static integer i;
+    static int i;
     static real scale;
-    static integer count;
+    static int count;
     static real f1, g1, safmn2, safmx2;
     extern float smach(char *);
     static real safmin, eps;
@@ -69,7 +69,7 @@
 	safmin = smach("S");
 	eps = smach("E");
 	r__1 = smach("B");
-	i__1 = (integer) (log(safmin / eps) / log(smach("B")) / 2.f);
+	i__1 = (int) (log(safmin / eps) / log(smach("B")) / 2.f);
 	safmn2 = pow_ri(&r__1, &i__1);
 	safmx2 = 1.f / safmn2;
     }

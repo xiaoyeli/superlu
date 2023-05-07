@@ -7,39 +7,39 @@
 
 /* Table of constant values */
 
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 static real c_b12 = 0.f;
 static real c_b19 = -1.f;
 static real c_b26 = 1.f;
 
-/* Subroutine */ int slagsy_slu(integer *n, integer *k, real *d, real *a, 
-	integer *lda, integer *iseed, real *work, integer *info)
+/* Subroutine */ int slagsy_slu(int *n, int *k, real *d, real *a,
+	int *lda, int *iseed, real *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3;
+    int a_dim1, a_offset, i__1, i__2, i__3;
     real r__1;
 
     /* Builtin functions */
     double r_sign(real *, real *);
 
     /* Local variables */
-    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *, 
-	    integer *, real *, integer *, real *, integer *);
-    extern real sdot_(integer *, real *, integer *, real *, integer *), 
-	    snrm2_(integer *, real *, integer *);
-    static integer i, j;
-    extern /* Subroutine */ int ssyr2_(char *, integer *, real *, real *, 
-	    integer *, real *, integer *, real *, integer *);
+    extern /* Subroutine */ int sger_(int *, int *, real *, real *,
+	    int *, real *, int *, real *, int *);
+    extern real sdot_(int *, real *, int *, real *, int *),
+	    snrm2_(int *, real *, int *);
+    static int i, j;
+    extern /* Subroutine */ int ssyr2_(char *, int *, real *, real *,
+	    int *, real *, int *, real *, int *);
     static real alpha;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *), 
-	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
-	    real *, integer *, real *, real *, integer *), saxpy_(
-	    integer *, real *, real *, integer *, real *, integer *), ssymv_(
-	    char *, integer *, real *, real *, integer *, real *, integer *, 
-	    real *, real *, integer *);
+    extern /* Subroutine */ int sscal_(int *, real *, real *, int *),
+	    sgemv_(char *, int *, int *, real *, real *, int *,
+	    real *, int *, real *, real *, int *), saxpy_(
+	    int *, real *, real *, int *, real *, int *), ssymv_(
+	    char *, int *, real *, real *, int *, real *, int *,
+	    real *, real *, int *);
     static real wa, wb, wn;
-    extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real *);
+    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, real *);
     extern int input_error(char *, int *);
     static real tau;
 

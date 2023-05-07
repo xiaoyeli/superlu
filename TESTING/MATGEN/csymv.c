@@ -1,9 +1,9 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int csymv_sluslu(char *uplo, integer *n, complex *alpha, complex *
-	a, integer *lda, complex *x, integer *incx, complex *beta, complex *y,
-	 integer *incy)
+/* Subroutine */ int csymv_sluslu(char *uplo, int *n, complex *alpha, complex *
+	a, int *lda, complex *x, int *incx, complex *beta, complex *y,
+	 int *incy)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -106,10 +106,10 @@
 
     complex q__1, q__2, q__3, q__4;
     /* Local variables */
-    static integer info;
+    static int info;
     static complex temp1, temp2;
-    static integer i, j;
-    static integer ix, iy, jx, jy, kx, ky;
+    static int i, j;
+    static int ix, iy, jx, jy, kx, ky;
     extern int input_error(char *, int *);
 
 #define X(I) x[(I)-1]

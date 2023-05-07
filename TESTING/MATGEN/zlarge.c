@@ -9,14 +9,14 @@
 
 static doublecomplex c_b1 = {0.,0.};
 static doublecomplex c_b2 = {1.,0.};
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 
-/* Subroutine */ int zlarge_slu(integer *n, doublecomplex *a, integer *lda, 
-	integer *iseed, doublecomplex *work, integer *info)
+/* Subroutine */ int zlarge_slu(int *n, doublecomplex *a, int *lda,
+	int *iseed, doublecomplex *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1;
+    int a_dim1, a_offset, i__1;
     doublereal d__1;
     doublecomplex z__1;
 
@@ -25,17 +25,17 @@ static integer c__1 = 1;
     void z_div(doublecomplex *, doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static integer i;
-    extern /* Subroutine */ int zgerc_(integer *, integer *, doublecomplex *, 
-	    doublecomplex *, integer *, doublecomplex *, integer *, 
-	    doublecomplex *, integer *), zscal_(integer *, doublecomplex *, 
-	    doublecomplex *, integer *), zgemv_(char *, integer *, integer *, 
-	    doublecomplex *, doublecomplex *, integer *, doublecomplex *, 
-	    integer *, doublecomplex *, doublecomplex *, integer *);
-    extern doublereal dznrm2_(integer *, doublecomplex *, integer *);
+    static int i;
+    extern /* Subroutine */ int zgerc_(int *, int *, doublecomplex *,
+	    doublecomplex *, int *, doublecomplex *, int *,
+	    doublecomplex *, int *), zscal_(int *, doublecomplex *,
+	    doublecomplex *, int *), zgemv_(char *, int *, int *,
+	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
+	    int *, doublecomplex *, doublecomplex *, int *);
+    extern doublereal dznrm2_(int *, doublecomplex *, int *);
     static doublecomplex wa, wb;
     static doublereal wn;
-    extern /* Subroutine */ int zlarnv_slu(integer *, integer *, integer *, doublecomplex *);
+    extern /* Subroutine */ int zlarnv_slu(int *, int *, int *, doublecomplex *);
     extern int input_error(char *, int *);
     static doublecomplex tau;
 

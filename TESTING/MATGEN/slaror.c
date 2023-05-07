@@ -10,36 +10,36 @@
 
 static real c_b9 = 0.f;
 static real c_b10 = 1.f;
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 
-/* Subroutine */ int slaror_slu(char *side, char *init, integer *m, integer *n, 
-	real *a, integer *lda, integer *iseed, real *x, integer *info)
+/* Subroutine */ int slaror_slu(char *side, char *init, int *m, int *n,
+	real *a, int *lda, int *iseed, real *x, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2;
+    int a_dim1, a_offset, i__1, i__2;
     real r__1;
 
     /* Builtin functions */
     double r_sign(real *, real *);
 
     /* Local variables */
-    static integer kbeg, jcol;
-    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *, 
-	    integer *, real *, integer *, real *, integer *);
-    static integer irow;
-    extern real snrm2_(integer *, real *, integer *);
-    static integer j;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *), 
-	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
-	    real *, integer *, real *, real *, integer *);
-    static integer ixfrm, itype, nxfrm;
+    static int kbeg, jcol;
+    extern /* Subroutine */ int sger_(int *, int *, real *, real *,
+	    int *, real *, int *, real *, int *);
+    static int irow;
+    extern real snrm2_(int *, real *, int *);
+    static int j;
+    extern /* Subroutine */ int sscal_(int *, real *, real *, int *),
+	    sgemv_(char *, int *, int *, real *, real *, int *,
+	    real *, int *, real *, real *, int *);
+    static int ixfrm, itype, nxfrm;
     static real xnorm;
     extern int input_error(char *, int *);
     static real factor;
-    extern doublereal slarnd_slu(integer *, integer *);
-    extern /* Subroutine */ int slaset_slu(char *, integer *, integer *, real *, 
-	    real *, real *, integer *);
+    extern doublereal slarnd_slu(int *, int *);
+    extern /* Subroutine */ int slaset_slu(char *, int *, int *, real *,
+	    real *, real *, int *);
     static real xnorms;
 
 

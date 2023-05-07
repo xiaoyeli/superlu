@@ -5,13 +5,13 @@
 
 #include "f2c.h"
 
-doublereal dlaran_sluslu(integer *iseed)
+doublereal dlaran_sluslu(int *iseed)
 {
     /* System generated locals */
     real ret_val;
 
     /* Local variables */
-    static integer it1, it2, it3, it4;
+    static int it1, it2, it3, it4;
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -79,7 +79,7 @@ doublereal dlaran_sluslu(integer *iseed)
     iseed[3] = it3;
     iseed[4] = it4;
 
-/*     convert 48-bit integer to a real number in the interval (0,1) */
+/*     convert 48-bit int to a real number in the interval (0,1) */
 
     ret_val = ((real) it1 + ((real) it2 + ((real) it3 + (real) it4 * 
 	    2.44140625e-4f) * 2.44140625e-4f) * 2.44140625e-4f) * 

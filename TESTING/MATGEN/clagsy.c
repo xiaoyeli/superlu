@@ -9,14 +9,14 @@
 
 static complex c_b1 = {0.f,0.f};
 static complex c_b2 = {1.f,0.f};
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 
-/* Subroutine */ int clagsy_slu(integer *n, integer *k, real *d, complex *a, 
-	integer *lda, integer *iseed, complex *work, integer *info)
+/* Subroutine */ int clagsy_slu(int *n, int *k, real *d, complex *a,
+	int *lda, int *iseed, complex *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6, i__7, i__8, 
+    int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6, i__7, i__8,
 	    i__9;
     doublereal d__1;
     complex q__1, q__2, q__3, q__4;
@@ -26,26 +26,26 @@ static integer c__1 = 1;
     void c_div(complex *, complex *, complex *);
 
     /* Local variables */
-    static integer i, j;
-    extern /* Subroutine */ int cgerc_(integer *, integer *, complex *, 
-	    complex *, integer *, complex *, integer *, complex *, integer *);
+    static int i, j;
+    extern /* Subroutine */ int cgerc_(int *, int *, complex *,
+	    complex *, int *, complex *, int *, complex *, int *);
     static complex alpha;
-    extern /* Subroutine */ int cscal_(integer *, complex *, complex *, 
-	    integer *);
-    extern /* Complex */ void cdotc_(complex *, integer *, complex *, integer
-	    *, complex *, integer *);
-    extern /* Subroutine */ int cgemv_(char *, integer *, integer *, complex *
-	    , complex *, integer *, complex *, integer *, complex *, complex *
-	    , integer *), caxpy_(integer *, complex *, complex *, 
-	    integer *, complex *, integer *), csymv_sluslu(char *, integer *, 
-	    complex *, complex *, integer *, complex *, integer *, complex *, 
-	    complex *, integer *);
-    extern real scnrm2_(integer *, complex *, integer *);
-    static integer ii, jj;
+    extern /* Subroutine */ int cscal_(int *, complex *, complex *,
+	    int *);
+    extern /* Complex */ void cdotc_(complex *, int *, complex *, int
+	    *, complex *, int *);
+    extern /* Subroutine */ int cgemv_(char *, int *, int *, complex *
+	    , complex *, int *, complex *, int *, complex *, complex *
+	    , int *), caxpy_(int *, complex *, complex *,
+	    int *, complex *, int *), csymv_sluslu(char *, int *,
+	    complex *, complex *, int *, complex *, int *, complex *,
+	    complex *, int *);
+    extern real scnrm2_(int *, complex *, int *);
+    static int ii, jj;
     static complex wa, wb;
-    extern /* Subroutine */ int clacgv_slu(integer *, complex *, integer *);
+    extern /* Subroutine */ int clacgv_slu(int *, complex *, int *);
     static real wn;
-    extern /* Subroutine */ int clarnv_slu(integer *, integer *, integer *, complex *);
+    extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
     static complex tau;
 

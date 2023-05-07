@@ -10,38 +10,38 @@
 
 static doublereal c_b9 = 0.;
 static doublereal c_b10 = 1.;
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 
-/* Subroutine */ int dlaror_slu(char *side, char *init, integer *m, integer *n, 
-	doublereal *a, integer *lda, integer *iseed, doublereal *x, integer *
+/* Subroutine */ int dlaror_slu(char *side, char *init, int *m, int *n,
+	doublereal *a, int *lda, int *iseed, doublereal *x, int *
 	info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2;
+    int a_dim1, a_offset, i__1, i__2;
     doublereal d__1;
 
     /* Builtin functions */
     double d_sign(doublereal *, doublereal *);
 
     /* Local variables */
-    static integer kbeg;
-    extern /* Subroutine */ int dger_(integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    integer *);
-    static integer jcol, irow;
-    extern doublereal dnrm2_(integer *, doublereal *, integer *);
-    static integer j;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
-	    integer *);
-    extern /* Subroutine */ int dgemv_(char *, integer *, integer *, 
-	    doublereal *, doublereal *, integer *, doublereal *, integer *, 
-	    doublereal *, doublereal *, integer *);
-    static integer ixfrm, itype, nxfrm;
+    static int kbeg;
+    extern /* Subroutine */ int dger_(int *, int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *, doublereal *,
+	    int *);
+    static int jcol, irow;
+    extern doublereal dnrm2_(int *, doublereal *, int *);
+    static int j;
+    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+	    int *);
+    extern /* Subroutine */ int dgemv_(char *, int *, int *,
+	    doublereal *, doublereal *, int *, doublereal *, int *,
+	    doublereal *, doublereal *, int *);
+    static int ixfrm, itype, nxfrm;
     static doublereal xnorm;
-    extern doublereal dlarnd_slu(integer *, integer *);
-    extern /* Subroutine */ int dlaset_slu(char *, integer *, integer *, 
-					doublereal *, doublereal *, doublereal *, integer *);
+    extern doublereal dlarnd_slu(int *, int *);
+    extern /* Subroutine */ int dlaset_slu(char *, int *, int *,
+					doublereal *, doublereal *, doublereal *, int *);
     extern int input_error(char *, int *);
     static doublereal factor, xnorms;
 

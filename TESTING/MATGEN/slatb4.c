@@ -10,8 +10,8 @@
 
 /* Table of constant values */
 
-/* Subroutine */ int slatb4_slu(char *path, integer *imat, integer *m, integer *
-	n, char *type, integer *kl, integer *ku, real *anorm, integer *mode, 
+/* Subroutine */ int slatb4_slu(char *path, int *imat, int *m, int *
+	n, char *type, int *kl, int *ku, real *anorm, int *mode,
 	real *cndnum, char *dist)
 {
     /* Initialized data */
@@ -19,7 +19,7 @@
     static bool first = true;
 
     /* System generated locals */
-    integer i__1;
+    int i__1;
 
     /* Builtin functions */
     double sqrt(doublereal);
@@ -29,7 +29,7 @@
     static char c2[2];
     extern /* Subroutine */ int slabad_slu(real *, real *);
     extern float smach(char *);
-    static integer mat;
+    static int mat;
     static real eps;
 
 

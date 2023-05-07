@@ -12,18 +12,18 @@
 
 static complex c_b1 = {0.f,0.f};
 static complex c_b2 = {1.f,0.f};
-static integer c__1 = 1;
-static integer c__0 = 0;
-static integer c__5 = 5;
+static int c__1 = 1;
+static int c__0 = 0;
+static int c__5 = 5;
 
-/* Subroutine */ int clatme_slu(integer *n, char *dist, integer *iseed, complex *
-	d, integer *mode, real *cond, complex *dmax__, char *ei, char *rsign, 
-	char *upper, char *sim, real *ds, integer *modes, real *conds, 
-	integer *kl, integer *ku, real *anorm, complex *a, integer *lda, 
-	complex *work, integer *info)
+/* Subroutine */ int clatme_slu(int *n, char *dist, int *iseed, complex *
+	d, int *mode, real *cond, complex *dmax__, char *ei, char *rsign,
+	char *upper, char *sim, real *ds, int *modes, real *conds,
+	int *kl, int *ku, real *anorm, complex *a, int *lda,
+	complex *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2;
+    int a_dim1, a_offset, i__1, i__2;
     real r__1, r__2;
     complex q__1, q__2;
 
@@ -33,45 +33,45 @@ static integer c__5 = 5;
 
     /* Local variables */
     static bool bads;
-    static integer isim;
+    static int isim;
     static real temp;
-    static integer i, j;
-    extern /* Subroutine */ int cgerc_(integer *, integer *, complex *, 
-	    complex *, integer *, complex *, integer *, complex *, integer *);
+    static int i, j;
+    extern /* Subroutine */ int cgerc_(int *, int *, complex *,
+	    complex *, int *, complex *, int *, complex *, int *);
     static complex alpha;
-    extern /* Subroutine */ int cscal_(integer *, complex *, complex *, 
-	    integer *);
-    extern /* Subroutine */ int cgemv_(char *, integer *, integer *, complex *
-	    , complex *, integer *, complex *, integer *, complex *, complex *
-	    , integer *);
-    static integer iinfo;
+    extern /* Subroutine */ int cscal_(int *, complex *, complex *,
+	    int *);
+    extern /* Subroutine */ int cgemv_(char *, int *, int *, complex *
+	    , complex *, int *, complex *, int *, complex *, complex *
+	    , int *);
+    static int iinfo;
     static real tempa[1];
-    static integer icols, idist;
-    extern /* Subroutine */ int ccopy_(integer *, complex *, integer *, 
-	    complex *, integer *);
-    static integer irows;
-    extern /* Subroutine */ int clatm1_(integer *, real *, integer *, integer 
-	    *, integer *, complex *, integer *, integer *), slatm1_slu(integer *,
-	     real *, integer *, integer *, integer *, real *, integer *, 
-	    integer *);
-    static integer ic, jc;
-    extern doublereal clange_(char *, integer *, integer *, complex *, 
-	    integer *, real *);
-    static integer ir;
-    extern /* Subroutine */ int clarge_slu(integer *, complex *, integer *, 
-	    integer *, complex *, integer *), clarfg_(integer *, complex *, 
-	    complex *, integer *, complex *), clacgv_slu(integer *, complex *, 
-	    integer *);
-    extern /* Complex */ void clarnd_slu(complex *, integer *, integer *);
+    static int icols, idist;
+    extern /* Subroutine */ int ccopy_(int *, complex *, int *,
+	    complex *, int *);
+    static int irows;
+    extern /* Subroutine */ int clatm1_(int *, real *, int *, int
+	    *, int *, complex *, int *, int *), slatm1_slu(int *,
+	     real *, int *, int *, int *, real *, int *,
+	    int *);
+    static int ic, jc;
+    extern doublereal clange_(char *, int *, int *, complex *,
+	    int *, real *);
+    static int ir;
+    extern /* Subroutine */ int clarge_slu(int *, complex *, int *,
+	    int *, complex *, int *), clarfg_(int *, complex *,
+	    complex *, int *, complex *), clacgv_slu(int *, complex *,
+	    int *);
+    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
     static real ralpha;
-    extern /* Subroutine */ int csscal_(integer *, real *, complex *, integer 
-	    *), claset_slu(char *, integer *, integer *, complex *, complex *, 
-	    complex *, integer *),
-	     clarnv_slu(integer *, integer *, integer *, complex *);
+    extern /* Subroutine */ int csscal_(int *, real *, complex *, int
+	    *), claset_slu(char *, int *, int *, complex *, complex *,
+	    complex *, int *),
+	     clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
-    static integer irsign, iupper;
+    static int irsign, iupper;
     static complex xnorms;
-    static integer jcr;
+    static int jcr;
     static complex tau;
 
 

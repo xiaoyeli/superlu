@@ -11,18 +11,18 @@
 /* Table of constant values */
 
 static complex c_b1 = {0.f,0.f};
-static integer c__1 = 1;
-static integer c__5 = 5;
+static int c__1 = 1;
+static int c__5 = 5;
 static bool c_true = true;
 static bool c_false = false;
 
-/* Subroutine */ int clatms_slu(integer *m, integer *n, char *dist, integer *
-	iseed, char *sym, real *d, integer *mode, real *cond, real *dmax__, 
-	integer *kl, integer *ku, char *pack, complex *a, integer *lda, 
-	complex *work, integer *info)
+/* Subroutine */ int clatms_slu(int *m, int *n, char *dist, int *
+	iseed, char *sym, real *d, int *mode, real *cond, real *dmax__,
+	int *kl, int *ku, char *pack, complex *a, int *lda,
+	complex *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
+    int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     real r__1, r__2, r__3;
     doublereal d__1;
     complex q__1, q__2, q__3;
@@ -33,49 +33,49 @@ static bool c_false = false;
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer ilda, icol;
+    static int ilda, icol;
     static real temp;
     static bool csym;
-    static integer irow, isym;
+    static int irow, isym;
     static complex c;
-    static integer i, j, k;
+    static int i, j, k;
     static complex s;
     static real alpha, angle;
-    static integer ipack;
+    static int ipack;
     static real realc;
-    static integer ioffg;
-    static integer iinfo;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *);
+    static int ioffg;
+    static int iinfo;
+    extern /* Subroutine */ int sscal_(int *, real *, real *, int *);
     static complex ctemp;
-    static integer idist, mnmin, iskew;
+    static int idist, mnmin, iskew;
     static complex extra, dummy;
-    extern /* Subroutine */ int slatm1_slu(integer *, real *, integer *, integer 
-	    *, integer *, real *, integer *, integer *);
-    static integer ic, jc, nc;
-    extern /* Subroutine */ int clagge_slu(integer *, integer *, integer *, 
-	    integer *, real *, complex *, integer *, integer *, complex *, 
-	    integer *), claghe_slu(integer *, integer *, real *, complex *, 
-	    integer *, integer *, complex *, integer *);
-    static integer il;
+    extern /* Subroutine */ int slatm1_slu(int *, real *, int *, int
+	    *, int *, real *, int *, int *);
+    static int ic, jc, nc;
+    extern /* Subroutine */ int clagge_slu(int *, int *, int *,
+	    int *, real *, complex *, int *, int *, complex *,
+	    int *), claghe_slu(int *, int *, real *, complex *,
+	    int *, int *, complex *, int *);
+    static int il;
     static complex ct;
-    static integer iendch, ir, jr, ipackg, mr;
-    extern /* Complex */ void clarnd_slu(complex *, integer *, integer *);
-    static integer minlda;
+    static int iendch, ir, jr, ipackg, mr;
+    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
+    static int minlda;
     static complex st;
-    extern /* Subroutine */ int claset_slu(char *, integer *, integer *, complex 
-	    *, complex *, complex *, integer *), clartg_slu(complex *, 
+    extern /* Subroutine */ int claset_slu(char *, int *, int *, complex
+	    *, complex *, complex *, int *), clartg_slu(complex *,
 	    complex *, real *, complex *, complex *), 
-	    clagsy_slu(integer *, integer *, real *, complex *, 
-	    integer *, integer *, complex *, integer *);
+	    clagsy_slu(int *, int *, real *, complex *,
+	    int *, int *, complex *, int *);
     extern int input_error(char *, int *);
-    extern doublereal slarnd_slu(integer *, integer *);
+    extern doublereal slarnd_slu(int *, int *);
     extern /* Subroutine */ int clarot_slu(bool *, bool *, bool *,
-	    integer *, complex *, complex *, complex *, integer *, complex *, 
+	    int *, complex *, complex *, complex *, int *, complex *,
 	    complex *);
     static bool iltemp, givens;
-    static integer ioffst, irsign;
+    static int ioffst, irsign;
     static bool ilextr, topdwn;
-    static integer ir1, ir2, isympk, jch, llb, jkl, jku, uub;
+    static int ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
 
 /*  -- LAPACK test routine (version 2.0) --   

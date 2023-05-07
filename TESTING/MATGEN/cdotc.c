@@ -5,20 +5,20 @@
 
 #include "f2c.h"
 
-/* Complex */ void cdotc_(complex * ret_val, integer *n, complex *cx, integer
-	*incx, complex *cy, integer *incy)
+/* Complex */ void cdotc_(complex * ret_val, int *n, complex *cx, int
+	*incx, complex *cy, int *incy)
 {
     /* System generated locals */
-    integer i__1, i__2;
+    int i__1, i__2;
     complex q__1, q__2, q__3;
 
     /* Builtin functions */
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer i;
+    static int i;
     static complex ctemp;
-    static integer ix, iy;
+    static int ix, iy;
 
 
 /*     forms the dot product of two vectors, conjugating the first   

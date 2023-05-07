@@ -9,19 +9,19 @@
 
 /* Table of constant values */
 
-static integer c__1 = 1;
+static int c__1 = 1;
 static doublereal c_b22 = 0.;
 static bool c_true = true;
 static bool c_false = false;
 
 int
-dlatms_slu(integer *m, integer *n, char *dist, integer *
-	iseed, char *sym, doublereal *d, integer *mode, doublereal *cond, 
-	doublereal *dmax__, integer *kl, integer *ku, char *pack,
-	doublereal *a, integer *lda, doublereal *work, integer *info)
+dlatms_slu(int *m, int *n, char *dist, int *
+	iseed, char *sym, doublereal *d, int *mode, doublereal *cond,
+	doublereal *dmax__, int *kl, int *ku, char *pack,
+	doublereal *a, int *lda, doublereal *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
+    int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     doublereal d__1, d__2, d__3;
     bool L__1;
 
@@ -29,41 +29,41 @@ dlatms_slu(integer *m, integer *n, char *dist, integer *
     double cos(doublereal), sin(doublereal);
 
     /* Local variables */
-    static integer ilda, icol;
+    static int ilda, icol;
     static doublereal temp;
-    static integer irow, isym;
+    static int irow, isym;
     static doublereal c;
-    static integer i, j, k;
+    static int i, j, k;
     static doublereal s, alpha, angle;
-    static integer ipack;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
-	    integer *);
-    static integer ioffg;
-    static integer iinfo, idist, mnmin;
-    extern /* Subroutine */ int dcopy_(integer *, doublereal *, integer *, 
-	    doublereal *, integer *);
-    static integer iskew;
+    static int ipack;
+    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+	    int *);
+    static int ioffg;
+    static int iinfo, idist, mnmin;
+    extern /* Subroutine */ int dcopy_(int *, doublereal *, int *,
+	    doublereal *, int *);
+    static int iskew;
     static doublereal extra, dummy;
-    extern /* Subroutine */ int dlatm1_slu(integer *, doublereal *, integer *, 
-	    integer *, integer *, doublereal *, integer *, integer *);
-    static integer ic, jc, nc;
-    extern /* Subroutine */ int dlagge_slu(integer *, integer *, integer *, 
-	    integer *, doublereal *, doublereal *, integer *, integer *, 
-	    doublereal *, integer *);
-    static integer il, iendch, ir, jr, ipackg, mr, minlda;
-    extern doublereal dlarnd_slu(integer *, integer *);
-    extern /* Subroutine */ int dlaset_slu(char *, integer *, integer *, 
-	    doublereal *, doublereal *, doublereal *, integer *), 
+    extern /* Subroutine */ int dlatm1_slu(int *, doublereal *, int *,
+	    int *, int *, doublereal *, int *, int *);
+    static int ic, jc, nc;
+    extern /* Subroutine */ int dlagge_slu(int *, int *, int *,
+	    int *, doublereal *, doublereal *, int *, int *,
+	    doublereal *, int *);
+    static int il, iendch, ir, jr, ipackg, mr, minlda;
+    extern doublereal dlarnd_slu(int *, int *);
+    extern /* Subroutine */ int dlaset_slu(char *, int *, int *,
+	    doublereal *, doublereal *, doublereal *, int *),
 	    dlartg_slu(doublereal *, doublereal *, doublereal *, doublereal *, doublereal *),
-	    dlagsy_slu(integer *, integer *, doublereal *, doublereal *, integer *, 
-	    integer *, doublereal *, integer *), dlarot_slu(bool *, bool *,
-	     bool *, integer *, doublereal *, doublereal *, doublereal *,
-	    integer *, doublereal *, doublereal *);
+	    dlagsy_slu(int *, int *, doublereal *, doublereal *, int *,
+	    int *, doublereal *, int *), dlarot_slu(bool *, bool *,
+	     bool *, int *, doublereal *, doublereal *, doublereal *,
+	    int *, doublereal *, doublereal *);
     extern int input_error(char *, int *);
     static bool iltemp, givens;
-    static integer ioffst, irsign;
+    static int ioffst, irsign;
     static bool ilextr, topdwn;
-    static integer ir1, ir2, isympk, jch, llb, jkl, jku, uub;
+    static int ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
 
 /*  -- LAPACK test routine (version 2.0) --   

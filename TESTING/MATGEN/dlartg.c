@@ -52,14 +52,14 @@
     /* Initialized data */
     static bool first = true;
     /* System generated locals */
-    integer i__1;
+    int i__1;
     doublereal d__1, d__2;
     /* Builtin functions */
-    double log(doublereal), pow_di(doublereal *, integer *), sqrt(doublereal);
+    double log(doublereal), pow_di(doublereal *, int *), sqrt(doublereal);
     /* Local variables */
-    static integer i;
+    static int i;
     static doublereal scale;
-    static integer count;
+    static int count;
     static doublereal f1, g1, safmn2, safmx2;
     extern doublereal dmach(char *);
     static doublereal safmin, eps;
@@ -71,7 +71,7 @@
 	safmin = dmach("S");
 	eps = dmach("E");
 	d__1 = dmach("B");
-	i__1 = (integer) (log(safmin / eps) / log(dmach("B")) / 2.);
+	i__1 = (int) (log(safmin / eps) / log(dmach("B")) / 2.);
 	safmn2 = pow_di(&d__1, &i__1);
 	safmx2 = 1. / safmn2;
     }

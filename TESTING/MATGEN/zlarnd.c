@@ -5,8 +5,8 @@
 
 #include "f2c.h"
 
-/* Double Complex */ void zlarnd_slu(doublecomplex * ret_val, integer *idist,
-	integer *iseed)
+/* Double Complex */ void zlarnd_slu(doublecomplex * ret_val, int *idist,
+	int *iseed)
 {
     /* System generated locals */
     doublereal d__1, d__2;
@@ -18,7 +18,7 @@
 
     /* Local variables */
     static doublereal t1, t2;
-    extern doublereal dlaran_slu(integer *);
+    extern doublereal dlaran_slu(int *);
     extern int input_error(char *, int *);
 
 

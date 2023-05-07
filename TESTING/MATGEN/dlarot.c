@@ -8,26 +8,26 @@
 
 /* Table of constant values */
 
-static integer c__4 = 4;
-static integer c__8 = 8;
-static integer c__1 = 1;
+static int c__4 = 4;
+static int c__8 = 8;
+static int c__1 = 1;
 
 /* Subroutine */
 int dlarot_slu(bool *lrows, bool *lleft, bool *lright,
-	integer *nl, doublereal *c, doublereal *s, doublereal *a, integer *
+	int *nl, doublereal *c, doublereal *s, doublereal *a, int *
 	lda, doublereal *xleft, doublereal *xright)
 {
     /* System generated locals */
-    integer i__1;
+    int i__1;
 
     /* Local variables */
-    static integer iinc;
-    extern /* Subroutine */ int drot_(integer *, doublereal *, integer *, 
-	    doublereal *, integer *, doublereal *, doublereal *);
-    static integer inext, ix, iy, nt;
+    static int iinc;
+    extern /* Subroutine */ int drot_(int *, doublereal *, int *,
+	    doublereal *, int *, doublereal *, doublereal *);
+    static int inext, ix, iy, nt;
     static doublereal xt[2], yt[2];
     extern int input_error(char *, int *);
-    static integer iyt;
+    static int iyt;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

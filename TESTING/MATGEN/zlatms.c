@@ -10,18 +10,18 @@
 /* Table of constant values */
 
 static doublecomplex c_b1 = {0.,0.};
-static integer c__1 = 1;
-static integer c__5 = 5;
+static int c__1 = 1;
+static int c__5 = 5;
 static bool c_true = true;
 static bool c_false = false;
 
-/* Subroutine */ int zlatms_slu(integer *m, integer *n, char *dist, integer *
-	iseed, char *sym, doublereal *d, integer *mode, doublereal *cond, 
-	doublereal *dmax__, integer *kl, integer *ku, char *pack, 
-	doublecomplex *a, integer *lda, doublecomplex *work, integer *info)
+/* Subroutine */ int zlatms_slu(int *m, int *n, char *dist, int *
+	iseed, char *sym, doublereal *d, int *mode, doublereal *cond,
+	doublereal *dmax__, int *kl, int *ku, char *pack,
+	doublecomplex *a, int *lda, doublecomplex *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
+    int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     doublereal d__1, d__2, d__3;
     doublecomplex z__1, z__2, z__3;
     bool L__1;
@@ -31,53 +31,53 @@ static bool c_false = false;
     void d_cnjg(doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static integer ilda, icol;
+    static int ilda, icol;
     static doublereal temp;
-    static integer irow, isym;
+    static int irow, isym;
     static bool zsym;
     static doublecomplex c;
-    static integer i, j, k;
+    static int i, j, k;
     static doublecomplex s;
     static doublereal alpha, angle;
-    static integer ipack;
+    static int ipack;
     static doublereal realc;
-    static integer ioffg;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
-	    integer *);
-    static integer iinfo;
+    static int ioffg;
+    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+	    int *);
+    static int iinfo;
     static doublecomplex ctemp;
-    static integer idist, mnmin, iskew;
+    static int idist, mnmin, iskew;
     static doublecomplex extra, dummy;
-    extern /* Subroutine */ int dlatm1_slu(integer *, doublereal *, integer *, 
-	    integer *, integer *, doublereal *, integer *, integer *);
-    static integer ic, jc, nc, il;
+    extern /* Subroutine */ int dlatm1_slu(int *, doublereal *, int *,
+	    int *, int *, doublereal *, int *, int *);
+    static int ic, jc, nc, il;
     static doublecomplex ct;
-    static integer iendch, ir, jr, ipackg, mr, minlda;
-    extern doublereal dlarnd_slu(integer *, integer *);
+    static int iendch, ir, jr, ipackg, mr, minlda;
+    extern doublereal dlarnd_slu(int *, int *);
     static doublecomplex st;
-    extern /* Subroutine */ int zlagge_slu(integer *, integer *, integer *, 
-	    integer *, doublereal *, doublecomplex *, integer *, integer *, 
-	    doublecomplex *, integer *), zlaghe_slu(integer *, integer *, 
-	    doublereal *, doublecomplex *, integer *, integer *, 
-						 doublecomplex *, integer *);
+    extern /* Subroutine */ int zlagge_slu(int *, int *, int *,
+	    int *, doublereal *, doublecomplex *, int *, int *,
+	    doublecomplex *, int *), zlaghe_slu(int *, int *,
+	    doublereal *, doublecomplex *, int *, int *,
+						 doublecomplex *, int *);
     extern int input_error(char *, int *);
     static bool iltemp, givens;
-    static integer ioffst, irsign;
-    extern /* Double Complex */ void zlarnd_slu(doublecomplex *, integer *, 
-	    integer *);
-    extern /* Subroutine */ int zlaset_slu(char *, integer *, integer *, 
-	    doublecomplex *, doublecomplex *, doublecomplex *, integer *), zlartg_slu(doublecomplex *, doublecomplex *, doublereal *, 
+    static int ioffst, irsign;
+    extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *,
+	    int *);
+    extern /* Subroutine */ int zlaset_slu(char *, int *, int *,
+	    doublecomplex *, doublecomplex *, doublecomplex *, int *), zlartg_slu(doublecomplex *, doublecomplex *, doublereal *,
 	    doublecomplex *, doublecomplex *);
     static bool ilextr;
-    extern /* Subroutine */ int zlagsy_slu(integer *, integer *, doublereal *, 
-	    doublecomplex *, integer *, integer *, doublecomplex *, integer *)
+    extern /* Subroutine */ int zlagsy_slu(int *, int *, doublereal *,
+	    doublecomplex *, int *, int *, doublecomplex *, int *)
 	    ;
     static bool topdwn;
-    static integer ir1, ir2, isympk;
+    static int ir1, ir2, isympk;
     extern /* Subroutine */ int zlarot_slu(bool *, bool *, bool *,
-	    integer *, doublecomplex *, doublecomplex *, doublecomplex *, 
-	    integer *, doublecomplex *, doublecomplex *);
-    static integer jch, llb, jkl, jku, uub;
+	    int *, doublecomplex *, doublecomplex *, doublecomplex *,
+	    int *, doublecomplex *, doublecomplex *);
+    static int jch, llb, jkl, jku, uub;
 
 
 /*  -- LAPACK test routine (version 2.0) --   

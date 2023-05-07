@@ -6,24 +6,24 @@
 #include <stdlib.h>
 #include "f2c.h"
 
-/* Subroutine */ int slatm1_slu(integer *mode, real *cond, integer *irsign, 
-	integer *idist, integer *iseed, real *d, integer *n, integer *info)
+/* Subroutine */ int slatm1_slu(int *mode, real *cond, int *irsign,
+	int *idist, int *iseed, real *d, int *n, int *info)
 {
     /* System generated locals */
-    integer i__1, i__2;
+    int i__1, i__2;
     doublereal d__1, d__2;
 
     /* Builtin functions */
-    double pow_dd(doublereal *, doublereal *), pow_ri(real *, integer *), log(
+    double pow_dd(doublereal *, doublereal *), pow_ri(real *, int *), log(
 	    doublereal), exp(doublereal);
 
     /* Local variables */
     static real temp;
-    static integer i;
+    static int i;
     static real alpha;
     extern int input_error(char *, int *);
-    extern doublereal dlaran_sluslu(integer *);
-    extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real 
+    extern doublereal dlaran_sluslu(int *);
+    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, real
 	    *);
 
 

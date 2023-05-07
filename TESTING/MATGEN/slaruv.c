@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int slaruv_slu(integer *iseed, integer *n, real *x)
+/* Subroutine */ int slaruv_slu(int *iseed, int *n, real *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -53,7 +53,7 @@
    Parameter adjustments   
        Function Body */
     /* Initialized data */
-    static integer mm[512]	/* was [128][4] */ = { 494,2637,255,2008,1253,
+    static int mm[512]	/* was [128][4] */ = { 494,2637,255,2008,1253,
 	    3344,4084,1739,3143,3468,688,1657,1238,3166,1292,3422,1270,2016,
 	    154,2862,697,1706,491,931,1444,444,3577,3944,2184,1661,3482,657,
 	    3023,3618,1267,1828,164,3798,3087,2400,2870,3876,1905,1593,1797,
@@ -94,7 +94,7 @@
 	    3537,517,3017,2141,1537 };
     /* System generated locals */
     /* Local variables */
-    static integer i, i1, i2, i3, i4, it1, it2, it3, it4;
+    static int i, i1, i2, i3, i4, it1, it2, it3, it4;
 
 
 #define MM(I) mm[(I)]
@@ -127,7 +127,7 @@
 		i4 * MM(i - 1);
 	it1 %= 4096;
 
-/*        Convert 48-bit integer to a real number in the interval (0,1
+/*        Convert 48-bit int to a real number in the interval (0,1
 ) */
 
 	X(i) = ((real) it1 + ((real) it2 + ((real) it3 + (real) it4 * 

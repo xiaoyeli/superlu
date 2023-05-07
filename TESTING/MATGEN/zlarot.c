@@ -8,28 +8,28 @@
 
 /* Table of constant values */
 
-static integer c__4 = 4;
-static integer c__8 = 8;
+static int c__4 = 4;
+static int c__8 = 8;
 
 /* Subroutine */
 int zlarot_slu(bool *lrows, bool *lleft, bool *lright,
-	integer *nl, doublecomplex *c, doublecomplex *s, doublecomplex *a, 
-	integer *lda, doublecomplex *xleft, doublecomplex *xright)
+	int *nl, doublecomplex *c, doublecomplex *s, doublecomplex *a,
+	int *lda, doublecomplex *xleft, doublecomplex *xright)
 {
     /* System generated locals */
-    integer i__1, i__2, i__3, i__4;
+    int i__1, i__2, i__3, i__4;
     doublecomplex z__1, z__2, z__3, z__4, z__5, z__6;
 
     /* Builtin functions */
     void d_cnjg(doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static integer iinc, j, inext;
+    static int iinc, j, inext;
     static doublecomplex tempx;
-    static integer ix, iy, nt;
+    static int ix, iy, nt;
     static doublecomplex xt[2], yt[2];
     extern int input_error(char *, int *);
-    static integer iyt;
+    static int iyt;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

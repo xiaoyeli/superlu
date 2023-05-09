@@ -82,7 +82,7 @@ option(enable_single    "Enable single precision library" ON)
 option(enable_double    "Enable double precision library" ON)
 option(enable_complex   "Enable complex precision library" ON)
 option(enable_complex16 "Enable complex16 precision library" ON)
-# option(enable_examples  "Build examples" ON)
+option(enable_examples  "Build examples" ON)
 
 #-- BLAS
 option(TPL_ENABLE_INTERNAL_BLASLIB  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
@@ -219,11 +219,12 @@ if(enable_doc)
   add_subdirectory(DOC)
 endif()
 
+######################################################################
+#
 # Generate various configure files with proper definitions
+#
+######################################################################
 
-# file(WRITE "make.defs" "# can be exposed to users"
-#  ${CMAKE_C_COMPILER}  )
-# configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
 configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
  
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)

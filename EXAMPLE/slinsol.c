@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -16,11 +16,31 @@ at the top-level directory.
  * October 15, 2003
  *
  */
+
+/*! \file
+ * Example: use simple driver DGSSV to solve a linear system one time
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "slu_sdefs.h"
 
 int main(int argc, char *argv[])
 {
+    // ensure right number of arguments are passed
+    if (argc != 2) {
+        printf("slinsol requires one additional argument, the path to the matrix file %i\n", argc);
+        return EXIT_FAILURE;
+    }
+
+    // print out help
+    if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
+        printf("use simple driver DGSSV to solve a linear system one time\n");
+        printf("requires one additional argument, the path to the matrix file\n");
+        return EXIT_SUCCESS;
+    }
+
     SuperMatrix A;
     NCformat *Astore;
     float   *a;
@@ -38,7 +58,7 @@ int main(int argc, char *argv[])
     mem_usage_t   mem_usage;
     superlu_options_t options;
     SuperLUStat_t stat;
-    FILE      *fp = stdin;
+    FILE    *fp = fopen(argv[1], "r");
     
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Enter main()");
@@ -109,9 +129,10 @@ int main(int argc, char *argv[])
 	}
     }
 
-    if ( options.PrintStat ) StatPrint(&stat);
-    StatFree(&stat);
+    if (options.PrintStat)
+        StatPrint(&stat);
 
+    StatFree(&stat);
     SUPERLU_FREE (rhs);
     SUPERLU_FREE (xact);
     SUPERLU_FREE (perm_r);
@@ -124,5 +145,6 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
-}
 
+    return EXIT_SUCCESS;
+}

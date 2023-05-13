@@ -1,8 +1,3 @@
-
-/*! @file cfgmr.c
- * \brief flexible GMRES from ITSOL developed by Yousef Saad.
- */
-
 /* ITSOL COPYRIGHT
 
 Copyright (C) 2006, the University of Minnesota 
@@ -28,6 +23,13 @@ General Public License for more details.
 
 For information on ITSOL contact saad@cs.umn.edu
 */
+
+/*! \file
+ * \brief Flexible GMRES from ITSOL developed by Yousef Saad.
+ *
+ * \ingroup Example
+ */
+
 #include <unistd.h>
 #include "slu_cdefs.h"
 

@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -9,20 +9,21 @@ The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 
-/*! @file citersol.c
- * \brief Example #1 showing how to use ILU to precondition GMRES
- *
- * <pre>
+/*
  * -- SuperLU routine (version 5.0) --
  * Lawrence Berkeley National Laboratory
  * November, 2010
  * August, 2011
+ */
+
+/*! \file
+ * \brief Example #1 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,
  * and the preconditioned GMRES is applied to the equilibrated system.
  * The driver routine CGSISX is called twice to perform factorization
  * and apply preconditioner separately.
- * 
+ *
  * Note that CGSISX performs the following factorization:
  *     Pr*Dr*A*Dc*Pc^T ~= LU
  * with Pr being obtained from MC64 statically then partial pivoting
@@ -33,8 +34,8 @@ at the top-level directory.
  * Then GMRES step requires requires 2 procedures:
  *   1) Apply preconditioner M^{-1} = Pc^T*U^{-1}*L^{-1}*Pr
  *   2) Matrix-vector multiplication: w = A1*v
- * 
- * </pre>
+ *
+ * \ingroup Example
  */
 
 #include <unistd.h>

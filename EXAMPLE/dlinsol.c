@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -16,6 +16,13 @@ at the top-level directory.
  * October 15, 2003
  *
  */
+
+/*! \file
+ * \brief LU factorization from dgstrf (DGSSV)
+ *
+ * \ingroup Example
+ */
+
 #include <unistd.h>
 #include "slu_ddefs.h"
 

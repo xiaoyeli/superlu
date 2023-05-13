@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -18,6 +18,13 @@ at the top-level directory.
  * Last update: July 10, 2015
  *
  */
+
+/*! \file
+ * \brief LU factorization from cgstrf (CGSSVX)
+ *
+ * \ingroup Example
+ */
+
 #include <unistd.h>
 #include "slu_cdefs.h"
 

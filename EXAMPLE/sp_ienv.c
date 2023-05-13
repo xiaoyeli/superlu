@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -8,23 +8,21 @@ All rights reserved.
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
-/*! @file EXAMPLE/sp_ienv.c
- * \brief Chooses machine-dependent parameters for the local environment.
- *
- * <pre>
- * -- SuperLU routine (version 4.1) --
+
+/* -- SuperLU routine (version 4.1) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * November, 2010
- * </pre>
-*/
-
-/*
- * File name:		sp_ienv.c
  * History:             Modified from lapack routine ILAENV
  */
-#include "slu_sdefs.h"
 
+/*! \file
+ * \brief Chooses machine-dependent parameters for the local environment.
+ *
+ * \ingroup Example
+*/
+
+#include "slu_sdefs.h"
 
 /*! \brief
 

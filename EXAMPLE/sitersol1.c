@@ -48,10 +48,17 @@ SuperMatrix *GLOBAL_A, *GLOBAL_A_ORIG, *GLOBAL_L, *GLOBAL_U;
 SuperLUStat_t *GLOBAL_STAT;
 mem_usage_t   *GLOBAL_MEM_USAGE;
 
-void spsolve(int n,
-                  float x[], /* solution */
-                  float y[]  /* right-hand side */
-)
+/*!
+ * \brief Performs sgsisx with original matrix A.
+ *
+ * See documentation of sgsisx for more details.
+ *
+ * \param [in] n     Dimension of matrices
+ * \param [out] x    Solution
+ * \param [in,out] y Right-hand side
+ */
+
+void spsolve(int n, float x[], float y[])
 {
     SuperMatrix *A = GLOBAL_A, *L = GLOBAL_L, *U = GLOBAL_U;
     SuperLUStat_t *stat = GLOBAL_STAT;
@@ -81,6 +88,18 @@ void spsolve(int n,
 #endif
 }
 
+/*!
+ * \brief Performs matrix-vector multipliation sp_sgemv with original matrix A.
+ *
+ * The operations is y := alpha*A*x + beta*y. See documentation of sp_sgemv
+ * for further details.
+ *
+ * \param [in] alpha Scalar factor for A*x
+ * \param [in] x Vector to multiply with A
+ * \param [in] beta Scalar factor for y
+ * \param [in,out] y Vector to add to to matrix-vector multiplication and
+ *                   storage for result.
+ */
 void smatvec_mult(float alpha, float x[], float beta, float y[])
 {
     SuperMatrix *A = GLOBAL_A_ORIG;

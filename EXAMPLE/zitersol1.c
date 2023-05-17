@@ -48,10 +48,16 @@ SuperMatrix *GLOBAL_A, *GLOBAL_A_ORIG, *GLOBAL_L, *GLOBAL_U;
 SuperLUStat_t *GLOBAL_STAT;
 mem_usage_t   *GLOBAL_MEM_USAGE;
 
-void zpsolve(int n,
-                  doublecomplex x[], /* solution */
-                  doublecomplex y[]  /* right-hand side */
-)
+/*!
+ * \brief Performs zgsisx with original matrix A.
+ *
+ * See documentation of zgsisx for more details.
+ *
+ * \param [in] n     Dimension of matrices
+ * \param [out] x    Solution
+ * \param [in,out] y Right-hand side
+ */
+void zpsolve(int n, doublecomplex x[], doublecomplex y[])
 {
     SuperMatrix *A = GLOBAL_A, *L = GLOBAL_L, *U = GLOBAL_U;
     SuperLUStat_t *stat = GLOBAL_STAT;
@@ -81,6 +87,18 @@ void zpsolve(int n,
 #endif
 }
 
+/*!
+ * \brief Performs matrix-vector multipliation sp_zgem with original matrix A.
+ *
+ * The operations is y := alpha*A*x + beta*y. See documentation of sp_zgem
+ * for further details.
+ *
+ * \param [in] alpha Scalar factor for A*x
+ * \param [in] x Vector to multiply with A
+ * \param [in] beta Scalar factor for y
+ * \param [in,out] y Vector to add to to matrix-vector multiplication and
+ *                   storage for result.
+ */
 void zmatvec_mult(doublecomplex alpha, doublecomplex x[], doublecomplex beta, doublecomplex y[])
 {
     SuperMatrix *A = GLOBAL_A_ORIG;

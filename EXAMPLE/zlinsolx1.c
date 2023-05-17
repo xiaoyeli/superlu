@@ -28,21 +28,17 @@ at the top-level directory.
 #include <unistd.h>
 #include "slu_zdefs.h"
 
-int main(int argc, char *argv[])
-{
-/*
- * Purpose
- * =======
- *
- * The driver program ZLINSOLX1.
+/*!
+ * \brief The driver program ZLINSOLX1.
  *
  * This example illustrates how to use ZGSSVX to solve systems with the same
  * A but different right-hand side.
  * In this case, we factorize A only once in the first call to DGSSVX,
  * and reuse the following data structures in the subsequent call to ZGSSVX:
  *     perm_c, perm_r, R, C, L, U.
- * 
  */
+int main(int argc, char *argv[])
+{
     char           equed[1];
     yes_no_t       equil;
     trans_t        trans;
@@ -232,8 +228,8 @@ int main(int argc, char *argv[])
 #endif
 }
 
-/*  
- * Parse command line options to get relaxed snode size, panel size, etc.
+/*!
+ * \brief Parse command line options to get relaxed snode size, panel size, etc.
  */
 void
 parse_command_line(int argc, char *argv[], int *lwork,

@@ -48,6 +48,15 @@ SuperMatrix *GLOBAL_A, *GLOBAL_L, *GLOBAL_U;
 SuperLUStat_t *GLOBAL_STAT;
 mem_usage_t   *GLOBAL_MEM_USAGE;
 
+/*!
+ * \brief Performs cgsisx with original matrix A.
+ *
+ * See documentation of cgsisx for more details.
+ *
+ * \param [in] n     Dimension of matrices
+ * \param [out] x    Solution
+ * \param [in,out] y Right-hand side
+ */
 void cpsolve(int n,
                   complex x[], /* solution */
                   complex y[]  /* right-hand side */
@@ -81,6 +90,18 @@ void cpsolve(int n,
 #endif
 }
 
+/*!
+ * \brief Performs matrix-vector multipliation sp_cgemv with original matrix A.
+ *
+ * The operations is y := alpha*A*x + beta*y. See documentation of sp_cgemv
+ * for further details.
+ *
+ * \param [in] alpha Scalar factor for A*x
+ * \param [in] x Vector to multiply with A
+ * \param [in] beta Scalar factor for y
+ * \param [in,out] y Vector to add to to matrix-vector multiplication and
+ *                   storage for result.
+ */
 void cmatvec_mult(complex alpha, complex x[], complex beta, complex y[])
 {
     SuperMatrix *A = GLOBAL_A;

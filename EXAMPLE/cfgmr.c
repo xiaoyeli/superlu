@@ -39,51 +39,35 @@ extern void cdotc_(complex *, int *, complex [], int *, complex [], int *);
 extern float scnrm2_(int *, complex [], int *);
 
 
+/*!
+ * \brief Simple version of the ARMS preconditioned FGMRES algorithm.
+ *
+ *  Y. S. Dec. 2000. -- Apr. 2008
+ *
+ *  internal work arrays:
+ *  vv      = work array of length [im+1][n] (used to store the Arnoldi
+ *            basis)
+ *  hh      = work array of length [im][im+1] (Householder matrix)
+ *  z       = work array of length [im][n] to store preconditioned vectors
+ *
+ * \param [in] n         Dimension of vectors and matrices.
+ * \param [in] cmatvec   Operation for matrix-vector multiplication.
+ * \param [in] cpsolve   (right) preconditioning operation. Can be a NULL pointer (GMRES without preconditioner)
+ * \param [in] rhs       Real vector of length n containing the right hand side.
+ * \param [in,out] sol   In: Real vector of length n containing an initial guess to the solution on input.
+ *                       Out: Contains an approximate solution (upon successful return).
+ * \param [in] tol       Tolerance for stopping iteration
+ * \param [in] im        Krylov subspace dimension
+ * \param [in,out] itmax In: max number of iterations allowed.
+ *                       Out: number of steps required to converge.
+ * \param [in] fits      If NULL, no output. If not NULL, file handle to output "resid vs time and its".
+ * \return Whether the algorithm finished successfully.
+ */
 int cfgmr(int n,
      void (*cmatvec) (complex, complex[], complex, complex[]),
      void (*cpsolve) (int, complex[], complex[]),
      complex *rhs, complex *sol, double tol, int im, int *itmax, FILE * fits)
 {
-/*----------------------------------------------------------------------
-|                 *** Preconditioned FGMRES ***
-+-----------------------------------------------------------------------
-| This is a simple version of the ARMS preconditioned FGMRES algorithm.
-+-----------------------------------------------------------------------
-| Y. S. Dec. 2000. -- Apr. 2008
-+-----------------------------------------------------------------------
-| on entry:
-|----------
-|
-| rhs     = real vector of length n containing the right hand side.
-| sol     = real vector of length n containing an initial guess to the
-|           solution on input.
-| tol     = tolerance for stopping iteration
-| im      = Krylov subspace dimension
-| (itmax) = max number of iterations allowed.
-| fits    = NULL: no output
-|        != NULL: file handle to output " resid vs time and its"
-|
-| on return:
-|----------
-| fgmr      int =  0 --> successful return.
-|           int =  1 --> convergence not achieved in itmax iterations.
-| sol     = contains an approximate solution (upon successful return).
-| itmax   = has changed. It now contains the number of steps required
-|           to converge --
-+-----------------------------------------------------------------------
-| internal work arrays:
-|----------
-| vv      = work array of length [im+1][n] (used to store the Arnoldi
-|           basis)
-| hh      = work array of length [im][im+1] (Householder matrix)
-| z       = work array of length [im][n] to store preconditioned vectors
-+-----------------------------------------------------------------------
-| subroutines called :
-| matvec - matrix-vector multiplication operation
-| psolve - (right) preconditionning operation
-|	   psolve can be a NULL pointer (GMRES without preconditioner)
-+---------------------------------------------------------------------*/
-
     int maxits = *itmax;
     int i, i1, ii, j, k, k1, its, retval, i_1 = 1, i_2 = 2;
     float beta, eps1 = 0.0, t, t0, gam;

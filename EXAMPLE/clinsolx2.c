@@ -30,18 +30,14 @@ at the top-level directory.
 
 int main(int argc, char *argv[])
 {
-/*
- * Purpose
- * =======
- *
- * The driver program CLINSOLX2.
+/*!
+ * \brief The driver program CLINSOLX2.
  *
  * This example illustrates how to use CGSSVX to solve systems repeatedly
  * with the same sparsity pattern of matrix A.
  * In this case, the column permutation vector perm_c is computed once.
  * The following data structures will be reused in the subsequent call to
  * CGSSVX: perm_c, etree
- * 
  */
     char           equed[1];
     yes_no_t       equil;
@@ -268,8 +264,8 @@ int main(int argc, char *argv[])
 #endif
 }
 
-/*  
- * Parse command line options to get relaxed snode size, panel size, etc.
+/*!
+ * \brief Parse command line options to get relaxed snode size, panel size, etc.
  */
 void
 parse_command_line(int argc, char *argv[], int *lwork,

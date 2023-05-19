@@ -232,8 +232,8 @@ int main(int argc, char *argv[])
 #endif
 }
 
-/*  
- * Parse command line options to get relaxed snode size, panel size, etc.
+/*!
+ * \brief Parse command line options to get relaxed snode size, panel size, etc.
  */
 void
 parse_command_line(int argc, char *argv[], int *lwork,

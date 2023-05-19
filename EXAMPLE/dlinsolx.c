@@ -202,8 +202,8 @@ int main(int argc, char *argv[])
 }
 
 
-/*  
- * Parse command line inputs.
+/*!
+ * \brief Parse command line inputs.
  */
 void
 parse_command_line(int argc, char *argv[], int *lwork,

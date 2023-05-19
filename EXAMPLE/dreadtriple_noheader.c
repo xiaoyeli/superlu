@@ -20,23 +20,23 @@ at the top-level directory.
 
 #undef EXPAND_SYM
 
-/*! brief
+/*!
+ * \brief Read matrix in triplet format from stdin.
  *
- * <pre>
- * Output parameters
- * =================
- *   (nzval, rowind, colptr): (*rowind)[*] contains the row subscripts of
- *      nonzeros in columns of matrix A; (*nzval)[*] the numerical values;
- *	column i of A is given by (*nzval)[k], k = (*rowind)[i],...,
- *      (*rowind)[i+1]-1.
- * </pre>
+ * File format: Triplet in a line for each nonzero entry:
+ * \code row col value \endcode or
+ * \code row col real_part imaginary_part \endcode
+ *
+ * \param [out] m      Number of rows in the matrix
+ * \param [out] n      Number of columns in the matrix
+ * \param [out] nonz   Number of non-zero entries in the matrix
+ * \param [out] rowind Contains the row subscripts of nonzeros in columns of matrix A
+ * \param [out] nzval  The numerical values
+ * \param [out] colptr Column i of A is given by (*nzval)[k], k = (*rowind)[i],...,(*rowind)[i+1]-1.
  */
-
-//typedef int int_t;
-
 void
 dreadtriple_noheader(int *m, int *n, int_t *nonz,
-	    double **nzval, int_t **rowind, int_t **colptr)
+                     double **nzval, int_t **rowind, int_t **colptr)
 {
     int    i, j, jsize, minn = 100;
     double *a, *val, vali;
@@ -45,9 +45,6 @@ dreadtriple_noheader(int *m, int *n, int_t *nonz,
     int    zero_base = 0, ret_val = 0;
     FILE *fp = stdin;
 
-    /* 	File format: Triplet in a line for each nonzero entry:
-     *                 row    col    value
-     *         or      row    col    real_part	imaginary_part
      */
 
     /* First pass: determine N and NNZ */
@@ -195,4 +192,3 @@ void dreadrhs(int m, double *b)
     fclose(fp);
 }
 #endif
-

@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -18,24 +18,27 @@ at the top-level directory.
  * Last update: July 10, 2015
  *
  */
+
+/*! \file
+ * \brief DGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A.
+ *
+ * \ingroup Example
+ */
+
 #include <unistd.h>
 #include "slu_sdefs.h"
 
-int main(int argc, char *argv[])
-{
-/*
- * Purpose
- * =======
- *
- * The driver program SLINSOLX2.
+/*!
+ * \brief The driver program SLINSOLX2.
  *
  * This example illustrates how to use SGSSVX to solve systems repeatedly
  * with the same sparsity pattern of matrix A.
  * In this case, the column permutation vector perm_c is computed once.
  * The following data structures will be reused in the subsequent call to
  * SGSSVX: perm_c, etree
- * 
  */
+int main(int argc, char *argv[])
+{
     char           equed[1];
     yes_no_t       equil;
     trans_t        trans;
@@ -261,8 +264,8 @@ int main(int argc, char *argv[])
 #endif
 }
 
-/*  
- * Parse command line options to get relaxed snode size, panel size, etc.
+/*!
+ * \brief Parse command line options to get relaxed snode size, panel size, etc.
  */
 void
 parse_command_line(int argc, char *argv[], int *lwork,

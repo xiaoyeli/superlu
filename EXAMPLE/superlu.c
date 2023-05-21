@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -8,29 +8,27 @@ All rights reserved.
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
-/*! @file superlu.c
- * \brief a small 5x5 example
- * 
- * <pre>
- * * -- SuperLU routine (version 2.0) --
+
+/* * -- SuperLU routine (version 2.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * November 15, 1997
- * </pre>
  */
+
+/*! \file
+ * \brief a small 5x5 example
+ *
+ * This is the small 5x5 example used in the Sections 2 and 3 of the
+ * Users' Guide to illustrate how to call a SuperLU routine, and the
+ * matrix data structures used by SuperLU.
+ *
+ * \ingroup Example
+ */
+
 #include "slu_ddefs.h"
 
 int main(int argc, char *argv[])
 {
-/*
- * Purpose
- * =======
- * 
- * This is the small 5x5 example used in the Sections 2 and 3 of the 
- * Users' Guide to illustrate how to call a SuperLU routine, and the
- * matrix data structures used by SuperLU.
- *
- */
     SuperMatrix A, L, U, B;
     double   *a, *rhs;
     double   s, u, p, e, r, l;

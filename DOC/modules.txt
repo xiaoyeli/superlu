@@ -3,6 +3,13 @@
  */
 
 /*!
+ \defgroup Example
+ \brief Examples of how to use SuperLU.
+
+ Various examples.
+ */
+
+/*!
  \defgroup Testing
  \brief Test that SuperLU works as intended.
 

@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -9,14 +9,14 @@ The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 
-/*! @file zitersol1.c
- * \brief Example #2 showing how to use ILU to precondition GMRES
- *
- * <pre>
- * -- SuperLU routine (version 5.0) --
+/* -- SuperLU routine (version 5.0) --
  * Lawrence Berkeley National Laboratory
  * November, 2010
  * August, 2011
+ */
+
+/*! \file
+ * \brief Example #2 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,
  * but the preconditioned GMRES is applied to the original system.
@@ -34,7 +34,7 @@ at the top-level directory.
  *   1) Apply preconditioner M^{-1} = Dc*Pc^T*U^{-1}*L^{-1}*Pr*Dr
  *   2) Matrix-vector multiplication: w = A*v
  *
- * </pre>
+ * \ingroup Example
  */
 
 #include <unistd.h>
@@ -48,10 +48,16 @@ SuperMatrix *GLOBAL_A, *GLOBAL_A_ORIG, *GLOBAL_L, *GLOBAL_U;
 SuperLUStat_t *GLOBAL_STAT;
 mem_usage_t   *GLOBAL_MEM_USAGE;
 
-void zpsolve(int n,
-                  doublecomplex x[], /* solution */
-                  doublecomplex y[]  /* right-hand side */
-)
+/*!
+ * \brief Performs zgsisx with original matrix A.
+ *
+ * See documentation of zgsisx for more details.
+ *
+ * \param [in] n     Dimension of matrices
+ * \param [out] x    Solution
+ * \param [in,out] y Right-hand side
+ */
+void zpsolve(int n, doublecomplex x[], doublecomplex y[])
 {
     SuperMatrix *A = GLOBAL_A, *L = GLOBAL_L, *U = GLOBAL_U;
     SuperLUStat_t *stat = GLOBAL_STAT;
@@ -81,6 +87,18 @@ void zpsolve(int n,
 #endif
 }
 
+/*!
+ * \brief Performs matrix-vector multipliation sp_zgem with original matrix A.
+ *
+ * The operations is y := alpha*A*x + beta*y. See documentation of sp_zgem
+ * for further details.
+ *
+ * \param [in] alpha Scalar factor for A*x
+ * \param [in] x Vector to multiply with A
+ * \param [in] beta Scalar factor for y
+ * \param [in,out] y Vector to add to to matrix-vector multiplication and
+ *                   storage for result.
+ */
 void zmatvec_mult(doublecomplex alpha, doublecomplex x[], doublecomplex beta, doublecomplex y[])
 {
     SuperMatrix *A = GLOBAL_A_ORIG;

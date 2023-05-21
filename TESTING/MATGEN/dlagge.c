@@ -7,34 +7,34 @@
 
 /* Table of constant values */
 
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 static doublereal c_b11 = 1.;
 static doublereal c_b13 = 0.;
 
-/* Subroutine */ int dlagge_slu(integer *m, integer *n, integer *kl, integer *ku,
-	 doublereal *d, doublereal *a, integer *lda, integer *iseed, 
-	doublereal *work, integer *info)
+/* Subroutine */ int dlagge_slu(int *m, int *n, int *kl, int *ku,
+	 doublereal *d, doublereal *a, int *lda, int *iseed,
+	doublereal *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3;
+    int a_dim1, a_offset, i__1, i__2, i__3;
     doublereal d__1;
 
     /* Builtin functions */
     double d_sign(doublereal *, doublereal *);
 
     /* Local variables */
-    extern /* Subroutine */ int dger_(integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    integer *);
-    extern doublereal dnrm2_(integer *, doublereal *, integer *);
-    static integer i, j;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
-	    integer *), dgemv_(char *, integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    doublereal *, integer *);
+    extern /* Subroutine */ int dger_(int *, int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *, doublereal *,
+	    int *);
+    extern doublereal dnrm2_(int *, doublereal *, int *);
+    static int i, j;
+    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+	    int *), dgemv_(char *, int *, int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *, doublereal *,
+	    doublereal *, int *);
     static doublereal wa, wb, wn;
-    extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, doublereal *);
     extern int input_error(char *, int *);
     static doublereal tau;
 

@@ -2,77 +2,80 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <math.h>
+#include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
 
 static complex c_b1 = {0.f,0.f};
-static integer c__1 = 1;
-static integer c__5 = 5;
-static logical c_true = TRUE_;
-static logical c_false = FALSE_;
+static int c__1 = 1;
+static int c__5 = 5;
+static bool c_true = true;
+static bool c_false = false;
 
-/* Subroutine */ int clatms_slu(integer *m, integer *n, char *dist, integer *
-	iseed, char *sym, real *d, integer *mode, real *cond, real *dmax__, 
-	integer *kl, integer *ku, char *pack, complex *a, integer *lda, 
-	complex *work, integer *info)
+/* Subroutine */ int clatms_slu(int *m, int *n, char *dist, int *
+	iseed, char *sym, real *d, int *mode, real *cond, real *dmax__,
+	int *kl, int *ku, char *pack, complex *a, int *lda,
+	complex *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
+    int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     real r__1, r__2, r__3;
     doublereal d__1;
     complex q__1, q__2, q__3;
-    logical L__1;
+    bool L__1;
 
     /* Builtin functions */
     double cos(doublereal), sin(doublereal);
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer ilda, icol;
+    static int ilda, icol;
     static real temp;
-    static logical csym;
-    static integer irow, isym;
+    static bool csym;
+    static int irow, isym;
     static complex c;
-    static integer i, j, k;
+    static int i, j, k;
     static complex s;
     static real alpha, angle;
-    static integer ipack;
+    static int ipack;
     static real realc;
-    static integer ioffg;
-    static integer iinfo;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *);
+    static int ioffg;
+    static int iinfo;
+    extern /* Subroutine */ int sscal_(int *, real *, real *, int *);
     static complex ctemp;
-    static integer idist, mnmin, iskew;
+    static int idist, mnmin, iskew;
     static complex extra, dummy;
-    extern /* Subroutine */ int slatm1_slu(integer *, real *, integer *, integer 
-	    *, integer *, real *, integer *, integer *);
-    static integer ic, jc, nc;
-    extern /* Subroutine */ int clagge_slu(integer *, integer *, integer *, 
-	    integer *, real *, complex *, integer *, integer *, complex *, 
-	    integer *), claghe_slu(integer *, integer *, real *, complex *, 
-	    integer *, integer *, complex *, integer *);
-    static integer il;
+    extern /* Subroutine */ int slatm1_slu(int *, real *, int *, int
+	    *, int *, real *, int *, int *);
+    static int ic, jc, nc;
+    extern /* Subroutine */ int clagge_slu(int *, int *, int *,
+	    int *, real *, complex *, int *, int *, complex *,
+	    int *), claghe_slu(int *, int *, real *, complex *,
+	    int *, int *, complex *, int *);
+    static int il;
     static complex ct;
-    static integer iendch, ir, jr, ipackg, mr;
-    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
-    static integer minlda;
+    static int iendch, ir, jr, ipackg, mr;
+    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
+    static int minlda;
     static complex st;
-    extern /* Subroutine */ int claset_slu(char *, integer *, integer *, complex 
-	    *, complex *, complex *, integer *), clartg_slu(complex *, 
+    extern /* Subroutine */ int claset_slu(char *, int *, int *, complex
+	    *, complex *, complex *, int *), clartg_slu(complex *,
 	    complex *, real *, complex *, complex *), 
-	    clagsy_slu(integer *, integer *, real *, complex *, 
-	    integer *, integer *, complex *, integer *);
+	    clagsy_slu(int *, int *, real *, complex *,
+	    int *, int *, complex *, int *);
     extern int input_error(char *, int *);
-    extern doublereal slarnd_slu(integer *, integer *);
-    extern /* Subroutine */ int clarot_slu(logical *, logical *, logical *, 
-	    integer *, complex *, complex *, complex *, integer *, complex *, 
+    extern doublereal slarnd_slu(int *, int *);
+    extern /* Subroutine */ int clarot_slu(bool *, bool *, bool *,
+	    int *, complex *, complex *, complex *, int *, complex *,
 	    complex *);
-    static logical iltemp, givens;
-    static integer ioffst, irsign;
-    static logical ilextr, topdwn;
-    static integer ir1, ir2, isympk, jch, llb, jkl, jku, uub;
+    static bool iltemp, givens;
+    static int ioffst, irsign;
+    static bool ilextr, topdwn;
+    static int ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
 
 /*  -- LAPACK test routine (version 2.0) --   
@@ -383,19 +386,19 @@ static logical c_false = FALSE_;
     if (strncmp(sym, "N", 1)==0) {
 	isym = 1;
 	irsign = 0;
-	csym = FALSE_;
+	csym = false;
     } else if (strncmp(sym, "P", 1)==0) {
 	isym = 2;
 	irsign = 0;
-	csym = FALSE_;
+	csym = false;
     } else if (strncmp(sym, "S", 1)==0) {
 	isym = 2;
 	irsign = 0;
-	csym = TRUE_;
+	csym = true;
     } else if (strncmp(sym, "H", 1)==0) {
 	isym = 2;
 	irsign = 1;
-	csym = FALSE_;
+	csym = false;
     } else {
 	isym = -1;
     }
@@ -456,20 +459,20 @@ static logical c_false = FALSE_;
 /*     Use Givens rotation method if bandwidth small enough,   
        or if LDA is too small to store the matrix unpacked. */
 
-    givens = FALSE_;
+    givens = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
 	if ((real) (llb + uub) < (real) max(i__1,i__2) * .3f) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     } else {
 	if (llb << 1 < *m) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     }
     if (*lda < *m && *lda >= minlda) {
-	givens = TRUE_;
+	givens = true;
     }
 
 /*     Set INFO if an error */
@@ -531,22 +534,22 @@ static logical c_false = FALSE_;
 /*     Choose Top-Down if D is (apparently) increasing,   
        Bottom-Up if D is (apparently) decreasing. */
 
-    if (dabs(d[1]) <= (r__1 = d[mnmin], dabs(r__1))) {
-	topdwn = TRUE_;
+    if (fabs(d[1]) <= (r__1 = d[mnmin], fabs(r__1))) {
+	topdwn = true;
     } else {
-	topdwn = FALSE_;
+	topdwn = false;
     }
 
     if (*mode != 0 && abs(*mode) != 6) {
 
 /*        Scale by DMAX */
 
-	temp = dabs(d[1]);
+	temp = fabs(d[1]);
 	i__1 = mnmin;
 	for (i = 2; i <= i__1; ++i) {
 /* Computing MAX */
-	    r__2 = temp, r__3 = (r__1 = d[i], dabs(r__1));
-	    temp = dmax(r__2,r__3);
+	    r__2 = temp, r__3 = (r__1 = d[i], fabs(r__1));
+	    temp = fmax(r__2,r__3);
 /* L20: */
 	}
 

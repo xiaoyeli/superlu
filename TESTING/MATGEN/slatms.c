@@ -2,61 +2,64 @@
    You must link the resulting object file with the libraries:
 	-lf2c -lm   (in that order)
 */
+#include <math.h>
+#include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
 
-static integer c__1 = 1;
+static int c__1 = 1;
 static real c_b22 = 0.f;
-static logical c_true = TRUE_;
-static logical c_false = FALSE_;
+static bool c_true = true;
+static bool c_false = false;
 
-/* Subroutine */ int slatms_slu(integer *m, integer *n, char *dist, integer *
-	iseed, char *sym, real *d, integer *mode, real *cond, real *dmax__, 
-	integer *kl, integer *ku, char *pack, real *a, integer *lda, real *
-	work, integer *info)
+/* Subroutine */ int slatms_slu(int *m, int *n, char *dist, int *
+	iseed, char *sym, real *d, int *mode, real *cond, real *dmax__,
+	int *kl, int *ku, char *pack, real *a, int *lda, real *
+	work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
+    int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     real r__1, r__2, r__3;
-    logical L__1;
+    bool L__1;
 
     /* Builtin functions */
     double cos(doublereal), sin(doublereal);
 
     /* Local variables */
-    static integer ilda, icol;
+    static int ilda, icol;
     static real temp;
-    static integer irow, isym;
+    static int irow, isym;
     static real c;
-    static integer i, j, k;
+    static int i, j, k;
     static real s, alpha, angle;
-    static integer ipack, ioffg;
-    static integer iinfo;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *);
-    static integer idist, mnmin, iskew;
+    static int ipack, ioffg;
+    static int iinfo;
+    extern /* Subroutine */ int sscal_(int *, real *, real *, int *);
+    static int idist, mnmin, iskew;
     static real extra, dummy;
-    extern /* Subroutine */ int scopy_(integer *, real *, integer *, real *, 
-	    integer *), slatm1_slu(integer *, real *, integer *, integer *, 
-	    integer *, real *, integer *, integer *);
-    static integer ic, jc, nc, il, iendch, ir, jr, ipackg, mr;
-    extern /* Subroutine */ int slagge_slu(integer *, integer *, integer *, 
-	    integer *, real *, real *, integer *, integer *, real *, integer *
+    extern /* Subroutine */ int scopy_(int *, real *, int *, real *,
+	    int *), slatm1_slu(int *, real *, int *, int *,
+	    int *, real *, int *, int *);
+    static int ic, jc, nc, il, iendch, ir, jr, ipackg, mr;
+    extern /* Subroutine */ int slagge_slu(int *, int *, int *,
+	    int *, real *, real *, int *, int *, real *, int *
 	    );
-    static integer minlda;
+    static int minlda;
     extern int input_error(char *, int *);
-    extern doublereal slarnd_slu(integer *, integer *);
-    static logical iltemp, givens;
-    static integer ioffst, irsign;
+    extern doublereal slarnd_slu(int *, int *);
+    static bool iltemp, givens;
+    static int ioffst, irsign;
     extern /* Subroutine */ int slartg_slu(real *, real *, real *, real *, real *
-	    ), slaset_slu(char *, integer *, integer *, real *, real *, real *, 
-	    integer *), slagsy_slu(integer *, integer *, real *, real *, 
-	    integer *, integer *, real *, integer *), slarot_slu(logical *, 
-	    logical *, logical *, integer *, real *, real *, real *, integer *
+	    ), slaset_slu(char *, int *, int *, real *, real *, real *,
+	    int *), slagsy_slu(int *, int *, real *, real *,
+	    int *, int *, real *, int *), slarot_slu(bool *,
+	    bool *, bool *, int *, real *, real *, real *, int *
 	    , real *, real *);
-    static logical ilextr, topdwn;
-    static integer ir1, ir2, isympk, jch, llb, jkl, jku, uub;
+    static bool ilextr, topdwn;
+    static int ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
 
 /*  -- LAPACK test routine (version 2.0) --   
@@ -424,20 +427,20 @@ static logical c_false = FALSE_;
 /*     Use Givens rotation method if bandwidth small enough,   
        or if LDA is too small to store the matrix unpacked. */
 
-    givens = FALSE_;
+    givens = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
 	if ((real) (llb + uub) < (real) max(i__1,i__2) * .3f) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     } else {
 	if (llb << 1 < *m) {
-	    givens = TRUE_;
+	    givens = true;
 	}
     }
     if (*lda < *m && *lda >= minlda) {
-	givens = TRUE_;
+	givens = true;
     }
 
 /*     Set INFO if an error */
@@ -499,22 +502,22 @@ static logical c_false = FALSE_;
 /*     Choose Top-Down if D is (apparently) increasing,   
        Bottom-Up if D is (apparently) decreasing. */
 
-    if (dabs(d[1]) <= (r__1 = d[mnmin], dabs(r__1))) {
-	topdwn = TRUE_;
+    if (fabs(d[1]) <= (r__1 = d[mnmin], fabs(r__1))) {
+	topdwn = true;
     } else {
-	topdwn = FALSE_;
+	topdwn = false;
     }
 
     if (*mode != 0 && abs(*mode) != 6) {
 
 /*        Scale by DMAX */
 
-	temp = dabs(d[1]);
+	temp = fabs(d[1]);
 	i__1 = mnmin;
 	for (i = 2; i <= i__1; ++i) {
 /* Computing MAX */
-	    r__2 = temp, r__3 = (r__1 = d[i], dabs(r__1));
-	    temp = dmax(r__2,r__3);
+	    r__2 = temp, r__3 = (r__1 = d[i], fabs(r__1));
+	    temp = fmax(r__2,r__3);
 /* L20: */
 	}
 

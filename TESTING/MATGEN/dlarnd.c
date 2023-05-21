@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-doublereal dlarnd_slu(integer *idist, integer *iseed)
+doublereal dlarnd_slu(int *idist, int *iseed)
 {
     /* System generated locals */
     doublereal ret_val;
@@ -15,7 +15,7 @@ doublereal dlarnd_slu(integer *idist, integer *iseed)
 
     /* Local variables */
     static doublereal t1, t2;
-    extern doublereal dlaran_slu(integer *);
+    extern doublereal dlaran_slu(int *);
     extern int input_error(char *, int *);
 
 

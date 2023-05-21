@@ -1,3 +1,5 @@
+#include <math.h>
+#include <stdbool.h>
 #include "f2c.h"
 
 /* Subroutine */ int slartg_slu(real *f, real *g, real *cs, real *sn, real *r)
@@ -47,27 +49,27 @@
     ===================================================================== 
 */
     /* Initialized data */
-    static logical first = TRUE_;
+    static bool first = true;
     /* System generated locals */
-    integer i__1;
+    int i__1;
     real r__1, r__2;
     /* Builtin functions */
-    double log(doublereal), pow_ri(real *, integer *), sqrt(doublereal);
+    double log(doublereal), pow_ri(real *, int *), sqrt(doublereal);
     /* Local variables */
-    static integer i;
+    static int i;
     static real scale;
-    static integer count;
+    static int count;
     static real f1, g1, safmn2, safmx2;
     extern float smach(char *);
     static real safmin, eps;
 
 
     if (first) {
-	first = FALSE_;
+	first = false;
 	safmin = smach("S");
 	eps = smach("E");
 	r__1 = smach("B");
-	i__1 = (integer) (log(safmin / eps) / log(smach("B")) / 2.f);
+	i__1 = (int) (log(safmin / eps) / log(smach("B")) / 2.f);
 	safmn2 = pow_ri(&r__1, &i__1);
 	safmx2 = 1.f / safmn2;
     }
@@ -83,8 +85,8 @@
 	f1 = *f;
 	g1 = *g;
 /* Computing MAX */
-	r__1 = dabs(f1), r__2 = dabs(g1);
-	scale = dmax(r__1,r__2);
+	r__1 = fabs(f1), r__2 = fabs(g1);
+	scale = fmax(r__1,r__2);
 	if (scale >= safmx2) {
 	    count = 0;
 L10:
@@ -92,8 +94,8 @@ L10:
 	    f1 *= safmn2;
 	    g1 *= safmn2;
 /* Computing MAX */
-	    r__1 = dabs(f1), r__2 = dabs(g1);
-	    scale = dmax(r__1,r__2);
+	    r__1 = fabs(f1), r__2 = fabs(g1);
+	    scale = fmax(r__1,r__2);
 	    if (scale >= safmx2) {
 		goto L10;
 	    }
@@ -116,8 +118,8 @@ L30:
 	    f1 *= safmx2;
 	    g1 *= safmx2;
 /* Computing MAX */
-	    r__1 = dabs(f1), r__2 = dabs(g1);
-	    scale = dmax(r__1,r__2);
+	    r__1 = fabs(f1), r__2 = fabs(g1);
+	    scale = fmax(r__1,r__2);
 	    if (scale <= safmn2) {
 		goto L30;
 	    }
@@ -142,7 +144,7 @@ L30:
 	    *cs = f1 / *r;
 	    *sn = g1 / *r;
 	}
-	if (dabs(*f) > dabs(*g) && *cs < 0.f) {
+	if (fabs(*f) > fabs(*g) && *cs < 0.f) {
 	    *cs = -(doublereal)(*cs);
 	    *sn = -(doublereal)(*sn);
 	    *r = -(doublereal)(*r);

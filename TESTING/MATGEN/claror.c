@@ -3,6 +3,7 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <math.h>
 #include <string.h>
 #include "f2c.h"
 
@@ -10,14 +11,14 @@
 
 static complex c_b1 = {0.f,0.f};
 static complex c_b2 = {1.f,0.f};
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 
-/* Subroutine */ int claror_slu(char *side, char *init, integer *m, integer *n, 
-	complex *a, integer *lda, integer *iseed, complex *x, integer *info)
+/* Subroutine */ int claror_slu(char *side, char *init, int *m, int *n,
+	complex *a, int *lda, int *iseed, complex *x, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3;
+    int a_dim1, a_offset, i__1, i__2, i__3;
     complex q__1, q__2;
 
     /* Builtin functions */
@@ -25,23 +26,23 @@ static integer c__1 = 1;
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer kbeg, jcol;
+    static int kbeg, jcol;
     static real xabs;
-    static integer irow, j;
-    extern /* Subroutine */ int cgerc_(integer *, integer *, complex *, 
-	    complex *, integer *, complex *, integer *, complex *, integer *),
-	     cscal_(integer *, complex *, complex *, integer *);
-    extern /* Subroutine */ int cgemv_(char *, integer *, integer *, complex *
-	    , complex *, integer *, complex *, integer *, complex *, complex *
-	    , integer *);
+    static int irow, j;
+    extern /* Subroutine */ int cgerc_(int *, int *, complex *,
+	    complex *, int *, complex *, int *, complex *, int *),
+	     cscal_(int *, complex *, complex *, int *);
+    extern /* Subroutine */ int cgemv_(char *, int *, int *, complex *
+	    , complex *, int *, complex *, int *, complex *, complex *
+	    , int *);
     static complex csign;
-    static integer ixfrm, itype, nxfrm;
+    static int ixfrm, itype, nxfrm;
     static real xnorm;
-    extern real scnrm2_(integer *, complex *, integer *);
-    extern /* Subroutine */ int clacgv_slu(integer *, complex *, integer *);
-    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
-    extern /* Subroutine */ int claset_slu(char *, integer *, integer *, complex 
-	    *, complex *, complex *, integer *);
+    extern real scnrm2_(int *, complex *, int *);
+    extern /* Subroutine */ int clacgv_slu(int *, complex *, int *);
+    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
+    extern /* Subroutine */ int claset_slu(char *, int *, int *, complex
+	    *, complex *, complex *, int *);
     extern int input_error(char *, int *);
     static real factor;
     static complex xnorms;
@@ -257,7 +258,7 @@ static integer c__1 = 1;
 	q__1.r = -(doublereal)csign.r, q__1.i = -(doublereal)csign.i;
 	x[i__2].r = q__1.r, x[i__2].i = q__1.i;
 	factor = xnorm * (xnorm + xabs);
-	if (dabs(factor) < 1e-20f) {
+	if (fabs(factor) < 1e-20f) {
 	    *info = 1;
 	    i__2 = -(*info);
 	    input_error("CLAROR", &i__2);

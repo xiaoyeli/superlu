@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int clarnv_slu(integer *idist, integer *iseed, integer *n, 
+/* Subroutine */ int clarnv_slu(int *idist, int *iseed, int *n,
 	complex *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -56,17 +56,17 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    integer i__2, i__3;
+    int i__2, i__3;
     doublereal d__1, d__2;
     complex q__1, q__2, q__3;
     /* Builtin functions */
     double log(doublereal), sqrt(doublereal);
     void c_exp(complex *, complex *);
     /* Local variables */
-    static integer i;
+    static int i;
     static real u[128];
-    static integer il, iv;
-    extern /* Subroutine */ int slaruv_slu(integer *, integer *, real *);
+    static int il, iv;
+    extern /* Subroutine */ int slaruv_slu(int *, int *, real *);
 
 
 #define X(I) x[(I)-1]

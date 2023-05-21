@@ -7,43 +7,43 @@
 
 /* Table of constant values */
 
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 static doublereal c_b12 = 0.;
 static doublereal c_b19 = -1.;
 static doublereal c_b26 = 1.;
 
-/* Subroutine */ int dlagsy_slu(integer *n, integer *k, doublereal *d, 
-	doublereal *a, integer *lda, integer *iseed, doublereal *work, 
-	integer *info)
+/* Subroutine */ int dlagsy_slu(int *n, int *k, doublereal *d,
+	doublereal *a, int *lda, int *iseed, doublereal *work,
+	int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3;
+    int a_dim1, a_offset, i__1, i__2, i__3;
     doublereal d__1;
 
     /* Builtin functions */
     double d_sign(doublereal *, doublereal *);
 
     /* Local variables */
-    extern /* Subroutine */ int dger_(integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    integer *);
-    extern doublereal ddot_(integer *, doublereal *, integer *, doublereal *, 
-	    integer *), dnrm2_(integer *, doublereal *, integer *);
-    extern /* Subroutine */ int dsyr2_(char *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    integer *);
-    static integer i, j;
+    extern /* Subroutine */ int dger_(int *, int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *, doublereal *,
+	    int *);
+    extern doublereal ddot_(int *, doublereal *, int *, doublereal *,
+	    int *), dnrm2_(int *, doublereal *, int *);
+    extern /* Subroutine */ int dsyr2_(char *, int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *, doublereal *,
+	    int *);
+    static int i, j;
     static doublereal alpha;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
-	    integer *), dgemv_(char *, integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    doublereal *, integer *), daxpy_(integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *), dsymv_(char *, 
-	    integer *, doublereal *, doublereal *, integer *, doublereal *, 
-	    integer *, doublereal *, doublereal *, integer *);
+    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+	    int *), dgemv_(char *, int *, int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *, doublereal *,
+	    doublereal *, int *), daxpy_(int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *), dsymv_(char *,
+	    int *, doublereal *, doublereal *, int *, doublereal *,
+	    int *, doublereal *, doublereal *, int *);
     static doublereal wa, wb, wn;
-    extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, doublereal *);
     extern int input_error(char *, int *);
     static doublereal tau;
 

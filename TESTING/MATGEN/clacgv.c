@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int clacgv_slu(integer *n, complex *x, integer *incx)
+/* Subroutine */ int clacgv_slu(int *n, complex *x, int *incx)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -39,7 +39,7 @@
     /* Builtin functions */
     void r_cnjg(complex *, complex *);
     /* Local variables */
-    static integer ioff, i;
+    static int ioff, i;
 
 
 #define X(I) x[(I)-1]

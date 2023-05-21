@@ -5,13 +5,13 @@
 
 #include "f2c.h"
 
-doublereal dlaran_slu(integer *iseed)
+doublereal dlaran_slu(int *iseed)
 {
     /* System generated locals */
     doublereal ret_val;
 
     /* Local variables */
-    static integer it1, it2, it3, it4;
+    static int it1, it2, it3, it4;
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   

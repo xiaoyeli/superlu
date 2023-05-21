@@ -3,29 +3,31 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <stdbool.h>
 #include "f2c.h"
 
 /* Table of constant values */
 
-static integer c__4 = 4;
-static integer c__8 = 8;
-static integer c__1 = 1;
+static int c__4 = 4;
+static int c__8 = 8;
+static int c__1 = 1;
 
-/* Subroutine */ int slarot_slu(logical *lrows, logical *lleft, logical *lright, 
-	integer *nl, real *c, real *s, real *a, integer *lda, real *xleft, 
+/* Subroutine */
+int slarot_slu(bool *lrows, bool *lleft, bool *lright,
+	int *nl, real *c, real *s, real *a, int *lda, real *xleft,
 	real *xright)
 {
     /* System generated locals */
-    integer i__1;
+    int i__1;
 
     /* Local variables */
-    static integer iinc;
-    extern /* Subroutine */ int srot_(integer *, real *, integer *, real *, 
-	    integer *, real *, real *);
-    static integer inext, ix, iy, nt;
+    static int iinc;
+    extern /* Subroutine */ int srot_(int *, real *, int *, real *,
+	    int *, real *, real *);
+    static int inext, ix, iy, nt;
     static real xt[2], yt[2];
     extern int input_error(char *, int *);
-    static integer iyt;
+    static int iyt;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

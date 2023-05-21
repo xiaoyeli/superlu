@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "f2c.h"
 
 /* Subroutine */ int zlartg_slu(doublecomplex *f, doublecomplex *g, doublereal *

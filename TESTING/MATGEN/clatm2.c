@@ -5,23 +5,23 @@
 
 #include "f2c.h"
 
-/* Complex */ VOID clatm2_slu(complex * ret_val, integer *m, integer *n, integer 
-	*i, integer *j, integer *kl, integer *ku, integer *idist, integer *
-	iseed, complex *d, integer *igrade, complex *dl, complex *dr, integer 
-	*ipvtng, integer *iwork, real *sparse)
+/* Complex */ void clatm2_slu(complex * ret_val, int *m, int *n, int
+	*i, int *j, int *kl, int *ku, int *idist, int *
+	iseed, complex *d, int *igrade, complex *dl, complex *dr, int
+	*ipvtng, int *iwork, real *sparse)
 {
     /* System generated locals */
-    integer i__1, i__2;
+    int i__1, i__2;
     complex q__1, q__2, q__3;
 
     /* Builtin functions */
     void c_div(complex *, complex *, complex *), r_cnjg(complex *, complex *);
 
     /* Local variables */
-    static integer isub, jsub;
+    static int isub, jsub;
     static complex ctemp;
-    extern /* Complex */ VOID clarnd_slu(complex *, integer *, integer *);
-    extern doublereal dlaran_sluslu(integer *);
+    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
+    extern doublereal dlaran_sluslu(int *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

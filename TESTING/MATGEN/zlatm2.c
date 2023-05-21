@@ -5,14 +5,14 @@
 
 #include "f2c.h"
 
-/* Double Complex */ VOID zlatm2_slu(doublecomplex * ret_val, integer *m, 
-	integer *n, integer *i, integer *j, integer *kl, integer *ku, integer 
-	*idist, integer *iseed, doublecomplex *d, integer *igrade, 
-	doublecomplex *dl, doublecomplex *dr, integer *ipvtng, integer *iwork,
+/* Double Complex */ void zlatm2_slu(doublecomplex * ret_val, int *m,
+	int *n, int *i, int *j, int *kl, int *ku, int
+	*idist, int *iseed, doublecomplex *d, int *igrade,
+	doublecomplex *dl, doublecomplex *dr, int *ipvtng, int *iwork,
 	 doublereal *sparse)
 {
     /* System generated locals */
-    integer i__1, i__2;
+    int i__1, i__2;
     doublecomplex z__1, z__2, z__3;
 
     /* Builtin functions */
@@ -20,11 +20,11 @@
 	    doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static integer isub, jsub;
+    static int isub, jsub;
     static doublecomplex ctemp;
-    extern doublereal dlaran_slu(integer *);
-    extern /* Double Complex */ VOID zlarnd_slu(doublecomplex *, integer *, 
-	    integer *);
+    extern doublereal dlaran_slu(int *);
+    extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *,
+	    int *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

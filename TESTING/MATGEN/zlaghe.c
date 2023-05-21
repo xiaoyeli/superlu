@@ -9,15 +9,15 @@
 
 static doublecomplex c_b1 = {0.,0.};
 static doublecomplex c_b2 = {1.,0.};
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 
-/* Subroutine */ int zlaghe_slu(integer *n, integer *k, doublereal *d, 
-	doublecomplex *a, integer *lda, integer *iseed, doublecomplex *work, 
-	integer *info)
+/* Subroutine */ int zlaghe_slu(int *n, int *k, doublereal *d,
+	doublecomplex *a, int *lda, int *iseed, doublecomplex *work,
+	int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3;
+    int a_dim1, a_offset, i__1, i__2, i__3;
     doublereal d__1;
     doublecomplex z__1, z__2, z__3, z__4;
 
@@ -27,29 +27,29 @@ static integer c__1 = 1;
 	    doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    extern /* Subroutine */ int zher2_(char *, integer *, doublecomplex *, 
-	    doublecomplex *, integer *, doublecomplex *, integer *, 
-	    doublecomplex *, integer *);
-    static integer i, j;
+    extern /* Subroutine */ int zher2_(char *, int *, doublecomplex *,
+	    doublecomplex *, int *, doublecomplex *, int *,
+	    doublecomplex *, int *);
+    static int i, j;
     static doublecomplex alpha;
-    extern /* Subroutine */ int zgerc_(integer *, integer *, doublecomplex *, 
-	    doublecomplex *, integer *, doublecomplex *, integer *, 
-	    doublecomplex *, integer *), zscal_(integer *, doublecomplex *, 
-	    doublecomplex *, integer *);
-    extern /* Double Complex */ VOID zdotc_(doublecomplex *, integer *, 
-	    doublecomplex *, integer *, doublecomplex *, integer *);
-    extern /* Subroutine */ int zgemv_(char *, integer *, integer *, 
-	    doublecomplex *, doublecomplex *, integer *, doublecomplex *, 
-	    integer *, doublecomplex *, doublecomplex *, integer *), 
-	    zhemv_(char *, integer *, doublecomplex *, doublecomplex *, 
-	    integer *, doublecomplex *, integer *, doublecomplex *, 
-	    doublecomplex *, integer *), zaxpy_(integer *, 
-	    doublecomplex *, doublecomplex *, integer *, doublecomplex *, 
-	    integer *);
-    extern doublereal dznrm2_(integer *, doublecomplex *, integer *);
+    extern /* Subroutine */ int zgerc_(int *, int *, doublecomplex *,
+	    doublecomplex *, int *, doublecomplex *, int *,
+	    doublecomplex *, int *), zscal_(int *, doublecomplex *,
+	    doublecomplex *, int *);
+    extern /* Double Complex */ void zdotc_(doublecomplex *, int *,
+	    doublecomplex *, int *, doublecomplex *, int *);
+    extern /* Subroutine */ int zgemv_(char *, int *, int *,
+	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
+	    int *, doublecomplex *, doublecomplex *, int *),
+	    zhemv_(char *, int *, doublecomplex *, doublecomplex *,
+	    int *, doublecomplex *, int *, doublecomplex *,
+	    doublecomplex *, int *), zaxpy_(int *,
+	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
+	    int *);
+    extern doublereal dznrm2_(int *, doublecomplex *, int *);
     static doublecomplex wa, wb;
     static doublereal wn;
-    extern /* Subroutine */ int zlarnv_slu(integer *, integer *, integer *, doublecomplex *);
+    extern /* Subroutine */ int zlarnv_slu(int *, int *, int *, doublecomplex *);
     extern int input_error(char *, int *);
     static doublecomplex tau;
 

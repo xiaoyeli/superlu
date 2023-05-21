@@ -7,31 +7,31 @@
 
 /* Table of constant values */
 
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 static real c_b8 = 1.f;
 static real c_b10 = 0.f;
 
-/* Subroutine */ int slarge_slu(integer *n, real *a, integer *lda, integer *
-	iseed, real *work, integer *info)
+/* Subroutine */ int slarge_slu(int *n, real *a, int *lda, int *
+	iseed, real *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1;
+    int a_dim1, a_offset, i__1;
     real r__1;
 
     /* Builtin functions */
     double r_sign(real *, real *);
 
     /* Local variables */
-    extern /* Subroutine */ int sger_(integer *, integer *, real *, real *, 
-	    integer *, real *, integer *, real *, integer *);
-    extern real snrm2_(integer *, real *, integer *);
-    static integer i;
-    extern /* Subroutine */ int sscal_(integer *, real *, real *, integer *), 
-	    sgemv_(char *, integer *, integer *, real *, real *, integer *, 
-	    real *, integer *, real *, real *, integer *);
+    extern /* Subroutine */ int sger_(int *, int *, real *, real *,
+	    int *, real *, int *, real *, int *);
+    extern real snrm2_(int *, real *, int *);
+    static int i;
+    extern /* Subroutine */ int sscal_(int *, real *, real *, int *),
+	    sgemv_(char *, int *, int *, real *, real *, int *,
+	    real *, int *, real *, real *, int *);
     static real wa, wb, wn;
-    extern /* Subroutine */ int slarnv_slu(integer *, integer *, integer *, real *);
+    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, real *);
     extern int input_error(char *, int *);
     static real tau;
 

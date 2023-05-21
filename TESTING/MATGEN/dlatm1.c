@@ -3,26 +3,27 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <stdlib.h>
 #include "f2c.h"
 
-/* Subroutine */ int dlatm1_slu(integer *mode, doublereal *cond, integer *irsign,
-	 integer *idist, integer *iseed, doublereal *d, integer *n, integer *
+/* Subroutine */ int dlatm1_slu(int *mode, doublereal *cond, int *irsign,
+	 int *idist, int *iseed, doublereal *d, int *n, int *
 	info)
 {
     /* System generated locals */
-    integer i__1, i__2;
+    int i__1, i__2;
     doublereal d__1;
 
     /* Builtin functions */
-    double pow_dd(doublereal *, doublereal *), pow_di(doublereal *, integer *)
+    double pow_dd(doublereal *, doublereal *), pow_di(doublereal *, int *)
 	    , log(doublereal), exp(doublereal);
 
     /* Local variables */
     static doublereal temp;
-    static integer i;
+    static int i;
     static doublereal alpha;
-    extern doublereal dlaran_slu(integer *);
-    extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern doublereal dlaran_slu(int *);
+    extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, doublereal *);
     extern int input_error(char *, int *);
 
 

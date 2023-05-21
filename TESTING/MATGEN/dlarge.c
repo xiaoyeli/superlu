@@ -7,33 +7,33 @@
 
 /* Table of constant values */
 
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 static doublereal c_b8 = 1.;
 static doublereal c_b10 = 0.;
 
-/* Subroutine */ int dlarge_slu(integer *n, doublereal *a, integer *lda, integer 
-	*iseed, doublereal *work, integer *info)
+/* Subroutine */ int dlarge_slu(int *n, doublereal *a, int *lda, int
+	*iseed, doublereal *work, int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1;
+    int a_dim1, a_offset, i__1;
     doublereal d__1;
 
     /* Builtin functions */
     double d_sign(doublereal *, doublereal *);
 
     /* Local variables */
-    extern /* Subroutine */ int dger_(integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    integer *);
-    extern doublereal dnrm2_(integer *, doublereal *, integer *);
-    static integer i;
-    extern /* Subroutine */ int dscal_(integer *, doublereal *, doublereal *, 
-	    integer *), dgemv_(char *, integer *, integer *, doublereal *, 
-	    doublereal *, integer *, doublereal *, integer *, doublereal *, 
-	    doublereal *, integer *);
+    extern /* Subroutine */ int dger_(int *, int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *, doublereal *,
+	    int *);
+    extern doublereal dnrm2_(int *, doublereal *, int *);
+    static int i;
+    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+	    int *), dgemv_(char *, int *, int *, doublereal *,
+	    doublereal *, int *, doublereal *, int *, doublereal *,
+	    doublereal *, int *);
     static doublereal wa, wb, wn;
-    extern /* Subroutine */ int dlarnv_slu(integer *, integer *, integer *, doublereal *);
+    extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, doublereal *);
     extern int input_error(char *, int *);
     static doublereal tau;
 

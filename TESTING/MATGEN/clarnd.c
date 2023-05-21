@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-/* Complex */ VOID clarnd_slu(complex * ret_val, integer *idist, integer *iseed)
+/* Complex */ void clarnd_slu(complex * ret_val, int *idist, int *iseed)
 {
     /* System generated locals */
     doublereal d__1, d__2;
@@ -17,7 +17,7 @@
 
     /* Local variables */
     static real t1, t2;
-    extern doublereal dlaran_sluslu(integer *);
+    extern doublereal dlaran_sluslu(int *);
     extern int input_error(char *, int *);
 
 

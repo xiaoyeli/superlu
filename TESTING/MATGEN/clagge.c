@@ -9,15 +9,15 @@
 
 static complex c_b1 = {0.f,0.f};
 static complex c_b2 = {1.f,0.f};
-static integer c__3 = 3;
-static integer c__1 = 1;
+static int c__3 = 3;
+static int c__1 = 1;
 
-/* Subroutine */ int clagge_slu(integer *m, integer *n, integer *kl, integer *ku,
-	 real *d, complex *a, integer *lda, integer *iseed, complex *work, 
-	integer *info)
+/* Subroutine */ int clagge_slu(int *m, int *n, int *kl, int *ku,
+	 real *d, complex *a, int *lda, int *iseed, complex *work,
+	int *info)
 {
     /* System generated locals */
-    integer a_dim1, a_offset, i__1, i__2, i__3;
+    int a_dim1, a_offset, i__1, i__2, i__3;
     doublereal d__1;
     complex q__1;
 
@@ -26,17 +26,17 @@ static integer c__1 = 1;
     void c_div(complex *, complex *, complex *);
 
     /* Local variables */
-    static integer i, j;
-    extern /* Subroutine */ int cgerc_(integer *, integer *, complex *, 
-	    complex *, integer *, complex *, integer *, complex *, integer *),
-	     cscal_(integer *, complex *, complex *, integer *), cgemv_(char *
-	    , integer *, integer *, complex *, complex *, integer *, complex *
-	    , integer *, complex *, complex *, integer *);
-    extern real scnrm2_(integer *, complex *, integer *);
+    static int i, j;
+    extern /* Subroutine */ int cgerc_(int *, int *, complex *,
+	    complex *, int *, complex *, int *, complex *, int *),
+	     cscal_(int *, complex *, complex *, int *), cgemv_(char *
+	    , int *, int *, complex *, complex *, int *, complex *
+	    , int *, complex *, complex *, int *);
+    extern real scnrm2_(int *, complex *, int *);
     static complex wa, wb;
-    extern /* Subroutine */ int clacgv_slu(integer *, complex *, integer *);
+    extern /* Subroutine */ int clacgv_slu(int *, complex *, int *);
     static real wn;
-    extern /* Subroutine */ int clarnv_slu(integer *, integer *, integer *, complex *);
+    extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
     static complex tau;
 

@@ -3,21 +3,23 @@
 	-lf2c -lm   (in that order)
 */
 
+#include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include "f2c.h"
 
 /* Table of constant values */
 
-/* Subroutine */ int dlatb4_slu(char *path, integer *imat, integer *m, integer *
-	n, char *type, integer *kl, integer *ku, doublereal *anorm, integer *
+/* Subroutine */ int dlatb4_slu(char *path, int *imat, int *m, int *
+	n, char *type, int *kl, int *ku, doublereal *anorm, int *
 	mode, doublereal *cndnum, char *dist)
 {
     /* Initialized data */
 
-    static logical first = TRUE_;
+    static bool first = true;
 
     /* System generated locals */
-    integer i__1;
+    int i__1;
 
     /* Builtin functions */
     double sqrt(doublereal);
@@ -27,7 +29,7 @@
     static char c2[2];
     extern /* Subroutine */ int dlabad_slu(doublereal *, doublereal *);
     extern doublereal dmach(char *);
-    static integer mat;
+    static int mat;
     static doublereal eps;
 
 /*  -- LAPACK test routine (version 2.0) --   
@@ -93,7 +95,7 @@
        Set some constants for use in the subroutine. */
 
     if (first) {
-	first = FALSE_;
+	first = false;
 	eps = dmach("Precision");
 	badc2 = .1 / eps;
 	badc1 = sqrt(badc2);

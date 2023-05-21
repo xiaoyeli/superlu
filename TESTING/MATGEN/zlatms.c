@@ -16,49 +16,49 @@ static bool c_true = true;
 static bool c_false = false;
 
 /* Subroutine */ int zlatms_slu(int *m, int *n, char *dist, int *
-	iseed, char *sym, doublereal *d, int *mode, doublereal *cond,
-	doublereal *dmax__, int *kl, int *ku, char *pack,
+	iseed, char *sym, double *d, int *mode, double *cond,
+	double *dmax__, int *kl, int *ku, char *pack,
 	doublecomplex *a, int *lda, doublecomplex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
-    doublereal d__1, d__2, d__3;
+    double d__1, d__2, d__3;
     doublecomplex z__1, z__2, z__3;
     bool L__1;
 
     /* Builtin functions */
-    double cos(doublereal), sin(doublereal);
+    double cos(double), sin(double);
     void d_cnjg(doublecomplex *, doublecomplex *);
 
     /* Local variables */
     static int ilda, icol;
-    static doublereal temp;
+    static double temp;
     static int irow, isym;
     static bool zsym;
     static doublecomplex c;
     static int i, j, k;
     static doublecomplex s;
-    static doublereal alpha, angle;
+    static double alpha, angle;
     static int ipack;
-    static doublereal realc;
+    static double realc;
     static int ioffg;
-    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+    extern /* Subroutine */ int dscal_(int *, double *, double *,
 	    int *);
     static int iinfo;
     static doublecomplex ctemp;
     static int idist, mnmin, iskew;
     static doublecomplex extra, dummy;
-    extern /* Subroutine */ int dlatm1_slu(int *, doublereal *, int *,
-	    int *, int *, doublereal *, int *, int *);
+    extern /* Subroutine */ int dlatm1_slu(int *, double *, int *,
+	    int *, int *, double *, int *, int *);
     static int ic, jc, nc, il;
     static doublecomplex ct;
     static int iendch, ir, jr, ipackg, mr, minlda;
-    extern doublereal dlarnd_slu(int *, int *);
+    extern double dlarnd_slu(int *, int *);
     static doublecomplex st;
     extern /* Subroutine */ int zlagge_slu(int *, int *, int *,
-	    int *, doublereal *, doublecomplex *, int *, int *,
+	    int *, double *, doublecomplex *, int *, int *,
 	    doublecomplex *, int *), zlaghe_slu(int *, int *,
-	    doublereal *, doublecomplex *, int *, int *,
+	    double *, doublecomplex *, int *, int *,
 						 doublecomplex *, int *);
     extern int input_error(char *, int *);
     static bool iltemp, givens;
@@ -66,10 +66,10 @@ static bool c_false = false;
     extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *,
 	    int *);
     extern /* Subroutine */ int zlaset_slu(char *, int *, int *,
-	    doublecomplex *, doublecomplex *, doublecomplex *, int *), zlartg_slu(doublecomplex *, doublecomplex *, doublereal *,
+	    doublecomplex *, doublecomplex *, doublecomplex *, int *), zlartg_slu(doublecomplex *, doublecomplex *, double *,
 	    doublecomplex *, doublecomplex *);
     static bool ilextr;
-    extern /* Subroutine */ int zlagsy_slu(int *, int *, doublereal *,
+    extern /* Subroutine */ int zlagsy_slu(int *, int *, double *,
 	    doublecomplex *, int *, int *, doublecomplex *, int *)
 	    ;
     static bool topdwn;
@@ -465,7 +465,7 @@ static bool c_false = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
-	if ((doublereal) (llb + uub) < (doublereal) max(i__1,i__2) * .3) {
+	if ((double) (llb + uub) < (double) max(i__1,i__2) * .3) {
 	    givens = true;
 	}
     } else {

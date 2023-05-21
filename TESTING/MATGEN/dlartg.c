@@ -2,8 +2,7 @@
 #include <math.h>
 #include "f2c.h"
 
-/* Subroutine */ int dlartg_slu(doublereal *f, doublereal *g, doublereal *cs, 
-	doublereal *sn, doublereal *r)
+/* Subroutine */ int dlartg_slu(double *f, double *g, double *cs, double *sn, double *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -53,16 +52,16 @@
     static bool first = true;
     /* System generated locals */
     int i__1;
-    doublereal d__1, d__2;
+    double d__1, d__2;
     /* Builtin functions */
-    double log(doublereal), pow_di(doublereal *, int *), sqrt(doublereal);
+    double log(double), pow_di(double *, int *), sqrt(double);
     /* Local variables */
     static int i;
-    static doublereal scale;
+    static double scale;
     static int count;
-    static doublereal f1, g1, safmn2, safmx2;
-    extern doublereal dmach(char *);
-    static doublereal safmin, eps;
+    static double f1, g1, safmn2, safmx2;
+    extern double dmach(char *);
+    static double safmin, eps;
 
 
 

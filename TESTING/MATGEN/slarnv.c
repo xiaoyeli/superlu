@@ -55,7 +55,7 @@
     /* System generated locals */
     int i__2, i__3;
     /* Builtin functions */
-    double log(doublereal), sqrt(doublereal), cos(doublereal);
+    double log(double), sqrt(double), cos(double);
     /* Local variables */
     static int i;
     static real u[128];

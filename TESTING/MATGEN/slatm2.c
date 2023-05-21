@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-doublereal slatm2_slu(int *m, int *n, int *i, int *j, int *
+double slatm2_slu(int *m, int *n, int *i, int *j, int *
 	kl, int *ku, int *idist, int *iseed, real *d, int *
 	igrade, real *dl, real *dr, int *ipvtng, int *iwork, real *
 	sparse)
@@ -16,7 +16,7 @@ doublereal slatm2_slu(int *m, int *n, int *i, int *j, int *
     /* Local variables */
     static int isub, jsub;
     static real temp;
-    extern doublereal dlaran_sluslu(int *), slarnd_slu(int *, int *);
+    extern double dlaran_sluslu(int *), slarnd_slu(int *, int *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

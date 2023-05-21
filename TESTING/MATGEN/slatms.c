@@ -26,7 +26,7 @@ static bool c_false = false;
     bool L__1;
 
     /* Builtin functions */
-    double cos(doublereal), sin(doublereal);
+    double cos(double), sin(double);
 
     /* Local variables */
     static int ilda, icol;
@@ -49,7 +49,7 @@ static bool c_false = false;
 	    );
     static int minlda;
     extern int input_error(char *, int *);
-    extern doublereal slarnd_slu(int *, int *);
+    extern double slarnd_slu(int *, int *);
     static bool iltemp, givens;
     static int ioffst, irsign;
     extern /* Subroutine */ int slartg_slu(real *, real *, real *, real *, real *
@@ -643,7 +643,7 @@ JKU, N )
 			    il = ir + 2 - irow;
 			    temp = 0.f;
 			    iltemp = jch > jku;
-			    r__1 = -(doublereal)s;
+			    r__1 = -(double)s;
 			    slarot_slu(&c_false, &iltemp, &c_true, &il, &c, &
 				    r__1, &a[irow - iskew * ic + ioffst + ic *
 				     a_dim1], &ilda, &temp, &extra);
@@ -657,7 +657,7 @@ JKU, N )
 				il = ic + 2 - icol;
 				extra = 0.f;
 				L__1 = jch > jku + jkl;
-				r__1 = -(doublereal)s;
+				r__1 = -(double)s;
 				slarot_slu(&c_true, &L__1, &c_true, &il, &c, &
 					r__1, &a[irow - iskew * icol + ioffst 
 					+ icol * a_dim1], &ilda, &extra, &
@@ -719,7 +719,7 @@ JKL, JKU
 			    il = ic + 2 - icol;
 			    temp = 0.f;
 			    iltemp = jch > jkl;
-			    r__1 = -(doublereal)s;
+			    r__1 = -(double)s;
 			    slarot_slu(&c_true, &iltemp, &c_true, &il, &c, &r__1,
 				     &a[ir - iskew * icol + ioffst + icol * 
 				    a_dim1], &ilda, &temp, &extra);
@@ -733,7 +733,7 @@ JKL, JKU
 				il = ir + 2 - irow;
 				extra = 0.f;
 				L__1 = jch > jkl + jku;
-				r__1 = -(doublereal)s;
+				r__1 = -(double)s;
 				slarot_slu(&c_false, &L__1, &c_true, &il, &c, &
 					r__1, &a[irow - iskew * icol + ioffst 
 					+ icol * a_dim1], &ilda, &extra, &
@@ -971,7 +971,7 @@ L, M )
 			    temp = a[jch - iskew * (jch + 1) + ioffg + (jch + 
 				    1) * a_dim1];
 			    i__3 = k + 2;
-			    r__1 = -(doublereal)s;
+			    r__1 = -(double)s;
 			    slarot_slu(&c_true, &c_true, &c_true, &i__3, &c, &
 				    r__1, &a[(1 - iskew) * jch + ioffg + jch *
 				     a_dim1], &ilda, &temp, &extra);
@@ -983,7 +983,7 @@ L, M )
 			    il = min(i__3,i__5);
 			    extra = 0.f;
 			    L__1 = jch > k;
-			    r__1 = -(doublereal)s;
+			    r__1 = -(double)s;
 			    slarot_slu(&c_false, &L__1, &c_true, &il, &c, &r__1, 
 				    &a[irow - iskew * jch + ioffg + jch * 
 				    a_dim1], &ilda, &extra, &temp);
@@ -1058,7 +1058,7 @@ te that
 			angle = slarnd_slu(&c__1, &iseed[1]) * 
 				6.2831853071795864769252867663f;
 			c = cos(angle);
-			s = -(doublereal)sin(angle);
+			s = -(double)sin(angle);
 			L__1 = *n - jc > k;
 			slarot_slu(&c_false, &c_true, &L__1, &il, &c, &s, &a[(1 
 				- iskew) * jc + ioffg + jc * a_dim1], &ilda, &

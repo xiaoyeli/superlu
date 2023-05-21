@@ -21,7 +21,7 @@
     /* Local variables */
     static complex ctemp;
     extern /* Complex */ void clarnd_slu(complex *, int *, int *);
-    extern doublereal dlaran_sluslu(int *);
+    extern double dlaran_sluslu(int *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

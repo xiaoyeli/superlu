@@ -8,42 +8,42 @@
 
 /* Table of constant values */
 
-static doublereal c_b9 = 0.;
-static doublereal c_b10 = 1.;
+static double c_b9 = 0.;
+static double c_b10 = 1.;
 static int c__3 = 3;
 static int c__1 = 1;
 
 /* Subroutine */ int dlaror_slu(char *side, char *init, int *m, int *n,
-	doublereal *a, int *lda, int *iseed, doublereal *x, int *
+	double *a, int *lda, int *iseed, double *x, int *
 	info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2;
-    doublereal d__1;
+    double d__1;
 
     /* Builtin functions */
-    double d_sign(doublereal *, doublereal *);
+    double d_sign(double *, double *);
 
     /* Local variables */
     static int kbeg;
-    extern /* Subroutine */ int dger_(int *, int *, doublereal *,
-	    doublereal *, int *, doublereal *, int *, doublereal *,
+    extern /* Subroutine */ int dger_(int *, int *, double *,
+	    double *, int *, double *, int *, double *,
 	    int *);
     static int jcol, irow;
-    extern doublereal dnrm2_(int *, doublereal *, int *);
+    extern double dnrm2_(int *, double *, int *);
     static int j;
-    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+    extern /* Subroutine */ int dscal_(int *, double *, double *,
 	    int *);
     extern /* Subroutine */ int dgemv_(char *, int *, int *,
-	    doublereal *, doublereal *, int *, doublereal *, int *,
-	    doublereal *, doublereal *, int *);
+	    double *, double *, int *, double *, int *,
+	    double *, double *, int *);
     static int ixfrm, itype, nxfrm;
-    static doublereal xnorm;
-    extern doublereal dlarnd_slu(int *, int *);
+    static double xnorm;
+    extern double dlarnd_slu(int *, int *);
     extern /* Subroutine */ int dlaset_slu(char *, int *, int *,
-					doublereal *, doublereal *, doublereal *, int *);
+					double *, double *, double *, int *);
     extern int input_error(char *, int *);
-    static doublereal factor, xnorms;
+    static double factor, xnorms;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

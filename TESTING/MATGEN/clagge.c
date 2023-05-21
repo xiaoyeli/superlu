@@ -18,7 +18,7 @@ static int c__1 = 1;
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
-    doublereal d__1;
+    double d__1;
     complex q__1;
 
     /* Builtin functions */
@@ -186,7 +186,7 @@ t */
 		    c__1);
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
-	    q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	    q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	    cgerc_(&i__1, &i__2, &q__1, &work[1], &c__1, &work[*m + 1], &c__1,
 		     &a[i + i * a_dim1], lda);
 	}
@@ -224,7 +224,7 @@ ht */
 		    lda, &work[1], &c__1, &c_b1, &work[*n + 1], &c__1);
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
-	    q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	    q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	    cgerc_(&i__1, &i__2, &q__1, &work[*n + 1], &c__1, &work[1], &c__1,
 		     &a[i + i * a_dim1], lda);
 	}
@@ -282,11 +282,11 @@ eft */
 			c__1, &c_b1, &work[1], &c__1);
 		i__2 = *m - *kl - i + 1;
 		i__3 = *n - i;
-		q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+		q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 		cgerc_(&i__2, &i__3, &q__1, &a[*kl + i + i * a_dim1], &c__1, &
 			work[1], &c__1, &a[*kl + i + (i + 1) * a_dim1], lda);
 		i__2 = *kl + i + i * a_dim1;
-		q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+		q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 		a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	    }
 
@@ -331,11 +331,11 @@ ight */
 			c_b1, &work[1], &c__1);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
-		q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+		q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 		cgerc_(&i__2, &i__3, &q__1, &work[1], &c__1, &a[i + (*ku + i) 
 			* a_dim1], lda, &a[i + 1 + (*ku + i) * a_dim1], lda);
 		i__2 = i + (*ku + i) * a_dim1;
-		q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+		q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 		a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	    }
 	} else {
@@ -385,11 +385,11 @@ ight */
 			c_b1, &work[1], &c__1);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
-		q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+		q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 		cgerc_(&i__2, &i__3, &q__1, &work[1], &c__1, &a[i + (*ku + i) 
 			* a_dim1], lda, &a[i + 1 + (*ku + i) * a_dim1], lda);
 		i__2 = i + (*ku + i) * a_dim1;
-		q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+		q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 		a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	    }
 
@@ -432,11 +432,11 @@ eft */
 			c__1, &c_b1, &work[1], &c__1);
 		i__2 = *m - *kl - i + 1;
 		i__3 = *n - i;
-		q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+		q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 		cgerc_(&i__2, &i__3, &q__1, &a[*kl + i + i * a_dim1], &c__1, &
 			work[1], &c__1, &a[*kl + i + (i + 1) * a_dim1], lda);
 		i__2 = *kl + i + i * a_dim1;
-		q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+		q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 		a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	    }
 	}

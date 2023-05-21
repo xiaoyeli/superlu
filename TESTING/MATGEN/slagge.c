@@ -173,7 +173,7 @@ t */
 		     &work[1], &c__1, &c_b13, &work[*m + 1], &c__1);
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
-	    r__1 = -(doublereal)tau;
+	    r__1 = -(double)tau;
 	    sger_(&i__1, &i__2, &r__1, &work[1], &c__1, &work[*m + 1], &c__1, 
 		    &a[i + i * a_dim1], lda);
 	}
@@ -206,7 +206,7 @@ ht */
 		    lda, &work[1], &c__1, &c_b13, &work[*n + 1], &c__1);
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
-	    r__1 = -(doublereal)tau;
+	    r__1 = -(double)tau;
 	    sger_(&i__1, &i__2, &r__1, &work[*n + 1], &c__1, &work[1], &c__1, 
 		    &a[i + i * a_dim1], lda);
 	}
@@ -256,10 +256,10 @@ eft */
 			c_b13, &work[1], &c__1);
 		i__2 = *m - *kl - i + 1;
 		i__3 = *n - i;
-		r__1 = -(doublereal)tau;
+		r__1 = -(double)tau;
 		sger_(&i__2, &i__3, &r__1, &a[*kl + i + i * a_dim1], &c__1, &
 			work[1], &c__1, &a[*kl + i + (i + 1) * a_dim1], lda);
-		a[*kl + i + i * a_dim1] = -(doublereal)wa;
+		a[*kl + i + i * a_dim1] = -(double)wa;
 	    }
 
 /* Computing MIN */
@@ -293,10 +293,10 @@ ight */
 			&c_b13, &work[1], &c__1);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
-		r__1 = -(doublereal)tau;
+		r__1 = -(double)tau;
 		sger_(&i__2, &i__3, &r__1, &work[1], &c__1, &a[i + (*ku + i) *
 			 a_dim1], lda, &a[i + 1 + (*ku + i) * a_dim1], lda);
-		a[i + (*ku + i) * a_dim1] = -(doublereal)wa;
+		a[i + (*ku + i) * a_dim1] = -(double)wa;
 	    }
 	} else {
 
@@ -335,10 +335,10 @@ ight */
 			&c_b13, &work[1], &c__1);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
-		r__1 = -(doublereal)tau;
+		r__1 = -(double)tau;
 		sger_(&i__2, &i__3, &r__1, &work[1], &c__1, &a[i + (*ku + i) *
 			 a_dim1], lda, &a[i + 1 + (*ku + i) * a_dim1], lda);
-		a[i + (*ku + i) * a_dim1] = -(doublereal)wa;
+		a[i + (*ku + i) * a_dim1] = -(double)wa;
 	    }
 
 /* Computing MIN */
@@ -372,10 +372,10 @@ eft */
 			c_b13, &work[1], &c__1);
 		i__2 = *m - *kl - i + 1;
 		i__3 = *n - i;
-		r__1 = -(doublereal)tau;
+		r__1 = -(double)tau;
 		sger_(&i__2, &i__3, &r__1, &a[*kl + i + i * a_dim1], &c__1, &
 			work[1], &c__1, &a[*kl + i + (i + 1) * a_dim1], lda);
-		a[*kl + i + i * a_dim1] = -(doublereal)wa;
+		a[*kl + i + i * a_dim1] = -(double)wa;
 	    }
 	}
 

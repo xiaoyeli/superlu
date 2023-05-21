@@ -17,7 +17,7 @@ static int c__1 = 1;
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1;
-    doublereal d__1;
+    double d__1;
     doublecomplex z__1;
 
     /* Builtin functions */
@@ -32,9 +32,9 @@ static int c__1 = 1;
 	    doublecomplex *, int *), zgemv_(char *, int *, int *,
 	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
 	    int *, doublecomplex *, doublecomplex *, int *);
-    extern doublereal dznrm2_(int *, doublecomplex *, int *);
+    extern double dznrm2_(int *, doublecomplex *, int *);
     static doublecomplex wa, wb;
-    static doublereal wn;
+    static double wn;
     extern /* Subroutine */ int zlarnv_slu(int *, int *, int *, doublecomplex *);
     extern int input_error(char *, int *);
     static doublecomplex tau;

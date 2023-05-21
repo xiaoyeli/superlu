@@ -54,7 +54,7 @@
     int i__1;
     real r__1, r__2;
     /* Builtin functions */
-    double log(doublereal), pow_ri(real *, int *), sqrt(doublereal);
+    double log(double), pow_ri(real *, int *), sqrt(double);
     /* Local variables */
     static int i;
     static real scale;
@@ -145,9 +145,9 @@ L30:
 	    *sn = g1 / *r;
 	}
 	if (fabs(*f) > fabs(*g) && *cs < 0.f) {
-	    *cs = -(doublereal)(*cs);
-	    *sn = -(doublereal)(*sn);
-	    *r = -(doublereal)(*r);
+	    *cs = -(double)(*cs);
+	    *sn = -(double)(*sn);
+	    *r = -(double)(*r);
 	}
     }
     return 0;

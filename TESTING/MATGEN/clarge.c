@@ -17,7 +17,7 @@ static int c__1 = 1;
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1;
-    doublereal d__1;
+    double d__1;
     complex q__1;
 
     /* Builtin functions */
@@ -137,7 +137,7 @@ static int c__1 = 1;
 	cgemv_("Conjugate transpose", &i__1, n, &c_b2, &a[i + a_dim1], lda, &
 		work[1], &c__1, &c_b1, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
-	q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	cgerc_(&i__1, n, &q__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i + 
 		a_dim1], lda);
 
@@ -147,7 +147,7 @@ static int c__1 = 1;
 	cgemv_("No transpose", n, &i__1, &c_b2, &a[i * a_dim1 + 1], lda, &
 		work[1], &c__1, &c_b1, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
-	q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	cgerc_(n, &i__1, &q__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i * 
 		a_dim1 + 1], lda);
 /* L10: */

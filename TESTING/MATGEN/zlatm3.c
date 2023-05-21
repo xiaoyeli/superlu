@@ -9,7 +9,7 @@
 	int *n, int *i, int *j, int *isub, int *jsub,
 	int *kl, int *ku, int *idist, int *iseed,
 	doublecomplex *d, int *igrade, doublecomplex *dl, doublecomplex *
-	dr, int *ipvtng, int *iwork, doublereal *sparse)
+	dr, int *ipvtng, int *iwork, double *sparse)
 {
     /* System generated locals */
     int i__1, i__2;
@@ -21,7 +21,7 @@
 
     /* Local variables */
     static doublecomplex ctemp;
-    extern doublereal dlaran_slu(int *);
+    extern double dlaran_slu(int *);
     extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *,
 	    int *);
 

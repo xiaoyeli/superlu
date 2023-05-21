@@ -51,11 +51,11 @@
        [ 25 or 38 ops for main paths ] */
     /* System generated locals */
     real r__1, r__2;
-    doublereal d__1;
+    double d__1;
     complex q__1, q__2, q__3;
     /* Builtin functions */
     void r_cnjg(complex *, complex *);
-    double c_abs(complex *), r_imag(complex *), sqrt(doublereal);
+    double c_abs(complex *), r_imag(complex *), sqrt(double);
     /* Local variables */
     static real d, f1, f2, g1, g2, fa, ga, di;
     static complex fs, gs, ss;

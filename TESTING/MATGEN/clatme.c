@@ -55,7 +55,7 @@ static int c__5 = 5;
 	     real *, int *, int *, int *, real *, int *,
 	    int *);
     static int ic, jc;
-    extern doublereal clange_(char *, int *, int *, complex *,
+    extern double clange_(char *, int *, int *, complex *,
 	    int *, real *);
     static int ir;
     extern /* Subroutine */ int clarge_slu(int *, complex *, int *,
@@ -533,14 +533,14 @@ static int c__5 = 5;
 
 	    cgemv_("C", &irows, &icols, &c_b2, &a[jcr + (ic + 1) * a_dim1], 
 		    lda, &work[1], &c__1, &c_b1, &work[irows + 1], &c__1);
-	    q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	    q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	    cgerc_(&irows, &icols, &q__1, &work[1], &c__1, &work[irows + 1], &
 		    c__1, &a[jcr + (ic + 1) * a_dim1], lda);
 
 	    cgemv_("N", n, &irows, &c_b2, &a[jcr * a_dim1 + 1], lda, &work[1],
 		     &c__1, &c_b1, &work[irows + 1], &c__1);
 	    r_cnjg(&q__2, &tau);
-	    q__1.r = -(doublereal)q__2.r, q__1.i = -(doublereal)q__2.i;
+	    q__1.r = -(double)q__2.r, q__1.i = -(double)q__2.i;
 	    cgerc_(n, &irows, &q__1, &work[irows + 1], &c__1, &work[1], &c__1,
 		     &a[jcr * a_dim1 + 1], lda);
 
@@ -579,14 +579,14 @@ static int c__5 = 5;
 
 	    cgemv_("N", &irows, &icols, &c_b2, &a[ir + 1 + jcr * a_dim1], lda,
 		     &work[1], &c__1, &c_b1, &work[icols + 1], &c__1);
-	    q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	    q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	    cgerc_(&irows, &icols, &q__1, &work[icols + 1], &c__1, &work[1], &
 		    c__1, &a[ir + 1 + jcr * a_dim1], lda);
 
 	    cgemv_("C", &icols, n, &c_b2, &a[jcr + a_dim1], lda, &work[1], &
 		    c__1, &c_b1, &work[icols + 1], &c__1);
 	    r_cnjg(&q__2, &tau);
-	    q__1.r = -(doublereal)q__2.r, q__1.i = -(doublereal)q__2.i;
+	    q__1.r = -(double)q__2.r, q__1.i = -(double)q__2.i;
 	    cgerc_(&icols, n, &q__1, &work[1], &c__1, &work[icols + 1], &c__1,
 		     &a[jcr + a_dim1], lda);
 

@@ -27,7 +27,7 @@ static int c__1 = 1;
 
     /* Local variables */
     static int kbeg, jcol;
-    static doublereal xabs;
+    static double xabs;
     static int irow, j;
     static doublecomplex csign;
     extern /* Subroutine */ int zgerc_(int *, int *, doublecomplex *,
@@ -39,10 +39,10 @@ static int c__1 = 1;
 	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
 	    int *, doublecomplex *, doublecomplex *, int *);
     static int itype, nxfrm;
-    static doublereal xnorm;
-    extern doublereal dznrm2_(int *, doublecomplex *, int *);
+    static double xnorm;
+    extern double dznrm2_(int *, doublecomplex *, int *);
     extern int input_error(char *, int *);
-    static doublereal factor;
+    static double factor;
     extern /* Subroutine */ int zlacgv_slu(int *, doublecomplex *, int *);
     extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *, int *);
     extern /* Subroutine */ int zlaset_slu(char *, int *, int *,

@@ -57,10 +57,10 @@
        Function Body */
     /* System generated locals */
     int i__2, i__3;
-    doublereal d__1, d__2;
+    double d__1, d__2;
     complex q__1, q__2, q__3;
     /* Builtin functions */
-    double log(doublereal), sqrt(doublereal);
+    double log(double), sqrt(double);
     void c_exp(complex *, complex *);
     /* Local variables */
     static int i;

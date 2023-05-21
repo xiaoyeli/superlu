@@ -216,7 +216,7 @@ static real c_b26 = 1.f;
 		, &c__1);
 	i__2 = *n - *k - i + 1;
 	i__3 = *k - 1;
-	r__1 = -(doublereal)tau;
+	r__1 = -(double)tau;
 	sger_(&i__2, &i__3, &r__1, &a[*k + i + i * a_dim1], &c__1, &work[1], &
 		c__1, &a[*k + i + (i + 1) * a_dim1], lda);
 
@@ -244,7 +244,7 @@ ht
 	ssyr2_("Lower", &i__2, &c_b19, &a[*k + i + i * a_dim1], &c__1, &work[
 		1], &c__1, &a[*k + i + (*k + i) * a_dim1], lda);
 
-	a[*k + i + i * a_dim1] = -(doublereal)wa;
+	a[*k + i + i * a_dim1] = -(double)wa;
 	i__2 = *n;
 	for (j = *k + i + 1; j <= i__2; ++j) {
 	    a[j + i * a_dim1] = 0.f;

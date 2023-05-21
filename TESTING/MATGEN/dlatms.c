@@ -10,55 +10,55 @@
 /* Table of constant values */
 
 static int c__1 = 1;
-static doublereal c_b22 = 0.;
+static double c_b22 = 0.;
 static bool c_true = true;
 static bool c_false = false;
 
 int
 dlatms_slu(int *m, int *n, char *dist, int *
-	iseed, char *sym, doublereal *d, int *mode, doublereal *cond,
-	doublereal *dmax__, int *kl, int *ku, char *pack,
-	doublereal *a, int *lda, doublereal *work, int *info)
+	iseed, char *sym, double *d, int *mode, double *cond,
+	double *dmax__, int *kl, int *ku, char *pack,
+	double *a, int *lda, double *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
-    doublereal d__1, d__2, d__3;
+    double d__1, d__2, d__3;
     bool L__1;
 
     /* Builtin functions */
-    double cos(doublereal), sin(doublereal);
+    double cos(double), sin(double);
 
     /* Local variables */
     static int ilda, icol;
-    static doublereal temp;
+    static double temp;
     static int irow, isym;
-    static doublereal c;
+    static double c;
     static int i, j, k;
-    static doublereal s, alpha, angle;
+    static double s, alpha, angle;
     static int ipack;
-    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
+    extern /* Subroutine */ int dscal_(int *, double *, double *,
 	    int *);
     static int ioffg;
     static int iinfo, idist, mnmin;
-    extern /* Subroutine */ int dcopy_(int *, doublereal *, int *,
-	    doublereal *, int *);
+    extern /* Subroutine */ int dcopy_(int *, double *, int *,
+	    double *, int *);
     static int iskew;
-    static doublereal extra, dummy;
-    extern /* Subroutine */ int dlatm1_slu(int *, doublereal *, int *,
-	    int *, int *, doublereal *, int *, int *);
+    static double extra, dummy;
+    extern /* Subroutine */ int dlatm1_slu(int *, double *, int *,
+	    int *, int *, double *, int *, int *);
     static int ic, jc, nc;
     extern /* Subroutine */ int dlagge_slu(int *, int *, int *,
-	    int *, doublereal *, doublereal *, int *, int *,
-	    doublereal *, int *);
+	    int *, double *, double *, int *, int *,
+	    double *, int *);
     static int il, iendch, ir, jr, ipackg, mr, minlda;
-    extern doublereal dlarnd_slu(int *, int *);
+    extern double dlarnd_slu(int *, int *);
     extern /* Subroutine */ int dlaset_slu(char *, int *, int *,
-	    doublereal *, doublereal *, doublereal *, int *),
-	    dlartg_slu(doublereal *, doublereal *, doublereal *, doublereal *, doublereal *),
-	    dlagsy_slu(int *, int *, doublereal *, doublereal *, int *,
-	    int *, doublereal *, int *), dlarot_slu(bool *, bool *,
-	     bool *, int *, doublereal *, doublereal *, doublereal *,
-	    int *, doublereal *, doublereal *);
+	    double *, double *, double *, int *),
+	    dlartg_slu(double *, double *, double *, double *, double *),
+	    dlagsy_slu(int *, int *, double *, double *, int *,
+	    int *, double *, int *), dlarot_slu(bool *, bool *,
+	     bool *, int *, double *, double *, double *,
+	    int *, double *, double *);
     extern int input_error(char *, int *);
     static bool iltemp, givens;
     static int ioffst, irsign;
@@ -434,7 +434,7 @@ dlatms_slu(int *m, int *n, char *dist, int *
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
-	if ((doublereal) (llb + uub) < (doublereal) max(i__1,i__2) * .3) {
+	if ((double) (llb + uub) < (double) max(i__1,i__2) * .3) {
 	    givens = true;
 	}
     } else {

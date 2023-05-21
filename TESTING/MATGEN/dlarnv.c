@@ -1,7 +1,7 @@
 #include "f2c.h"
 
 /* Subroutine */ int dlarnv_slu(int *idist, int *iseed, int *n,
-	doublereal *x)
+	double *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -55,12 +55,12 @@
     /* System generated locals */
     int i__2, i__3;
     /* Builtin functions */
-    double log(doublereal), sqrt(doublereal), cos(doublereal);
+    double log(double), sqrt(double), cos(double);
     /* Local variables */
     static int i;
-    static doublereal u[128];
+    static double u[128];
     static int il, iv;
-    extern /* Subroutine */ int dlaruv_slu(int *, int *, doublereal *);
+    extern /* Subroutine */ int dlaruv_slu(int *, int *, double *);
     static int il2;
 
 

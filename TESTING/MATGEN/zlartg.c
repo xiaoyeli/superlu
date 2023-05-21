@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "f2c.h"
 
-/* Subroutine */ int zlartg_slu(doublecomplex *f, doublecomplex *g, doublereal *
+/* Subroutine */ int zlartg_slu(doublecomplex *f, doublecomplex *g, double *
 	cs, doublecomplex *sn, doublecomplex *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -50,13 +50,13 @@
 
        [ 25 or 38 ops for main paths ] */
     /* System generated locals */
-    doublereal d__1, d__2;
+    double d__1, d__2;
     doublecomplex z__1, z__2, z__3;
     /* Builtin functions */
     void d_cnjg(doublecomplex *, doublecomplex *);
-    double z_abs(doublecomplex *), d_imag(doublecomplex *), sqrt(doublereal);
+    double z_abs(doublecomplex *), d_imag(doublecomplex *), sqrt(double);
     /* Local variables */
-    static doublereal d, f1, f2, g1, g2, fa, ga, di;
+    static double d, f1, f2, g1, g2, fa, ga, di;
     static doublecomplex fs, gs, ss;
 
 

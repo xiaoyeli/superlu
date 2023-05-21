@@ -22,7 +22,7 @@
     int i__1;
 
     /* Builtin functions */
-    double sqrt(doublereal);
+    double sqrt(double);
 
     /* Local variables */
     static real badc1, badc2, large, small;

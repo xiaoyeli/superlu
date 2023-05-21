@@ -14,18 +14,18 @@ static int c__1 = 1;
 
 /* Subroutine */
 int dlarot_slu(bool *lrows, bool *lleft, bool *lright,
-	int *nl, doublereal *c, doublereal *s, doublereal *a, int *
-	lda, doublereal *xleft, doublereal *xright)
+	int *nl, double *c, double *s, double *a, int *
+	lda, double *xleft, double *xright)
 {
     /* System generated locals */
     int i__1;
 
     /* Local variables */
     static int iinc;
-    extern /* Subroutine */ int drot_(int *, doublereal *, int *,
-	    doublereal *, int *, doublereal *, doublereal *);
+    extern /* Subroutine */ int drot_(int *, double *, int *,
+	    double *, int *, double *, double *);
     static int inext, ix, iy, nt;
-    static doublereal xt[2], yt[2];
+    static double xt[2], yt[2];
     extern int input_error(char *, int *);
     static int iyt;
 

@@ -5,7 +5,7 @@
 
 #include "f2c.h"
 
-doublereal dlaran_sluslu(int *iseed)
+double dlaran_sluslu(int *iseed)
 {
     /* System generated locals */
     real ret_val;

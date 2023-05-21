@@ -11,8 +11,8 @@
 /* Table of constant values */
 
 /* Subroutine */ int zlatb4_slu(char *path, int *imat, int *m, int *
-	n, char *type, int *kl, int *ku, doublereal *anorm, int *
-	mode, doublereal *cndnum, char *dist)
+	n, char *type, int *kl, int *ku, double *anorm, int *
+	mode, double *cndnum, char *dist)
 {
     /* Initialized data */
 
@@ -22,16 +22,16 @@
     int i__1;
 
     /* Builtin functions */
-    double sqrt(doublereal);
+    double sqrt(double);
 
 
     /* Local variables */
-    static doublereal badc1, badc2, large, small;
+    static double badc1, badc2, large, small;
     static char c2[2];
-    extern /* Subroutine */ int dlabad_slu(doublereal *, doublereal *);
-    extern doublereal dmach(char *);
+    extern /* Subroutine */ int dlabad_slu(double *, double *);
+    extern double dmach(char *);
     static int mat;
-    static doublereal eps;
+    static double eps;
 
 
 /*  -- LAPACK test routine (version 2.0) --   

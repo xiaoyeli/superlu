@@ -129,7 +129,7 @@ static real c_b10 = 0.f;
 	sgemv_("Transpose", &i__1, n, &c_b8, &a[i + a_dim1], lda, &work[1], &
 		c__1, &c_b10, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
-	r__1 = -(doublereal)tau;
+	r__1 = -(double)tau;
 	sger_(&i__1, n, &r__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i + 
 		a_dim1], lda);
 
@@ -139,7 +139,7 @@ static real c_b10 = 0.f;
 	sgemv_("No transpose", n, &i__1, &c_b8, &a[i * a_dim1 + 1], lda, &
 		work[1], &c__1, &c_b10, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
-	r__1 = -(doublereal)tau;
+	r__1 = -(double)tau;
 	sger_(n, &i__1, &r__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i * 
 		a_dim1 + 1], lda);
 /* L10: */

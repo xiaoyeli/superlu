@@ -9,43 +9,43 @@
 
 static int c__3 = 3;
 static int c__1 = 1;
-static doublereal c_b12 = 0.;
-static doublereal c_b19 = -1.;
-static doublereal c_b26 = 1.;
+static double c_b12 = 0.;
+static double c_b19 = -1.;
+static double c_b26 = 1.;
 
-/* Subroutine */ int dlagsy_slu(int *n, int *k, doublereal *d,
-	doublereal *a, int *lda, int *iseed, doublereal *work,
+/* Subroutine */ int dlagsy_slu(int *n, int *k, double *d,
+	double *a, int *lda, int *iseed, double *work,
 	int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
-    doublereal d__1;
+    double d__1;
 
     /* Builtin functions */
-    double d_sign(doublereal *, doublereal *);
+    double d_sign(double *, double *);
 
     /* Local variables */
-    extern /* Subroutine */ int dger_(int *, int *, doublereal *,
-	    doublereal *, int *, doublereal *, int *, doublereal *,
+    extern /* Subroutine */ int dger_(int *, int *, double *,
+	    double *, int *, double *, int *, double *,
 	    int *);
-    extern doublereal ddot_(int *, doublereal *, int *, doublereal *,
-	    int *), dnrm2_(int *, doublereal *, int *);
-    extern /* Subroutine */ int dsyr2_(char *, int *, doublereal *,
-	    doublereal *, int *, doublereal *, int *, doublereal *,
+    extern double ddot_(int *, double *, int *, double *,
+	    int *), dnrm2_(int *, double *, int *);
+    extern /* Subroutine */ int dsyr2_(char *, int *, double *,
+	    double *, int *, double *, int *, double *,
 	    int *);
     static int i, j;
-    static doublereal alpha;
-    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
-	    int *), dgemv_(char *, int *, int *, doublereal *,
-	    doublereal *, int *, doublereal *, int *, doublereal *,
-	    doublereal *, int *), daxpy_(int *, doublereal *,
-	    doublereal *, int *, doublereal *, int *), dsymv_(char *,
-	    int *, doublereal *, doublereal *, int *, doublereal *,
-	    int *, doublereal *, doublereal *, int *);
-    static doublereal wa, wb, wn;
-    extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, doublereal *);
+    static double alpha;
+    extern /* Subroutine */ int dscal_(int *, double *, double *,
+	    int *), dgemv_(char *, int *, int *, double *,
+	    double *, int *, double *, int *, double *,
+	    double *, int *), daxpy_(int *, double *,
+	    double *, int *, double *, int *), dsymv_(char *,
+	    int *, double *, double *, int *, double *,
+	    int *, double *, double *, int *);
+    static double wa, wb, wn;
+    extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, double *);
     extern int input_error(char *, int *);
-    static doublereal tau;
+    static double tau;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0)   

@@ -12,13 +12,13 @@ static doublecomplex c_b2 = {1.,0.};
 static int c__3 = 3;
 static int c__1 = 1;
 
-/* Subroutine */ int zlaghe_slu(int *n, int *k, doublereal *d,
+/* Subroutine */ int zlaghe_slu(int *n, int *k, double *d,
 	doublecomplex *a, int *lda, int *iseed, doublecomplex *work,
 	int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
-    doublereal d__1;
+    double d__1;
     doublecomplex z__1, z__2, z__3, z__4;
 
     /* Builtin functions */
@@ -46,9 +46,9 @@ static int c__1 = 1;
 	    doublecomplex *, int *), zaxpy_(int *,
 	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
 	    int *);
-    extern doublereal dznrm2_(int *, doublecomplex *, int *);
+    extern double dznrm2_(int *, doublecomplex *, int *);
     static doublecomplex wa, wb;
-    static doublereal wn;
+    static double wn;
     extern /* Subroutine */ int zlarnv_slu(int *, int *, int *, doublecomplex *);
     extern int input_error(char *, int *);
     static doublecomplex tau;

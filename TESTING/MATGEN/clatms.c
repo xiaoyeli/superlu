@@ -24,12 +24,12 @@ static bool c_false = false;
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     real r__1, r__2, r__3;
-    doublereal d__1;
+    double d__1;
     complex q__1, q__2, q__3;
     bool L__1;
 
     /* Builtin functions */
-    double cos(doublereal), sin(doublereal);
+    double cos(double), sin(double);
     void r_cnjg(complex *, complex *);
 
     /* Local variables */
@@ -68,7 +68,7 @@ static bool c_false = false;
 	    clagsy_slu(int *, int *, real *, complex *,
 	    int *, int *, complex *, int *);
     extern int input_error(char *, int *);
-    extern doublereal slarnd_slu(int *, int *);
+    extern double slarnd_slu(int *, int *);
     extern /* Subroutine */ int clarot_slu(bool *, bool *, bool *,
 	    int *, complex *, complex *, complex *, int *, complex *,
 	    complex *);
@@ -693,8 +693,8 @@ JKU, N )
 					dummy.i;
 				r_cnjg(&q__1, &q__2);
 				c.r = q__1.r, c.i = q__1.i;
-				q__3.r = -(doublereal)s.r, q__3.i = -(
-					doublereal)s.i;
+				q__3.r = -(double)s.r, q__3.i = -(
+					double)s.i;
 				q__2.r = q__3.r * dummy.r - q__3.i * dummy.i, 
 					q__2.i = q__3.r * dummy.i + q__3.i * 
 					dummy.r;
@@ -720,8 +720,8 @@ JKU, N )
 					dummy.i;
 				r_cnjg(&q__1, &q__2);
 				c.r = q__1.r, c.i = q__1.i;
-				q__3.r = -(doublereal)s.r, q__3.i = -(
-					doublereal)s.i;
+				q__3.r = -(double)s.r, q__3.i = -(
+					double)s.i;
 				q__2.r = q__3.r * dummy.r - q__3.i * dummy.i, 
 					q__2.i = q__3.r * dummy.i + q__3.i * 
 					dummy.r;
@@ -800,8 +800,8 @@ JKL, JKU
 					dummy.i;
 				r_cnjg(&q__1, &q__2);
 				c.r = q__1.r, c.i = q__1.i;
-				q__3.r = -(doublereal)s.r, q__3.i = -(
-					doublereal)s.i;
+				q__3.r = -(double)s.r, q__3.i = -(
+					double)s.i;
 				q__2.r = q__3.r * dummy.r - q__3.i * dummy.i, 
 					q__2.i = q__3.r * dummy.i + q__3.i * 
 					dummy.r;
@@ -827,8 +827,8 @@ JKL, JKU
 					dummy.i;
 				r_cnjg(&q__1, &q__2);
 				c.r = q__1.r, c.i = q__1.i;
-				q__3.r = -(doublereal)s.r, q__3.i = -(
-					doublereal)s.i;
+				q__3.r = -(double)s.r, q__3.i = -(
+					double)s.i;
 				q__2.r = q__3.r * dummy.r - q__3.i * dummy.i, 
 					q__2.i = q__3.r * dummy.i + q__3.i * 
 					dummy.r;
@@ -1156,7 +1156,7 @@ L, M )
 				    dummy.i;
 			    r_cnjg(&q__1, &q__2);
 			    c.r = q__1.r, c.i = q__1.i;
-			    q__3.r = -(doublereal)s.r, q__3.i = -(doublereal)
+			    q__3.r = -(double)s.r, q__3.i = -(double)
 				    s.i;
 			    q__2.r = q__3.r * dummy.r - q__3.i * dummy.i, 
 				    q__2.i = q__3.r * dummy.i + q__3.i * 

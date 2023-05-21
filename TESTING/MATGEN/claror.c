@@ -255,7 +255,7 @@ static int c__1 = 1;
 	q__1.r = xnorm * csign.r, q__1.i = xnorm * csign.i;
 	xnorms.r = q__1.r, xnorms.i = q__1.i;
 	i__2 = nxfrm + kbeg;
-	q__1.r = -(doublereal)csign.r, q__1.i = -(doublereal)csign.i;
+	q__1.r = -(double)csign.r, q__1.i = -(double)csign.i;
 	x[i__2].r = q__1.r, x[i__2].i = q__1.i;
 	factor = xnorm * (xnorm + xabs);
 	if (fabs(factor) < 1e-20f) {
@@ -280,7 +280,7 @@ static int c__1 = 1;
 	    cgemv_("C", &ixfrm, n, &c_b2, &a[kbeg + a_dim1], lda, &x[kbeg], &
 		    c__1, &c_b1, &x[(nxfrm << 1) + 1], &c__1);
 	    q__2.r = factor, q__2.i = 0.f;
-	    q__1.r = -(doublereal)q__2.r, q__1.i = -(doublereal)q__2.i;
+	    q__1.r = -(double)q__2.r, q__1.i = -(double)q__2.i;
 	    cgerc_(&ixfrm, n, &q__1, &x[kbeg], &c__1, &x[(nxfrm << 1) + 1], &
 		    c__1, &a[kbeg + a_dim1], lda);
 
@@ -297,7 +297,7 @@ static int c__1 = 1;
 	    cgemv_("N", m, &ixfrm, &c_b2, &a[kbeg * a_dim1 + 1], lda, &x[kbeg]
 		    , &c__1, &c_b1, &x[(nxfrm << 1) + 1], &c__1);
 	    q__2.r = factor, q__2.i = 0.f;
-	    q__1.r = -(doublereal)q__2.r, q__1.i = -(doublereal)q__2.i;
+	    q__1.r = -(double)q__2.r, q__1.i = -(double)q__2.i;
 	    cgerc_(m, &ixfrm, &q__1, &x[(nxfrm << 1) + 1], &c__1, &x[kbeg], &
 		    c__1, &a[kbeg * a_dim1 + 1], lda);
 

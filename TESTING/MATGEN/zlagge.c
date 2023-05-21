@@ -13,12 +13,12 @@ static int c__3 = 3;
 static int c__1 = 1;
 
 /* Subroutine */ int zlagge_slu(int *m, int *n, int *kl, int *ku,
-	 doublereal *d, doublecomplex *a, int *lda, int *iseed,
+	 double *d, doublecomplex *a, int *lda, int *iseed,
 	doublecomplex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
-    doublereal d__1;
+    double d__1;
     doublecomplex z__1;
 
     /* Builtin functions */
@@ -33,9 +33,9 @@ static int c__1 = 1;
 	    doublecomplex *, int *), zgemv_(char *, int *, int *,
 	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
 	    int *, doublecomplex *, doublecomplex *, int *);
-    extern doublereal dznrm2_(int *, doublecomplex *, int *);
+    extern double dznrm2_(int *, doublecomplex *, int *);
     static doublecomplex wa, wb;
-    static doublereal wn;
+    static double wn;
     extern /* Subroutine */ int zlacgv_slu(int *, doublecomplex *, int *), zlarnv_slu(int *,
 	    int *, int *, doublecomplex *);
     extern int input_error(char *, int *);

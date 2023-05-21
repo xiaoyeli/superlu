@@ -37,7 +37,7 @@ static int c__1 = 1;
     static real xnorm;
     extern int input_error(char *, int *);
     static real factor;
-    extern doublereal slarnd_slu(int *, int *);
+    extern double slarnd_slu(int *, int *);
     extern /* Subroutine */ int slaset_slu(char *, int *, int *, real *,
 	    real *, real *, int *);
     static real xnorms;
@@ -219,7 +219,7 @@ static int c__1 = 1;
 
 	xnorm = snrm2_(&ixfrm, &x[kbeg], &c__1);
 	xnorms = r_sign(&xnorm, &x[kbeg]);
-	r__1 = -(doublereal)x[kbeg];
+	r__1 = -(double)x[kbeg];
 	x[kbeg + nxfrm] = r_sign(&c_b10, &r__1);
 	factor = xnorms * (xnorms + x[kbeg]);
 	if (fabs(factor) < 1e-20f) {
@@ -239,7 +239,7 @@ static int c__1 = 1;
 
 	    sgemv_("T", &ixfrm, n, &c_b10, &a[kbeg + a_dim1], lda, &x[kbeg], &
 		    c__1, &c_b9, &x[(nxfrm << 1) + 1], &c__1);
-	    r__1 = -(doublereal)factor;
+	    r__1 = -(double)factor;
 	    sger_(&ixfrm, n, &r__1, &x[kbeg], &c__1, &x[(nxfrm << 1) + 1], &
 		    c__1, &a[kbeg + a_dim1], lda);
 
@@ -251,7 +251,7 @@ static int c__1 = 1;
 
 	    sgemv_("N", m, &ixfrm, &c_b10, &a[kbeg * a_dim1 + 1], lda, &x[
 		    kbeg], &c__1, &c_b9, &x[(nxfrm << 1) + 1], &c__1);
-	    r__1 = -(doublereal)factor;
+	    r__1 = -(double)factor;
 	    sger_(m, &ixfrm, &r__1, &x[(nxfrm << 1) + 1], &c__1, &x[kbeg], &
 		    c__1, &a[kbeg * a_dim1 + 1], lda);
 

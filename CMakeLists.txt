@@ -223,9 +223,7 @@ if (XSDK_ENABLE_Fortran)
   add_subdirectory(FORTRAN)
 endif()
 
-if(enable_doc)
-  add_subdirectory(DOC)
-endif()
+add_subdirectory(DOC)
 
 # Generate various configure files with proper definitions
 

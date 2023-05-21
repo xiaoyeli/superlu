@@ -16,7 +16,7 @@
     void c_exp(complex *, complex *);
 
     /* Local variables */
-    static real t1, t2;
+    static float t1, t2;
     extern double dlaran_sluslu(int *);
     extern int input_error(char *, int *);
 

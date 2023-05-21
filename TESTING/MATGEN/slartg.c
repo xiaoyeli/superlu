@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include "f2c.h"
 
-/* Subroutine */ int slartg_slu(real *f, real *g, real *cs, real *sn, real *r)
+/* Subroutine */ int slartg_slu(float *f, float *g, float *cs, float *sn, float *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -52,16 +52,16 @@
     static bool first = true;
     /* System generated locals */
     int i__1;
-    real r__1, r__2;
+    float r__1, r__2;
     /* Builtin functions */
-    double log(double), pow_ri(real *, int *), sqrt(double);
+    double log(double), pow_ri(float *, int *), sqrt(double);
     /* Local variables */
     static int i;
-    static real scale;
+    static float scale;
     static int count;
-    static real f1, g1, safmn2, safmx2;
+    static float f1, g1, safmn2, safmx2;
     extern float smach(char *);
-    static real safmin, eps;
+    static float safmin, eps;
 
 
     if (first) {

@@ -6,16 +6,16 @@
 #include "f2c.h"
 
 double slatm2_slu(int *m, int *n, int *i, int *j, int *
-	kl, int *ku, int *idist, int *iseed, real *d, int *
-	igrade, real *dl, real *dr, int *ipvtng, int *iwork, real *
+	kl, int *ku, int *idist, int *iseed, float *d, int *
+	igrade, float *dl, float *dr, int *ipvtng, int *iwork, float *
 	sparse)
 {
     /* System generated locals */
-    real ret_val;
+    float ret_val;
 
     /* Local variables */
     static int isub, jsub;
-    static real temp;
+    static float temp;
     extern double dlaran_sluslu(int *), slarnd_slu(int *, int *);
 
 

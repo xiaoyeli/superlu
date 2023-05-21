@@ -31,9 +31,9 @@ static int c__1 = 1;
 	     cscal_(int *, complex *, complex *, int *), cgemv_(char *
 	    , int *, int *, complex *, complex *, int *, complex *
 	    , int *, complex *, complex *, int *);
-    extern real scnrm2_(int *, complex *, int *);
+    extern float scnrm2_(int *, complex *, int *);
     static complex wa, wb;
-    static real wn;
+    static float wn;
     extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
     static complex tau;

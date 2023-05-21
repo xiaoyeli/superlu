@@ -11,8 +11,8 @@
 /* Table of constant values */
 
 /* Subroutine */ int slatb4_slu(char *path, int *imat, int *m, int *
-	n, char *type, int *kl, int *ku, real *anorm, int *mode,
-	real *cndnum, char *dist)
+	n, char *type, int *kl, int *ku, float *anorm, int *mode,
+	float *cndnum, char *dist)
 {
     /* Initialized data */
 
@@ -25,12 +25,12 @@
     double sqrt(double);
 
     /* Local variables */
-    static real badc1, badc2, large, small;
+    static float badc1, badc2, large, small;
     static char c2[2];
-    extern /* Subroutine */ int slabad_slu(real *, real *);
+    extern /* Subroutine */ int slabad_slu(float *, float *);
     extern float smach(char *);
     static int mat;
-    static real eps;
+    static float eps;
 
 
 /*  -- LAPACK test routine (version 2.0) --   

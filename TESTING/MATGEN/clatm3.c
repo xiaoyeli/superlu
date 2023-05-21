@@ -8,7 +8,7 @@
 /* Complex */ void clatm3_slu(complex * ret_val, int *m, int *n, int
 	*i, int *j, int *isub, int *jsub, int *kl, int *
 	ku, int *idist, int *iseed, complex *d, int *igrade,
-	complex *dl, complex *dr, int *ipvtng, int *iwork, real *
+	complex *dl, complex *dr, int *ipvtng, int *iwork, float *
 	sparse)
 {
     /* System generated locals */

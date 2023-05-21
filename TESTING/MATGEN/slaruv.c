@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int slaruv_slu(int *iseed, int *n, real *x)
+/* Subroutine */ int slaruv_slu(int *iseed, int *n, float *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -130,7 +130,7 @@
 /*        Convert 48-bit int to a real number in the interval (0,1
 ) */
 
-	X(i) = ((real) it1 + ((real) it2 + ((real) it3 + (real) it4 * 
+        X(i) = ((float) it1 + ((float) it2 + ((float) it3 + (float) it4 *
 		2.44140625e-4f) * 2.44140625e-4f) * 2.44140625e-4f) * 
 		2.44140625e-4f;
 /* L10: */

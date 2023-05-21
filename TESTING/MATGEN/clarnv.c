@@ -64,9 +64,9 @@
     void c_exp(complex *, complex *);
     /* Local variables */
     static int i;
-    static real u[128];
+    static float u[128];
     static int il, iv;
-    extern /* Subroutine */ int slaruv_slu(int *, int *, real *);
+    extern /* Subroutine */ int slaruv_slu(int *, int *, float *);
 
 
 #define X(I) x[(I)-1]

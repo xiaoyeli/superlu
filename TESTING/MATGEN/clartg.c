@@ -1,8 +1,7 @@
 #include <math.h>
 #include "f2c.h"
 
-/* Subroutine */ int clartg_slu(complex *f, complex *g, real *cs, complex *sn, 
-	complex *r)
+/* Subroutine */ int clartg_slu(complex *f, complex *g, float *cs, complex *sn, complex *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -50,14 +49,14 @@
 
        [ 25 or 38 ops for main paths ] */
     /* System generated locals */
-    real r__1, r__2;
+    float r__1, r__2;
     double d__1;
     complex q__1, q__2, q__3;
     /* Builtin functions */
     void r_cnjg(complex *, complex *);
     double c_abs(complex *), r_imag(complex *), sqrt(double);
     /* Local variables */
-    static real d, f1, f2, g1, g2, fa, ga, di;
+    static float d, f1, f2, g1, g2, fa, ga, di;
     static complex fs, gs, ss;
 
 

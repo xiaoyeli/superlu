@@ -13,7 +13,7 @@ static int c__3 = 3;
 static int c__1 = 1;
 
 /* Subroutine */ int clagge_slu(int *m, int *n, int *kl, int *ku,
-	 real *d, complex *a, int *lda, int *iseed, complex *work,
+	 float *d, complex *a, int *lda, int *iseed, complex *work,
 	int *info)
 {
     /* System generated locals */
@@ -32,10 +32,10 @@ static int c__1 = 1;
 	     cscal_(int *, complex *, complex *, int *), cgemv_(char *
 	    , int *, int *, complex *, complex *, int *, complex *
 	    , int *, complex *, complex *, int *);
-    extern real scnrm2_(int *, complex *, int *);
+    extern float scnrm2_(int *, complex *, int *);
     static complex wa, wb;
     extern /* Subroutine */ int clacgv_slu(int *, complex *, int *);
-    static real wn;
+    static float wn;
     extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
     static complex tau;

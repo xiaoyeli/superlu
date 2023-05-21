@@ -9,31 +9,31 @@
 
 static int c__3 = 3;
 static int c__1 = 1;
-static real c_b8 = 1.f;
-static real c_b10 = 0.f;
+static float c_b8 = 1.f;
+static float c_b10 = 0.f;
 
-/* Subroutine */ int slarge_slu(int *n, real *a, int *lda, int *
-	iseed, real *work, int *info)
+/* Subroutine */ int slarge_slu(int *n, float *a, int *lda, int *
+	iseed, float *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1;
-    real r__1;
+    float r__1;
 
     /* Builtin functions */
-    double r_sign(real *, real *);
+    double r_sign(float *, float *);
 
     /* Local variables */
-    extern /* Subroutine */ int sger_(int *, int *, real *, real *,
-	    int *, real *, int *, real *, int *);
-    extern real snrm2_(int *, real *, int *);
+    extern /* Subroutine */ int sger_(int *, int *, float *, float *,
+	    int *, float *, int *, float *, int *);
+    extern float snrm2_(int *, float *, int *);
     static int i;
-    extern /* Subroutine */ int sscal_(int *, real *, real *, int *),
-	    sgemv_(char *, int *, int *, real *, real *, int *,
-	    real *, int *, real *, real *, int *);
-    static real wa, wb, wn;
-    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, real *);
+    extern /* Subroutine */ int sscal_(int *, float *, float *, int *),
+	    sgemv_(char *, int *, int *, float *, float *, int *,
+	    float *, int *, float *, float *, int *);
+    static float wa, wb, wn;
+    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, float *);
     extern int input_error(char *, int *);
-    static real tau;
+    static float tau;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0)   

@@ -1,8 +1,8 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int slaset_slu(char *uplo, int *m, int *n, real *alpha,
-	real *beta, real *a, int *lda)
+/* Subroutine */ int slaset_slu(char *uplo, int *m, int *n, float *alpha,
+	float *beta, float *a, int *lda)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   

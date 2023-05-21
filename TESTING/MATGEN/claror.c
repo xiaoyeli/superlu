@@ -27,7 +27,7 @@ static int c__1 = 1;
 
     /* Local variables */
     static int kbeg, jcol;
-    static real xabs;
+    static float xabs;
     static int irow, j;
     extern /* Subroutine */ int cgerc_(int *, int *, complex *,
 	    complex *, int *, complex *, int *, complex *, int *),
@@ -37,14 +37,14 @@ static int c__1 = 1;
 	    , int *);
     static complex csign;
     static int ixfrm, itype, nxfrm;
-    static real xnorm;
-    extern real scnrm2_(int *, complex *, int *);
+    static float xnorm;
+    extern float scnrm2_(int *, complex *, int *);
     extern /* Subroutine */ int clacgv_slu(int *, complex *, int *);
     extern /* Complex */ void clarnd_slu(complex *, int *, int *);
     extern /* Subroutine */ int claset_slu(char *, int *, int *, complex
 	    *, complex *, complex *, int *);
     extern int input_error(char *, int *);
-    static real factor;
+    static float factor;
     static complex xnorms;
 
 

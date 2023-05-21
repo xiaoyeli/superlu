@@ -12,7 +12,7 @@ static complex c_b2 = {1.f,0.f};
 static int c__3 = 3;
 static int c__1 = 1;
 
-/* Subroutine */ int claghe_slu(int *n, int *k, real *d, complex *a,
+/* Subroutine */ int claghe_slu(int *n, int *k, float *d, complex *a,
 	int *lda, int *iseed, complex *work, int *info)
 {
     /* System generated locals */
@@ -41,9 +41,9 @@ static int c__1 = 1;
 	    complex *, int *, complex *, int *, complex *, complex *,
 	    int *), caxpy_(int *, complex *, complex *,
 	    int *, complex *, int *);
-    extern real scnrm2_(int *, complex *, int *);
+    extern float scnrm2_(int *, complex *, int *);
     static complex wa, wb;
-    static real wn;
+    static float wn;
     extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
     static complex tau;

@@ -1,6 +1,6 @@
 #include "f2c.h"
 
-/* Subroutine */ int slarnv_slu(int *idist, int *iseed, int *n, real
+/* Subroutine */ int slarnv_slu(int *idist, int *iseed, int *n, float
 	*x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -58,9 +58,9 @@
     double log(double), sqrt(double), cos(double);
     /* Local variables */
     static int i;
-    static real u[128];
+    static float u[128];
     static int il, iv, il2;
-    extern /* Subroutine */ int slaruv_slu(int *, int *, real *);
+    extern /* Subroutine */ int slaruv_slu(int *, int *, float *);
 
 
 #define X(I) x[(I)-1]

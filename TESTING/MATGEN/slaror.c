@@ -8,39 +8,39 @@
 
 /* Table of constant values */
 
-static real c_b9 = 0.f;
-static real c_b10 = 1.f;
+static float c_b9 = 0.f;
+static float c_b10 = 1.f;
 static int c__3 = 3;
 static int c__1 = 1;
 
 /* Subroutine */ int slaror_slu(char *side, char *init, int *m, int *n,
-	real *a, int *lda, int *iseed, real *x, int *info)
+	float *a, int *lda, int *iseed, float *x, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2;
-    real r__1;
+    float r__1;
 
     /* Builtin functions */
-    double r_sign(real *, real *);
+    double r_sign(float *, float *);
 
     /* Local variables */
     static int kbeg, jcol;
-    extern /* Subroutine */ int sger_(int *, int *, real *, real *,
-	    int *, real *, int *, real *, int *);
+    extern /* Subroutine */ int sger_(int *, int *, float *, float *,
+	    int *, float *, int *, float *, int *);
     static int irow;
-    extern real snrm2_(int *, real *, int *);
+    extern float snrm2_(int *, float *, int *);
     static int j;
-    extern /* Subroutine */ int sscal_(int *, real *, real *, int *),
-	    sgemv_(char *, int *, int *, real *, real *, int *,
-	    real *, int *, real *, real *, int *);
+    extern /* Subroutine */ int sscal_(int *, float *, float *, int *),
+	    sgemv_(char *, int *, int *, float *, float *, int *,
+	    float *, int *, float *, float *, int *);
     static int ixfrm, itype, nxfrm;
-    static real xnorm;
+    static float xnorm;
     extern int input_error(char *, int *);
-    static real factor;
+    static float factor;
     extern double slarnd_slu(int *, int *);
-    extern /* Subroutine */ int slaset_slu(char *, int *, int *, real *,
-	    real *, real *, int *);
-    static real xnorms;
+    extern /* Subroutine */ int slaset_slu(char *, int *, int *, float *,
+	    float *, float *, int *);
+    static float xnorms;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

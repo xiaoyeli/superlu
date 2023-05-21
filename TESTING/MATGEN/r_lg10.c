@@ -4,7 +4,7 @@
 
 #include "math.h"
 
-double r_lg10(real *x)
+double r_lg10(float *x)
 {
 return( log10e * log(*x) );
 }

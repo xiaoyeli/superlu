@@ -11,18 +11,18 @@
 /* Table of constant values */
 
 static int c__1 = 1;
-static real c_b22 = 0.f;
+static float c_b22 = 0.f;
 static bool c_true = true;
 static bool c_false = false;
 
 /* Subroutine */ int slatms_slu(int *m, int *n, char *dist, int *
-	iseed, char *sym, real *d, int *mode, real *cond, real *dmax__,
-	int *kl, int *ku, char *pack, real *a, int *lda, real *
+	iseed, char *sym, float *d, int *mode, float *cond, float *dmax__,
+	int *kl, int *ku, char *pack, float *a, int *lda, float *
 	work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
-    real r__1, r__2, r__3;
+    float r__1, r__2, r__3;
     bool L__1;
 
     /* Builtin functions */
@@ -30,34 +30,34 @@ static bool c_false = false;
 
     /* Local variables */
     static int ilda, icol;
-    static real temp;
+    static float temp;
     static int irow, isym;
-    static real c;
+    static float c;
     static int i, j, k;
-    static real s, alpha, angle;
+    static float s, alpha, angle;
     static int ipack, ioffg;
     static int iinfo;
-    extern /* Subroutine */ int sscal_(int *, real *, real *, int *);
+    extern /* Subroutine */ int sscal_(int *, float *, float *, int *);
     static int idist, mnmin, iskew;
-    static real extra, dummy;
-    extern /* Subroutine */ int scopy_(int *, real *, int *, real *,
-	    int *), slatm1_slu(int *, real *, int *, int *,
-	    int *, real *, int *, int *);
+    static float extra, dummy;
+    extern /* Subroutine */ int scopy_(int *, float *, int *, float *,
+	    int *), slatm1_slu(int *, float *, int *, int *,
+	    int *, float *, int *, int *);
     static int ic, jc, nc, il, iendch, ir, jr, ipackg, mr;
     extern /* Subroutine */ int slagge_slu(int *, int *, int *,
-	    int *, real *, real *, int *, int *, real *, int *
+	    int *, float *, float *, int *, int *, float *, int *
 	    );
     static int minlda;
     extern int input_error(char *, int *);
     extern double slarnd_slu(int *, int *);
     static bool iltemp, givens;
     static int ioffst, irsign;
-    extern /* Subroutine */ int slartg_slu(real *, real *, real *, real *, real *
-	    ), slaset_slu(char *, int *, int *, real *, real *, real *,
-	    int *), slagsy_slu(int *, int *, real *, real *,
-	    int *, int *, real *, int *), slarot_slu(bool *,
-	    bool *, bool *, int *, real *, real *, real *, int *
-	    , real *, real *);
+    extern /* Subroutine */ int slartg_slu(float *, float *, float *, float *, float *
+	    ), slaset_slu(char *, int *, int *, float *, float *, float *,
+	    int *), slagsy_slu(int *, int *, float *, float *,
+	    int *, int *, float *, int *), slarot_slu(bool *,
+	    bool *, bool *, int *, float *, float *, float *, int *
+	    , float *, float *);
     static bool ilextr, topdwn;
     static int ir1, ir2, isympk, jch, llb, jkl, jku, uub;
 
@@ -431,7 +431,7 @@ static bool c_false = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
-	if ((real) (llb + uub) < (real) max(i__1,i__2) * .3f) {
+	if ((float) (llb + uub) < (float) max(i__1,i__2) * .3f) {
 	    givens = true;
 	}
     } else {

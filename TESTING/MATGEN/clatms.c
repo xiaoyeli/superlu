@@ -17,13 +17,13 @@ static bool c_true = true;
 static bool c_false = false;
 
 /* Subroutine */ int clatms_slu(int *m, int *n, char *dist, int *
-	iseed, char *sym, real *d, int *mode, real *cond, real *dmax__,
+	iseed, char *sym, float *d, int *mode, float *cond, float *dmax__,
 	int *kl, int *ku, char *pack, complex *a, int *lda,
 	complex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
-    real r__1, r__2, r__3;
+    float r__1, r__2, r__3;
     double d__1;
     complex q__1, q__2, q__3;
     bool L__1;
@@ -34,27 +34,27 @@ static bool c_false = false;
 
     /* Local variables */
     static int ilda, icol;
-    static real temp;
+    static float temp;
     static bool csym;
     static int irow, isym;
     static complex c;
     static int i, j, k;
     static complex s;
-    static real alpha, angle;
+    static float alpha, angle;
     static int ipack;
-    static real realc;
+    static float floatc;
     static int ioffg;
     static int iinfo;
-    extern /* Subroutine */ int sscal_(int *, real *, real *, int *);
+    extern /* Subroutine */ int sscal_(int *, float *, float *, int *);
     static complex ctemp;
     static int idist, mnmin, iskew;
     static complex extra, dummy;
-    extern /* Subroutine */ int slatm1_slu(int *, real *, int *, int
-	    *, int *, real *, int *, int *);
+    extern /* Subroutine */ int slatm1_slu(int *, float *, int *, int
+	    *, int *, float *, int *, int *);
     static int ic, jc, nc;
     extern /* Subroutine */ int clagge_slu(int *, int *, int *,
-	    int *, real *, complex *, int *, int *, complex *,
-	    int *), claghe_slu(int *, int *, real *, complex *,
+	    int *, float *, complex *, int *, int *, complex *,
+	    int *), claghe_slu(int *, int *, float *, complex *,
 	    int *, int *, complex *, int *);
     static int il;
     static complex ct;
@@ -64,8 +64,8 @@ static bool c_false = false;
     static complex st;
     extern /* Subroutine */ int claset_slu(char *, int *, int *, complex
 	    *, complex *, complex *, int *), clartg_slu(complex *,
-	    complex *, real *, complex *, complex *), 
-	    clagsy_slu(int *, int *, real *, complex *,
+	    complex *, float *, complex *, complex *),
+	    clagsy_slu(int *, int *, float *, complex *,
 	    int *, int *, complex *, int *);
     extern int input_error(char *, int *);
     extern double slarnd_slu(int *, int *);
@@ -463,7 +463,7 @@ static bool c_false = false;
     if (isym == 1) {
 /* Computing MAX */
 	i__1 = 1, i__2 = mr + nc;
-	if ((real) (llb + uub) < (real) max(i__1,i__2) * .3f) {
+	if ((float) (llb + uub) < (float) max(i__1,i__2) * .3f) {
 	    givens = true;
 	}
     } else {
@@ -685,11 +685,11 @@ JKU, N )
 				jch += i__3) {
 			    if (ir < *m) {
 				clartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst 
-					+ (ic + 1) * a_dim1], &extra, &realc, 
+					+ (ic + 1) * a_dim1], &extra, &floatc,
 					&s, &dummy);
 				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
-				q__2.r = realc * dummy.r, q__2.i = realc * 
+				q__2.r = floatc * dummy.r, q__2.i = floatc *
 					dummy.i;
 				r_cnjg(&q__1, &q__2);
 				c.r = q__1.r, c.i = q__1.i;
@@ -713,10 +713,10 @@ JKU, N )
 			    if (iltemp) {
 				clartg_slu(&a[irow + 1 - iskew * (ic + 1) + 
 					ioffst + (ic + 1) * a_dim1], &ctemp, &
-					realc, &s, &dummy);
+					floatc, &s, &dummy);
 				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
-				q__2.r = realc * dummy.r, q__2.i = realc * 
+				q__2.r = floatc * dummy.r, q__2.i = floatc *
 					dummy.i;
 				r_cnjg(&q__1, &q__2);
 				c.r = q__1.r, c.i = q__1.i;
@@ -792,11 +792,11 @@ JKL, JKU
 				jch += i__3) {
 			    if (ic < *n) {
 				clartg_slu(&a[ir + 1 - iskew * (ic + 1) + ioffst 
-					+ (ic + 1) * a_dim1], &extra, &realc, 
+					+ (ic + 1) * a_dim1], &extra, &floatc,
 					&s, &dummy);
 				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
-				q__2.r = realc * dummy.r, q__2.i = realc * 
+				q__2.r = floatc * dummy.r, q__2.i = floatc *
 					dummy.i;
 				r_cnjg(&q__1, &q__2);
 				c.r = q__1.r, c.i = q__1.i;
@@ -820,10 +820,10 @@ JKL, JKU
 			    if (iltemp) {
 				clartg_slu(&a[ir + 1 - iskew * (icol + 1) + 
 					ioffst + (icol + 1) * a_dim1], &ctemp,
-					 &realc, &s, &dummy);
+					 &floatc, &s, &dummy);
 				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
-				q__2.r = realc * dummy.r, q__2.i = realc * 
+				q__2.r = floatc * dummy.r, q__2.i = floatc *
 					dummy.i;
 				r_cnjg(&q__1, &q__2);
 				c.r = q__1.r, c.i = q__1.i;
@@ -910,10 +910,10 @@ JKL, JKU
 			    ilextr = ic > 0;
 			    if (ilextr) {
 				clartg_slu(&a[jch - iskew * ic + ioffst + ic * 
-					a_dim1], &extra, &realc, &s, &dummy);
+					a_dim1], &extra, &floatc, &s, &dummy);
 				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
-				q__1.r = realc * dummy.r, q__1.i = realc * 
+				q__1.r = floatc * dummy.r, q__1.i = floatc *
 					dummy.i;
 				c.r = q__1.r, c.i = q__1.i;
 				q__1.r = s.r * dummy.r - s.i * dummy.i, 
@@ -933,11 +933,11 @@ JKL, JKU
 				    a_dim1], &ilda, &extra, &ctemp);
 			    if (iltemp) {
 				clartg_slu(&a[jch - iskew * icol + ioffst + icol 
-					* a_dim1], &ctemp, &realc, &s, &dummy)
+					* a_dim1], &ctemp, &floatc, &s, &dummy)
 					;
 				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
-				q__1.r = realc * dummy.r, q__1.i = realc * 
+				q__1.r = floatc * dummy.r, q__1.i = floatc *
 					dummy.i;
 				c.r = q__1.r, c.i = q__1.i;
 				q__1.r = s.r * dummy.r - s.i * dummy.i, 
@@ -1014,10 +1014,10 @@ L, M )
 			    ilextr = ir > 0;
 			    if (ilextr) {
 				clartg_slu(&a[ir - iskew * jch + ioffst + jch * 
-					a_dim1], &extra, &realc, &s, &dummy);
+					a_dim1], &extra, &floatc, &s, &dummy);
 				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
-				q__1.r = realc * dummy.r, q__1.i = realc * 
+				q__1.r = floatc * dummy.r, q__1.i = floatc *
 					dummy.i;
 				c.r = q__1.r, c.i = q__1.i;
 				q__1.r = s.r * dummy.r - s.i * dummy.i, 
@@ -1037,10 +1037,10 @@ L, M )
 				    a_dim1], &ilda, &extra, &ctemp);
 			    if (iltemp) {
 				clartg_slu(&a[irow - iskew * jch + ioffst + jch *
-					 a_dim1], &ctemp, &realc, &s, &dummy);
+					 a_dim1], &ctemp, &floatc, &s, &dummy);
 				clarnd_slu(&q__1, &c__5, &iseed[1]);
 				dummy.r = q__1.r, dummy.i = q__1.i;
-				q__1.r = realc * dummy.r, q__1.i = realc * 
+				q__1.r = floatc * dummy.r, q__1.i = floatc *
 					dummy.i;
 				c.r = q__1.r, c.i = q__1.i;
 				q__1.r = s.r * dummy.r - s.i * dummy.i, 
@@ -1148,11 +1148,10 @@ L, M )
 			for (jch = jc - k; i__2 < 0 ? jch >= 1 : jch <= 1; 
 				jch += i__2) {
 			    clartg_slu(&a[jch + 1 - iskew * (icol + 1) + ioffg + 
-				    (icol + 1) * a_dim1], &extra, &realc, &s, 
-				    &dummy);
+				    (icol + 1) * a_dim1], &extra, &floatc, &s, &dummy);
 			    clarnd_slu(&q__1, &c__5, &iseed[1]);
 			    dummy.r = q__1.r, dummy.i = q__1.i;
-			    q__2.r = realc * dummy.r, q__2.i = realc * 
+			    q__2.r = floatc * dummy.r, q__2.i = floatc *
 				    dummy.i;
 			    r_cnjg(&q__1, &q__2);
 			    c.r = q__1.r, c.i = q__1.i;
@@ -1324,10 +1323,10 @@ te that
 			for (jch = jc + k; i__2 < 0 ? jch >= i__4 : jch <= 
 				i__4; jch += i__2) {
 			    clartg_slu(&a[jch - iskew * icol + ioffg + icol * 
-				    a_dim1], &extra, &realc, &s, &dummy);
+				    a_dim1], &extra, &floatc, &s, &dummy);
 			    clarnd_slu(&q__1, &c__5, &iseed[1]);
 			    dummy.r = q__1.r, dummy.i = q__1.i;
-			    q__1.r = realc * dummy.r, q__1.i = realc * 
+			    q__1.r = floatc * dummy.r, q__1.i = floatc *
 				    dummy.i;
 			    c.r = q__1.r, c.i = q__1.i;
 			    q__1.r = s.r * dummy.r - s.i * dummy.i, q__1.i = 

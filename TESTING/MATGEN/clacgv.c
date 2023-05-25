@@ -1,4 +1,4 @@
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
 
 /* Subroutine */ int clacgv_slu(int *n, complex *x, int *incx)
 {

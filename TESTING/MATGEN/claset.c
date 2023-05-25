@@ -1,4 +1,5 @@
 #include <string.h>
+#include "../../SRC/slu_scomplex.h"
 #include "f2c.h"
 
 /* Subroutine */ int claset_slu(char *uplo, int *m, int *n, complex *

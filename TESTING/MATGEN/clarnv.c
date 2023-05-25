@@ -1,3 +1,4 @@
+#include "../../SRC/slu_scomplex.h"
 #include "f2c.h"
 
 /* Subroutine */ int clarnv_slu(int *idist, int *iseed, int *n,

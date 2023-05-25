@@ -11,7 +11,6 @@
 
 typedef int integer;
 
-typedef struct { float r, i; } complex;
 typedef struct { double r, i; } doublecomplex;
 
 #define min(a,b) ((a) <= (b) ? (a) : (b))

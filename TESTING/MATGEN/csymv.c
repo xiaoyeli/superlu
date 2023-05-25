@@ -1,4 +1,5 @@
 #include <string.h>
+#include "../../SRC/slu_scomplex.h"
 #include "f2c.h"
 
 /* Subroutine */ int csymv_sluslu(char *uplo, int *n, complex *alpha, complex *

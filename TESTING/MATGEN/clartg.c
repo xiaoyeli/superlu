@@ -1,5 +1,5 @@
 #include <math.h>
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
 
 /* Subroutine */ int clartg_slu(complex *f, complex *g, float *cs, complex *sn, complex *r)
 {

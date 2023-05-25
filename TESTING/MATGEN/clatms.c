@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../SRC/slu_scomplex.h"
 #include "f2c.h"
 
 /* Table of constant values */

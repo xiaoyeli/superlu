@@ -1,11 +1,9 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
 #include <math.h>
 #include <string.h>
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
 
 /* Table of constant values */
 

@@ -3,6 +3,7 @@
 	-lf2c -lm   (in that order)
 */
 
+#include "../../SRC/slu_scomplex.h"
 #include "f2c.h"
 
 /* Table of constant values */

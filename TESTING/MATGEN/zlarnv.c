@@ -1,4 +1,5 @@
 #include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
 /* Subroutine */ int zlarnv_slu(int *idist, int *iseed, int *n,
 	doublecomplex *x)

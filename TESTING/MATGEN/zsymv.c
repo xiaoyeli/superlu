@@ -1,4 +1,5 @@
 #include <string.h>
+#include "../../SRC/slu_dcomplex.h"
 #include "f2c.h"
 
 /* Subroutine */ int zsymv_(char *uplo, int *n, doublecomplex *alpha,

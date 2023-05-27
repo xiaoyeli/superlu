@@ -1,5 +1,6 @@
 #include <string.h>
 #include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
 /* Subroutine */ int zlaset_slu(char *uplo, int *m, int *n,
 	doublecomplex *alpha, doublecomplex *beta, doublecomplex *a, int *

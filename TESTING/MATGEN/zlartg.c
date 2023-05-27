@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
 /* Subroutine */ int zlartg_slu(doublecomplex *f, doublecomplex *g, double *
 	cs, doublecomplex *sn, doublecomplex *r)

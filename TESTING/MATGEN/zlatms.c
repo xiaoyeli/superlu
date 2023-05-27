@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
 /* Table of constant values */
 

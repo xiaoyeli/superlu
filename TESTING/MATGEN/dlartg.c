@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include <math.h>
-#include "f2c.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Subroutine */ int dlartg_slu(double *f, double *g, double *cs, double *sn, double *r)
 {
@@ -87,7 +87,7 @@
 	g1 = *g;
 /* Computing MAX */
 	d__1 = fabs(f1), d__2 = fabs(g1);
-	scale = max(d__1,d__2);
+	scale = SUPERLU_MAX(d__1,d__2);
 	if (scale >= safmx2) {
 	    count = 0;
 L10:
@@ -96,7 +96,7 @@ L10:
 	    g1 *= safmn2;
 /* Computing MAX */
 	    d__1 = fabs(f1), d__2 = fabs(g1);
-	    scale = max(d__1,d__2);
+	    scale = SUPERLU_MAX(d__1,d__2);
 	    if (scale >= safmx2) {
 		goto L10;
 	    }
@@ -120,7 +120,7 @@ L30:
 	    g1 *= safmx2;
 /* Computing MAX */
 	    d__1 = fabs(f1), d__2 = fabs(g1);
-	    scale = max(d__1,d__2);
+	    scale = SUPERLU_MAX(d__1,d__2);
 	    if (scale <= safmn2) {
 		goto L30;
 	    }

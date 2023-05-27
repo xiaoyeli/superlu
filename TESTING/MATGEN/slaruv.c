@@ -1,4 +1,4 @@
-#include "f2c.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Subroutine */ int slaruv_slu(int *iseed, int *n, float *x)
 {
@@ -109,7 +109,7 @@
     i3 = ISEED(3);
     i4 = ISEED(4);
 
-    for (i = 1; i <= min(*n,128); ++i) {
+    for (i = 1; i <= SUPERLU_MIN(*n,128); ++i) {
 
 /*        Multiply the seed by i-th power of the multiplier modulo 2**
 48 */

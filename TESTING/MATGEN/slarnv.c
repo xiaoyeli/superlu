@@ -1,4 +1,4 @@
-#include "f2c.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Subroutine */ int slarnv_slu(int *idist, int *iseed, int *n, float
 	*x)
@@ -70,7 +70,7 @@
     for (iv = 1; iv <= *n; iv += 64) {
 /* Computing MIN */
 	i__2 = 64, i__3 = *n - iv + 1;
-	il = min(i__2,i__3);
+	il = SUPERLU_MIN(i__2,i__3);
 	if (*idist == 3) {
 	    il2 = il << 1;
 	} else {

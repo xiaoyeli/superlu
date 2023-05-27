@@ -1,9 +1,7 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Table of constant values */
 
@@ -94,7 +92,7 @@ static double c_b10 = 0.;
     *info = 0;
     if (*n < 0) {
 	*info = -1;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -3;
     }
     if (*info < 0) {

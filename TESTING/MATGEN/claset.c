@@ -1,6 +1,6 @@
 #include <string.h>
 #include "../../SRC/slu_scomplex.h"
-#include "f2c.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Subroutine */ int claset_slu(char *uplo, int *m, int *n, complex *
 	alpha, complex *beta, complex *a, int *lda)
@@ -71,14 +71,14 @@
           part of the array to ALPHA. */
 	for (j = 2; j <= *n; ++j) {
 /* Computing MIN */
-	    for (i = 1; i <= min(j-1,*m); ++i) {
+	    for (i = 1; i <= SUPERLU_MIN(j-1,*m); ++i) {
 		A(i,j).r = alpha->r, A(i,j).i = alpha->i;
 /* L10: */
 	    }
 /* L20: */
 	}
 
-	for (i = 1; i <= min(*n,*m); ++i) {
+	for (i = 1; i <= SUPERLU_MIN(*n,*m); ++i) {
 	    A(i,i).r = beta->r, A(i,i).i = beta->i;
 /* L30: */
 	}
@@ -86,7 +86,7 @@
 /*        Set the diagonal to BETA and the strictly lower triangular 
   
           part of the array to ALPHA. */
-	for (j = 1; j <= min(*m,*n); ++j) {
+	for (j = 1; j <= SUPERLU_MIN(*m,*n); ++j) {
 
 	    for (i = j + 1; i <= *m; ++i) {
 		A(i,j).r = alpha->r, A(i,j).i = alpha->i;
@@ -95,7 +95,7 @@
 /* L50: */
 	}
 
-	for (i = 1; i <= min(*n,*m); ++i) {
+	for (i = 1; i <= SUPERLU_MIN(*n,*m); ++i) {
 	    A(i,i).r = beta->r, A(i,i).i = beta->i;
 /* L60: */
 	}
@@ -111,7 +111,7 @@
 /* L80: */
 	}
 
-	for (i = 1; i <= min(*m,*n); ++i) {
+	for (i = 1; i <= SUPERLU_MIN(*m,*n); ++i) {
 	    A(i,i).r = beta->r, A(i,i).i = beta->i;
 /* L90: */
 	}

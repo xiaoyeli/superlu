@@ -1,12 +1,10 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "f2c.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Table of constant values */
 
@@ -136,19 +134,19 @@
 	    *kl = 0;
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	} else if (*imat == 3) {
 /* Computing MAX */
 	    i__1 = *m - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 	    *ku = 0;
 	} else {
 /* Computing MAX */
 	    i__1 = *m - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	}
 
 /*        Set the condition number and norm. */
@@ -185,19 +183,19 @@
 	    *kl = 0;
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	} else if (*imat == 3) {
 /* Computing MAX */
 	    i__1 = *m - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 	    *ku = 0;
 	} else {
 /* Computing MAX */
 	    i__1 = *m - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	}
 
 /*        Set the condition number and norm. */
@@ -295,7 +293,7 @@
 	} else {
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 	}
 	*ku = *kl;
 
@@ -392,13 +390,13 @@ te
 	} else if (*imat < 0) {
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 	    *ku = 0;
 	} else {
 	    *kl = 0;
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	}
 
 /*        Set the condition number and norm. */

@@ -1,12 +1,10 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "f2c.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Table of constant values */
 
@@ -390,7 +388,7 @@ static int c__5 = 5;
 	*info = -15;
     } else if (*ku < 1 || *ku < *n - 1 && *kl < *n - 1) {
 	*info = -16;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -19;
     }
 

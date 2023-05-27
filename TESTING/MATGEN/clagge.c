@@ -1,10 +1,8 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
-*/
+	*/
 
 #include "../../SRC/slu_scomplex.h"
-#include "f2c.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Table of constant values */
 
@@ -120,7 +118,7 @@ static int c__1 = 1;
 	*info = -3;
     } else if (*ku < 0 || *ku > *n - 1) {
 	*info = -4;
-    } else if (*lda < max(1,*m)) {
+    } else if (*lda < SUPERLU_MAX(1,*m)) {
 	*info = -7;
     }
     if (*info < 0) {
@@ -141,7 +139,7 @@ static int c__1 = 1;
 	}
 /* L20: */
     }
-    i__1 = min(*m,*n);
+    i__1 = SUPERLU_MIN(*m,*n);
     for (i = 1; i <= i__1; ++i) {
 	i__2 = i + i * a_dim1;
 	i__3 = i;
@@ -151,7 +149,7 @@ static int c__1 = 1;
 
 /*     pre- and post-multiply A by random unitary matrices */
 
-    for (i = min(*m,*n); i >= 1; --i) {
+    for (i = SUPERLU_MIN(*m,*n); i >= 1; --i) {
 	if (i < *m) {
 
 /*           generate random reflection */
@@ -237,7 +235,7 @@ ht */
 
    Computing MAX */
     i__2 = *m - 1 - *kl, i__3 = *n - 1 - *ku;
-    i__1 = max(i__2,i__3);
+    i__1 = SUPERLU_MAX(i__2,i__3);
     for (i = 1; i <= i__1; ++i) {
 	if (*kl <= *ku) {
 
@@ -246,7 +244,7 @@ L = 0)
 
    Computing MIN */
 	    i__2 = *m - 1 - *kl;
-	    if (i <= min(i__2,*n)) {
+	    if (i <= SUPERLU_MIN(i__2,*n)) {
 
 /*              generate reflection to annihilate A(kl+i+1:m,i
 ) */
@@ -293,7 +291,7 @@ eft */
 
 /* Computing MIN */
 	    i__2 = *n - 1 - *ku;
-	    if (i <= min(i__2,*m)) {
+	    if (i <= SUPERLU_MIN(i__2,*m)) {
 
 /*              generate reflection to annihilate A(i,ku+i+1:n
 ) */
@@ -347,7 +345,7 @@ ight */
 
    Computing MIN */
 	    i__2 = *n - 1 - *ku;
-	    if (i <= min(i__2,*m)) {
+	    if (i <= SUPERLU_MIN(i__2,*m)) {
 
 /*              generate reflection to annihilate A(i,ku+i+1:n
 ) */
@@ -396,7 +394,7 @@ ight */
 
 /* Computing MIN */
 	    i__2 = *m - 1 - *kl;
-	    if (i <= min(i__2,*n)) {
+	    if (i <= SUPERLU_MIN(i__2,*n)) {
 
 /*              generate reflection to annihilate A(kl+i+1:m,i
 ) */

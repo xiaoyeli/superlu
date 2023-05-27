@@ -1,5 +1,5 @@
 #include <string.h>
-#include "f2c.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Subroutine */ int dlaset_slu(char *uplo, int *m, int *n, double *
 	alpha, double *beta, double *a, int *lda)
@@ -73,7 +73,7 @@
 
 	for (j = 2; j <= *n; ++j) {
 /* Computing MIN */
-	    for (i = 1; i <= min(j-1,*m); ++i) {
+	    for (i = 1; i <= SUPERLU_MIN(j-1,*m); ++i) {
 		A(i,j) = *alpha;
 /* L10: */
 	    }
@@ -86,7 +86,7 @@
    
           array to ALPHA. */
 
-	for (j = 1; j <= min(*m,*n); ++j) {
+	for (j = 1; j <= SUPERLU_MIN(*m,*n); ++j) {
 	    for (i = j + 1; i <= *m; ++i) {
 		A(i,j) = *alpha;
 /* L30: */
@@ -107,9 +107,9 @@
 	}
     }
 
-/*     Set the first min(M,N) diagonal elements to BETA. */
+/*     Set the first SUPERLU_MIN(M,N) diagonal elements to BETA. */
 
-    for (i = 1; i <= min(*m,*n); ++i) {
+    for (i = 1; i <= SUPERLU_MIN(*m,*n); ++i) {
 	A(i,i) = *beta;
 /* L70: */
     }

@@ -1,5 +1,5 @@
-#include "f2c.h"
 #include "../../SRC/slu_dcomplex.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Subroutine */ int zlarnv_slu(int *idist, int *iseed, int *n,
 	doublecomplex *x)
@@ -78,7 +78,7 @@
     for (iv = 1; iv <= *n; iv += 64) {
 /* Computing MIN */
 	i__2 = 64, i__3 = *n - iv + 1;
-	il = min(i__2,i__3);
+	il = SUPERLU_MIN(i__2,i__3);
 
 /*        Call DLARUV to generate 2*IL real numbers from a uniform (0,
 1)   

@@ -1,10 +1,7 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
 #include <stdlib.h>
-#include "f2c.h"
 
 /* Subroutine */ int dlatm1_slu(int *mode, double *cond, int *irsign,
 	 int *idist, int *iseed, double *d, int *n, int *

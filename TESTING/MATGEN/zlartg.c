@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdlib.h>
 #include "../../SRC/slu_dcomplex.h"
 
@@ -78,8 +79,8 @@
            R = G */
 
     } else {
-	f1 = (d__1 = f->r, abs(d__1)) + (d__2 = d_imag(f), abs(d__2));
-	g1 = (d__1 = g->r, abs(d__1)) + (d__2 = d_imag(g), abs(d__2));
+	f1 = (d__1 = f->r, fabs(d__1)) + (d__2 = d_imag(f), fabs(d__2));
+	g1 = (d__1 = g->r, fabs(d__1)) + (d__2 = d_imag(g), fabs(d__2));
 	if (f1 >= g1) {
 	    z__1.r = g->r / f1, z__1.i = g->i / f1;
 	    gs.r = z__1.r, gs.i = z__1.i;

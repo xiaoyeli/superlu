@@ -1,5 +1,6 @@
 /*  -- translated by f2c (version 19940927).
 */
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../../SRC/slu_dcomplex.h"
@@ -258,7 +259,7 @@ static int c__1 = 1;
 	z__1.r = -csign.r, z__1.i = -csign.i;
 	x[i__2].r = z__1.r, x[i__2].i = z__1.i;
 	factor = xnorm * (xnorm + xabs);
-	if (abs(factor) < 1e-20) {
+	if (fabs(factor) < 1e-20) {
 	    *info = 1;
 	    i__2 = -(*info);
 	    input_error("ZLAROR", &i__2);

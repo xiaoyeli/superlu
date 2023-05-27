@@ -1,5 +1,6 @@
 /*  -- translated by f2c (version 19940927).
 */
+#include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -503,7 +504,7 @@ dlatms_slu(int *m, int *n, char *dist, int *
 /*     Choose Top-Down if D is (apparently) increasing,   
        Bottom-Up if D is (apparently) decreasing. */
 
-    if (abs(d[1]) <= (d__1 = d[mnmin], abs(d__1))) {
+    if (fabs(d[1]) <= (d__1 = d[mnmin], fabs(d__1))) {
 	topdwn = true;
     } else {
 	topdwn = false;
@@ -513,11 +514,11 @@ dlatms_slu(int *m, int *n, char *dist, int *
 
 /*        Scale by DMAX */
 
-	temp = abs(d[1]);
+	temp = fabs(d[1]);
 	i__1 = mnmin;
 	for (i = 2; i <= i__1; ++i) {
 /* Computing MAX */
-	    d__2 = temp, d__3 = (d__1 = d[i], abs(d__1));
+	    d__2 = temp, d__3 = (d__1 = d[i], fabs(d__1));
 	    temp = SUPERLU_MAX(d__2,d__3);
 /* L20: */
 	}

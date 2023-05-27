@@ -1,9 +1,5 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
-
-#include "f2c.h"
 
 /* Complex */ void cdotc_(complex * ret_val, int *n, complex *cx, int
 	*incx, complex *cy, int *incy)

@@ -1,6 +1,5 @@
 #include <math.h>
 #include <stdbool.h>
-#include "f2c.h"
 
 /* Subroutine */ int slartg_slu(float *f, float *g, float *cs, float *sn, float *r)
 {

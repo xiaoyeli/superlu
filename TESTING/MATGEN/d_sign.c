@@ -1,5 +1,3 @@
-#include "f2c.h"
-
 double d_sign(double *a, double *b)
 {
 double x;

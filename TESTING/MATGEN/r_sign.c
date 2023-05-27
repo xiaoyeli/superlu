@@ -1,5 +1,3 @@
-#include "f2c.h"
-
 double r_sign(float *a, float *b)
 {
 double x;

@@ -1,5 +1,3 @@
-#include "f2c.h"
-
 /* Subroutine */ int slabad_slu(float *small, float *large)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   

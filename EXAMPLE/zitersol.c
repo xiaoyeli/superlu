@@ -117,7 +117,6 @@ int main(int argc, char *argv[])
     extern int zfill_diag(int n, NCformat *Astore);
 
     char     equed[1] = {'B'};
-    yes_no_t equil;
     trans_t  trans;
     SuperMatrix A, L, U;
     SuperMatrix B, X;
@@ -136,7 +135,7 @@ int main(int argc, char *argv[])
     doublecomplex   *rhsb, *rhsx, *xact;
     doublecomplex   *work = NULL;
     double   *R, *C;
-    double   u, rpg, rcond;
+    double   rpg, rcond;
     doublecomplex zero = {0.0, 0.0};
     doublecomplex one = {1.0, 0.0};
     doublecomplex none = {-1.0, 0.0};

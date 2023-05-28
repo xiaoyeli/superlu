@@ -118,7 +118,6 @@ int main(int argc, char *argv[])
     extern int cfill_diag(int n, NCformat *Astore);
 
     char     equed[1] = {'B'};
-    yes_no_t equil;
     trans_t  trans;
     SuperMatrix A, AA, L, U;
     SuperMatrix B, X;
@@ -137,7 +136,7 @@ int main(int argc, char *argv[])
     complex   *rhsb, *rhsx, *xact;
     complex   *work = NULL;
     float   *R, *C;
-    float   u, rpg, rcond;
+    float   rpg, rcond;
     complex zero = {0.0, 0.0};
     complex one = {1.0, 0.0};
     complex none = {-1.0, 0.0};

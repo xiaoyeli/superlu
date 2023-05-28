@@ -117,7 +117,6 @@ int main(int argc, char *argv[])
     extern int dfill_diag(int n, NCformat *Astore);
 
     char     equed[1] = {'B'};
-    yes_no_t equil;
     trans_t  trans;
     SuperMatrix A, L, U;
     SuperMatrix B, X;
@@ -136,9 +135,8 @@ int main(int argc, char *argv[])
     double   *rhsb, *rhsx, *xact;
     double   *work = NULL;
     double   *R, *C;
-    double   u, rpg, rcond;
+    double rpg, rcond;
     double zero = 0.0;
-    double one = 1.0;
     mem_usage_t   mem_usage;
     superlu_options_t options;
     SuperLUStat_t stat;
@@ -328,7 +326,6 @@ int main(int argc, char *argv[])
     {
 	int i_1 = 1, nnz32;
 	double maxferr = 0.0, nrmA, nrmB, res, t;
-        double temp;
 	extern double dnrm2_(int *, double [], int *);
 	extern void daxpy_(int *, double *, double [], int *, double [], int *);
 

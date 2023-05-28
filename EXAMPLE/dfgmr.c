@@ -68,7 +68,7 @@ int dfgmr(int n,
           double *rhs, double *sol, double tol, int im, int *itmax, FILE * fits)
 {
     int maxits = *itmax;
-    int its, i_1 = 1, i_2 = 2;
+    int its, i_1 = 1;
     double eps1 = 0.0;
     double **hh, *c, *s, *rs;
     double **vv, **z;

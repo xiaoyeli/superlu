@@ -118,7 +118,6 @@ int main(int argc, char *argv[])
     extern int sfill_diag(int n, NCformat *Astore);
 
     char     equed[1] = {'B'};
-    yes_no_t equil;
     trans_t  trans;
     SuperMatrix A, L, U;
     SuperMatrix B, X;
@@ -137,9 +136,8 @@ int main(int argc, char *argv[])
     float   *rhsb, *rhsx, *xact;
     float   *work = NULL;
     float   *R, *C;
-    float   u, rpg, rcond;
+    float rpg, rcond;
     float zero = 0.0;
-    float one = 1.0;
     mem_usage_t   mem_usage;
     superlu_options_t options;
     SuperLUStat_t stat;
@@ -329,7 +327,6 @@ int main(int argc, char *argv[])
     {
 	int i_1 = 1, nnz32;
 	double maxferr = 0.0, nrmA, nrmB, res, t;
-        float temp;
 	extern float snrm2_(int *, float [], int *);
 	extern void saxpy_(int *, float *, float [], int *, float [], int *);
 

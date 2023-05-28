@@ -69,7 +69,7 @@ int sfgmr(int n,
           float *rhs, float *sol, double tol, int im, int *itmax, FILE * fits)
 {
     int maxits = *itmax;
-    int its, i_1 = 1, i_2 = 2;
+    int its, i_1 = 1;
     float eps1 = 0.0;
     float **hh, *c, *s, *rs;
     float **vv, **z;

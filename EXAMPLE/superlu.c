@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     int_t    *asub, *xa;
     int      *perm_r; /* row permutations from partial pivoting */
     int      *perm_c; /* column permutation vector */
-    int      nrhs, m, n, permc_spec;
+    int      nrhs, m, n;
     int_t    info, nnz;
     superlu_options_t options;
     SuperLUStat_t stat;

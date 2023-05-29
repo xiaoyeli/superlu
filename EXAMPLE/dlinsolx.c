@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     void           *work;
     int            nrhs, ldx;
     int_t          info, lwork, nnz;
-    int            i, m, n;
+    int            m, n;
     double         *rhsb, *rhsx, *xact;
     double         *R, *C;
     double         *ferr, *berr;
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine != NOREFINE ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-	    for (i = 0; i < nrhs; ++i)
+            for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
         Lstore = (SCformat *) L.Store;

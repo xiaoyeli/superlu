@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     int            *perm_r; /* row permutations from partial pivoting */
     int            *etree;
     void           *work;
-    int            i, m, n, nrhs, ldx;
+    int            m, n, nrhs, ldx;
     int_t          info, lwork, nnz;
     double         *rhsb, *rhsx, *xact;
     double         *R, *C;
@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-	    for (i = 0; i < nrhs; ++i)
+            for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);

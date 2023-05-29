@@ -57,7 +57,6 @@ at the top-level directory.
 int
 sp_ienv(int ispec)
 {
-    int i;
     extern int input_error(char *, int *);
 
     switch (ispec) {
@@ -71,7 +70,7 @@ sp_ienv(int ispec)
     }
 
     /* Invalid value for ISPEC */
-    i = 1;
+    int i = 1;
     input_error("sp_ienv", &i);
     return 0;
 

@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     int            *etree;
     void           *work;
     int            m, n, nrhs, ldx;
-    int_t          i, j, info, lwork, nnz;
+    int_t          info, lwork, nnz;
     float         *rhsb, *rhsb1, *rhsx, *xact;
     float         *R, *C;
     float         *ferr, *berr;
@@ -110,11 +110,12 @@ int main(int argc, char *argv[])
     if ( !(a1 = floatMalloc(nnz)) ) ABORT("Malloc fails for a1[].");
     if ( !(asub1 = intMalloc(nnz)) ) ABORT("Malloc fails for asub1[].");
     if ( !(xa1 = intMalloc(n+1)) ) ABORT("Malloc fails for xa1[].");
-    for (i = 0; i < nnz; ++i) {
+    for (int i = 0; i < nnz; ++i) {
         a1[i] = a[i];
 	asub1[i] = asub[i];
     }
-    for (i = 0; i < n+1; ++i) xa1[i] = xa[i];
+    for (int i = 0; i < n+1; ++i)
+        xa1[i] = xa[i];
     
     sCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_S, SLU_GE);
     Astore = A.Store;
@@ -129,8 +130,9 @@ int main(int argc, char *argv[])
     ldx = n;
     sGenXtrue(n, nrhs, xact, ldx);
     sFillRHS(trans, nrhs, xact, ldx, &A, &B);
-    for (j = 0; j < nrhs; ++j)
-        for (i = 0; i < m; ++i) rhsb1[i+j*m] = rhsb[i+j*m];
+    for (int j = 0; j < nrhs; ++j)
+        for (int i = 0; i < m; ++i)
+            rhsb1[i+j*m] = rhsb[i+j*m];
     
     if ( !(perm_c = int32Malloc(n)) ) ABORT("Malloc fails for perm_c[].");
     if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");
@@ -176,7 +178,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-	    for (i = 0; i < nrhs; ++i)
+            for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", (int)i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);
@@ -225,7 +227,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-	    for (i = 0; i < nrhs; ++i)
+            for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", (int)i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);

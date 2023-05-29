@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     int_t    *asub, *xa;
     int      *perm_r; /* row permutations from partial pivoting */
     int      *perm_c; /* column permutation vector */
-    int      nrhs, i, m, n, permc_spec;
+    int      nrhs, m, n, permc_spec;
     int_t    info, nnz;
     superlu_options_t options;
     SuperLUStat_t stat;
@@ -60,7 +60,8 @@ int main(int argc, char *argv[])
     /* Create right-hand side matrix B. */
     nrhs = 1;
     if ( !(rhs = doubleMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
-    for (i = 0; i < m; ++i) rhs[i] = 1.0;
+    for (int i = 0; i < m; ++i)
+        rhs[i] = 1.0;
     dCreate_Dense_Matrix(&B, m, nrhs, rhs, m, SLU_DN, SLU_D, SLU_GE);
 
     if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");

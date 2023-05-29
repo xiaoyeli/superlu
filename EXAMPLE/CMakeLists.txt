@@ -5,6 +5,31 @@ if(NOT enable_examples)
   set(_DEPENDENCY_ALL "EXCLUDE_FROM_ALL")
 endif()
 
+# targets to build examples
+add_custom_target(examples_complex)
+add_dependencies(examples_complex
+                 citersol citersol1
+                 clinsol clinsol1 clinsolx clinsolx1 clinsolx2 clinsolx3)
+add_custom_target(examples_double)
+add_dependencies(examples_double
+                 ditersol ditersol1
+                 dlinsol dlinsol1 dlinsolx dlinsolx1 dlinsolx2 dlinsolx3)
+add_custom_target(examples_float)
+add_dependencies(examples_float
+                 sitersol sitersol1
+                 slinsol slinsol1 slinsolx slinsolx1 slinsolx2 slinsolx3)
+add_custom_target(examples_doublecomplex)
+add_dependencies(examples_doublecomplex
+                 zitersol zitersol1
+                 zlinsol zlinsol1 zlinsolx zlinsolx1 zlinsolx2 zlinsolx3)
+add_custom_target(examples)
+add_dependencies(examples
+                 superlu_example
+                 examples_complex
+                 examples_double
+                 examples_float
+                 examples_doublecomplex)
+
 add_executable(superlu_example
                ${_DEPENDENCY_ALL}
                superlu.c)

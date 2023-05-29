@@ -147,6 +147,7 @@ int main(int argc, char *argv[])
 
         /* This is how you could access the solution matrix. */
         doublecomplex *sol = (doublecomplex*) ((DNformat*) X.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	if ( options.PivotGrowth == YES )
             printf("Recip. pivot growth = %e\n", rpg);

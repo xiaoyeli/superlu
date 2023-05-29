@@ -192,6 +192,7 @@ int main(int argc, char *argv[])
 
         /* This is how you could access the solution matrix. */
         float *sol = (float*) ((DNformat*) X.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");

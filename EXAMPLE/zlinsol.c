@@ -92,6 +92,7 @@ int main(int argc, char *argv[])
 
 	/* This is how you could access the solution matrix. */
         doublecomplex *sol = (doublecomplex*) ((DNformat*) B.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	 /* Compute the infinity norm of the error. */
 	zinf_norm_error(nrhs, &B, xact);

@@ -164,6 +164,7 @@ int main(int argc, char *argv[])
 
         /* This is how you could access the solution matrix. */
         double *sol = (double*) ((DNformat*) X.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	if ( options.PivotGrowth ) printf("Recip. pivot growth = %e\n", rpg);
 	if ( options.ConditionNumber )
@@ -219,6 +220,7 @@ int main(int argc, char *argv[])
 
         /* This is how you could access the solution matrix. */
         double *sol = (double*) ((DNformat*) X.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	if ( options.PivotGrowth ) printf("Recip. pivot growth = %e\n", rpg);
 	if ( options.ConditionNumber )

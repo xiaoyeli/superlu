@@ -23,6 +23,7 @@ at the top-level directory.
  * \ingroup Example
  */
 
+#include <getopt.h>
 #include <unistd.h>
 #include "slu_zdefs.h"
 

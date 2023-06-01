@@ -1,10 +1,7 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
 #include <stdbool.h>
-#include "f2c.h"
 
 /* Table of constant values */
 
@@ -14,18 +11,18 @@ static int c__1 = 1;
 
 /* Subroutine */
 int slarot_slu(bool *lrows, bool *lleft, bool *lright,
-	int *nl, real *c, real *s, real *a, int *lda, real *xleft,
-	real *xright)
+	int *nl, float *c, float *s, float *a, int *lda, float *xleft,
+	float *xright)
 {
     /* System generated locals */
     int i__1;
 
     /* Local variables */
     static int iinc;
-    extern /* Subroutine */ int srot_(int *, real *, int *, real *,
-	    int *, real *, real *);
+    extern /* Subroutine */ int srot_(int *, float *, int *, float *,
+	    int *, float *, float *);
     static int inext, ix, iy, nt;
-    static real xt[2], yt[2];
+    static float xt[2], yt[2];
     extern int input_error(char *, int *);
     static int iyt;
 

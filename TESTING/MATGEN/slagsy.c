@@ -1,47 +1,44 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
-
-#include "f2c.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Table of constant values */
 
 static int c__3 = 3;
 static int c__1 = 1;
-static real c_b12 = 0.f;
-static real c_b19 = -1.f;
-static real c_b26 = 1.f;
+static float c_b12 = 0.f;
+static float c_b19 = -1.f;
+static float c_b26 = 1.f;
 
-/* Subroutine */ int slagsy_slu(int *n, int *k, real *d, real *a,
-	int *lda, int *iseed, real *work, int *info)
+/* Subroutine */ int slagsy_slu(int *n, int *k, float *d, float *a,
+	int *lda, int *iseed, float *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
-    real r__1;
+    float r__1;
 
     /* Builtin functions */
-    double r_sign(real *, real *);
+    double r_sign(float *, float *);
 
     /* Local variables */
-    extern /* Subroutine */ int sger_(int *, int *, real *, real *,
-	    int *, real *, int *, real *, int *);
-    extern real sdot_(int *, real *, int *, real *, int *),
-	    snrm2_(int *, real *, int *);
+    extern /* Subroutine */ int sger_(int *, int *, float *, float *,
+	    int *, float *, int *, float *, int *);
+    extern float sdot_(int *, float *, int *, float *, int *),
+	    snrm2_(int *, float *, int *);
     static int i, j;
-    extern /* Subroutine */ int ssyr2_(char *, int *, real *, real *,
-	    int *, real *, int *, real *, int *);
-    static real alpha;
-    extern /* Subroutine */ int sscal_(int *, real *, real *, int *),
-	    sgemv_(char *, int *, int *, real *, real *, int *,
-	    real *, int *, real *, real *, int *), saxpy_(
-	    int *, real *, real *, int *, real *, int *), ssymv_(
-	    char *, int *, real *, real *, int *, real *, int *,
-	    real *, real *, int *);
-    static real wa, wb, wn;
-    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, real *);
+    extern /* Subroutine */ int ssyr2_(char *, int *, float *, float *,
+	    int *, float *, int *, float *, int *);
+    static float alpha;
+    extern /* Subroutine */ int sscal_(int *, float *, float *, int *),
+	    sgemv_(char *, int *, int *, float *, float *, int *,
+	    float *, int *, float *, float *, int *), saxpy_(
+	    int *, float *, float *, int *, float *, int *), ssymv_(
+	    char *, int *, float *, float *, int *, float *, int *,
+	    float *, float *, int *);
+    static float wa, wb, wn;
+    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, float *);
     extern int input_error(char *, int *);
-    static real tau;
+    static float tau;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0)   
@@ -113,7 +110,7 @@ static real c_b26 = 1.f;
 	*info = -1;
     } else if (*k < 0 || *k > *n - 1) {
 	*info = -2;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -5;
     }
     if (*info < 0) {
@@ -216,7 +213,7 @@ static real c_b26 = 1.f;
 		, &c__1);
 	i__2 = *n - *k - i + 1;
 	i__3 = *k - 1;
-	r__1 = -(doublereal)tau;
+	r__1 = -(double)tau;
 	sger_(&i__2, &i__3, &r__1, &a[*k + i + i * a_dim1], &c__1, &work[1], &
 		c__1, &a[*k + i + (i + 1) * a_dim1], lda);
 
@@ -244,7 +241,7 @@ ht
 	ssyr2_("Lower", &i__2, &c_b19, &a[*k + i + i * a_dim1], &c__1, &work[
 		1], &c__1, &a[*k + i + (*k + i) * a_dim1], lda);
 
-	a[*k + i + i * a_dim1] = -(doublereal)wa;
+	a[*k + i + i * a_dim1] = -(double)wa;
 	i__2 = *n;
 	for (j = *k + i + 1; j <= i__2; ++j) {
 	    a[j + i * a_dim1] = 0.f;

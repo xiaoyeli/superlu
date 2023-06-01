@@ -1,9 +1,8 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Table of constant values */
 
@@ -12,13 +11,13 @@ static complex c_b2 = {1.f,0.f};
 static int c__3 = 3;
 static int c__1 = 1;
 
-/* Subroutine */ int clagsy_slu(int *n, int *k, real *d, complex *a,
+/* Subroutine */ int clagsy_slu(int *n, int *k, float *d, complex *a,
 	int *lda, int *iseed, complex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6, i__7, i__8,
 	    i__9;
-    doublereal d__1;
+    double d__1;
     complex q__1, q__2, q__3, q__4;
 
     /* Builtin functions */
@@ -40,11 +39,11 @@ static int c__1 = 1;
 	    int *, complex *, int *), csymv_sluslu(char *, int *,
 	    complex *, complex *, int *, complex *, int *, complex *,
 	    complex *, int *);
-    extern real scnrm2_(int *, complex *, int *);
+    extern float scnrm2_(int *, complex *, int *);
     static int ii, jj;
     static complex wa, wb;
     extern /* Subroutine */ int clacgv_slu(int *, complex *, int *);
-    static real wn;
+    static float wn;
     extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
     static complex tau;
@@ -117,7 +116,7 @@ static int c__1 = 1;
 	*info = -1;
     } else if (*k < 0 || *k > *n - 1) {
 	*info = -2;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -5;
     }
     if (*info < 0) {
@@ -269,7 +268,7 @@ static int c__1 = 1;
 		1], &c__1);
 	i__2 = *n - *k - i + 1;
 	i__3 = *k - 1;
-	q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	cgerc_(&i__2, &i__3, &q__1, &a[*k + i + i * a_dim1], &c__1, &work[1], 
 		&c__1, &a[*k + i + (i + 1) * a_dim1], lda);
 
@@ -331,7 +330,7 @@ ht
 	}
 
 	i__2 = *k + i + i * a_dim1;
-	q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+	q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 	a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	i__2 = *n;
 	for (j = *k + i + 1; j <= i__2; ++j) {

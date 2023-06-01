@@ -1,5 +1,6 @@
 #include <string.h>
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Subroutine */ int zsymv_(char *uplo, int *n, doublecomplex *alpha,
 	doublecomplex *a, int *lda, doublecomplex *x, int *incx,
@@ -122,7 +123,7 @@
 	info = 1;
     } else if (*n < 0) {
 	info = 2;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	info = 5;
     } else if (*incx == 0) {
 	info = 7;

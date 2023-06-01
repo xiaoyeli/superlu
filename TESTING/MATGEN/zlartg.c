@@ -1,7 +1,8 @@
+#include <math.h>
 #include <stdlib.h>
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
-/* Subroutine */ int zlartg_slu(doublecomplex *f, doublecomplex *g, doublereal *
+/* Subroutine */ int zlartg_slu(doublecomplex *f, doublecomplex *g, double *
 	cs, doublecomplex *sn, doublecomplex *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -50,13 +51,13 @@
 
        [ 25 or 38 ops for main paths ] */
     /* System generated locals */
-    doublereal d__1, d__2;
+    double d__1, d__2;
     doublecomplex z__1, z__2, z__3;
     /* Builtin functions */
     void d_cnjg(doublecomplex *, doublecomplex *);
-    double z_abs(doublecomplex *), d_imag(doublecomplex *), sqrt(doublereal);
+    double z_abs(doublecomplex *), d_imag(doublecomplex *), sqrt(double);
     /* Local variables */
-    static doublereal d, f1, f2, g1, g2, fa, ga, di;
+    static double d, f1, f2, g1, g2, fa, ga, di;
     static doublecomplex fs, gs, ss;
 
 
@@ -78,8 +79,8 @@
            R = G */
 
     } else {
-	f1 = (d__1 = f->r, abs(d__1)) + (d__2 = d_imag(f), abs(d__2));
-	g1 = (d__1 = g->r, abs(d__1)) + (d__2 = d_imag(g), abs(d__2));
+	f1 = (d__1 = f->r, fabs(d__1)) + (d__2 = d_imag(f), fabs(d__2));
+	g1 = (d__1 = g->r, fabs(d__1)) + (d__2 = d_imag(g), fabs(d__2));
 	if (f1 >= g1) {
 	    z__1.r = g->r / f1, z__1.i = g->i / f1;
 	    gs.r = z__1.r, gs.i = z__1.i;

@@ -1,15 +1,13 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
 /* Double Complex */ void zlatm3_slu(doublecomplex * ret_val, int *m,
 	int *n, int *i, int *j, int *isub, int *jsub,
 	int *kl, int *ku, int *idist, int *iseed,
 	doublecomplex *d, int *igrade, doublecomplex *dl, doublecomplex *
-	dr, int *ipvtng, int *iwork, doublereal *sparse)
+	dr, int *ipvtng, int *iwork, double *sparse)
 {
     /* System generated locals */
     int i__1, i__2;
@@ -21,7 +19,7 @@
 
     /* Local variables */
     static doublecomplex ctemp;
-    extern doublereal dlaran_slu(int *);
+    extern double dlaran_slu(int *);
     extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *,
 	    int *);
 

@@ -1,9 +1,8 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Table of constant values */
 
@@ -17,7 +16,7 @@ static int c__1 = 1;
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1;
-    doublereal d__1;
+    double d__1;
     doublecomplex z__1;
 
     /* Builtin functions */
@@ -32,9 +31,9 @@ static int c__1 = 1;
 	    doublecomplex *, int *), zgemv_(char *, int *, int *,
 	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
 	    int *, doublecomplex *, doublecomplex *, int *);
-    extern doublereal dznrm2_(int *, doublecomplex *, int *);
+    extern double dznrm2_(int *, doublecomplex *, int *);
     static doublecomplex wa, wb;
-    static doublereal wn;
+    static double wn;
     extern /* Subroutine */ int zlarnv_slu(int *, int *, int *, doublecomplex *);
     extern int input_error(char *, int *);
     static doublecomplex tau;
@@ -96,7 +95,7 @@ static int c__1 = 1;
     *info = 0;
     if (*n < 0) {
 	*info = -1;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -3;
     }
     if (*info < 0) {

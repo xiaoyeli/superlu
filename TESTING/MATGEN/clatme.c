@@ -1,12 +1,10 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "f2c.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Table of constant values */
 
@@ -17,14 +15,14 @@ static int c__0 = 0;
 static int c__5 = 5;
 
 /* Subroutine */ int clatme_slu(int *n, char *dist, int *iseed, complex *
-	d, int *mode, real *cond, complex *dmax__, char *ei, char *rsign,
-	char *upper, char *sim, real *ds, int *modes, real *conds,
-	int *kl, int *ku, real *anorm, complex *a, int *lda,
+	d, int *mode, float *cond, complex *dmax__, char *ei, char *rsign,
+	char *upper, char *sim, float *ds, int *modes, float *conds,
+	int *kl, int *ku, float *anorm, complex *a, int *lda,
 	complex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2;
-    real r__1, r__2;
+    float r__1, r__2;
     complex q__1, q__2;
 
     /* Builtin functions */
@@ -34,7 +32,7 @@ static int c__5 = 5;
     /* Local variables */
     static bool bads;
     static int isim;
-    static real temp;
+    static float temp;
     static int i, j;
     extern /* Subroutine */ int cgerc_(int *, int *, complex *,
 	    complex *, int *, complex *, int *, complex *, int *);
@@ -45,26 +43,26 @@ static int c__5 = 5;
 	    , complex *, int *, complex *, int *, complex *, complex *
 	    , int *);
     static int iinfo;
-    static real tempa[1];
+    static float tempa[1];
     static int icols, idist;
     extern /* Subroutine */ int ccopy_(int *, complex *, int *,
 	    complex *, int *);
     static int irows;
-    extern /* Subroutine */ int clatm1_(int *, real *, int *, int
+    extern /* Subroutine */ int clatm1_(int *, float *, int *, int
 	    *, int *, complex *, int *, int *), slatm1_slu(int *,
-	     real *, int *, int *, int *, real *, int *,
+	     float *, int *, int *, int *, float *, int *,
 	    int *);
     static int ic, jc;
-    extern doublereal clange_(char *, int *, int *, complex *,
-	    int *, real *);
+    extern double clange_(char *, int *, int *, complex *,
+	    int *, float *);
     static int ir;
     extern /* Subroutine */ int clarge_slu(int *, complex *, int *,
 	    int *, complex *, int *), clarfg_(int *, complex *,
 	    complex *, int *, complex *), clacgv_slu(int *, complex *,
 	    int *);
     extern /* Complex */ void clarnd_slu(complex *, int *, int *);
-    static real ralpha;
-    extern /* Subroutine */ int csscal_(int *, real *, complex *, int
+    static float ralpha;
+    extern /* Subroutine */ int csscal_(int *, float *, complex *, int
 	    *), claset_slu(char *, int *, int *, complex *, complex *,
 	    complex *, int *),
 	     clarnv_slu(int *, int *, int *, complex *);
@@ -390,7 +388,7 @@ static int c__5 = 5;
 	*info = -15;
     } else if (*ku < 1 || *ku < *n - 1 && *kl < *n - 1) {
 	*info = -16;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -19;
     }
 
@@ -533,14 +531,14 @@ static int c__5 = 5;
 
 	    cgemv_("C", &irows, &icols, &c_b2, &a[jcr + (ic + 1) * a_dim1], 
 		    lda, &work[1], &c__1, &c_b1, &work[irows + 1], &c__1);
-	    q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	    q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	    cgerc_(&irows, &icols, &q__1, &work[1], &c__1, &work[irows + 1], &
 		    c__1, &a[jcr + (ic + 1) * a_dim1], lda);
 
 	    cgemv_("N", n, &irows, &c_b2, &a[jcr * a_dim1 + 1], lda, &work[1],
 		     &c__1, &c_b1, &work[irows + 1], &c__1);
 	    r_cnjg(&q__2, &tau);
-	    q__1.r = -(doublereal)q__2.r, q__1.i = -(doublereal)q__2.i;
+	    q__1.r = -(double)q__2.r, q__1.i = -(double)q__2.i;
 	    cgerc_(n, &irows, &q__1, &work[irows + 1], &c__1, &work[1], &c__1,
 		     &a[jcr * a_dim1 + 1], lda);
 
@@ -579,14 +577,14 @@ static int c__5 = 5;
 
 	    cgemv_("N", &irows, &icols, &c_b2, &a[ir + 1 + jcr * a_dim1], lda,
 		     &work[1], &c__1, &c_b1, &work[icols + 1], &c__1);
-	    q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	    q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	    cgerc_(&irows, &icols, &q__1, &work[icols + 1], &c__1, &work[1], &
 		    c__1, &a[ir + 1 + jcr * a_dim1], lda);
 
 	    cgemv_("C", &icols, n, &c_b2, &a[jcr + a_dim1], lda, &work[1], &
 		    c__1, &c_b1, &work[icols + 1], &c__1);
 	    r_cnjg(&q__2, &tau);
-	    q__1.r = -(doublereal)q__2.r, q__1.i = -(doublereal)q__2.i;
+	    q__1.r = -(double)q__2.r, q__1.i = -(double)q__2.i;
 	    cgerc_(&icols, n, &q__1, &work[1], &c__1, &work[icols + 1], &c__1,
 		     &a[jcr + a_dim1], lda);
 

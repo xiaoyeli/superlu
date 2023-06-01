@@ -1,29 +1,26 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
 #include <stdlib.h>
-#include "f2c.h"
 
-/* Subroutine */ int slatm1_slu(int *mode, real *cond, int *irsign,
-	int *idist, int *iseed, real *d, int *n, int *info)
+/* Subroutine */ int slatm1_slu(int *mode, float *cond, int *irsign,
+	int *idist, int *iseed, float *d, int *n, int *info)
 {
     /* System generated locals */
     int i__1, i__2;
-    doublereal d__1, d__2;
+    double d__1, d__2;
 
     /* Builtin functions */
-    double pow_dd(doublereal *, doublereal *), pow_ri(real *, int *), log(
-	    doublereal), exp(doublereal);
+    double pow_dd(double *, double *), pow_ri(float *, int *), log(
+	    double), exp(double);
 
     /* Local variables */
-    static real temp;
+    static float temp;
     static int i;
-    static real alpha;
+    static float alpha;
     extern int input_error(char *, int *);
-    extern doublereal dlaran_sluslu(int *);
-    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, real
+    extern double dlaran_sluslu(int *);
+    extern /* Subroutine */ int slarnv_slu(int *, int *, int *, float
 	    *);
 
 
@@ -187,8 +184,8 @@ L30:
 L50:
 	d[1] = 1.f;
 	if (*n > 1) {
-	    d__1 = (doublereal) (*cond);
-	    d__2 = (doublereal) (-1.f / (real) (*n - 1));
+	    d__1 = (double) (*cond);
+	    d__2 = (double) (-1.f / (float) (*n - 1));
 	    alpha = pow_dd(&d__1, &d__2);
 	    i__1 = *n;
 	    for (i = 2; i <= i__1; ++i) {
@@ -205,10 +202,10 @@ L70:
 	d[1] = 1.f;
 	if (*n > 1) {
 	    temp = 1.f / *cond;
-	    alpha = (1.f - temp) / (real) (*n - 1);
+	    alpha = (1.f - temp) / (float) (*n - 1);
 	    i__1 = *n;
 	    for (i = 2; i <= i__1; ++i) {
-		d[i] = (real) (*n - i) * alpha + temp;
+		d[i] = (float) (*n - i) * alpha + temp;
 /* L80: */
 	    }
 	}
@@ -240,7 +237,7 @@ L120:
 	    for (i = 1; i <= i__1; ++i) {
 		temp = dlaran_sluslu(&iseed[1]);
 		if (temp > .5f) {
-		    d[i] = -(doublereal)d[i];
+		    d[i] = -(double)d[i];
 		}
 /* L130: */
 	    }

@@ -1,6 +1,4 @@
-#include "f2c.h"
-
-/* Subroutine */ int dlabad_slu(doublereal *small, doublereal *large)
+/* Subroutine */ int dlabad_slu(double *small, double *large)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -44,7 +42,7 @@
        If it looks like we're on a Cray, take the square root of   
        SMALL and LARGE to avoid overflow and underflow problems. */
     /* Builtin functions */
-    double d_lg10(doublereal *), sqrt(doublereal);
+    double d_lg10(double *), sqrt(double);
 
 
     if (d_lg10(large) > 2e3) {

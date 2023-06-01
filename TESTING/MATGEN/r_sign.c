@@ -1,6 +1,4 @@
-#include "f2c.h"
-
-double r_sign(real *a, real *b)
+double r_sign(float *a, float *b)
 {
 double x;
 x = (*a >= 0 ? *a : - *a);

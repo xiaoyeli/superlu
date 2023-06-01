@@ -1,23 +1,21 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
 
 /* Complex */ void clarnd_slu(complex * ret_val, int *idist, int *iseed)
 {
     /* System generated locals */
-    doublereal d__1, d__2;
+    double d__1, d__2;
     complex q__1, q__2, q__3;
 
     /* Builtin functions */
-    double log(doublereal), sqrt(doublereal);
+    double log(double), sqrt(double);
     void c_exp(complex *, complex *);
 
     /* Local variables */
-    static real t1, t2;
-    extern doublereal dlaran_sluslu(int *);
+    static float t1, t2;
+    extern double dlaran_sluslu(int *);
     extern int input_error(char *, int *);
 
 

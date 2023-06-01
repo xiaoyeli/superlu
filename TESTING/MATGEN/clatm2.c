@@ -1,14 +1,12 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
 
 /* Complex */ void clatm2_slu(complex * ret_val, int *m, int *n, int
 	*i, int *j, int *kl, int *ku, int *idist, int *
 	iseed, complex *d, int *igrade, complex *dl, complex *dr, int
-	*ipvtng, int *iwork, real *sparse)
+	*ipvtng, int *iwork, float *sparse)
 {
     /* System generated locals */
     int i__1, i__2;
@@ -21,7 +19,7 @@
     static int isub, jsub;
     static complex ctemp;
     extern /* Complex */ void clarnd_slu(complex *, int *, int *);
-    extern doublereal dlaran_sluslu(int *);
+    extern double dlaran_sluslu(int *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

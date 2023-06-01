@@ -1,10 +1,9 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
 /* Table of constant values */
 
@@ -27,7 +26,7 @@ static int c__1 = 1;
 
     /* Local variables */
     static int kbeg, jcol;
-    static doublereal xabs;
+    static double xabs;
     static int irow, j;
     static doublecomplex csign;
     extern /* Subroutine */ int zgerc_(int *, int *, doublecomplex *,
@@ -39,10 +38,10 @@ static int c__1 = 1;
 	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
 	    int *, doublecomplex *, doublecomplex *, int *);
     static int itype, nxfrm;
-    static doublereal xnorm;
-    extern doublereal dznrm2_(int *, doublecomplex *, int *);
+    static double xnorm;
+    extern double dznrm2_(int *, doublecomplex *, int *);
     extern int input_error(char *, int *);
-    static doublereal factor;
+    static double factor;
     extern /* Subroutine */ int zlacgv_slu(int *, doublecomplex *, int *);
     extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *, int *);
     extern /* Subroutine */ int zlaset_slu(char *, int *, int *,
@@ -260,7 +259,7 @@ static int c__1 = 1;
 	z__1.r = -csign.r, z__1.i = -csign.i;
 	x[i__2].r = z__1.r, x[i__2].i = z__1.i;
 	factor = xnorm * (xnorm + xabs);
-	if (abs(factor) < 1e-20) {
+	if (fabs(factor) < 1e-20) {
 	    *info = 1;
 	    i__2 = -(*info);
 	    input_error("ZLAROR", &i__2);

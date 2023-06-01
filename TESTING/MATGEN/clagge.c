@@ -1,9 +1,8 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
-*/
+	*/
 
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Table of constant values */
 
@@ -13,12 +12,12 @@ static int c__3 = 3;
 static int c__1 = 1;
 
 /* Subroutine */ int clagge_slu(int *m, int *n, int *kl, int *ku,
-	 real *d, complex *a, int *lda, int *iseed, complex *work,
+	 float *d, complex *a, int *lda, int *iseed, complex *work,
 	int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
-    doublereal d__1;
+    double d__1;
     complex q__1;
 
     /* Builtin functions */
@@ -32,10 +31,10 @@ static int c__1 = 1;
 	     cscal_(int *, complex *, complex *, int *), cgemv_(char *
 	    , int *, int *, complex *, complex *, int *, complex *
 	    , int *, complex *, complex *, int *);
-    extern real scnrm2_(int *, complex *, int *);
+    extern float scnrm2_(int *, complex *, int *);
     static complex wa, wb;
     extern /* Subroutine */ int clacgv_slu(int *, complex *, int *);
-    static real wn;
+    static float wn;
     extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
     static complex tau;
@@ -119,7 +118,7 @@ static int c__1 = 1;
 	*info = -3;
     } else if (*ku < 0 || *ku > *n - 1) {
 	*info = -4;
-    } else if (*lda < max(1,*m)) {
+    } else if (*lda < SUPERLU_MAX(1,*m)) {
 	*info = -7;
     }
     if (*info < 0) {
@@ -140,7 +139,7 @@ static int c__1 = 1;
 	}
 /* L20: */
     }
-    i__1 = min(*m,*n);
+    i__1 = SUPERLU_MIN(*m,*n);
     for (i = 1; i <= i__1; ++i) {
 	i__2 = i + i * a_dim1;
 	i__3 = i;
@@ -150,7 +149,7 @@ static int c__1 = 1;
 
 /*     pre- and post-multiply A by random unitary matrices */
 
-    for (i = min(*m,*n); i >= 1; --i) {
+    for (i = SUPERLU_MIN(*m,*n); i >= 1; --i) {
 	if (i < *m) {
 
 /*           generate random reflection */
@@ -186,7 +185,7 @@ t */
 		    c__1);
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
-	    q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	    q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	    cgerc_(&i__1, &i__2, &q__1, &work[1], &c__1, &work[*m + 1], &c__1,
 		     &a[i + i * a_dim1], lda);
 	}
@@ -224,7 +223,7 @@ ht */
 		    lda, &work[1], &c__1, &c_b1, &work[*n + 1], &c__1);
 	    i__1 = *m - i + 1;
 	    i__2 = *n - i + 1;
-	    q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	    q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	    cgerc_(&i__1, &i__2, &q__1, &work[*n + 1], &c__1, &work[1], &c__1,
 		     &a[i + i * a_dim1], lda);
 	}
@@ -236,7 +235,7 @@ ht */
 
    Computing MAX */
     i__2 = *m - 1 - *kl, i__3 = *n - 1 - *ku;
-    i__1 = max(i__2,i__3);
+    i__1 = SUPERLU_MAX(i__2,i__3);
     for (i = 1; i <= i__1; ++i) {
 	if (*kl <= *ku) {
 
@@ -245,7 +244,7 @@ L = 0)
 
    Computing MIN */
 	    i__2 = *m - 1 - *kl;
-	    if (i <= min(i__2,*n)) {
+	    if (i <= SUPERLU_MIN(i__2,*n)) {
 
 /*              generate reflection to annihilate A(kl+i+1:m,i
 ) */
@@ -282,17 +281,17 @@ eft */
 			c__1, &c_b1, &work[1], &c__1);
 		i__2 = *m - *kl - i + 1;
 		i__3 = *n - i;
-		q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+		q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 		cgerc_(&i__2, &i__3, &q__1, &a[*kl + i + i * a_dim1], &c__1, &
 			work[1], &c__1, &a[*kl + i + (i + 1) * a_dim1], lda);
 		i__2 = *kl + i + i * a_dim1;
-		q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+		q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 		a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	    }
 
 /* Computing MIN */
 	    i__2 = *n - 1 - *ku;
-	    if (i <= min(i__2,*m)) {
+	    if (i <= SUPERLU_MIN(i__2,*m)) {
 
 /*              generate reflection to annihilate A(i,ku+i+1:n
 ) */
@@ -331,11 +330,11 @@ ight */
 			c_b1, &work[1], &c__1);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
-		q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+		q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 		cgerc_(&i__2, &i__3, &q__1, &work[1], &c__1, &a[i + (*ku + i) 
 			* a_dim1], lda, &a[i + 1 + (*ku + i) * a_dim1], lda);
 		i__2 = i + (*ku + i) * a_dim1;
-		q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+		q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 		a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	    }
 	} else {
@@ -346,7 +345,7 @@ ight */
 
    Computing MIN */
 	    i__2 = *n - 1 - *ku;
-	    if (i <= min(i__2,*m)) {
+	    if (i <= SUPERLU_MIN(i__2,*m)) {
 
 /*              generate reflection to annihilate A(i,ku+i+1:n
 ) */
@@ -385,17 +384,17 @@ ight */
 			c_b1, &work[1], &c__1);
 		i__2 = *m - i;
 		i__3 = *n - *ku - i + 1;
-		q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+		q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 		cgerc_(&i__2, &i__3, &q__1, &work[1], &c__1, &a[i + (*ku + i) 
 			* a_dim1], lda, &a[i + 1 + (*ku + i) * a_dim1], lda);
 		i__2 = i + (*ku + i) * a_dim1;
-		q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+		q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 		a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	    }
 
 /* Computing MIN */
 	    i__2 = *m - 1 - *kl;
-	    if (i <= min(i__2,*n)) {
+	    if (i <= SUPERLU_MIN(i__2,*n)) {
 
 /*              generate reflection to annihilate A(kl+i+1:m,i
 ) */
@@ -432,11 +431,11 @@ eft */
 			c__1, &c_b1, &work[1], &c__1);
 		i__2 = *m - *kl - i + 1;
 		i__3 = *n - i;
-		q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+		q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 		cgerc_(&i__2, &i__3, &q__1, &a[*kl + i + i * a_dim1], &c__1, &
 			work[1], &c__1, &a[*kl + i + (i + 1) * a_dim1], lda);
 		i__2 = *kl + i + i * a_dim1;
-		q__1.r = -(doublereal)wa.r, q__1.i = -(doublereal)wa.i;
+		q__1.r = -(double)wa.r, q__1.i = -(double)wa.i;
 		a[i__2].r = q__1.r, a[i__2].i = q__1.i;
 	    }
 	}

@@ -1,9 +1,7 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
-
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Table of constant values */
 
@@ -12,14 +10,14 @@ static doublecomplex c_b2 = {1.,0.};
 static int c__3 = 3;
 static int c__1 = 1;
 
-/* Subroutine */ int zlagsy_slu(int *n, int *k, doublereal *d,
+/* Subroutine */ int zlagsy_slu(int *n, int *k, double *d,
 	doublecomplex *a, int *lda, int *iseed, doublecomplex *work,
 	int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6, i__7, i__8,
 	    i__9;
-    doublereal d__1;
+    double d__1;
     doublecomplex z__1, z__2, z__3, z__4;
 
     /* Builtin functions */
@@ -42,10 +40,10 @@ static int c__1 = 1;
 	    doublecomplex *, int *), zsymv_(char *, int *,
 	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
 	    int *, doublecomplex *, doublecomplex *, int *);
-    extern doublereal dznrm2_(int *, doublecomplex *, int *);
+    extern double dznrm2_(int *, doublecomplex *, int *);
     static int ii, jj;
     static doublecomplex wa, wb;
-    static doublereal wn;
+    static double wn;
     extern /* Subroutine */ int zlacgv_slu(int *, doublecomplex *, int *), zlarnv_slu(int *,
 	    int *, int *, doublecomplex *);
     extern int input_error(char *, int *);
@@ -119,7 +117,7 @@ static int c__1 = 1;
 	*info = -1;
     } else if (*k < 0 || *k > *n - 1) {
 	*info = -2;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -5;
     }
     if (*info < 0) {

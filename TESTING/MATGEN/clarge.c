@@ -1,9 +1,8 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
+#include "../../SRC/slu_sdefs.h"
 
 /* Table of constant values */
 
@@ -17,7 +16,7 @@ static int c__1 = 1;
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1;
-    doublereal d__1;
+    double d__1;
     complex q__1;
 
     /* Builtin functions */
@@ -31,9 +30,9 @@ static int c__1 = 1;
 	     cscal_(int *, complex *, complex *, int *), cgemv_(char *
 	    , int *, int *, complex *, complex *, int *, complex *
 	    , int *, complex *, complex *, int *);
-    extern real scnrm2_(int *, complex *, int *);
+    extern float scnrm2_(int *, complex *, int *);
     static complex wa, wb;
-    static real wn;
+    static float wn;
     extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
     extern int input_error(char *, int *);
     static complex tau;
@@ -95,7 +94,7 @@ static int c__1 = 1;
     *info = 0;
     if (*n < 0) {
 	*info = -1;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -3;
     }
     if (*info < 0) {
@@ -137,7 +136,7 @@ static int c__1 = 1;
 	cgemv_("Conjugate transpose", &i__1, n, &c_b2, &a[i + a_dim1], lda, &
 		work[1], &c__1, &c_b1, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
-	q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	cgerc_(&i__1, n, &q__1, &work[1], &c__1, &work[*n + 1], &c__1, &a[i + 
 		a_dim1], lda);
 
@@ -147,7 +146,7 @@ static int c__1 = 1;
 	cgemv_("No transpose", n, &i__1, &c_b2, &a[i * a_dim1 + 1], lda, &
 		work[1], &c__1, &c_b1, &work[*n + 1], &c__1);
 	i__1 = *n - i + 1;
-	q__1.r = -(doublereal)tau.r, q__1.i = -(doublereal)tau.i;
+	q__1.r = -(double)tau.r, q__1.i = -(double)tau.i;
 	cgerc_(n, &i__1, &q__1, &work[*n + 1], &c__1, &work[1], &c__1, &a[i * 
 		a_dim1 + 1], lda);
 /* L10: */

@@ -1,41 +1,39 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Table of constant values */
 
 static int c__3 = 3;
 static int c__1 = 1;
-static doublereal c_b8 = 1.;
-static doublereal c_b10 = 0.;
+static double c_b8 = 1.;
+static double c_b10 = 0.;
 
-/* Subroutine */ int dlarge_slu(int *n, doublereal *a, int *lda, int
-	*iseed, doublereal *work, int *info)
+/* Subroutine */ int dlarge_slu(int *n, double *a, int *lda, int
+	*iseed, double *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1;
-    doublereal d__1;
+    double d__1;
 
     /* Builtin functions */
-    double d_sign(doublereal *, doublereal *);
+    double d_sign(double *, double *);
 
     /* Local variables */
-    extern /* Subroutine */ int dger_(int *, int *, doublereal *,
-	    doublereal *, int *, doublereal *, int *, doublereal *,
+    extern /* Subroutine */ int dger_(int *, int *, double *,
+	    double *, int *, double *, int *, double *,
 	    int *);
-    extern doublereal dnrm2_(int *, doublereal *, int *);
+    extern double dnrm2_(int *, double *, int *);
     static int i;
-    extern /* Subroutine */ int dscal_(int *, doublereal *, doublereal *,
-	    int *), dgemv_(char *, int *, int *, doublereal *,
-	    doublereal *, int *, doublereal *, int *, doublereal *,
-	    doublereal *, int *);
-    static doublereal wa, wb, wn;
-    extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, doublereal *);
+    extern /* Subroutine */ int dscal_(int *, double *, double *,
+	    int *), dgemv_(char *, int *, int *, double *,
+	    double *, int *, double *, int *, double *,
+	    double *, int *);
+    static double wa, wb, wn;
+    extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, double *);
     extern int input_error(char *, int *);
-    static doublereal tau;
+    static double tau;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0)   
@@ -94,7 +92,7 @@ static doublereal c_b10 = 0.;
     *info = 0;
     if (*n < 0) {
 	*info = -1;
-    } else if (*lda < max(1,*n)) {
+    } else if (*lda < SUPERLU_MAX(1,*n)) {
 	*info = -3;
     }
     if (*info < 0) {

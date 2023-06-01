@@ -1,10 +1,8 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
 #include <stdbool.h>
-#include "f2c.h"
+#include "../../SRC/slu_scomplex.h"
 
 /* Table of constant values */
 
@@ -300,7 +298,7 @@ int clarot_slu(bool *lrows, bool *lleft, bool *lright,
 	tempx.r = q__1.r, tempx.i = q__1.i;
 	i__2 = iy + j * iinc;
 	r_cnjg(&q__4, s);
-	q__3.r = -(doublereal)q__4.r, q__3.i = -(doublereal)q__4.i;
+	q__3.r = -(double)q__4.r, q__3.i = -(double)q__4.i;
 	i__3 = ix + j * iinc;
 	q__2.r = q__3.r * a[i__3].r - q__3.i * a[i__3].i, q__2.i = q__3.r * a[
 		i__3].i + q__3.i * a[i__3].r;
@@ -329,7 +327,7 @@ int clarot_slu(bool *lrows, bool *lleft, bool *lright,
 	tempx.r = q__1.r, tempx.i = q__1.i;
 	i__2 = j - 1;
 	r_cnjg(&q__4, s);
-	q__3.r = -(doublereal)q__4.r, q__3.i = -(doublereal)q__4.i;
+	q__3.r = -(double)q__4.r, q__3.i = -(double)q__4.i;
 	i__3 = j - 1;
 	q__2.r = q__3.r * xt[i__3].r - q__3.i * xt[i__3].i, q__2.i = q__3.r * 
 		xt[i__3].i + q__3.i * xt[i__3].r;

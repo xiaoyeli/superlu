@@ -1,4 +1,4 @@
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
 /* Subroutine */ int zlacgv_slu(int *n, doublecomplex *x, int *incx)
 {

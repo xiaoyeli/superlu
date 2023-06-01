@@ -1,24 +1,22 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
 
 /* Double Complex */ void zlarnd_slu(doublecomplex * ret_val, int *idist,
 	int *iseed)
 {
     /* System generated locals */
-    doublereal d__1, d__2;
+    double d__1, d__2;
     doublecomplex z__1, z__2, z__3;
 
     /* Builtin functions */
-    double log(doublereal), sqrt(doublereal);
+    double log(double), sqrt(double);
     void z_exp(doublecomplex *, doublecomplex *);
 
     /* Local variables */
-    static doublereal t1, t2;
-    extern doublereal dlaran_slu(int *);
+    static double t1, t2;
+    extern double dlaran_slu(int *);
     extern int input_error(char *, int *);
 
 

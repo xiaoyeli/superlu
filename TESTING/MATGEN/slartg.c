@@ -1,8 +1,7 @@
 #include <math.h>
 #include <stdbool.h>
-#include "f2c.h"
 
-/* Subroutine */ int slartg_slu(real *f, real *g, real *cs, real *sn, real *r)
+/* Subroutine */ int slartg_slu(float *f, float *g, float *cs, float *sn, float *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -52,16 +51,16 @@
     static bool first = true;
     /* System generated locals */
     int i__1;
-    real r__1, r__2;
+    float r__1, r__2;
     /* Builtin functions */
-    double log(doublereal), pow_ri(real *, int *), sqrt(doublereal);
+    double log(double), pow_ri(float *, int *), sqrt(double);
     /* Local variables */
     static int i;
-    static real scale;
+    static float scale;
     static int count;
-    static real f1, g1, safmn2, safmx2;
+    static float f1, g1, safmn2, safmx2;
     extern float smach(char *);
-    static real safmin, eps;
+    static float safmin, eps;
 
 
     if (first) {
@@ -145,9 +144,9 @@ L30:
 	    *sn = g1 / *r;
 	}
 	if (fabs(*f) > fabs(*g) && *cs < 0.f) {
-	    *cs = -(doublereal)(*cs);
-	    *sn = -(doublereal)(*sn);
-	    *r = -(doublereal)(*r);
+	    *cs = -(double)(*cs);
+	    *sn = -(double)(*sn);
+	    *r = -(double)(*r);
 	}
     }
     return 0;

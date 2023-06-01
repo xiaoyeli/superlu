@@ -1,6 +1,4 @@
-#include "f2c.h"
-
-/* Subroutine */ int slabad_slu(real *small, real *large)
+/* Subroutine */ int slabad_slu(float *small, float *large)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -44,7 +42,7 @@
        If it looks like we're on a Cray, take the square root of   
        SMALL and LARGE to avoid overflow and underflow problems. */
     /* Builtin functions */
-    double r_lg10(real *), sqrt(doublereal);
+    double r_lg10(float *), sqrt(double);
 
 
     if (r_lg10(large) > 2e3f) {

@@ -1,21 +1,17 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
-#include "f2c.h"
-
-doublereal slarnd_slu(int *idist, int *iseed)
+double slarnd_slu(int *idist, int *iseed)
 {
     /* System generated locals */
-    real ret_val;
+    float ret_val;
 
     /* Builtin functions */
-    double log(doublereal), sqrt(doublereal), cos(doublereal);
+    double log(double), sqrt(double), cos(double);
 
     /* Local variables */
-    static real t1, t2;
-    extern doublereal dlaran_sluslu(int *);
+    static float t1, t2;
+    extern double dlaran_sluslu(int *);
     extern int input_error(char *, int *);
 
 

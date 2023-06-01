@@ -1,4 +1,5 @@
-#include "f2c.h"
+#include "../../SRC/slu_dcomplex.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Subroutine */ int zlarnv_slu(int *idist, int *iseed, int *n,
 	doublecomplex *x)
@@ -57,16 +58,16 @@
        Function Body */
     /* System generated locals */
     int i__2, i__3;
-    doublereal d__1, d__2;
+    double d__1, d__2;
     doublecomplex z__1, z__2, z__3;
     /* Builtin functions */
-    double log(doublereal), sqrt(doublereal);
+    double log(double), sqrt(double);
     void z_exp(doublecomplex *, doublecomplex *);
     /* Local variables */
     static int i;
-    static doublereal u[128];
+    static double u[128];
     static int il, iv;
-    extern /* Subroutine */ int dlaruv_slu(int *, int *, doublereal *);
+    extern /* Subroutine */ int dlaruv_slu(int *, int *, double *);
 
 
 #define U(I) u[(I)]
@@ -77,7 +78,7 @@
     for (iv = 1; iv <= *n; iv += 64) {
 /* Computing MIN */
 	i__2 = 64, i__3 = *n - iv + 1;
-	il = min(i__2,i__3);
+	il = SUPERLU_MIN(i__2,i__3);
 
 /*        Call DLARUV to generate 2*IL real numbers from a uniform (0,
 1)   

@@ -1,18 +1,16 @@
 /*  -- translated by f2c (version 19940927).
-   You must link the resulting object file with the libraries:
-	-lf2c -lm   (in that order)
 */
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "f2c.h"
+#include "../../SRC/slu_ddefs.h"
 
 /* Table of constant values */
 
 /* Subroutine */ int zlatb4_slu(char *path, int *imat, int *m, int *
-	n, char *type, int *kl, int *ku, doublereal *anorm, int *
-	mode, doublereal *cndnum, char *dist)
+	n, char *type, int *kl, int *ku, double *anorm, int *
+	mode, double *cndnum, char *dist)
 {
     /* Initialized data */
 
@@ -22,16 +20,16 @@
     int i__1;
 
     /* Builtin functions */
-    double sqrt(doublereal);
+    double sqrt(double);
 
 
     /* Local variables */
-    static doublereal badc1, badc2, large, small;
+    static double badc1, badc2, large, small;
     static char c2[2];
-    extern /* Subroutine */ int dlabad_slu(doublereal *, doublereal *);
-    extern doublereal dmach(char *);
+    extern /* Subroutine */ int dlabad_slu(double *, double *);
+    extern double dmach(char *);
     static int mat;
-    static doublereal eps;
+    static double eps;
 
 
 /*  -- LAPACK test routine (version 2.0) --   
@@ -140,19 +138,19 @@
 	    *kl = 0;
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	} else if (*imat == 3) {
 /* Computing MAX */
 	    i__1 = *m - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 	    *ku = 0;
 	} else {
 /* Computing MAX */
 	    i__1 = *m - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	}
 
 /*        Set the condition number and norm. */
@@ -190,19 +188,19 @@
 	    *kl = 0;
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	} else if (*imat == 3) {
 /* Computing MAX */
 	    i__1 = *m - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 	    *ku = 0;
 	} else {
 /* Computing MAX */
 	    i__1 = *m - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	}
 
 /*        Set the condition number and norm. */
@@ -302,7 +300,7 @@ x.
 	} else {
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 	}
 	*ku = *kl;
 
@@ -396,13 +394,13 @@ x.
 	} else if (*imat < 0) {
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *kl = max(i__1,0);
+	    *kl = SUPERLU_MAX(i__1,0);
 	    *ku = 0;
 	} else {
 	    *kl = 0;
 /* Computing MAX */
 	    i__1 = *n - 1;
-	    *ku = max(i__1,0);
+	    *ku = SUPERLU_MAX(i__1,0);
 	}
 
 /*        Set the condition number and norm. */

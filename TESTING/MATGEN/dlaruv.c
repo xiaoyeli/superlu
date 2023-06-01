@@ -1,6 +1,6 @@
-#include "f2c.h"
+#include "../../SRC/slu_ddefs.h"
 
-/* Subroutine */ int dlaruv_slu(int *iseed, int *n, doublereal *x)
+/* Subroutine */ int dlaruv_slu(int *iseed, int *n, double *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -109,7 +109,7 @@
     i3 = ISEED(3);
     i4 = ISEED(4);
 
-    for (i = 1; i <= min(*n,128); ++i) {
+    for (i = 1; i <= SUPERLU_MIN(*n,128); ++i) {
 
 /*        Multiply the seed by i-th power of the multiplier modulo 2**
 48 */
@@ -127,13 +127,10 @@
 		i4 * MM(i - 1);
 	it1 %= 4096;
 
-/*        Convert 48-bit integer to a real number in the interval (0,1
-) */
-
-	X(i) = ((doublereal) it1 + ((doublereal) it2 + ((doublereal) it3 + (
-		doublereal) it4 * 2.44140625e-4) * 2.44140625e-4) * 
-		2.44140625e-4) * 2.44140625e-4;
-/* L10: */
+        // Convert 48-bit integer to a real number in the interval (0,1)
+        X(i) = ((double) it1 + ((double) it2 + ((double) it3
+               + (double) it4 * 2.44140625e-4) * 2.44140625e-4) * 2.44140625e-4)
+               * 2.44140625e-4;
     }
 
 /*     Return final value of seed */

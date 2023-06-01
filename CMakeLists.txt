@@ -214,14 +214,11 @@ if(enable_tests)
   add_subdirectory(TESTING)
 endif()
 
-if(enable_examples)
-  enable_testing()
-  add_subdirectory(EXAMPLE)
-endif()
-
 if (XSDK_ENABLE_Fortran)
   add_subdirectory(FORTRAN)
 endif()
+
+add_subdirectory(EXAMPLE)
 
 add_subdirectory(DOC)
 

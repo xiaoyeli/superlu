@@ -236,8 +236,8 @@ extern int_t   zLUMemXpand (int, int_t, MemType, int_t *, GlobalLU_t *);
 
 extern doublecomplex  *doublecomplexMalloc(size_t);
 extern doublecomplex  *doublecomplexCalloc(size_t);
-extern double  *doubleMalloc(int);
-extern double  *doubleCalloc(int);
+extern double  *doubleMalloc(size_t);
+extern double  *doubleCalloc(size_t);
 extern int_t   zmemory_usage(const int_t, const int_t, const int_t, const int);
 extern int     zQuerySpace (SuperMatrix *, SuperMatrix *, mem_usage_t *);
 extern int     ilu_zQuerySpace (SuperMatrix *, SuperMatrix *, mem_usage_t *);

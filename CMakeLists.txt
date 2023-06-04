@@ -1,10 +1,3 @@
-
-######################################################################
-#
-# CMakeLists.txt for SUPERLU
-#
-######################################################################
-
 # Required version
 cmake_minimum_required(VERSION 3.9)
 
@@ -59,8 +52,6 @@ option(enable_tests     "Build tests" ON)
 include(CTest)
 include(GNUInstallDirs)
 include(FeatureSummary)
-
-######################################################################
 
 ######################################################################
 #

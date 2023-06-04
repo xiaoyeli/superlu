@@ -52,7 +52,7 @@ option(enable_complex   "Enable complex precision library" ON)
 option(enable_complex16 "Enable complex16 precision library" ON)
 option(enable_matlabmex "Build the Matlab mex library" OFF)
 option(enable_doc       "Add target 'doc' to build Doxygen documentation" OFF)
-# option(enable_examples  "Build examples" ON)
+option(enable_examples  "Build examples" ON)
 option(enable_fortran   "Build Fortran interface" ${enable_fortran_xSDK})
 option(enable_tests     "Build tests" ON)
 

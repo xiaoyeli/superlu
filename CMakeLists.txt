@@ -229,6 +229,7 @@ if(enable_tests)
   add_subdirectory(TESTING)
 endif()
 
+add_custom_target(examples)
 if (enable_fortran)
   add_subdirectory(FORTRAN)
 endif()

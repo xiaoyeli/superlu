@@ -2,6 +2,16 @@
 include_directories(${SuperLU_SOURCE_DIR}/SRC)
 include_directories(${SuperLU_BINARY_DIR}/FORTRAN)
 
+# build examples for target "all" only if enable_examples is set
+if(NOT enable_examples)
+  set(_DEPENDENCY_ALL "EXCLUDE_FROM_ALL")
+endif()
+
+# targets to build examples
+add_dependencies(examples
+                 dfexm
+                 zfexm
+                 test_omp)
 
 set(sources "")
 list(APPEND sources c_fortran_dgssv.c c_fortran_zgssv.c)

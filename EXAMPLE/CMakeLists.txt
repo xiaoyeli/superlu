@@ -22,7 +22,6 @@ add_custom_target(examples_doublecomplex)
 add_dependencies(examples_doublecomplex
                  zitersol zitersol1
                  zlinsol zlinsol1 zlinsolx zlinsolx1 zlinsolx2 zlinsolx3)
-add_custom_target(examples)
 add_dependencies(examples
                  superlu_example
                  examples_complex

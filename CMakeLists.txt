@@ -24,14 +24,19 @@ set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 set(USE_XSDK_DEFAULTS TRUE)
 
 # The XSDK standard does not allow using internally built BLAS
-if (USE_XSDK_DEFAULTS)
-  set(enable_blaslib_DEFAULT OFF)
+if (NOT "${enable_internal_blaslib}" STREQUAL "")
+  if (USE_XSDK_DEFAULTS)
+    set(enable_blaslib_xSDK OFF)
+  else()
+    set(enable_blaslib_xSDK ON)
+  endif()
 else()
-  set(enable_blaslib_DEFAULT ON)
+  set(enable_blaslib_xSDK ${enable_internal_blaslib})
+endif()
 endif()
 
 # set up options
-option(enable_internal_blaslib  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
+option(enable_internal_blaslib  "Build the CBLAS library" ${enable_blaslib_xSDK})
 option(enable_single    "Enable single precision library" ON)
 option(enable_double    "Enable double precision library" ON)
 option(enable_complex   "Enable complex precision library" ON)
@@ -94,7 +99,7 @@ set(SUPERLU_VERSION "${PROJECT_VERSION}")
 set(SUPERLU_REV "${PROJECT_REV}")
 
 #-- BLAS
-option(TPL_ENABLE_INTERNAL_BLASLIB  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
+option(TPL_ENABLE_INTERNAL_BLASLIB  "Build the CBLAS library" ${enable_internal_blaslib})
 option(TPL_BLAS_LIBRARIES "List of absolute paths to blas libraries [].")
 #-- METIS
 option(TPL_ENABLE_METISLIB   "Build the METIS library" OFF)

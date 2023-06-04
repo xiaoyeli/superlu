@@ -15,13 +15,32 @@ set(VERSION_MINOR "0")
 set(VERSION_BugFix "0")
 set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 
-######################################################################
+# Compatiblitly to xSDK standard
+# (Extreme-scale Scientific Software Development Kit)
 #
-# IDEAS: xSDK standards module
 #MESSAGE("\nProcess XSDK defaults ...")
 #SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
 #INCLUDE("cmake/XSDKDefaults.cmake")
 set(USE_XSDK_DEFAULTS TRUE)
+
+# The XSDK standard does not allow using internally built BLAS
+if (USE_XSDK_DEFAULTS)
+  set(enable_blaslib_DEFAULT OFF)
+else()
+  set(enable_blaslib_DEFAULT ON)
+endif()
+
+# set up options
+option(enable_internal_blaslib  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
+option(enable_single    "Enable single precision library" ON)
+option(enable_double    "Enable double precision library" ON)
+option(enable_complex   "Enable complex precision library" ON)
+option(enable_complex16 "Enable complex16 precision library" ON)
+option(enable_matlabmex "Build the Matlab mex library" OFF)
+option(enable_doc       "Add target 'doc' to build Doxygen documentation" OFF)
+# option(enable_examples  "Build examples" ON)
+option(enable_tests     "Build tests" ON)
+
 include(CTest)
 include(GNUInstallDirs)
 include(FeatureSummary)
@@ -73,24 +92,6 @@ if (XSDK_ENABLE_Fortran)
 endif()
 set(SUPERLU_VERSION "${PROJECT_VERSION}")
 set(SUPERLU_REV "${PROJECT_REV}")
-
-# The XSDK standard does not allow using internally built BLAS
-if (USE_XSDK_DEFAULTS)
-  set(enable_blaslib_DEFAULT OFF)
-else()
-  set(enable_blaslib_DEFAULT ON)
-endif()
-
-# set up options
-option(enable_internal_blaslib  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
-option(enable_matlabmex "Build the Matlab mex library" OFF)
-option(enable_tests     "Build tests" ON)
-option(enable_doc       "Add target 'doc' to build Doxygen documentation" OFF)
-option(enable_single    "Enable single precision library" ON)
-option(enable_double    "Enable double precision library" ON)
-option(enable_complex   "Enable complex precision library" ON)
-option(enable_complex16 "Enable complex16 precision library" ON)
-# option(enable_examples  "Build examples" ON)
 
 #-- BLAS
 option(TPL_ENABLE_INTERNAL_BLASLIB  "Build the CBLAS library" ${enable_blaslib_DEFAULT})

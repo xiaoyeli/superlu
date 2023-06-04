@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
 
 	/* This is how you could access the solution matrix. */
         complex *sol = (complex*) ((DNformat*) B.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	 /* Compute the infinity norm of the error. */
 	cinf_norm_error(nrhs, &B, xact);
@@ -136,5 +137,6 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+    return EXIT_SUCCESS;
 }
 

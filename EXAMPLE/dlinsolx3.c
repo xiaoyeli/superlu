@@ -25,6 +25,7 @@ at the top-level directory.
  * \ingroup Example
  */
 
+#include <getopt.h>
 #include <unistd.h>
 #include "slu_ddefs.h"
 
@@ -55,7 +56,7 @@ int main(int argc, char *argv[])
     int            *etree;
     void           *work;
     int            m, n, nrhs, ldx;
-    int_t          i, j, info, lwork, nnz;
+    int_t          info, lwork, nnz;
     double         *rhsb, *rhsb1, *rhsx, *xact;
     double         *R, *C;
     double         *ferr, *berr;
@@ -110,11 +111,12 @@ int main(int argc, char *argv[])
     if ( !(a1 = doubleMalloc(nnz)) ) ABORT("Malloc fails for a1[].");
     if ( !(asub1 = intMalloc(nnz)) ) ABORT("Malloc fails for asub1[].");
     if ( !(xa1 = intMalloc(n+1)) ) ABORT("Malloc fails for xa1[].");
-    for (i = 0; i < nnz; ++i) {
+    for (int i = 0; i < nnz; ++i) {
         a1[i] = a[i];
 	asub1[i] = asub[i];
     }
-    for (i = 0; i < n+1; ++i) xa1[i] = xa[i];
+    for (int i = 0; i < n+1; ++i)
+        xa1[i] = xa[i];
     
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);
     Astore = A.Store;
@@ -129,8 +131,9 @@ int main(int argc, char *argv[])
     ldx = n;
     dGenXtrue(n, nrhs, xact, ldx);
     dFillRHS(trans, nrhs, xact, ldx, &A, &B);
-    for (j = 0; j < nrhs; ++j)
-        for (i = 0; i < m; ++i) rhsb1[i+j*m] = rhsb[i+j*m];
+    for (int j = 0; j < nrhs; ++j)
+        for (int i = 0; i < m; ++i)
+            rhsb1[i+j*m] = rhsb[i+j*m];
     
     if ( !(perm_c = int32Malloc(n)) ) ABORT("Malloc fails for perm_c[].");
     if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");
@@ -160,6 +163,7 @@ int main(int argc, char *argv[])
 
         /* This is how you could access the solution matrix. */
         double *sol = (double*) ((DNformat*) X.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	if ( options.PivotGrowth ) printf("Recip. pivot growth = %e\n", rpg);
 	if ( options.ConditionNumber )
@@ -176,7 +180,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-	    for (i = 0; i < nrhs; ++i)
+            for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", (int)i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);
@@ -211,6 +215,7 @@ int main(int argc, char *argv[])
 
         /* This is how you could access the solution matrix. */
         double *sol = (double*) ((DNformat*) X.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	if ( options.PivotGrowth ) printf("Recip. pivot growth = %e\n", rpg);
 	if ( options.ConditionNumber )
@@ -225,7 +230,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-	    for (i = 0; i < nrhs; ++i)
+            for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", (int)i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);
@@ -257,6 +262,7 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+    return EXIT_SUCCESS;
 }
 
 /*!

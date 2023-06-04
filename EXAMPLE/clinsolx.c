@@ -23,6 +23,7 @@ at the top-level directory.
  * \ingroup Example
  */
 
+#include <getopt.h>
 #include <unistd.h>
 #include "slu_cdefs.h"
 
@@ -46,7 +47,7 @@ int main(int argc, char *argv[])
     void           *work;
     int            nrhs, ldx;
     int_t          info, lwork, nnz;
-    int            i, m, n;
+    int            m, n;
     complex         *rhsb, *rhsx, *xact;
     float         *R, *C;
     float         *ferr, *berr;
@@ -146,6 +147,7 @@ int main(int argc, char *argv[])
 
         /* This is how you could access the solution matrix. */
         complex *sol = (complex*) ((DNformat*) X.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	if ( options.PivotGrowth == YES )
             printf("Recip. pivot growth = %e\n", rpg);
@@ -154,7 +156,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine != NOREFINE ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-	    for (i = 0; i < nrhs; ++i)
+            for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
         Lstore = (SCformat *) L.Store;

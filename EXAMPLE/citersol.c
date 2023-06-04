@@ -121,7 +121,6 @@ int main(int argc, char *argv[])
     extern int cfill_diag(int n, NCformat *Astore);
 
     char     equed[1] = {'B'};
-    yes_no_t equil;
     trans_t  trans;
     SuperMatrix A, L, U;
     SuperMatrix B, X;
@@ -140,7 +139,7 @@ int main(int argc, char *argv[])
     complex   *rhsb, *rhsx, *xact;
     complex   *work = NULL;
     float   *R, *C;
-    float   u, rpg, rcond;
+    float   rpg, rcond;
     complex zero = {0.0, 0.0};
     complex one = {1.0, 0.0};
     complex none = {-1.0, 0.0};
@@ -149,8 +148,6 @@ int main(int argc, char *argv[])
     SuperLUStat_t stat;
     FILE 	  *fp = stdin;
 
-    int restrt, iter, maxit, i;
-    double resid;
     complex *x, *b;
 
 #ifdef DEBUG
@@ -204,7 +201,7 @@ int main(int argc, char *argv[])
 		"-r -rb:\n\t[INPUT] is a Rutherford-Boeing format matrix.\n"
 		"-t -triplet:\n\t[INPUT] is a triplet format matrix.\n",
 		argv[0]);
-	return 0;
+        return EXIT_FAILURE;
     }
     else
     {
@@ -227,7 +224,7 @@ int main(int argc, char *argv[])
 		break;
 	    default:
 		printf("Unrecognized format.\n");
-		return 0;
+                return EXIT_FAILURE;
 	}
     }
 
@@ -274,9 +271,11 @@ int main(int argc, char *argv[])
     /* Set RHS for GMRES. */
     if (!(b = complexMalloc(m))) ABORT("Malloc fails for b[].");
     if (*equed == 'R' || *equed == 'B') {
-	for (i = 0; i < n; ++i) cs_mult(&b[i], &rhsb[i], R[i]);
+        for (int i = 0; i < n; ++i)
+            cs_mult(&b[i], &rhsb[i], R[i]);
     } else {
-	for (i = 0; i < m; i++) b[i] = rhsb[i];
+        for (int i = 0; i < m; i++)
+            b[i] = rhsb[i];
     }
 
     printf("cgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
@@ -323,10 +322,10 @@ int main(int argc, char *argv[])
     options.ConditionNumber = NO;
 
     /* Set the variables used by GMRES. */
-    restrt = SUPERLU_MIN(n / 3 + 1, 50);
-    maxit = 1000;
-    iter = maxit;
-    resid = 1e-4;
+    int restrt = SUPERLU_MIN(n / 3 + 1, 50);
+    int maxit = 1000;
+    int iter = maxit;
+    double resid = 1e-4;
     if (!(x = complexMalloc(n))) ABORT("Malloc fails for x[].");
 
     if (info <= n + 1)
@@ -337,8 +336,9 @@ int main(int argc, char *argv[])
 	extern float scnrm2_(int *, complex [], int *);
 	extern void caxpy_(int *, complex *, complex [], int *, complex [], int *);
 
-	/* Initial guess */
-	for (i = 0; i < n; i++) x[i] = zero;
+        /* Initial guess */
+        for (int i = 0; i < n; i++)
+            x[i] = zero;
 
 	t = SuperLU_timer_();
 
@@ -368,9 +368,10 @@ int main(int argc, char *argv[])
 
 	/* Scale the solution back if equilibration was performed. */
 	if (*equed == 'C' || *equed == 'B') 
-	    for (i = 0; i < n; i++) cs_mult(&x[i], &x[i], C[i]);
+            for (int i = 0; i < n; i++)
+                cs_mult(&x[i], &x[i], C[i]);
 
-	for (i = 0; i < m; i++) {
+        for (int i = 0; i < m; i++) {
             c_sub(&temp, &x[i], &xact[i]);
             maxferr = SUPERLU_MAX(maxferr, c_abs1(&temp));
         }
@@ -407,5 +408,5 @@ int main(int argc, char *argv[])
     CHECK_MALLOC("Exit main()");
 #endif
 
-    return 0;
+    return EXIT_SUCCESS;
 }

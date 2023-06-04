@@ -25,6 +25,7 @@ at the top-level directory.
  * \ingroup Example
  */
 
+#include <getopt.h>
 #include <unistd.h>
 #include "slu_sdefs.h"
 
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
     int            *perm_r; /* row permutations from partial pivoting */
     int            *etree;
     void           *work;
-    int            i, m, n, nrhs, ldx;
+    int            m, n, nrhs, ldx;
     int_t          info, lwork, nnz;
     float         *rhsb, *rhsx, *xact;
     float         *R, *C;
@@ -191,11 +192,12 @@ int main(int argc, char *argv[])
 
         /* This is how you could access the solution matrix. */
         float *sol = (float*) ((DNformat*) X.Store)->nzval; 
+        (void)sol;  // suppress unused variable warning
 
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-	    for (i = 0; i < nrhs; ++i)
+            for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);
@@ -230,6 +232,7 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+    return EXIT_SUCCESS;
 }
 
 /*!

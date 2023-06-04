@@ -69,10 +69,10 @@ int cfgmr(int n,
      complex *rhs, complex *sol, double tol, int im, int *itmax, FILE * fits)
 {
     int maxits = *itmax;
-    int i, i1, ii, j, k, k1, its, retval, i_1 = 1, i_2 = 2;
-    float beta, eps1 = 0.0, t, t0, gam;
+    int its, i_1 = 1, i_2 = 2;
+    float eps1 = 0.0;
     complex **hh, *c, *s, *rs;
-    complex **vv, **z, tt;
+    complex **vv, **z;
     complex zero = {0.0, 0.0};
     complex one = {1.0, 0.0};
     complex tt1, tt2;
@@ -83,10 +83,11 @@ int cfgmr(int n,
 
     its = 0;
     vv = (complex **)SUPERLU_MALLOC((im + 1) * sizeof(complex *));
-    for (i = 0; i <= im; i++) vv[i] = complexMalloc(n);
+    for (int i = 0; i <= im; i++)
+        vv[i] = complexMalloc(n);
     z = (complex **)SUPERLU_MALLOC(im * sizeof(complex *));
     hh = (complex **)SUPERLU_MALLOC(im * sizeof(complex *));
-    for (i = 0; i < im; i++)
+    for (int i = 0; i < im; i++)
     {
 	hh[i] = complexMalloc(i + 2);
 	z[i] = complexMalloc(n);
@@ -100,9 +101,9 @@ int cfgmr(int n,
     {
 	/*---- compute initial residual vector ----*/
 	cmatvec(one, sol, zero, vv[0]);
-	for (j = 0; j < n; j++)
-	    c_sub(&vv[0][j], &rhs[j], &vv[0][j]);	/* vv[0]= initial residual */
-	beta = scnrm2_(&n, vv[0], &i_1);
+        for (int j = 0; j < n; j++)
+            c_sub(&vv[0][j], &rhs[j], &vv[0][j]); /* vv[0]= initial residual */
+        float beta = scnrm2_(&n, vv[0], &i_1);
 
 	/*---- print info if fits != null ----*/
 	if (fits != NULL && its == 0)
@@ -110,10 +111,10 @@ int cfgmr(int n,
 	/*if ( beta <= tol * dnrm2_(&n, rhs, &i_1) )*/
 	if ( !(beta > tol * scnrm2_(&n, rhs, &i_1)) )
 	    break;
-	t = 1.0 / beta;
+        float t = 1.0 / beta;
 
-	/*---- normalize: vv[0] = vv[0] / beta ----*/
-	for (j = 0; j < n; j++)
+        /*---- normalize: vv[0] = vv[0] / beta ----*/
+        for (int j = 0; j < n; j++)
 	    cs_mult(&vv[0][j], &vv[0][j], t);
 	if (its == 0)
 	    eps1 = tol * beta;
@@ -121,10 +122,11 @@ int cfgmr(int n,
 	/*---- initialize 1-st term of rhs of hessenberg system ----*/
 	rs[0].r = beta;
 	rs[0].i = 0.0;
-	for (i = 0; i < im; i++)
-	{
+        int i = 0;
+        for (i = 0; i < im; i++)
+        {
 	    its++;
-	    i1 = i + 1;
+            int i1 = i + 1;
 
 	    /*------------------------------------------------------------
 	    |  (Right) Preconditioning Operation   z_{j} = M^{-1} v_{j}
@@ -142,15 +144,15 @@ int cfgmr(int n,
 	    |     h_{i,j} = (w,v_{i})
 	    |     w  = w - h_{i,j} v_{i}
 	    +------------------------------------------------------------*/
-	    t0 = scnrm2_(&n, vv[i1], &i_1);
-	    for (j = 0; j <= i; j++)
-	    {
+            float t0 = scnrm2_(&n, vv[i1], &i_1);
+            for (int j = 0; j <= i; j++)
+            {
 		complex negt;
 #if 0
 		cdotc_(&tt, &n, vv[j], &i_1, vv[i1], &i_1);
 #else
-		tt = zero;
-		for (k = 0; k < n; ++k) {
+                complex tt = zero;
+                for (int k = 0; k < n; ++k) {
 		    cc_conj(&tt1, &vv[j][k]);
 		    cc_mult(&tt2, &tt1, &vv[i1][k]);
 		    c_add(&tt, &tt, &tt2);
@@ -167,14 +169,14 @@ int cfgmr(int n,
 	    while (t < 0.5 * t0)
 	    {
 		t0 = t;
-		for (j = 0; j <= i; j++)
-		{
+                for (int j = 0; j <= i; j++)
+                {
 		    complex negt;
 #if 0
 		    cdotc_(&tt, &n, vv[j], &i_1, vv[i1], &i_1);
 #else
-   	            tt = zero;
-		    for (k = 0; k < n; ++k) {
+                    complex tt = zero;
+                    for (int k = 0; k < n; ++k) {
 		        cc_conj(&tt1, &vv[j][k]);
 		        cc_mult(&tt2, &tt1, &vv[i1][k]);
 		        c_add(&tt, &tt, &tt2);
@@ -195,9 +197,9 @@ int cfgmr(int n,
 	    {
 		/*---- v_{j+1} = w / h_{j+1,j} ----*/
 		t = 1.0 / t;
-		for (k = 0; k < n; k++)
-	            cs_mult(&vv[i1][k], &vv[i1][k], t);
-	    }
+                for (int k = 0; k < n; k++)
+                    cs_mult(&vv[i1][k], &vv[i1][k], t);
+    }
 	    /*---------------------------------------------------
 	    |     done with modified gram schimdt and arnoldi step
 	    |     now  update factorization of hh
@@ -206,10 +208,10 @@ int cfgmr(int n,
 	    /*--------------------------------------------------------
 	    |   perform previous transformations  on i-th column of h
 	    +-------------------------------------------------------*/
-	    for (k = 1; k <= i; k++)
-	    {
-		k1 = k - 1;
-		tt = hh[i][k1];
+            for (int k = 1; k <= i; k++)
+            {
+                int k1 = k - 1;
+                complex tt = hh[i][k1];
                 cc_mult(&tt1, &c[k1], &tt);
                 cc_mult(&tt2, &s[k1], &hh[i][k]);
                 c_add(&hh[i][k1], &tt1, &tt2);
@@ -219,7 +221,7 @@ int cfgmr(int n,
                 c_sub(&hh[i][k], &tt2, &tt1);
 	    }
 
-	    gam = scnrm2_(&i_2, &hh[i][i], &i_1);
+            float gam = scnrm2_(&i_2, &hh[i][i], &i_1);
 
 	    /*---------------------------------------------------
 	    |     if gamma is zero then any small value will do
@@ -262,23 +264,22 @@ int cfgmr(int n,
 	/*---- now compute solution. 1st, solve upper triangular system ----*/
 	c_div(&rs[i], &rs[i], &hh[i][i]);
 
-	for (ii = 1; ii <= i; ii++)
-	{
-	    k = i - ii;
-	    k1 = k + 1;
-	    tt = rs[k];
-	    for (j = k1; j <= i; j++) {
+        for (int ii = 1; ii <= i; ii++)
+        {
+            int k = i - ii;
+            complex tt = rs[k];
+            for (int j = k + 1; j <= i; j++) {
                 cc_mult(&tt1, &hh[j][k], &rs[j]);
 		c_sub(&tt, &tt, &tt1);
             }
             c_div(&rs[k], &tt, &hh[k][k]);
 	}
 
-	/*---- linear combination of v[i]'s to get sol. ----*/
-	for (j = 0; j <= i; j++)
-	{
-	    tt = rs[j];
-	    for (k = 0; k < n; k++) {
+        /*---- linear combination of v[i]'s to get sol. ----*/
+        for (int j = 0; j <= i; j++)
+        {
+            complex tt = rs[j];
+            for (int k = 0; k < n; k++) {
                 cc_mult(&tt1, &tt, &z[j][k]);
 		c_add(&sol[k], &sol[k], &tt1);
             }
@@ -286,8 +287,8 @@ int cfgmr(int n,
 
 	/* calculate the residual and output */
 	cmatvec(one, sol, zero, vv[0]);
-	for (j = 0; j < n; j++)
-	    c_sub(&vv[0][j], &rhs[j], &vv[0][j]);/* vv[0]= initial residual */
+        for (int j = 0; j < n; j++)
+            c_sub(&vv[0][j], &rhs[j], &vv[0][j]); /* vv[0]= initial residual */
 
 	/*---- print info if fits != null ----*/
 	beta = scnrm2_(&n, vv[0], &i_1);
@@ -303,14 +304,14 @@ int cfgmr(int n,
 	    break;
     } while(its < maxits);
 
-    retval = (its >= maxits);
-    for (i = 0; i <= im; i++)
-	SUPERLU_FREE(vv[i]);
+    int retval = (its >= maxits);
+    for (int i = 0; i <= im; i++)
+        SUPERLU_FREE(vv[i]);
     SUPERLU_FREE(vv);
-    for (i = 0; i < im; i++)
+    for (int i = 0; i < im; i++)
     {
-	SUPERLU_FREE(hh[i]);
-	SUPERLU_FREE(z[i]);
+        SUPERLU_FREE(hh[i]);
+        SUPERLU_FREE(z[i]);
     }
     SUPERLU_FREE(hh);
     SUPERLU_FREE(z);

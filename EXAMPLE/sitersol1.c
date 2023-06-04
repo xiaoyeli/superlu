@@ -119,7 +119,6 @@ int main(int argc, char *argv[])
     extern int sfill_diag(int n, NCformat *Astore);
 
     char     equed[1] = {'B'};
-    yes_no_t equil;
     trans_t  trans;
     SuperMatrix A, AA, L, U;
     SuperMatrix B, X;
@@ -138,16 +137,13 @@ int main(int argc, char *argv[])
     float   *rhsb, *rhsx, *xact;
     float   *work = NULL;
     float   *R, *C;
-    float   u, rpg, rcond;
+    float   rpg, rcond;
     float zero = 0.0;
-    float one = 1.0;
     mem_usage_t   mem_usage;
     superlu_options_t options;
     SuperLUStat_t stat;
     FILE    *fp = stdin;
 
-    int restrt, iter, maxit, i;
-    double resid;
     float *x, *b;
 
 #ifdef DEBUG
@@ -201,7 +197,7 @@ int main(int argc, char *argv[])
 		"-r -rb:\n\t[INPUT] is a Rutherford-Boeing format matrix.\n"
 		"-t -triplet:\n\t[INPUT] is a triplet format matrix.\n",
 		argv[0]);
-	return 0;
+        return EXIT_FAILURE;
     }
     else
     {
@@ -224,7 +220,7 @@ int main(int argc, char *argv[])
 		break;
 	    default:
 		printf("Unrecognized format.\n");
-		return 0;
+                return EXIT_FAILURE;
 	}
     }
 
@@ -240,11 +236,12 @@ int main(int argc, char *argv[])
     a_orig = floatMalloc(nnz);
     asub_orig = intMalloc(nnz);
     xa_orig = intMalloc(n+1);
-    for (i = 0; i < nnz; ++i) {
+    for (int i = 0; i < nnz; ++i) {
 	a_orig[i] = ((float *)Astore->nzval)[i];
 	asub_orig[i] = Astore->rowind[i];
     }
-    for (i = 0; i <= n; ++i) xa_orig[i] = Astore->colptr[i];
+    for (int i = 0; i <= n; ++i)
+        xa_orig[i] = Astore->colptr[i];
     sCreate_CompCol_Matrix(&AA, m, n, nnz, a_orig, asub_orig, xa_orig,
 			   SLU_NC, SLU_S, SLU_GE);
     
@@ -283,7 +280,8 @@ int main(int argc, char *argv[])
 
     /* Set RHS for GMRES. */
     if (!(b = floatMalloc(m))) ABORT("Malloc fails for b[].");
-    for (i = 0; i < m; i++) b[i] = rhsb[i];
+    for (int i = 0; i < m; i++)
+        b[i] = rhsb[i];
 
     printf("sgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
     if (info > 0 || rcond < 1e-8 || rpg > 1e8)
@@ -331,22 +329,22 @@ int main(int argc, char *argv[])
     options.ConditionNumber = NO;
 
     /* Set the variables used by GMRES. */
-    restrt = SUPERLU_MIN(n / 3 + 1, 50);
-    maxit = 1000;
-    iter = maxit;
-    resid = 1e-8;
+    int restrt = SUPERLU_MIN(n / 3 + 1, 50);
+    int maxit = 1000;
+    int iter = maxit;
+    double resid = 1e-8;
     if (!(x = floatMalloc(n))) ABORT("Malloc fails for x[].");
 
     if (info <= n + 1)
     {
 	int i_1 = 1;
 	double maxferr = 0.0, nrmA, nrmB, res, t;
-        float temp;
 	extern float snrm2_(int *, float [], int *);
 	extern void saxpy_(int *, float *, float [], int *, float [], int *);
 
-	/* Initial guess */
-	for (i = 0; i < n; i++) x[i] = zero;
+        /* Initial guess */
+        for (int i = 0; i < n; i++)
+            x[i] = zero;
 
 	t = SuperLU_timer_();
 
@@ -374,7 +372,7 @@ int main(int argc, char *argv[])
 	printf("iteration: %d\nresidual: %.1e\nGMRES time: %.2f seconds.\n",
 		iter, resid, t);
 
-	for (i = 0; i < m; i++) {
+        for (int i = 0; i < m; i++) {
 	    maxferr = SUPERLU_MAX(maxferr, fabs(x[i] - xact[i]));
         }
 	printf("||X-X_true||_oo = %.1e\n", maxferr);
@@ -411,5 +409,5 @@ int main(int argc, char *argv[])
     CHECK_MALLOC("Exit main()");
 #endif
 
-    return 0;
+    return EXIT_SUCCESS;
 }

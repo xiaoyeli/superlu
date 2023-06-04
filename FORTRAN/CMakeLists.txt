@@ -1,16 +1,10 @@
-
 # include the paths for header files
 include_directories(${SuperLU_SOURCE_DIR}/SRC)
 include_directories(${SuperLU_BINARY_DIR}/FORTRAN)
 
-set(sources "")
 
-if(enable_double)
-  list(APPEND sources c_fortran_dgssv.c hbcode1.F90 f_main.F90)
-endif()
-if(enable_complex16)
-  list(APPEND sources c_fortran_zgssv.c zhbcode1.F90 z_f_main.F90)
-endif()
+set(sources "")
+list(APPEND sources c_fortran_dgssv.c c_fortran_zgssv.c)
 
 add_library(superlu_fortran ${sources})
 add_library(superlu_fortran-static STATIC ${sources})
@@ -70,8 +64,21 @@ if (NOT MSVC)
 endif ()
 
 if(enable_examples)
+  add_executable(dfexm
+               ${_DEPENDENCY_ALL}
+               f_main.F90 hbcode1.F90)
+  target_link_libraries(dfexm ${all_link_libs})
 
-endif ()  ## enable_example
+  add_executable(zfexm
+               ${_DEPENDENCY_ALL}
+               z_f_main.F90 zhbcode1.F90)
+  target_link_libraries(zfexm ${all_link_libs})
+
+  add_executable(test_omp
+               ${_DEPENDENCY_ALL}
+               test_omp.F hbcode1.F90)
+  target_link_libraries(test_omp ${all_link_libs})
+endif() # enable_example
 
 # Format superlu_config.fh from superlu_config.h in C
 add_custom_command(

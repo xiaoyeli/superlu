@@ -3,14 +3,14 @@
 include_directories(${SuperLU_SOURCE_DIR}/SRC)
 include_directories(${SuperLU_BINARY_DIR}/FORTRAN)
 
-set(sources "") 
+set(sources "")
 
 if(enable_double)
   list(APPEND sources c_fortran_dgssv.c hbcode1.F90 f_main.F90)
 endif()
 if(enable_complex16)
   list(APPEND sources c_fortran_zgssv.c zhbcode1.F90 z_f_main.F90)
-endif()  
+endif()
 
 add_library(superlu_fortran ${sources})
 add_library(superlu_fortran-static STATIC ${sources})
@@ -80,7 +80,7 @@ if(enable_double)
   set_target_properties(f_pddrive PROPERTIES LINKER_LANGUAGE Fortran)
 ## CXX linker does not work with Intel compiler
 # set_target_properties(f_pddrive PROPERTIES LINKER_LANGUAGE CXX LINK_FLAGS "${MPI_Fortran_LINK_FLAGS}")
-  
+
   set(F_DEXM3D f_pddrive3d.F90)
   add_executable(f_pddrive3d ${F_DEXM3D})
   target_link_libraries(f_pddrive3d ${all_link_libs})

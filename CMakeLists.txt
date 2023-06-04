@@ -8,7 +8,7 @@
 # Required version
 cmake_minimum_required(VERSION 3.9)
 
-# Project Version	
+# Project Version
 project(SuperLU C)
 set(VERSION_MAJOR "6")
 set(VERSION_MINOR "0")
@@ -108,7 +108,7 @@ set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 
 if(XSDK_INDEX_SIZE EQUAL 64)
     message("-- Using 64 bit integer for index size.")
-endif()	
+endif()
 
 ######################################################################
 #
@@ -228,11 +228,11 @@ add_subdirectory(DOC)
 #  ${CMAKE_C_COMPILER}  )
 # configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
 configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
- 
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
-	
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+
 configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/SRC/superlu_config.h)
 configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_SOURCE_DIR}/SRC/superlu_config.h)
 

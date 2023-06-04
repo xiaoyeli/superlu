@@ -1,32 +1,57 @@
-
-######################################################################
-#
-# CMakeLists.txt for SUPERLU
-#
-######################################################################
-
 # Required version
 cmake_minimum_required(VERSION 3.9)
 
-# Project Version	
+# Project Version
 project(SuperLU C)
 set(VERSION_MAJOR "6")
 set(VERSION_MINOR "0")
 set(VERSION_BugFix "0")
 set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 
-######################################################################
+# Compatiblitly to xSDK standard
+# (Extreme-scale Scientific Software Development Kit)
 #
-# IDEAS: xSDK standards module
 #MESSAGE("\nProcess XSDK defaults ...")
 #SET(USE_XSDK_DEFAULTS_DEFAULT TRUE) # Set to false if desired
 #INCLUDE("cmake/XSDKDefaults.cmake")
 set(USE_XSDK_DEFAULTS TRUE)
+
+# The XSDK standard does not allow using internally built BLAS
+if (NOT "${enable_internal_blaslib}" STREQUAL "")
+  if (USE_XSDK_DEFAULTS)
+    set(enable_blaslib_xSDK OFF)
+  else()
+    set(enable_blaslib_xSDK ON)
+  endif()
+else()
+  set(enable_blaslib_xSDK ${enable_internal_blaslib})
+endif()
+
+if (NOT "${enable_fortran}" STREQUAL "")
+  if (XSDK_ENABLE_Fortran)
+    set(enable_fortran_xSDK ON)
+  else()
+    set(enable_fortran_xSDK OFF)
+  endif()
+else()
+  set(enable_fortran_xSDK ${enable_fortran})
+endif()
+
+# set up options
+option(enable_internal_blaslib  "Build the CBLAS library" ${enable_blaslib_xSDK})
+option(enable_single    "Enable single precision library" ON)
+option(enable_double    "Enable double precision library" ON)
+option(enable_complex   "Enable complex precision library" ON)
+option(enable_complex16 "Enable complex16 precision library" ON)
+option(enable_matlabmex "Build the Matlab mex library" OFF)
+option(enable_doc       "Add target 'doc' to build Doxygen documentation" OFF)
+option(enable_examples  "Build examples" ON)
+option(enable_fortran   "Build Fortran interface" ${enable_fortran_xSDK})
+option(enable_tests     "Build tests" ON)
+
 include(CTest)
 include(GNUInstallDirs)
 include(FeatureSummary)
-
-######################################################################
 
 ######################################################################
 #
@@ -67,33 +92,14 @@ else()
 endif()
 
 enable_language(C)
-if (XSDK_ENABLE_Fortran)
-  enable_language (Fortran)
-  set(NOFORTRAN FALSE)
+if (enable_fortran)
+  enable_language(Fortran)
 endif()
 set(SUPERLU_VERSION "${PROJECT_VERSION}")
 set(SUPERLU_REV "${PROJECT_REV}")
 
-# The XSDK standard does not allow using internally built BLAS
-if (USE_XSDK_DEFAULTS)
-  set(enable_blaslib_DEFAULT OFF)
-else()
-  set(enable_blaslib_DEFAULT ON)
-endif()
-
-# set up options
-option(enable_internal_blaslib  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
-option(enable_matlabmex "Build the Matlab mex library" OFF)
-option(enable_tests     "Build tests" ON)
-option(enable_doc       "Add target 'doc' to build Doxygen documentation" OFF)
-option(enable_single    "Enable single precision library" ON)
-option(enable_double    "Enable double precision library" ON)
-option(enable_complex   "Enable complex precision library" ON)
-option(enable_complex16 "Enable complex16 precision library" ON)
-# option(enable_examples  "Build examples" ON)
-
 #-- BLAS
-option(TPL_ENABLE_INTERNAL_BLASLIB  "Build the CBLAS library" ${enable_blaslib_DEFAULT})
+option(TPL_ENABLE_INTERNAL_BLASLIB  "Build the CBLAS library" ${enable_internal_blaslib})
 option(TPL_BLAS_LIBRARIES "List of absolute paths to blas libraries [].")
 #-- METIS
 option(TPL_ENABLE_METISLIB   "Build the METIS library" OFF)
@@ -108,7 +114,7 @@ set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 
 if(XSDK_INDEX_SIZE EQUAL 64)
     message("-- Using 64 bit integer for index size.")
-endif()	
+endif()
 
 ######################################################################
 #
@@ -214,7 +220,8 @@ if(enable_tests)
   add_subdirectory(TESTING)
 endif()
 
-if (XSDK_ENABLE_Fortran)
+add_custom_target(examples)
+if (enable_fortran)
   add_subdirectory(FORTRAN)
 endif()
 
@@ -228,11 +235,11 @@ add_subdirectory(DOC)
 #  ${CMAKE_C_COMPILER}  )
 # configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
 configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
- 
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
-	
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+
 configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/SRC/superlu_config.h)
 configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_SOURCE_DIR}/SRC/superlu_config.h)
 

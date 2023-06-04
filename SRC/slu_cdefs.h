@@ -236,8 +236,8 @@ extern int_t   cLUMemXpand (int, int_t, MemType, int_t *, GlobalLU_t *);
 
 extern complex  *complexMalloc(size_t);
 extern complex  *complexCalloc(size_t);
-extern float  *floatMalloc(int);
-extern float  *floatCalloc(int);
+extern float  *floatMalloc(size_t);
+extern float  *floatCalloc(size_t);
 extern int_t   cmemory_usage(const int_t, const int_t, const int_t, const int);
 extern int     cQuerySpace (SuperMatrix *, SuperMatrix *, mem_usage_t *);
 extern int     ilu_cQuerySpace (SuperMatrix *, SuperMatrix *, mem_usage_t *);

@@ -71,43 +71,6 @@ endif ()
 
 if(enable_examples)
 
-if(enable_double)
-## if(FALSE)
-  set(F_DEXM f_pddrive.F90)
-  add_executable(f_pddrive ${F_DEXM})
-  target_link_libraries(f_pddrive ${all_link_libs})
-# set_target_properties(f_pddrive PROPERTIES LINKER_LANGUAGE Fortran CUDA_RESOLVE_DEVICE_SYMBOLS ON)
-  set_target_properties(f_pddrive PROPERTIES LINKER_LANGUAGE Fortran)
-## CXX linker does not work with Intel compiler
-# set_target_properties(f_pddrive PROPERTIES LINKER_LANGUAGE CXX LINK_FLAGS "${MPI_Fortran_LINK_FLAGS}")
-
-  set(F_DEXM3D f_pddrive3d.F90)
-  add_executable(f_pddrive3d ${F_DEXM3D})
-  target_link_libraries(f_pddrive3d ${all_link_libs})
-  set_target_properties(f_pddrive3d PROPERTIES LINKER_LANGUAGE Fortran)
-
-  set(F_5x5 f_5x5.F90 sp_ienv.c)
-  add_executable(f_5x5 ${F_5x5})
-  target_link_libraries(f_5x5 ${all_link_libs})
-  set_target_properties(f_5x5 PROPERTIES LINKER_LANGUAGE Fortran)
-
-endif() ## enable_double
-
-##if(FALSE)
-if(enable_complex16)
-  set(F_ZEXM f_pzdrive.F90)
-  add_executable(f_pzdrive ${F_ZEXM})
-  target_link_libraries(f_pzdrive ${all_link_libs})
-  set_target_properties(f_pzdrive PROPERTIES LINKER_LANGUAGE Fortran)
-#  set_target_properties(f_pzdrive PROPERTIES LINKER_LANGUAGE CXX LINK_FLAGS "${MPI_Fortran_LINK_FLAGS}")
-
-  set(F_ZEXM3D f_pzdrive3d.F90)
-  add_executable(f_pzdrive3d ${F_ZEXM3D})
-  target_link_libraries(f_pzdrive3d ${all_link_libs})
-  set_target_properties(f_pzdrive3d PROPERTIES LINKER_LANGUAGE Fortran)
-#  set_target_properties(f_pzdrive3d PROPERTIES LINKER_LANGUAGE CXX LINK_FLAGS "${MPI_Fortran_LINK_FLAGS}")
-endif() ## enable_complex16
-
 endif ()  ## enable_example
 
 # Format superlu_config.fh from superlu_config.h in C

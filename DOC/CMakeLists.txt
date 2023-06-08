@@ -15,10 +15,10 @@ if(enable_doc)
 endif()
 
 doxygen_add_docs(doc
-                 "${_DEPENDENCY_ALL}"
                  "${CMAKE_CURRENT_SOURCE_DIR}/mainpage.txt"
                  "${CMAKE_CURRENT_SOURCE_DIR}/modules.txt"
                  "${PROJECT_SOURCE_DIR}/EXAMPLE"
                  "${PROJECT_SOURCE_DIR}/SRC"
                  "${PROJECT_SOURCE_DIR}/TESTING"
+                 "${_DEPENDENCY_ALL}"
                  COMMENT "Generate HTML documentation with Doxygen")

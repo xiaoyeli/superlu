@@ -30,6 +30,7 @@ at the top-level directory.
 #include <string.h>
 #include <unistd.h>
 #include "slu_zdefs.h"
+#include "MATGEN/matgen.h"
 
 #define NTESTS    5      /* Number of test types */
 #define NTYPES    11     /* Number of matrix types */
@@ -109,11 +110,6 @@ int main(int argc, char *argv[])
     extern int zgst07(trans_t, int, int, SuperMatrix *, doublecomplex *, int,
                          doublecomplex *, int, doublecomplex *, int, 
                          double *, double *, double *);
-    extern int zlatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
-	               double *, int *, double *, char *);
-    extern int zlatms_slu(int *, int *, char *, int *, char *, double *d,
-                       int *, double *, double *, int *, int *,
-                       char *, doublecomplex *, int *, doublecomplex *, int *);
     extern int sp_zconvert(int, int, doublecomplex *, int, int, int,
 	                   doublecomplex *a, int_t *, int_t *, int_t *);
 

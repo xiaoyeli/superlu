@@ -1,13 +1,12 @@
 /*  -- translated by f2c (version 19940927).
 */
 
+#include <math.h>
+
 double dlarnd_slu(int *idist, int *iseed)
 {
     /* System generated locals */
     double ret_val;
-
-    /* Builtin functions */
-    double log(double), sqrt(double), cos(double);
 
     /* Local variables */
     static double t1, t2;

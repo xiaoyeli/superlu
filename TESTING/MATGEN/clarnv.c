@@ -61,7 +61,6 @@
     double d__1, d__2;
     complex q__1, q__2, q__3;
     /* Builtin functions */
-    double log(double), sqrt(double);
     void c_exp(complex *, complex *);
     /* Local variables */
     static int i;

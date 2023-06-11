@@ -1,6 +1,7 @@
 /*  -- translated by f2c (version 19940927).
 */
 
+#include <math.h>
 #include "../../SRC/slu_dcomplex.h"
 
 /* Double Complex */ void zlarnd_slu(doublecomplex * ret_val, int *idist,
@@ -11,7 +12,6 @@
     doublecomplex z__1, z__2, z__3;
 
     /* Builtin functions */
-    double log(double), sqrt(double);
     void z_exp(doublecomplex *, doublecomplex *);
 
     /* Local variables */

@@ -1,6 +1,7 @@
 /*  -- translated by f2c (version 19940927).
 */
 
+#include <math.h>
 #include <stdlib.h>
 
 /* Subroutine */ int slatm1_slu(int *mode, float *cond, int *irsign,
@@ -11,8 +12,7 @@
     double d__1, d__2;
 
     /* Builtin functions */
-    double pow_dd(double *, double *), pow_ri(float *, int *), log(
-	    double), exp(double);
+    double pow_dd(double *, double *), pow_ri(float *, int *);
 
     /* Local variables */
     static float temp;

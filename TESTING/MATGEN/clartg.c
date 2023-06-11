@@ -54,7 +54,7 @@
     complex q__1, q__2, q__3;
     /* Builtin functions */
     void r_cnjg(complex *, complex *);
-    double c_abs(complex *), r_imag(complex *), sqrt(double);
+    double c_abs(complex *), r_imag(complex *);
     /* Local variables */
     static float d, f1, f2, g1, g2, fa, ga, di;
     static complex fs, gs, ss;

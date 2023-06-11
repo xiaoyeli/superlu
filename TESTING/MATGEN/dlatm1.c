@@ -13,7 +13,7 @@
     double d__1;
 
     /* Builtin functions */
-    double pow_dd(double *, double *), pow_di(double *, int *);
+    double pow_di(double *, int *);
 
     /* Local variables */
     static double temp;
@@ -185,7 +185,7 @@ L50:
 	d[1] = 1.;
 	if (*n > 1) {
 	    d__1 = -1. / (double) (*n - 1);
-	    alpha = pow_dd(cond, &d__1);
+            alpha = pow(*cond, d__1);
 	    i__1 = *n;
 	    for (i = 2; i <= i__1; ++i) {
 		i__2 = i - 1;

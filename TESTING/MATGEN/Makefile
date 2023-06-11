@@ -33,12 +33,12 @@ include ../../make.inc
 SCATGEN = slatm1.o slaran.o slarnd.o slaruv.o slabad.o slarnv.o
 SLASRC  = slatb4.o slaset.o slartg.o
 SMATGEN = slatms.o slagge.o slagsy.o slarge.o slaror.o slarot.o slatm2.o slatm3.o
-SINTRINSIC  = r_sign.o pow_dd.o pow_ri.o
+SINTRINSIC  = r_sign.o pow_ri.o
 
 DZATGEN = dlatm1.o dlaran.o dlarnd.o dlaruv.o dlabad.o dlarnv.o
 DLASRC  = dlatb4.o dlaset.o dlartg.o
 DMATGEN = dlatms.o dlagge.o dlagsy.o dlarge.o dlaror.o dlarot.o dlatm2.o dlatm3.o
-DINTRINSIC  = d_sign.o pow_dd.o pow_di.o
+DINTRINSIC  = d_sign.o pow_di.o
 
 CLASRC  = clatb4.o claset.o clartg.o clarnv.o clacgv.o csymv.o
 CMATGEN = clatms.o clagge.o clagsy.o clarge.o claror.o clarot.o clatm2.o clatm3.o \

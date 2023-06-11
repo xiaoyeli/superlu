@@ -31,7 +31,6 @@ if(enable_single)
     slatm2.c
     slatm3.c
     r_sign.c
-    pow_dd.c
     pow_ri.c
   )
 endif()
@@ -51,7 +50,6 @@ if(enable_double)
     dlatm2.c
     dlatm3.c
     d_sign.c
-    pow_dd.c
     pow_di.c
   )
 endif()
@@ -77,7 +75,6 @@ if(enable_complex)
     clarnd.c
 #    cdotc.c
     r_sign.c
-    pow_dd.c
     pow_ri.c
 )
 endif()
@@ -103,7 +100,6 @@ if(enable_complex16)
     zlarnd.c
 #    zdotc.c
     d_sign.c
-    pow_dd.c
     pow_di.c
   )
 endif()

@@ -43,11 +43,8 @@
 
        If it looks like we're on a Cray, take the square root of   
        SMALL and LARGE to avoid overflow and underflow problems. */
-    /* Builtin functions */
-    double r_lg10(float *);
 
-
-    if (r_lg10(large) > 2e3f) {
+    if (log10f(*large) > 2e3f) {
 	*small = sqrt(*small);
 	*large = sqrt(*large);
     }

@@ -14,11 +14,15 @@ if(enable_doc)
   set(_DEPENDENCY_ALL "ALL")
 endif()
 
-doxygen_add_docs(doc
-                 "${_DEPENDENCY_ALL}"
-                 "${CMAKE_CURRENT_SOURCE_DIR}/mainpage.txt"
-                 "${CMAKE_CURRENT_SOURCE_DIR}/modules.txt"
-                 "${PROJECT_SOURCE_DIR}/EXAMPLE"
-                 "${PROJECT_SOURCE_DIR}/SRC"
-                 "${PROJECT_SOURCE_DIR}/TESTING"
-                 COMMENT "Generate HTML documentation with Doxygen")
+if(DOXYGEN_FOUND)
+  doxygen_add_docs(doc
+                  "${CMAKE_CURRENT_SOURCE_DIR}/mainpage.txt"
+                  "${CMAKE_CURRENT_SOURCE_DIR}/modules.txt"
+                  "${PROJECT_SOURCE_DIR}/EXAMPLE"
+                  "${PROJECT_SOURCE_DIR}/SRC"
+                  "${PROJECT_SOURCE_DIR}/TESTING"
+                  "${_DEPENDENCY_ALL}"
+                  COMMENT "Generate HTML documentation with Doxygen")
+elseif(enable_doc)
+  message(WARNING "Disabling building documentation as Doxygen is missing.")
+endif()

@@ -38,7 +38,9 @@ at the top-level directory.
  * \ingroup Example
  */
 
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include "slu_sdefs.h"
 
 superlu_options_t *GLOBAL_OPTIONS;

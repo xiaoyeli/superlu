@@ -24,7 +24,9 @@ at the top-level directory.
  */
 
 #include <getopt.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include "slu_zdefs.h"
 
 int main(int argc, char *argv[])

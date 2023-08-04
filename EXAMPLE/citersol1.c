@@ -37,7 +37,9 @@ at the top-level directory.
  * \ingroup Example
  */
 
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include "slu_cdefs.h"
 
 char *GLOBAL_EQUED;

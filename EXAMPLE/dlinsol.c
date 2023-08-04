@@ -23,7 +23,9 @@ at the top-level directory.
  * \ingroup Example
  */
 
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include "slu_ddefs.h"
 
 int main(int argc, char *argv[])

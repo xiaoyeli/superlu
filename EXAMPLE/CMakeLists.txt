@@ -199,12 +199,14 @@ add_executable(zlinsolx3
 target_link_libraries(zlinsolx3 superlu)
 
 if(MSVC)
-  target_include_directories(clinsolx3 PRIVATE ${GETOPT_INCLUDE_DIR})
-  target_include_directories(dlinsolx3 PRIVATE ${GETOPT_INCLUDE_DIR})
-  target_include_directories(slinsolx3 PRIVATE ${GETOPT_INCLUDE_DIR})
-  target_include_directories(zlinsolx3 PRIVATE ${GETOPT_INCLUDE_DIR})
-  target_link_libraries(clinsolx3 ${GETOPT_LIBRARY})
-  target_link_libraries(dlinsolx3 ${GETOPT_LIBRARY})
-  target_link_libraries(slinsolx3 ${GETOPT_LIBRARY})
-  target_link_libraries(zlinsolx3 ${GETOPT_LIBRARY})
+  set(NEEDS_GETOPT
+    clinsolx clinsolx1 clinsolx2 clinsolx3
+    dlinsolx dlinsolx1 dlinsolx2 dlinsolx3
+    slinsolx slinsolx1 slinsolx2 slinsolx3
+    zlinsolx zlinsolx1 zlinsolx2 zlinsolx3)
+  
+  foreach(proj ${NEEDS_GETOPT})
+    target_include_directories(${proj} PRIVATE ${GETOPT_INCLUDE_DIR})
+    target_link_libraries(${proj} ${GETOPT_LIBRARY})
+  endforeach(proj ${NEEDS_GETOPT})
 endif()

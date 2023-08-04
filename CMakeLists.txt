@@ -118,6 +118,10 @@ if(XSDK_INDEX_SIZE EQUAL 64)
     message("-- Using 64 bit integer for index size.")
 endif()
 
+if(MSVC)
+  add_compile_definitions(NOMINMAX _COMPLEX_DEFINED)
+endif()
+
 ######################################################################
 #
 # Find packages

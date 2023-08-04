@@ -82,6 +82,8 @@ set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 # which point to directories outside the build tree to the install RPATH
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
 #---- For shared library
 if (BUILD_SHARED_LIBS)
   message("-- SuperLU will be built as a shared library.")
@@ -190,6 +192,10 @@ endif()
 
 if(METIS_FOUND)
   set(HAVE_METIS TRUE)
+endif()
+
+if(MSVC)
+  find_package(GetOpt)
 endif()
 
 

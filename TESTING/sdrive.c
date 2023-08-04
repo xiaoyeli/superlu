@@ -29,7 +29,9 @@ at the top-level directory.
 
 #include <getopt.h>
 #include <string.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include "slu_sdefs.h"
 
 #define NTESTS    5      /* Number of test types */

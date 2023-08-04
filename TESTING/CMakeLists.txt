@@ -66,7 +66,12 @@ if(enable_single)
 
   add_executable(s_test ${ALINTST} ${SLINTST})
   target_link_libraries(s_test ${test_link_libs})
-
+  
+  if(MSVC)
+    target_include_directories(s_test PRIVATE ${GETOPT_INCLUDE_DIR})
+    target_link_libraries(s_test ${GETOPT_LIBRARY})
+  endif()
+  
   add_superlu_test(s_test.out g20.rua s_test)
 
 endif()
@@ -77,6 +82,11 @@ if(enable_double)
 
   add_executable(d_test ${ALINTST} ${DLINTST})
   target_link_libraries(d_test ${test_link_libs})
+  
+  if(MSVC)
+    target_include_directories(d_test PRIVATE ${GETOPT_INCLUDE_DIR})
+    target_link_libraries(d_test ${GETOPT_LIBRARY})
+  endif()
 
   add_superlu_test(d_test.out g20.rua d_test)
 endif()
@@ -86,6 +96,11 @@ if(enable_complex)
 
   add_executable(c_test ${ALINTST} ${CLINTST})
   target_link_libraries(c_test ${test_link_libs})
+  
+  if(MSVC)
+    target_include_directories(c_test PRIVATE ${GETOPT_INCLUDE_DIR})
+    target_link_libraries(c_test ${GETOPT_LIBRARY})
+  endif()
 
   add_superlu_test(c_test.out cg20.cua c_test)
 endif()
@@ -96,6 +111,11 @@ if(enable_complex16)
 
   add_executable(z_test ${ALINTST} ${ZLINTST})
   target_link_libraries(z_test ${test_link_libs})
+  
+  if(MSVC)
+    target_include_directories(z_test PRIVATE ${GETOPT_INCLUDE_DIR})
+    target_link_libraries(z_test ${GETOPT_LIBRARY})
+  endif()
 
   add_superlu_test(z_test.out cg20.cua z_test)
 endif()

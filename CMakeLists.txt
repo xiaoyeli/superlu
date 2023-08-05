@@ -199,7 +199,7 @@ if(METIS_FOUND)
 endif()
 
 if(MSVC)
-  find_package(GetOpt)
+  find_package(WinGetOpt)
 endif()
 
 

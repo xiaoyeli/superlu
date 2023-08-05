@@ -30,7 +30,6 @@ For information on ITSOL contact saad@cs.umn.edu
  * \ingroup Example
  */
 
-#include <unistd.h>
 #include "slu_sdefs.h"
 
 #define  epsmac  1.0e-16

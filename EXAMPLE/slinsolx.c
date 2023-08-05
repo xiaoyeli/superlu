@@ -24,7 +24,6 @@ at the top-level directory.
  */
 
 #include <getopt.h>
-#include <unistd.h>
 #include "slu_sdefs.h"
 
 int main(int argc, char *argv[])

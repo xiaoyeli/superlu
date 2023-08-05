@@ -48,7 +48,7 @@ at the top-level directory.
  */
 #define SUPERLU_MAJOR_VERSION     6
 #define SUPERLU_MINOR_VERSION     0
-#define SUPERLU_PATCH_VERSION     0
+#define SUPERLU_PATCH_VERSION     1
 
 
 #define FIRSTCOL_OF_SNODE(i)	(xsup[i])

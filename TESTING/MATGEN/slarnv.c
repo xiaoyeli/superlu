@@ -1,3 +1,4 @@
+#include <math.h>
 #include "../../SRC/slu_sdefs.h"
 
 /* Subroutine */ int slarnv_slu(int *idist, int *iseed, int *n, float
@@ -54,8 +55,6 @@
        Function Body */
     /* System generated locals */
     int i__2, i__3;
-    /* Builtin functions */
-    double log(double), sqrt(double), cos(double);
     /* Local variables */
     static int i;
     static float u[128];

@@ -53,7 +53,7 @@
     int i__1;
     float r__1, r__2;
     /* Builtin functions */
-    double log(double), pow_ri(float *, int *), sqrt(double);
+    double pow_ri(float *, int *);
     /* Local variables */
     static int i;
     static float scale;

@@ -54,8 +54,6 @@
        Function Body */
     /* System generated locals */
     int i__2, i__3;
-    /* Builtin functions */
-    double log(double), sqrt(double), cos(double);
     /* Local variables */
     static int i;
     static double u[128];

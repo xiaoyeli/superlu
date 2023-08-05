@@ -1,3 +1,4 @@
+#include <math.h>
 #include "../../SRC/slu_dcomplex.h"
 #include "../../SRC/slu_ddefs.h"
 
@@ -61,7 +62,6 @@
     double d__1, d__2;
     doublecomplex z__1, z__2, z__3;
     /* Builtin functions */
-    double log(double), sqrt(double);
     void z_exp(doublecomplex *, doublecomplex *);
     /* Local variables */
     static int i;

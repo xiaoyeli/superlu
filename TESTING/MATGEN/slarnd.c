@@ -1,3 +1,5 @@
+#include <math.h>
+
 /*  -- translated by f2c (version 19940927).
 */
 
@@ -5,9 +7,6 @@ double slarnd_slu(int *idist, int *iseed)
 {
     /* System generated locals */
     float ret_val;
-
-    /* Builtin functions */
-    double log(double), sqrt(double), cos(double);
 
     /* Local variables */
     static float t1, t2;

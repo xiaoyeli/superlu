@@ -28,7 +28,6 @@ static bool c_false = false;
     bool L__1;
 
     /* Builtin functions */
-    double cos(double), sin(double);
     void r_cnjg(complex *, complex *);
 
     /* Local variables */

@@ -18,7 +18,7 @@ at the top-level directory.
  * \ingroup Testing
  */
 
-#include "slu_Cnames.h"
+#include "../SRC/slu_Cnames.h"
 
 /*!
  * sp_ienv() is inquired to choose machine-dependent parameters for the

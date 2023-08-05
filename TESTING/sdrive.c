@@ -30,6 +30,7 @@ at the top-level directory.
 #include <getopt.h>
 #include <string.h>
 #include "slu_sdefs.h"
+#include "MATGEN/matgen.h"
 
 #define NTESTS    5      /* Number of test types */
 #define NTYPES    11     /* Number of matrix types */
@@ -109,11 +110,6 @@ int main(int argc, char *argv[])
     extern int sgst07(trans_t, int, int, SuperMatrix *, float *, int,
                          float *, int, float *, int, 
                          float *, float *, float *);
-    extern int slatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
-	               float *, int *, float *, char *);
-    extern int slatms_slu(int *, int *, char *, int *, char *, float *d,
-                       int *, float *, float *, int *, int *,
-                       char *, float *, int *, float *, int *);
     extern int sp_sconvert(int, int, float *, int, int, int,
 	                   float *a, int_t *, int_t *, int_t *);
 

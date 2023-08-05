@@ -1,6 +1,7 @@
 /*  -- translated by f2c (version 19940927).
 */
 
+#include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,9 +19,6 @@
 
     /* System generated locals */
     int i__1;
-
-    /* Builtin functions */
-    double sqrt(double);
 
     /* Local variables */
     static float badc1, badc2, large, small;

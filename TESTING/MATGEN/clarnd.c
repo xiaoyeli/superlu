@@ -1,6 +1,7 @@
 /*  -- translated by f2c (version 19940927).
 */
 
+#include <math.h>
 #include "../../SRC/slu_scomplex.h"
 
 /* Complex */ void clarnd_slu(complex * ret_val, int *idist, int *iseed)
@@ -10,7 +11,6 @@
     complex q__1, q__2, q__3;
 
     /* Builtin functions */
-    double log(double), sqrt(double);
     void c_exp(complex *, complex *);
 
     /* Local variables */

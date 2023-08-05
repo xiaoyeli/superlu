@@ -29,7 +29,6 @@ at the top-level directory.
 
 #include <getopt.h>
 #include <string.h>
-#include <unistd.h>
 #include "slu_cdefs.h"
 
 #define NTESTS    5      /* Number of test types */

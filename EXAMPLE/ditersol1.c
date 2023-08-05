@@ -37,7 +37,6 @@ at the top-level directory.
  * \ingroup Example
  */
 
-#include <unistd.h>
 #include "slu_ddefs.h"
 
 char *GLOBAL_EQUED;

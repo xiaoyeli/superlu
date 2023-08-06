@@ -28,10 +28,8 @@ at the top-level directory.
  */
 #include <getopt.h>
 #include <string.h>
-#ifndef _WIN32
-#include <unistd.h>
-#endif
 #include "slu_ddefs.h"
+#include "MATGEN/matgen.h"
 
 #define NTESTS    5      /* Number of test types */
 #define NTYPES    11     /* Number of matrix types */
@@ -66,7 +64,7 @@ int main(int argc, char *argv[])
     double         *ferr, *berr;
     double         *rwork;
     double	   *wwork;
-    void           *work = NULL;
+    void           *work;
     int            nrhs, panel_size, relax;
     int            m, n, info1;
     int_t          nnz, lwork, info;
@@ -111,11 +109,6 @@ int main(int argc, char *argv[])
     extern int dgst07(trans_t, int, int, SuperMatrix *, double *, int,
                          double *, int, double *, int, 
                          double *, double *, double *);
-    extern int dlatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
-	               double *, int *, double *, char *);
-    extern int dlatms_slu(int *, int *, char *, int *, char *, double *d,
-                       int *, double *, double *, int *, int *,
-                       char *, double *, int *, double *, int *);
     extern int sp_dconvert(int, int, double *, int, int, int,
 	                   double *a, int_t *, int_t *, int_t *);
 

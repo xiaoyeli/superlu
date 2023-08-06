@@ -29,10 +29,8 @@ at the top-level directory.
 
 #include <getopt.h>
 #include <string.h>
-#ifndef _WIN32
-#include <unistd.h>
-#endif
 #include "slu_cdefs.h"
+#include "MATGEN/matgen.h"
 
 #define NTESTS    5      /* Number of test types */
 #define NTYPES    11     /* Number of matrix types */
@@ -112,11 +110,6 @@ int main(int argc, char *argv[])
     extern int cgst07(trans_t, int, int, SuperMatrix *, complex *, int,
                          complex *, int, complex *, int, 
                          float *, float *, float *);
-    extern int clatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
-	               float *, int *, float *, char *);
-    extern int clatms_slu(int *, int *, char *, int *, char *, float *d,
-                       int *, float *, float *, int *, int *,
-                       char *, complex *, int *, complex *, int *);
     extern int sp_cconvert(int, int, complex *, int, int, int,
 	                   complex *a, int_t *, int_t *, int_t *);
 

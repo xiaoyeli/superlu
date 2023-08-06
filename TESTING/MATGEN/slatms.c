@@ -23,9 +23,6 @@ static bool c_false = false;
     float r__1, r__2, r__3;
     bool L__1;
 
-    /* Builtin functions */
-    double cos(double), sin(double);
-
     /* Local variables */
     static int ilda, icol;
     static float temp;

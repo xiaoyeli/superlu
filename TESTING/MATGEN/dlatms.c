@@ -24,9 +24,6 @@ dlatms_slu(int *m, int *n, char *dist, int *
     double d__1, d__2, d__3;
     bool L__1;
 
-    /* Builtin functions */
-    double cos(double), sin(double);
-
     /* Local variables */
     static int ilda, icol;
     static double temp;

@@ -54,7 +54,7 @@
     int i__1;
     double d__1, d__2;
     /* Builtin functions */
-    double log(double), pow_di(double *, int *), sqrt(double);
+    double pow_di(double *, int *);
     /* Local variables */
     static int i;
     static double scale;

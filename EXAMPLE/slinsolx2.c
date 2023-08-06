@@ -26,9 +26,6 @@ at the top-level directory.
  */
 
 #include <getopt.h>
-#ifndef _WIN32
-#include <unistd.h>
-#endif
 #include "slu_sdefs.h"
 
 /*!
@@ -57,7 +54,7 @@ int main(int argc, char *argv[])
     int            *perm_r; /* row permutations from partial pivoting */
     int            *perm_c; /* column permutation vector */
     int            *etree;
-    void           *work = NULL;
+    void           *work;
     int            m, n, nrhs, ldx;
     int_t          info, lwork, nnz;
     float         *rhsb, *rhsb1, *rhsx, *xact;

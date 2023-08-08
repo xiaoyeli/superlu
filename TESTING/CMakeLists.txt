@@ -9,12 +9,6 @@ set(NVAL   9 19)
 set(NRHS   2)
 set(LWORK  0 10000000)
 
-function(cat IN_FILE OUT_FILE)
-  file(READ ${IN_FILE} CONTENTS)
-  file(APPEND ${OUT_FILE} "${CONTENTS}")
-endfunction()
-
-
 function(add_superlu_test output input target)
   set(TEST_INPUT "${SuperLU_SOURCE_DIR}/EXAMPLE/${input}")
   set(TEST_OUTPUT "${SuperLU_BINARY_DIR}/TESTING/${output}")

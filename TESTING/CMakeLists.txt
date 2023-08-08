@@ -5,7 +5,6 @@ set(test_link_libs matgen)
 
 add_subdirectory(MATGEN)
 
-set(ALINTST sp_ienv.c)
 set(NVAL   9 19)
 set(NRHS   2)
 set(LWORK  0 10000000)
@@ -62,9 +61,9 @@ endfunction(add_superlu_test)
 
 
 if(enable_single)
-  set(SLINTST sdrive.c sp_sconvert.c sgst01.c sgst02.c sgst04.c sgst07.c)
+  set(SLINTST sdrive.c sp_ienv.c sp_sconvert.c sgst01.c sgst02.c sgst04.c sgst07.c)
 
-  add_executable(s_test ${ALINTST} ${SLINTST})
+  add_executable(s_test ${SLINTST})
   target_link_libraries(s_test ${test_link_libs})
   
   if(MSVC)
@@ -78,9 +77,9 @@ endif()
 
 
 if(enable_double)
-  set(DLINTST ddrive.c sp_dconvert.c dgst01.c dgst02.c dgst04.c dgst07.c)
+  set(DLINTST ddrive.c sp_ienv.c sp_dconvert.c dgst01.c dgst02.c dgst04.c dgst07.c)
 
-  add_executable(d_test ${ALINTST} ${DLINTST})
+  add_executable(d_test ${DLINTST})
   target_link_libraries(d_test ${test_link_libs})
   
   if(MSVC)
@@ -92,9 +91,9 @@ if(enable_double)
 endif()
 
 if(enable_complex)
-  set(CLINTST cdrive.c sp_cconvert.c cgst01.c cgst02.c cgst04.c cgst07.c)
+  set(CLINTST cdrive.c sp_ienv.c sp_cconvert.c cgst01.c cgst02.c cgst04.c cgst07.c)
 
-  add_executable(c_test ${ALINTST} ${CLINTST})
+  add_executable(c_test ${CLINTST})
   target_link_libraries(c_test ${test_link_libs})
   
   if(MSVC)
@@ -107,9 +106,9 @@ endif()
 
 
 if(enable_complex16)
-  set(ZLINTST zdrive.c sp_zconvert.c zgst01.c zgst02.c zgst04.c zgst07.c)
+  set(ZLINTST zdrive.c sp_ienv.c sp_zconvert.c zgst01.c zgst02.c zgst04.c zgst07.c)
 
-  add_executable(z_test ${ALINTST} ${ZLINTST})
+  add_executable(z_test ${ZLINTST})
   target_link_libraries(z_test ${test_link_libs})
   
   if(MSVC)

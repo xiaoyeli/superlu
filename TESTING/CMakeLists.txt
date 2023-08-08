@@ -68,8 +68,8 @@ if(enable_single)
   target_link_libraries(s_test ${test_link_libs})
   
   if(MSVC)
-    target_include_directories(s_test PRIVATE ${GETOPT_INCLUDE_DIR})
-    target_link_libraries(s_test ${GETOPT_LIBRARY})
+    target_include_directories(s_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
+    target_link_libraries(s_test ${WinGetOpt_LIBRARY})
   endif()
   
   add_superlu_test(s_test.out g20.rua s_test)
@@ -84,8 +84,8 @@ if(enable_double)
   target_link_libraries(d_test ${test_link_libs})
   
   if(MSVC)
-    target_include_directories(d_test PRIVATE ${GETOPT_INCLUDE_DIR})
-    target_link_libraries(d_test ${GETOPT_LIBRARY})
+    target_include_directories(d_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
+    target_link_libraries(d_test ${WinGetOpt_LIBRARY})
   endif()
 
   add_superlu_test(d_test.out g20.rua d_test)
@@ -98,8 +98,8 @@ if(enable_complex)
   target_link_libraries(c_test ${test_link_libs})
   
   if(MSVC)
-    target_include_directories(c_test PRIVATE ${GETOPT_INCLUDE_DIR})
-    target_link_libraries(c_test ${GETOPT_LIBRARY})
+    target_include_directories(c_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
+    target_link_libraries(c_test ${WinGetOpt_LIBRARY})
   endif()
 
   add_superlu_test(c_test.out cg20.cua c_test)
@@ -113,8 +113,8 @@ if(enable_complex16)
   target_link_libraries(z_test ${test_link_libs})
   
   if(MSVC)
-    target_include_directories(z_test PRIVATE ${GETOPT_INCLUDE_DIR})
-    target_link_libraries(z_test ${GETOPT_LIBRARY})
+    target_include_directories(z_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
+    target_link_libraries(z_test ${WinGetOpt_LIBRARY})
   endif()
 
   add_superlu_test(z_test.out cg20.cua z_test)

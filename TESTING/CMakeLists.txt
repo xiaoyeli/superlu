@@ -30,6 +30,12 @@ function(add_superlu_test output input target)
     endforeach()
   endforeach()
 
+  # Add getopt dependency to target in case of MSVC
+  if(MSVC)
+    target_include_directories(${target} PRIVATE ${WinGetOpt_INCLUDE_DIR})
+    target_link_libraries(${target} ${WinGetOpt_LIBRARY})
+  endif()
+
 endfunction(add_superlu_test)
 
 
@@ -38,12 +44,6 @@ if(enable_single)
                  sdrive.c sgst01.c sgst02.c sgst04.c sgst07.c
                  sp_ienv.c sp_sconvert.c)
   target_link_libraries(s_test ${test_link_libs})
-  
-  if(MSVC)
-    target_include_directories(s_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
-    target_link_libraries(s_test ${WinGetOpt_LIBRARY})
-  endif()
-  
   add_superlu_test(s_test g20.rua)
 endif()
 
@@ -53,12 +53,6 @@ if(enable_double)
                  ddrive.c dgst01.c dgst02.c dgst04.c dgst07.c
                  sp_ienv.c sp_dconvert.c)
   target_link_libraries(d_test ${test_link_libs})
-  
-  if(MSVC)
-    target_include_directories(d_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
-    target_link_libraries(d_test ${WinGetOpt_LIBRARY})
-  endif()
-
   add_superlu_test(d_test g20.rua)
 endif()
 
@@ -67,12 +61,6 @@ if(enable_complex)
                  cdrive.c cgst01.c cgst02.c cgst04.c cgst07.c
                  sp_ienv.c sp_cconvert.c)
   target_link_libraries(c_test ${test_link_libs})
-  
-  if(MSVC)
-    target_include_directories(c_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
-    target_link_libraries(c_test ${WinGetOpt_LIBRARY})
-  endif()
-
   add_superlu_test(c_test cg20.cua)
 endif()
 
@@ -82,11 +70,5 @@ if(enable_complex16)
                  zdrive.c zgst01.c zgst02.c zgst04.c zgst07.c
                  sp_ienv.c sp_zconvert.c)
   target_link_libraries(z_test ${test_link_libs})
-  
-  if(MSVC)
-    target_include_directories(z_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
-    target_link_libraries(z_test ${WinGetOpt_LIBRARY})
-  endif()
-
   add_superlu_test(z_test cg20.cua)
 endif()

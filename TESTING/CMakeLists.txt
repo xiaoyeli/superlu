@@ -11,43 +11,22 @@ set(LWORK  0 10000000)
 
 function(add_superlu_test output input target)
   set(TEST_INPUT "${SuperLU_SOURCE_DIR}/EXAMPLE/${input}")
-  set(TEST_OUTPUT "${SuperLU_BINARY_DIR}/TESTING/${output}")
-
-  # Prepare a temporary file to "cat" to:
-  # "== LAPACK test matrices"
-  file(WRITE ${TEST_OUTPUT} "")
-
-##  get_target_property(TEST_LOC ${target} LOCATION)
-  set(TEST_LOC ${CMAKE_CURRENT_BINARY_DIR})
-
-  foreach (n ${NVAL})
-    foreach (s ${NRHS})
-      foreach(l ${LWORK})
-          set(testName "${target}_${n}_${s}_${l}")
-          set(SINGLE_OUTPUT ${SuperLU_BINARY_DIR}/TESTING/${testName}.out)
-          add_test( ${testName}_LA  "${CMAKE_COMMAND}"
-            -DTEST=${TEST_LOC} -t "LA" -n ${n} -s ${s} -l ${l}
-            -DOUTPUT=${SINGLE_OUTPUT}
-            -DALL_OUTPUT=${TEST_OUTPUT}
-            -DHEADING=Dense\ matrix\ --\ n=${n},\ s=${s},\ lwork=${l}
-            -P "${SuperLU_SOURCE_DIR}/TESTING/runtest.cmake"
-          )
-      endforeach()
-    endforeach()
-  endforeach()
-
-#  file(APPEND ${TEST_OUTPUT} "== sparse matrix\n")
 
   foreach (s ${NRHS})
     foreach(l ${LWORK})
+      # LA tests
+      foreach (n ${NVAL})
+        set(testName "${target}_${n}_${s}_${l}")
+        add_test(
+          NAME ${testName}_LA
+          COMMAND ${target} -t "LA" -n ${n} -s ${s} -l ${l})
+      endforeach()
+
+      # SP tests
       set(testName "${target}_${s}_${l}")
-      set(SINGLE_OUTPUT ${SuperLU_BINARY_DIR}/TESTING/${testName}.out)
-      add_test( ${testName}_SP  "${CMAKE_COMMAND}"
-        -DTEST=${TEST_LOC} -t "SP" -s ${s} -l ${l} -f ${TEST_INPUT}
-        -DOUTPUT=${SINGLE_OUTPUT}
-        -DALL_OUTPUT=${TEST_OUTPUT}
-        -DHEADING=Sparse\ matrix\ ${TEST_INPUT}\ --\ s=${s},\ lwork=${l}
-        -P "${SuperLU_SOURCE_DIR}/TESTING/runtest.cmake")
+      add_test(
+        NAME ${testName}_SP
+        COMMAND ${target} -t "SP" -s ${s} -l ${l} -f "${TEST_INPUT}")
     endforeach()
   endforeach()
 
@@ -65,7 +44,7 @@ if(enable_single)
     target_link_libraries(s_test ${WinGetOpt_LIBRARY})
   endif()
   
-  add_superlu_test(s_test.out g20.rua s_test)
+  add_superlu_test(s_test g20.rua)
 endif()
 
 
@@ -80,7 +59,7 @@ if(enable_double)
     target_link_libraries(d_test ${WinGetOpt_LIBRARY})
   endif()
 
-  add_superlu_test(d_test.out g20.rua d_test)
+  add_superlu_test(d_test g20.rua)
 endif()
 
 if(enable_complex)
@@ -94,7 +73,7 @@ if(enable_complex)
     target_link_libraries(c_test ${WinGetOpt_LIBRARY})
   endif()
 
-  add_superlu_test(c_test.out cg20.cua c_test)
+  add_superlu_test(c_test cg20.cua)
 endif()
 
 
@@ -109,5 +88,5 @@ if(enable_complex16)
     target_link_libraries(z_test ${WinGetOpt_LIBRARY})
   endif()
 
-  add_superlu_test(z_test.out cg20.cua z_test)
+  add_superlu_test(z_test cg20.cua)
 endif()

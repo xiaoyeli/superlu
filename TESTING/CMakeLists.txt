@@ -31,14 +31,14 @@ function(add_superlu_test output input target)
     foreach (s ${NRHS})
       foreach(l ${LWORK})
           set(testName "${target}_${n}_${s}_${l}")
-	  set(SINGLE_OUTPUT ${SuperLU_BINARY_DIR}/TESTING/${testName}.out)
+          set(SINGLE_OUTPUT ${SuperLU_BINARY_DIR}/TESTING/${testName}.out)
           add_test( ${testName}_LA  "${CMAKE_COMMAND}"
-	    -DTEST=${TEST_LOC} -t "LA" -n ${n} -s ${s} -l ${l}
-	    -DOUTPUT=${SINGLE_OUTPUT}
-	    -DALL_OUTPUT=${TEST_OUTPUT}
-	    -DHEADING=Dense\ matrix\ --\ n=${n},\ s=${s},\ lwork=${l}
-	    -P "${SuperLU_SOURCE_DIR}/TESTING/runtest.cmake"
-	  )
+            -DTEST=${TEST_LOC} -t "LA" -n ${n} -s ${s} -l ${l}
+            -DOUTPUT=${SINGLE_OUTPUT}
+            -DALL_OUTPUT=${TEST_OUTPUT}
+            -DHEADING=Dense\ matrix\ --\ n=${n},\ s=${s},\ lwork=${l}
+            -P "${SuperLU_SOURCE_DIR}/TESTING/runtest.cmake"
+          )
       endforeach()
     endforeach()
   endforeach()
@@ -46,16 +46,16 @@ function(add_superlu_test output input target)
 #  file(APPEND ${TEST_OUTPUT} "== sparse matrix\n")
 
   foreach (s ${NRHS})
-      foreach(l ${LWORK})
-          set(testName "${target}_${s}_${l}")
-	  set(SINGLE_OUTPUT ${SuperLU_BINARY_DIR}/TESTING/${testName}.out)
-          add_test( ${testName}_SP  "${CMAKE_COMMAND}"
-	    -DTEST=${TEST_LOC} -t "SP" -s ${s} -l ${l} -f ${TEST_INPUT}
-	    -DOUTPUT=${SINGLE_OUTPUT}
-	    -DALL_OUTPUT=${TEST_OUTPUT}
-	    -DHEADING=Sparse\ matrix\ ${TEST_INPUT}\ --\ s=${s},\ lwork=${l}
-	    -P "${SuperLU_SOURCE_DIR}/TESTING/runtest.cmake")
-      endforeach()
+    foreach(l ${LWORK})
+      set(testName "${target}_${s}_${l}")
+      set(SINGLE_OUTPUT ${SuperLU_BINARY_DIR}/TESTING/${testName}.out)
+      add_test( ${testName}_SP  "${CMAKE_COMMAND}"
+        -DTEST=${TEST_LOC} -t "SP" -s ${s} -l ${l} -f ${TEST_INPUT}
+        -DOUTPUT=${SINGLE_OUTPUT}
+        -DALL_OUTPUT=${TEST_OUTPUT}
+        -DHEADING=Sparse\ matrix\ ${TEST_INPUT}\ --\ s=${s},\ lwork=${l}
+        -P "${SuperLU_SOURCE_DIR}/TESTING/runtest.cmake")
+    endforeach()
   endforeach()
 
 endfunction(add_superlu_test)

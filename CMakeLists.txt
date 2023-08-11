@@ -82,6 +82,8 @@ set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 # which point to directories outside the build tree to the install RPATH
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
 #---- For shared library
 if (BUILD_SHARED_LIBS)
   message("-- SuperLU will be built as a shared library.")
@@ -114,6 +116,10 @@ set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
 
 if(XSDK_INDEX_SIZE EQUAL 64)
     message("-- Using 64 bit integer for index size.")
+endif()
+
+if(MSVC)
+  add_compile_definitions(NOMINMAX _COMPLEX_DEFINED)
 endif()
 
 ######################################################################
@@ -190,6 +196,10 @@ endif()
 
 if(METIS_FOUND)
   set(HAVE_METIS TRUE)
+endif()
+
+if(MSVC)
+  find_package(WinGetOpt)
 endif()
 
 

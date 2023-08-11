@@ -197,3 +197,16 @@ add_executable(zlinsolx3
                ${_DEPENDENCY_ALL}
                zlinsolx3.c)
 target_link_libraries(zlinsolx3 superlu)
+
+if(MSVC)
+  set(NEEDS_GETOPT
+    clinsolx clinsolx1 clinsolx2 clinsolx3
+    dlinsolx dlinsolx1 dlinsolx2 dlinsolx3
+    slinsolx slinsolx1 slinsolx2 slinsolx3
+    zlinsolx zlinsolx1 zlinsolx2 zlinsolx3)
+  
+  foreach(proj ${NEEDS_GETOPT})
+    target_include_directories(${proj} PRIVATE ${WinGetOpt_INCLUDE_DIR})
+    target_link_libraries(${proj} ${WinGetOpt_LIBRARY})
+  endforeach(proj ${NEEDS_GETOPT})
+endif()

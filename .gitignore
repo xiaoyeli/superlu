@@ -9,3 +9,7 @@
 /build/
 
 .dropbox.attr
+
+# Visual Studio
+/.vs
+/out/build

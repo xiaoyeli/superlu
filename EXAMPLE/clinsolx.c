@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     int            *perm_r; /* row permutations from partial pivoting */
     int            *perm_c; /* column permutation vector */
     int            *etree;
-    void           *work;
+    void           *work = NULL;
     int            nrhs, ldx;
     int_t          info, lwork, nnz;
     int            m, n;

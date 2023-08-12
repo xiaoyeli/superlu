@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     double         *ferr, *berr;
     double         *rwork;
     double	   *wwork;
-    void           *work;
+    void           *work = NULL;
     int            nrhs, panel_size, relax;
     int            m, n, info1;
     int_t          nnz, lwork, info;

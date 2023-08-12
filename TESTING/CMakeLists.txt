@@ -30,6 +30,12 @@ function(add_superlu_test target input)
     endforeach()
   endforeach()
 
+  # Add getopt dependency to target in case of MSVC
+  if(MSVC)
+    target_include_directories(${target} PRIVATE ${WinGetOpt_INCLUDE_DIR})
+    target_link_libraries(${target} ${WinGetOpt_LIBRARY})
+  endif()
+
 endfunction(add_superlu_test)
 
 
@@ -47,11 +53,6 @@ if(enable_double)
 
   add_executable(d_test ${DLINTST})
   target_link_libraries(d_test ${test_link_libs})
-  
-  if(MSVC)
-    target_include_directories(d_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
-    target_link_libraries(d_test ${WinGetOpt_LIBRARY})
-  endif()
 
   add_superlu_test(d_test g20.rua)
 endif()
@@ -61,11 +62,6 @@ if(enable_complex)
 
   add_executable(c_test ${CLINTST})
   target_link_libraries(c_test ${test_link_libs})
-  
-  if(MSVC)
-    target_include_directories(c_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
-    target_link_libraries(c_test ${WinGetOpt_LIBRARY})
-  endif()
 
   add_superlu_test(c_test cg20.cua)
 endif()
@@ -76,11 +72,6 @@ if(enable_complex16)
 
   add_executable(z_test ${ZLINTST})
   target_link_libraries(z_test ${test_link_libs})
-  
-  if(MSVC)
-    target_include_directories(z_test PRIVATE ${WinGetOpt_INCLUDE_DIR})
-    target_link_libraries(z_test ${WinGetOpt_LIBRARY})
-  endif()
 
   add_superlu_test(z_test cg20.cua)
 endif()

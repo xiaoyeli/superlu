@@ -6,36 +6,36 @@
 
 /* Table of constant values */
 
-static complex c_b1 = {0.f,0.f};
-static complex c_b2 = {1.f,0.f};
+static singlecomplex c_b1 = {0.f,0.f};
+static singlecomplex c_b2 = {1.f,0.f};
 static int c__3 = 3;
 static int c__1 = 1;
 
-/* Subroutine */ int clarge_slu(int *n, complex *a, int *lda, int *
-	iseed, complex *work, int *info)
+/* Subroutine */ int clarge_slu(int *n, singlecomplex *a, int *lda, int *
+	iseed, singlecomplex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1;
     double d__1;
-    complex q__1;
+    singlecomplex q__1;
 
     /* Builtin functions */
-    double c_abs(complex *);
-    void c_div(complex *, complex *, complex *);
+    double c_abs(singlecomplex *);
+    void c_div(singlecomplex *, singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static int i;
-    extern /* Subroutine */ int cgerc_(int *, int *, complex *,
-	    complex *, int *, complex *, int *, complex *, int *),
-	     cscal_(int *, complex *, complex *, int *), cgemv_(char *
-	    , int *, int *, complex *, complex *, int *, complex *
-	    , int *, complex *, complex *, int *);
-    extern float scnrm2_(int *, complex *, int *);
-    static complex wa, wb;
+    extern /* Subroutine */ int cgerc_(int *, int *, singlecomplex *,
+	    singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, int *),
+	     cscal_(int *, singlecomplex *, singlecomplex *, int *), cgemv_(char *
+	    , int *, int *, singlecomplex *, singlecomplex *, int *, singlecomplex *
+	    , int *, singlecomplex *, singlecomplex *, int *);
+    extern float scnrm2_(int *, singlecomplex *, int *);
+    static singlecomplex wa, wb;
     static float wn;
-    extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
+    extern /* Subroutine */ int clarnv_slu(int *, int *, int *, singlecomplex *);
     extern int input_error(char *, int *);
-    static complex tau;
+    static singlecomplex tau;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

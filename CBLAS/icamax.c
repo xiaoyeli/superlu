@@ -1,12 +1,12 @@
 #include "f2c.h"
 
-integer icamax_(integer *n, complex *cx, integer *incx)
+integer icamax_(integer *n, singlecomplex *cx, integer *incx)
 {
     /* System generated locals */
 integer ret_val, i__1, i__2;
     real r__1, r__2;
     /* Builtin functions */
-    double r_imag(complex *);
+    double r_imag(singlecomplex *);
     /* Local variables */
     real smax;
     integer i, ix;

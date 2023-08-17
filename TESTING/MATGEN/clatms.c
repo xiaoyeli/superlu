@@ -9,7 +9,7 @@
 
 /* Table of constant values */
 
-static complex c_b1 = {0.f,0.f};
+static singlecomplex c_b1 = {0.f,0.f};
 static int c__1 = 1;
 static int c__5 = 5;
 static bool c_true = true;
@@ -17,59 +17,59 @@ static bool c_false = false;
 
 /* Subroutine */ int clatms_slu(int *m, int *n, char *dist, int *
 	iseed, char *sym, float *d, int *mode, float *cond, float *dmax__,
-	int *kl, int *ku, char *pack, complex *a, int *lda,
-	complex *work, int *info)
+	int *kl, int *ku, char *pack, singlecomplex *a, int *lda,
+	singlecomplex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3, i__4, i__5, i__6;
     float r__1, r__2, r__3;
     double d__1;
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
     bool L__1;
 
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static int ilda, icol;
     static float temp;
     static bool csym;
     static int irow, isym;
-    static complex c;
+    static singlecomplex c;
     static int i, j, k;
-    static complex s;
+    static singlecomplex s;
     static float alpha, angle;
     static int ipack;
     static float floatc;
     static int ioffg;
     static int iinfo;
     extern /* Subroutine */ int sscal_(int *, float *, float *, int *);
-    static complex ctemp;
+    static singlecomplex ctemp;
     static int idist, mnmin, iskew;
-    static complex extra, dummy;
+    static singlecomplex extra, dummy;
     extern /* Subroutine */ int slatm1_slu(int *, float *, int *, int
 	    *, int *, float *, int *, int *);
     static int ic, jc, nc;
     extern /* Subroutine */ int clagge_slu(int *, int *, int *,
-	    int *, float *, complex *, int *, int *, complex *,
-	    int *), claghe_slu(int *, int *, float *, complex *,
-	    int *, int *, complex *, int *);
+	    int *, float *, singlecomplex *, int *, int *, singlecomplex *,
+	    int *), claghe_slu(int *, int *, float *, singlecomplex *,
+	    int *, int *, singlecomplex *, int *);
     static int il;
-    static complex ct;
+    static singlecomplex ct;
     static int iendch, ir, jr, ipackg, mr;
-    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
+    extern /* Complex */ void clarnd_slu(singlecomplex *, int *, int *);
     static int minlda;
-    static complex st;
-    extern /* Subroutine */ int claset_slu(char *, int *, int *, complex
-	    *, complex *, complex *, int *), clartg_slu(complex *,
-	    complex *, float *, complex *, complex *),
-	    clagsy_slu(int *, int *, float *, complex *,
-	    int *, int *, complex *, int *);
+    static singlecomplex st;
+    extern /* Subroutine */ int claset_slu(char *, int *, int *, singlecomplex
+	    *, singlecomplex *, singlecomplex *, int *), clartg_slu(singlecomplex *,
+	    singlecomplex *, float *, singlecomplex *, singlecomplex *),
+	    clagsy_slu(int *, int *, float *, singlecomplex *,
+	    int *, int *, singlecomplex *, int *);
     extern int input_error(char *, int *);
     extern double slarnd_slu(int *, int *);
     extern /* Subroutine */ int clarot_slu(bool *, bool *, bool *,
-	    int *, complex *, complex *, complex *, int *, complex *,
-	    complex *);
+	    int *, singlecomplex *, singlecomplex *, singlecomplex *, int *, singlecomplex *,
+	    singlecomplex *);
     static bool iltemp, givens;
     static int ioffst, irsign;
     static bool ilextr, topdwn;

@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 {
     SuperMatrix A;
     NCformat *Astore;
-    complex   *a;
+    singlecomplex   *a;
     int_t    *asub, *xa;
     int      *perm_c; /* column permutation vector */
     int      *perm_r; /* row permutations from partial pivoting */
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     SuperMatrix B;
     int      nrhs, ldx, m, n;
     int_t    info, nnz;
-    complex   *xact, *rhs;
+    singlecomplex   *xact, *rhs;
     mem_usage_t   mem_usage;
     superlu_options_t options;
     SuperLUStat_t stat;
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     if ( info == 0 ) {
 
 	/* This is how you could access the solution matrix. */
-        complex *sol = (complex*) ((DNformat*) B.Store)->nzval; 
+        singlecomplex *sol = (singlecomplex*) ((DNformat*) B.Store)->nzval; 
         (void)sol;  // suppress unused variable warning
 
 	 /* Compute the infinity norm of the error. */

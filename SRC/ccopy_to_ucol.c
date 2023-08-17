@@ -39,7 +39,7 @@ ccopy_to_ucol(
 	      int        *segrep,  /* in */
 	      int        *repfnz,  /* in */
 	      int        *perm_r,  /* in */
-	      complex     *dense,   /* modified - reset to zero on return */
+	      singlecomplex     *dense,   /* modified - reset to zero on return */
 	      GlobalLU_t *Glu      /* modified */
 	      )
 {
@@ -52,16 +52,16 @@ ccopy_to_ucol(
     int_t isub, nextu, new_next, mem_error;
     int       *xsup, *supno;
     int_t     *lsub, *xlsub;
-    complex    *ucol;
+    singlecomplex    *ucol;
     int_t     *usub, *xusub;
     int_t       nzumax;
-    complex zero = {0.0, 0.0};
+    singlecomplex zero = {0.0, 0.0};
 
     xsup    = Glu->xsup;
     supno   = Glu->supno;
     lsub    = Glu->lsub;
     xlsub   = Glu->xlsub;
-    ucol    = (complex *) Glu->ucol;
+    ucol    = (singlecomplex *) Glu->ucol;
     usub    = Glu->usub;
     xusub   = Glu->xusub;
     nzumax  = Glu->nzumax;
@@ -85,7 +85,7 @@ ccopy_to_ucol(
 		while ( new_next > nzumax ) {
 		    mem_error = cLUMemXpand(jcol, nextu, UCOL, &nzumax, Glu);
 		    if (mem_error) return (mem_error);
-		    ucol = (complex *) Glu->ucol;
+		    ucol = (singlecomplex *) Glu->ucol;
 		    mem_error = cLUMemXpand(jcol, nextu, USUB, &nzumax, Glu);
 		    if (mem_error) return (mem_error);
 		    usub = Glu->usub;

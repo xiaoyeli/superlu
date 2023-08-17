@@ -6,46 +6,46 @@
 
 /* Table of constant values */
 
-static complex c_b1 = {0.f,0.f};
-static complex c_b2 = {1.f,0.f};
+static singlecomplex c_b1 = {0.f,0.f};
+static singlecomplex c_b2 = {1.f,0.f};
 static int c__3 = 3;
 static int c__1 = 1;
 
-/* Subroutine */ int claghe_slu(int *n, int *k, float *d, complex *a,
-	int *lda, int *iseed, complex *work, int *info)
+/* Subroutine */ int claghe_slu(int *n, int *k, float *d, singlecomplex *a,
+	int *lda, int *iseed, singlecomplex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
     double d__1;
-    complex q__1, q__2, q__3, q__4;
+    singlecomplex q__1, q__2, q__3, q__4;
 
     /* Builtin functions */
-    double c_abs(complex *);
-    void c_div(complex *, complex *, complex *), r_cnjg(complex *, complex *);
+    double c_abs(singlecomplex *);
+    void c_div(singlecomplex *, singlecomplex *, singlecomplex *), r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
-    extern /* Subroutine */ int cher2_(char *, int *, complex *, complex *
-	    , int *, complex *, int *, complex *, int *);
+    extern /* Subroutine */ int cher2_(char *, int *, singlecomplex *, singlecomplex *
+	    , int *, singlecomplex *, int *, singlecomplex *, int *);
     static int i, j;
-    extern /* Subroutine */ int cgerc_(int *, int *, complex *,
-	    complex *, int *, complex *, int *, complex *, int *);
-    static complex alpha;
-    extern /* Subroutine */ int cscal_(int *, complex *, complex *,
+    extern /* Subroutine */ int cgerc_(int *, int *, singlecomplex *,
+	    singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, int *);
+    static singlecomplex alpha;
+    extern /* Subroutine */ int cscal_(int *, singlecomplex *, singlecomplex *,
 	    int *);
-    extern /* Complex */ void cdotc_(complex *, int *, complex *, int
-	    *, complex *, int *);
-    extern /* Subroutine */ int cgemv_(char *, int *, int *, complex *
-	    , complex *, int *, complex *, int *, complex *, complex *
-	    , int *), chemv_(char *, int *, complex *,
-	    complex *, int *, complex *, int *, complex *, complex *,
-	    int *), caxpy_(int *, complex *, complex *,
-	    int *, complex *, int *);
-    extern float scnrm2_(int *, complex *, int *);
-    static complex wa, wb;
+    extern /* Complex */ void cdotc_(singlecomplex *, int *, singlecomplex *, int
+	    *, singlecomplex *, int *);
+    extern /* Subroutine */ int cgemv_(char *, int *, int *, singlecomplex *
+	    , singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, singlecomplex *
+	    , int *), chemv_(char *, int *, singlecomplex *,
+	    singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, singlecomplex *,
+	    int *), caxpy_(int *, singlecomplex *, singlecomplex *,
+	    int *, singlecomplex *, int *);
+    extern float scnrm2_(int *, singlecomplex *, int *);
+    static singlecomplex wa, wb;
     static float wn;
-    extern /* Subroutine */ int clarnv_slu(int *, int *, int *, complex *);
+    extern /* Subroutine */ int clarnv_slu(int *, int *, int *, singlecomplex *);
     extern int input_error(char *, int *);
-    static complex tau;
+    static singlecomplex tau;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

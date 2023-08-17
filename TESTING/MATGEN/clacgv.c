@@ -1,6 +1,6 @@
 #include "../../SRC/slu_scomplex.h"
 
-/* Subroutine */ int clacgv_slu(int *n, complex *x, int *incx)
+/* Subroutine */ int clacgv_slu(int *n, singlecomplex *x, int *incx)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -11,7 +11,7 @@
     Purpose   
     =======   
 
-    CLACGV conjugates a complex vector of length N.   
+    CLACGV conjugates a singlecomplex vector of length N.   
 
     Arguments   
     =========   
@@ -35,9 +35,9 @@
    Parameter adjustments   
        Function Body */
     /* System generated locals */
-    complex q__1;
+    singlecomplex q__1;
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
     /* Local variables */
     static int ioff, i;
 

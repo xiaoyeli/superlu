@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-real scnrm2_(integer *n, complex *x, integer *incx)
+real scnrm2_(integer *n, singlecomplex *x, integer *incx)
 {
 
 
@@ -15,7 +15,7 @@ real scnrm2_(integer *n, complex *x, integer *incx)
     real ret_val, r__1;
 
     /* Builtin functions */
-    double r_imag(complex *), sqrt(doublereal);
+    double r_imag(singlecomplex *), sqrt(doublereal);
 
     /* Local variables */
     real temp, norm, scale;

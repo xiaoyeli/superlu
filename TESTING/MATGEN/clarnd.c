@@ -4,14 +4,14 @@
 #include <math.h>
 #include "../../SRC/slu_scomplex.h"
 
-/* Complex */ void clarnd_slu(complex * ret_val, int *idist, int *iseed)
+/* Complex */ void clarnd_slu(singlecomplex * ret_val, int *idist, int *iseed)
 {
     /* System generated locals */
     double d__1, d__2;
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
 
     /* Builtin functions */
-    void c_exp(complex *, complex *);
+    void c_exp(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static float t1, t2;

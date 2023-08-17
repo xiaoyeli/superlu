@@ -8,69 +8,69 @@
 
 /* Table of constant values */
 
-static complex c_b1 = {0.f,0.f};
-static complex c_b2 = {1.f,0.f};
+static singlecomplex c_b1 = {0.f,0.f};
+static singlecomplex c_b2 = {1.f,0.f};
 static int c__1 = 1;
 static int c__0 = 0;
 static int c__5 = 5;
 
-/* Subroutine */ int clatme_slu(int *n, char *dist, int *iseed, complex *
-	d, int *mode, float *cond, complex *dmax__, char *ei, char *rsign,
+/* Subroutine */ int clatme_slu(int *n, char *dist, int *iseed, singlecomplex *
+	d, int *mode, float *cond, singlecomplex *dmax__, char *ei, char *rsign,
 	char *upper, char *sim, float *ds, int *modes, float *conds,
-	int *kl, int *ku, float *anorm, complex *a, int *lda,
-	complex *work, int *info)
+	int *kl, int *ku, float *anorm, singlecomplex *a, int *lda,
+	singlecomplex *work, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2;
     float r__1, r__2;
-    complex q__1, q__2;
+    singlecomplex q__1, q__2;
 
     /* Builtin functions */
-    double c_abs(complex *);
-    void r_cnjg(complex *, complex *);
+    double c_abs(singlecomplex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static bool bads;
     static int isim;
     static float temp;
     static int i, j;
-    extern /* Subroutine */ int cgerc_(int *, int *, complex *,
-	    complex *, int *, complex *, int *, complex *, int *);
-    static complex alpha;
-    extern /* Subroutine */ int cscal_(int *, complex *, complex *,
+    extern /* Subroutine */ int cgerc_(int *, int *, singlecomplex *,
+	    singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, int *);
+    static singlecomplex alpha;
+    extern /* Subroutine */ int cscal_(int *, singlecomplex *, singlecomplex *,
 	    int *);
-    extern /* Subroutine */ int cgemv_(char *, int *, int *, complex *
-	    , complex *, int *, complex *, int *, complex *, complex *
+    extern /* Subroutine */ int cgemv_(char *, int *, int *, singlecomplex *
+	    , singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, singlecomplex *
 	    , int *);
     static int iinfo;
     static float tempa[1];
     static int icols, idist;
-    extern /* Subroutine */ int ccopy_(int *, complex *, int *,
-	    complex *, int *);
+    extern /* Subroutine */ int ccopy_(int *, singlecomplex *, int *,
+	    singlecomplex *, int *);
     static int irows;
     extern /* Subroutine */ int clatm1_(int *, float *, int *, int
-	    *, int *, complex *, int *, int *), slatm1_slu(int *,
+	    *, int *, singlecomplex *, int *, int *), slatm1_slu(int *,
 	     float *, int *, int *, int *, float *, int *,
 	    int *);
     static int ic, jc;
-    extern double clange_(char *, int *, int *, complex *,
+    extern double clange_(char *, int *, int *, singlecomplex *,
 	    int *, float *);
     static int ir;
-    extern /* Subroutine */ int clarge_slu(int *, complex *, int *,
-	    int *, complex *, int *), clarfg_(int *, complex *,
-	    complex *, int *, complex *), clacgv_slu(int *, complex *,
+    extern /* Subroutine */ int clarge_slu(int *, singlecomplex *, int *,
+	    int *, singlecomplex *, int *), clarfg_(int *, singlecomplex *,
+	    singlecomplex *, int *, singlecomplex *), clacgv_slu(int *, singlecomplex *,
 	    int *);
-    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
+    extern /* Complex */ void clarnd_slu(singlecomplex *, int *, int *);
     static float ralpha;
-    extern /* Subroutine */ int csscal_(int *, float *, complex *, int
-	    *), claset_slu(char *, int *, int *, complex *, complex *,
-	    complex *, int *),
-	     clarnv_slu(int *, int *, int *, complex *);
+    extern /* Subroutine */ int csscal_(int *, float *, singlecomplex *, int
+	    *), claset_slu(char *, int *, int *, singlecomplex *, singlecomplex *,
+	    singlecomplex *, int *),
+	     clarnv_slu(int *, int *, int *, singlecomplex *);
     extern int input_error(char *, int *);
     static int irsign, iupper;
-    static complex xnorms;
+    static singlecomplex xnorms;
     static int jcr;
-    static complex tau;
+    static singlecomplex tau;
 
 
 /*  -- LAPACK test routine (version 2.0) --   

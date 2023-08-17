@@ -23,7 +23,7 @@ at the top-level directory.
 
 /* Internal prototypes */
 void  *cexpand (int_t *, MemType, int_t, int, GlobalLU_t *);
-int   cLUWorkInit (int, int, int, int **, complex **, GlobalLU_t *);
+int   cLUWorkInit (int, int, int, int **, singlecomplex **, GlobalLU_t *);
 void  copy_mem_complex (int_t, void *, void *);
 void  cStackCompress (GlobalLU_t *);
 void  cSetupSpace (void *, int_t, GlobalLU_t *);
@@ -40,7 +40,7 @@ extern void    user_bcopy      (char *, char *, int);
 #define NotDoubleAlign(addr) ( (intptr_t)addr & 7 )
 #define DoubleAlign(addr)    ( ((intptr_t)addr + 7) & ~7L )	
 #define TempSpace(m, w)      ( (2*w + 4 + NO_MARKER) * m * sizeof(int) + \
-			      (w + 1) * m * sizeof(complex) )
+			      (w + 1) * m * sizeof(singlecomplex) )
 #define Reduce(alpha)        ((alpha + 1) / 2)  /* i.e. (alpha-1)/2 + 1 */
 
 
@@ -117,7 +117,7 @@ int cQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
     Ustore = U->Store;
     n = L->ncol;
     iword = sizeof(int);
-    dword = sizeof(complex);
+    dword = sizeof(singlecomplex);
 
     /* For LU factors */
     mem_usage->for_lu = (float)( (4.0*n + 3.0) * iword +
@@ -187,21 +187,21 @@ int ilu_cQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
 int_t
 cLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
 	  int panel_size, float fill_ratio, SuperMatrix *L, SuperMatrix *U,
-          GlobalLU_t *Glu, int **iwork, complex **dwork)
+          GlobalLU_t *Glu, int **iwork, singlecomplex **dwork)
 {
     int      info, iword, dword;
     SCformat *Lstore;
     NCformat *Ustore;
     int      *xsup, *supno;
     int_t    *lsub, *xlsub;
-    complex   *lusup;
+    singlecomplex   *lusup;
     int_t    *xlusup;
-    complex   *ucol;
+    singlecomplex   *ucol;
     int_t    *usub, *xusub;
     int_t    nzlmax, nzumax, nzlumax;
     
     iword     = sizeof(int);
-    dword     = sizeof(complex);
+    dword     = sizeof(singlecomplex);
     Glu->n    = n;
     Glu->num_expansions = 0;
 
@@ -242,8 +242,8 @@ cLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
 	    xusub  = cuser_malloc((n+1) * iword, HEAD, Glu);
 	}
 
-	lusup = (complex *) cexpand( &nzlumax, LUSUP, 0, 0, Glu );
-	ucol  = (complex *) cexpand( &nzumax, UCOL, 0, 0, Glu );
+	lusup = (singlecomplex *) cexpand( &nzlumax, LUSUP, 0, 0, Glu );
+	ucol  = (singlecomplex *) cexpand( &nzumax, UCOL, 0, 0, Glu );
 	lsub  = (int_t *) cexpand( &nzlmax, LSUB, 0, 0, Glu );
 	usub  = (int_t *) cexpand( &nzumax, USUB, 0, 1, Glu );
 
@@ -269,8 +269,8 @@ cLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
 		   (long) nzlmax, (long) nzumax);
 	    fflush(stdout);
 #endif
-	    lusup = (complex *) cexpand( &nzlumax, LUSUP, 0, 0, Glu );
-	    ucol  = (complex *) cexpand( &nzumax, UCOL, 0, 0, Glu );
+	    lusup = (singlecomplex *) cexpand( &nzlumax, LUSUP, 0, 0, Glu );
+	    ucol  = (singlecomplex *) cexpand( &nzumax, UCOL, 0, 0, Glu );
 	    lsub  = (int_t *) cexpand( &nzlmax, LSUB, 0, 0, Glu );
 	    usub  = (int_t *) cexpand( &nzumax, USUB, 0, 1, Glu );
 	}
@@ -335,10 +335,10 @@ cLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
    returns the number of bytes allocated so far when failure occurred. */
 int
 cLUWorkInit(int m, int n, int panel_size, int **iworkptr, 
-            complex **dworkptr, GlobalLU_t *Glu)
+            singlecomplex **dworkptr, GlobalLU_t *Glu)
 {
     int    isize, dsize, extra;
-    complex *old_ptr;
+    singlecomplex *old_ptr;
     int    maxsuper = SUPERLU_MAX( sp_ienv(3), sp_ienv(7) ),
            rowblk   = sp_ienv(4);
 
@@ -346,7 +346,7 @@ cLUWorkInit(int m, int n, int panel_size, int **iworkptr,
     //isize = ( (2 * panel_size + 3 + NO_MARKER ) * m + n ) * sizeof(int);
     isize = ( (2 * panel_size + 2 + NO_MARKER ) * m ) * sizeof(int);
     dsize = (m * panel_size +
-	     NUM_TEMPV(m,panel_size,maxsuper,rowblk)) * sizeof(complex);
+	     NUM_TEMPV(m,panel_size,maxsuper,rowblk)) * sizeof(singlecomplex);
     
     if ( Glu->MemModel == SYSTEM ) 
 	*iworkptr = (int *) int32Calloc(isize/sizeof(int));
@@ -358,13 +358,13 @@ cLUWorkInit(int m, int n, int panel_size, int **iworkptr,
     }
 
     if ( Glu->MemModel == SYSTEM )
-	*dworkptr = (complex *) SUPERLU_MALLOC(dsize);
+	*dworkptr = (singlecomplex *) SUPERLU_MALLOC(dsize);
     else {
-	*dworkptr = (complex *) cuser_malloc(dsize, TAIL, Glu);
+	*dworkptr = (singlecomplex *) cuser_malloc(dsize, TAIL, Glu);
 	if ( NotDoubleAlign(*dworkptr) ) {
 	    old_ptr = *dworkptr;
-	    *dworkptr = (complex*) DoubleAlign(*dworkptr);
-	    *dworkptr = (complex*) ((double*)*dworkptr - 1);
+	    *dworkptr = (singlecomplex*) DoubleAlign(*dworkptr);
+	    *dworkptr = (singlecomplex*) ((double*)*dworkptr - 1);
 	    extra = (char*)old_ptr - (char*)*dworkptr;
 #if ( DEBUGlevel>=1 )
 	    printf("cLUWorkInit: not aligned, extra %d\n", extra);
@@ -385,10 +385,10 @@ cLUWorkInit(int m, int n, int panel_size, int **iworkptr,
 /*! \brief Set up pointers for real working arrays.
  */
 void
-cSetRWork(int m, int panel_size, complex *dworkptr,
-	 complex **dense, complex **tempv)
+cSetRWork(int m, int panel_size, singlecomplex *dworkptr,
+	 singlecomplex **dense, singlecomplex **tempv)
 {
-    complex zero = {0.0, 0.0};
+    singlecomplex zero = {0.0, 0.0};
 
     int maxsuper = SUPERLU_MAX( sp_ienv(3), sp_ienv(7) ),
         rowblk   = sp_ienv(4);
@@ -400,7 +400,7 @@ cSetRWork(int m, int panel_size, complex *dworkptr,
 	
 /*! \brief Free the working storage used by factor routines.
  */
-void cLUWorkFree(int *iwork, complex *dwork, GlobalLU_t *Glu)
+void cLUWorkFree(int *iwork, singlecomplex *dwork, GlobalLU_t *Glu)
 {
     if ( Glu->MemModel == SYSTEM ) {
 	SUPERLU_FREE (iwork);
@@ -479,8 +479,8 @@ void
 copy_mem_complex(int_t howmany, void *old, void *new)
 {
     register int_t i;
-    complex *dold = old;
-    complex *dnew = new;
+    singlecomplex *dold = old;
+    singlecomplex *dnew = new;
     for (i = 0; i < howmany; i++) dnew[i] = dold[i];
 }
 
@@ -513,7 +513,7 @@ void
     }
     
     if ( type == LSUB || type == USUB ) lword = sizeof(int_t);
-    else lword = sizeof(complex);
+    else lword = sizeof(singlecomplex);
 
     if ( Glu->MemModel == SYSTEM ) {
 	new_mem = (void *) SUPERLU_MALLOC((size_t)new_len * lword);
@@ -614,12 +614,12 @@ cStackCompress(GlobalLU_t *Glu)
     register int iword, dword, ndim;
     char     *last, *fragment;
     int_t    *ifrom, *ito;
-    complex   *dfrom, *dto;
+    singlecomplex   *dfrom, *dto;
     int_t    *xlsub, *lsub, *xusub, *usub, *xlusup;
-    complex   *ucol, *lusup;
+    singlecomplex   *ucol, *lusup;
     
     iword = sizeof(int);
-    dword = sizeof(complex);
+    dword = sizeof(singlecomplex);
     ndim = Glu->n;
 
     xlsub  = Glu->xlsub;
@@ -631,7 +631,7 @@ cStackCompress(GlobalLU_t *Glu)
     lusup  = Glu->lusup;
     
     dfrom = ucol;
-    dto = (complex *)((char*)lusup + xlusup[ndim] * dword);
+    dto = (singlecomplex *)((char*)lusup + xlusup[ndim] * dword);
     copy_mem_complex(xusub[ndim], dfrom, dto);
     ucol = dto;
 
@@ -665,30 +665,30 @@ cStackCompress(GlobalLU_t *Glu)
 /*! \brief Allocate storage for original matrix A
  */
 void
-callocateA(int n, int_t nnz, complex **a, int_t **asub, int_t **xa)
+callocateA(int n, int_t nnz, singlecomplex **a, int_t **asub, int_t **xa)
 {
-    *a    = (complex *) complexMalloc(nnz);
+    *a    = (singlecomplex *) complexMalloc(nnz);
     *asub = (int_t *) intMalloc(nnz);
     *xa   = (int_t *) intMalloc(n+1);
 }
 
 
-complex *complexMalloc(size_t n)
+singlecomplex *complexMalloc(size_t n)
 {
-    complex *buf;
-    buf = (complex *) SUPERLU_MALLOC(n * (size_t) sizeof(complex)); 
+    singlecomplex *buf;
+    buf = (singlecomplex *) SUPERLU_MALLOC(n * (size_t) sizeof(singlecomplex)); 
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC failed for buf in complexMalloc()\n");
     }
     return (buf);
 }
 
-complex *complexCalloc(size_t n)
+singlecomplex *complexCalloc(size_t n)
 {
-    complex *buf;
+    singlecomplex *buf;
     register size_t i;
-    complex zero = {0.0, 0.0};
-    buf = (complex *) SUPERLU_MALLOC(n * (size_t) sizeof(complex));
+    singlecomplex zero = {0.0, 0.0};
+    buf = (singlecomplex *) SUPERLU_MALLOC(n * (size_t) sizeof(singlecomplex));
     if ( !buf ) {
 	ABORT("SUPERLU_MALLOC failed for buf in complexCalloc()\n");
     }
@@ -704,7 +704,7 @@ int_t cmemory_usage(const int_t nzlmax, const int_t nzumax,
 
     iword   = sizeof(int);
     liword  = sizeof(int_t);
-    dword   = sizeof(complex);
+    dword   = sizeof(singlecomplex);
     
     return (10 * n * iword +
 	    nzlmax * liword + nzumax * (liword + dword) + nzlumax * dword);

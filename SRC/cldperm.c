@@ -74,7 +74,7 @@ extern int_t mc64ad_(int_t *job, int_t *n, int_t *ne, int_t *ip,
  * colptr (input) int*, of size n+1
  *        The pointers to the beginning of each column in ADJNCY.
  *
- * nzval  (input) complex*, of size nnz
+ * nzval  (input) singlecomplex*, of size nnz
  *        The nonzero values of the matrix. nzval[k] is the value of
  *        the entry corresponding to adjncy[k].
  *        It is not used if job = 1.
@@ -94,7 +94,7 @@ extern int_t mc64ad_(int_t *job, int_t *n, int_t *ne, int_t *ip,
 
 int
 cldperm(int job, int n, int_t nnz, int_t colptr[], int_t adjncy[],
-	complex nzval[], int *perm, float u[], float v[])
+	singlecomplex nzval[], int *perm, float u[], float v[])
 {
     int_t i, num;
     int_t icntl[10], info[10];

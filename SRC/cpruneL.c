@@ -57,20 +57,20 @@ cpruneL(
        )
 {
 
-    complex     utemp;
+    singlecomplex     utemp;
     int        jsupno, irep, irep1, kmin, kmax, krow, movnum;
     int_t      i, ktemp, minloc, maxloc;
     int        do_prune; /* logical variable */
     int        *xsup, *supno;
     int_t      *lsub, *xlsub;
-    complex     *lusup;
+    singlecomplex     *lusup;
     int_t      *xlusup;
 
     xsup       = Glu->xsup;
     supno      = Glu->supno;
     lsub       = Glu->lsub;
     xlsub      = Glu->xlsub;
-    lusup      = (complex *) Glu->lusup;
+    lusup      = (singlecomplex *) Glu->lusup;
     xlusup     = Glu->xlusup;
     
     /*

@@ -5,19 +5,19 @@
 
 #include "f2c.h"
 
-/* Complex */ VOID cdotc_(complex * ret_val, integer *n, complex *cx, integer 
-	*incx, complex *cy, integer *incy)
+/* Complex */ VOID cdotc_(singlecomplex * ret_val, integer *n, singlecomplex *cx, integer 
+	*incx, singlecomplex *cy, integer *incy)
 {
     /* System generated locals */
  
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
 
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     integer i;
-    complex ctemp;
+    singlecomplex ctemp;
     integer ix, iy;
 
 

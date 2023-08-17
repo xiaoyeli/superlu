@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     SCformat       *Lstore;
     GlobalLU_t	   Glu; /* facilitate multiple factorizations with 
                            SamePattern_SameRowPerm                  */
-    complex         *a;
+    singlecomplex         *a;
     int_t          *asub, *xa;
     int            *perm_c; /* column permutation vector */
     int            *perm_r; /* row permutations from partial pivoting */
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     void           *work = NULL;
     int            m, n, nrhs, ldx;
     int_t          info, lwork, nnz;
-    complex         *rhsb, *rhsx, *xact;
+    singlecomplex         *rhsb, *rhsx, *xact;
     float         *R, *C;
     float         *ferr, *berr;
     float         u, rpg, rcond;
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
     if ( info == 0 || info == n+1 ) {
 
         /* This is how you could access the solution matrix. */
-        complex *sol = (complex*) ((DNformat*) X.Store)->nzval; 
+        singlecomplex *sol = (singlecomplex*) ((DNformat*) X.Store)->nzval; 
         (void)sol;  // suppress unused variable warning
 
 	if ( options.IterRefine ) {

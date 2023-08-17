@@ -201,23 +201,23 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 				iswap is the inverse of swap. After the
 				factorization, it is equal to perm_r. */
     int       *iwork;
-    complex   *cwork;
+    singlecomplex   *cwork;
     int       *segrep, *repfnz, *parent;
     int_t     *xplore;
     int       *panel_lsub; /* dense[]/panel_lsub[] pair forms a w-wide SPA */
     int       *marker;
     int       *marker_relax;
-    complex    *dense, *tempv;
+    singlecomplex    *dense, *tempv;
     float *stempv;
     int       *relax_end, *relax_fsupc;
-    complex    *a;
+    singlecomplex    *a;
     int_t     *asub;
     int_t     *xa_begin, *xa_end;
     int       *xsup, *supno;
     int_t     *xlsub, *xlusup, *xusub;
     int_t     nzlumax;
     float    *amax; 
-    complex    drop_sum;
+    singlecomplex    drop_sum;
     float alpha, omega;  /* used in MILU, mimicing DRIC */
     float    *swork2;	   /* used by the second dropping rule */
 
@@ -250,7 +250,7 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     int       nnzAj;	/* number of nonzeros in A(:,1:j) */
     int       nnzLj, nnzUj;
     double    tol_L = drop_tol, tol_U = drop_tol;
-    complex zero = {0.0, 0.0};
+    singlecomplex zero = {0.0, 0.0};
     float one = 1.0;
 
     /* Executable */	   
@@ -499,7 +499,7 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 		    xlsub[jj + 1]++;
 		    assert(xlusup[jj]==xlusup[jj+1]);
 		    xlusup[jj + 1]++;
-		    ((complex *) Glu->lusup)[xlusup[jj]] = zero;
+		    ((singlecomplex *) Glu->lusup)[xlusup[jj]] = zero;
 
 		    /* Choose a row index (pivrow) for fill-in */
 		    for (i = jj; i < n; i++)
@@ -637,21 +637,21 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 	   may have changed, */
 	((SCformat *)L->Store)->nnz = nnzL;
 	((SCformat *)L->Store)->nsuper = Glu->supno[n];
-	((SCformat *)L->Store)->nzval = (complex *) Glu->lusup;
+	((SCformat *)L->Store)->nzval = (singlecomplex *) Glu->lusup;
 	((SCformat *)L->Store)->nzval_colptr = Glu->xlusup;
 	((SCformat *)L->Store)->rowind = Glu->lsub;
 	((SCformat *)L->Store)->rowind_colptr = Glu->xlsub;
 	((NCformat *)U->Store)->nnz = nnzU;
-	((NCformat *)U->Store)->nzval = (complex *) Glu->ucol;
+	((NCformat *)U->Store)->nzval = (singlecomplex *) Glu->ucol;
 	((NCformat *)U->Store)->rowind = Glu->usub;
 	((NCformat *)U->Store)->colptr = Glu->xusub;
     } else {
 	cCreate_SuperNode_Matrix(L, A->nrow, min_mn, nnzL,
-              (complex *) Glu->lusup, Glu->xlusup,
+              (singlecomplex *) Glu->lusup, Glu->xlusup,
               Glu->lsub, Glu->xlsub, Glu->supno, Glu->xsup,
 	      SLU_SC, SLU_C, SLU_TRLU);
 	cCreate_CompCol_Matrix(U, min_mn, min_mn, nnzU,
-	      (complex *) Glu->ucol, Glu->usub, Glu->xusub,
+	      (singlecomplex *) Glu->ucol, Glu->usub, Glu->xusub,
 	      SLU_NC, SLU_C, SLU_TRU);
     }
 

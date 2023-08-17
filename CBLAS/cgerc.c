@@ -6,21 +6,21 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int cgerc_(integer *m, integer *n, complex *alpha, complex *
-	x, integer *incx, complex *y, integer *incy, complex *a, integer *lda)
+/* Subroutine */ int cgerc_(integer *m, integer *n, singlecomplex *alpha, singlecomplex *
+	x, integer *incx, singlecomplex *y, integer *incy, singlecomplex *a, integer *lda)
 {
 
 
     /* System generated locals */
 
-    complex q__1, q__2;
+    singlecomplex q__1, q__2;
 
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     integer info;
-    complex temp;
+    singlecomplex temp;
     integer i, j, ix, jy, kx;
 
     extern int input_error(char *, int *);

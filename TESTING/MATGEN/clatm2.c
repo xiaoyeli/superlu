@@ -3,22 +3,22 @@
 
 #include "../../SRC/slu_scomplex.h"
 
-/* Complex */ void clatm2_slu(complex * ret_val, int *m, int *n, int
+/* Complex */ void clatm2_slu(singlecomplex * ret_val, int *m, int *n, int
 	*i, int *j, int *kl, int *ku, int *idist, int *
-	iseed, complex *d, int *igrade, complex *dl, complex *dr, int
+	iseed, singlecomplex *d, int *igrade, singlecomplex *dl, singlecomplex *dr, int
 	*ipvtng, int *iwork, float *sparse)
 {
     /* System generated locals */
     int i__1, i__2;
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
 
     /* Builtin functions */
-    void c_div(complex *, complex *, complex *), r_cnjg(complex *, complex *);
+    void c_div(singlecomplex *, singlecomplex *, singlecomplex *), r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static int isub, jsub;
-    static complex ctemp;
-    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
+    static singlecomplex ctemp;
+    extern /* Complex */ void clarnd_slu(singlecomplex *, int *, int *);
     extern double dlaran_sluslu(int *);
 
 

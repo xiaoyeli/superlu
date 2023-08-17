@@ -122,25 +122,30 @@ if ( jcol == MIN_COL ) {
     diag = EMPTY;
     old_pivptr = nsupc;
     for (isub = nsupc; isub < nsupr; ++isub) {
-	rtemp = fabs (lu_col_ptr[isub]);
+	    rtemp = fabs (lu_col_ptr[isub]);
 	if ( rtemp > pivmax ) {
-	    pivmax = rtemp;
-	    pivptr = isub;
-	}
-	if ( *usepr && lsub_ptr[isub] == *pivrow ) old_pivptr = isub;
-	if ( lsub_ptr[isub] == diagind ) diag = isub;
+	        pivmax = rtemp;
+	        pivptr = isub;
+	    }
+    	if ( *usepr && lsub_ptr[isub] == *pivrow ) old_pivptr = isub;
+	    if ( lsub_ptr[isub] == diagind ) diag = isub;
     }
 
     /* Test for singularity */
     if ( pivmax == 0.0 ) {
+#if 0
+        // There is no valid pivot.  
+        // jcol represents the rank of U
+        // report the rank let dgstrf handle the pivot
 #if 1
-	*pivrow = lsub_ptr[pivptr];
-	perm_r[*pivrow] = jcol;
+    *pivrow = lsub_ptr[pivptr];
+    perm_r[*pivrow] = jcol;
 #else
-	perm_r[diagind] = jcol;
+    perm_r[diagind] = jcol;
 #endif
-	*usepr = 0;
-	return (jcol+1);
+#endif
+	    *usepr = 0;
+	    return (jcol+1);
     }
 
     thresh = u * pivmax;

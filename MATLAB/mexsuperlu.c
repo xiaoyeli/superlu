@@ -171,7 +171,7 @@ void mexFunction(
 	Lval = mxGetPr(L_out);
 	Lrow_64 = mxGetIr(L_out);
 	Lcol_64 = mxGetJc(L_out);
-	U_out = mxCreateSparse(m, n, nnzU, mxREAL);
+	U_out = mxCreateSparse(n, n, nnzU, mxREAL);
 	Uval = mxGetPr(U_out);
 	Urow_64 = mxGetIr(U_out);
 	Ucol_64 = mxGetJc(U_out);

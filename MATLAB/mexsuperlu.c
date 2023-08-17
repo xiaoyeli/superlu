@@ -91,7 +91,7 @@ void mexFunction(
 
     /* Read the Sparse Monitor Flag */
     X = mxCreateString("spumoni");
-    mexerr = mexCallMATLAB(1, &Y, 1, &X, "sparsfun");
+    mexerr = mexCallMATLAB(1, &Y, 1, &X, "spparms");
     SPUMONI = mxGetScalar(Y);
     mxDestroyArray(Y);
     mxDestroyArray(X);
@@ -224,8 +224,8 @@ LUextract(SuperMatrix *L, SuperMatrix *U, double *Lval, mwIndex *Lrow,
     NCformat    *Ustore;
     double      *SNptr;
 
-    Lstore = L->Store;
-    Ustore = U->Store;
+	Lstore = (SCformat*)L->Store;
+	Ustore = (NCformat*)U->Store;
     Lcol[0] = 0;
     Ucol[0] = 0;
     

@@ -64,9 +64,6 @@ function [L,U,prow,pcol] = superlu(A,psparse)
 
 
 [m,n] = size(A);
-if m ~= n 
-    error('matrix must be square.'); 
-end;
 if n == 0
     L = []; U = []; prow = []; pcol = [];
     return;
@@ -104,8 +101,9 @@ end;
 
 % The output permutations from the mex-file are dense permutation vectors.
 [L,U,prowInv,pcolInv] = mexsuperlu(A,Psparse);
-prow = zeros(1,n);
-prow(prowInv) = 1:n;
+
+prow = zeros(1,m);
+prow(prowInv) = 1:m;
 pcol = zeros(1,n);
 pcol(pcolInv) = 1:n;
 

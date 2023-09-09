@@ -409,13 +409,20 @@ dgstrf (superlu_options_t *options, SuperMatrix *A,
 
     *info = iinfo;
     
-    if ( m > n ) {
-	k = 0;
-        for (i = 0; i < m; ++i) 
-            if ( perm_r[i] == EMPTY ) {
-    		perm_r[i] = n + k;
-		++k;
-	    }
+    /* k is the rank of U
+       pivots have been completed for rows < r
+       Now fill in the pivots for rows r to m */
+    k = iinfo == 0 ? n : (int)iinfo - 1;
+    if (m > k) {
+        /* if k == m, then all the row permutations are complete and
+           we can short circuit looking through the rest of the vector */
+        for (i = 0; i < m && k < m; ++i) {
+            if (perm_r[i] == EMPTY) {
+                perm_r[i] = k;
+                ++k;
+            }
+
+        }
     }
 
     countnz(min_mn, xprune, &nnzL, &nnzU, Glu);

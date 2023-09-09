@@ -91,7 +91,7 @@ void mexFunction(
 
     /* Read the Sparse Monitor Flag */
     X = mxCreateString("spumoni");
-    mexerr = mexCallMATLAB(1, &Y, 1, &X, "sparsfun");
+    mexerr = mexCallMATLAB(1, &Y, 1, &X, "spparms");
     SPUMONI = mxGetScalar(Y);
     mxDestroyArray(Y);
     mxDestroyArray(X);
@@ -171,7 +171,7 @@ void mexFunction(
 	Lval = mxGetPr(L_out);
 	Lrow_64 = mxGetIr(L_out);
 	Lcol_64 = mxGetJc(L_out);
-	U_out = mxCreateSparse(m, n, nnzU, mxREAL);
+	U_out = mxCreateSparse(n, n, nnzU, mxREAL);
 	Uval = mxGetPr(U_out);
 	Urow_64 = mxGetIr(U_out);
 	Ucol_64 = mxGetJc(U_out);
@@ -224,8 +224,8 @@ LUextract(SuperMatrix *L, SuperMatrix *U, double *Lval, mwIndex *Lrow,
     NCformat    *Ustore;
     double      *SNptr;
 
-    Lstore = L->Store;
-    Ustore = U->Store;
+	Lstore = (SCformat*)L->Store;
+	Ustore = (NCformat*)U->Store;
     Lcol[0] = 0;
     Ucol[0] = 0;
     
@@ -256,7 +256,7 @@ LUextract(SuperMatrix *L, SuperMatrix *U, double *Lval, mwIndex *Lrow,
 
 	    /* Extract L */
 	    Lval[lastl] = 1.0; /* unit diagonal */
-	    Lrow[lastl++] = L_SUB(istart + upper - 1);
+			Lrow[lastl++] = j;
 	    for (i = upper; i < nsupr; ++i) {
 		Lval[lastl] = SNptr[i];
  		/* Matlab doesn't like explicit zero. */
@@ -264,7 +264,8 @@ LUextract(SuperMatrix *L, SuperMatrix *U, double *Lval, mwIndex *Lrow,
 	    }
 	    Lcol[j+1] = lastl;
 
-	    ++upper;
+			/* prevent upper from being larger than nsupr */
+			if(upper < nsupr) ++upper;
 	    
 	} /* for j ... */
 	

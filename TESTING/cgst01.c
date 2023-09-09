@@ -48,17 +48,17 @@ int cgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
            SuperMatrix *U, int *perm_c, int *perm_r, float *resid)
 {
     /* Local variables */
-    complex zero = {0.0, 0.0};
+    singlecomplex zero = {0.0, 0.0};
     int i, j, k, arow, superno, fsupc, u_part;
     int_t urow, lptr, isub;
-    complex utemp;
-    complex comp_temp;
+    singlecomplex utemp;
+    singlecomplex comp_temp;
     float anorm, tnorm, cnorm;
     float eps;
-    complex *work;
+    singlecomplex *work;
     SCformat *Lstore;
     NCformat *Astore, *Ustore;
-    complex *Aval, *Lval, *Uval;
+    singlecomplex *Aval, *Lval, *Uval;
     int_t *colbeg, *colend;
 
     /* Function prototypes */
@@ -71,7 +71,7 @@ int cgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
 	return 0;
     }
 
-    work = (complex *)complexCalloc(m);
+    work = (singlecomplex *)complexCalloc(m);
 
     Astore = A->Store;
     Aval = Astore->nzval;

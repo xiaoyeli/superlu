@@ -57,11 +57,11 @@ at the top-level directory.
  *                    norm(B - A*X) / ( norm(A) * norm(X) * EPS ).
  */
 int cgst02(trans_t trans, int m, int n, int nrhs, SuperMatrix *A,
-           complex *x, int ldx, complex *b, int ldb, float *resid)
+           singlecomplex *x, int ldx, singlecomplex *b, int ldb, float *resid)
 {
     /* Table of constant values */
-    complex alpha = {-1., 0.0};
-    complex beta  = {1., 0.0};
+    singlecomplex alpha = {-1., 0.0};
+    singlecomplex beta  = {1., 0.0};
     int    c__1  = 1;
     
     /* System generated locals */
@@ -77,7 +77,7 @@ int cgst02(trans_t trans, int m, int n, int nrhs, SuperMatrix *A,
 
     /* Function prototypes */
     extern float clangs(char *, SuperMatrix *);
-    extern float scasum_(int *, complex *, int *);
+    extern float scasum_(int *, singlecomplex *, int *);
     
     /* Function Body */
     if ( m <= 0 || n <= 0 || nrhs == 0) {

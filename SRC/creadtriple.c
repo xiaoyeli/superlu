@@ -23,7 +23,7 @@ at the top-level directory.
 
 void
 creadtriple(int *m, int *n, int_t *nonz,
-	    complex **nzval, int_t **rowind, int_t **colptr)
+	    singlecomplex **nzval, int_t **rowind, int_t **colptr)
 {
 /*
  * Output parameters
@@ -34,7 +34,7 @@ creadtriple(int *m, int *n, int_t *nonz,
  *
  */
     int    j, k, jsize, nnz, nz;
-    complex *a, *val;
+    singlecomplex *a, *val;
     int_t  *asub, *xa;
     int    *row, *col;
     int    zero_base = 0;
@@ -57,7 +57,7 @@ creadtriple(int *m, int *n, int_t *nonz,
     asub = *rowind;
     xa   = *colptr;
 
-    val = (complex *) SUPERLU_MALLOC(*nonz * sizeof(complex));
+    val = (singlecomplex *) SUPERLU_MALLOC(*nonz * sizeof(singlecomplex));
     row = int32Malloc(*nonz);
     col = int32Malloc(*nonz);
 
@@ -137,7 +137,7 @@ creadtriple(int *m, int *n, int_t *nonz,
 }
 
 
-void creadrhs(int m, complex *b)
+void creadrhs(int m, singlecomplex *b)
 {
     FILE *fp = fopen("b.dat", "r");
     int i;

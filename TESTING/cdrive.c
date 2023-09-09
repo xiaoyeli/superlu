@@ -50,7 +50,7 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
  */
 int main(int argc, char *argv[])
 {
-    complex         *a, *a_save;
+    singlecomplex         *a, *a_save;
     int_t          *asub, *asub_save;
     int_t          *xa, *xa_save;
     SuperMatrix  A, B, X, L, U;
@@ -60,17 +60,17 @@ int main(int argc, char *argv[])
     int            *perm_r; /* row permutation from partial pivoting */
     int            *perm_c, *pc_save; /* column permutation */
     int            *etree;
-    complex  zero = {0.0, 0.0};
+    singlecomplex  zero = {0.0, 0.0};
     float         *R, *C;
     float         *ferr, *berr;
     float         *rwork;
-    complex	   *wwork;
+    singlecomplex	   *wwork;
     void           *work = NULL;
     int            nrhs, panel_size, relax;
     int            m, n, info1;
     int_t          nnz, lwork, info;
-    complex         *xact;
-    complex         *rhsb, *solx, *bsav;
+    singlecomplex         *xact;
+    singlecomplex         *rhsb, *solx, *bsav;
     int            ldb, ldx;
     float         rpg, rcond;
     int            i, j, k1;
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
     int            zerot, izero, ioff;
     double         u;
     float         anorm, cndnum;
-    complex         *Afull;
+    singlecomplex         *Afull;
     float         result[NTESTS];
     superlu_options_t options;
     fact_t         fact;
@@ -103,15 +103,15 @@ int main(int argc, char *argv[])
     /* Some function prototypes */ 
     extern int cgst01(int, int, SuperMatrix *, SuperMatrix *, 
 		      SuperMatrix *, int *, int *, float *);
-    extern int cgst02(trans_t, int, int, int, SuperMatrix *, complex *,
-                      int, complex *, int, float *resid);
-    extern int cgst04(int, int, complex *, int, 
-                      complex *, int, float rcond, float *resid);
-    extern int cgst07(trans_t, int, int, SuperMatrix *, complex *, int,
-                         complex *, int, complex *, int, 
+    extern int cgst02(trans_t, int, int, int, SuperMatrix *, singlecomplex *,
+                      int, singlecomplex *, int, float *resid);
+    extern int cgst04(int, int, singlecomplex *, int, 
+                      singlecomplex *, int, float rcond, float *resid);
+    extern int cgst07(trans_t, int, int, SuperMatrix *, singlecomplex *, int,
+                         singlecomplex *, int, singlecomplex *, int, 
                          float *, float *, float *);
-    extern int sp_cconvert(int, int, complex *, int, int, int,
-	                   complex *a, int_t *, int_t *, int_t *);
+    extern int sp_cconvert(int, int, singlecomplex *, int, int, int,
+	                   singlecomplex *a, int_t *, int_t *, int_t *);
 
 
     /* Executable statements */

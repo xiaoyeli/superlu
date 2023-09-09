@@ -33,10 +33,10 @@ at the top-level directory.
 
 void
 creadMM(FILE *fp, int *m, int *n, int_t *nonz,
-	    complex **nzval, int_t **rowind, int_t **colptr)
+	    singlecomplex **nzval, int_t **rowind, int_t **colptr)
 {
     int_t    j, k, jsize, nnz, nz, new_nonz;
-    complex *a, *val;
+    singlecomplex *a, *val;
     int_t    *asub, *xa;
     int      *row, *col;
     int    zero_base = 0;
@@ -126,7 +126,7 @@ creadMM(FILE *fp, int *m, int *n, int_t *nonz,
     asub = *rowind;
     xa   = *colptr;
 
-    if ( !(val = (complex *) SUPERLU_MALLOC(new_nonz * sizeof(double))) )
+    if ( !(val = (singlecomplex *) SUPERLU_MALLOC(new_nonz * sizeof(double))) )
         ABORT("Malloc fails for val[]");
     if ( !(row = int32Malloc(new_nonz)) )
         ABORT("Malloc fails for row[]");
@@ -220,7 +220,7 @@ creadMM(FILE *fp, int *m, int *n, int_t *nonz,
 }
 
 
-static void creadrhs(int m, complex *b)
+static void creadrhs(int m, singlecomplex *b)
 {
     FILE *fp = fopen("b.dat", "r");
     int i;

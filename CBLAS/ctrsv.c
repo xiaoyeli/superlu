@@ -7,20 +7,20 @@
 #include "f2c.h"
 
 /* Subroutine */ int ctrsv_(char *uplo, char *trans, char *diag, integer *n, 
-	complex *a, integer *lda, complex *x, integer *incx)
+	singlecomplex *a, integer *lda, singlecomplex *x, integer *incx)
 {
 
 
     /* System generated locals */
 
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
 
     /* Builtin functions */
-    void c_div(complex *, complex *, complex *), r_cnjg(complex *, complex *);
+    void c_div(singlecomplex *, singlecomplex *, singlecomplex *), r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     integer info;
-    complex temp;
+    singlecomplex temp;
     integer i, j;
     integer ix, jx, kx;
     logical noconj, nounit;

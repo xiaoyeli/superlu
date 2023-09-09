@@ -2,8 +2,8 @@
 #include "../../SRC/slu_scomplex.h"
 #include "../../SRC/slu_sdefs.h"
 
-/* Subroutine */ int claset_slu(char *uplo, int *m, int *n, complex *
-	alpha, complex *beta, complex *a, int *lda)
+/* Subroutine */ int claset_slu(char *uplo, int *m, int *n, singlecomplex *
+	alpha, singlecomplex *beta, singlecomplex *a, int *lda)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   

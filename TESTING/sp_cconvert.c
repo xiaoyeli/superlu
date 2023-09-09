@@ -31,13 +31,13 @@ at the top-level directory.
  * For complex float.
  */
 int
-sp_cconvert(int m, int n, complex *A, int lda, int kl, int ku,
-	   complex *a, int_t *asub, int_t *xa, int_t *nnz)
+sp_cconvert(int m, int n, singlecomplex *A, int lda, int kl, int ku,
+	   singlecomplex *a, int_t *asub, int_t *xa, int_t *nnz)
 {
     int_t     lasta = 0;
     int_t     i, j, ilow, ihigh;
     int_t     *row;
-    complex  *val;
+    singlecomplex  *val;
 
     for (j = 0; j < n; ++j) {
 	xa[j] = lasta;

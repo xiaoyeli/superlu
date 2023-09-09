@@ -34,8 +34,8 @@ For information on ITSOL contact saad@cs.umn.edu
 
 #define  epsmac  1.0e-16
 
-extern void cdotc_(complex *, int *, complex [], int *, complex [], int *);
-extern float scnrm2_(int *, complex [], int *);
+extern void cdotc_(singlecomplex *, int *, singlecomplex [], int *, singlecomplex [], int *);
+extern float scnrm2_(int *, singlecomplex [], int *);
 
 
 /*!
@@ -63,29 +63,29 @@ extern float scnrm2_(int *, complex [], int *);
  * \return Whether the algorithm finished successfully.
  */
 int cfgmr(int n,
-     void (*cmatvec) (complex, complex[], complex, complex[]),
-     void (*cpsolve) (int, complex[], complex[]),
-     complex *rhs, complex *sol, double tol, int im, int *itmax, FILE * fits)
+     void (*cmatvec) (singlecomplex, singlecomplex[], singlecomplex, singlecomplex[]),
+     void (*cpsolve) (int, singlecomplex[], singlecomplex[]),
+     singlecomplex *rhs, singlecomplex *sol, double tol, int im, int *itmax, FILE * fits)
 {
     int maxits = *itmax;
     int its, i_1 = 1, i_2 = 2;
     float eps1 = 0.0;
-    complex **hh, *c, *s, *rs;
-    complex **vv, **z;
-    complex zero = {0.0, 0.0};
-    complex one = {1.0, 0.0};
-    complex tt1, tt2;
+    singlecomplex **hh, *c, *s, *rs;
+    singlecomplex **vv, **z;
+    singlecomplex zero = {0.0, 0.0};
+    singlecomplex one = {1.0, 0.0};
+    singlecomplex tt1, tt2;
 
     /* prototypes */
-    extern int ccopy_(int *, complex *, int *, complex *, int *);
-    extern int caxpy_(int *, complex *, complex [], int *, complex [], int *);
+    extern int ccopy_(int *, singlecomplex *, int *, singlecomplex *, int *);
+    extern int caxpy_(int *, singlecomplex *, singlecomplex [], int *, singlecomplex [], int *);
 
     its = 0;
-    vv = (complex **)SUPERLU_MALLOC((im + 1) * sizeof(complex *));
+    vv = (singlecomplex **)SUPERLU_MALLOC((im + 1) * sizeof(singlecomplex *));
     for (int i = 0; i <= im; i++)
         vv[i] = complexMalloc(n);
-    z = (complex **)SUPERLU_MALLOC(im * sizeof(complex *));
-    hh = (complex **)SUPERLU_MALLOC(im * sizeof(complex *));
+    z = (singlecomplex **)SUPERLU_MALLOC(im * sizeof(singlecomplex *));
+    hh = (singlecomplex **)SUPERLU_MALLOC(im * sizeof(singlecomplex *));
     for (int i = 0; i < im; i++)
     {
 	hh[i] = complexMalloc(i + 2);
@@ -146,11 +146,11 @@ int cfgmr(int n,
             float t0 = scnrm2_(&n, vv[i1], &i_1);
             for (int j = 0; j <= i; j++)
             {
-		complex negt;
+		singlecomplex negt;
 #if 0
 		cdotc_(&tt, &n, vv[j], &i_1, vv[i1], &i_1);
 #else
-                complex tt = zero;
+                singlecomplex tt = zero;
                 for (int k = 0; k < n; ++k) {
 		    cc_conj(&tt1, &vv[j][k]);
 		    cc_mult(&tt2, &tt1, &vv[i1][k]);
@@ -170,11 +170,11 @@ int cfgmr(int n,
 		t0 = t;
                 for (int j = 0; j <= i; j++)
                 {
-		    complex negt;
+		    singlecomplex negt;
 #if 0
 		    cdotc_(&tt, &n, vv[j], &i_1, vv[i1], &i_1);
 #else
-                    complex tt = zero;
+                    singlecomplex tt = zero;
                     for (int k = 0; k < n; ++k) {
 		        cc_conj(&tt1, &vv[j][k]);
 		        cc_mult(&tt2, &tt1, &vv[i1][k]);
@@ -210,7 +210,7 @@ int cfgmr(int n,
             for (int k = 1; k <= i; k++)
             {
                 int k1 = k - 1;
-                complex tt = hh[i][k1];
+                singlecomplex tt = hh[i][k1];
                 cc_mult(&tt1, &c[k1], &tt);
                 cc_mult(&tt2, &s[k1], &hh[i][k]);
                 c_add(&hh[i][k1], &tt1, &tt2);
@@ -266,7 +266,7 @@ int cfgmr(int n,
         for (int ii = 1; ii <= i; ii++)
         {
             int k = i - ii;
-            complex tt = rs[k];
+            singlecomplex tt = rs[k];
             for (int j = k + 1; j <= i; j++) {
                 cc_mult(&tt1, &hh[j][k], &rs[j]);
 		c_sub(&tt, &tt, &tt1);
@@ -277,7 +277,7 @@ int cfgmr(int n,
         /*---- linear combination of v[i]'s to get sol. ----*/
         for (int j = 0; j <= i; j++)
         {
-            complex tt = rs[j];
+            singlecomplex tt = rs[j];
             for (int k = 0; k < n; k++) {
                 cc_mult(&tt1, &tt, &z[j][k]);
 		c_add(&sol[k], &sol[k], &tt1);

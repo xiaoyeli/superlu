@@ -5,8 +5,8 @@
 
 int clatms_slu(int *m, int *n, char *dist, int * iseed,
                char *sym, float *d, int *mode, float *cond, float *dmax__,
-               int *kl, int *ku, char *pack, complex *a, int *lda,
-               complex *work, int *info);
+               int *kl, int *ku, char *pack, singlecomplex *a, int *lda,
+               singlecomplex *work, int *info);
 
 int clatb4_slu(char *path, int *imat, int *m, int * n,
                char *type, int *kl, int *ku, float *anorm, int *mode,

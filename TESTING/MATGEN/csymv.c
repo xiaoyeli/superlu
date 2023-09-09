@@ -2,8 +2,8 @@
 #include "../../SRC/slu_scomplex.h"
 #include "../../SRC/slu_sdefs.h"
 
-/* Subroutine */ int csymv_sluslu(char *uplo, int *n, complex *alpha, complex *
-	a, int *lda, complex *x, int *incx, complex *beta, complex *y,
+/* Subroutine */ int csymv_sluslu(char *uplo, int *n, singlecomplex *alpha, singlecomplex *
+	a, int *lda, singlecomplex *x, int *incx, singlecomplex *beta, singlecomplex *y,
 	 int *incy)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
@@ -105,10 +105,10 @@
        Function Body */
     /* System generated locals */
 
-    complex q__1, q__2, q__3, q__4;
+    singlecomplex q__1, q__2, q__3, q__4;
     /* Local variables */
     static int info;
-    static complex temp1, temp2;
+    static singlecomplex temp1, temp2;
     static int i, j;
     static int ix, iy, jx, jy, kx, ky;
     extern int input_error(char *, int *);

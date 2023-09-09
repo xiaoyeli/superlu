@@ -38,8 +38,8 @@ typedef struct {
  */
 void
 c_fortran_cgssv_(int *iopt, int *n, int_t *nnz, int *nrhs,
-                 complex *values, int_t *rowind, int_t *colptr,
-                 complex *b, int *ldb,
+                 singlecomplex *values, int_t *rowind, int_t *colptr,
+                 singlecomplex *b, int *ldb,
                  fptr *f_factors, /* a handle containing the address
                                      pointing to the factored matrices */
                  int_t *info)

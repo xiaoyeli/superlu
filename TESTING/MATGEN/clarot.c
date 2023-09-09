@@ -11,21 +11,21 @@ static int c__8 = 8;
 
 /* Subroutine */
 int clarot_slu(bool *lrows, bool *lleft, bool *lright,
-	int *nl, complex *c, complex *s, complex *a, int *lda,
-	complex *xleft, complex *xright)
+	int *nl, singlecomplex *c, singlecomplex *s, singlecomplex *a, int *lda,
+	singlecomplex *xleft, singlecomplex *xright)
 {
     /* System generated locals */
     int i__1, i__2, i__3, i__4;
-    complex q__1, q__2, q__3, q__4, q__5, q__6;
+    singlecomplex q__1, q__2, q__3, q__4, q__5, q__6;
 
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static int iinc, j, inext;
-    static complex tempx;
+    static singlecomplex tempx;
     static int ix, iy, nt;
-    static complex xt[2], yt[2];
+    static singlecomplex xt[2], yt[2];
     extern int input_error(char *, int *);
     static int iyt;
 

@@ -57,8 +57,8 @@ mem_usage_t   *GLOBAL_MEM_USAGE;
  * \param [in,out] y Right-hand side
  */
 void cpsolve(int n,
-                  complex x[], /* solution */
-                  complex y[]  /* right-hand side */
+                  singlecomplex x[], /* solution */
+                  singlecomplex y[]  /* right-hand side */
 )
 {
     SuperMatrix *A = GLOBAL_A, *L = GLOBAL_L, *U = GLOBAL_U;
@@ -101,7 +101,7 @@ void cpsolve(int n,
  * \param [in,out] y Vector to add to to matrix-vector multiplication and
  *                   storage for result.
  */
-void cmatvec_mult(complex alpha, complex x[], complex beta, complex y[])
+void cmatvec_mult(singlecomplex alpha, singlecomplex x[], singlecomplex beta, singlecomplex y[])
 {
     SuperMatrix *A = GLOBAL_A;
 
@@ -110,12 +110,12 @@ void cmatvec_mult(complex alpha, complex x[], complex beta, complex y[])
 
 int main(int argc, char *argv[])
 {
-    void cmatvec_mult(complex alpha, complex x[], complex beta, complex y[]);
-    void cpsolve(int n, complex x[], complex y[]);
+    void cmatvec_mult(singlecomplex alpha, singlecomplex x[], singlecomplex beta, singlecomplex y[]);
+    void cpsolve(int n, singlecomplex x[], singlecomplex y[]);
     extern int cfgmr( int n,
-	void (*matvec_mult)(complex, complex [], complex, complex []),
-	void (*psolve)(int n, complex [], complex[]),
-	complex *rhs, complex *sol, double tol, int restrt, int *itmax,
+	void (*matvec_mult)(singlecomplex, singlecomplex [], singlecomplex, singlecomplex []),
+	void (*psolve)(int n, singlecomplex [], singlecomplex[]),
+	singlecomplex *rhs, singlecomplex *sol, double tol, int restrt, int *itmax,
 	FILE *fits);
     extern int cfill_diag(int n, NCformat *Astore);
 
@@ -128,26 +128,26 @@ int main(int argc, char *argv[])
     SCformat *Lstore;
     GlobalLU_t	   Glu; /* facilitate multiple factorizations with 
                            SamePattern_SameRowPerm                  */
-    complex   *a;
+    singlecomplex   *a;
     int_t    *asub, *xa;
     int      *etree;
     int      *perm_c; /* column permutation vector */
     int      *perm_r; /* row permutations from partial pivoting */
     int      nrhs, ldx, m, n;
     int_t    info, nnz, lwork;
-    complex   *rhsb, *rhsx, *xact;
-    complex   *work = NULL;
+    singlecomplex   *rhsb, *rhsx, *xact;
+    singlecomplex   *work = NULL;
     float   *R, *C;
     float   rpg, rcond;
-    complex zero = {0.0, 0.0};
-    complex one = {1.0, 0.0};
-    complex none = {-1.0, 0.0};
+    singlecomplex zero = {0.0, 0.0};
+    singlecomplex one = {1.0, 0.0};
+    singlecomplex none = {-1.0, 0.0};
     mem_usage_t   mem_usage;
     superlu_options_t options;
     SuperLUStat_t stat;
     FILE 	  *fp = stdin;
 
-    complex *x, *b;
+    singlecomplex *x, *b;
 
 #ifdef DEBUG
     extern int num_drop_L, num_drop_U;
@@ -331,9 +331,9 @@ int main(int argc, char *argv[])
     {
 	int i_1 = 1, nnz32;
 	double maxferr = 0.0, nrmA, nrmB, res, t;
-        complex temp;
-	extern float scnrm2_(int *, complex [], int *);
-	extern void caxpy_(int *, complex *, complex [], int *, complex [], int *);
+        singlecomplex temp;
+	extern float scnrm2_(int *, singlecomplex [], int *);
+	extern void caxpy_(int *, singlecomplex *, singlecomplex [], int *, singlecomplex [], int *);
 
         /* Initial guess */
         for (int i = 0; i < n; i++)
@@ -348,7 +348,7 @@ int main(int argc, char *argv[])
 
 	/* Output the result. */
 	nnz32 = Astore->nnz;
-	nrmA = scnrm2_(&nnz32, (complex *)((DNformat *)A.Store)->nzval,
+	nrmA = scnrm2_(&nnz32, (singlecomplex *)((DNformat *)A.Store)->nzval,
 		&i_1);
 	nrmB = scnrm2_(&m, b, &i_1);
 	sp_cgemv("N", none, &A, x, 1, one, b, 1);

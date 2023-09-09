@@ -209,14 +209,14 @@ cgstrf (superlu_options_t *options, SuperMatrix *A,
                                   options->Fact == SamePattern_SameRowPerm */
     int       *iperm_c; /* inverse of perm_c */
     int       *iwork;
-    complex    *cwork;
+    singlecomplex    *cwork;
     int	      *segrep, *repfnz, *parent;
     int	      *panel_lsub; /* dense[]/panel_lsub[] pair forms a w-wide SPA */
     int_t     *xprune, *xplore;
     int	      *marker;
-    complex    *dense, *tempv;
+    singlecomplex    *dense, *tempv;
     int       *relax_end;
-    complex    *a;
+    singlecomplex    *a;
     int_t     *asub, *xa_begin, *xa_end;
     int_t     *xlsub, *xlusup, *xusub;
     int       *xsup, *supno;
@@ -432,21 +432,21 @@ cgstrf (superlu_options_t *options, SuperMatrix *A,
            may have changed, */
         ((SCformat *)L->Store)->nnz = nnzL;
 	((SCformat *)L->Store)->nsuper = Glu->supno[n];
-	((SCformat *)L->Store)->nzval = (complex *) Glu->lusup;
+	((SCformat *)L->Store)->nzval = (singlecomplex *) Glu->lusup;
 	((SCformat *)L->Store)->nzval_colptr = Glu->xlusup;
 	((SCformat *)L->Store)->rowind = Glu->lsub;
 	((SCformat *)L->Store)->rowind_colptr = Glu->xlsub;
 	((NCformat *)U->Store)->nnz = nnzU;
-	((NCformat *)U->Store)->nzval = (complex *) Glu->ucol;
+	((NCformat *)U->Store)->nzval = (singlecomplex *) Glu->ucol;
 	((NCformat *)U->Store)->rowind = Glu->usub;
 	((NCformat *)U->Store)->colptr = Glu->xusub;
     } else {
         cCreate_SuperNode_Matrix(L, A->nrow, min_mn, nnzL, 
-	      (complex *) Glu->lusup, Glu->xlusup, 
+	      (singlecomplex *) Glu->lusup, Glu->xlusup, 
               Glu->lsub, Glu->xlsub, Glu->supno, Glu->xsup,
               SLU_SC, SLU_C, SLU_TRLU);
     	cCreate_CompCol_Matrix(U, min_mn, min_mn, nnzU, 
-	      (complex *) Glu->ucol, Glu->usub, Glu->xusub,
+	      (singlecomplex *) Glu->ucol, Glu->usub, Glu->xusub,
               SLU_NC, SLU_C, SLU_TRU);
     }
     

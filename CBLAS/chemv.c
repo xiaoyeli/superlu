@@ -6,8 +6,8 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int chemv_(char *uplo, integer *n, complex *alpha, complex *
-	a, integer *lda, complex *x, integer *incx, complex *beta, complex *y,
+/* Subroutine */ int chemv_(char *uplo, integer *n, singlecomplex *alpha, singlecomplex *
+	a, integer *lda, singlecomplex *x, integer *incx, singlecomplex *beta, singlecomplex *y,
 	 integer *incy)
 {
 
@@ -15,14 +15,14 @@
     /* System generated locals */
 
     doublereal d__1;
-    complex q__1, q__2, q__3, q__4;
+    singlecomplex q__1, q__2, q__3, q__4;
 
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     integer info;
-    complex temp1, temp2;
+    singlecomplex temp1, temp2;
     integer i, j;
     integer ix, iy, jx, jy, kx, ky;
 

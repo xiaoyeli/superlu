@@ -1,7 +1,7 @@
 #include "f2c.h"
 /*#include "blaswrap.h"*/
 
-/* Subroutine */ int cswap_(integer *n, complex *cx, integer *incx, complex *
+/* Subroutine */ int cswap_(integer *n, singlecomplex *cx, integer *incx, singlecomplex *
 	cy, integer *incy)
 {
     /* System generated locals */
@@ -9,7 +9,7 @@
 
     /* Local variables */
     integer i__, ix, iy;
-    complex ctemp;
+    singlecomplex ctemp;
 
 /*     .. Scalar Arguments .. */
 /*     .. */

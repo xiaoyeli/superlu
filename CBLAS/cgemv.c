@@ -6,22 +6,22 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int cgemv_(char *trans, integer *m, integer *n, complex *
-	alpha, complex *a, integer *lda, complex *x, integer *incx, complex *
-	beta, complex *y, integer *incy)
+/* Subroutine */ int cgemv_(char *trans, integer *m, integer *n, singlecomplex *
+	alpha, singlecomplex *a, integer *lda, singlecomplex *x, integer *incx, singlecomplex *
+	beta, singlecomplex *y, integer *incy)
 {
 
 
     /* System generated locals */
 
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
 
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     integer info;
-    complex temp;
+    singlecomplex temp;
     integer lenx, leny, i, j;
     integer ix, iy, jx, jy, kx, ky;
     logical noconj;

@@ -63,14 +63,14 @@ cPivotGrowth(int ncols, SuperMatrix *A, int *perm_c,
     NCformat *Astore;
     SCformat *Lstore;
     NCformat *Ustore;
-    complex  *Aval, *Lval, *Uval;
+    singlecomplex  *Aval, *Lval, *Uval;
     int      fsupc, nsupr;
     int_t    luptr, nz_in_U;
     int_t    i, j, k, oldcol;
     int      *inv_perm_c;
     float   rpg, maxaj, maxuj;
     float   smlnum;
-    complex   *luval;
+    singlecomplex   *luval;
    
     /* Get machine constants. */
     smlnum = smach("S");

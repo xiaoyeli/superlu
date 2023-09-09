@@ -1,0 +1,359 @@
+diff --git a/CBLAS/caxpy.c b/CBLAS/caxpy.c
+index 26c31e2..abe8d2a 100644
+--- a/CBLAS/caxpy.c
++++ b/CBLAS/caxpy.c
+@@ -6,18 +6,18 @@
+ 
+ #include "f2c.h"
+ 
+-/* Subroutine */ int caxpy_(integer *n, complex *ca, complex *cx, integer *
+-	incx, complex *cy, integer *incy)
++/* Subroutine */ int caxpy_(integer *n, singlecomplex *ca, singlecomplex *cx, integer *
++	incx, singlecomplex *cy, integer *incy)
+ {
+ 
+ 
+     /* System generated locals */
+ 
+     real r__1, r__2;
+-    complex q__1, q__2;
++    singlecomplex q__1, q__2;
+ 
+     /* Builtin functions */
+-    double r_imag(complex *);
++    double r_imag(singlecomplex *);
+ 
+     /* Local variables */
+     integer i, ix, iy;
+diff --git a/CBLAS/ccopy.c b/CBLAS/ccopy.c
+index 919360d..8e0fde1 100644
+--- a/CBLAS/ccopy.c
++++ b/CBLAS/ccopy.c
+@@ -6,7 +6,7 @@
+ 
+ #include "f2c.h"
+ 
+-/* Subroutine */ int ccopy_(integer *n, complex *cx, integer *incx, complex *
++/* Subroutine */ int ccopy_(integer *n, singlecomplex *cx, integer *incx, singlecomplex *
+ 	cy, integer *incy)
+ {
+ 
+diff --git a/CBLAS/cdotc.c b/CBLAS/cdotc.c
+index 08b900a..53ab7a7 100644
+--- a/CBLAS/cdotc.c
++++ b/CBLAS/cdotc.c
+@@ -5,19 +5,19 @@
+ 
+ #include "f2c.h"
+ 
+-/* Complex */ VOID cdotc_(complex * ret_val, integer *n, complex *cx, integer 
+-	*incx, complex *cy, integer *incy)
++/* Complex */ VOID cdotc_(singlecomplex * ret_val, integer *n, singlecomplex *cx, integer 
++	*incx, singlecomplex *cy, integer *incy)
+ {
+     /* System generated locals */
+  
+-    complex q__1, q__2, q__3;
++    singlecomplex q__1, q__2, q__3;
+ 
+     /* Builtin functions */
+-    void r_cnjg(complex *, complex *);
++    void r_cnjg(singlecomplex *, singlecomplex *);
+ 
+     /* Local variables */
+     integer i;
+-    complex ctemp;
++    singlecomplex ctemp;
+     integer ix, iy;
+ 
+ 
+diff --git a/CBLAS/cgemv.c b/CBLAS/cgemv.c
+index d98a8cd..1fe25a0 100644
+--- a/CBLAS/cgemv.c
++++ b/CBLAS/cgemv.c
+@@ -6,22 +6,22 @@
+ #include <string.h>
+ #include "f2c.h"
+ 
+-/* Subroutine */ int cgemv_(char *trans, integer *m, integer *n, complex *
+-	alpha, complex *a, integer *lda, complex *x, integer *incx, complex *
+-	beta, complex *y, integer *incy)
++/* Subroutine */ int cgemv_(char *trans, integer *m, integer *n, singlecomplex *
++	alpha, singlecomplex *a, integer *lda, singlecomplex *x, integer *incx, singlecomplex *
++	beta, singlecomplex *y, integer *incy)
+ {
+ 
+ 
+     /* System generated locals */
+ 
+-    complex q__1, q__2, q__3;
++    singlecomplex q__1, q__2, q__3;
+ 
+     /* Builtin functions */
+-    void r_cnjg(complex *, complex *);
++    void r_cnjg(singlecomplex *, singlecomplex *);
+ 
+     /* Local variables */
+     integer info;
+-    complex temp;
++    singlecomplex temp;
+     integer lenx, leny, i, j;
+     integer ix, iy, jx, jy, kx, ky;
+     logical noconj;
+diff --git a/CBLAS/cgerc.c b/CBLAS/cgerc.c
+index abb5a82..14fa883 100644
+--- a/CBLAS/cgerc.c
++++ b/CBLAS/cgerc.c
+@@ -6,21 +6,21 @@
+ 
+ #include "f2c.h"
+ 
+-/* Subroutine */ int cgerc_(integer *m, integer *n, complex *alpha, complex *
+-	x, integer *incx, complex *y, integer *incy, complex *a, integer *lda)
++/* Subroutine */ int cgerc_(integer *m, integer *n, singlecomplex *alpha, singlecomplex *
++	x, integer *incx, singlecomplex *y, integer *incy, singlecomplex *a, integer *lda)
+ {
+ 
+ 
+     /* System generated locals */
+ 
+-    complex q__1, q__2;
++    singlecomplex q__1, q__2;
+ 
+     /* Builtin functions */
+-    void r_cnjg(complex *, complex *);
++    void r_cnjg(singlecomplex *, singlecomplex *);
+ 
+     /* Local variables */
+     integer info;
+-    complex temp;
++    singlecomplex temp;
+     integer i, j, ix, jy, kx;
+ 
+     extern int input_error(char *, int *);
+diff --git a/CBLAS/chemv.c b/CBLAS/chemv.c
+index a8ac576..2c2a4f2 100644
+--- a/CBLAS/chemv.c
++++ b/CBLAS/chemv.c
+@@ -6,8 +6,8 @@
+ #include <string.h>
+ #include "f2c.h"
+ 
+-/* Subroutine */ int chemv_(char *uplo, integer *n, complex *alpha, complex *
+-	a, integer *lda, complex *x, integer *incx, complex *beta, complex *y,
++/* Subroutine */ int chemv_(char *uplo, integer *n, singlecomplex *alpha, singlecomplex *
++	a, integer *lda, singlecomplex *x, integer *incx, singlecomplex *beta, singlecomplex *y,
+ 	 integer *incy)
+ {
+ 
+@@ -15,14 +15,14 @@
+     /* System generated locals */
+ 
+     doublereal d__1;
+-    complex q__1, q__2, q__3, q__4;
++    singlecomplex q__1, q__2, q__3, q__4;
+ 
+     /* Builtin functions */
+-    void r_cnjg(complex *, complex *);
++    void r_cnjg(singlecomplex *, singlecomplex *);
+ 
+     /* Local variables */
+     integer info;
+-    complex temp1, temp2;
++    singlecomplex temp1, temp2;
+     integer i, j;
+     integer ix, iy, jx, jy, kx, ky;
+ 
+diff --git a/CBLAS/cher2.c b/CBLAS/cher2.c
+index 101b28f..074ae77 100644
+--- a/CBLAS/cher2.c
++++ b/CBLAS/cher2.c
+@@ -6,22 +6,22 @@
+ #include <string.h>
+ #include "f2c.h"
+ 
+-/* Subroutine */ int cher2_(char *uplo, integer *n, complex *alpha, complex *
+-	x, integer *incx, complex *y, integer *incy, complex *a, integer *lda)
++/* Subroutine */ int cher2_(char *uplo, integer *n, singlecomplex *alpha, singlecomplex *
++	x, integer *incx, singlecomplex *y, integer *incy, singlecomplex *a, integer *lda)
+ {
+ 
+ 
+     /* System generated locals */
+ 
+     doublereal d__1;
+-    complex q__1, q__2, q__3, q__4;
++    singlecomplex q__1, q__2, q__3, q__4;
+ 
+     /* Builtin functions */
+-    void r_cnjg(complex *, complex *);
++    void r_cnjg(singlecomplex *, singlecomplex *);
+ 
+     /* Local variables */
+     integer info;
+-    complex temp1, temp2;
++    singlecomplex temp1, temp2;
+     integer i, j;
+     integer ix, iy, jx, jy, kx, ky;
+ 
+diff --git a/CBLAS/cscal.c b/CBLAS/cscal.c
+index bd0cdf2..3738df4 100644
+--- a/CBLAS/cscal.c
++++ b/CBLAS/cscal.c
+@@ -6,14 +6,14 @@
+ 
+ #include "f2c.h"
+ 
+-/* Subroutine */ int cscal_(integer *n, complex *ca, complex *cx, integer *
++/* Subroutine */ int cscal_(integer *n, singlecomplex *ca, singlecomplex *cx, integer *
+ 	incx)
+ {
+ 
+ 
+     /* System generated locals */
+ 
+-    complex q__1;
++    singlecomplex q__1;
+ 
+     /* Local variables */
+     integer i, nincx;
+diff --git a/CBLAS/cswap.c b/CBLAS/cswap.c
+index 9c3dea2..5ab2e0d 100644
+--- a/CBLAS/cswap.c
++++ b/CBLAS/cswap.c
+@@ -1,7 +1,7 @@
+ #include "f2c.h"
+ /*#include "blaswrap.h"*/
+ 
+-/* Subroutine */ int cswap_(integer *n, complex *cx, integer *incx, complex *
++/* Subroutine */ int cswap_(integer *n, singlecomplex *cx, integer *incx, singlecomplex *
+ 	cy, integer *incy)
+ {
+     /* System generated locals */
+@@ -9,7 +9,7 @@
+ 
+     /* Local variables */
+     integer i__, ix, iy;
+-    complex ctemp;
++    singlecomplex ctemp;
+ 
+ /*     .. Scalar Arguments .. */
+ /*     .. */
+diff --git a/CBLAS/ctrsv.c b/CBLAS/ctrsv.c
+index e791a0c..01335b5 100644
+--- a/CBLAS/ctrsv.c
++++ b/CBLAS/ctrsv.c
+@@ -7,20 +7,20 @@
+ #include "f2c.h"
+ 
+ /* Subroutine */ int ctrsv_(char *uplo, char *trans, char *diag, integer *n, 
+-	complex *a, integer *lda, complex *x, integer *incx)
++	singlecomplex *a, integer *lda, singlecomplex *x, integer *incx)
+ {
+ 
+ 
+     /* System generated locals */
+ 
+-    complex q__1, q__2, q__3;
++    singlecomplex q__1, q__2, q__3;
+ 
+     /* Builtin functions */
+-    void c_div(complex *, complex *, complex *), r_cnjg(complex *, complex *);
++    void c_div(singlecomplex *, singlecomplex *, singlecomplex *), r_cnjg(singlecomplex *, singlecomplex *);
+ 
+     /* Local variables */
+     integer info;
+-    complex temp;
++    singlecomplex temp;
+     integer i, j;
+     integer ix, jx, kx;
+     logical noconj, nounit;
+diff --git a/CBLAS/f2c.h b/CBLAS/f2c.h
+index 3116864..5a91474 100644
+--- a/CBLAS/f2c.h
++++ b/CBLAS/f2c.h
+@@ -21,7 +21,7 @@ typedef char *address;
+ typedef short int shortint;
+ typedef float real;
+ typedef double doublereal;
+-typedef struct { real r, i; } complex;
++typedef struct { real r, i; } singlecomplex;
+ typedef struct { doublereal r, i; } doublecomplex;
+ typedef short int shortlogical;
+ typedef char logical1;
+diff --git a/CBLAS/icamax.c b/CBLAS/icamax.c
+index 1e83173..a2df71f 100644
+--- a/CBLAS/icamax.c
++++ b/CBLAS/icamax.c
+@@ -1,12 +1,12 @@
+ #include "f2c.h"
+ 
+-integer icamax_(integer *n, complex *cx, integer *incx)
++integer icamax_(integer *n, singlecomplex *cx, integer *incx)
+ {
+     /* System generated locals */
+ integer ret_val, i__1, i__2;
+     real r__1, r__2;
+     /* Builtin functions */
+-    double r_imag(complex *);
++    double r_imag(singlecomplex *);
+     /* Local variables */
+     real smax;
+     integer i, ix;
+diff --git a/CBLAS/scasum.c b/CBLAS/scasum.c
+index 7f11321..e9298fa 100644
+--- a/CBLAS/scasum.c
++++ b/CBLAS/scasum.c
+@@ -6,7 +6,7 @@
+ 
+ #include "f2c.h"
+ 
+-real scasum_(integer *n, complex *cx, integer *incx)
++real scasum_(integer *n, singlecomplex *cx, integer *incx)
+ {
+ 
+ 
+@@ -15,7 +15,7 @@ real scasum_(integer *n, complex *cx, integer *incx)
+     real ret_val, r__1, r__2;
+ 
+     /* Builtin functions */
+-    double r_imag(complex *);
++    double r_imag(singlecomplex *);
+ 
+     /* Local variables */
+     integer i, nincx;
+diff --git a/CBLAS/scnrm2.c b/CBLAS/scnrm2.c
+index 287fd26..b22ac86 100644
+--- a/CBLAS/scnrm2.c
++++ b/CBLAS/scnrm2.c
+@@ -6,7 +6,7 @@
+ 
+ #include "f2c.h"
+ 
+-real scnrm2_(integer *n, complex *x, integer *incx)
++real scnrm2_(integer *n, singlecomplex *x, integer *incx)
+ {
+ 
+ 
+@@ -15,7 +15,7 @@ real scnrm2_(integer *n, complex *x, integer *incx)
+     real ret_val, r__1;
+ 
+     /* Builtin functions */
+-    double r_imag(complex *), sqrt(doublereal);
++    double r_imag(singlecomplex *), sqrt(doublereal);
+ 
+     /* Local variables */
+     real temp, norm, scale;
+diff --git a/CBLAS/superlu_f2c.h b/CBLAS/superlu_f2c.h
+index caa33e1..ad43283 100644
+--- a/CBLAS/superlu_f2c.h
++++ b/CBLAS/superlu_f2c.h
+@@ -21,7 +21,7 @@ typedef char *address;
+ typedef short int shortint;
+ typedef float real;
+ typedef double doublereal;
+-typedef struct { real r, i; } complex;
++typedef struct { real r, i; } singlecomplex;
+ typedef struct { doublereal r, i; } doublecomplex;
+ typedef short int shortlogical;
+ typedef char logical1;

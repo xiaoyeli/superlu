@@ -73,7 +73,7 @@ cpanel_dfs (
 	   SuperMatrix *A,       /* in - original matrix */
 	   int        *perm_r,     /* in */
 	   int        *nseg,	   /* out */
-	   complex     *dense,      /* out */
+	   singlecomplex     *dense,      /* out */
 	   int        *panel_lsub, /* out */
 	   int        *segrep,     /* out */
 	   int        *repfnz,     /* out */
@@ -86,7 +86,7 @@ cpanel_dfs (
 {
 
     NCPformat *Astore;
-    complex    *a;
+    singlecomplex    *a;
     int_t     *asub;
     int_t     *xa_begin, *xa_end, k;
     int       krow, kmark, kperm;
@@ -95,7 +95,7 @@ cpanel_dfs (
     int       *marker1;	   /* marker1[jj] >= jcol if vertex jj was visited 
 			      by a previous column within this panel.   */
     int       *repfnz_col; /* start of each column in the panel */
-    complex    *dense_col;  /* start of each column in the panel */
+    singlecomplex    *dense_col;  /* start of each column in the panel */
     int_t     nextl_col;   /* next available position in panel_lsub[*,jj] */
     int       *xsup, *supno;
     int_t     *lsub, *xlsub;

@@ -48,7 +48,7 @@ at the top-level directory.
  * \param[out] resid  The maximum over the NRHS solution vectors of
  *                    ( norm(X-XACT) * RCOND ) / ( norm(XACT) * EPS )
  */
-int cgst04(int n, int nrhs, complex *x, int ldx, complex *xact,
+int cgst04(int n, int nrhs, singlecomplex *x, int ldx, singlecomplex *xact,
            int ldxact, float rcond, float *resid)
 {
     /* Table of constant values */
@@ -65,7 +65,7 @@ int cgst04(int n, int nrhs, complex *x, int ldx, complex *xact,
     float diffnm;
 
     /* Function prototypes */
-    extern int icamax_(int *, complex *, int *);
+    extern int icamax_(int *, singlecomplex *, int *);
 
     /* Quick exit if N = 0 or NRHS = 0. */
    if ( n <= 0 || nrhs <= 0 ) {

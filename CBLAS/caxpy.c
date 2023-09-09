@@ -6,18 +6,18 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int caxpy_(integer *n, complex *ca, complex *cx, integer *
-	incx, complex *cy, integer *incy)
+/* Subroutine */ int caxpy_(integer *n, singlecomplex *ca, singlecomplex *cx, integer *
+	incx, singlecomplex *cy, integer *incy)
 {
 
 
     /* System generated locals */
 
     real r__1, r__2;
-    complex q__1, q__2;
+    singlecomplex q__1, q__2;
 
     /* Builtin functions */
-    double r_imag(complex *);
+    double r_imag(singlecomplex *);
 
     /* Local variables */
     integer i, ix, iy;

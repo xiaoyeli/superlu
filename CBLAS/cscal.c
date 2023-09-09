@@ -6,14 +6,14 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int cscal_(integer *n, complex *ca, complex *cx, integer *
+/* Subroutine */ int cscal_(integer *n, singlecomplex *ca, singlecomplex *cx, integer *
 	incx)
 {
 
 
     /* System generated locals */
 
-    complex q__1;
+    singlecomplex q__1;
 
     /* Local variables */
     integer i, nincx;

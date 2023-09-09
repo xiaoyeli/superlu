@@ -2,7 +2,7 @@
 #include "../../SRC/slu_sdefs.h"
 
 /* Subroutine */ int clarnv_slu(int *idist, int *iseed, int *n,
-	complex *x)
+	singlecomplex *x)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -59,9 +59,9 @@
     /* System generated locals */
     int i__2, i__3;
     double d__1, d__2;
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
     /* Builtin functions */
-    void c_exp(complex *, complex *);
+    void c_exp(singlecomplex *, singlecomplex *);
     /* Local variables */
     static int i;
     static float u[128];

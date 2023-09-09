@@ -1,7 +1,7 @@
 #include <math.h>
 #include "../../SRC/slu_scomplex.h"
 
-/* Subroutine */ int clartg_slu(complex *f, complex *g, float *cs, complex *sn, complex *r)
+/* Subroutine */ int clartg_slu(singlecomplex *f, singlecomplex *g, float *cs, singlecomplex *sn, singlecomplex *r)
 {
 /*  -- LAPACK auxiliary routine (version 2.0) --   
        Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,   
@@ -51,13 +51,13 @@
     /* System generated locals */
     float r__1, r__2;
     double d__1;
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
-    double c_abs(complex *), r_imag(complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
+    double c_abs(singlecomplex *), r_imag(singlecomplex *);
     /* Local variables */
     static float d, f1, f2, g1, g2, fa, ga, di;
-    static complex fs, gs, ss;
+    static singlecomplex fs, gs, ss;
 
 
     if (g->r == 0.f && g->i == 0.f) {

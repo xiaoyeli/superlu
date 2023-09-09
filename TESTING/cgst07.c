@@ -69,8 +69,8 @@ at the top-level directory.
  *                    RESLTS(1) = norm(X - XACT) / ( norm(X) * FERR )
  *                    RESLTS(2) = BERR / ( (n+1)*EPS + (*) )
  */
-int cgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, complex *b,
-           int ldb, complex *x, int ldx, complex *xact,
+int cgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, singlecomplex *b,
+           int ldb, singlecomplex *x, int ldx, singlecomplex *xact,
            int ldxact, float *ferr, float *berr, float *reslts)
 {
     /* Table of constant values */
@@ -90,11 +90,11 @@ int cgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, complex *b,
     int    notran;
     float eps, tmp;
     float *rwork;
-    complex *Aval;
+    singlecomplex *Aval;
     NCformat *Astore;
 
     /* Function prototypes */
-    extern int    icamax_(int *, complex *, int *);
+    extern int    icamax_(int *, singlecomplex *, int *);
 
 
     /* Quick exit if N = 0 or NRHS = 0. */
@@ -112,7 +112,7 @@ int cgst07(trans_t trans, int n, int nrhs, SuperMatrix *A, complex *b,
     rwork  = (float *) SUPERLU_MALLOC(n*sizeof(float));
     if ( !rwork ) ABORT("SUPERLU_MALLOC fails for rwork");
     Astore = A->Store;
-    Aval   = (complex *) Astore->nzval;
+    Aval   = (singlecomplex *) Astore->nzval;
     
     /* Test 1:  Compute the maximum of   
        norm(X - XACT) / ( norm(X) * FERR )   

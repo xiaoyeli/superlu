@@ -7,43 +7,43 @@
 
 /* Table of constant values */
 
-static complex c_b1 = {0.f,0.f};
-static complex c_b2 = {1.f,0.f};
+static singlecomplex c_b1 = {0.f,0.f};
+static singlecomplex c_b2 = {1.f,0.f};
 static int c__3 = 3;
 static int c__1 = 1;
 
 /* Subroutine */ int claror_slu(char *side, char *init, int *m, int *n,
-	complex *a, int *lda, int *iseed, complex *x, int *info)
+	singlecomplex *a, int *lda, int *iseed, singlecomplex *x, int *info)
 {
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
-    complex q__1, q__2;
+    singlecomplex q__1, q__2;
 
     /* Builtin functions */
-    double c_abs(complex *);
-    void r_cnjg(complex *, complex *);
+    double c_abs(singlecomplex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static int kbeg, jcol;
     static float xabs;
     static int irow, j;
-    extern /* Subroutine */ int cgerc_(int *, int *, complex *,
-	    complex *, int *, complex *, int *, complex *, int *),
-	     cscal_(int *, complex *, complex *, int *);
-    extern /* Subroutine */ int cgemv_(char *, int *, int *, complex *
-	    , complex *, int *, complex *, int *, complex *, complex *
+    extern /* Subroutine */ int cgerc_(int *, int *, singlecomplex *,
+	    singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, int *),
+	     cscal_(int *, singlecomplex *, singlecomplex *, int *);
+    extern /* Subroutine */ int cgemv_(char *, int *, int *, singlecomplex *
+	    , singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, singlecomplex *
 	    , int *);
-    static complex csign;
+    static singlecomplex csign;
     static int ixfrm, itype, nxfrm;
     static float xnorm;
-    extern float scnrm2_(int *, complex *, int *);
-    extern /* Subroutine */ int clacgv_slu(int *, complex *, int *);
-    extern /* Complex */ void clarnd_slu(complex *, int *, int *);
-    extern /* Subroutine */ int claset_slu(char *, int *, int *, complex
-	    *, complex *, complex *, int *);
+    extern float scnrm2_(int *, singlecomplex *, int *);
+    extern /* Subroutine */ int clacgv_slu(int *, singlecomplex *, int *);
+    extern /* Complex */ void clarnd_slu(singlecomplex *, int *, int *);
+    extern /* Subroutine */ int claset_slu(char *, int *, int *, singlecomplex
+	    *, singlecomplex *, singlecomplex *, int *);
     extern int input_error(char *, int *);
     static float factor;
-    static complex xnorms;
+    static singlecomplex xnorms;
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

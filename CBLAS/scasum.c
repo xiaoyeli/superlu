@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-real scasum_(integer *n, complex *cx, integer *incx)
+real scasum_(integer *n, singlecomplex *cx, integer *incx)
 {
 
 
@@ -15,7 +15,7 @@ real scasum_(integer *n, complex *cx, integer *incx)
     real ret_val, r__1, r__2;
 
     /* Builtin functions */
-    double r_imag(complex *);
+    double r_imag(singlecomplex *);
 
     /* Local variables */
     integer i, nincx;

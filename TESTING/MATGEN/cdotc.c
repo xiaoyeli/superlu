@@ -1,19 +1,19 @@
 /*  -- translated by f2c (version 19940927).
 */
 
-/* Complex */ void cdotc_(complex * ret_val, int *n, complex *cx, int
-	*incx, complex *cy, int *incy)
+/* Complex */ void cdotc_(singlecomplex * ret_val, int *n, singlecomplex *cx, int
+	*incx, singlecomplex *cy, int *incy)
 {
     /* System generated locals */
     int i__1, i__2;
-    complex q__1, q__2, q__3;
+    singlecomplex q__1, q__2, q__3;
 
     /* Builtin functions */
-    void r_cnjg(complex *, complex *);
+    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static int i;
-    static complex ctemp;
+    static singlecomplex ctemp;
     static int ix, iy;
 
 

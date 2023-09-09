@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int ccopy_(integer *n, complex *cx, integer *incx, complex *
+/* Subroutine */ int ccopy_(integer *n, singlecomplex *cx, integer *incx, singlecomplex *
 	cy, integer *incy)
 {
 

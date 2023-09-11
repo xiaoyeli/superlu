@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   test:
     name: Build and test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -14,23 +14,16 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: sudo apt-get install csh clang
+        run: sudo apt-get install cmake
+
+      - name: Configure
+        run: cmake -B build
 
       - name: Build
-        run: |
-          cp MAKE_INC/make.linux make.inc
-          # We use ~ instead of / as a separator in sed, since $(pwd)
-          # also includes /
-          sed -i  "s~^SuperLUroot\s*=.*~SuperLUroot = $(pwd)~g" make.inc
-          sed -i  "s/^CC\s*=.*/CC = ${CC_CI}/g" make.inc
-          mkdir lib
-          make install lib
-        env:
-          CC_CI: ${{ matrix.compiler }}
-                
+        run: cmake --build build --parallel
+
       - name: Test
-        run: |
-          make testing
+        run: ctest --test-dir build --output-on-failure

@@ -9,7 +9,7 @@
 /* #undef HAVE_COLAMD */
 
 /* enable 64bit index mode */
-#define XSDK_INDEX_SIZE 64
+/* #undef XSDK_INDEX_SIZE */
 
 /* Integer type for indexing sparse matrix meta structure */
 #if (XSDK_INDEX_SIZE == 64)

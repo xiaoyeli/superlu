@@ -417,7 +417,7 @@ cgstrf (superlu_options_t *options, SuperMatrix *A,
     if (m > k) {
         /* if k == m, then all the row permutations are complete and
            we can short circuit looking through the rest of the vector */
-        for (i = k; i < m && k < m; ++i) {
+        for (i = 0; i < m && k < m; ++i) {
             if (perm_r[i] == EMPTY) {
                 perm_r[i] = k;
                 ++k;

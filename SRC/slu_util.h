@@ -317,7 +317,7 @@ typedef struct {
     int_t  size;
     int_t  used;
     int_t  top1;  /* grow upward, relative to &array[0] */
-    int_t top2;  /* grow downward */
+    int_t  top2;  /* grow downward */
     void *array;
 } LU_stack_t;
 

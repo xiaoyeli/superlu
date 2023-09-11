@@ -47,7 +47,7 @@ extern void    user_bcopy      (char *, char *, int);
 
 
 /*! \brief Setup the memory model to be used for factorization.
- *
+ *  
  *    lwork = 0: use system malloc;
  *    lwork > 0: use user-supplied work[] space.
  */
@@ -143,6 +143,7 @@ int zQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
  *      The amount of space used in bytes for the L\\U data structures.
  *    - <tt>total_needed (float)</tt>
  *      The amount of space needed in bytes to perform factorization.
+ *
  */
 int ilu_zQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
 {
@@ -332,11 +333,9 @@ zLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
 } /* zLUMemInit */
 
 /*! \brief Allocate known working storage.
- *
- * Returns 0 if success, otherwise returns the number of bytes 
- * allocated so far when failure occurred. 
-*/
-
+ * Returns 0 if success, otherwise
+ * returns the number of bytes allocated so far when failure occurred.
+ */
 int
 zLUWorkInit(int m, int n, int panel_size, int **iworkptr, 
             doublecomplex **dworkptr, GlobalLU_t *Glu)
@@ -371,7 +370,7 @@ zLUWorkInit(int m, int n, int panel_size, int **iworkptr,
 	    *dworkptr = (doublecomplex*) ((double*)*dworkptr - 1);
 	    extra = (char*)old_ptr - (char*)*dworkptr;
 #if ( DEBUGlevel>=1 )
-	    printf("zLUWorkInit: not aligned, extra %d\n", extra);
+	    printf("zLUWorkInit: not aligned, extra %d\n", extra); fflush(stdout);
 #endif	    
 	    Glu->stack.top2 -= extra;
 	    Glu->stack.used += extra;
@@ -383,7 +382,7 @@ zLUWorkInit(int m, int n, int panel_size, int **iworkptr,
     }
 	
     return 0;
-}
+} /* end zLUWorkInit */
 
 
 /*! \brief Set up pointers for real working arrays.
@@ -437,7 +436,7 @@ zLUMemXpand(int jcol,
     void   *new_mem;
     
 #if ( DEBUGlevel>=1 ) 
-    printf("zLUMemXpand(): jcol %d, next %lld, maxlen %lld, MemType %d\n",
+    printf("zLUMemXpand[1]: jcol %d, next %lld, maxlen %lld, MemType %d\n",
 	   jcol, (long long) next, (long long) *maxlen, mem_type);
 #endif    
 
@@ -543,7 +542,9 @@ void
 	expanders[type].mem = (void *) new_mem;
 	
     } else { /* MemModel == USER */
-	if ( Glu->num_expansions == 0 ) {
+    
+	if ( Glu->num_expansions == 0 ) { /* First time initialization */
+	
 	    new_mem = zuser_malloc(new_len * lword, HEAD, Glu);
 	    if ( NotDoubleAlign(new_mem) &&
 		(type == LUSUP || type == UCOL) ) {
@@ -556,8 +557,11 @@ void
 		Glu->stack.top1 += extra;
 		Glu->stack.used += extra;
 	    }
+	    
 	    expanders[type].mem = (void *) new_mem;
-	} else {
+	    
+	} else { /* CASE: num_expansions != 0 */
+	
 	    tries = 0;
 	    extra = (new_len - *prev_len) * lword;
 	    if ( keep_prev ) {
@@ -571,7 +575,11 @@ void
 		}
 	    }
 
-	    if ( type != USUB ) {
+	      /* Need to expand the memory: moving the content after the current MemType
+	      	 to make extra room for the current MemType.
+              	 Memory layout: [ LUSUP || UCOL || LSUB || USUB ]
+	      */
+  	    if ( type != USUB ) {
 		new_mem = (void*)((char*)expanders[type + 1].mem + extra);
 		bytes_to_copy = (char*)Glu->stack.array + Glu->stack.top1
 		    - (char*)expanders[type + 1].mem;
@@ -596,7 +604,7 @@ void
 		    Glu->stack.used += extra;
 		}
 		
-	    } /* if ... */
+	    } /* end expansion */
 
 	} /* else ... */
     }

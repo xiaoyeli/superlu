@@ -45,8 +45,6 @@ dreadtriple_noheader(int *m, int *n, int_t *nonz,
     int    zero_base = 0, ret_val = 0;
     FILE *fp = stdin;
 
-     */
-
     /* First pass: determine N and NNZ */
     nz = *n = 0;
 

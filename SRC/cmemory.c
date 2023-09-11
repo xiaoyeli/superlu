@@ -24,7 +24,7 @@ at the top-level directory.
 /* Internal prototypes */
 void  *cexpand (int_t *, MemType, int_t, int, GlobalLU_t *);
 int   cLUWorkInit (int, int, int, int **, singlecomplex **, GlobalLU_t *);
-void  copy_mem_complex (int_t, void *, void *);
+void  copy_mem_singlecomplex (int_t, void *, void *);
 void  cStackCompress (GlobalLU_t *);
 void  cSetupSpace (void *, int_t, GlobalLU_t *);
 void  *cuser_malloc (int, int, GlobalLU_t *);
@@ -143,6 +143,7 @@ int cQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
  *      The amount of space used in bytes for the L\\U data structures.
  *    - <tt>total_needed (float)</tt>
  *      The amount of space needed in bytes to perform factorization.
+ *
  */
 int ilu_cQuerySpace(SuperMatrix *L, SuperMatrix *U, mem_usage_t *mem_usage)
 {
@@ -331,8 +332,10 @@ cLUMemInit(fact_t fact, void *work, int_t lwork, int m, int n, int_t annz,
     
 } /* cLUMemInit */
 
-/*! \brief Allocate known working storage. Returns 0 if success, otherwise
-   returns the number of bytes allocated so far when failure occurred. */
+/*! \brief Allocate known working storage.
+ * Returns 0 if success, otherwise
+ * returns the number of bytes allocated so far when failure occurred.
+ */
 int
 cLUWorkInit(int m, int n, int panel_size, int **iworkptr, 
             singlecomplex **dworkptr, GlobalLU_t *Glu)
@@ -367,7 +370,7 @@ cLUWorkInit(int m, int n, int panel_size, int **iworkptr,
 	    *dworkptr = (singlecomplex*) ((double*)*dworkptr - 1);
 	    extra = (char*)old_ptr - (char*)*dworkptr;
 #if ( DEBUGlevel>=1 )
-	    printf("cLUWorkInit: not aligned, extra %d\n", extra);
+	    printf("cLUWorkInit: not aligned, extra %d\n", extra); fflush(stdout);
 #endif	    
 	    Glu->stack.top2 -= extra;
 	    Glu->stack.used += extra;
@@ -379,7 +382,7 @@ cLUWorkInit(int m, int n, int panel_size, int **iworkptr,
     }
 	
     return 0;
-}
+} /* end cLUWorkInit */
 
 
 /*! \brief Set up pointers for real working arrays.
@@ -433,7 +436,7 @@ cLUMemXpand(int jcol,
     void   *new_mem;
     
 #if ( DEBUGlevel>=1 ) 
-    printf("cLUMemXpand(): jcol %d, next %lld, maxlen %lld, MemType %d\n",
+    printf("cLUMemXpand[1]: jcol %d, next %lld, maxlen %lld, MemType %d\n",
 	   jcol, (long long) next, (long long) *maxlen, mem_type);
 #endif    
 
@@ -476,7 +479,7 @@ cLUMemXpand(int jcol,
 
 
 void
-copy_mem_complex(int_t howmany, void *old, void *new)
+copy_mem_singlecomplex(int_t howmany, void *old, void *new)
 {
     register int_t i;
     singlecomplex *dold = old;
@@ -532,14 +535,16 @@ void
 	    if ( type == LSUB || type == USUB ) {
 		copy_mem_int(len_to_copy, expanders[type].mem, new_mem);
 	    } else {
-		copy_mem_complex(len_to_copy, expanders[type].mem, new_mem);
+		copy_mem_singlecomplex(len_to_copy, expanders[type].mem, new_mem);
 	    }
 	    SUPERLU_FREE (expanders[type].mem);
 	}
 	expanders[type].mem = (void *) new_mem;
 	
     } else { /* MemModel == USER */
-	if ( Glu->num_expansions == 0 ) {
+    
+	if ( Glu->num_expansions == 0 ) { /* First time initialization */
+	
 	    new_mem = cuser_malloc(new_len * lword, HEAD, Glu);
 	    if ( NotDoubleAlign(new_mem) &&
 		(type == LUSUP || type == UCOL) ) {
@@ -552,8 +557,11 @@ void
 		Glu->stack.top1 += extra;
 		Glu->stack.used += extra;
 	    }
+	    
 	    expanders[type].mem = (void *) new_mem;
-	} else {
+	    
+	} else { /* CASE: num_expansions != 0 */
+	
 	    tries = 0;
 	    extra = (new_len - *prev_len) * lword;
 	    if ( keep_prev ) {
@@ -567,7 +575,11 @@ void
 		}
 	    }
 
-	    if ( type != USUB ) {
+	      /* Need to expand the memory: moving the content after the current MemType
+	      	 to make extra room for the current MemType.
+              	 Memory layout: [ LUSUP || UCOL || LSUB || USUB ]
+	      */
+  	    if ( type != USUB ) {
 		new_mem = (void*)((char*)expanders[type + 1].mem + extra);
 		bytes_to_copy = (char*)Glu->stack.array + Glu->stack.top1
 		    - (char*)expanders[type + 1].mem;
@@ -592,7 +604,7 @@ void
 		    Glu->stack.used += extra;
 		}
 		
-	    } /* if ... */
+	    } /* end expansion */
 
 	} /* else ... */
     }
@@ -632,7 +644,7 @@ cStackCompress(GlobalLU_t *Glu)
     
     dfrom = ucol;
     dto = (singlecomplex *)((char*)lusup + xlusup[ndim] * dword);
-    copy_mem_complex(xusub[ndim], dfrom, dto);
+    copy_mem_singlecomplex(xusub[ndim], dfrom, dto);
     ucol = dto;
 
     ifrom = lsub;
@@ -678,7 +690,7 @@ singlecomplex *complexMalloc(size_t n)
     singlecomplex *buf;
     buf = (singlecomplex *) SUPERLU_MALLOC(n * (size_t) sizeof(singlecomplex)); 
     if ( !buf ) {
-	ABORT("SUPERLU_MALLOC failed for buf in complexMalloc()\n");
+	ABORT("SUPERLU_MALLOC failed for buf in singlecomplexMalloc()\n");
     }
     return (buf);
 }
@@ -690,7 +702,7 @@ singlecomplex *complexCalloc(size_t n)
     singlecomplex zero = {0.0, 0.0};
     buf = (singlecomplex *) SUPERLU_MALLOC(n * (size_t) sizeof(singlecomplex));
     if ( !buf ) {
-	ABORT("SUPERLU_MALLOC failed for buf in complexCalloc()\n");
+	ABORT("SUPERLU_MALLOC failed for buf in singlecomplexCalloc()\n");
     }
     for (i = 0; i < n; ++i) buf[i] = zero;
     return (buf);

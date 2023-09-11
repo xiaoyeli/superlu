@@ -408,16 +408,24 @@ cgstrf (superlu_options_t *options, SuperMatrix *A,
     } /* for */
 
     *info = iinfo;
-    
-    if ( m > n ) {
-	k = 0;
-        for (i = 0; i < m; ++i) 
-            if ( perm_r[i] == EMPTY ) {
-    		perm_r[i] = n + k;
-		++k;
-	    }
-    }
 
+    /* Complete perm_r[] for rank-deficient or tall-skinny matrices */
+    /* k is the rank of U
+       pivots have been completed for rows < k
+       Now fill in the pivots for rows k to m */
+    k = iinfo == 0 ? n : (int)iinfo - 1;
+    if (m > k) {
+        /* if k == m, then all the row permutations are complete and
+           we can short circuit looking through the rest of the vector */
+        for (i = k; i < m && k < m; ++i) {
+            if (perm_r[i] == EMPTY) {
+                perm_r[i] = k;
+                ++k;
+            }
+
+        }
+    }
+    
     countnz(min_mn, xprune, &nnzL, &nnzU, Glu);
     fixupL(min_mn, perm_r, Glu);
 

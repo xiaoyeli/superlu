@@ -513,7 +513,7 @@ int main(int argc, char *argv[])
 	Destroy_SuperMatrix_Store(&U);
     }
 
-    return 0;
+    return nfail == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
 /*!

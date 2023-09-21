@@ -239,7 +239,7 @@ add_subdirectory(EXAMPLE)
 
 if (enable_doc)
    add_subdirectory(DOC)
-endif
+endif()
 
 # Generate various configure files with proper definitions
 

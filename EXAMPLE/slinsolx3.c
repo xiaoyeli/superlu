@@ -269,7 +269,7 @@ int main(int argc, char *argv[])
  */
 void
 parse_command_line(int argc, char *argv[], int *lwork,
-                   double *u, yes_no_t *equil, trans_t *trans )
+                   float *u, yes_no_t *equil, trans_t *trans )
 {
     int c;
     extern char *optarg;

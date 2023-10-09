@@ -28,6 +28,9 @@ at the top-level directory.
 #include <getopt.h>
 #include "slu_sdefs.h"
 
+void parse_command_line(int argc, char *argv[], int *lwork,
+                        float *u, yes_no_t *equil, trans_t *trans);
+
 /*!
  * \brief The driver program SLINSOLX2.
  *
@@ -64,8 +67,6 @@ int main(int argc, char *argv[])
     superlu_options_t options;
     SuperLUStat_t stat;
     FILE 	   *fp = stdin;
-
-    extern void    parse_command_line();
 
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Enter main()");
@@ -269,7 +270,7 @@ int main(int argc, char *argv[])
  */
 void
 parse_command_line(int argc, char *argv[], int *lwork,
-                   double *u, yes_no_t *equil, trans_t *trans )
+                   float *u, yes_no_t *equil, trans_t *trans )
 {
     int c;
     extern char *optarg;

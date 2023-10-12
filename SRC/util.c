@@ -452,7 +452,7 @@ float SpaSize(int n, int np, float sum_npw)
 
 float DenseSize(int n, float sum_nw)
 {
-    return (sum_nw*8 + n*8)/1024.;;
+    return (sum_nw*8 + n*8)/1024.;
 }
 
 

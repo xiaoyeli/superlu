@@ -406,12 +406,11 @@ void ifill(int *a, int alen, int ival)
 
 /*! \brief Get the statistics of the supernodes 
  */
-#define NBUCKS 10
-
 void super_stats(int nsuper, int *xsup)
 {
     register int nsup1 = 0;
     int    i, isize, whichb, bl, bh;
+    const int NBUCKS = 10;
     int    bucket[NBUCKS];
     int    max_sup_size = 0;
 

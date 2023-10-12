@@ -1,4 +1,4 @@
-/*! \file
+/*
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -8,16 +8,17 @@ All rights reserved.
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
-/*! @file get_perm_c.c
- * \brief Matrix permutation operations
- *
- * <pre>
+/*
  * -- SuperLU routine (version 3.1) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * August 1, 2008
  * March 25, 2023  add METIS option
- * </pre>
+ */
+/*! \file
+ * \brief Matrix permutation operations
+ *
+ * \ingroup Common
  */
 #include "slu_ddefs.h"
 #include "colamd.h"

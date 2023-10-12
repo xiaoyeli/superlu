@@ -55,6 +55,8 @@ double SuperLU_timer_()
 #endif
 
 /*! \brief Timer function
+ *
+ * \return The time in seconds used by the process.
  */ 
 double SuperLU_timer_()
 {
@@ -80,6 +82,8 @@ double SuperLU_timer_()
 #include <stdlib.h>
 
 /*! \brief Timer function
+ *
+ * \return The time in seconds used by the process.
  */ 
 double SuperLU_timer_(void)
 {
@@ -91,4 +95,3 @@ double SuperLU_timer_(void)
 }
 
 #endif
-

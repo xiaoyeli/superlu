@@ -488,15 +488,14 @@ PrintSumm(char *type, int nfail, int nrun, int nerrs)
 }
 
 
-int print_int_vec(char *what, int n, int *vec)
+void print_int_vec(char *what, int n, int *vec)
 {
     int i;
     printf("%s\n", what);
     for (i = 0; i < n; ++i) printf("%d\t%d\n", i, vec[i]);
-    return 0;
 }
 
-int slu_PrintInt10(char *name, int len, int *x)
+void slu_PrintInt10(char *name, int len, int *x)
 {
     register int i;
     
@@ -507,10 +506,9 @@ int slu_PrintInt10(char *name, int len, int *x)
 	printf("%6d", x[i]);
     }
     printf("\n");
-    return 0;
 }
 
-int check_perm(char *what, int n, int *perm)
+void check_perm(char *what, int n, int *perm)
 {
     register int i;
     int          *marker;
@@ -529,5 +527,4 @@ int check_perm(char *what, int n, int *perm)
 
     SUPERLU_FREE(marker);
     printf("check_perm: %s: n %d\n", what, n);
-    return 0;
 }

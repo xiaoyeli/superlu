@@ -76,7 +76,7 @@ sp_preorder(superlu_options_t *options,  SuperMatrix *A, int *perm_c,
     NCPformat *ACstore;
     int       *iwork, *post;
     register  int n, i;
-    extern int check_perm(char *what, int n, int *perm);
+    extern void check_perm(char *what, int n, int *perm);
 	
     n = A->ncol;
     

@@ -19,6 +19,11 @@ ZFEXMOBJ = z_f_main.o zhbcode1.o c_fortran_zgssv.o
 
 all:	dfexm zfexm test_omp
 
+superlu_config.fh: ../SRC/superlu_config.h
+	sed 's/\/.*$$//' < $< > temp.fh
+	sed '/typedef/ d' < temp.fh > $@
+	rm temp.fh
+
 dfexm: $(DFEXMOBJ) $(SUPERLULIB)
 	$(FORTRAN) $(LOADOPTS) $(DFEXMOBJ) $(LIBS) -o $@
 

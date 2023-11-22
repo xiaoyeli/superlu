@@ -9,7 +9,7 @@ set(NVAL   9 19)
 set(NRHS   2)
 set(LWORK  0 10000000)
 
-function(add_superlu_test output input target)
+function(add_superlu_test target input)
   set(TEST_INPUT "${SuperLU_SOURCE_DIR}/EXAMPLE/${input}")
 
   foreach (s ${NRHS})

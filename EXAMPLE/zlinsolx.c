@@ -26,6 +26,9 @@ at the top-level directory.
 #include <getopt.h>
 #include "slu_zdefs.h"
 
+void parse_command_line(int argc, char *argv[], int *lwork,
+                        double *u, yes_no_t *equil, trans_t *trans);
+
 int main(int argc, char *argv[])
 {
     char           equed[1];
@@ -55,8 +58,6 @@ int main(int argc, char *argv[])
     superlu_options_t options;
     SuperLUStat_t stat;
     FILE           *fp = stdin;
-
-    extern void  parse_command_line();
 
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Enter main()");

@@ -3,6 +3,13 @@
  */
 
 /*!
+ \defgroup Common
+ \brief Common code shared within SuperLU.
+
+ Type-independent code.
+ */
+
+/*!
  \defgroup Example
  \brief Examples of how to use SuperLU.
 

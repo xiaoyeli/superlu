@@ -3,27 +3,42 @@ name: Test library
 on: [push, pull_request]
 
 jobs:
-  test:
-    name: Build and test
+  test-minimal-ubuntu:
+    name: Ubuntu minimal build and test
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        compiler:
-          - gcc
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: sudo apt-get install cmake
+        run: sudo apt-get install cmake clang
 
       - name: Configure
-        run: cmake -B build
+        run: cmake -DCMAKE_C_COMPILER=clang -B build
 
       - name: Build
-        run: cmake --build build --parallel
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+  test-extended-ubuntu:
+    name: Ubuntu extended build and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt-get install cmake doxygen gcc gfortran
+
+      - name: Configure
+        run: cmake -Denable_doc=on -Denable_fortran=on -B build
+
+      - name: Build
+        run: cmake --build build
 
       - name: Test
         run: ctest --test-dir build --output-on-failure

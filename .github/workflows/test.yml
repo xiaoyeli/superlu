@@ -42,3 +42,42 @@ jobs:
 
       - name: Test
         run: ctest --test-dir build --output-on-failure
+
+  test-minimal-windows:
+    name: Windows build
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -B build
+
+      - name: Build
+        run: cmake --build build
+
+  test-extended-windows:
+    name: Windows extended build and test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          git clone https://github.com/alex85k/wingetopt
+          cd wingetopt
+          cmake -B build
+          cmake --build build --config Release
+          cd ..
+
+      - name: Configure
+        run: cmake -B build -DWinGetOpt_INCLUDE_DIR=wingetopt/src -DWinGetOpt_LIBRARY="wingetopt/build/Release/wingetopt.lib"
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Test
+        run: ctest --test-dir build -C Release --output-on-failure

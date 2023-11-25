@@ -3,34 +3,42 @@ name: Test library
 on: [push, pull_request]
 
 jobs:
-  test:
-    name: Build and test
-    runs-on: ubuntu-20.04
-
-    strategy:
-      matrix:
-        compiler:
-          - gcc
+  test-minimal-ubuntu:
+    name: Ubuntu minimal build and test
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt-get install csh clang
+        run: sudo apt-get install cmake clang
+
+      - name: Configure
+        run: cmake -DCMAKE_C_COMPILER=clang -B build
 
       - name: Build
-        run: |
-          cp MAKE_INC/make.linux make.inc
-          # We use ~ instead of / as a separator in sed, since $(pwd)
-          # also includes /
-          sed -i  "s~^SuperLUroot\s*=.*~SuperLUroot = $(pwd)~g" make.inc
-          sed -i  "s/^CC\s*=.*/CC = ${CC_CI}/g" make.inc
-          mkdir lib
-          make install lib
-        env:
-          CC_CI: ${{ matrix.compiler }}
-                
+        run: cmake --build build
+
       - name: Test
-        run: |
-          make testing
+        run: ctest --test-dir build --output-on-failure
+
+  test-extended-ubuntu:
+    name: Ubuntu extended build and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get install cmake doxygen gcc gfortran
+
+      - name: Configure
+        run: cmake -Denable_doc=on -Denable_fortran=on -B build
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure

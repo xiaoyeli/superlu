@@ -38,6 +38,11 @@ function(add_superlu_test target input)
 
 endfunction(add_superlu_test)
 
+# prevent creating testing for Windows if WinGetOps is not found
+if(MSVC AND NOT WinGetOpt_FOUND)
+  message("Disabled tests s_test, d_test, c_test, and z_test because optinal dependency WinGetOpt is missing")
+  return()
+endif()
 
 if(enable_single)
   add_executable(s_test

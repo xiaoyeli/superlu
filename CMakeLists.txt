@@ -213,6 +213,23 @@ if (TPL_METIS_INCLUDE_DIRS)
   include_directories(${TPL_METIS_INCLUDE_DIRS})  ## metis
 endif ()
 
+# Generate various configure files with proper definitions
+
+# file(WRITE "make.defs" "# can be exposed to users"
+#  ${CMAKE_C_COMPILER}  )
+# configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
+configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+
+configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/SRC/superlu_config.h)
+configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_SOURCE_DIR}/SRC/superlu_config.h)
+
+# Following is to configure a header file for FORTRAN code
+configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/FORTRAN/superlu_config.h)
+
 ######################################################################
 #
 # Add subdirectories
@@ -240,20 +257,3 @@ add_subdirectory(EXAMPLE)
 if (enable_doc)
    add_subdirectory(DOC)
 endif()
-
-# Generate various configure files with proper definitions
-
-# file(WRITE "make.defs" "# can be exposed to users"
-#  ${CMAKE_C_COMPILER}  )
-# configure_file(${CMAKE_SOURCE_DIR}/make.inc.in ${CMAKE_SOURCE_DIR}/make.inc)
-configure_file(${SuperLU_SOURCE_DIR}/make.inc.in ${SuperLU_SOURCE_DIR}/make.inc)
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/superlu.pc.in ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/superlu.pc
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
-
-configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/SRC/superlu_config.h)
-configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_SOURCE_DIR}/SRC/superlu_config.h)
-
-# Following is to configure a header file for FORTRAN code
-configure_file(${SuperLU_SOURCE_DIR}/SRC/superlu_config.h.in ${SuperLU_BINARY_DIR}/FORTRAN/superlu_config.h)

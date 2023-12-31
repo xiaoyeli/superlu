@@ -18,15 +18,14 @@ at the top-level directory.
  */
 
 /*! \file
- * SDRIVE is the main test program for the FLOAT linear
+ * SDRIVE is the main test program for the FLOAT linear 
  * equation driver routines SGSSV and SGSSVX.
- *
+ * 
  * The program is invoked by a shell script file -- stest.csh.
  * The output from the tests are written into a file -- stest.out.
  *
  * \ingroup TestingS
  */
-
 #include <getopt.h>
 #include <string.h>
 #include "slu_sdefs.h"
@@ -79,8 +78,9 @@ int main(int argc, char *argv[])
     int            prefact, equil, iequed;
     int            nt, nrun, nfail, nerrs, imat, fimat, nimat;
     int            nfact, ifact, itran;
-    int            kl, ku, mode, lda;
-    int            zerot, izero, ioff;
+    int            kl, ku, mode, lda, ioff;
+    int            zerot; /* indicate whether the matrix is singular */
+    int            izero; /* incidate the first column that is entirely zero */
     double         u;
     float         anorm, cndnum;
     float         *Afull;
@@ -110,6 +110,11 @@ int main(int argc, char *argv[])
     extern int sgst07(trans_t, int, int, SuperMatrix *, float *, int,
                          float *, int, float *, int, 
                          float *, float *, float *);
+    extern int slatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
+	               float *, int *, float *, char *);
+    extern int slatms_slu(int *, int *, char *, int *, char *, float *d,
+                       int *, float *, float *, int *, int *,
+                       char *, float *, int *, float *, int *);
     extern int sp_sconvert(int, int, float *, int, int, int,
 	                   float *a, int_t *, int_t *, int_t *);
 
@@ -167,11 +172,13 @@ int main(int argc, char *argv[])
     rhsb = floatMalloc(m * nrhs);
     bsav = floatMalloc(m * nrhs);
     solx = floatMalloc(n * nrhs);
+    xact = floatMalloc(n * nrhs);
+    wwork = floatCalloc( SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs) );
+
     ldb  = m;
     ldx  = n;
     sCreate_Dense_Matrix(&B, m, nrhs, rhsb, ldb, SLU_DN, SLU_S, SLU_GE);
     sCreate_Dense_Matrix(&X, n, nrhs, solx, ldx, SLU_DN, SLU_S, SLU_GE);
-    xact = floatMalloc(n * nrhs);
     etree   = int32Malloc(n);
     perm_r  = int32Malloc(n);
     perm_c  = int32Malloc(n);
@@ -188,7 +195,6 @@ int main(int argc, char *argv[])
     if ( !ferr ) ABORT("SUPERLU_MALLOC fails for ferr");
     if ( !berr ) ABORT("SUPERLU_MALLOC fails for berr");
     if ( !rwork ) ABORT("SUPERLU_MALLOC fails for rwork");
-    wwork   = floatCalloc( SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs) );
 
     for (i = 0; i < n; ++i) perm_c[i] = pc_save[i] = i;
     options.ColPerm = MY_PERMC;
@@ -231,14 +237,14 @@ int main(int argc, char *argv[])
 			    Afull[ioff + i + j*lda] = zero;
 		}
 	    } else {
-		izero = 0;
+		izero = n+1; /* none of the column is zero */
 	    }
 
 	    /* Convert to sparse representation. */
 	    sp_sconvert(n, n, Afull, lda, kl, ku, a, asub, xa, &nnz);
 
 	} else {
-	    izero = 0;
+	    izero = n+1; /* none of the column is zero */
 	    zerot = 0;
 	}
 	
@@ -354,12 +360,13 @@ int main(int argc, char *argv[])
                                 printf(FMT3, "sgssv",
 				       (int) info, izero, n, nrhs, imat, nfail);
 			    } else {
-                                /* Reconstruct matrix from factors and
-	                           compute residual. */
-                                sgst01(m, n, &A, &L, &U, perm_c, perm_r,
+                                /* Reconstruct matrix from factors and compute residual.
+				 * Only compute the leading 'izero' nonzero columns.
+				 */
+                                sgst01(m, izero-1, &A, &L, &U, perm_c, perm_r,
                                          &result[0]);
 				nt = 1;
-				if ( izero == 0 ) {
+				if ( izero == (n+1) ) {
 				    /* Compute residual of the computed
 				       solution. */
 				    sCopy_Dense_Matrix(m, nrhs, rhsb, ldb,
@@ -418,9 +425,10 @@ int main(int argc, char *argv[])
                             }
 			} else {
 			    if ( !prefact ) {
-			    	/* Reconstruct matrix from factors and
-	 			   compute residual. */
-                                sgst01(m, n, &A, &L, &U, perm_c, perm_r,
+			    	/* Reconstruct matrix from factors and compute residual.
+				 * Only compute the leading 'izero' nonzero columns.
+				 */
+                                sgst01(m, izero-1, &A, &L, &U, perm_c, perm_r,
                                          &result[0]);
 				k1 = 0;
 			    } else {
@@ -513,8 +521,8 @@ int main(int argc, char *argv[])
 	Destroy_SuperMatrix_Store(&U);
     }
 
-    return nfail == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
-}
+    return (nfail == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+} /* end main */
 
 /*!
  * Parse command line options to get relaxed snode size, panel size, etc.

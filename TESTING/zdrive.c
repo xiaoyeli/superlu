@@ -18,9 +18,9 @@ at the top-level directory.
  */
 
 /*! \file
- * ZDRIVE is the main test program for the DOUBLE COMPLEX linear
+ * ZDRIVE is the main test program for the DOUBLE COMPLEX linear 
  * equation driver routines ZGSSV and ZGSSVX.
- *
+ * 
  * The program is invoked by a shell script file -- ztest.csh.
  * The output from the tests are written into a file -- ztest.out.
  *
@@ -78,8 +78,9 @@ int main(int argc, char *argv[])
     int            prefact, equil, iequed;
     int            nt, nrun, nfail, nerrs, imat, fimat, nimat;
     int            nfact, ifact, itran;
-    int            kl, ku, mode, lda;
-    int            zerot, izero, ioff;
+    int            kl, ku, mode, lda, ioff;
+    int            zerot; /* indicate whether the matrix is singular */
+    int            izero; /* incidate the first column that is entirely zero */
     double         u;
     double         anorm, cndnum;
     doublecomplex         *Afull;
@@ -109,6 +110,11 @@ int main(int argc, char *argv[])
     extern int zgst07(trans_t, int, int, SuperMatrix *, doublecomplex *, int,
                          doublecomplex *, int, doublecomplex *, int, 
                          double *, double *, double *);
+    extern int zlatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
+	               double *, int *, double *, char *);
+    extern int zlatms_slu(int *, int *, char *, int *, char *, double *d,
+                       int *, double *, double *, int *, int *,
+                       char *, doublecomplex *, int *, doublecomplex *, int *);
     extern int sp_zconvert(int, int, doublecomplex *, int, int, int,
 	                   doublecomplex *a, int_t *, int_t *, int_t *);
 
@@ -166,11 +172,13 @@ int main(int argc, char *argv[])
     rhsb = doublecomplexMalloc(m * nrhs);
     bsav = doublecomplexMalloc(m * nrhs);
     solx = doublecomplexMalloc(n * nrhs);
+    xact = doublecomplexMalloc(n * nrhs);
+    wwork = doublecomplexCalloc( SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs) );
+
     ldb  = m;
     ldx  = n;
     zCreate_Dense_Matrix(&B, m, nrhs, rhsb, ldb, SLU_DN, SLU_Z, SLU_GE);
     zCreate_Dense_Matrix(&X, n, nrhs, solx, ldx, SLU_DN, SLU_Z, SLU_GE);
-    xact = doublecomplexMalloc(n * nrhs);
     etree   = int32Malloc(n);
     perm_r  = int32Malloc(n);
     perm_c  = int32Malloc(n);
@@ -187,7 +195,6 @@ int main(int argc, char *argv[])
     if ( !ferr ) ABORT("SUPERLU_MALLOC fails for ferr");
     if ( !berr ) ABORT("SUPERLU_MALLOC fails for berr");
     if ( !rwork ) ABORT("SUPERLU_MALLOC fails for rwork");
-    wwork   = doublecomplexCalloc( SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs) );
 
     for (i = 0; i < n; ++i) perm_c[i] = pc_save[i] = i;
     options.ColPerm = MY_PERMC;
@@ -230,14 +237,14 @@ int main(int argc, char *argv[])
 			    Afull[ioff + i + j*lda] = zero;
 		}
 	    } else {
-		izero = 0;
+		izero = n+1; /* none of the column is zero */
 	    }
 
 	    /* Convert to sparse representation. */
 	    sp_zconvert(n, n, Afull, lda, kl, ku, a, asub, xa, &nnz);
 
 	} else {
-	    izero = 0;
+	    izero = n+1; /* none of the column is zero */
 	    zerot = 0;
 	}
 	
@@ -353,12 +360,13 @@ int main(int argc, char *argv[])
                                 printf(FMT3, "zgssv",
 				       (int) info, izero, n, nrhs, imat, nfail);
 			    } else {
-                                /* Reconstruct matrix from factors and
-	                           compute residual. */
-                                zgst01(m, n, &A, &L, &U, perm_c, perm_r,
+                                /* Reconstruct matrix from factors and compute residual.
+				 * Only compute the leading 'izero' nonzero columns.
+				 */
+                                zgst01(m, izero-1, &A, &L, &U, perm_c, perm_r,
                                          &result[0]);
 				nt = 1;
-				if ( izero == 0 ) {
+				if ( izero == (n+1) ) {
 				    /* Compute residual of the computed
 				       solution. */
 				    zCopy_Dense_Matrix(m, nrhs, rhsb, ldb,
@@ -417,9 +425,10 @@ int main(int argc, char *argv[])
                             }
 			} else {
 			    if ( !prefact ) {
-			    	/* Reconstruct matrix from factors and
-	 			   compute residual. */
-                                zgst01(m, n, &A, &L, &U, perm_c, perm_r,
+			    	/* Reconstruct matrix from factors and compute residual.
+				 * Only compute the leading 'izero' nonzero columns.
+				 */
+                                zgst01(m, izero-1, &A, &L, &U, perm_c, perm_r,
                                          &result[0]);
 				k1 = 0;
 			    } else {
@@ -512,8 +521,8 @@ int main(int argc, char *argv[])
 	Destroy_SuperMatrix_Store(&U);
     }
 
-    return nfail == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
-}
+    return (nfail == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+} /* end main */
 
 /*!
  * Parse command line options to get relaxed snode size, panel size, etc.

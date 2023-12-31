@@ -18,15 +18,14 @@ at the top-level directory.
  */
 
 /*! \file
- * CDRIVE is the main test program for the COMPLEX linear
+ * CDRIVE is the main test program for the SINGLE COMPLEX linear 
  * equation driver routines CGSSV and CGSSVX.
- *
+ * 
  * The program is invoked by a shell script file -- ctest.csh.
  * The output from the tests are written into a file -- ctest.out.
  *
  * \ingroup TestingC
  */
-
 #include <getopt.h>
 #include <string.h>
 #include "slu_cdefs.h"
@@ -79,8 +78,9 @@ int main(int argc, char *argv[])
     int            prefact, equil, iequed;
     int            nt, nrun, nfail, nerrs, imat, fimat, nimat;
     int            nfact, ifact, itran;
-    int            kl, ku, mode, lda;
-    int            zerot, izero, ioff;
+    int            kl, ku, mode, lda, ioff;
+    int            zerot; /* indicate whether the matrix is singular */
+    int            izero; /* incidate the first column that is entirely zero */
     double         u;
     float         anorm, cndnum;
     singlecomplex         *Afull;
@@ -110,6 +110,11 @@ int main(int argc, char *argv[])
     extern int cgst07(trans_t, int, int, SuperMatrix *, singlecomplex *, int,
                          singlecomplex *, int, singlecomplex *, int, 
                          float *, float *, float *);
+    extern int clatb4_slu(char *, int *, int *, int *, char *, int *, int *, 
+	               float *, int *, float *, char *);
+    extern int clatms_slu(int *, int *, char *, int *, char *, float *d,
+                       int *, float *, float *, int *, int *,
+                       char *, singlecomplex *, int *, singlecomplex *, int *);
     extern int sp_cconvert(int, int, singlecomplex *, int, int, int,
 	                   singlecomplex *a, int_t *, int_t *, int_t *);
 
@@ -155,7 +160,7 @@ int main(int argc, char *argv[])
 	nnz = n * n;        /* upper bound */
 	fimat = 1;
 	nimat = NTYPES;
-	Afull = complexCalloc(lda * n);
+	Afull = (singlecomplex *) complexCalloc(lda * n);
 	callocateA(n, nnz, &a, &asub, &xa);
     } else {
 	/* Read a sparse matrix */
@@ -164,14 +169,16 @@ int main(int argc, char *argv[])
     }
 
     callocateA(n, nnz, &a_save, &asub_save, &xa_save);
-    rhsb = complexMalloc(m * nrhs);
-    bsav = complexMalloc(m * nrhs);
-    solx = complexMalloc(n * nrhs);
+    rhsb = (singlecomplex *) complexMalloc(m * nrhs);
+    bsav = (singlecomplex *) complexMalloc(m * nrhs);
+    solx = (singlecomplex *) complexMalloc(n * nrhs);
+    xact = (singlecomplex *) complexMalloc(n * nrhs);
+    wwork = (singlecomplex *) complexCalloc( SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs) );
+
     ldb  = m;
     ldx  = n;
     cCreate_Dense_Matrix(&B, m, nrhs, rhsb, ldb, SLU_DN, SLU_C, SLU_GE);
     cCreate_Dense_Matrix(&X, n, nrhs, solx, ldx, SLU_DN, SLU_C, SLU_GE);
-    xact = complexMalloc(n * nrhs);
     etree   = int32Malloc(n);
     perm_r  = int32Malloc(n);
     perm_c  = int32Malloc(n);
@@ -188,7 +195,6 @@ int main(int argc, char *argv[])
     if ( !ferr ) ABORT("SUPERLU_MALLOC fails for ferr");
     if ( !berr ) ABORT("SUPERLU_MALLOC fails for berr");
     if ( !rwork ) ABORT("SUPERLU_MALLOC fails for rwork");
-    wwork   = complexCalloc( SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs) );
 
     for (i = 0; i < n; ++i) perm_c[i] = pc_save[i] = i;
     options.ColPerm = MY_PERMC;
@@ -231,14 +237,14 @@ int main(int argc, char *argv[])
 			    Afull[ioff + i + j*lda] = zero;
 		}
 	    } else {
-		izero = 0;
+		izero = n+1; /* none of the column is zero */
 	    }
 
 	    /* Convert to sparse representation. */
 	    sp_cconvert(n, n, Afull, lda, kl, ku, a, asub, xa, &nnz);
 
 	} else {
-	    izero = 0;
+	    izero = n+1; /* none of the column is zero */
 	    zerot = 0;
 	}
 	
@@ -354,12 +360,13 @@ int main(int argc, char *argv[])
                                 printf(FMT3, "cgssv",
 				       (int) info, izero, n, nrhs, imat, nfail);
 			    } else {
-                                /* Reconstruct matrix from factors and
-	                           compute residual. */
-                                cgst01(m, n, &A, &L, &U, perm_c, perm_r,
+                                /* Reconstruct matrix from factors and compute residual.
+				 * Only compute the leading 'izero' nonzero columns.
+				 */
+                                cgst01(m, izero-1, &A, &L, &U, perm_c, perm_r,
                                          &result[0]);
 				nt = 1;
-				if ( izero == 0 ) {
+				if ( izero == (n+1) ) {
 				    /* Compute residual of the computed
 				       solution. */
 				    cCopy_Dense_Matrix(m, nrhs, rhsb, ldb,
@@ -418,9 +425,10 @@ int main(int argc, char *argv[])
                             }
 			} else {
 			    if ( !prefact ) {
-			    	/* Reconstruct matrix from factors and
-	 			   compute residual. */
-                                cgst01(m, n, &A, &L, &U, perm_c, perm_r,
+			    	/* Reconstruct matrix from factors and compute residual.
+				 * Only compute the leading 'izero' nonzero columns.
+				 */
+                                cgst01(m, izero-1, &A, &L, &U, perm_c, perm_r,
                                          &result[0]);
 				k1 = 0;
 			    } else {
@@ -513,8 +521,8 @@ int main(int argc, char *argv[])
 	Destroy_SuperMatrix_Store(&U);
     }
 
-    return nfail == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
-}
+    return (nfail == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+} /* end main */
 
 /*!
  * Parse command line options to get relaxed snode size, panel size, etc.

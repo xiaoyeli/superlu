@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);
     Astore = A.Store;
     printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
-    printf("sizeof(int_t) %lu\n", sizeof(int_t));
+    printf("sizeof(int_t) %zu\n", sizeof(int_t));
     
     nrhs   = 1;
     if ( !(rhs = doubleMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");

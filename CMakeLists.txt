@@ -120,6 +120,8 @@ endif()
 
 if(MSVC)
   add_compile_definitions(NOMINMAX _COMPLEX_DEFINED)
+  # suppress compiler warnings that sprintf and similar functions are unsafe (e.g. C4996)
+  add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 endif()
 
 ######################################################################

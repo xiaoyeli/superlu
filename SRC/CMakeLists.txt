@@ -233,6 +233,11 @@ if(enable_complex16)
   )
 endif()
 
+if(NOT BLAS_FOUND)
+  list(APPEND sources ${CBLAS_SOURCES})
+  list(APPEND headers ${CBLAS_HEADERS})
+endif()
+
 add_library(superlu ${sources})
 target_link_libraries(superlu PUBLIC ${BLAS_LIB} ${METIS_LIB})
 if (NOT WIN32)

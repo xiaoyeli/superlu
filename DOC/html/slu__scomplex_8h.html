@@ -115,13 +115,15 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcomplex.html">complex</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsinglecomplex.html">singlecomplex</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a027d022bc2d5898eff31703adb19239c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a027d022bc2d5898eff31703adb19239c">SCOMPLEX_INCLUDE</a></td></tr>
 <tr class="separator:a027d022bc2d5898eff31703adb19239c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fa4878c968311979d497ccc322e0b9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a0fa4878c968311979d497ccc322e0b9b">complex</a>&#160;&#160;&#160;<a class="el" href="structsinglecomplex.html">singlecomplex</a></td></tr>
+<tr class="separator:a0fa4878c968311979d497ccc322e0b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3df9377099fd2cba886d217734ce884"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#af3df9377099fd2cba886d217734ce884">c_add</a>(c,  a,  b)</td></tr>
 <tr class="memdesc:af3df9377099fd2cba886d217734ce884"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complex Addition c = a + b.  <a href="slu__scomplex_8h.html#af3df9377099fd2cba886d217734ce884">More...</a><br /></td></tr>
 <tr class="separator:af3df9377099fd2cba886d217734ce884"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,30 +144,30 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6b7d3c87a3029e808bb32eed7dad81f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a6b7d3c87a3029e808bb32eed7dad81f7">c_div</a> (<a class="el" href="structcomplex.html">complex</a> *, <a class="el" href="structcomplex.html">complex</a> *, <a class="el" href="structcomplex.html">complex</a> *)</td></tr>
-<tr class="memdesc:a6b7d3c87a3029e808bb32eed7dad81f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complex Division c = a/b.  <a href="slu__scomplex_8h.html#a6b7d3c87a3029e808bb32eed7dad81f7">More...</a><br /></td></tr>
-<tr class="separator:a6b7d3c87a3029e808bb32eed7dad81f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af55ee2cd6c55b5ad16136940080c9f67"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#af55ee2cd6c55b5ad16136940080c9f67">c_abs</a> (<a class="el" href="structcomplex.html">complex</a> *)</td></tr>
-<tr class="memdesc:af55ee2cd6c55b5ad16136940080c9f67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns sqrt(z.r^2 + z.i^2)  <a href="slu__scomplex_8h.html#af55ee2cd6c55b5ad16136940080c9f67">More...</a><br /></td></tr>
-<tr class="separator:af55ee2cd6c55b5ad16136940080c9f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47b65089087d28e542f04907937cb8a9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a47b65089087d28e542f04907937cb8a9">c_abs1</a> (<a class="el" href="structcomplex.html">complex</a> *)</td></tr>
-<tr class="memdesc:a47b65089087d28e542f04907937cb8a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximates the abs. Returns abs(z.r) + abs(z.i)  <a href="slu__scomplex_8h.html#a47b65089087d28e542f04907937cb8a9">More...</a><br /></td></tr>
-<tr class="separator:a47b65089087d28e542f04907937cb8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36d8645ac9bf1eb00128329fe5edb982"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a36d8645ac9bf1eb00128329fe5edb982">c_exp</a> (<a class="el" href="structcomplex.html">complex</a> *, <a class="el" href="structcomplex.html">complex</a> *)</td></tr>
-<tr class="memdesc:a36d8645ac9bf1eb00128329fe5edb982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the exponentiation.  <a href="slu__scomplex_8h.html#a36d8645ac9bf1eb00128329fe5edb982">More...</a><br /></td></tr>
-<tr class="separator:a36d8645ac9bf1eb00128329fe5edb982"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0837d7f15d3b03860fdd17de957c788c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a0837d7f15d3b03860fdd17de957c788c">r_cnjg</a> (<a class="el" href="structcomplex.html">complex</a> *, <a class="el" href="structcomplex.html">complex</a> *)</td></tr>
-<tr class="memdesc:a0837d7f15d3b03860fdd17de957c788c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the complex conjugate.  <a href="slu__scomplex_8h.html#a0837d7f15d3b03860fdd17de957c788c">More...</a><br /></td></tr>
-<tr class="separator:a0837d7f15d3b03860fdd17de957c788c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29e2cb7ddb38711cdae8f6dc4481a80f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a29e2cb7ddb38711cdae8f6dc4481a80f">r_imag</a> (<a class="el" href="structcomplex.html">complex</a> *)</td></tr>
-<tr class="memdesc:a29e2cb7ddb38711cdae8f6dc4481a80f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the imaginary part.  <a href="slu__scomplex_8h.html#a29e2cb7ddb38711cdae8f6dc4481a80f">More...</a><br /></td></tr>
-<tr class="separator:a29e2cb7ddb38711cdae8f6dc4481a80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b1147936f5b008b9cba0a9745199519"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcomplex.html">complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a8b1147936f5b008b9cba0a9745199519">c_sgn</a> (<a class="el" href="structcomplex.html">complex</a> *)</td></tr>
-<tr class="memdesc:a8b1147936f5b008b9cba0a9745199519"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIGN functions for complex number. Returns z/abs(z)  <a href="slu__scomplex_8h.html#a8b1147936f5b008b9cba0a9745199519">More...</a><br /></td></tr>
-<tr class="separator:a8b1147936f5b008b9cba0a9745199519"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2e9c9356a42769f53e741e68e1aac9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcomplex.html">complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#ad2e9c9356a42769f53e741e68e1aac9d">c_sqrt</a> (<a class="el" href="structcomplex.html">complex</a> *)</td></tr>
-<tr class="memdesc:ad2e9c9356a42769f53e741e68e1aac9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Square-root of a complex number.  <a href="slu__scomplex_8h.html#ad2e9c9356a42769f53e741e68e1aac9d">More...</a><br /></td></tr>
-<tr class="separator:ad2e9c9356a42769f53e741e68e1aac9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa02b55c83623dcea16afeac3fb32818d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#aa02b55c83623dcea16afeac3fb32818d">c_div</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *)</td></tr>
+<tr class="memdesc:aa02b55c83623dcea16afeac3fb32818d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complex Division c = a/b.  <a href="slu__scomplex_8h.html#aa02b55c83623dcea16afeac3fb32818d">More...</a><br /></td></tr>
+<tr class="separator:aa02b55c83623dcea16afeac3fb32818d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a7c8a287bd4737694dfb14862281515"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a4a7c8a287bd4737694dfb14862281515">c_abs</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *)</td></tr>
+<tr class="memdesc:a4a7c8a287bd4737694dfb14862281515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns sqrt(z.r^2 + z.i^2)  <a href="slu__scomplex_8h.html#a4a7c8a287bd4737694dfb14862281515">More...</a><br /></td></tr>
+<tr class="separator:a4a7c8a287bd4737694dfb14862281515"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad49d1d83278779393e46bfcf470fa10d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#ad49d1d83278779393e46bfcf470fa10d">c_abs1</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *)</td></tr>
+<tr class="memdesc:ad49d1d83278779393e46bfcf470fa10d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximates the abs. Returns abs(z.r) + abs(z.i)  <a href="slu__scomplex_8h.html#ad49d1d83278779393e46bfcf470fa10d">More...</a><br /></td></tr>
+<tr class="separator:ad49d1d83278779393e46bfcf470fa10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81dbe474f929d9e027796061744b027b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a81dbe474f929d9e027796061744b027b">c_exp</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *)</td></tr>
+<tr class="memdesc:a81dbe474f929d9e027796061744b027b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the exponentiation.  <a href="slu__scomplex_8h.html#a81dbe474f929d9e027796061744b027b">More...</a><br /></td></tr>
+<tr class="separator:a81dbe474f929d9e027796061744b027b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a932cd605ee763a09fea62a4e51ce7afb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a932cd605ee763a09fea62a4e51ce7afb">r_cnjg</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *)</td></tr>
+<tr class="memdesc:a932cd605ee763a09fea62a4e51ce7afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the complex conjugate.  <a href="slu__scomplex_8h.html#a932cd605ee763a09fea62a4e51ce7afb">More...</a><br /></td></tr>
+<tr class="separator:a932cd605ee763a09fea62a4e51ce7afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e5080665e8fb7964488550da72a2d3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#aa6e5080665e8fb7964488550da72a2d3">r_imag</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *)</td></tr>
+<tr class="memdesc:aa6e5080665e8fb7964488550da72a2d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the imaginary part.  <a href="slu__scomplex_8h.html#aa6e5080665e8fb7964488550da72a2d3">More...</a><br /></td></tr>
+<tr class="separator:aa6e5080665e8fb7964488550da72a2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a023cb9875ef5a47e11abeb782030fdb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsinglecomplex.html">singlecomplex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#a023cb9875ef5a47e11abeb782030fdb8">c_sgn</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *)</td></tr>
+<tr class="memdesc:a023cb9875ef5a47e11abeb782030fdb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIGN functions for complex number. Returns z/abs(z)  <a href="slu__scomplex_8h.html#a023cb9875ef5a47e11abeb782030fdb8">More...</a><br /></td></tr>
+<tr class="separator:a023cb9875ef5a47e11abeb782030fdb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec7511840df0f530bdcb8b751e648c05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsinglecomplex.html">singlecomplex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__scomplex_8h.html#aec7511840df0f530bdcb8b751e648c05">c_sqrt</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *)</td></tr>
+<tr class="memdesc:aec7511840df0f530bdcb8b751e648c05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Square-root of a complex number.  <a href="slu__scomplex_8h.html#aec7511840df0f530bdcb8b751e648c05">More...</a><br /></td></tr>
+<tr class="separator:aec7511840df0f530bdcb8b751e648c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
@@ -353,6 +355,20 @@ This header file is to be included in source files c*.c
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a0fa4878c968311979d497ccc322e0b9b" name="a0fa4878c968311979d497ccc322e0b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fa4878c968311979d497ccc322e0b9b">&#9670;&nbsp;</a></span>complex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define complex&#160;&#160;&#160;<a class="el" href="structsinglecomplex.html">singlecomplex</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa675d825b907fe4d939ddc2533b38bb8" name="aa675d825b907fe4d939ddc2533b38bb8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa675d825b907fe4d939ddc2533b38bb8">&#9670;&nbsp;</a></span>cs_mult</h2>
 
@@ -404,8 +420,8 @@ This header file is to be included in source files c*.c
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af55ee2cd6c55b5ad16136940080c9f67" name="af55ee2cd6c55b5ad16136940080c9f67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af55ee2cd6c55b5ad16136940080c9f67">&#9670;&nbsp;</a></span>c_abs()</h2>
+<a id="a4a7c8a287bd4737694dfb14862281515" name="a4a7c8a287bd4737694dfb14862281515"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a7c8a287bd4737694dfb14862281515">&#9670;&nbsp;</a></span>c_abs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -413,7 +429,7 @@ This header file is to be included in source files c*.c
         <tr>
           <td class="memname">double c_abs </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>z</em></td><td>)</td>
           <td></td>
         </tr>
@@ -422,8 +438,8 @@ This header file is to be included in source files c*.c
 
 </div>
 </div>
-<a id="a47b65089087d28e542f04907937cb8a9" name="a47b65089087d28e542f04907937cb8a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47b65089087d28e542f04907937cb8a9">&#9670;&nbsp;</a></span>c_abs1()</h2>
+<a id="ad49d1d83278779393e46bfcf470fa10d" name="ad49d1d83278779393e46bfcf470fa10d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad49d1d83278779393e46bfcf470fa10d">&#9670;&nbsp;</a></span>c_abs1()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -431,7 +447,7 @@ This header file is to be included in source files c*.c
         <tr>
           <td class="memname">double c_abs1 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>z</em></td><td>)</td>
           <td></td>
         </tr>
@@ -440,8 +456,8 @@ This header file is to be included in source files c*.c
 
 </div>
 </div>
-<a id="a6b7d3c87a3029e808bb32eed7dad81f7" name="a6b7d3c87a3029e808bb32eed7dad81f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b7d3c87a3029e808bb32eed7dad81f7">&#9670;&nbsp;</a></span>c_div()</h2>
+<a id="aa02b55c83623dcea16afeac3fb32818d" name="aa02b55c83623dcea16afeac3fb32818d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa02b55c83623dcea16afeac3fb32818d">&#9670;&nbsp;</a></span>c_div()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -449,19 +465,19 @@ This header file is to be included in source files c*.c
         <tr>
           <td class="memname">void c_div </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>c</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -474,8 +490,8 @@ This header file is to be included in source files c*.c
 
 </div>
 </div>
-<a id="a36d8645ac9bf1eb00128329fe5edb982" name="a36d8645ac9bf1eb00128329fe5edb982"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36d8645ac9bf1eb00128329fe5edb982">&#9670;&nbsp;</a></span>c_exp()</h2>
+<a id="a81dbe474f929d9e027796061744b027b" name="a81dbe474f929d9e027796061744b027b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81dbe474f929d9e027796061744b027b">&#9670;&nbsp;</a></span>c_exp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -483,13 +499,13 @@ This header file is to be included in source files c*.c
         <tr>
           <td class="memname">void c_exp </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>r</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>z</em>&#160;</td>
         </tr>
         <tr>
@@ -502,16 +518,16 @@ This header file is to be included in source files c*.c
 
 </div>
 </div>
-<a id="a8b1147936f5b008b9cba0a9745199519" name="a8b1147936f5b008b9cba0a9745199519"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b1147936f5b008b9cba0a9745199519">&#9670;&nbsp;</a></span>c_sgn()</h2>
+<a id="a023cb9875ef5a47e11abeb782030fdb8" name="a023cb9875ef5a47e11abeb782030fdb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a023cb9875ef5a47e11abeb782030fdb8">&#9670;&nbsp;</a></span>c_sgn()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcomplex.html">complex</a> c_sgn </td>
+          <td class="memname"><a class="el" href="structsinglecomplex.html">singlecomplex</a> c_sgn </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>z</em></td><td>)</td>
           <td></td>
         </tr>
@@ -520,25 +536,25 @@ This header file is to be included in source files c*.c
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="slu__scomplex_8h_a8b1147936f5b008b9cba0a9745199519_cgraph.png" border="0" usemap="#aslu__scomplex_8h_a8b1147936f5b008b9cba0a9745199519_cgraph" alt=""/></div>
-<map name="aslu__scomplex_8h_a8b1147936f5b008b9cba0a9745199519_cgraph" id="aslu__scomplex_8h_a8b1147936f5b008b9cba0a9745199519_cgraph">
+<div class="center"><img src="slu__scomplex_8h_a023cb9875ef5a47e11abeb782030fdb8_cgraph.png" border="0" usemap="#aslu__scomplex_8h_a023cb9875ef5a47e11abeb782030fdb8_cgraph" alt=""/></div>
+<map name="aslu__scomplex_8h_a023cb9875ef5a47e11abeb782030fdb8_cgraph" id="aslu__scomplex_8h_a023cb9875ef5a47e11abeb782030fdb8_cgraph">
 <area shape="rect" title="SIGN functions for complex number. Returns z/abs(z)" alt="" coords="5,5,63,32"/>
-<area shape="rect" href="scomplex_8c.html#afc2967f7b71477625eb58de94a6e4c71" title="Returns sqrt(z.r^2 + z.i^2)" alt="" coords="111,5,168,32"/>
+<area shape="rect" href="scomplex_8c.html#aba8c451f1819db1fd1901496c1fddc72" title="Returns sqrt(z.r^2 + z.i^2)" alt="" coords="111,5,168,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ad2e9c9356a42769f53e741e68e1aac9d" name="ad2e9c9356a42769f53e741e68e1aac9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2e9c9356a42769f53e741e68e1aac9d">&#9670;&nbsp;</a></span>c_sqrt()</h2>
+<a id="aec7511840df0f530bdcb8b751e648c05" name="aec7511840df0f530bdcb8b751e648c05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec7511840df0f530bdcb8b751e648c05">&#9670;&nbsp;</a></span>c_sqrt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcomplex.html">complex</a> c_sqrt </td>
+          <td class="memname"><a class="el" href="structsinglecomplex.html">singlecomplex</a> c_sqrt </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>z</em></td><td>)</td>
           <td></td>
         </tr>
@@ -547,8 +563,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a0837d7f15d3b03860fdd17de957c788c" name="a0837d7f15d3b03860fdd17de957c788c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0837d7f15d3b03860fdd17de957c788c">&#9670;&nbsp;</a></span>r_cnjg()</h2>
+<a id="a932cd605ee763a09fea62a4e51ce7afb" name="a932cd605ee763a09fea62a4e51ce7afb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a932cd605ee763a09fea62a4e51ce7afb">&#9670;&nbsp;</a></span>r_cnjg()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -556,13 +572,13 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void r_cnjg </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>r</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>z</em>&#160;</td>
         </tr>
         <tr>
@@ -575,8 +591,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a29e2cb7ddb38711cdae8f6dc4481a80f" name="a29e2cb7ddb38711cdae8f6dc4481a80f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29e2cb7ddb38711cdae8f6dc4481a80f">&#9670;&nbsp;</a></span>r_imag()</h2>
+<a id="aa6e5080665e8fb7964488550da72a2d3" name="aa6e5080665e8fb7964488550da72a2d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6e5080665e8fb7964488550da72a2d3">&#9670;&nbsp;</a></span>r_imag()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -584,7 +600,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">double r_imag </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>z</em></td><td>)</td>
           <td></td>
         </tr>

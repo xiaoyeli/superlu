@@ -48,9 +48,12 @@ $(function() {
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">colamd.c File Reference</div></div>
+  <div class="headertitle"><div class="title">colamd.c File Reference<div class="ingroups"><a class="el" href="group__Common.html">Common</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Approximate minimum degree column ordering algorithm.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;limits.h&gt;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="colamd_8h_source.html">colamd.h</a>&quot;</code><br />
@@ -60,14 +63,13 @@ Include dependency graph for colamd.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="colamd_8c__incl.png" border="0" usemap="#aSRC_2colamd_8c" alt=""/></div>
 <map name="aSRC_2colamd_8c" id="aSRC_2colamd_8c">
-<area shape="rect" title=" " alt="" coords="119,5,225,32"/>
+<area shape="rect" title="Approximate minimum degree column ordering algorithm." alt="" coords="119,5,225,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,69,107"/>
 <area shape="rect" title=" " alt="" coords="94,80,157,107"/>
 <area shape="rect" href="colamd_8h.html" title=" " alt="" coords="181,80,257,107"/>
 <area shape="rect" title=" " alt="" coords="281,80,343,107"/>
 <area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="100,155,220,181"/>
 <area shape="rect" title=" " alt="" coords="244,155,308,181"/>
-<area shape="rect" title=" " alt="" coords="127,229,193,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -185,11 +187,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a1025434cd41be3cab467798091aa87b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="colamd_8c.html#ad17d551e31d1828c68acf40684849b7e">PUBLIC</a> <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a1025434cd41be3cab467798091aa87b6">COLAMD_MAIN</a> (<a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> n_row, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> n_col, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> Alen, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> <a class="el" href="zsymv_8c.html#af5d6242ff783dd9efca51eeec1c234f7">A</a>[], <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> p[], double knobs[<a class="el" href="colamd_8h.html#ae92bb10d09f7cd004f07d1baddf90548">COLAMD_KNOBS</a>], <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> stats[<a class="el" href="colamd_8h.html#a411703fc0a994b83ec0e00df1abfc0f7">COLAMD_STATS</a>])</td></tr>
 <tr class="separator:a1025434cd41be3cab467798091aa87b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
-<p >All rights reserved.</p>
-<p >The source code is distributed under BSD license, see the file License.txt at the top-level directory. </p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ad8beef706da0344be19d59438fcdab6d" name="ad8beef706da0344be19d59438fcdab6d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad8beef706da0344be19d59438fcdab6d">&#9670;&nbsp;</a></span>ALIVE</h2>
 

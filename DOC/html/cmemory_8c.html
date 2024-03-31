@@ -62,17 +62,17 @@ Include dependency graph for cmemory.c:</div>
 <area shape="rect" href="slu__cdefs_8h.html" title="Header file for real operations." alt="" coords="349,80,439,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" title=" " alt="" coords="93,155,157,181"/>
-<area shape="rect" title=" " alt="" coords="61,229,122,256"/>
-<area shape="rect" title=" " alt="" coords="146,229,210,256"/>
-<area shape="rect" title=" " alt="" coords="605,229,671,256"/>
-<area shape="rect" title=" " alt="" coords="516,229,581,256"/>
-<area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="626,155,733,181"/>
-<area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="431,155,551,181"/>
-<area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="757,155,860,181"/>
+<area shape="rect" title=" " alt="" coords="95,229,157,256"/>
+<area shape="rect" title=" " alt="" coords="181,229,245,256"/>
+<area shape="rect" title=" " alt="" coords="432,155,497,181"/>
+<area shape="rect" title=" " alt="" coords="552,229,617,256"/>
+<area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="522,155,629,181"/>
+<area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="653,155,773,181"/>
+<area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="797,155,900,181"/>
 <area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="282,155,357,181"/>
-<area shape="rect" href="slu__scomplex_8h.html" title="Header file for complex operations." alt="" coords="884,155,997,181"/>
-<area shape="rect" title=" " alt="" coords="234,229,303,256"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="328,229,492,256"/>
+<area shape="rect" href="slu__scomplex_8h.html" title="Header file for complex operations." alt="" coords="924,155,1037,181"/>
+<area shape="rect" title=" " alt="" coords="458,229,527,256"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="269,229,433,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -91,18 +91,18 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad9e40a67c676ac25ddcd8a1de1b2d921"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#ad9e40a67c676ac25ddcd8a1de1b2d921">cexpand</a> (<a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> *prev_len, <a class="el" href="superlu__enum__consts_8h.html#abd31f838aefffa46191d0d7dc36a96b2">MemType</a> type, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> len_to_copy, int keep_prev, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
+<tr class="memitem:ad9e40a67c676ac25ddcd8a1de1b2d921"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#ad9e40a67c676ac25ddcd8a1de1b2d921">cexpand</a> (<a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *prev_len, <a class="el" href="superlu__enum__consts_8h.html#abd31f838aefffa46191d0d7dc36a96b2">MemType</a> type, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> len_to_copy, int keep_prev, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
 <tr class="memdesc:ad9e40a67c676ac25ddcd8a1de1b2d921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand the existing storage to accommodate more fill-ins.  <a href="cmemory_8c.html#ad9e40a67c676ac25ddcd8a1de1b2d921">More...</a><br /></td></tr>
 <tr class="separator:ad9e40a67c676ac25ddcd8a1de1b2d921"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b8e519a51391274f40066ea72e82583"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a4b8e519a51391274f40066ea72e82583">cLUWorkInit</a> (int m, int n, int panel_size, int **iworkptr, <a class="el" href="structcomplex.html">complex</a> **dworkptr, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
-<tr class="memdesc:a4b8e519a51391274f40066ea72e82583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate known working storage. Returns 0 if success, otherwise returns the number of bytes allocated so far when failure occurred.  <a href="cmemory_8c.html#a4b8e519a51391274f40066ea72e82583">More...</a><br /></td></tr>
-<tr class="separator:a4b8e519a51391274f40066ea72e82583"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5663076d1ddc6c950514bc3bc842e47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#aa5663076d1ddc6c950514bc3bc842e47">copy_mem_complex</a> (<a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>, void *, void *)</td></tr>
-<tr class="separator:aa5663076d1ddc6c950514bc3bc842e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b99d013998c00aa933298fd4d623747"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a8b99d013998c00aa933298fd4d623747">cLUWorkInit</a> (int m, int n, int panel_size, int **iworkptr, <a class="el" href="structsinglecomplex.html">singlecomplex</a> **dworkptr, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
+<tr class="memdesc:a8b99d013998c00aa933298fd4d623747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate known working storage. Returns 0 if success, otherwise returns the number of bytes allocated so far when failure occurred.  <a href="cmemory_8c.html#a8b99d013998c00aa933298fd4d623747">More...</a><br /></td></tr>
+<tr class="separator:a8b99d013998c00aa933298fd4d623747"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a35d794f397387244976b49a3ce0b38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a8a35d794f397387244976b49a3ce0b38">copy_mem_singlecomplex</a> (<a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>, void *, void *)</td></tr>
+<tr class="separator:a8a35d794f397387244976b49a3ce0b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98ec5775d491718006688922903496ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a98ec5775d491718006688922903496ae">cStackCompress</a> (<a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
 <tr class="memdesc:a98ec5775d491718006688922903496ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compress the work[] array to remove fragmentation.  <a href="cmemory_8c.html#a98ec5775d491718006688922903496ae">More...</a><br /></td></tr>
 <tr class="separator:a98ec5775d491718006688922903496ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1dee8938195b603b86ec97d3a58497d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#ad1dee8938195b603b86ec97d3a58497d">cSetupSpace</a> (void *work, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> lwork, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
+<tr class="memitem:ad1dee8938195b603b86ec97d3a58497d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#ad1dee8938195b603b86ec97d3a58497d">cSetupSpace</a> (void *work, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> lwork, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
 <tr class="memdesc:ad1dee8938195b603b86ec97d3a58497d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the memory model to be used for factorization.  <a href="cmemory_8c.html#ad1dee8938195b603b86ec97d3a58497d">More...</a><br /></td></tr>
 <tr class="separator:ad1dee8938195b603b86ec97d3a58497d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdfe5f4689b0aaedf46d034809711754"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754">cuser_malloc</a> (int, int, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *)</td></tr>
@@ -117,26 +117,26 @@ Functions</h2></td></tr>
 <tr class="separator:a34d8cd030775d267947b68a4dacfbabb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf50d31c33a4cc3e770b617202ea73e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#aaf50d31c33a4cc3e770b617202ea73e3">ilu_cQuerySpace</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage)</td></tr>
 <tr class="separator:aaf50d31c33a4cc3e770b617202ea73e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0822efd5ddf00871286ef2cdb8ba18c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a0822efd5ddf00871286ef2cdb8ba18c5">cLUMemInit</a> (<a class="el" href="superlu__enum__consts_8h.html#ac785c8235480e5cfef9848d89c047c0a">fact_t</a> fact, void *work, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> lwork, int m, int n, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> annz, int panel_size, float fill_ratio, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu, int **iwork, <a class="el" href="structcomplex.html">complex</a> **dwork)</td></tr>
-<tr class="memdesc:a0822efd5ddf00871286ef2cdb8ba18c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for the data structures common to all factor routines.  <a href="cmemory_8c.html#a0822efd5ddf00871286ef2cdb8ba18c5">More...</a><br /></td></tr>
-<tr class="separator:a0822efd5ddf00871286ef2cdb8ba18c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff3d90f7f22f882faf8ba0dcf68b0f9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#aff3d90f7f22f882faf8ba0dcf68b0f9c">cSetRWork</a> (int m, int panel_size, <a class="el" href="structcomplex.html">complex</a> *dworkptr, <a class="el" href="structcomplex.html">complex</a> **dense, <a class="el" href="structcomplex.html">complex</a> **tempv)</td></tr>
-<tr class="memdesc:aff3d90f7f22f882faf8ba0dcf68b0f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up pointers for real working arrays.  <a href="cmemory_8c.html#aff3d90f7f22f882faf8ba0dcf68b0f9c">More...</a><br /></td></tr>
-<tr class="separator:aff3d90f7f22f882faf8ba0dcf68b0f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4e33e7a64f75e058e9a8ebd479fa004"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#ad4e33e7a64f75e058e9a8ebd479fa004">cLUWorkFree</a> (int *iwork, <a class="el" href="structcomplex.html">complex</a> *dwork, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
-<tr class="memdesc:ad4e33e7a64f75e058e9a8ebd479fa004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the working storage used by factor routines.  <a href="cmemory_8c.html#ad4e33e7a64f75e058e9a8ebd479fa004">More...</a><br /></td></tr>
-<tr class="separator:ad4e33e7a64f75e058e9a8ebd479fa004"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21a3daa34a5c07748203017a189b2a4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a21a3daa34a5c07748203017a189b2a4f">cLUMemXpand</a> (int jcol, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> next, <a class="el" href="superlu__enum__consts_8h.html#abd31f838aefffa46191d0d7dc36a96b2">MemType</a> mem_type, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> *maxlen, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
+<tr class="memitem:affed6eac03cce2c6881b962cdd98aae1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#affed6eac03cce2c6881b962cdd98aae1">cLUMemInit</a> (<a class="el" href="superlu__enum__consts_8h.html#ac785c8235480e5cfef9848d89c047c0a">fact_t</a> fact, void *work, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> lwork, int m, int n, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> annz, int panel_size, float fill_ratio, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu, int **iwork, <a class="el" href="structsinglecomplex.html">singlecomplex</a> **dwork)</td></tr>
+<tr class="memdesc:affed6eac03cce2c6881b962cdd98aae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for the data structures common to all factor routines.  <a href="cmemory_8c.html#affed6eac03cce2c6881b962cdd98aae1">More...</a><br /></td></tr>
+<tr class="separator:affed6eac03cce2c6881b962cdd98aae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d1e077c332d4bdb89f2a5b59fcee7dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a6d1e077c332d4bdb89f2a5b59fcee7dc">cSetRWork</a> (int m, int panel_size, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *dworkptr, <a class="el" href="structsinglecomplex.html">singlecomplex</a> **dense, <a class="el" href="structsinglecomplex.html">singlecomplex</a> **tempv)</td></tr>
+<tr class="memdesc:a6d1e077c332d4bdb89f2a5b59fcee7dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up pointers for real working arrays.  <a href="cmemory_8c.html#a6d1e077c332d4bdb89f2a5b59fcee7dc">More...</a><br /></td></tr>
+<tr class="separator:a6d1e077c332d4bdb89f2a5b59fcee7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec37b068329358e8d5a81a3de59489f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#aec37b068329358e8d5a81a3de59489f6">cLUWorkFree</a> (int *iwork, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *dwork, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
+<tr class="memdesc:aec37b068329358e8d5a81a3de59489f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the working storage used by factor routines.  <a href="cmemory_8c.html#aec37b068329358e8d5a81a3de59489f6">More...</a><br /></td></tr>
+<tr class="separator:aec37b068329358e8d5a81a3de59489f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a3daa34a5c07748203017a189b2a4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a21a3daa34a5c07748203017a189b2a4f">cLUMemXpand</a> (int jcol, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> next, <a class="el" href="superlu__enum__consts_8h.html#abd31f838aefffa46191d0d7dc36a96b2">MemType</a> mem_type, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *maxlen, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
 <tr class="memdesc:a21a3daa34a5c07748203017a189b2a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand the data structures for L and U during the factorization.  <a href="cmemory_8c.html#a21a3daa34a5c07748203017a189b2a4f">More...</a><br /></td></tr>
 <tr class="separator:a21a3daa34a5c07748203017a189b2a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee75f9828e238b7efa8d8650c7db69e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#aee75f9828e238b7efa8d8650c7db69e3">callocateA</a> (int n, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> nnz, <a class="el" href="structcomplex.html">complex</a> **a, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> **asub, <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> **xa)</td></tr>
-<tr class="memdesc:aee75f9828e238b7efa8d8650c7db69e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for original matrix A.  <a href="cmemory_8c.html#aee75f9828e238b7efa8d8650c7db69e3">More...</a><br /></td></tr>
-<tr class="separator:aee75f9828e238b7efa8d8650c7db69e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c8563b269714cd889d4ca84380f56c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcomplex.html">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a1c8563b269714cd889d4ca84380f56c7">complexMalloc</a> (size_t n)</td></tr>
-<tr class="separator:a1c8563b269714cd889d4ca84380f56c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b3be10b04613ac8929633d2ed6e4019"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcomplex.html">complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a3b3be10b04613ac8929633d2ed6e4019">complexCalloc</a> (size_t n)</td></tr>
-<tr class="separator:a3b3be10b04613ac8929633d2ed6e4019"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a565c5fbbb980f1be7a56d91878ce8d6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a565c5fbbb980f1be7a56d91878ce8d6f">cmemory_usage</a> (const <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> nzlmax, const <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> nzumax, const <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> nzlumax, const int n)</td></tr>
+<tr class="memitem:acb3e10c45214dcb43e98c103e73e3887"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#acb3e10c45214dcb43e98c103e73e3887">callocateA</a> (int n, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> nnz, <a class="el" href="structsinglecomplex.html">singlecomplex</a> **a, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **asub, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **xa)</td></tr>
+<tr class="memdesc:acb3e10c45214dcb43e98c103e73e3887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for original matrix A.  <a href="cmemory_8c.html#acb3e10c45214dcb43e98c103e73e3887">More...</a><br /></td></tr>
+<tr class="separator:acb3e10c45214dcb43e98c103e73e3887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a760375cf72b56b890a6d4bf7b58a1996"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a760375cf72b56b890a6d4bf7b58a1996">complexMalloc</a> (size_t n)</td></tr>
+<tr class="separator:a760375cf72b56b890a6d4bf7b58a1996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b482bc7015386c0cb8fafc5fc5fb67e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a9b482bc7015386c0cb8fafc5fc5fb67e">complexCalloc</a> (size_t n)</td></tr>
+<tr class="separator:a9b482bc7015386c0cb8fafc5fc5fb67e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a565c5fbbb980f1be7a56d91878ce8d6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a565c5fbbb980f1be7a56d91878ce8d6f">cmemory_usage</a> (const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> nzlmax, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> nzumax, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> nzlumax, const int n)</td></tr>
 <tr class="separator:a565c5fbbb980f1be7a56d91878ce8d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -246,15 +246,15 @@ June 30, 2009
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">                              ( (2*w + 4 + <a class="code hl_define" href="slu__util_8h.html#a9b7b2a5116ee487722b0967317ab6360">NO_MARKER</a>) * m * <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>) + \</div>
-<div class="line">                              (w + 1) * m * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structcomplex.html">complex</a>) )</div>
+<div class="line">                              (w + 1) * m * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structsinglecomplex.html">singlecomplex</a>) )</div>
 <div class="ttc" id="aslu__util_8h_html_a9b7b2a5116ee487722b0967317ab6360"><div class="ttname"><a href="slu__util_8h.html#a9b7b2a5116ee487722b0967317ab6360">NO_MARKER</a></div><div class="ttdeci">#define NO_MARKER</div><div class="ttdef"><b>Definition:</b> slu_util.h:57</div></div>
-<div class="ttc" id="astructcomplex_html"><div class="ttname"><a href="structcomplex.html">complex</a></div><div class="ttdef"><b>Definition:</b> slu_scomplex.h:31</div></div>
+<div class="ttc" id="astructsinglecomplex_html"><div class="ttname"><a href="structsinglecomplex.html">singlecomplex</a></div><div class="ttdef"><b>Definition:</b> slu_scomplex.h:31</div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aee75f9828e238b7efa8d8650c7db69e3" name="aee75f9828e238b7efa8d8650c7db69e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee75f9828e238b7efa8d8650c7db69e3">&#9670;&nbsp;</a></span>callocateA()</h2>
+<a id="acb3e10c45214dcb43e98c103e73e3887" name="acb3e10c45214dcb43e98c103e73e3887"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb3e10c45214dcb43e98c103e73e3887">&#9670;&nbsp;</a></span>callocateA()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,25 +268,25 @@ June 30, 2009
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>nnz</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> **&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **&#160;</td>
           <td class="paramname"><em>asub</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **&#160;</td>
           <td class="paramname"><em>xa</em>&#160;</td>
         </tr>
         <tr>
@@ -299,10 +299,10 @@ June 30, 2009
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="cmemory_8c_aee75f9828e238b7efa8d8650c7db69e3_cgraph.png" border="0" usemap="#acmemory_8c_aee75f9828e238b7efa8d8650c7db69e3_cgraph" alt=""/></div>
-<map name="acmemory_8c_aee75f9828e238b7efa8d8650c7db69e3_cgraph" id="acmemory_8c_aee75f9828e238b7efa8d8650c7db69e3_cgraph">
+<div class="center"><img src="cmemory_8c_acb3e10c45214dcb43e98c103e73e3887_cgraph.png" border="0" usemap="#acmemory_8c_acb3e10c45214dcb43e98c103e73e3887_cgraph" alt=""/></div>
+<map name="acmemory_8c_acb3e10c45214dcb43e98c103e73e3887_cgraph" id="acmemory_8c_acb3e10c45214dcb43e98c103e73e3887_cgraph">
 <area shape="rect" title="Allocate storage for original matrix A." alt="" coords="5,31,89,57"/>
-<area shape="rect" href="cmemory_8c.html#a1c8563b269714cd889d4ca84380f56c7" title=" " alt="" coords="137,5,248,32"/>
+<area shape="rect" href="cmemory_8c.html#a760375cf72b56b890a6d4bf7b58a1996" title=" " alt="" coords="137,5,248,32"/>
 <area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="155,56,230,83"/>
 </map>
 </div>
@@ -318,7 +318,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void * cexpand </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
           <td class="paramname"><em>prev_len</em>, </td>
         </tr>
         <tr>
@@ -330,7 +330,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>len_to_copy</em>, </td>
         </tr>
         <tr>
@@ -358,23 +358,23 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="cmemory_8c_ad9e40a67c676ac25ddcd8a1de1b2d921_cgraph.png" border="0" usemap="#acmemory_8c_ad9e40a67c676ac25ddcd8a1de1b2d921_cgraph" alt=""/></div>
 <map name="acmemory_8c_ad9e40a67c676ac25ddcd8a1de1b2d921_cgraph" id="acmemory_8c_ad9e40a67c676ac25ddcd8a1de1b2d921_cgraph">
 <area shape="rect" title="Expand the existing storage to accommodate more fill&#45;ins." alt="" coords="5,81,77,108"/>
-<area shape="rect" href="cmemory_8c.html#aa5663076d1ddc6c950514bc3bc842e47" title=" " alt="" coords="125,5,269,32"/>
-<area shape="rect" href="cmemory_8c.html#ab59eea34474da95fb3dc125400a1287e" title=" " alt="" coords="143,56,252,83"/>
-<area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="147,107,247,133"/>
-<area shape="rect" href="memory_8c.html#a9a6637190072609a7dcdec007bd98113" title=" " alt="" coords="152,157,243,184"/>
+<area shape="rect" href="memory_8c.html#a9795b4cc0610002873412a585c15538a" title=" " alt="" coords="160,5,269,32"/>
+<area shape="rect" href="cmemory_8c.html#a8a35d794f397387244976b49a3ce0b38" title=" " alt="" coords="125,56,304,83"/>
+<area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="165,107,265,133"/>
+<area shape="rect" href="memory_8c.html#a9a6637190072609a7dcdec007bd98113" title=" " alt="" coords="169,157,260,184"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a0822efd5ddf00871286ef2cdb8ba18c5" name="a0822efd5ddf00871286ef2cdb8ba18c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0822efd5ddf00871286ef2cdb8ba18c5">&#9670;&nbsp;</a></span>cLUMemInit()</h2>
+<a id="affed6eac03cce2c6881b962cdd98aae1" name="affed6eac03cce2c6881b962cdd98aae1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affed6eac03cce2c6881b962cdd98aae1">&#9670;&nbsp;</a></span>cLUMemInit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> cLUMemInit </td>
+          <td class="memname"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> cLUMemInit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="superlu__enum__consts_8h.html#ac785c8235480e5cfef9848d89c047c0a">fact_t</a>&#160;</td>
           <td class="paramname"><em>fact</em>, </td>
@@ -388,7 +388,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>lwork</em>, </td>
         </tr>
         <tr>
@@ -406,7 +406,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>annz</em>, </td>
         </tr>
         <tr>
@@ -448,7 +448,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> **&#160;</td>
           <td class="paramname"><em>dwork</em>&#160;</td>
         </tr>
         <tr>
@@ -468,23 +468,23 @@ Return value:
 </pre> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="cmemory_8c_a0822efd5ddf00871286ef2cdb8ba18c5_cgraph.png" border="0" usemap="#acmemory_8c_a0822efd5ddf00871286ef2cdb8ba18c5_cgraph" alt=""/></div>
-<map name="acmemory_8c_a0822efd5ddf00871286ef2cdb8ba18c5_cgraph" id="acmemory_8c_a0822efd5ddf00871286ef2cdb8ba18c5_cgraph">
+<div class="center"><img src="cmemory_8c_affed6eac03cce2c6881b962cdd98aae1_cgraph.png" border="0" usemap="#acmemory_8c_affed6eac03cce2c6881b962cdd98aae1_cgraph" alt=""/></div>
+<map name="acmemory_8c_affed6eac03cce2c6881b962cdd98aae1_cgraph" id="acmemory_8c_affed6eac03cce2c6881b962cdd98aae1_cgraph">
 <area shape="rect" title="Allocate storage for the data structures common to all factor routines." alt="" coords="5,284,99,311"/>
 <area shape="rect" href="cmemory_8c.html#ad9e40a67c676ac25ddcd8a1de1b2d921" title="Expand the existing storage to accommodate more fill&#45;ins." alt="" coords="171,107,243,133"/>
-<area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="337,157,437,184"/>
-<area shape="rect" href="cmemory_8c.html#a4b8e519a51391274f40066ea72e82583" title="Allocate known working storage. Returns 0 if success, otherwise returns the number of bytes allocated..." alt="" coords="159,208,254,235"/>
+<area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="354,157,454,184"/>
+<area shape="rect" href="cmemory_8c.html#a8b99d013998c00aa933298fd4d623747" title="Allocate known working storage. Returns 0 if success, otherwise returns the number of bytes allocated..." alt="" coords="159,208,254,235"/>
 <area shape="rect" href="cmemory_8c.html#a565c5fbbb980f1be7a56d91878ce8d6f" title=" " alt="" coords="147,259,267,285"/>
 <area shape="rect" href="cmemory_8c.html#ad1dee8938195b603b86ec97d3a58497d" title="Setup the memory model to be used for factorization." alt="" coords="156,309,257,336"/>
 <area shape="rect" href="cmemory_8c.html#aa4c66bfc4bbf0fed0e2babbf34504bf5" title=" " alt="" coords="164,360,249,387"/>
 <area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="162,411,251,437"/>
 <area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="169,461,244,488"/>
-<area shape="rect" href="cmemory_8c.html#aa5663076d1ddc6c950514bc3bc842e47" title=" " alt="" coords="315,5,459,32"/>
-<area shape="rect" href="cmemory_8c.html#ab59eea34474da95fb3dc125400a1287e" title=" " alt="" coords="332,56,441,83"/>
-<area shape="rect" href="memory_8c.html#a9a6637190072609a7dcdec007bd98113" title=" " alt="" coords="341,107,432,133"/>
-<area shape="rect" href="memory_8c.html#aaf3f8faaec1c91be7653f137844806e0" title=" " alt="" coords="343,208,431,235"/>
-<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title="sp_ienv() is inquired to choose machine&#45;dependent parameters for the local environment." alt="" coords="353,259,421,285"/>
-<area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="507,259,593,285"/>
+<area shape="rect" href="memory_8c.html#a9795b4cc0610002873412a585c15538a" title=" " alt="" coords="349,5,459,32"/>
+<area shape="rect" href="cmemory_8c.html#a8a35d794f397387244976b49a3ce0b38" title=" " alt="" coords="315,56,493,83"/>
+<area shape="rect" href="memory_8c.html#a9a6637190072609a7dcdec007bd98113" title=" " alt="" coords="359,107,449,133"/>
+<area shape="rect" href="memory_8c.html#aaf3f8faaec1c91be7653f137844806e0" title=" " alt="" coords="360,208,448,235"/>
+<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="370,259,438,285"/>
+<area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="541,259,628,285"/>
 </map>
 </div>
 
@@ -497,7 +497,7 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> cLUMemXpand </td>
+          <td class="memname"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> cLUMemXpand </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>jcol</em>, </td>
@@ -505,7 +505,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>next</em>, </td>
         </tr>
         <tr>
@@ -517,7 +517,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
           <td class="paramname"><em>maxlen</em>, </td>
         </tr>
         <tr>
@@ -544,17 +544,17 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Expand the data structures for L and U during the factorization." alt="" coords="5,107,119,133"/>
 <area shape="rect" href="cmemory_8c.html#ad9e40a67c676ac25ddcd8a1de1b2d921" title="Expand the existing storage to accommodate more fill&#45;ins." alt="" coords="191,81,263,108"/>
 <area shape="rect" href="cmemory_8c.html#a565c5fbbb980f1be7a56d91878ce8d6f" title=" " alt="" coords="167,132,287,159"/>
-<area shape="rect" href="cmemory_8c.html#aa5663076d1ddc6c950514bc3bc842e47" title=" " alt="" coords="335,5,479,32"/>
-<area shape="rect" href="cmemory_8c.html#ab59eea34474da95fb3dc125400a1287e" title=" " alt="" coords="352,56,461,83"/>
-<area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="357,107,457,133"/>
-<area shape="rect" href="memory_8c.html#a9a6637190072609a7dcdec007bd98113" title=" " alt="" coords="361,157,452,184"/>
+<area shape="rect" href="memory_8c.html#a9795b4cc0610002873412a585c15538a" title=" " alt="" coords="369,5,479,32"/>
+<area shape="rect" href="cmemory_8c.html#a8a35d794f397387244976b49a3ce0b38" title=" " alt="" coords="335,56,513,83"/>
+<area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="374,107,474,133"/>
+<area shape="rect" href="memory_8c.html#a9a6637190072609a7dcdec007bd98113" title=" " alt="" coords="379,157,469,184"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ad4e33e7a64f75e058e9a8ebd479fa004" name="ad4e33e7a64f75e058e9a8ebd479fa004"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4e33e7a64f75e058e9a8ebd479fa004">&#9670;&nbsp;</a></span>cLUWorkFree()</h2>
+<a id="aec37b068329358e8d5a81a3de59489f6" name="aec37b068329358e8d5a81a3de59489f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec37b068329358e8d5a81a3de59489f6">&#9670;&nbsp;</a></span>cLUWorkFree()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -568,7 +568,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>dwork</em>, </td>
         </tr>
         <tr>
@@ -587,8 +587,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a4b8e519a51391274f40066ea72e82583" name="a4b8e519a51391274f40066ea72e82583"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b8e519a51391274f40066ea72e82583">&#9670;&nbsp;</a></span>cLUWorkInit()</h2>
+<a id="a8b99d013998c00aa933298fd4d623747" name="a8b99d013998c00aa933298fd4d623747"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b99d013998c00aa933298fd4d623747">&#9670;&nbsp;</a></span>cLUWorkInit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -620,7 +620,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> **&#160;</td>
           <td class="paramname"><em>dworkptr</em>, </td>
         </tr>
         <tr>
@@ -639,12 +639,12 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="cmemory_8c_a4b8e519a51391274f40066ea72e82583_cgraph.png" border="0" usemap="#acmemory_8c_a4b8e519a51391274f40066ea72e82583_cgraph" alt=""/></div>
-<map name="acmemory_8c_a4b8e519a51391274f40066ea72e82583_cgraph" id="acmemory_8c_a4b8e519a51391274f40066ea72e82583_cgraph">
+<div class="center"><img src="cmemory_8c_a8b99d013998c00aa933298fd4d623747_cgraph.png" border="0" usemap="#acmemory_8c_a8b99d013998c00aa933298fd4d623747_cgraph" alt=""/></div>
+<map name="acmemory_8c_a8b99d013998c00aa933298fd4d623747_cgraph" id="acmemory_8c_a8b99d013998c00aa933298fd4d623747_cgraph">
 <area shape="rect" title="Allocate known working storage. Returns 0 if success, otherwise returns the number of bytes allocated..." alt="" coords="5,56,100,83"/>
 <area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="148,5,248,32"/>
 <area shape="rect" href="memory_8c.html#aaf3f8faaec1c91be7653f137844806e0" title=" " alt="" coords="154,56,242,83"/>
-<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title="sp_ienv() is inquired to choose machine&#45;dependent parameters for the local environment." alt="" coords="164,107,232,133"/>
+<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="164,107,232,133"/>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="296,107,383,133"/>
 </map>
 </div>
@@ -658,21 +658,21 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a> cmemory_usage </td>
+          <td class="memname"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> cmemory_usage </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>nzlmax</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>nzumax</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>nzlumax</em>, </td>
         </tr>
         <tr>
@@ -691,14 +691,14 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a3b3be10b04613ac8929633d2ed6e4019" name="a3b3be10b04613ac8929633d2ed6e4019"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b3be10b04613ac8929633d2ed6e4019">&#9670;&nbsp;</a></span>complexCalloc()</h2>
+<a id="a9b482bc7015386c0cb8fafc5fc5fb67e" name="a9b482bc7015386c0cb8fafc5fc5fb67e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b482bc7015386c0cb8fafc5fc5fb67e">&#9670;&nbsp;</a></span>complexCalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcomplex.html">complex</a> * complexCalloc </td>
+          <td class="memname"><a class="el" href="structsinglecomplex.html">singlecomplex</a> * complexCalloc </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -709,14 +709,14 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a1c8563b269714cd889d4ca84380f56c7" name="a1c8563b269714cd889d4ca84380f56c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c8563b269714cd889d4ca84380f56c7">&#9670;&nbsp;</a></span>complexMalloc()</h2>
+<a id="a760375cf72b56b890a6d4bf7b58a1996" name="a760375cf72b56b890a6d4bf7b58a1996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760375cf72b56b890a6d4bf7b58a1996">&#9670;&nbsp;</a></span>complexMalloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcomplex.html">complex</a> * complexMalloc </td>
+          <td class="memname"><a class="el" href="structsinglecomplex.html">singlecomplex</a> * complexMalloc </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -727,16 +727,16 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="aa5663076d1ddc6c950514bc3bc842e47" name="aa5663076d1ddc6c950514bc3bc842e47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5663076d1ddc6c950514bc3bc842e47">&#9670;&nbsp;</a></span>copy_mem_complex()</h2>
+<a id="ab59eea34474da95fb3dc125400a1287e" name="ab59eea34474da95fb3dc125400a1287e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab59eea34474da95fb3dc125400a1287e">&#9670;&nbsp;</a></span>copy_mem_int()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void copy_mem_complex </td>
+          <td class="memname">void copy_mem_int </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>howmany</em>, </td>
         </tr>
         <tr>
@@ -761,29 +761,29 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ab59eea34474da95fb3dc125400a1287e" name="ab59eea34474da95fb3dc125400a1287e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab59eea34474da95fb3dc125400a1287e">&#9670;&nbsp;</a></span>copy_mem_int()</h2>
+<a id="a8a35d794f397387244976b49a3ce0b38" name="a8a35d794f397387244976b49a3ce0b38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a35d794f397387244976b49a3ce0b38">&#9670;&nbsp;</a></span>copy_mem_singlecomplex()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void copy_mem_int </td>
+          <td class="memname">void copy_mem_singlecomplex </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
+          <td class="paramname"><em>howmany</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"><em>old</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramname"><em>new</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -843,15 +843,15 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="cmemory_8c_a34d8cd030775d267947b68a4dacfbabb_cgraph.png" border="0" usemap="#acmemory_8c_a34d8cd030775d267947b68a4dacfbabb_cgraph" alt=""/></div>
 <map name="acmemory_8c_a34d8cd030775d267947b68a4dacfbabb_cgraph" id="acmemory_8c_a34d8cd030775d267947b68a4dacfbabb_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,108,32"/>
-<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title="sp_ienv() is inquired to choose machine&#45;dependent parameters for the local environment." alt="" coords="156,5,224,32"/>
+<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="156,5,224,32"/>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="272,5,359,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="aff3d90f7f22f882faf8ba0dcf68b0f9c" name="aff3d90f7f22f882faf8ba0dcf68b0f9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff3d90f7f22f882faf8ba0dcf68b0f9c">&#9670;&nbsp;</a></span>cSetRWork()</h2>
+<a id="a6d1e077c332d4bdb89f2a5b59fcee7dc" name="a6d1e077c332d4bdb89f2a5b59fcee7dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d1e077c332d4bdb89f2a5b59fcee7dc">&#9670;&nbsp;</a></span>cSetRWork()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -871,19 +871,19 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>dworkptr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> **&#160;</td>
           <td class="paramname"><em>dense</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> **&#160;</td>
           <td class="paramname"><em>tempv</em>&#160;</td>
         </tr>
         <tr>
@@ -896,11 +896,11 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="cmemory_8c_aff3d90f7f22f882faf8ba0dcf68b0f9c_cgraph.png" border="0" usemap="#acmemory_8c_aff3d90f7f22f882faf8ba0dcf68b0f9c_cgraph" alt=""/></div>
-<map name="acmemory_8c_aff3d90f7f22f882faf8ba0dcf68b0f9c_cgraph" id="acmemory_8c_aff3d90f7f22f882faf8ba0dcf68b0f9c_cgraph">
+<div class="center"><img src="cmemory_8c_a6d1e077c332d4bdb89f2a5b59fcee7dc_cgraph.png" border="0" usemap="#acmemory_8c_a6d1e077c332d4bdb89f2a5b59fcee7dc_cgraph" alt=""/></div>
+<map name="acmemory_8c_a6d1e077c332d4bdb89f2a5b59fcee7dc_cgraph" id="acmemory_8c_a6d1e077c332d4bdb89f2a5b59fcee7dc_cgraph">
 <area shape="rect" title="Set up pointers for real working arrays." alt="" coords="5,31,95,57"/>
-<area shape="rect" href="cutil_8c.html#a0987feeb2bd380db917660cde3352ec7" title="Fills a complex precision array with a given value." alt="" coords="156,5,197,32"/>
-<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title="sp_ienv() is inquired to choose machine&#45;dependent parameters for the local environment." alt="" coords="143,56,211,83"/>
+<area shape="rect" href="cutil_8c.html#ae9ce7326ce98866f06d3989476ead551" title="Fills a complex precision array with a given value." alt="" coords="156,5,197,32"/>
+<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="143,56,211,83"/>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="259,56,345,83"/>
 </map>
 </div>
@@ -922,7 +922,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#acd83a2e40eb7c5934d6ce306e10712ec">int_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td>
           <td class="paramname"><em>lwork</em>, </td>
         </tr>
         <tr>
@@ -963,8 +963,8 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="cmemory_8c_a98ec5775d491718006688922903496ae_cgraph.png" border="0" usemap="#acmemory_8c_a98ec5775d491718006688922903496ae_cgraph" alt=""/></div>
 <map name="acmemory_8c_a98ec5775d491718006688922903496ae_cgraph" id="acmemory_8c_a98ec5775d491718006688922903496ae_cgraph">
 <area shape="rect" title="Compress the work[] array to remove fragmentation." alt="" coords="5,31,128,57"/>
-<area shape="rect" href="cmemory_8c.html#aa5663076d1ddc6c950514bc3bc842e47" title=" " alt="" coords="176,5,320,32"/>
-<area shape="rect" href="cmemory_8c.html#ab59eea34474da95fb3dc125400a1287e" title=" " alt="" coords="193,56,303,83"/>
+<area shape="rect" href="memory_8c.html#a9795b4cc0610002873412a585c15538a" title=" " alt="" coords="211,5,320,32"/>
+<area shape="rect" href="cmemory_8c.html#a8a35d794f397387244976b49a3ce0b38" title=" " alt="" coords="176,56,355,83"/>
 </map>
 </div>
 
@@ -1086,7 +1086,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="cmemory_8c_aaf50d31c33a4cc3e770b617202ea73e3_cgraph.png" border="0" usemap="#acmemory_8c_aaf50d31c33a4cc3e770b617202ea73e3_cgraph" alt=""/></div>
 <map name="acmemory_8c_aaf50d31c33a4cc3e770b617202ea73e3_cgraph" id="acmemory_8c_aaf50d31c33a4cc3e770b617202ea73e3_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,129,32"/>
-<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title="sp_ienv() is inquired to choose machine&#45;dependent parameters for the local environment." alt="" coords="177,5,245,32"/>
+<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="177,5,245,32"/>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="293,5,380,32"/>
 </map>
 </div>

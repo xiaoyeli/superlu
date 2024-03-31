@@ -61,24 +61,24 @@ Include dependency graph for ccopy_to_ucol.c:</div>
 <area shape="rect" href="slu__cdefs_8h.html" title="Header file for real operations." alt="" coords="349,80,439,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" title=" " alt="" coords="93,155,157,181"/>
-<area shape="rect" title=" " alt="" coords="61,229,122,256"/>
-<area shape="rect" title=" " alt="" coords="146,229,210,256"/>
-<area shape="rect" title=" " alt="" coords="605,229,671,256"/>
-<area shape="rect" title=" " alt="" coords="516,229,581,256"/>
-<area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="626,155,733,181"/>
-<area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="431,155,551,181"/>
-<area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="757,155,860,181"/>
+<area shape="rect" title=" " alt="" coords="95,229,157,256"/>
+<area shape="rect" title=" " alt="" coords="181,229,245,256"/>
+<area shape="rect" title=" " alt="" coords="432,155,497,181"/>
+<area shape="rect" title=" " alt="" coords="552,229,617,256"/>
+<area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="522,155,629,181"/>
+<area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="653,155,773,181"/>
+<area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="797,155,900,181"/>
 <area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="282,155,357,181"/>
-<area shape="rect" href="slu__scomplex_8h.html" title="Header file for complex operations." alt="" coords="884,155,997,181"/>
-<area shape="rect" title=" " alt="" coords="234,229,303,256"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="328,229,492,256"/>
+<area shape="rect" href="slu__scomplex_8h.html" title="Header file for complex operations." alt="" coords="924,155,1037,181"/>
+<area shape="rect" title=" " alt="" coords="458,229,527,256"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="269,229,433,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a918c42aba84eb7e0cce4b143dbcb4ed1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ccopy__to__ucol_8c.html#a918c42aba84eb7e0cce4b143dbcb4ed1">ccopy_to_ucol</a> (int jcol, int nseg, int *segrep, int *repfnz, int *perm_r, <a class="el" href="structcomplex.html">complex</a> *dense, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
-<tr class="separator:a918c42aba84eb7e0cce4b143dbcb4ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166a94b763c9d140f19a9ad68e874314"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ccopy__to__ucol_8c.html#a166a94b763c9d140f19a9ad68e874314">ccopy_to_ucol</a> (int jcol, int nseg, int *segrep, int *repfnz, int *perm_r, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *dense, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *Glu)</td></tr>
+<tr class="separator:a166a94b763c9d140f19a9ad68e874314"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
@@ -100,8 +100,8 @@ Permission to modify the code and to distribute modified code is
 granted, provided the above notices are retained, and a notice that
 the code was modified is included with the above copyright notice.
 </pre> </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a918c42aba84eb7e0cce4b143dbcb4ed1" name="a918c42aba84eb7e0cce4b143dbcb4ed1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a918c42aba84eb7e0cce4b143dbcb4ed1">&#9670;&nbsp;</a></span>ccopy_to_ucol()</h2>
+<a id="a166a94b763c9d140f19a9ad68e874314" name="a166a94b763c9d140f19a9ad68e874314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a166a94b763c9d140f19a9ad68e874314">&#9670;&nbsp;</a></span>ccopy_to_ucol()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,7 +139,7 @@ the code was modified is included with the above copyright notice.
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcomplex.html">complex</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>dense</em>, </td>
         </tr>
         <tr>
@@ -158,16 +158,16 @@ the code was modified is included with the above copyright notice.
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="ccopy__to__ucol_8c_a918c42aba84eb7e0cce4b143dbcb4ed1_cgraph.png" border="0" usemap="#accopy__to__ucol_8c_a918c42aba84eb7e0cce4b143dbcb4ed1_cgraph" alt=""/></div>
-<map name="accopy__to__ucol_8c_a918c42aba84eb7e0cce4b143dbcb4ed1_cgraph" id="accopy__to__ucol_8c_a918c42aba84eb7e0cce4b143dbcb4ed1_cgraph">
+<div class="center"><img src="ccopy__to__ucol_8c_a166a94b763c9d140f19a9ad68e874314_cgraph.png" border="0" usemap="#accopy__to__ucol_8c_a166a94b763c9d140f19a9ad68e874314_cgraph" alt=""/></div>
+<map name="accopy__to__ucol_8c_a166a94b763c9d140f19a9ad68e874314_cgraph" id="accopy__to__ucol_8c_a166a94b763c9d140f19a9ad68e874314_cgraph">
 <area shape="rect" title=" " alt="" coords="5,107,112,133"/>
 <area shape="rect" href="cmemory_8c.html#a21a3daa34a5c07748203017a189b2a4f" title="Expand the data structures for L and U during the factorization." alt="" coords="160,107,273,133"/>
 <area shape="rect" href="cmemory_8c.html#ad9e40a67c676ac25ddcd8a1de1b2d921" title="Expand the existing storage to accommodate more fill&#45;ins." alt="" coords="345,81,417,108"/>
 <area shape="rect" href="cmemory_8c.html#a565c5fbbb980f1be7a56d91878ce8d6f" title=" " alt="" coords="321,132,441,159"/>
-<area shape="rect" href="cmemory_8c.html#aa5663076d1ddc6c950514bc3bc842e47" title=" " alt="" coords="489,5,633,32"/>
-<area shape="rect" href="cmemory_8c.html#ab59eea34474da95fb3dc125400a1287e" title=" " alt="" coords="507,56,616,83"/>
-<area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="511,107,611,133"/>
-<area shape="rect" href="memory_8c.html#a9a6637190072609a7dcdec007bd98113" title=" " alt="" coords="516,157,607,184"/>
+<area shape="rect" href="memory_8c.html#a9795b4cc0610002873412a585c15538a" title=" " alt="" coords="524,5,633,32"/>
+<area shape="rect" href="cmemory_8c.html#a8a35d794f397387244976b49a3ce0b38" title=" " alt="" coords="489,56,668,83"/>
+<area shape="rect" href="cmemory_8c.html#afdfe5f4689b0aaedf46d034809711754" title=" " alt="" coords="529,107,629,133"/>
+<area shape="rect" href="memory_8c.html#a9a6637190072609a7dcdec007bd98113" title=" " alt="" coords="533,157,624,184"/>
 </map>
 </div>
 

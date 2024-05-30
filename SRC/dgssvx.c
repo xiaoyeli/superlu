@@ -408,13 +408,13 @@ printf("dgssvx: Fact=%4d, Trans=%4d, equed=%c\n",
 #endif
 
     /* Test the input parameters */
-    if (options->Fact != DOFACT && options->Fact != SamePattern &&
-	options->Fact != SamePattern_SameRowPerm &&
-	options->Fact != FACTORED &&
-	options->Trans != NOTRANS && options->Trans != TRANS && 
-	options->Trans != CONJ &&
-	options->Equil != NO && options->Equil != YES)
-	*info = -1;
+    if ( (options->Fact != DOFACT && options->Fact != SamePattern &&
+	  options->Fact != SamePattern_SameRowPerm &&
+	  options->Fact != FACTORED) || 
+	 (options->Trans != NOTRANS && options->Trans != TRANS && 
+	  options->Trans != CONJ) ||
+	 (options->Equil != NO && options->Equil != YES) )
+	 *info = -1;
     else if ( A->nrow != A->ncol || A->nrow < 0 ||
 	      (A->Stype != SLU_NC && A->Stype != SLU_NR) ||
 	      A->Dtype != SLU_D || A->Mtype != SLU_GE )

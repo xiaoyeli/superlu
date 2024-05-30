@@ -17,21 +17,21 @@ add_custom_target(examples_double)
 add_dependencies(examples_double
                  ditersol ditersol1 dlinsol dlinsol1)
 if(NOT MSVC OR (MSVC AND WinGetOpt_FOUND))
-  add_dependencies(examples_complex
+  add_dependencies(examples_double
                    dlinsolx dlinsolx1 dlinsolx2 dlinsolx3)
 endif()
 add_custom_target(examples_float)
 add_dependencies(examples_float
                  sitersol sitersol1 slinsol slinsol1)
 if(NOT MSVC OR (MSVC AND WinGetOpt_FOUND))
-  add_dependencies(examples_complex
+  add_dependencies(examples_float
                    slinsolx slinsolx1 slinsolx2 slinsolx3)
 endif()
 add_custom_target(examples_doublecomplex)
 add_dependencies(examples_doublecomplex
                  zitersol zitersol1 zlinsol zlinsol1)
 if(NOT MSVC OR (MSVC AND WinGetOpt_FOUND))
-  add_dependencies(examples_complex
+  add_dependencies(examples_doublecomplex
                    zlinsolx zlinsolx1 zlinsolx2 zlinsolx3)
 endif()
 add_dependencies(examples

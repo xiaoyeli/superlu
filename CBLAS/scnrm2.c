@@ -28,20 +28,17 @@ real scnrm2_(integer *n, singlecomplex *x, integer *incx)
 
        SCNRM2 := sqrt( conjg( x' )*x )   
 
-
-
     -- This version written on 25-October-1982.   
        Modified on 14-October-1993 to inline the call to CLASSQ.   
        Sven Hammarling, Nag Ltd.   
 
-
-    
    Parameter adjustments   
        Function Body */
 #define X(I) x[(I)-1]
 
 
-    if (*n < 1 || *incx < 1) {
+    //if (*n < 1 || *incx < 1) {
+    if (*n < 1) {
 	norm = 0.f;
     } else {
 	scale = 0.f;
@@ -50,7 +47,15 @@ real scnrm2_(integer *n, singlecomplex *x, integer *incx)
   
           auxiliary routine:   
           CALL CLASSQ( N, X, INCX, SCALE, SSQ ) */
-	for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
+	
+	int ixinitial = 1;
+	if (*incx < 0) {
+	    ixinitial = 1 - (*n-1)* (*incx);
+	}
+
+	int i;
+	for (i = 1,ix = ixinitial; i <= *n; i++, ix += *incx) {
+	    //for (ix = 1; *incx < 0 ? ix >= (*n-1)*(*incx)+1 : ix <= (*n-1)*(*incx)+1; ix += *incx) {
 	    if (X(ix).r != 0.f) {
 		temp = (r__1 = X(ix).r, dabs(r__1));
 		if (scale < temp) {

@@ -2916,7 +2916,7 @@ Here is the call graph for this function:</div>
 
   ZGSCON estimates the reciprocal of the condition number of a general 
   real matrix A, in either the 1-norm or the infinity-norm, using   
-  the LU factorization computed by ZGETRF.   *
+  the LU factorization computed by ZGSTRF.   *
 
   An estimate is obtained for norm(inv(A)), and the reciprocal of the   
   condition number is computed as   
@@ -4903,7 +4903,7 @@ work    (workspace/output) void*, size (lwork) (in bytes)
         to hold data structures for factors L and U.
         On exit, if fact is not 'F', L and U point to this array.
 
-lwork   (input) int
+lwork   (input) int_t
         Specifies the size of work array in bytes.
         = 0:  allocate space internally by system malloc;
         &gt; 0:  use user-supplied work array of length lwork in bytes,

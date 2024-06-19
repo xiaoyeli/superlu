@@ -29,19 +29,16 @@ doublereal dznrm2_(integer *n, doublecomplex *x, integer *incx)
        DZNRM2 := sqrt( conjg( x' )*x )   
 
 
-
     -- This version written on 25-October-1982.   
        Modified on 14-October-1993 to inline the call to ZLASSQ.   
        Sven Hammarling, Nag Ltd.   
-
-
     
    Parameter adjustments   
        Function Body */
 #define X(I) x[(I)-1]
 
-
-    if (*n < 1 || *incx < 1) {
+	//    if (*n < 1 || *incx < 1) {
+    if (*n < 1) {
 	norm = 0.;
     } else {
 	scale = 0.;
@@ -50,7 +47,16 @@ doublereal dznrm2_(integer *n, doublecomplex *x, integer *incx)
   
           auxiliary routine:   
           CALL ZLASSQ( N, X, INCX, SCALE, SSQ ) */
-	for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
+	
+	int ixinitial = 1;
+	if (*incx < 0) {
+	    ixinitial = 1 - (*n-1)* (*incx);
+	}
+
+	int i;
+	for (i = 1,ix = ixinitial; i <= *n; i++, ix += *incx) {
+	    //for (ix = 1; *incx < 0 ? ix >= (*n-1)*(*incx)+1 : ix <= (*n-1)*(*incx)+1; ix += *incx) {
+	    
 	    if (X(ix).r != 0.) {
 		temp = (d__1 = X(ix).r, abs(d__1));
 		if (scale < temp) {

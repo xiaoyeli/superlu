@@ -8,8 +8,6 @@
 
 doublereal dnrm2_(integer *n, doublereal *x, integer *incx)
 {
-
-
     /* System generated locals */
  
     doublereal ret_val, d__1;
@@ -22,26 +20,21 @@ doublereal dnrm2_(integer *n, doublereal *x, integer *incx)
     integer ix;
     doublereal ssq;
 
-
 /*  DNRM2 returns the euclidean norm of a vector via the function   
     name, so that   
 
        DNRM2 := sqrt( x'*x )   
 
-
-
     -- This version written on 25-October-1982.   
        Modified on 14-October-1993 to inline the call to DLASSQ.   
        Sven Hammarling, Nag Ltd.   
-
-
     
    Parameter adjustments   
        Function Body */
 #define X(I) x[(I)-1]
 
-
-    if (*n < 1 || *incx < 1) {
+    //if (*n < 1 || *incx < 1) {
+    if (*n < 1) {
 	norm = 0.;
     } else if (*n == 1) {
 	norm = abs(X(1));
@@ -49,10 +42,17 @@ doublereal dnrm2_(integer *n, doublereal *x, integer *incx)
 	scale = 0.;
 	ssq = 1.;
 /*        The following loop is equivalent to this call to the LAPACK 
-  
           auxiliary routine:   
           CALL DLASSQ( N, X, INCX, SCALE, SSQ ) */
-	for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
+	
+	int ixinitial = 1;
+	if (*incx < 0) {
+	    ixinitial = 1 - (*n-1)* (*incx);
+	}
+
+	int i;
+	for (i = 1,ix = ixinitial; i <= *n; i++, ix += *incx) {
+	    //for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
 	    if (X(ix) != 0.) {
 		absxi = (d__1 = X(ix), abs(d__1));
 		if (scale < absxi) {

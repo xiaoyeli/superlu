@@ -454,7 +454,7 @@ work    (workspace/output) void*, size (lwork) (in bytes)
         to hold data structures for factors L and U.
         On exit, if fact is not 'F', L and U point to this array.
 
-lwork   (input) int
+lwork   (input) int_t
         Specifies the size of work array in bytes.
         = 0:  allocate space internally by system malloc;
         &gt; 0:  use user-supplied work array of length lwork in bytes,

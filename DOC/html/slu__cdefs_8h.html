@@ -1558,7 +1558,7 @@ Here is the call graph for this function:</div>
 
   CGSCON estimates the reciprocal of the condition number of a general 
   real matrix A, in either the 1-norm or the infinity-norm, using   
-  the LU factorization computed by CGETRF.   *
+  the LU factorization computed by CGSTRF.   *
 
   An estimate is obtained for norm(inv(A)), and the reciprocal of the   
   condition number is computed as   
@@ -3326,7 +3326,6 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Solves the system of linear equations using the LU factorization from <a class="el" href="cgstrf_8c.html#a660061345e0803d035810bf097a0e8a7">cgstrf()</a></p>
 <pre>
 Purpose
 =======
@@ -3547,7 +3546,7 @@ work    (workspace/output) void*, size (lwork) (in bytes)
         to hold data structures for factors L and U.
         On exit, if fact is not 'F', L and U point to this array.
 
-lwork   (input) int
+lwork   (input) int_t
         Specifies the size of work array in bytes.
         = 0:  allocate space internally by system malloc;
         &gt; 0:  use user-supplied work array of length lwork in bytes,

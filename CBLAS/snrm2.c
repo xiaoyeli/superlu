@@ -9,7 +9,6 @@
 real snrm2_(integer *n, real *x, integer *incx)
 {
 
-
     /* System generated locals */
  
     real ret_val, r__1;
@@ -29,11 +28,9 @@ real snrm2_(integer *n, real *x, integer *incx)
        SNRM2 := sqrt( x'*x )   
 
 
-
     -- This version written on 25-October-1982.   
        Modified on 14-October-1993 to inline the call to SLASSQ.   
        Sven Hammarling, Nag Ltd.   
-
 
     
    Parameter adjustments   
@@ -41,7 +38,8 @@ real snrm2_(integer *n, real *x, integer *incx)
 #define X(I) x[(I)-1]
 
 
-    if (*n < 1 || *incx < 1) {
+    //if (*n < 1 || *incx < 1) {
+    if (*n < 1) {
 	norm = 0.f;
     } else if (*n == 1) {
 	norm = dabs(X(1));
@@ -52,7 +50,15 @@ real snrm2_(integer *n, real *x, integer *incx)
   
           auxiliary routine:   
           CALL SLASSQ( N, X, INCX, SCALE, SSQ ) */
-	for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
+	
+	int ixinitial = 1;
+	if (*incx < 0) {
+	    ixinitial = 1 - (*n-1)* (*incx);
+	}
+
+	int i;
+	for (i = 1,ix = ixinitial; i <= *n; i++, ix += *incx) {
+	    //for (ix = 1; *incx < 0 ? ix >= (*n-1)**incx+1 : ix <= (*n-1)**incx+1; ix += *incx) {
 	    if (X(ix) != 0.f) {
 		absxi = (r__1 = X(ix), dabs(r__1));
 		if (scale < absxi) {

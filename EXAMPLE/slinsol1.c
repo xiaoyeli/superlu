@@ -1,4 +1,4 @@
-/*
+/*!
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -16,13 +16,13 @@ at the top-level directory.
  * October 15, 2003
  *
  */
-
+ 
 /*! \file
- * \brief LU factorization from dgstrf (DGSSV)
+ * \brief LU factorization from SGSTRF (SGSSV)
  *
  * \ingroup Example
  */
-
+ 
 #include "slu_sdefs.h"
 
 int main(int argc, char *argv[])
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     if ( info == 0 ) {
 
 	/* This is how you could access the solution matrix. */
-        float *sol = (float*) ((DNformat*) B.Store)->nzval; 
+        float *sol = (float*) ((DNformat*) B.Store)->nzval;
         (void)sol;  // suppress unused variable warning
 
 	 /* Compute the infinity norm of the error. */
@@ -136,6 +136,7 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+
     return EXIT_SUCCESS;
 }
 

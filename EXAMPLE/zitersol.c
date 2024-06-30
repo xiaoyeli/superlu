@@ -9,20 +9,21 @@ The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 
-/* -- SuperLU routine (version 5.0) --
+/*
+ * -- SuperLU routine (version 5.0) --
  * Lawrence Berkeley National Laboratory
  * November, 2010
  * August, 2011
  */
 
-/*! \file
+/*! @file zitersol.c
  * \brief Example #1 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,
  * and the preconditioned GMRES is applied to the equilibrated system.
  * The driver routine ZGSISX is called twice to perform factorization
  * and apply preconditioner separately.
- *
+ * 
  * Note that ZGSISX performs the following factorization:
  *     Pr*Dr*A*Dc*Pc^T ~= LU
  * with Pr being obtained from MC64 statically then partial pivoting
@@ -33,10 +34,11 @@ at the top-level directory.
  * Then GMRES step requires requires 2 procedures:
  *   1) Apply preconditioner M^{-1} = Pc^T*U^{-1}*L^{-1}*Pr
  *   2) Matrix-vector multiplication: w = A1*v
- *
+ * 
  * \ingroup Example
  */
 
+#include <unistd.h>
 #include "slu_zdefs.h"
 
 superlu_options_t *GLOBAL_OPTIONS;
@@ -85,10 +87,11 @@ void zpsolve(int n, doublecomplex x[], doublecomplex y[])
 #endif
 }
 
+
 /*!
- * \brief Performs matrix-vector multipliation sp_zgem with original matrix A.
+ * \brief Performs matrix-vector multipliation sp_zgemv with original matrix A.
  *
- * The operations is y := alpha*A*x + beta*y. See documentation of sp_zgem
+ * The operations is y := alpha*A*x + beta*y. See documentation of sp_zgemv
  * for further details.
  *
  * \param [in] alpha Scalar factor for A*x
@@ -219,7 +222,7 @@ int main(int argc, char *argv[])
 		break;
 	    default:
 		printf("Unrecognized format.\n");
-                return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
     }
 
@@ -266,11 +269,9 @@ int main(int argc, char *argv[])
     /* Set RHS for GMRES. */
     if (!(b = doublecomplexMalloc(m))) ABORT("Malloc fails for b[].");
     if (*equed == 'R' || *equed == 'B') {
-        for (int i = 0; i < n; ++i)
-            zd_mult(&b[i], &rhsb[i], R[i]);
+	for (int i = 0; i < n; ++i) zd_mult(&b[i], &rhsb[i], R[i]);
     } else {
-        for (int i = 0; i < m; i++)
-            b[i] = rhsb[i];
+	for (int i = 0; i < m; i++) b[i] = rhsb[i];
     }
 
     printf("zgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
@@ -331,9 +332,8 @@ int main(int argc, char *argv[])
 	extern double dznrm2_(int *, doublecomplex [], int *);
 	extern void zaxpy_(int *, doublecomplex *, doublecomplex [], int *, doublecomplex [], int *);
 
-        /* Initial guess */
-        for (int i = 0; i < n; i++)
-            x[i] = zero;
+	/* Initial guess */
+	for (int i = 0; i < n; i++) x[i] = zero;
 
 	t = SuperLU_timer_();
 
@@ -344,7 +344,7 @@ int main(int argc, char *argv[])
 
 	/* Output the result. */
 	nnz32 = Astore->nnz;
-	nrmA = dznrm2_(&nnz32, (doublecomplex *)((DNformat *)A.Store)->nzval,
+	nrmA = dznrm2_(&nnz32, (doublecomplex *)((NCformat *)A.Store)->nzval,
 		&i_1);
 	nrmB = dznrm2_(&m, b, &i_1);
 	sp_zgemv("N", none, &A, x, 1, one, b, 1);
@@ -363,10 +363,9 @@ int main(int argc, char *argv[])
 
 	/* Scale the solution back if equilibration was performed. */
 	if (*equed == 'C' || *equed == 'B') 
-            for (int i = 0; i < n; i++)
-                zd_mult(&x[i], &x[i], C[i]);
+	    for (int i = 0; i < n; i++) zd_mult(&x[i], &x[i], C[i]);
 
-        for (int i = 0; i < m; i++) {
+	for (int i = 0; i < m; i++) {
             z_sub(&temp, &x[i], &xact[i]);
             maxferr = SUPERLU_MAX(maxferr, z_abs1(&temp));
         }

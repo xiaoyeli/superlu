@@ -119,7 +119,7 @@ cgscon(char *norm, SuperMatrix *L, SuperMatrix *U,
 	return;
     }
 
-    work = complexCalloc( 3*L->nrow );
+    work = singlecomplexCalloc( 3*L->nrow );
 
 
     if ( !work )

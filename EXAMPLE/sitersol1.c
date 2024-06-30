@@ -9,20 +9,21 @@ The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 
-/* -- SuperLU routine (version 5.0) --
+/*
+ * -- SuperLU routine (version 5.0) --
  * Lawrence Berkeley National Laboratory
  * November, 2010
  * August, 2011
  */
 
-/*! \file
+/*! @file sitersol1.c
  * \brief Example #2 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,
  * but the preconditioned GMRES is applied to the original system.
  * The driver routine SGSISX is called twice to perform factorization
  * and apply preconditioner separately.
- *
+ * 
  * Note that SGSISX performs the following factorization:
  *     Pr*Dr*A*Dc*Pc^T ~= LU
  * with Pr being obtained from MC64 statically then partial pivoting
@@ -48,7 +49,7 @@ SuperLUStat_t *GLOBAL_STAT;
 mem_usage_t   *GLOBAL_MEM_USAGE;
 
 /*!
- * \brief Performs sgsisx with original matrix A.
+ * \brief Performs SGSISX with original matrix A.
  *
  * See documentation of sgsisx for more details.
  *
@@ -56,7 +57,6 @@ mem_usage_t   *GLOBAL_MEM_USAGE;
  * \param [out] x    Solution
  * \param [in,out] y Right-hand side
  */
-
 void spsolve(int n, float x[], float y[])
 {
     SuperMatrix *A = GLOBAL_A, *L = GLOBAL_L, *U = GLOBAL_U;
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
 		break;
 	    default:
 		printf("Unrecognized format.\n");
-                return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
     }
 
@@ -239,8 +239,7 @@ int main(int argc, char *argv[])
 	a_orig[i] = ((float *)Astore->nzval)[i];
 	asub_orig[i] = Astore->rowind[i];
     }
-    for (int i = 0; i <= n; ++i)
-        xa_orig[i] = Astore->colptr[i];
+    for (int i = 0; i <= n; ++i) xa_orig[i] = Astore->colptr[i];
     sCreate_CompCol_Matrix(&AA, m, n, nnz, a_orig, asub_orig, xa_orig,
 			   SLU_NC, SLU_S, SLU_GE);
     
@@ -279,8 +278,7 @@ int main(int argc, char *argv[])
 
     /* Set RHS for GMRES. */
     if (!(b = floatMalloc(m))) ABORT("Malloc fails for b[].");
-    for (int i = 0; i < m; i++)
-        b[i] = rhsb[i];
+    for (int i = 0; i < m; i++) b[i] = rhsb[i];
 
     printf("sgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
     if (info > 0 || rcond < 1e-8 || rpg > 1e8)
@@ -341,9 +339,8 @@ int main(int argc, char *argv[])
 	extern float snrm2_(int *, float [], int *);
 	extern void saxpy_(int *, float *, float [], int *, float [], int *);
 
-        /* Initial guess */
-        for (int i = 0; i < n; i++)
-            x[i] = zero;
+	/* Initial guess */
+	for (int i = 0; i < n; i++) x[i] = zero;
 
 	t = SuperLU_timer_();
 
@@ -354,7 +351,7 @@ int main(int argc, char *argv[])
 
 	/* Output the result. */
 	int nnz32 = Astore->nnz;
-	nrmA = snrm2_(&nnz32, (float *)((DNformat *)A.Store)->nzval,
+	nrmA = snrm2_(&nnz32, (float *)((NCformat *)A.Store)->nzval,
 		&i_1);
 	nrmB = snrm2_(&m, b, &i_1);
 	sp_sgemv("N", -1.0, &A, x, 1, 1.0, b, 1);
@@ -371,7 +368,7 @@ int main(int argc, char *argv[])
 	printf("iteration: %d\nresidual: %.1e\nGMRES time: %.2f seconds.\n",
 		iter, resid, t);
 
-        for (int i = 0; i < m; i++) {
+	for (int i = 0; i < m; i++) {
 	    maxferr = SUPERLU_MAX(maxferr, fabs(x[i] - xact[i]));
         }
 	printf("||X-X_true||_oo = %.1e\n", maxferr);

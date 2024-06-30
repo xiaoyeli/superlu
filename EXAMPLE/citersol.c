@@ -16,14 +16,14 @@ at the top-level directory.
  * August, 2011
  */
 
-/*! \file
+/*! @file citersol.c
  * \brief Example #1 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,
  * and the preconditioned GMRES is applied to the equilibrated system.
  * The driver routine CGSISX is called twice to perform factorization
  * and apply preconditioner separately.
- *
+ * 
  * Note that CGSISX performs the following factorization:
  *     Pr*Dr*A*Dc*Pc^T ~= LU
  * with Pr being obtained from MC64 statically then partial pivoting
@@ -34,10 +34,11 @@ at the top-level directory.
  * Then GMRES step requires requires 2 procedures:
  *   1) Apply preconditioner M^{-1} = Pc^T*U^{-1}*L^{-1}*Pr
  *   2) Matrix-vector multiplication: w = A1*v
- *
+ * 
  * \ingroup Example
  */
 
+#include <unistd.h>
 #include "slu_cdefs.h"
 
 superlu_options_t *GLOBAL_OPTIONS;
@@ -56,10 +57,7 @@ mem_usage_t   *GLOBAL_MEM_USAGE;
  * \param [out] x    Solution
  * \param [in,out] y Right-hand side
  */
-void cpsolve(int n,
-                  singlecomplex x[], /* solution */
-                  singlecomplex y[]  /* right-hand side */
-)
+void cpsolve(int n, singlecomplex x[], singlecomplex y[])
 {
     SuperMatrix *A = GLOBAL_A, *L = GLOBAL_L, *U = GLOBAL_U;
     SuperLUStat_t *stat = GLOBAL_STAT;
@@ -88,6 +86,7 @@ void cpsolve(int n,
 	   mem_usage, stat, &info);
 #endif
 }
+
 
 /*!
  * \brief Performs matrix-vector multipliation sp_cgemv with original matrix A.
@@ -223,7 +222,7 @@ int main(int argc, char *argv[])
 		break;
 	    default:
 		printf("Unrecognized format.\n");
-                return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
     }
 
@@ -235,11 +234,11 @@ int main(int argc, char *argv[])
     fflush(stdout);
 
     /* Generate the right-hand side */
-    if ( !(rhsb = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
-    if ( !(rhsx = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
+    if ( !(rhsb = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
+    if ( !(rhsx = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
     cCreate_Dense_Matrix(&B, m, nrhs, rhsb, m, SLU_DN, SLU_C, SLU_GE);
     cCreate_Dense_Matrix(&X, m, nrhs, rhsx, m, SLU_DN, SLU_C, SLU_GE);
-    xact = complexMalloc(n * nrhs);
+    xact = singlecomplexMalloc(n * nrhs);
     ldx = n;
     cGenXtrue(n, nrhs, xact, ldx);
     cFillRHS(trans, nrhs, xact, ldx, &A, &B);
@@ -268,13 +267,11 @@ int main(int argc, char *argv[])
 	   lwork, &B, &X, &rpg, &rcond, &Glu, &mem_usage, &stat, &info);
 
     /* Set RHS for GMRES. */
-    if (!(b = complexMalloc(m))) ABORT("Malloc fails for b[].");
+    if (!(b = singlecomplexMalloc(m))) ABORT("Malloc fails for b[].");
     if (*equed == 'R' || *equed == 'B') {
-        for (int i = 0; i < n; ++i)
-            cs_mult(&b[i], &rhsb[i], R[i]);
+	for (int i = 0; i < n; ++i) cs_mult(&b[i], &rhsb[i], R[i]);
     } else {
-        for (int i = 0; i < m; i++)
-            b[i] = rhsb[i];
+	for (int i = 0; i < m; i++) b[i] = rhsb[i];
     }
 
     printf("cgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
@@ -325,7 +322,7 @@ int main(int argc, char *argv[])
     int maxit = 1000;
     int iter = maxit;
     double resid = 1e-4;
-    if (!(x = complexMalloc(n))) ABORT("Malloc fails for x[].");
+    if (!(x = singlecomplexMalloc(n))) ABORT("Malloc fails for x[].");
 
     if (info <= n + 1)
     {
@@ -335,9 +332,8 @@ int main(int argc, char *argv[])
 	extern float scnrm2_(int *, singlecomplex [], int *);
 	extern void caxpy_(int *, singlecomplex *, singlecomplex [], int *, singlecomplex [], int *);
 
-        /* Initial guess */
-        for (int i = 0; i < n; i++)
-            x[i] = zero;
+	/* Initial guess */
+	for (int i = 0; i < n; i++) x[i] = zero;
 
 	t = SuperLU_timer_();
 
@@ -348,7 +344,7 @@ int main(int argc, char *argv[])
 
 	/* Output the result. */
 	nnz32 = Astore->nnz;
-	nrmA = scnrm2_(&nnz32, (singlecomplex *)((DNformat *)A.Store)->nzval,
+	nrmA = scnrm2_(&nnz32, (singlecomplex *)((NCformat *)A.Store)->nzval,
 		&i_1);
 	nrmB = scnrm2_(&m, b, &i_1);
 	sp_cgemv("N", none, &A, x, 1, one, b, 1);
@@ -367,10 +363,9 @@ int main(int argc, char *argv[])
 
 	/* Scale the solution back if equilibration was performed. */
 	if (*equed == 'C' || *equed == 'B') 
-            for (int i = 0; i < n; i++)
-                cs_mult(&x[i], &x[i], C[i]);
+	    for (int i = 0; i < n; i++) cs_mult(&x[i], &x[i], C[i]);
 
-        for (int i = 0; i < m; i++) {
+	for (int i = 0; i < m; i++) {
             c_sub(&temp, &x[i], &xact[i]);
             maxferr = SUPERLU_MAX(maxferr, c_abs1(&temp));
         }

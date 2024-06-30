@@ -24,6 +24,7 @@ General Public License for more details.
 For information on ITSOL contact saad@cs.umn.edu
 */
 
+
 /*! \file
  * \brief Flexible GMRES from ITSOL developed by Yousef Saad.
  *
@@ -36,7 +37,6 @@ For information on ITSOL contact saad@cs.umn.edu
 
 extern void cdotc_(singlecomplex *, int *, singlecomplex [], int *, singlecomplex [], int *);
 extern float scnrm2_(int *, singlecomplex [], int *);
-
 
 /*!
  * \brief Simple version of the ARMS preconditioned FGMRES algorithm.
@@ -67,6 +67,46 @@ int cfgmr(int n,
      void (*cpsolve) (int, singlecomplex[], singlecomplex[]),
      singlecomplex *rhs, singlecomplex *sol, double tol, int im, int *itmax, FILE * fits)
 {
+/*----------------------------------------------------------------------
+|                 *** Preconditioned FGMRES ***
++-----------------------------------------------------------------------
+| This is a simple version of the ARMS preconditioned FGMRES algorithm.
++-----------------------------------------------------------------------
+| Y. S. Dec. 2000. -- Apr. 2008
++-----------------------------------------------------------------------
+| on entry:
+|----------
+|
+| rhs     = real vector of length n containing the right hand side.
+| sol     = real vector of length n containing an initial guess to the
+|           solution on input.
+| tol     = tolerance for stopping iteration
+| im      = Krylov subspace dimension
+| (itmax) = max number of iterations allowed.
+| fits    = NULL: no output
+|        != NULL: file handle to output " resid vs time and its"
+|
+| on return:
+|----------
+| fgmr      int =  0 --> successful return.
+|           int =  1 --> convergence not achieved in itmax iterations.
+| sol     = contains an approximate solution (upon successful return).
+| itmax   = has changed. It now contains the number of steps required
+|           to converge --
++-----------------------------------------------------------------------
+| internal work arrays:
+|----------
+| vv      = work array of length [im+1][n] (used to store the Arnoldi
+|           basis)
+| hh      = work array of length [im][im+1] (Householder matrix)
+| z       = work array of length [im][n] to store preconditioned vectors
++-----------------------------------------------------------------------
+| subroutines called :
+| matvec - matrix-vector multiplication operation
+| psolve - (right) preconditionning operation
+|	   psolve can be a NULL pointer (GMRES without preconditioner)
++---------------------------------------------------------------------*/
+
     int maxits = *itmax;
     int its, i_1 = 1, i_2 = 2;
     float eps1 = 0.0;
@@ -82,27 +122,26 @@ int cfgmr(int n,
 
     its = 0;
     vv = (singlecomplex **)SUPERLU_MALLOC((im + 1) * sizeof(singlecomplex *));
-    for (int i = 0; i <= im; i++)
-        vv[i] = complexMalloc(n);
+    for (int i = 0; i <= im; i++) vv[i] = singlecomplexMalloc(n);
     z = (singlecomplex **)SUPERLU_MALLOC(im * sizeof(singlecomplex *));
     hh = (singlecomplex **)SUPERLU_MALLOC(im * sizeof(singlecomplex *));
     for (int i = 0; i < im; i++)
     {
-	hh[i] = complexMalloc(i + 2);
-	z[i] = complexMalloc(n);
+	hh[i] = singlecomplexMalloc(i + 2);
+	z[i] = singlecomplexMalloc(n);
     }
-    c = complexMalloc(im);
-    s = complexMalloc(im);
-    rs = complexMalloc(im + 1);
+    c = singlecomplexMalloc(im);
+    s = singlecomplexMalloc(im);
+    rs = singlecomplexMalloc(im + 1);
 
     /*---- outer loop starts here ----*/
     do
     {
 	/*---- compute initial residual vector ----*/
 	cmatvec(one, sol, zero, vv[0]);
-        for (int j = 0; j < n; j++)
-            c_sub(&vv[0][j], &rhs[j], &vv[0][j]); /* vv[0]= initial residual */
-        float beta = scnrm2_(&n, vv[0], &i_1);
+	for (int j = 0; j < n; j++)
+	    c_sub(&vv[0][j], &rhs[j], &vv[0][j]);	/* vv[0]= initial residual */
+	float beta = scnrm2_(&n, vv[0], &i_1);
 
 	/*---- print info if fits != null ----*/
 	if (fits != NULL && its == 0)
@@ -110,10 +149,10 @@ int cfgmr(int n,
 	/*if ( beta <= tol * dnrm2_(&n, rhs, &i_1) )*/
 	if ( !(beta > tol * scnrm2_(&n, rhs, &i_1)) )
 	    break;
-        float t = 1.0 / beta;
+	float t = 1.0 / beta;
 
-        /*---- normalize: vv[0] = vv[0] / beta ----*/
-        for (int j = 0; j < n; j++)
+	/*---- normalize: vv[0] = vv[0] / beta ----*/
+	for (int j = 0; j < n; j++)
 	    cs_mult(&vv[0][j], &vv[0][j], t);
 	if (its == 0)
 	    eps1 = tol * beta;
@@ -121,11 +160,11 @@ int cfgmr(int n,
 	/*---- initialize 1-st term of rhs of hessenberg system ----*/
 	rs[0].r = beta;
 	rs[0].i = 0.0;
-        int i = 0;
-        for (i = 0; i < im; i++)
-        {
+	int i = 0;
+	for (i = 0; i < im; i++)
+	{
 	    its++;
-            int i1 = i + 1;
+	    int i1 = i + 1;
 
 	    /*------------------------------------------------------------
 	    |  (Right) Preconditioning Operation   z_{j} = M^{-1} v_{j}
@@ -143,15 +182,15 @@ int cfgmr(int n,
 	    |     h_{i,j} = (w,v_{i})
 	    |     w  = w - h_{i,j} v_{i}
 	    +------------------------------------------------------------*/
-            float t0 = scnrm2_(&n, vv[i1], &i_1);
-            for (int j = 0; j <= i; j++)
-            {
+	    float t0 = scnrm2_(&n, vv[i1], &i_1);
+	    for (int j = 0; j <= i; j++)
+	    {
 		singlecomplex negt;
 #if 0
 		cdotc_(&tt, &n, vv[j], &i_1, vv[i1], &i_1);
 #else
-                singlecomplex tt = zero;
-                for (int k = 0; k < n; ++k) {
+		singlecomplex tt = zero;
+		for (int k = 0; k < n; ++k) {
 		    cc_conj(&tt1, &vv[j][k]);
 		    cc_mult(&tt2, &tt1, &vv[i1][k]);
 		    c_add(&tt, &tt, &tt2);
@@ -168,14 +207,14 @@ int cfgmr(int n,
 	    while (t < 0.5 * t0)
 	    {
 		t0 = t;
-                for (int j = 0; j <= i; j++)
-                {
+		for (int j = 0; j <= i; j++)
+		{
 		    singlecomplex negt;
 #if 0
 		    cdotc_(&tt, &n, vv[j], &i_1, vv[i1], &i_1);
 #else
-                    singlecomplex tt = zero;
-                    for (int k = 0; k < n; ++k) {
+   	            singlecomplex tt = zero;
+		    for (int k = 0; k < n; ++k) {
 		        cc_conj(&tt1, &vv[j][k]);
 		        cc_mult(&tt2, &tt1, &vv[i1][k]);
 		        c_add(&tt, &tt, &tt2);
@@ -196,9 +235,9 @@ int cfgmr(int n,
 	    {
 		/*---- v_{j+1} = w / h_{j+1,j} ----*/
 		t = 1.0 / t;
-                for (int k = 0; k < n; k++)
-                    cs_mult(&vv[i1][k], &vv[i1][k], t);
-    }
+		for (int k = 0; k < n; k++)
+	            cs_mult(&vv[i1][k], &vv[i1][k], t);
+	    }
 	    /*---------------------------------------------------
 	    |     done with modified gram schimdt and arnoldi step
 	    |     now  update factorization of hh
@@ -207,10 +246,10 @@ int cfgmr(int n,
 	    /*--------------------------------------------------------
 	    |   perform previous transformations  on i-th column of h
 	    +-------------------------------------------------------*/
-            for (int k = 1; k <= i; k++)
-            {
-                int k1 = k - 1;
-                singlecomplex tt = hh[i][k1];
+	    for (int k = 1; k <= i; k++)
+	    {
+		int k1 = k - 1;
+		singlecomplex tt = hh[i][k1];
                 cc_mult(&tt1, &c[k1], &tt);
                 cc_mult(&tt2, &s[k1], &hh[i][k]);
                 c_add(&hh[i][k1], &tt1, &tt2);
@@ -220,7 +259,7 @@ int cfgmr(int n,
                 c_sub(&hh[i][k], &tt2, &tt1);
 	    }
 
-            float gam = scnrm2_(&i_2, &hh[i][i], &i_1);
+	    float gam = scnrm2_(&i_2, &hh[i][i], &i_1);
 
 	    /*---------------------------------------------------
 	    |     if gamma is zero then any small value will do
@@ -263,22 +302,22 @@ int cfgmr(int n,
 	/*---- now compute solution. 1st, solve upper triangular system ----*/
 	c_div(&rs[i], &rs[i], &hh[i][i]);
 
-        for (int ii = 1; ii <= i; ii++)
-        {
-            int k = i - ii;
-            singlecomplex tt = rs[k];
-            for (int j = k + 1; j <= i; j++) {
+	for (int ii = 1; ii <= i; ii++)
+	{
+	    int k = i - ii;
+	    singlecomplex tt = rs[k];
+	    for (int j = k + 1; j <= i; j++) {
                 cc_mult(&tt1, &hh[j][k], &rs[j]);
 		c_sub(&tt, &tt, &tt1);
             }
             c_div(&rs[k], &tt, &hh[k][k]);
 	}
 
-        /*---- linear combination of v[i]'s to get sol. ----*/
-        for (int j = 0; j <= i; j++)
-        {
-            singlecomplex tt = rs[j];
-            for (int k = 0; k < n; k++) {
+	/*---- linear combination of v[i]'s to get sol. ----*/
+	for (int j = 0; j <= i; j++)
+	{
+	    singlecomplex tt = rs[j];
+	    for (int k = 0; k < n; k++) {
                 cc_mult(&tt1, &tt, &z[j][k]);
 		c_add(&sol[k], &sol[k], &tt1);
             }
@@ -286,8 +325,8 @@ int cfgmr(int n,
 
 	/* calculate the residual and output */
 	cmatvec(one, sol, zero, vv[0]);
-        for (int j = 0; j < n; j++)
-            c_sub(&vv[0][j], &rhs[j], &vv[0][j]); /* vv[0]= initial residual */
+	for (int j = 0; j < n; j++)
+	    c_sub(&vv[0][j], &rhs[j], &vv[0][j]);/* vv[0]= initial residual */
 
 	/*---- print info if fits != null ----*/
 	beta = scnrm2_(&n, vv[0], &i_1);
@@ -305,12 +344,12 @@ int cfgmr(int n,
 
     int retval = (its >= maxits);
     for (int i = 0; i <= im; i++)
-        SUPERLU_FREE(vv[i]);
+	SUPERLU_FREE(vv[i]);
     SUPERLU_FREE(vv);
     for (int i = 0; i < im; i++)
     {
-        SUPERLU_FREE(hh[i]);
-        SUPERLU_FREE(z[i]);
+	SUPERLU_FREE(hh[i]);
+	SUPERLU_FREE(z[i]);
     }
     SUPERLU_FREE(hh);
     SUPERLU_FREE(z);

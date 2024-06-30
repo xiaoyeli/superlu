@@ -9,13 +9,14 @@ The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 
-/* -- SuperLU routine (version 5.0) --
+/*
+ * -- SuperLU routine (version 5.0) --
  * Lawrence Berkeley National Laboratory
  * November, 2010
  * August, 2011
  */
 
-/*! \file
+/*! @file zitersol1.c
  * \brief Example #2 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,
@@ -48,7 +49,7 @@ SuperLUStat_t *GLOBAL_STAT;
 mem_usage_t   *GLOBAL_MEM_USAGE;
 
 /*!
- * \brief Performs zgsisx with original matrix A.
+ * \brief Performs ZGSISX with original matrix A.
  *
  * See documentation of zgsisx for more details.
  *
@@ -87,9 +88,9 @@ void zpsolve(int n, doublecomplex x[], doublecomplex y[])
 }
 
 /*!
- * \brief Performs matrix-vector multipliation sp_zgem with original matrix A.
+ * \brief Performs matrix-vector multipliation sp_zgemv with original matrix A.
  *
- * The operations is y := alpha*A*x + beta*y. See documentation of sp_zgem
+ * The operations is y := alpha*A*x + beta*y. See documentation of sp_zgemv
  * for further details.
  *
  * \param [in] alpha Scalar factor for A*x
@@ -220,7 +221,7 @@ int main(int argc, char *argv[])
 		break;
 	    default:
 		printf("Unrecognized format.\n");
-                return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
     }
 
@@ -240,8 +241,7 @@ int main(int argc, char *argv[])
 	a_orig[i] = ((doublecomplex *)Astore->nzval)[i];
 	asub_orig[i] = Astore->rowind[i];
     }
-    for (int i = 0; i <= n; ++i)
-        xa_orig[i] = Astore->colptr[i];
+    for (int i = 0; i <= n; ++i) xa_orig[i] = Astore->colptr[i];
     zCreate_CompCol_Matrix(&AA, m, n, nnz, a_orig, asub_orig, xa_orig,
 			   SLU_NC, SLU_Z, SLU_GE);
     
@@ -280,8 +280,7 @@ int main(int argc, char *argv[])
 
     /* Set RHS for GMRES. */
     if (!(b = doublecomplexMalloc(m))) ABORT("Malloc fails for b[].");
-    for (int i = 0; i < m; i++)
-        b[i] = rhsb[i];
+    for (int i = 0; i < m; i++) b[i] = rhsb[i];
 
     printf("zgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
     if (info > 0 || rcond < 1e-8 || rpg > 1e8)
@@ -343,9 +342,8 @@ int main(int argc, char *argv[])
 	extern double dznrm2_(int *, doublecomplex [], int *);
 	extern void zaxpy_(int *, doublecomplex *, doublecomplex [], int *, doublecomplex [], int *);
 
-        /* Initial guess */
-        for (int i = 0; i < n; i++)
-            x[i] = zero;
+	/* Initial guess */
+	for (int i = 0; i < n; i++) x[i] = zero;
 
 	t = SuperLU_timer_();
 
@@ -356,7 +354,7 @@ int main(int argc, char *argv[])
 
 	/* Output the result. */
 	int nnz32 = Astore->nnz;
-	nrmA = dznrm2_(&nnz32, (doublecomplex *)((DNformat *)A.Store)->nzval,
+	nrmA = dznrm2_(&nnz32, (doublecomplex *)((NCformat *)A.Store)->nzval,
 		&i_1);
 	nrmB = dznrm2_(&m, b, &i_1);
 	sp_zgemv("N", none, &AA, x, 1, one, b, 1); /* Original matrix */
@@ -373,7 +371,7 @@ int main(int argc, char *argv[])
 	printf("iteration: %d\nresidual: %.1e\nGMRES time: %.2f seconds.\n",
 		iter, resid, t);
 
-        for (int i = 0; i < m; i++) {
+	for (int i = 0; i < m; i++) {
             z_sub(&temp, &x[i], &xact[i]);
             maxferr = SUPERLU_MAX(maxferr, z_abs1(&temp));
         }

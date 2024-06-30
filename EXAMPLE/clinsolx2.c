@@ -18,19 +18,18 @@ at the top-level directory.
  * Last update: July 10, 2015
  *
  */
-
+ 
 /*! \file
  * \brief CGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A.
  *
  * \ingroup Example
  */
-
 #include <getopt.h>
 #include "slu_cdefs.h"
 
 void parse_command_line(int argc, char *argv[], int *lwork,
                         float *u, yes_no_t *equil, trans_t *trans);
-
+			
 int main(int argc, char *argv[])
 {
 /*!
@@ -41,6 +40,7 @@ int main(int argc, char *argv[])
  * In this case, the column permutation vector perm_c is computed once.
  * The following data structures will be reused in the subsequent call to
  * CGSSVX: perm_c, etree
+ * 
  */
     char           equed[1];
     yes_no_t       equil;
@@ -109,32 +109,30 @@ int main(int argc, char *argv[])
 
     /* Read matrix A from a file in Harwell-Boeing format.*/
     creadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
-    if ( !(a1 = complexMalloc(nnz)) ) ABORT("Malloc fails for a1[].");
+    if ( !(a1 = singlecomplexMalloc(nnz)) ) ABORT("Malloc fails for a1[].");
     if ( !(asub1 = intMalloc(nnz)) ) ABORT("Malloc fails for asub1[].");
     if ( !(xa1 = intMalloc(n+1)) ) ABORT("Malloc fails for xa1[].");
     for (int i = 0; i < nnz; ++i) {
         a1[i] = a[i];
 	asub1[i] = asub[i];
     }
-    for (int i = 0; i < n+1; ++i)
-        xa1[i] = xa[i];
+    for (int i = 0; i < n+1; ++i) xa1[i] = xa[i];
     
     cCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_C, SLU_GE);
     Astore = A.Store;
     printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
     
-    if ( !(rhsb = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
-    if ( !(rhsb1 = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb1[].");
-    if ( !(rhsx = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
+    if ( !(rhsb = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
+    if ( !(rhsb1 = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb1[].");
+    if ( !(rhsx = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
     cCreate_Dense_Matrix(&B, m, nrhs, rhsb, m, SLU_DN, SLU_C, SLU_GE);
     cCreate_Dense_Matrix(&X, m, nrhs, rhsx, m, SLU_DN, SLU_C, SLU_GE);
-    xact = complexMalloc(n * nrhs);
+    xact = singlecomplexMalloc(n * nrhs);
     ldx = n;
     cGenXtrue(n, nrhs, xact, ldx);
     cFillRHS(trans, nrhs, xact, ldx, &A, &B);
     for (int j = 0; j < nrhs; ++j)
-        for (int i = 0; i < m; ++i)
-            rhsb1[i+j*m] = rhsb[i+j*m];
+        for (int i = 0; i < m; ++i) rhsb1[i+j*m] = rhsb[i+j*m];
     
     if ( !(perm_c = int32Malloc(n)) ) ABORT("Malloc fails for perm_c[].");
     if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");
@@ -181,7 +179,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-            for (int i = 0; i < nrhs; ++i)
+	    for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", (int)i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);
@@ -235,7 +233,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-            for (int i = 0; i < nrhs; ++i)
+	    for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", (int)i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);

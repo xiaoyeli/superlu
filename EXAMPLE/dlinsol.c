@@ -18,7 +18,7 @@ at the top-level directory.
  */
 
 /*! \file
- * \brief LU factorization from dgstrf (DGSSV)
+ * \brief LU factorization from DGSTRF (DGSSV)
  *
  * \ingroup Example
  */
@@ -63,20 +63,13 @@ int main(int argc, char *argv[])
     	options.PrintStat = YES;
      */
     set_default_options(&options);
-    //options.ColPerm = METIS_ATA;
 
     /* Read the matrix in Harwell-Boeing format. */
-#if 0
-    dreadMM(fp, &m, &n, &nnz, &a, &asub, &xa);
-#else    
     dreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
-    //dreadtriple_noheader(&m, &n, &nnz, &a, &asub, &xa);
-#endif    
 
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);
     Astore = A.Store;
     printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
-    printf("sizeof(int_t) %zu\n", sizeof(int_t));
     
     nrhs   = 1;
     if ( !(rhs = doubleMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
@@ -91,8 +84,7 @@ int main(int argc, char *argv[])
 
     /* Initialize the statistics variables. */
     StatInit(&stat);
-
-    printf("A.nrow %d, A.ncol %d\n", (int)A.nrow, (int)A.ncol);
+    
     dgssv(&options, &A, perm_c, perm_r, &L, &U, &B, &stat, &info);
     
     if ( info == 0 ) {
@@ -139,6 +131,7 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+
     return EXIT_SUCCESS;
 }
 

@@ -8,6 +8,7 @@ All rights reserved.
 The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
+
 /*
  * -- SuperLU routine (version 5.0) --
  * Lawrence Berkeley National Laboratory
@@ -15,14 +16,14 @@ at the top-level directory.
  * August, 2011
  */
 
-/*! \file
+/*! @file citersol1.c
  * \brief Example #2 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,
  * but the preconditioned GMRES is applied to the original system.
  * The driver routine CGSISX is called twice to perform factorization
  * and apply preconditioner separately.
- *
+ * 
  * Note that CGSISX performs the following factorization:
  *     Pr*Dr*A*Dc*Pc^T ~= LU
  * with Pr being obtained from MC64 statically then partial pivoting
@@ -48,7 +49,7 @@ SuperLUStat_t *GLOBAL_STAT;
 mem_usage_t   *GLOBAL_MEM_USAGE;
 
 /*!
- * \brief Performs cgsisx with original matrix A.
+ * \brief Performs CGSISX with original matrix A.
  *
  * See documentation of cgsisx for more details.
  *
@@ -220,7 +221,7 @@ int main(int argc, char *argv[])
 		break;
 	    default:
 		printf("Unrecognized format.\n");
-                return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
     }
 
@@ -233,24 +234,23 @@ int main(int argc, char *argv[])
 
     /* Make a copy of the original matrix. */
     nnz = Astore->nnz;
-    a_orig = complexMalloc(nnz);
+    a_orig = singlecomplexMalloc(nnz);
     asub_orig = intMalloc(nnz);
     xa_orig = intMalloc(n+1);
     for (int i = 0; i < nnz; ++i) {
 	a_orig[i] = ((singlecomplex *)Astore->nzval)[i];
 	asub_orig[i] = Astore->rowind[i];
     }
-    for (int i = 0; i <= n; ++i)
-        xa_orig[i] = Astore->colptr[i];
+    for (int i = 0; i <= n; ++i) xa_orig[i] = Astore->colptr[i];
     cCreate_CompCol_Matrix(&AA, m, n, nnz, a_orig, asub_orig, xa_orig,
 			   SLU_NC, SLU_C, SLU_GE);
     
     /* Generate the right-hand side */
-    if ( !(rhsb = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
-    if ( !(rhsx = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
+    if ( !(rhsb = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
+    if ( !(rhsx = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
     cCreate_Dense_Matrix(&B, m, nrhs, rhsb, m, SLU_DN, SLU_C, SLU_GE);
     cCreate_Dense_Matrix(&X, m, nrhs, rhsx, m, SLU_DN, SLU_C, SLU_GE);
-    xact = complexMalloc(n * nrhs);
+    xact = singlecomplexMalloc(n * nrhs);
     ldx = n;
     cGenXtrue(n, nrhs, xact, ldx);
     cFillRHS(trans, nrhs, xact, ldx, &A, &B);
@@ -279,9 +279,8 @@ int main(int argc, char *argv[])
 	   lwork, &B, &X, &rpg, &rcond, &Glu, &mem_usage, &stat, &info);
 
     /* Set RHS for GMRES. */
-    if (!(b = complexMalloc(m))) ABORT("Malloc fails for b[].");
-    for (int i = 0; i < m; i++)
-        b[i] = rhsb[i];
+    if (!(b = singlecomplexMalloc(m))) ABORT("Malloc fails for b[].");
+    for (int i = 0; i < m; i++) b[i] = rhsb[i];
 
     printf("cgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
     if (info > 0 || rcond < 1e-8 || rpg > 1e8)
@@ -333,7 +332,7 @@ int main(int argc, char *argv[])
     int maxit = 1000;
     int iter = maxit;
     double resid = 1e-8;
-    if (!(x = complexMalloc(n))) ABORT("Malloc fails for x[].");
+    if (!(x = singlecomplexMalloc(n))) ABORT("Malloc fails for x[].");
 
     if (info <= n + 1)
     {
@@ -343,8 +342,8 @@ int main(int argc, char *argv[])
 	extern float scnrm2_(int *, singlecomplex [], int *);
 	extern void caxpy_(int *, singlecomplex *, singlecomplex [], int *, singlecomplex [], int *);
 
-        /* Initial guess */
-        for (int i = 0; i < n; i++) x[i] = zero;
+	/* Initial guess */
+	for (int i = 0; i < n; i++) x[i] = zero;
 
 	t = SuperLU_timer_();
 
@@ -355,7 +354,7 @@ int main(int argc, char *argv[])
 
 	/* Output the result. */
 	int nnz32 = Astore->nnz;
-	nrmA = scnrm2_(&nnz32, (singlecomplex *)((DNformat *)A.Store)->nzval,
+	nrmA = scnrm2_(&nnz32, (singlecomplex *)((NCformat *)A.Store)->nzval,
 		&i_1);
 	nrmB = scnrm2_(&m, b, &i_1);
 	sp_cgemv("N", none, &AA, x, 1, one, b, 1); /* Original matrix */
@@ -372,7 +371,7 @@ int main(int argc, char *argv[])
 	printf("iteration: %d\nresidual: %.1e\nGMRES time: %.2f seconds.\n",
 		iter, resid, t);
 
-        for (int i = 0; i < m; i++) {
+	for (int i = 0; i < m; i++) {
             c_sub(&temp, &x[i], &xact[i]);
             maxferr = SUPERLU_MAX(maxferr, c_abs1(&temp));
         }

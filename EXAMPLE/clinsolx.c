@@ -18,7 +18,7 @@ at the top-level directory.
  */
 
 /*! \file
- * \brief LU factorization from cgstrf (CGSSVX)
+ * \brief LU factorization from CGSTRF (CGSSVX)
  *
  * \ingroup Example
  */
@@ -28,7 +28,7 @@ at the top-level directory.
 
 void parse_command_line(int argc, char *argv[], int *lwork,
                         float *u, yes_no_t *equil, trans_t *trans);
-
+			
 int main(int argc, char *argv[])
 {
     char           equed[1];
@@ -109,11 +109,11 @@ int main(int argc, char *argv[])
     Astore = A.Store;
     printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
     
-    if ( !(rhsb = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
-    if ( !(rhsx = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
+    if ( !(rhsb = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsb[].");
+    if ( !(rhsx = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhsx[].");
     cCreate_Dense_Matrix(&B, m, nrhs, rhsb, m, SLU_DN, SLU_C, SLU_GE);
     cCreate_Dense_Matrix(&X, m, nrhs, rhsx, m, SLU_DN, SLU_C, SLU_GE);
-    xact = complexMalloc(n * nrhs);
+    xact = singlecomplexMalloc(n * nrhs);
     ldx = n;
     cGenXtrue(n, nrhs, xact, ldx);
     cFillRHS(trans, nrhs, xact, ldx, &A, &B);
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine != NOREFINE ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-            for (int i = 0; i < nrhs; ++i)
+	    for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
         Lstore = (SCformat *) L.Store;
@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
  * \brief Parse command line inputs.
  */
 void
-parse_command_line(int argc, char *argv[], int *lwork,
+parse_command_line(int argc, char *argv[], int_t *lwork,
                    float *u, yes_no_t *equil, trans_t *trans )
 {
     int c;

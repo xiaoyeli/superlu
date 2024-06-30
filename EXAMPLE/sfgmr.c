@@ -24,8 +24,9 @@ General Public License for more details.
 For information on ITSOL contact saad@cs.umn.edu
 */
 
+
 /*! \file
- * \brief flexible GMRES from ITSOL developed by Yousef Saad.
+ * \brief Flexible GMRES from ITSOL developed by Yousef Saad.
  *
  * \ingroup Example
  */
@@ -36,7 +37,6 @@ For information on ITSOL contact saad@cs.umn.edu
 
 extern float sdot_(int *, float [], int *, float [], int *);
 extern float snrm2_(int *, float [], int *);
-
 
 /*!
  * \brief Simple version of the ARMS preconditioned FGMRES algorithm.
@@ -63,12 +63,52 @@ extern float snrm2_(int *, float [], int *);
  * \return Whether the algorithm finished successfully.
  */
 int sfgmr(int n,
-          void (*smatvec) (float, float[], float, float[]),
-          void (*spsolve) (int, float[], float[]),
-          float *rhs, float *sol, double tol, int im, int *itmax, FILE * fits)
+     void (*smatvec) (float, float[], float, float[]),
+     void (*spsolve) (int, float[], float[]),
+     float *rhs, float *sol, double tol, int im, int *itmax, FILE * fits)
 {
+/*----------------------------------------------------------------------
+|                 *** Preconditioned FGMRES ***
++-----------------------------------------------------------------------
+| This is a simple version of the ARMS preconditioned FGMRES algorithm.
++-----------------------------------------------------------------------
+| Y. S. Dec. 2000. -- Apr. 2008
++-----------------------------------------------------------------------
+| on entry:
+|----------
+|
+| rhs     = real vector of length n containing the right hand side.
+| sol     = real vector of length n containing an initial guess to the
+|           solution on input.
+| tol     = tolerance for stopping iteration
+| im      = Krylov subspace dimension
+| (itmax) = max number of iterations allowed.
+| fits    = NULL: no output
+|        != NULL: file handle to output " resid vs time and its"
+|
+| on return:
+|----------
+| fgmr      int =  0 --> successful return.
+|           int =  1 --> convergence not achieved in itmax iterations.
+| sol     = contains an approximate solution (upon successful return).
+| itmax   = has changed. It now contains the number of steps required
+|           to converge --
++-----------------------------------------------------------------------
+| internal work arrays:
+|----------
+| vv      = work array of length [im+1][n] (used to store the Arnoldi
+|           basis)
+| hh      = work array of length [im][im+1] (Householder matrix)
+| z       = work array of length [im][n] to store preconditioned vectors
++-----------------------------------------------------------------------
+| subroutines called :
+| matvec - matrix-vector multiplication operation
+| psolve - (right) preconditionning operation
+|	   psolve can be a NULL pointer (GMRES without preconditioner)
++---------------------------------------------------------------------*/
+
     int maxits = *itmax;
-    int its, i_1 = 1;
+    int its, i_1 = 1, i_2 = 2;
     float eps1 = 0.0;
     float **hh, *c, *s, *rs;
     float **vv, **z;
@@ -81,8 +121,7 @@ int sfgmr(int n,
 
     its = 0;
     vv = (float **)SUPERLU_MALLOC((im + 1) * sizeof(float *));
-    for (int i = 0; i <= im; i++)
-        vv[i] = floatMalloc(n);
+    for (int i = 0; i <= im; i++) vv[i] = floatMalloc(n);
     z = (float **)SUPERLU_MALLOC(im * sizeof(float *));
     hh = (float **)SUPERLU_MALLOC(im * sizeof(float *));
     for (int i = 0; i < im; i++)
@@ -99,9 +138,9 @@ int sfgmr(int n,
     {
 	/*---- compute initial residual vector ----*/
 	smatvec(one, sol, zero, vv[0]);
-        for (int j = 0; j < n; j++)
+	for (int j = 0; j < n; j++)
 	    vv[0][j] = rhs[j] - vv[0][j];	/* vv[0]= initial residual */
-        float beta = snrm2_(&n, vv[0], &i_1);
+	float beta = snrm2_(&n, vv[0], &i_1);
 
 	/*---- print info if fits != null ----*/
 	if (fits != NULL && its == 0)
@@ -109,21 +148,21 @@ int sfgmr(int n,
 	/*if ( beta <= tol * dnrm2_(&n, rhs, &i_1) )*/
 	if ( !(beta > tol * snrm2_(&n, rhs, &i_1)) )
 	    break;
-        float t = 1.0 / beta;
+	float t = 1.0 / beta;
 
 	/*---- normalize: vv[0] = vv[0] / beta ----*/
-        for (int j = 0; j < n; j++)
+	for (int j = 0; j < n; j++)
 	    vv[0][j] = vv[0][j] * t;
 	if (its == 0)
 	    eps1 = tol * beta;
 
 	/*---- initialize 1-st term of rhs of hessenberg system ----*/
 	rs[0] = beta;
-        int i = 0;
-        for (i = 0; i < im; i++)
-        {
-            its++;
-            int i1 = i + 1;
+	int i = 0;
+	for (i = 0; i < im; i++)
+	{
+	    its++;
+	    int i1 = i + 1;
 
 	    /*------------------------------------------------------------
 	    |  (Right) Preconditioning Operation   z_{j} = M^{-1} v_{j}
@@ -141,11 +180,11 @@ int sfgmr(int n,
 	    |     h_{i,j} = (w,v_{i})
 	    |     w  = w - h_{i,j} v_{i}
 	    +------------------------------------------------------------*/
-            float t0 = snrm2_(&n, vv[i1], &i_1);
-            for (int j = 0; j <= i; j++)
-            {
+	    float t0 = snrm2_(&n, vv[i1], &i_1);
+	    for (int j = 0; j <= i; j++)
+	    {
 		float negt;
-                float tt = sdot_(&n, vv[j], &i_1, vv[i1], &i_1);
+		float tt = sdot_(&n, vv[j], &i_1, vv[i1], &i_1);
 		hh[i][j] = tt;
 		negt = -tt;
 		saxpy_(&n, &negt, vv[j], &i_1, vv[i1], &i_1);
@@ -156,10 +195,10 @@ int sfgmr(int n,
 	    while (t < 0.5 * t0)
 	    {
 		t0 = t;
-                for (int j = 0; j <= i; j++)
-                {
+		for (int j = 0; j <= i; j++)
+		{
 		    float negt;
-                    float tt = sdot_(&n, vv[j], &i_1, vv[i1], &i_1);
+		    float tt = sdot_(&n, vv[j], &i_1, vv[i1], &i_1);
 		    hh[i][j] += tt;
 		    negt = -tt;
 		    saxpy_(&n, &negt, vv[j], &i_1, vv[i1], &i_1);
@@ -173,7 +212,7 @@ int sfgmr(int n,
 	    {
 		/*---- v_{j+1} = w / h_{j+1,j} ----*/
 		t = 1.0 / t;
-                for (int k = 0; k < n; k++)
+		for (int k = 0; k < n; k++)
 		    vv[i1][k] = vv[i1][k] * t;
 	    }
 	    /*---------------------------------------------------
@@ -184,15 +223,15 @@ int sfgmr(int n,
 	    /*--------------------------------------------------------
 	    |   perform previous transformations  on i-th column of h
 	    +-------------------------------------------------------*/
-            for (int k = 1; k <= i; k++)
-            {
-                int k1 = k - 1;
-                float tt = hh[i][k1];
+	    for (int k = 1; k <= i; k++)
+	    {
+		int k1 = k - 1;
+		float tt = hh[i][k1];
 		hh[i][k1] = c[k1] * tt + s[k1] * hh[i][k];
 		hh[i][k] = -s[k1] * tt + c[k1] * hh[i][k];
 	    }
 
-            float gam = sqrt(pow(hh[i][i], 2) + pow(hh[i][i1], 2));
+	    float gam = sqrt(pow(hh[i][i], 2) + pow(hh[i][i1], 2));
 
 	    /*---------------------------------------------------
 	    |     if gamma is zero then any small value will do
@@ -231,26 +270,26 @@ int sfgmr(int n,
 	/*---- now compute solution. 1st, solve upper triangular system ----*/
 	rs[i] = rs[i] / hh[i][i];
 
-        for (int ii = 1; ii <= i; ii++)
-        {
-            int k = i - ii;
-            float tt = rs[k];
-            for (int j = k + 1; j <= i; j++)
+	for (int ii = 1; ii <= i; ii++)
+	{
+	    int k = i - ii;
+	    float tt = rs[k];
+	    for (int j = k + 1; j <= i; j++)
 		tt = tt - hh[j][k] * rs[j];
 	    rs[k] = tt / hh[k][k];
 	}
 
-        /*---- linear combination of v[i]'s to get sol. ----*/
-        for (int j = 0; j <= i; j++)
-        {
-            float tt = rs[j];
-            for (int k = 0; k < n; k++)
-                sol[k] += tt * z[j][k];
+	/*---- linear combination of v[i]'s to get sol. ----*/
+	for (int j = 0; j <= i; j++)
+	{
+	    float tt = rs[j];
+	    for (int k = 0; k < n; k++)
+		sol[k] += tt * z[j][k];
 	}
 
 	/* calculate the residual and output */
 	smatvec(one, sol, zero, vv[0]);
-        for (int j = 0; j < n; j++)
+	for (int j = 0; j < n; j++)
 	    vv[0][j] = rhs[j] - vv[0][j];	/* vv[0]= initial residual */
 
 	/*---- print info if fits != null ----*/
@@ -269,12 +308,12 @@ int sfgmr(int n,
 
     int retval = (its >= maxits);
     for (int i = 0; i <= im; i++)
-        SUPERLU_FREE(vv[i]);
+	SUPERLU_FREE(vv[i]);
     SUPERLU_FREE(vv);
     for (int i = 0; i < im; i++)
     {
-        SUPERLU_FREE(hh[i]);
-        SUPERLU_FREE(z[i]);
+	SUPERLU_FREE(hh[i]);
+	SUPERLU_FREE(z[i]);
     }
     SUPERLU_FREE(hh);
     SUPERLU_FREE(z);

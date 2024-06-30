@@ -1,4 +1,4 @@
-/*
+/*!
 Copyright (c) 2003, The Regents of the University of California, through
 Lawrence Berkeley National Laboratory (subject to receipt of any required 
 approvals from U.S. Dept. of Energy) 
@@ -16,13 +16,13 @@ at the top-level directory.
  * October 15, 2003
  *
  */
-
+ 
 /*! \file
  * \brief LU factorization from CGSTRF (CGSSV)
  *
  * \ingroup Example
  */
-
+ 
 #include "slu_cdefs.h"
 
 int main(int argc, char *argv[])
@@ -77,9 +77,9 @@ int main(int argc, char *argv[])
     printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
     
     nrhs   = 1;
-    if ( !(rhs = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
+    if ( !(rhs = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
     cCreate_Dense_Matrix(&B, m, nrhs, rhs, m, SLU_DN, SLU_C, SLU_GE);
-    xact = complexMalloc(n * nrhs);
+    xact = singlecomplexMalloc(n * nrhs);
     ldx = n;
     cGenXtrue(n, nrhs, xact, ldx);
     cFillRHS(options.Trans, nrhs, xact, ldx, &A, &B);
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     if ( info == 0 ) {
 
 	/* This is how you could access the solution matrix. */
-        singlecomplex *sol = (singlecomplex*) ((DNformat*) B.Store)->nzval; 
+        singlecomplex *sol = (singlecomplex*) ((DNformat*) B.Store)->nzval;
         (void)sol;  // suppress unused variable warning
 
 	 /* Compute the infinity norm of the error. */
@@ -136,6 +136,7 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+
     return EXIT_SUCCESS;
 }
 

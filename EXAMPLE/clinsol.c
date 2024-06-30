@@ -72,9 +72,9 @@ int main(int argc, char *argv[])
     printf("Dimension %dx%d; # nonzeros %d\n", (int)A.nrow, (int)A.ncol, (int)Astore->nnz);
     
     nrhs   = 1;
-    if ( !(rhs = complexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
+    if ( !(rhs = singlecomplexMalloc(m * nrhs)) ) ABORT("Malloc fails for rhs[].");
     cCreate_Dense_Matrix(&B, m, nrhs, rhs, m, SLU_DN, SLU_C, SLU_GE);
-    xact = complexMalloc(n * nrhs);
+    xact = singlecomplexMalloc(n * nrhs);
     ldx = n;
     cGenXtrue(n, nrhs, xact, ldx);
     cFillRHS(options.Trans, nrhs, xact, ldx, &A, &B);
@@ -131,6 +131,7 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+
     return EXIT_SUCCESS;
 }
 

@@ -19,11 +19,12 @@ at the top-level directory.
 
 /*! \file
  * SGST01 reconstructs a matrix A from its L*U factorization and
- * computes the residual.
+ * computes the residual
+ *     norm(L*U - A) / ( N * norm(A) * EPS ),
+ *  where EPS is the machine epsilon.
  *
- * \ingroup TestingS
+ * \ingroup	TestingS
  */
-
 #include <math.h>
 #include "slu_sdefs.h"
 
@@ -35,15 +36,15 @@ at the top-level directory.
  *
  * \param[in] m       The number of rows of the matrix A.  M >= 0.
  * \param[in] n       The number of columns of the matrix A.  N >= 0.
- * \param[in] A       The original M x N matrix A, dimension(A->nrow, A->ncol).
+ * \param[in] A       The original M x N matrix A.
  * \param[in] L       The factor matrix L, dimension(L->nrow, L->ncol).
  * \param[in] U       The factor matrix U, dimension(U->nrow, U->ncol).
  * \param[in] perm_c  The column permutation from SGSTRF, dimension(N).
  * \param[in] perm_r  The pivot indices from SGSTRF, dimension(M).
  * \param[out] resid  norm(L*U - A) / ( N * norm(A) * EPS )
  */
-int sgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
-           SuperMatrix *U, int *perm_c, int *perm_r, float *resid)
+int sgst01(int m, int n, SuperMatrix *A, SuperMatrix *L, 
+		SuperMatrix *U, int *perm_c, int *perm_r, float *resid)
 {
     /* Local variables */
     float zero = 0.0;

@@ -18,7 +18,7 @@ at the top-level directory.
  */
 
 /*! \file
- * \brief LU factorization from dgstrf (DGSSV)
+ * \brief LU factorization from SGSTRF (SGSSV)
  *
  * \ingroup Example
  */
@@ -131,6 +131,7 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+
     return EXIT_SUCCESS;
 }
 

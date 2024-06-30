@@ -9,20 +9,21 @@ The source code is distributed under BSD license, see the file License.txt
 at the top-level directory.
 */
 
-/* -- SuperLU routine (version 5.0) --
+/*
+ * -- SuperLU routine (version 5.0) --
  * Lawrence Berkeley National Laboratory
  * November, 2010
  * August, 2011
  */
 
-/*! \file
+/*! @file ditersol.c
  * \brief Example #1 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,
  * and the preconditioned GMRES is applied to the equilibrated system.
  * The driver routine DGSISX is called twice to perform factorization
  * and apply preconditioner separately.
- *
+ * 
  * Note that DGSISX performs the following factorization:
  *     Pr*Dr*A*Dc*Pc^T ~= LU
  * with Pr being obtained from MC64 statically then partial pivoting
@@ -33,10 +34,11 @@ at the top-level directory.
  * Then GMRES step requires requires 2 procedures:
  *   1) Apply preconditioner M^{-1} = Pc^T*U^{-1}*L^{-1}*Pr
  *   2) Matrix-vector multiplication: w = A1*v
- *
+ * 
  * \ingroup Example
  */
 
+#include <unistd.h>
 #include "slu_ddefs.h"
 
 superlu_options_t *GLOBAL_OPTIONS;
@@ -84,6 +86,7 @@ void dpsolve(int n, double x[], double y[])
 	   mem_usage, stat, &info);
 #endif
 }
+
 
 /*!
  * \brief Performs matrix-vector multipliation sp_dgemv with original matrix A.
@@ -134,7 +137,7 @@ int main(int argc, char *argv[])
     double   *rhsb, *rhsx, *xact;
     double   *work = NULL;
     double   *R, *C;
-    double rpg, rcond;
+    double   rpg, rcond;
     double zero = 0.0;
     mem_usage_t   mem_usage;
     superlu_options_t options;
@@ -217,7 +220,7 @@ int main(int argc, char *argv[])
 		break;
 	    default:
 		printf("Unrecognized format.\n");
-        return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
     }
 
@@ -264,11 +267,9 @@ int main(int argc, char *argv[])
     /* Set RHS for GMRES. */
     if (!(b = doubleMalloc(m))) ABORT("Malloc fails for b[].");
     if (*equed == 'R' || *equed == 'B') {
-        for (int i = 0; i < n; ++i)
-            b[i] = rhsb[i] * R[i];
+	for (int i = 0; i < n; ++i) b[i] = rhsb[i] * R[i];
     } else {
-        for (int i = 0; i < m; i++)
-            b[i] = rhsb[i];
+	for (int i = 0; i < m; i++) b[i] = rhsb[i];
     }
 
     printf("dgsisx(): info %lld, equed %c\n", (long long)info, equed[0]);
@@ -328,9 +329,8 @@ int main(int argc, char *argv[])
 	extern double dnrm2_(int *, double [], int *);
 	extern void daxpy_(int *, double *, double [], int *, double [], int *);
 
-        /* Initial guess */
-        for (int i = 0; i < n; i++)
-            x[i] = zero;
+	/* Initial guess */
+	for (int i = 0; i < n; i++) x[i] = zero;
 
 	t = SuperLU_timer_();
 
@@ -341,7 +341,7 @@ int main(int argc, char *argv[])
 
 	/* Output the result. */
 	nnz32 = Astore->nnz;
-	nrmA = dnrm2_(&nnz32, (double *)((DNformat *)A.Store)->nzval,
+	nrmA = dnrm2_(&nnz32, (double *)((NCformat *)A.Store)->nzval,
 		&i_1);
 	nrmB = dnrm2_(&m, b, &i_1);
 	sp_dgemv("N", -1.0, &A, x, 1, 1.0, b, 1);
@@ -360,10 +360,9 @@ int main(int argc, char *argv[])
 
 	/* Scale the solution back if equilibration was performed. */
 	if (*equed == 'C' || *equed == 'B') 
-            for (int i = 0; i < n; i++)
-                x[i] *= C[i];
+	    for (int i = 0; i < n; i++) x[i] *= C[i];
 
-        for (int i = 0; i < m; i++) {
+	for (int i = 0; i < m; i++) {
 	    maxferr = SUPERLU_MAX(maxferr, fabs(x[i] - xact[i]));
         }
 	printf("||X-X_true||_oo = %.1e\n", maxferr);

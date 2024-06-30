@@ -20,7 +20,7 @@ at the top-level directory.
  */
 
 /*! \file
- * \brief factorization from dgstrf (DGSSVX)
+ * \brief DGSSVX to solve systems with the same matrix but different right-hand side.
  *
  * \ingroup Example
  */
@@ -30,7 +30,9 @@ at the top-level directory.
 
 void parse_command_line(int argc, char *argv[], int *lwork,
                         double *u, yes_no_t *equil, trans_t *trans);
-
+			
+int main(int argc, char *argv[])
+{
 /*!
  * \brief The driver program DLINSOLX1.
  *
@@ -39,9 +41,8 @@ void parse_command_line(int argc, char *argv[], int *lwork,
  * In this case, we factorize A only once in the first call to DGSSVX,
  * and reuse the following data structures in the subsequent call to DGSSVX:
  *     perm_c, perm_r, R, C, L, U.
+ * 
  */
-int main(int argc, char *argv[])
-{
     char           equed[1];
     yes_no_t       equil;
     trans_t        trans;
@@ -193,7 +194,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-            for (int i = 0; i < nrhs; ++i)
+	    for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);

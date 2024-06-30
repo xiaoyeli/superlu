@@ -20,7 +20,7 @@ at the top-level directory.
  */
 
 /*! \file
- * \brief factorization from dgstrf (DGSSVX)
+ * \brief SGSSVX to solve systems with the same matrix but different right-hand side.
  *
  * \ingroup Example
  */
@@ -30,14 +30,11 @@ at the top-level directory.
 
 void parse_command_line(int argc, char *argv[], int *lwork,
                         float *u, yes_no_t *equil, trans_t *trans);
-
+			
 int main(int argc, char *argv[])
 {
-/*
- * Purpose
- * =======
- *
- * The driver program SLINSOLX1.
+/*!
+ * \brief The driver program SLINSOLX1.
  *
  * This example illustrates how to use SGSSVX to solve systems with the same
  * A but different right-hand side.
@@ -197,7 +194,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-            for (int i = 0; i < nrhs; ++i)
+	    for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);

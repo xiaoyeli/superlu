@@ -18,7 +18,7 @@ at the top-level directory.
  */
 
 /*! \file
- * \brief  LU factorization from zgstrf (ZGSSVX)
+ * \brief LU factorization from ZGSTRF (ZGSSVX)
  *
  * \ingroup Example
  */
@@ -28,7 +28,7 @@ at the top-level directory.
 
 void parse_command_line(int argc, char *argv[], int *lwork,
                         double *u, yes_no_t *equil, trans_t *trans);
-
+			
 int main(int argc, char *argv[])
 {
     char           equed[1];
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine != NOREFINE ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-            for (int i = 0; i < nrhs; ++i)
+	    for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
         Lstore = (SCformat *) L.Store;
@@ -201,6 +201,7 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+
     return EXIT_SUCCESS;
 }
 
@@ -209,7 +210,7 @@ int main(int argc, char *argv[])
  * \brief Parse command line inputs.
  */
 void
-parse_command_line(int argc, char *argv[], int *lwork,
+parse_command_line(int argc, char *argv[], int_t *lwork,
                    double *u, yes_no_t *equil, trans_t *trans )
 {
     int c;

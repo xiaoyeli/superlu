@@ -18,13 +18,13 @@ at the top-level directory.
  * Last update: July 10, 2015
  *
  */
-
+ 
 /*! \file
- * \brief ZGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A.
+ * \brief @(PREE)GSSVX to solve systems repeatedly with the same sparsity pattern and similar values of matrix A.
  *
  * \ingroup Example
  */
-
+ 
 #include <getopt.h>
 #include "slu_zdefs.h"
 
@@ -32,13 +32,14 @@ void parse_command_line(int argc, char *argv[], int *lwork,
                         double *u, yes_no_t *equil, trans_t *trans);
 
 /*!
- * \brief The driver program ZLINSOLX2.
+ * \brief The driver program ZLINSOLX3.
  *
  * This example illustrates how to use ZGSSVX to solve systems repeatedly
  * with the same sparsity pattern and similar values of matrix A.
  * In this case, the permutation vectors perm_r and perm_c are computed once.
  * The following data structures will be reused in the subsequent call to
  * ZGSSVX: perm_r, perm_c, etree, L, U.
+ * 
  */
 int main(int argc, char *argv[])
 {
@@ -115,8 +116,7 @@ int main(int argc, char *argv[])
         a1[i] = a[i];
 	asub1[i] = asub[i];
     }
-    for (int i = 0; i < n+1; ++i)
-        xa1[i] = xa[i];
+    for (int i = 0; i < n+1; ++i) xa1[i] = xa[i];
     
     zCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_Z, SLU_GE);
     Astore = A.Store;
@@ -132,8 +132,7 @@ int main(int argc, char *argv[])
     zGenXtrue(n, nrhs, xact, ldx);
     zFillRHS(trans, nrhs, xact, ldx, &A, &B);
     for (int j = 0; j < nrhs; ++j)
-        for (int i = 0; i < m; ++i)
-            rhsb1[i+j*m] = rhsb[i+j*m];
+        for (int i = 0; i < m; ++i) rhsb1[i+j*m] = rhsb[i+j*m];
     
     if ( !(perm_c = int32Malloc(n)) ) ABORT("Malloc fails for perm_c[].");
     if ( !(perm_r = int32Malloc(m)) ) ABORT("Malloc fails for perm_r[].");
@@ -180,7 +179,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-            for (int i = 0; i < nrhs; ++i)
+	    for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", (int)i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);
@@ -230,7 +229,7 @@ int main(int argc, char *argv[])
 	if ( options.IterRefine ) {
             printf("Iterative Refinement:\n");
 	    printf("%8s%8s%16s%16s\n", "rhs", "Steps", "FERR", "BERR");
-            for (int i = 0; i < nrhs; ++i)
+	    for (int i = 0; i < nrhs; ++i)
 	      printf("%8d%8d%16e%16e\n", (int)i+1, stat.RefineSteps, ferr[i], berr[i]);
 	}
 	fflush(stdout);
@@ -262,11 +261,12 @@ int main(int argc, char *argv[])
 #if ( DEBUGlevel>=1 )
     CHECK_MALLOC("Exit main()");
 #endif
+
     return EXIT_SUCCESS;
 }
 
-/*!
- * \brief Parse command line options to get relaxed snode size, panel size, etc.
+/*  
+ * Parse command line options to get relaxed snode size, panel size, etc.
  */
 void
 parse_command_line(int argc, char *argv[], int *lwork,

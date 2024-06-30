@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
 	nnz = n * n;        /* upper bound */
 	fimat = 1;
 	nimat = NTYPES;
-	Afull = (singlecomplex *) complexCalloc(lda * n);
+	Afull = singlecomplexCalloc(lda * n);
 	callocateA(n, nnz, &a, &asub, &xa);
     } else {
 	/* Read a sparse matrix */
@@ -169,11 +169,11 @@ int main(int argc, char *argv[])
     }
 
     callocateA(n, nnz, &a_save, &asub_save, &xa_save);
-    rhsb = (singlecomplex *) complexMalloc(m * nrhs);
-    bsav = (singlecomplex *) complexMalloc(m * nrhs);
-    solx = (singlecomplex *) complexMalloc(n * nrhs);
-    xact = (singlecomplex *) complexMalloc(n * nrhs);
-    wwork = (singlecomplex *) complexCalloc( SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs) );
+    rhsb = singlecomplexMalloc(m * nrhs);
+    bsav = singlecomplexMalloc(m * nrhs);
+    solx = singlecomplexMalloc(n * nrhs);
+    xact = singlecomplexMalloc(n * nrhs);
+    wwork = singlecomplexCalloc( SUPERLU_MAX(m,n) * SUPERLU_MAX(4,nrhs) );
 
     ldb  = m;
     ldx  = n;

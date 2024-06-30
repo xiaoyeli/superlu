@@ -23,9 +23,8 @@ at the top-level directory.
  *     norm(L*U - A) / ( N * norm(A) * EPS ),
  *  where EPS is the machine epsilon.
  *
- * \ingroup TestingC
+ * \ingroup	TestingC
  */
-
 #include <math.h>
 #include "slu_cdefs.h"
 
@@ -35,17 +34,17 @@ at the top-level directory.
  *    norm(L*U - A) / ( N * norm(A) * EPS ),
  * where EPS is the machine epsilon.
  *
- * \param[in] m The number of rows of the matrix A.  M >= 0.
- * \param[in] n The number of columns of the matrix A.  N >= 0.
- * \param[in] A The original M x N matrix A.
- * \param[in] L The factor matrix L, dimension (L->nrow, L->ncol).
- * \param[in] U The factor matrix U, dimension (U->nrow, U->ncol).
- * \param[in] perm_c The column permutation from CGSTRF, dimension (N).
- * \param[in] perm_r The pivot indices from CGSTRF, dimension (M).
- * \param[out] resid norm(L*U - A) / ( N * norm(A) * EPS )
+ * \param[in] m       The number of rows of the matrix A.  M >= 0.
+ * \param[in] n       The number of columns of the matrix A.  N >= 0.
+ * \param[in] A       The original M x N matrix A.
+ * \param[in] L       The factor matrix L, dimension(L->nrow, L->ncol).
+ * \param[in] U       The factor matrix U, dimension(U->nrow, U->ncol).
+ * \param[in] perm_c  The column permutation from CGSTRF, dimension(N).
+ * \param[in] perm_r  The pivot indices from CGSTRF, dimension(M).
+ * \param[out] resid  norm(L*U - A) / ( N * norm(A) * EPS )
  */
 int cgst01(int m, int n, SuperMatrix *A, SuperMatrix *L, 
-           SuperMatrix *U, int *perm_c, int *perm_r, float *resid)
+		SuperMatrix *U, int *perm_c, int *perm_r, float *resid)
 {
     /* Local variables */
     singlecomplex zero = {0.0, 0.0};
@@ -71,7 +70,7 @@ int cgst01(int m, int n, SuperMatrix *A, SuperMatrix *L,
 	return 0;
     }
 
-    work = (singlecomplex *)complexCalloc(m);
+    work = (singlecomplex *)singlecomplexCalloc(m);
 
     Astore = A->Store;
     Aval = Astore->nzval;

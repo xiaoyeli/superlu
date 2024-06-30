@@ -24,8 +24,9 @@ General Public License for more details.
 For information on ITSOL contact saad@cs.umn.edu
 */
 
+
 /*! \file
- * \brief flexible GMRES from ITSOL developed by Yousef Saad.
+ * \brief Flexible GMRES from ITSOL developed by Yousef Saad.
  *
  * \ingroup Example
  */
@@ -37,11 +38,11 @@ For information on ITSOL contact saad@cs.umn.edu
 extern void zdotc_(doublecomplex *, int *, doublecomplex [], int *, doublecomplex [], int *);
 extern double dznrm2_(int *, doublecomplex [], int *);
 
-
 /*!
  * \brief Simple version of the ARMS preconditioned FGMRES algorithm.
  *
  *  Y. S. Dec. 2000. -- Apr. 2008
+ *
  *  internal work arrays:
  *  vv      = work array of length [im+1][n] (used to store the Arnoldi
  *            basis)
@@ -62,10 +63,50 @@ extern double dznrm2_(int *, doublecomplex [], int *);
  * \return Whether the algorithm finished successfully.
  */
 int zfgmr(int n,
-          void (*zmatvec) (doublecomplex, doublecomplex[], doublecomplex, doublecomplex[]),
-          void (*zpsolve) (int, doublecomplex[], doublecomplex[]),
-          doublecomplex *rhs, doublecomplex *sol, double tol, int im, int *itmax, FILE * fits)
+     void (*zmatvec) (doublecomplex, doublecomplex[], doublecomplex, doublecomplex[]),
+     void (*zpsolve) (int, doublecomplex[], doublecomplex[]),
+     doublecomplex *rhs, doublecomplex *sol, double tol, int im, int *itmax, FILE * fits)
 {
+/*----------------------------------------------------------------------
+|                 *** Preconditioned FGMRES ***
++-----------------------------------------------------------------------
+| This is a simple version of the ARMS preconditioned FGMRES algorithm.
++-----------------------------------------------------------------------
+| Y. S. Dec. 2000. -- Apr. 2008
++-----------------------------------------------------------------------
+| on entry:
+|----------
+|
+| rhs     = real vector of length n containing the right hand side.
+| sol     = real vector of length n containing an initial guess to the
+|           solution on input.
+| tol     = tolerance for stopping iteration
+| im      = Krylov subspace dimension
+| (itmax) = max number of iterations allowed.
+| fits    = NULL: no output
+|        != NULL: file handle to output " resid vs time and its"
+|
+| on return:
+|----------
+| fgmr      int =  0 --> successful return.
+|           int =  1 --> convergence not achieved in itmax iterations.
+| sol     = contains an approximate solution (upon successful return).
+| itmax   = has changed. It now contains the number of steps required
+|           to converge --
++-----------------------------------------------------------------------
+| internal work arrays:
+|----------
+| vv      = work array of length [im+1][n] (used to store the Arnoldi
+|           basis)
+| hh      = work array of length [im][im+1] (Householder matrix)
+| z       = work array of length [im][n] to store preconditioned vectors
++-----------------------------------------------------------------------
+| subroutines called :
+| matvec - matrix-vector multiplication operation
+| psolve - (right) preconditionning operation
+|	   psolve can be a NULL pointer (GMRES without preconditioner)
++---------------------------------------------------------------------*/
+
     int maxits = *itmax;
     int its, i_1 = 1, i_2 = 2;
     double eps1 = 0.0;
@@ -81,8 +122,7 @@ int zfgmr(int n,
 
     its = 0;
     vv = (doublecomplex **)SUPERLU_MALLOC((im + 1) * sizeof(doublecomplex *));
-    for (int i = 0; i <= im; i++)
-        vv[i] = doublecomplexMalloc(n);
+    for (int i = 0; i <= im; i++) vv[i] = doublecomplexMalloc(n);
     z = (doublecomplex **)SUPERLU_MALLOC(im * sizeof(doublecomplex *));
     hh = (doublecomplex **)SUPERLU_MALLOC(im * sizeof(doublecomplex *));
     for (int i = 0; i < im; i++)
@@ -99,9 +139,9 @@ int zfgmr(int n,
     {
 	/*---- compute initial residual vector ----*/
 	zmatvec(one, sol, zero, vv[0]);
-        for (int j = 0; j < n; j++)
-            z_sub(&vv[0][j], &rhs[j], &vv[0][j]);	/* vv[0]= initial residual */
-        double beta = dznrm2_(&n, vv[0], &i_1);
+	for (int j = 0; j < n; j++)
+	    z_sub(&vv[0][j], &rhs[j], &vv[0][j]);	/* vv[0]= initial residual */
+	double beta = dznrm2_(&n, vv[0], &i_1);
 
 	/*---- print info if fits != null ----*/
 	if (fits != NULL && its == 0)
@@ -109,10 +149,10 @@ int zfgmr(int n,
 	/*if ( beta <= tol * dnrm2_(&n, rhs, &i_1) )*/
 	if ( !(beta > tol * dznrm2_(&n, rhs, &i_1)) )
 	    break;
-        double t = 1.0 / beta;
+	double t = 1.0 / beta;
 
-        /*---- normalize: vv[0] = vv[0] / beta ----*/
-        for (int j = 0; j < n; j++)
+	/*---- normalize: vv[0] = vv[0] / beta ----*/
+	for (int j = 0; j < n; j++)
 	    zd_mult(&vv[0][j], &vv[0][j], t);
 	if (its == 0)
 	    eps1 = tol * beta;
@@ -120,11 +160,11 @@ int zfgmr(int n,
 	/*---- initialize 1-st term of rhs of hessenberg system ----*/
 	rs[0].r = beta;
 	rs[0].i = 0.0;
-        int i = 0;
-        for (i = 0; i < im; i++)
-        {
-            its++;
-            int i1 = i + 1;
+	int i = 0;
+	for (i = 0; i < im; i++)
+	{
+	    its++;
+	    int i1 = i + 1;
 
 	    /*------------------------------------------------------------
 	    |  (Right) Preconditioning Operation   z_{j} = M^{-1} v_{j}
@@ -142,15 +182,15 @@ int zfgmr(int n,
 	    |     h_{i,j} = (w,v_{i})
 	    |     w  = w - h_{i,j} v_{i}
 	    +------------------------------------------------------------*/
-            double t0 = dznrm2_(&n, vv[i1], &i_1);
-            for (int j = 0; j <= i; j++)
-            {
+	    double t0 = dznrm2_(&n, vv[i1], &i_1);
+	    for (int j = 0; j <= i; j++)
+	    {
 		doublecomplex negt;
 #if 0
 		zdotc_(&tt, &n, vv[j], &i_1, vv[i1], &i_1);
 #else
-                doublecomplex tt = zero;
-                for (int k = 0; k < n; ++k) {
+		doublecomplex tt = zero;
+		for (int k = 0; k < n; ++k) {
 		    zz_conj(&tt1, &vv[j][k]);
 		    zz_mult(&tt2, &tt1, &vv[i1][k]);
 		    z_add(&tt, &tt, &tt2);
@@ -167,14 +207,14 @@ int zfgmr(int n,
 	    while (t < 0.5 * t0)
 	    {
 		t0 = t;
-                for (int j = 0; j <= i; j++)
-                {
+		for (int j = 0; j <= i; j++)
+		{
 		    doublecomplex negt;
 #if 0
 		    zdotc_(&tt, &n, vv[j], &i_1, vv[i1], &i_1);
 #else
-                    doublecomplex tt = zero;
-                    for (int k = 0; k < n; ++k) {
+   	            doublecomplex tt = zero;
+		    for (int k = 0; k < n; ++k) {
 		        zz_conj(&tt1, &vv[j][k]);
 		        zz_mult(&tt2, &tt1, &vv[i1][k]);
 		        z_add(&tt, &tt, &tt2);
@@ -195,8 +235,8 @@ int zfgmr(int n,
 	    {
 		/*---- v_{j+1} = w / h_{j+1,j} ----*/
 		t = 1.0 / t;
-                for (int k = 0; k < n; k++)
-                    zd_mult(&vv[i1][k], &vv[i1][k], t);
+		for (int k = 0; k < n; k++)
+	            zd_mult(&vv[i1][k], &vv[i1][k], t);
 	    }
 	    /*---------------------------------------------------
 	    |     done with modified gram schimdt and arnoldi step
@@ -206,10 +246,10 @@ int zfgmr(int n,
 	    /*--------------------------------------------------------
 	    |   perform previous transformations  on i-th column of h
 	    +-------------------------------------------------------*/
-            for (int k = 1; k <= i; k++)
-            {
-                int k1 = k - 1;
-                doublecomplex tt = hh[i][k1];
+	    for (int k = 1; k <= i; k++)
+	    {
+		int k1 = k - 1;
+		doublecomplex tt = hh[i][k1];
                 zz_mult(&tt1, &c[k1], &tt);
                 zz_mult(&tt2, &s[k1], &hh[i][k]);
                 z_add(&hh[i][k1], &tt1, &tt2);
@@ -217,9 +257,9 @@ int zfgmr(int n,
                 zz_mult(&tt1, &s[k1], &tt);
                 zz_mult(&tt2, &c[k1], &hh[i][k]);
                 z_sub(&hh[i][k], &tt2, &tt1);
-            }
+	    }
 
-            double gam = dznrm2_(&i_2, &hh[i][i], &i_1);
+	    double gam = dznrm2_(&i_2, &hh[i][i], &i_1);
 
 	    /*---------------------------------------------------
 	    |     if gamma is zero then any small value will do
@@ -262,22 +302,22 @@ int zfgmr(int n,
 	/*---- now compute solution. 1st, solve upper triangular system ----*/
 	z_div(&rs[i], &rs[i], &hh[i][i]);
 
-        for (int ii = 1; ii <= i; ii++)
-        {
-            int k = i - ii;
-            doublecomplex tt = rs[k];
-            for (int j = k + 1; j <= i; j++) {
+	for (int ii = 1; ii <= i; ii++)
+	{
+	    int k = i - ii;
+	    doublecomplex tt = rs[k];
+	    for (int j = k + 1; j <= i; j++) {
                 zz_mult(&tt1, &hh[j][k], &rs[j]);
-                z_sub(&tt, &tt, &tt1);
+		z_sub(&tt, &tt, &tt1);
             }
             z_div(&rs[k], &tt, &hh[k][k]);
-        }
+	}
 
-        /*---- linear combination of v[i]'s to get sol. ----*/
-        for (int j = 0; j <= i; j++)
-        {
-            doublecomplex tt = rs[j];
-            for (int k = 0; k < n; k++) {
+	/*---- linear combination of v[i]'s to get sol. ----*/
+	for (int j = 0; j <= i; j++)
+	{
+	    doublecomplex tt = rs[j];
+	    for (int k = 0; k < n; k++) {
                 zz_mult(&tt1, &tt, &z[j][k]);
 		z_add(&sol[k], &sol[k], &tt1);
             }
@@ -285,8 +325,8 @@ int zfgmr(int n,
 
 	/* calculate the residual and output */
 	zmatvec(one, sol, zero, vv[0]);
-        for (int j = 0; j < n; j++)
-            z_sub(&vv[0][j], &rhs[j], &vv[0][j]); /* vv[0]= initial residual */
+	for (int j = 0; j < n; j++)
+	    z_sub(&vv[0][j], &rhs[j], &vv[0][j]);/* vv[0]= initial residual */
 
 	/*---- print info if fits != null ----*/
 	beta = dznrm2_(&n, vv[0], &i_1);
@@ -304,12 +344,12 @@ int zfgmr(int n,
 
     int retval = (its >= maxits);
     for (int i = 0; i <= im; i++)
-        SUPERLU_FREE(vv[i]);
+	SUPERLU_FREE(vv[i]);
     SUPERLU_FREE(vv);
     for (int i = 0; i < im; i++)
     {
-        SUPERLU_FREE(hh[i]);
-        SUPERLU_FREE(z[i]);
+	SUPERLU_FREE(hh[i]);
+	SUPERLU_FREE(z[i]);
     }
     SUPERLU_FREE(hh);
     SUPERLU_FREE(z);

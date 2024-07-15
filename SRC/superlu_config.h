@@ -3,7 +3,7 @@
 #define SUPERLU_CONFIG_H
 
 /* Enable metis */
-/* #undef HAVE_METIS */
+#define HAVE_METIS TRUE
 
 /* Enable colamd */
 /* #undef HAVE_COLAMD */

@@ -48,6 +48,7 @@ option(enable_doc       "Add target 'doc' to build Doxygen documentation" OFF)
 option(enable_examples  "Build examples" ON)
 option(enable_fortran   "Build Fortran interface" ${enable_fortran_xSDK})
 option(enable_tests     "Build tests" ON)
+option(enable_compatibility_complex "Provide typdef 'complex' for compatibility with older SuperLU version" OFF)
 
 include(CTest)
 include(GNUInstallDirs)
@@ -99,6 +100,11 @@ if (enable_fortran)
 endif()
 set(SUPERLU_VERSION "${PROJECT_VERSION}")
 set(SUPERLU_REV "${PROJECT_REV}")
+
+if(enable_compatibility_complex)
+  add_compile_definitions(SUPERLU_TYPEDEF_COMPLEX)
+endif()
+
 
 #-- BLAS
 option(TPL_ENABLE_INTERNAL_BLASLIB  "Build the CBLAS library" ${enable_internal_blaslib})

@@ -38,7 +38,6 @@ at the top-level directory.
  * \ingroup Example
  */
 
-#include <unistd.h>
 #include "slu_zdefs.h"
 
 superlu_options_t *GLOBAL_OPTIONS;

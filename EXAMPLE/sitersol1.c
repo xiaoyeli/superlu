@@ -16,7 +16,7 @@ at the top-level directory.
  * August, 2011
  */
 
-/*! @file sitersol1.c
+/*! \file
  * \brief Example #2 showing how to use ILU to precondition GMRES
  *
  * This example shows that ILU is computed from the equilibrated matrix,

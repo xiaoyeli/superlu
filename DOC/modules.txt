@@ -3,21 +3,21 @@
  */
 
 /*!
- \defgroup Common
+ \defgroup Common Common
  \brief Common code shared within SuperLU.
 
  Type-independent code.
  */
 
 /*!
- \defgroup Example
+ \defgroup Example Example
  \brief Examples of how to use SuperLU.
 
  Various examples.
  */
 
 /*!
- \defgroup Testing
+ \defgroup Testing Testing
  \brief Test that SuperLU works as intended.
 
  Tests should be run and remain working when SuperLU code is modified.
@@ -26,7 +26,7 @@
  */
 
 /*!
- \defgroup TestingC
+ \defgroup TestingC Testing Complex Float
  \ingroup Testing
  \brief Tests for complex float.
 
@@ -34,7 +34,7 @@
  */
 
 /*!
- \defgroup TestingD
+ \defgroup TestingD Testing Double
  \ingroup Testing
  \brief Tests for double.
 
@@ -42,7 +42,7 @@
  */
 
 /*!
- \defgroup TestingS
+ \defgroup TestingS Testing Float
  \ingroup Testing
  \brief Tests for float.
 
@@ -50,7 +50,7 @@
  */
 
 /*!
- \defgroup TestingZ
+ \defgroup TestingZ Testing Complex Double
  \ingroup Testing
  \brief Tests for complex double.
 

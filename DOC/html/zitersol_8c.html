@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -82,7 +82,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae970280d13c1a6f41e71834f00776082"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs zgsisx with original matrix A.  <a href="zitersol_8c.html#ae970280d13c1a6f41e71834f00776082">More...</a><br /></td></tr>
 <tr class="separator:ae970280d13c1a6f41e71834f00776082"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e1543e740b505ad649e15bddd2c60ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zitersol_8c.html#a4e1543e740b505ad649e15bddd2c60ca">zmatvec_mult</a> (<a class="el" href="structdoublecomplex.html">doublecomplex</a> alpha, <a class="el" href="structdoublecomplex.html">doublecomplex</a> x[], <a class="el" href="structdoublecomplex.html">doublecomplex</a> beta, <a class="el" href="structdoublecomplex.html">doublecomplex</a> y[])</td></tr>
-<tr class="memdesc:a4e1543e740b505ad649e15bddd2c60ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs matrix-vector multipliation sp_zgem with original matrix A.  <a href="zitersol_8c.html#a4e1543e740b505ad649e15bddd2c60ca">More...</a><br /></td></tr>
+<tr class="memdesc:a4e1543e740b505ad649e15bddd2c60ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs matrix-vector multipliation sp_zgemv with original matrix A.  <a href="zitersol_8c.html#a4e1543e740b505ad649e15bddd2c60ca">More...</a><br /></td></tr>
 <tr class="separator:a4e1543e740b505ad649e15bddd2c60ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zitersol_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,7 +168,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="zdiagonal_8c.html#a0509095ae31fa257de9d3463926d7d37" title=" " alt="" coords="161,1997,234,2024"/>
 <area shape="rect" href="zutil_8c.html#acf2b404121b9a70942631f50b85fd8a1" title="Let rhs[i] = sum of i&#45;th row of A, so the solution vector is all 1&#39;s." alt="" coords="161,1592,234,1619"/>
 <area shape="rect" href="zutil_8c.html#aa81fbc4bdd835def817191d94fb8b208" title=" " alt="" coords="155,2048,240,2075"/>
-<area shape="rect" href="zitersol_8c.html#a4e1543e740b505ad649e15bddd2c60ca" title="Performs matrix&#45;vector multipliation sp_zgem with original matrix A." alt="" coords="355,1693,459,1720"/>
+<area shape="rect" href="zitersol_8c.html#a4e1543e740b505ad649e15bddd2c60ca" title="Performs matrix&#45;vector multipliation sp_zgemv with original matrix A." alt="" coords="355,1693,459,1720"/>
 <area shape="rect" href="zreadhb_8c.html#a7d2e0add84b68d8ce02245b0332a0e5d" title="Auxiliary routines." alt="" coords="162,2099,233,2125"/>
 <area shape="rect" href="zreadrb_8c.html#ab69f0a8cf654c344f777a0987a23f315" title=" " alt="" coords="164,2149,231,2176"/>
 <area shape="rect" href="zreadtriple_8c.html#a9dc8916335a6819060d63a606de8363b" title=" " alt="" coords="524,107,608,133"/>
@@ -237,7 +237,7 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >The operations is y := alpha*A*x + beta*y. See documentation of sp_zgem for further details.</p>
+<p >The operations is y := alpha*A*x + beta*y. See documentation of sp_zgemv for further details.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">alpha</td><td>Scalar factor for A*x </td></tr>
@@ -252,7 +252,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="zitersol_8c_a4e1543e740b505ad649e15bddd2c60ca_cgraph.png" border="0" usemap="#azitersol_8c_a4e1543e740b505ad649e15bddd2c60ca_cgraph" alt=""/></div>
 <map name="azitersol_8c_a4e1543e740b505ad649e15bddd2c60ca_cgraph" id="azitersol_8c_a4e1543e740b505ad649e15bddd2c60ca_cgraph">
-<area shape="rect" title="Performs matrix&#45;vector multipliation sp_zgem with original matrix A." alt="" coords="5,5,109,32"/>
+<area shape="rect" title="Performs matrix&#45;vector multipliation sp_zgemv with original matrix A." alt="" coords="5,5,109,32"/>
 <area shape="rect" href="zsp__blas2_8c.html#a9ea39731f07b4c2ab20e44c97ffd773c" title="Performs one of the matrix&#45;vector operations y := alpha*A*x + beta*y, or y := alpha*A&#39;*x + beta*y." alt="" coords="157,5,240,32"/>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="288,5,375,32"/>
 </map>

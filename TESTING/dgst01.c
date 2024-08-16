@@ -10,7 +10,7 @@ at the top-level directory.
 */
 
 /*
- * -- SuperLU routine (version 2.0) --
+ * -- SuperLU routine (version 7.0.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * November 15, 1997

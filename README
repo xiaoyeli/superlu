@@ -1,4 +1,4 @@
-		SuperLU (Version 6.0.1)
+		SuperLU (Version 7.0.0)
 		=======================
 
 SuperLU contains a set of subroutines to solve a sparse linear system 
@@ -182,3 +182,4 @@ are described below.
     October 17,  2020  Version 5.2.2
     April 5,     2023  Version 6.0.0
     August 5,    2023  Version 6.0.1
+    August 15,   2024  Version 7.0.0

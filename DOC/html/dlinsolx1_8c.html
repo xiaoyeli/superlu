@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -49,7 +49,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>factorization from dgstrf (DGSSVX)  
+<p>DGSSVX to solve systems with the same matrix but different right-hand side.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;getopt.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="slu__ddefs_8h_source.html">slu_ddefs.h</a>&quot;</code><br />
@@ -58,7 +58,7 @@ Include dependency graph for dlinsolx1.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="dlinsolx1_8c__incl.png" border="0" usemap="#aEXAMPLE_2dlinsolx1_8c" alt=""/></div>
 <map name="aEXAMPLE_2dlinsolx1_8c" id="aEXAMPLE_2dlinsolx1_8c">
-<area shape="rect" title="factorization from dgstrf (DGSSVX)" alt="" coords="228,5,379,32"/>
+<area shape="rect" title="DGSSVX to solve systems with the same matrix but different right&#45;hand side." alt="" coords="228,5,379,32"/>
 <area shape="rect" title=" " alt="" coords="216,80,287,107"/>
 <area shape="rect" href="slu__ddefs_8h.html" title="Header file for real operations." alt="" coords="311,80,402,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
@@ -82,7 +82,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:a693ba86aac49435e82cf3a57a4412744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse command line options to get relaxed snode size, panel size, etc.  <a href="dlinsolx1_8c.html#a693ba86aac49435e82cf3a57a4412744">More...</a><br /></td></tr>
 <tr class="separator:a693ba86aac49435e82cf3a57a4412744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dlinsolx1_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
-<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">The driver program DLINSOLX1.  <a href="dlinsolx1_8c.html#a0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -111,13 +110,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >This example illustrates how to use DGSSVX to solve systems with the same A but different right-hand side. In this case, we factorize A only once in the first call to DGSSVX, and reuse the following data structures in the subsequent call to DGSSVX: perm_c, perm_r, R, C, L, U. </p>
+<p >The driver program DLINSOLX1.</p>
+<p >This example illustrates how to use DGSSVX to solve systems with the same A but different right-hand side. In this case, we factorize A only once in the first call to DGSSVX, and reuse the following data structures in the subsequent call to DGSSVX: perm_c, perm_r, R, C, L, U.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="dlinsolx1_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png" border="0" usemap="#adlinsolx1_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph" alt=""/></div>
 <map name="adlinsolx1_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph" id="adlinsolx1_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph">
-<area shape="rect" title="The driver program DLINSOLX1." alt="" coords="5,1263,56,1289"/>
+<area shape="rect" title=" " alt="" coords="5,1263,56,1289"/>
 <area shape="rect" href="dutil_8c.html#a0a2a790bf8c793c9c0ea7aceb9532584" title="Supernodal LU factor related." alt="" coords="583,1085,759,1112"/>
 <area shape="rect" href="dutil_8c.html#a12ac523141a258590a76bdad390928fd" title=" " alt="" coords="118,1288,277,1315"/>
 <area shape="rect" href="util_8c.html#a27491a8171a480d6c98e6d1e535e1973" title="Deallocate SuperMatrix of type NC." alt="" coords="110,1339,285,1365"/>

@@ -13,7 +13,7 @@ at the top-level directory.
  * \brief Header file for real operations
  * 
  * <pre> 
- * -- SuperLU routine (version 4.1) --
+ * -- SuperLU routine (version 7.0.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * November, 2010
@@ -246,6 +246,7 @@ extern int     ilu_cQuerySpace (SuperMatrix *, SuperMatrix *, mem_usage_t *);
 extern void    creadhb(FILE *, int *, int *, int_t *, singlecomplex **, int_t **, int_t **);
 extern void    creadrb(int *, int *, int_t *, singlecomplex **, int_t **, int_t **);
 extern void    creadtriple(int *, int *, int_t *, singlecomplex **, int_t **, int_t **);
+extern void    creadtriple_noheader(int *, int *, int_t *, singlecomplex **, int_t **, int_t **);
 extern void    creadMM(FILE *, int *, int *, int_t *, singlecomplex **, int_t **, int_t **);
 extern void    cfill (singlecomplex *, int, singlecomplex);
 extern void    cinf_norm_error (int, SuperMatrix *, singlecomplex *);

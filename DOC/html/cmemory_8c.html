@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -132,10 +132,10 @@ Functions</h2></td></tr>
 <tr class="memitem:acb3e10c45214dcb43e98c103e73e3887"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#acb3e10c45214dcb43e98c103e73e3887">callocateA</a> (int n, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> nnz, <a class="el" href="structsinglecomplex.html">singlecomplex</a> **a, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **asub, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **xa)</td></tr>
 <tr class="memdesc:acb3e10c45214dcb43e98c103e73e3887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate storage for original matrix A.  <a href="cmemory_8c.html#acb3e10c45214dcb43e98c103e73e3887">More...</a><br /></td></tr>
 <tr class="separator:acb3e10c45214dcb43e98c103e73e3887"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a760375cf72b56b890a6d4bf7b58a1996"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a760375cf72b56b890a6d4bf7b58a1996">complexMalloc</a> (size_t n)</td></tr>
-<tr class="separator:a760375cf72b56b890a6d4bf7b58a1996"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b482bc7015386c0cb8fafc5fc5fb67e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a9b482bc7015386c0cb8fafc5fc5fb67e">complexCalloc</a> (size_t n)</td></tr>
-<tr class="separator:a9b482bc7015386c0cb8fafc5fc5fb67e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafbdb876f27d8f514853ad45203c2c92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#aafbdb876f27d8f514853ad45203c2c92">singlecomplexMalloc</a> (size_t n)</td></tr>
+<tr class="separator:aafbdb876f27d8f514853ad45203c2c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84948a59a9019916a5b9abfa15b5c8b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a84948a59a9019916a5b9abfa15b5c8b1">singlecomplexCalloc</a> (size_t n)</td></tr>
+<tr class="separator:a84948a59a9019916a5b9abfa15b5c8b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a565c5fbbb980f1be7a56d91878ce8d6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmemory_8c.html#a565c5fbbb980f1be7a56d91878ce8d6f">cmemory_usage</a> (const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> nzlmax, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> nzumax, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> nzlumax, const int n)</td></tr>
 <tr class="separator:a565c5fbbb980f1be7a56d91878ce8d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -144,7 +144,7 @@ Functions</h2></td></tr>
 <p >All rights reserved.</p>
 <p >The source code is distributed under BSD license, see the file License.txt at the top-level directory.</p>
 <pre>
--- SuperLU routine (version 4.0) --
+-- SuperLU routine (version 7.0.0) --
 Lawrence Berkeley National Laboratory.
 June 30, 2009
 </pre> </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -302,8 +302,8 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="cmemory_8c_acb3e10c45214dcb43e98c103e73e3887_cgraph.png" border="0" usemap="#acmemory_8c_acb3e10c45214dcb43e98c103e73e3887_cgraph" alt=""/></div>
 <map name="acmemory_8c_acb3e10c45214dcb43e98c103e73e3887_cgraph" id="acmemory_8c_acb3e10c45214dcb43e98c103e73e3887_cgraph">
 <area shape="rect" title="Allocate storage for original matrix A." alt="" coords="5,31,89,57"/>
-<area shape="rect" href="cmemory_8c.html#a760375cf72b56b890a6d4bf7b58a1996" title=" " alt="" coords="137,5,248,32"/>
-<area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="155,56,230,83"/>
+<area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="173,5,247,32"/>
+<area shape="rect" href="cmemory_8c.html#aafbdb876f27d8f514853ad45203c2c92" title=" " alt="" coords="137,56,283,83"/>
 </map>
 </div>
 
@@ -691,42 +691,6 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9b482bc7015386c0cb8fafc5fc5fb67e" name="a9b482bc7015386c0cb8fafc5fc5fb67e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b482bc7015386c0cb8fafc5fc5fb67e">&#9670;&nbsp;</a></span>complexCalloc()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structsinglecomplex.html">singlecomplex</a> * complexCalloc </td>
-          <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>n</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a760375cf72b56b890a6d4bf7b58a1996" name="a760375cf72b56b890a6d4bf7b58a1996"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a760375cf72b56b890a6d4bf7b58a1996">&#9670;&nbsp;</a></span>complexMalloc()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structsinglecomplex.html">singlecomplex</a> * complexMalloc </td>
-          <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>n</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab59eea34474da95fb3dc125400a1287e" name="ab59eea34474da95fb3dc125400a1287e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab59eea34474da95fb3dc125400a1287e">&#9670;&nbsp;</a></span>copy_mem_int()</h2>
 
@@ -899,7 +863,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="cmemory_8c_a6d1e077c332d4bdb89f2a5b59fcee7dc_cgraph.png" border="0" usemap="#acmemory_8c_a6d1e077c332d4bdb89f2a5b59fcee7dc_cgraph" alt=""/></div>
 <map name="acmemory_8c_a6d1e077c332d4bdb89f2a5b59fcee7dc_cgraph" id="acmemory_8c_a6d1e077c332d4bdb89f2a5b59fcee7dc_cgraph">
 <area shape="rect" title="Set up pointers for real working arrays." alt="" coords="5,31,95,57"/>
-<area shape="rect" href="cutil_8c.html#ae9ce7326ce98866f06d3989476ead551" title="Fills a complex precision array with a given value." alt="" coords="156,5,197,32"/>
+<area shape="rect" href="cutil_8c.html#ae9ce7326ce98866f06d3989476ead551" title="Fills a singlecomplex precision array with a given value." alt="" coords="156,5,197,32"/>
 <area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="143,56,211,83"/>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="259,56,345,83"/>
 </map>
@@ -1090,6 +1054,42 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="293,5,380,32"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a84948a59a9019916a5b9abfa15b5c8b1" name="a84948a59a9019916a5b9abfa15b5c8b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84948a59a9019916a5b9abfa15b5c8b1">&#9670;&nbsp;</a></span>singlecomplexCalloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsinglecomplex.html">singlecomplex</a> * singlecomplexCalloc </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aafbdb876f27d8f514853ad45203c2c92" name="aafbdb876f27d8f514853ad45203c2c92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafbdb876f27d8f514853ad45203c2c92">&#9670;&nbsp;</a></span>singlecomplexMalloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsinglecomplex.html">singlecomplex</a> * singlecomplexMalloc </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

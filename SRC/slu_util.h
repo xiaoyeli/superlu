@@ -46,9 +46,9 @@ at the top-level directory.
  *   #endif                                                                                    
  * Versions 4.x and earlier do not include a #define'd version numbers.                        
  */
-#define SUPERLU_MAJOR_VERSION     6
+#define SUPERLU_MAJOR_VERSION     7
 #define SUPERLU_MINOR_VERSION     0
-#define SUPERLU_PATCH_VERSION     1
+#define SUPERLU_PATCH_VERSION     0
 
 
 #define FIRSTCOL_OF_SNODE(i)	(xsup[i])

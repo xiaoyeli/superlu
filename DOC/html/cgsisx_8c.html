@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -85,7 +85,7 @@ Functions</h2></td></tr>
 <p >All rights reserved.</p>
 <p >The source code is distributed under BSD license, see the file License.txt at the top-level directory.</p>
 <pre>
--- SuperLU routine (version 4.2) --
+-- SuperLU routine (version 7.0.0) --
 Lawrence Berkeley National Laboratory.
 November, 2010
 August, 2011
@@ -223,7 +223,6 @@ August, 2011
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Computes approximate solutions using the ILU factorization from <a class="el" href="cgsitrf_8c.html#acea71947fa51c9fcbb8bb766807a7e02">cgsitrf()</a></p>
 <pre>
 Purpose
 =======
@@ -606,56 +605,56 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="cgsisx_8c_a697a9c311d7270403f99871eb71576d4_cgraph.png" border="0" usemap="#acgsisx_8c_a697a9c311d7270403f99871eb71576d4_cgraph" alt=""/></div>
 <map name="acgsisx_8c_a697a9c311d7270403f99871eb71576d4_cgraph" id="acgsisx_8c_a697a9c311d7270403f99871eb71576d4_cgraph">
-<area shape="rect" title=" " alt="" coords="5,786,64,813"/>
-<area shape="rect" href="cutil_8c.html#a49a88e7b68e4e23a2238681f3e708828" title="Supernodal LU factor related." alt="" coords="361,786,537,813"/>
-<area shape="rect" href="cgscon_8c.html#ae836085920601b3b0717a4f623ab460e" title=" " alt="" coords="178,280,242,306"/>
-<area shape="rect" href="smach_8c.html#ac3a5d5fd52503ed62ddc9029bab917d5" title=" " alt="" coords="617,178,678,205"/>
-<area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="752,229,839,256"/>
-<area shape="rect" href="cgsequ_8c.html#a36bb68fea3ee44ff05eb7da2ee059fa5" title="Driver related." alt="" coords="417,128,482,154"/>
-<area shape="rect" href="cgsitrf_8c.html#acea71947fa51c9fcbb8bb766807a7e02" title=" " alt="" coords="181,1420,239,1446"/>
-<area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="603,2205,692,2232"/>
-<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="613,837,681,864"/>
-<area shape="rect" href="cgstrs_8c.html#a19517b9d29e4faf9ae777ca6fb9d415b" title=" " alt="" coords="181,533,239,560"/>
-<area shape="rect" href="clangs_8c.html#a3e9baabe44cf6d5779cae55b80bc5763" title=" " alt="" coords="180,2408,240,2434"/>
-<area shape="rect" href="claqgs_8c.html#a0cf5dcef08d22df154acf807beb43ea1" title=" " alt="" coords="180,26,240,53"/>
-<area shape="rect" href="cldperm_8c.html#a65ebceef95d0a3bf3d0b84b03599854b" title=" " alt="" coords="415,2053,484,2080"/>
-<area shape="rect" href="cpivotgrowth_8c.html#acda3921f49d46be7eaa23b58bc2b09c5" title=" " alt="" coords="399,330,500,357"/>
-<area shape="rect" href="util_8c.html#a7285ca16a0b84b4333d71efeb65c0126" title="Deallocate SuperMatrix of type NCP." alt="" coords="112,2458,308,2485"/>
-<area shape="rect" href="util_8c.html#ac16a0aea75cf99b4d38ec4ede6f13eb4" title="Deallocate SuperMatrix." alt="" coords="137,2510,283,2551"/>
-<area shape="rect" href="get__perm__c_8c.html#aaecb6e6e7a3e97356050bcfdf2573796" title="Obtains a permutation matrix by applying the multiple minimum degree ordering code." alt="" coords="164,2256,256,2282"/>
-<area shape="rect" href="superlu__timer_8c.html#a901b1224789fec99ee424cbfde8fb301" title="Timer function." alt="" coords="390,2306,509,2333"/>
-<area shape="rect" href="cmemory_8c.html#aaf50d31c33a4cc3e770b617202ea73e3" title=" " alt="" coords="148,710,272,737"/>
-<area shape="rect" href="sp__preorder_8c.html#ad3a9a45f02456022c7eba79e17e215bc" title=" " alt="" coords="163,1938,257,1965"/>
-<area shape="rect" href="clacon2_8c.html#aeead4788286f47583ab0dd34147b96ac" title=" " alt="" coords="411,178,487,205"/>
-<area shape="rect" href="cmemory_8c.html#a9b482bc7015386c0cb8fafc5fc5fb67e" title=" " alt="" coords="593,381,702,408"/>
-<area shape="rect" href="csp__blas2_8c.html#ad4ea108780cc255eed235d7f426b0d66" title="Solves one of the systems of equations A*x = b, or A&#39;*x = b." alt="" coords="413,432,485,458"/>
-<area shape="rect" href="scomplex_8c.html#a459adcfd161149bee1132859e416fd86" title="Complex Division c = a/b." alt="" coords="621,482,674,509"/>
-<area shape="rect" href="cmyblas2_8c.html#aa291fae7042da633de4c14095508ffd2" title="Solves a dense UNIT lower triangular system." alt="" coords="616,989,679,1016"/>
-<area shape="rect" href="scomplex_8c.html#a864dd872c8111dd595457f13562ad2a6" title="Approximates the abs. Returns abs(z.r) + abs(z.i)" alt="" coords="615,1192,680,1218"/>
-<area shape="rect" href="ccolumn__bmod_8c.html#a7ddafddc7efb0d473afa85862cfcfe08" title=" " alt="" coords="393,1293,505,1320"/>
-<area shape="rect" href="cmemory_8c.html#a21a3daa34a5c07748203017a189b2a4f" title="Expand the data structures for L and U during the factorization." alt="" coords="591,1293,704,1320"/>
-<area shape="rect" href="cutil_8c.html#a1edbc601adf3eda47d8ad447f558ca7c" title=" " alt="" coords="356,1394,543,1421"/>
-<area shape="rect" href="cmemory_8c.html#affed6eac03cce2c6881b962cdd98aae1" title="Allocate storage for the data structures common to all factor routines." alt="" coords="403,2154,496,2181"/>
-<area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="610,2053,685,2080"/>
-<area shape="rect" href="cmemory_8c.html#aec37b068329358e8d5a81a3de59489f6" title="Free the working storage used by factor routines." alt="" coords="397,1546,501,1573"/>
-<area shape="rect" href="cpanel__bmod_8c.html#afe5fdb8b9b05150e9dd605b9276ca093" title=" " alt="" coords="398,989,501,1016"/>
-<area shape="rect" href="cmemory_8c.html#a6d1e077c332d4bdb89f2a5b59fcee7dc" title="Set up pointers for real working arrays." alt="" coords="405,888,494,914"/>
-<area shape="rect" href="csnode__bmod_8c.html#aada7e405a5c1de9ac3ec0f2c8df1d82e" title="Performs numeric block updates within the relaxed snode." alt="" coords="397,1141,502,1168"/>
-<area shape="rect" href="util_8c.html#a4b97838714471334eba3f4de948d6e7a" title="Fix up the data storage lsub for L&#45;subscripts." alt="" coords="421,1597,478,1624"/>
-<area shape="rect" href="util_8c.html#ae289773c377a566a2f77c88b21d7f4ae" title="Fills an integer array with a given value." alt="" coords="628,1876,667,1902"/>
-<area shape="rect" href="ilu__ccolumn__dfs_8c.html#af79d1ec0431dda68d6ae85e5069af56c" title=" " alt="" coords="391,1242,508,1269"/>
-<area shape="rect" href="ilu__ccopy__to__ucol_8c.html#a17d4cf56e527395cc1c3ccf28ddecb71" title=" " alt="" coords="385,1192,513,1218"/>
-<area shape="rect" href="ilu__cdrop__row_8c.html#ab6bca119c9d5eab7210d0009835e399f" title=" " alt="" coords="397,1648,502,1674"/>
-<area shape="rect" href="util_8c.html#ad9588d63f6c51275e1f8d4cb918b2e41" title="Count the total number of nonzeros in factors L and U." alt="" coords="405,1698,494,1725"/>
-<area shape="rect" href="ilu__cpanel__dfs_8c.html#ac1141cf46486d933612a500a8e91b3a4" title=" " alt="" coords="396,1749,503,1776"/>
-<area shape="rect" href="ilu__cpivotL_8c.html#a4f12f78a0c1a3f9b4204f3ef36783f53" title=" " alt="" coords="407,938,492,965"/>
-<area shape="rect" href="ilu__csnode__dfs_8c.html#a0512514dac91d485ccd9e4e2db222c9e" title=" " alt="" coords="394,1496,505,1522"/>
-<area shape="rect" href="ilu__heap__relax__snode_8c.html#aac1a978dda622cdb58c3c2eaee4b4030" title=" " alt="" coords="373,1952,525,1978"/>
-<area shape="rect" href="ilu__relax__snode_8c.html#ae0e2bbb8507d800766030635a3bd5a7e" title=" " alt="" coords="391,1800,507,1826"/>
-<area shape="rect" href="mark__relax_8c.html#a2100557c277a7f679bd6ed2410e29960" title=" " alt="" coords="405,1040,493,1066"/>
-<area shape="rect" href="util_8c.html#a67bce8b2142b3be41583de4fbea02cb0" title="Reset repfnz[] for the current column." alt="" coords="401,1090,497,1117"/>
-<area shape="rect" href="memory_8c.html#a62bab720052d576a870b98e6499b1a50" title="Set up pointers for integer working arrays." alt="" coords="411,1901,488,1928"/>
-<area shape="rect" href="slu__cdefs_8h.html#a3051ef3c962af7988066dd4b952605dc" title="BLAS." alt="" coords="413,533,486,560"/>
+<area shape="rect" title=" " alt="" coords="5,870,64,897"/>
+<area shape="rect" href="cutil_8c.html#a49a88e7b68e4e23a2238681f3e708828" title="Supernodal LU factor related." alt="" coords="361,870,537,897"/>
+<area shape="rect" href="cgscon_8c.html#ae836085920601b3b0717a4f623ab460e" title=" " alt="" coords="178,363,242,390"/>
+<area shape="rect" href="smach_8c.html#ac3a5d5fd52503ed62ddc9029bab917d5" title=" " alt="" coords="632,262,693,289"/>
+<area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="783,313,869,339"/>
+<area shape="rect" href="cgsequ_8c.html#a36bb68fea3ee44ff05eb7da2ee059fa5" title="Driver related." alt="" coords="417,211,482,238"/>
+<area shape="rect" href="cgsitrf_8c.html#acea71947fa51c9fcbb8bb766807a7e02" title=" " alt="" coords="181,1503,239,1530"/>
+<area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="618,2289,707,2315"/>
+<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="629,921,697,947"/>
+<area shape="rect" href="cgstrs_8c.html#a19517b9d29e4faf9ae777ca6fb9d415b" title=" " alt="" coords="181,617,239,643"/>
+<area shape="rect" href="clangs_8c.html#a3e9baabe44cf6d5779cae55b80bc5763" title=" " alt="" coords="180,2491,240,2518"/>
+<area shape="rect" href="claqgs_8c.html#a0cf5dcef08d22df154acf807beb43ea1" title=" " alt="" coords="180,110,240,137"/>
+<area shape="rect" href="cldperm_8c.html#a65ebceef95d0a3bf3d0b84b03599854b" title=" " alt="" coords="415,2137,484,2163"/>
+<area shape="rect" href="cpivotgrowth_8c.html#acda3921f49d46be7eaa23b58bc2b09c5" title=" " alt="" coords="399,414,500,441"/>
+<area shape="rect" href="util_8c.html#a7285ca16a0b84b4333d71efeb65c0126" title="Deallocate SuperMatrix of type NCP." alt="" coords="112,2542,308,2569"/>
+<area shape="rect" href="util_8c.html#ac16a0aea75cf99b4d38ec4ede6f13eb4" title="Deallocate SuperMatrix." alt="" coords="137,2593,283,2635"/>
+<area shape="rect" href="get__perm__c_8c.html#aaecb6e6e7a3e97356050bcfdf2573796" title="Obtains a permutation matrix by applying the multiple minimum degree ordering code." alt="" coords="164,2339,256,2366"/>
+<area shape="rect" href="superlu__timer_8c.html#a901b1224789fec99ee424cbfde8fb301" title="Timer function." alt="" coords="390,2390,509,2417"/>
+<area shape="rect" href="cmemory_8c.html#aaf50d31c33a4cc3e770b617202ea73e3" title=" " alt="" coords="148,794,272,821"/>
+<area shape="rect" href="sp__preorder_8c.html#ad3a9a45f02456022c7eba79e17e215bc" title=" " alt="" coords="163,2022,257,2049"/>
+<area shape="rect" href="clacon2_8c.html#aeead4788286f47583ab0dd34147b96ac" title=" " alt="" coords="411,262,487,289"/>
+<area shape="rect" href="cmemory_8c.html#a84948a59a9019916a5b9abfa15b5c8b1" title=" " alt="" coords="591,465,735,491"/>
+<area shape="rect" href="csp__blas2_8c.html#ad4ea108780cc255eed235d7f426b0d66" title="Solves one of the systems of equations A*x = b, or A&#39;*x = b." alt="" coords="413,515,485,542"/>
+<area shape="rect" href="scomplex_8c.html#a459adcfd161149bee1132859e416fd86" title="Complex Division c = a/b." alt="" coords="636,566,689,593"/>
+<area shape="rect" href="cmyblas2_8c.html#aa291fae7042da633de4c14095508ffd2" title="Solves a dense UNIT lower triangular system." alt="" coords="631,1073,694,1099"/>
+<area shape="rect" href="scomplex_8c.html#a864dd872c8111dd595457f13562ad2a6" title="Approximates the abs. Returns abs(z.r) + abs(z.i)" alt="" coords="630,1275,695,1302"/>
+<area shape="rect" href="ccolumn__bmod_8c.html#a7ddafddc7efb0d473afa85862cfcfe08" title=" " alt="" coords="393,1377,505,1403"/>
+<area shape="rect" href="cmemory_8c.html#a21a3daa34a5c07748203017a189b2a4f" title="Expand the data structures for L and U during the factorization." alt="" coords="606,1377,719,1403"/>
+<area shape="rect" href="cutil_8c.html#a1edbc601adf3eda47d8ad447f558ca7c" title=" " alt="" coords="356,1478,543,1505"/>
+<area shape="rect" href="cmemory_8c.html#affed6eac03cce2c6881b962cdd98aae1" title="Allocate storage for the data structures common to all factor routines." alt="" coords="403,2238,496,2265"/>
+<area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="625,2137,700,2163"/>
+<area shape="rect" href="cmemory_8c.html#aec37b068329358e8d5a81a3de59489f6" title="Free the working storage used by factor routines." alt="" coords="397,1630,501,1657"/>
+<area shape="rect" href="cpanel__bmod_8c.html#afe5fdb8b9b05150e9dd605b9276ca093" title=" " alt="" coords="398,1073,501,1099"/>
+<area shape="rect" href="cmemory_8c.html#a6d1e077c332d4bdb89f2a5b59fcee7dc" title="Set up pointers for real working arrays." alt="" coords="405,971,494,998"/>
+<area shape="rect" href="csnode__bmod_8c.html#aada7e405a5c1de9ac3ec0f2c8df1d82e" title="Performs numeric block updates within the relaxed snode." alt="" coords="397,1225,502,1251"/>
+<area shape="rect" href="util_8c.html#a4b97838714471334eba3f4de948d6e7a" title="Fix up the data storage lsub for L&#45;subscripts." alt="" coords="421,1681,478,1707"/>
+<area shape="rect" href="util_8c.html#ae289773c377a566a2f77c88b21d7f4ae" title="Fills an integer array with a given value." alt="" coords="643,1959,682,1986"/>
+<area shape="rect" href="ilu__ccolumn__dfs_8c.html#af79d1ec0431dda68d6ae85e5069af56c" title=" " alt="" coords="391,1326,508,1353"/>
+<area shape="rect" href="ilu__ccopy__to__ucol_8c.html#a17d4cf56e527395cc1c3ccf28ddecb71" title=" " alt="" coords="385,1275,513,1302"/>
+<area shape="rect" href="ilu__cdrop__row_8c.html#ab6bca119c9d5eab7210d0009835e399f" title=" " alt="" coords="397,1731,502,1758"/>
+<area shape="rect" href="util_8c.html#ad9588d63f6c51275e1f8d4cb918b2e41" title="Count the total number of nonzeros in factors L and U." alt="" coords="405,1782,494,1809"/>
+<area shape="rect" href="ilu__cpanel__dfs_8c.html#ac1141cf46486d933612a500a8e91b3a4" title=" " alt="" coords="396,1833,503,1859"/>
+<area shape="rect" href="ilu__cpivotL_8c.html#a4f12f78a0c1a3f9b4204f3ef36783f53" title=" " alt="" coords="407,1022,492,1049"/>
+<area shape="rect" href="ilu__csnode__dfs_8c.html#a0512514dac91d485ccd9e4e2db222c9e" title=" " alt="" coords="394,1579,505,1606"/>
+<area shape="rect" href="ilu__heap__relax__snode_8c.html#aac1a978dda622cdb58c3c2eaee4b4030" title=" " alt="" coords="373,2035,525,2062"/>
+<area shape="rect" href="ilu__relax__snode_8c.html#ae0e2bbb8507d800766030635a3bd5a7e" title=" " alt="" coords="391,1883,507,1910"/>
+<area shape="rect" href="mark__relax_8c.html#a2100557c277a7f679bd6ed2410e29960" title=" " alt="" coords="405,1123,493,1150"/>
+<area shape="rect" href="util_8c.html#a67bce8b2142b3be41583de4fbea02cb0" title="Reset repfnz[] for the current column." alt="" coords="401,1174,497,1201"/>
+<area shape="rect" href="memory_8c.html#a62bab720052d576a870b98e6499b1a50" title="Set up pointers for integer working arrays." alt="" coords="411,1985,488,2011"/>
+<area shape="rect" href="slu__cdefs_8h.html#a3051ef3c962af7988066dd4b952605dc" title="BLAS." alt="" coords="413,617,486,643"/>
 </map>
 </div>
 

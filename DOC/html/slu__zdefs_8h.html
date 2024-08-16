@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -217,6 +217,8 @@ Functions</h2></td></tr>
 <tr class="separator:a3f2c57eb62d3cb48621054a89883b121"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae961d51e3005148c08005e220da265c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__zdefs_8h.html#ae961d51e3005148c08005e220da265c1">zreadtriple</a> (int *, int *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, <a class="el" href="structdoublecomplex.html">doublecomplex</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **)</td></tr>
 <tr class="separator:ae961d51e3005148c08005e220da265c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1800ee8cde5cd571af09b0f44b4afcdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__zdefs_8h.html#a1800ee8cde5cd571af09b0f44b4afcdd">zreadtriple_noheader</a> (int *, int *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, <a class="el" href="structdoublecomplex.html">doublecomplex</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **)</td></tr>
+<tr class="separator:a1800ee8cde5cd571af09b0f44b4afcdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1594999f8a9c92df156442d42a512cf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__zdefs_8h.html#a1594999f8a9c92df156442d42a512cf5">zreadMM</a> (FILE *, int *, int *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, <a class="el" href="structdoublecomplex.html">doublecomplex</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **)</td></tr>
 <tr class="separator:a1594999f8a9c92df156442d42a512cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff0de872dc60f87b89ae93a8f93a7a70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__zdefs_8h.html#aff0de872dc60f87b89ae93a8f93a7a70">zfill</a> (<a class="el" href="structdoublecomplex.html">doublecomplex</a> *, int, <a class="el" href="structdoublecomplex.html">doublecomplex</a>)</td></tr>
@@ -266,7 +268,7 @@ Functions</h2></td></tr>
 <p >All rights reserved.</p>
 <p >The source code is distributed under BSD license, see the file License.txt at the top-level directory.</p>
 <pre> 
--- SuperLU routine (version 4.1) --
+-- SuperLU routine (version 7.0.0) --
 Univ. of California Berkeley, Xerox Palo Alto Research Center,
 and Lawrence Berkeley National Lab.
 November, 2010
@@ -7121,6 +7123,58 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="313,81,387,108"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a1800ee8cde5cd571af09b0f44b4afcdd" name="a1800ee8cde5cd571af09b0f44b4afcdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1800ee8cde5cd571af09b0f44b4afcdd">&#9670;&nbsp;</a></span>zreadtriple_noheader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void zreadtriple_noheader </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structdoublecomplex.html">doublecomplex</a> **&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

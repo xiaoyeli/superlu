@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -49,7 +49,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>LU factorization from dgstrf (DGSSV)  
+<p>LU factorization from DGSTRF (DGSSV)  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="slu__ddefs_8h_source.html">slu_ddefs.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -57,7 +57,7 @@ Include dependency graph for dlinsol.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="dlinsol_8c__incl.png" border="0" usemap="#aEXAMPLE_2dlinsol_8c" alt=""/></div>
 <map name="aEXAMPLE_2dlinsol_8c" id="aEXAMPLE_2dlinsol_8c">
-<area shape="rect" title="LU factorization from dgstrf (DGSSV)" alt="" coords="288,5,425,32"/>
+<area shape="rect" title="LU factorization from DGSTRF (DGSSV)" alt="" coords="288,5,425,32"/>
 <area shape="rect" href="slu__ddefs_8h.html" title="Header file for real operations." alt="" coords="311,80,402,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" title=" " alt="" coords="93,155,157,181"/>
@@ -110,56 +110,56 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="dlinsol_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png" border="0" usemap="#adlinsol_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph" alt=""/></div>
 <map name="adlinsol_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph" id="adlinsol_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph">
-<area shape="rect" title=" " alt="" coords="5,1417,56,1444"/>
-<area shape="rect" href="dutil_8c.html#a0a2a790bf8c793c9c0ea7aceb9532584" title="Supernodal LU factor related." alt="" coords="589,226,765,253"/>
-<area shape="rect" href="dutil_8c.html#a12ac523141a258590a76bdad390928fd" title=" " alt="" coords="118,1493,277,1520"/>
-<area shape="rect" href="util_8c.html#a27491a8171a480d6c98e6d1e535e1973" title="Deallocate SuperMatrix of type NC." alt="" coords="110,1544,285,1570"/>
-<area shape="rect" href="util_8c.html#ac16a0aea75cf99b4d38ec4ede6f13eb4" title="Deallocate SuperMatrix." alt="" coords="363,176,510,218"/>
-<area shape="rect" href="util_8c.html#aea724a390aed4ef00a4b8ed783c60014" title="Deallocate SuperMatrix of type SC." alt="" coords="104,1594,291,1621"/>
-<area shape="rect" href="dutil_8c.html#a83b6ea01e8b7df0cc9c6fe5261647367" title="Let rhs[i] = sum of i&#45;th row of A, so the solution vector is all 1&#39;s." alt="" coords="160,1392,235,1418"/>
-<area shape="rect" href="dutil_8c.html#acdfe40e3085c29fd483b63a15ed163c7" title=" " alt="" coords="154,1645,241,1672"/>
-<area shape="rect" href="dgssv_8c.html#a78e780216de6dd0e85a5003c9d064952" title="Driver routines." alt="" coords="169,470,226,497"/>
-<area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="831,1037,921,1064"/>
-<area shape="rect" href="SRC_2dmemory_8c.html#ac67b2ffe0b0c24cb28a82520689166b1" title=" " alt="" coords="627,1290,727,1317"/>
-<area shape="rect" href="dutil_8c.html#ae6aa0b8725411ba46ac42ee55503ee0f" title="Check the inf&#45;norm of the error vector." alt="" coords="139,1696,256,1722"/>
-<area shape="rect" href="SRC_2dmemory_8c.html#ae94c561110fcc75c31cda89105fd0a6c" title=" " alt="" coords="145,49,249,76"/>
-<area shape="rect" href="dreadhb_8c.html#a23321d4083f9c3a19f6eef8c6d863a72" title="Auxiliary routines." alt="" coords="162,1442,233,1469"/>
-<area shape="rect" href="dreadMM_8c.html#a7bbfc2499b937ace4138f2aad21b4827" title=" " alt="" coords="158,1290,237,1317"/>
-<area shape="rect" href="util_8c.html#a4792687285a879f7955029421ba99795" title="Set the default values for the options argument." alt="" coords="129,1746,266,1773"/>
-<area shape="rect" href="util_8c.html#a7d50e009f6f1f4ba8a63cdd912a0d31d" title="Deallocate SuperLU stat." alt="" coords="161,1797,234,1824"/>
-<area shape="rect" href="util_8c.html#a9b8745daf1fd22070364570977fe1ccc" title="Initialize SuperLU stat." alt="" coords="165,125,229,152"/>
-<area shape="rect" href="util_8c.html#aef88fef229bf26ba82b50d99c20ad915" title="Display SuperLU stat." alt="" coords="161,1848,234,1874"/>
-<area shape="rect" href="dsp__blas3_8c.html#a6c8c4772ca0f241a43c5561b646fb749" title=" " alt="" coords="393,1392,481,1418"/>
-<area shape="rect" href="dsp__blas2_8c.html#a221dfb4c5cbc550095a989c61fec4993" title="Performs one of the matrix&#45;vector operations y := alpha*A*x + beta*y, or y := alpha*A&#39;*x + beta*y," alt="" coords="834,1328,918,1354"/>
-<area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="981,1189,1068,1216"/>
-<area shape="rect" href="util_8c.html#a7285ca16a0b84b4333d71efeb65c0126" title="Deallocate SuperMatrix of type NCP." alt="" coords="339,293,535,320"/>
-<area shape="rect" href="SRC_2dgstrf_8c.html#a421512dfd49263d31f1e42fe315abd19" title=" " alt="" coords="409,597,465,624"/>
-<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="842,277,910,304"/>
-<area shape="rect" href="dgstrs_8c.html#a6e3eace519372b7dfcd053e0d3614fc1" title=" " alt="" coords="407,1240,466,1266"/>
-<area shape="rect" href="get__perm__c_8c.html#aaecb6e6e7a3e97356050bcfdf2573796" title="Obtains a permutation matrix by applying the multiple minimum degree ordering code." alt="" coords="391,344,483,370"/>
-<area shape="rect" href="superlu__timer_8c.html#a901b1224789fec99ee424cbfde8fb301" title="Timer function." alt="" coords="617,125,736,152"/>
-<area shape="rect" href="sp__preorder_8c.html#ad3a9a45f02456022c7eba79e17e215bc" title=" " alt="" coords="390,496,483,522"/>
-<area shape="rect" href="util_8c.html#a4757427fb19f805c14756b8eef1fdaa4" title="Count the total number of nonzeros in factors L and U, and in the symmetrically reduced L." alt="" coords="642,378,711,405"/>
-<area shape="rect" href="dcolumn__bmod_8c.html#a5ca322682f98f276feb3c50b31ca56b8" title=" " alt="" coords="620,632,733,658"/>
-<area shape="rect" href="SRC_2dmemory_8c.html#aee842e4910a0223cc8a92397311b8970" title="Expand the data structures for L and U during the factorization." alt="" coords="819,581,933,608"/>
-<area shape="rect" href="dcolumn__dfs_8c.html#a78b31ef4c9a792a442f6956fe2ff3d78" title=" " alt="" coords="628,480,725,506"/>
-<area shape="rect" href="dcopy__to__ucol_8c.html#ace3034cff6ce6be9e0b0f69cda42f196" title=" " alt="" coords="623,885,731,912"/>
-<area shape="rect" href="dutil_8c.html#a2e8af0737d241bb4141255d1a759aa67" title=" " alt="" coords="583,581,771,608"/>
-<area shape="rect" href="SRC_2dmemory_8c.html#a57716392620cf54b4f0dcee83b60b3fe" title="Allocate storage for the data structures common to all factor routines." alt="" coords="630,936,723,962"/>
-<area shape="rect" href="SRC_2dmemory_8c.html#aa7d9129a2b0dc259ccccc8d6d2218cf8" title="Free the working storage used by factor routines." alt="" coords="624,682,729,709"/>
-<area shape="rect" href="dpanel__bmod_8c.html#a192df249a9fc13ad49bf3f2cd79aba65" title=" " alt="" coords="625,277,728,304"/>
-<area shape="rect" href="dpanel__dfs_8c.html#aed9a4a6a7d6d671e512bcf6282eee931" title=" " alt="" coords="633,733,720,760"/>
-<area shape="rect" href="dpivotL_8c.html#ac9bc2a5673ddfce2452bf4a88b97a266" title=" " alt="" coords="644,784,709,810"/>
-<area shape="rect" href="dutil_8c.html#a6efd3372111ed4b6bd915ecc49960022" title="Diagnostic print of column &quot;jcol&quot; in the U/L factor." alt="" coords="628,834,725,861"/>
-<area shape="rect" href="dpruneL_8c.html#a1da1a4498927d721e41a957bc881a212" title=" " alt="" coords="641,429,712,456"/>
-<area shape="rect" href="SRC_2dmemory_8c.html#a9dfa1590b060d0f0ff664fb37fafa5f2" title="Allocate storage for original matrix A." alt="" coords="395,1290,479,1317"/>
-<area shape="rect" href="dreadhb_8c.html#ab87732418a8ca2e99d65165ea7f9a2c5" title="Eat up the rest of the current line." alt="" coords="391,1442,482,1469"/>
-<area shape="rect" href="dreadhb_8c.html#a341d1f00e157073d681d37e87c417e69" title=" " alt="" coords="369,1493,505,1520"/>
-<area shape="rect" href="dreadhb_8c.html#a84a11fcb3558dba9f846610da6fbec2c" title=" " alt="" coords="376,1544,497,1570"/>
-<area shape="rect" href="dreadhb_8c.html#acca1e3b19661f732344b530c8cbf25c3" title=" " alt="" coords="385,1594,488,1621"/>
-<area shape="rect" href="dreadhb_8c.html#aa036f100005495ee183f8fd44b49c449" title=" " alt="" coords="395,1645,479,1672"/>
-<area shape="rect" href="dreadhb_8c.html#a474c3ada8ad8a7fad38aee00e3b62b04" title=" " alt="" coords="391,1696,483,1722"/>
-<area shape="rect" href="memory_8c.html#aaf3f8faaec1c91be7653f137844806e0" title=" " alt="" coords="393,125,481,152"/>
+<area shape="rect" title=" " alt="" coords="5,1439,56,1466"/>
+<area shape="rect" href="dutil_8c.html#a0a2a790bf8c793c9c0ea7aceb9532584" title="Supernodal LU factor related." alt="" coords="589,249,765,275"/>
+<area shape="rect" href="dutil_8c.html#a12ac523141a258590a76bdad390928fd" title=" " alt="" coords="118,1490,277,1517"/>
+<area shape="rect" href="util_8c.html#a27491a8171a480d6c98e6d1e535e1973" title="Deallocate SuperMatrix of type NC." alt="" coords="110,1541,285,1567"/>
+<area shape="rect" href="util_8c.html#ac16a0aea75cf99b4d38ec4ede6f13eb4" title="Deallocate SuperMatrix." alt="" coords="363,300,510,341"/>
+<area shape="rect" href="util_8c.html#aea724a390aed4ef00a4b8ed783c60014" title="Deallocate SuperMatrix of type SC." alt="" coords="104,1591,291,1618"/>
+<area shape="rect" href="dutil_8c.html#a83b6ea01e8b7df0cc9c6fe5261647367" title="Let rhs[i] = sum of i&#45;th row of A, so the solution vector is all 1&#39;s." alt="" coords="160,1313,235,1339"/>
+<area shape="rect" href="dutil_8c.html#acdfe40e3085c29fd483b63a15ed163c7" title=" " alt="" coords="154,1642,241,1669"/>
+<area shape="rect" href="dgssv_8c.html#a78e780216de6dd0e85a5003c9d064952" title="Driver routines." alt="" coords="169,629,226,655"/>
+<area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="831,1085,921,1111"/>
+<area shape="rect" href="SRC_2dmemory_8c.html#ac67b2ffe0b0c24cb28a82520689166b1" title=" " alt="" coords="627,1617,727,1643"/>
+<area shape="rect" href="dutil_8c.html#ae6aa0b8725411ba46ac42ee55503ee0f" title="Check the inf&#45;norm of the error vector." alt="" coords="139,1693,256,1719"/>
+<area shape="rect" href="SRC_2dmemory_8c.html#ae94c561110fcc75c31cda89105fd0a6c" title=" " alt="" coords="145,21,249,47"/>
+<area shape="rect" href="dreadhb_8c.html#a23321d4083f9c3a19f6eef8c6d863a72" title="Auxiliary routines." alt="" coords="162,1389,233,1415"/>
+<area shape="rect" href="util_8c.html#a4792687285a879f7955029421ba99795" title="Set the default values for the options argument." alt="" coords="129,1743,266,1770"/>
+<area shape="rect" href="util_8c.html#a7d50e009f6f1f4ba8a63cdd912a0d31d" title="Deallocate SuperLU stat." alt="" coords="161,1794,234,1821"/>
+<area shape="rect" href="util_8c.html#a9b8745daf1fd22070364570977fe1ccc" title="Initialize SuperLU stat." alt="" coords="165,97,229,123"/>
+<area shape="rect" href="util_8c.html#aef88fef229bf26ba82b50d99c20ad915" title="Display SuperLU stat." alt="" coords="161,1845,234,1871"/>
+<area shape="rect" href="dsp__blas3_8c.html#a6c8c4772ca0f241a43c5561b646fb749" title=" " alt="" coords="393,1262,481,1289"/>
+<area shape="rect" href="dsp__blas2_8c.html#a221dfb4c5cbc550095a989c61fec4993" title="Performs one of the matrix&#45;vector operations y := alpha*A*x + beta*y, or y := alpha*A&#39;*x + beta*y," alt="" coords="834,1313,918,1339"/>
+<area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="981,1237,1068,1263"/>
+<area shape="rect" href="util_8c.html#a7285ca16a0b84b4333d71efeb65c0126" title="Deallocate SuperMatrix of type NCP." alt="" coords="339,553,535,579"/>
+<area shape="rect" href="SRC_2dgstrf_8c.html#a421512dfd49263d31f1e42fe315abd19" title=" " alt="" coords="409,654,465,681"/>
+<area shape="rect" href="TESTING_2sp__ienv_8c.html#a21109476f1261abd6b256a393f5fd9e7" title=" " alt="" coords="842,325,910,351"/>
+<area shape="rect" href="dgstrs_8c.html#a6e3eace519372b7dfcd053e0d3614fc1" title=" " alt="" coords="407,1211,466,1238"/>
+<area shape="rect" href="get__perm__c_8c.html#aaecb6e6e7a3e97356050bcfdf2573796" title="Obtains a permutation matrix by applying the multiple minimum degree ordering code." alt="" coords="391,425,483,451"/>
+<area shape="rect" href="superlu__timer_8c.html#a901b1224789fec99ee424cbfde8fb301" title="Timer function." alt="" coords="617,198,736,225"/>
+<area shape="rect" href="sp__preorder_8c.html#ad3a9a45f02456022c7eba79e17e215bc" title=" " alt="" coords="390,1059,483,1086"/>
+<area shape="rect" href="util_8c.html#a4757427fb19f805c14756b8eef1fdaa4" title="Count the total number of nonzeros in factors L and U, and in the symmetrically reduced L." alt="" coords="642,1009,711,1035"/>
+<area shape="rect" href="dcolumn__bmod_8c.html#a5ca322682f98f276feb3c50b31ca56b8" title=" " alt="" coords="620,705,733,731"/>
+<area shape="rect" href="SRC_2dmemory_8c.html#aee842e4910a0223cc8a92397311b8970" title="Expand the data structures for L and U during the factorization." alt="" coords="819,679,933,706"/>
+<area shape="rect" href="dcolumn__dfs_8c.html#a78b31ef4c9a792a442f6956fe2ff3d78" title=" " alt="" coords="628,603,725,630"/>
+<area shape="rect" href="dcopy__to__ucol_8c.html#ace3034cff6ce6be9e0b0f69cda42f196" title=" " alt="" coords="623,907,731,934"/>
+<area shape="rect" href="dutil_8c.html#a2e8af0737d241bb4141255d1a759aa67" title=" " alt="" coords="583,451,771,478"/>
+<area shape="rect" href="SRC_2dmemory_8c.html#a57716392620cf54b4f0dcee83b60b3fe" title="Allocate storage for the data structures common to all factor routines." alt="" coords="630,958,723,985"/>
+<area shape="rect" href="SRC_2dmemory_8c.html#aa7d9129a2b0dc259ccccc8d6d2218cf8" title="Free the working storage used by factor routines." alt="" coords="624,502,729,529"/>
+<area shape="rect" href="dpanel__bmod_8c.html#a192df249a9fc13ad49bf3f2cd79aba65" title=" " alt="" coords="625,401,728,427"/>
+<area shape="rect" href="dpanel__dfs_8c.html#aed9a4a6a7d6d671e512bcf6282eee931" title=" " alt="" coords="633,553,720,579"/>
+<area shape="rect" href="dpivotL_8c.html#ac9bc2a5673ddfce2452bf4a88b97a266" title=" " alt="" coords="644,755,709,782"/>
+<area shape="rect" href="dutil_8c.html#a6efd3372111ed4b6bd915ecc49960022" title="Diagnostic print of column &quot;jcol&quot; in the U/L factor." alt="" coords="628,806,725,833"/>
+<area shape="rect" href="dpruneL_8c.html#a1da1a4498927d721e41a957bc881a212" title=" " alt="" coords="641,857,712,883"/>
+<area shape="rect" href="SRC_2dmemory_8c.html#aaa5359da217b433b43bf6c8e2d29aa45" title="Set up pointers for real working arrays." alt="" coords="631,299,722,326"/>
+<area shape="rect" href="SRC_2dmemory_8c.html#a9dfa1590b060d0f0ff664fb37fafa5f2" title="Allocate storage for original matrix A." alt="" coords="395,1617,479,1643"/>
+<area shape="rect" href="dreadhb_8c.html#ab87732418a8ca2e99d65165ea7f9a2c5" title="Eat up the rest of the current line." alt="" coords="391,1313,482,1339"/>
+<area shape="rect" href="dreadhb_8c.html#a341d1f00e157073d681d37e87c417e69" title=" " alt="" coords="369,1363,505,1390"/>
+<area shape="rect" href="dreadhb_8c.html#a84a11fcb3558dba9f846610da6fbec2c" title=" " alt="" coords="376,1414,497,1441"/>
+<area shape="rect" href="dreadhb_8c.html#acca1e3b19661f732344b530c8cbf25c3" title=" " alt="" coords="385,1465,488,1491"/>
+<area shape="rect" href="dreadhb_8c.html#aa036f100005495ee183f8fd44b49c449" title=" " alt="" coords="395,1515,479,1542"/>
+<area shape="rect" href="dreadhb_8c.html#a474c3ada8ad8a7fad38aee00e3b62b04" title=" " alt="" coords="391,1566,483,1593"/>
+<area shape="rect" href="memory_8c.html#aaf3f8faaec1c91be7653f137844806e0" title=" " alt="" coords="393,46,481,73"/>
 </map>
 </div>
 

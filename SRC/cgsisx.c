@@ -13,7 +13,7 @@ at the top-level directory.
  * \brief Computes an approximate solutions of linear equations A*X=B or A'*X=B
  *
  * <pre>
- * -- SuperLU routine (version 4.2) --
+ * -- SuperLU routine (version 7.0.0) --
  * Lawrence Berkeley National Laboratory.
  * November, 2010
  * August, 2011

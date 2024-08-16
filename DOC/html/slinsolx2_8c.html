@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -49,7 +49,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>DGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A.  
+<p>SGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;getopt.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="slu__sdefs_8h_source.html">slu_sdefs.h</a>&quot;</code><br />
@@ -58,7 +58,7 @@ Include dependency graph for slinsolx2.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="slinsolx2_8c__incl.png" border="0" usemap="#aEXAMPLE_2slinsolx2_8c" alt=""/></div>
 <map name="aEXAMPLE_2slinsolx2_8c" id="aEXAMPLE_2slinsolx2_8c">
-<area shape="rect" title="DGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A." alt="" coords="229,5,380,32"/>
+<area shape="rect" title="SGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A." alt="" coords="229,5,380,32"/>
 <area shape="rect" title=" " alt="" coords="217,80,288,107"/>
 <area shape="rect" href="slu__sdefs_8h.html" title="Header file for real operations." alt="" coords="312,80,401,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
@@ -82,7 +82,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:a26a449fe0e6f4599404be8f78ed31f20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse command line options to get relaxed snode size, panel size, etc.  <a href="slinsolx2_8c.html#a26a449fe0e6f4599404be8f78ed31f20">More...</a><br /></td></tr>
 <tr class="separator:a26a449fe0e6f4599404be8f78ed31f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slinsolx2_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
-<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">The driver program SLINSOLX2.  <a href="slinsolx2_8c.html#a0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -111,13 +110,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >This example illustrates how to use SGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A. In this case, the column permutation vector perm_c is computed once. The following data structures will be reused in the subsequent call to SGSSVX: perm_c, etree </p>
+<p >The driver program SLINSOLX2.</p>
+<p >This example illustrates how to use SGSSVX to solve systems repeatedly with the same sparsity pattern of matrix A. In this case, the column permutation vector perm_c is computed once. The following data structures will be reused in the subsequent call to SGSSVX: perm_c, etree</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="slinsolx2_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png" border="0" usemap="#aslinsolx2_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph" alt=""/></div>
 <map name="aslinsolx2_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph" id="aslinsolx2_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph">
-<area shape="rect" title="The driver program SLINSOLX2." alt="" coords="5,947,56,973"/>
+<area shape="rect" title=" " alt="" coords="5,947,56,973"/>
 <area shape="rect" href="util_8c.html#a27491a8171a480d6c98e6d1e535e1973" title="Deallocate SuperMatrix of type NC." alt="" coords="110,5,285,32"/>
 <area shape="rect" href="util_8c.html#a301f89dc9483e5bcdc47fc96e8645cf7" title="Deallocate SuperMatrix of type DN." alt="" coords="119,56,276,83"/>
 <area shape="rect" href="util_8c.html#aea724a390aed4ef00a4b8ed783c60014" title="Deallocate SuperMatrix of type SC." alt="" coords="104,107,291,133"/>

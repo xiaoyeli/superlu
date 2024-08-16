@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -49,7 +49,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>factorization from dgstrf (DGSSVX)  
+<p>SGSSVX to solve systems with the same matrix but different right-hand side.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;getopt.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="slu__sdefs_8h_source.html">slu_sdefs.h</a>&quot;</code><br />
@@ -58,7 +58,7 @@ Include dependency graph for slinsolx1.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="slinsolx1_8c__incl.png" border="0" usemap="#aEXAMPLE_2slinsolx1_8c" alt=""/></div>
 <map name="aEXAMPLE_2slinsolx1_8c" id="aEXAMPLE_2slinsolx1_8c">
-<area shape="rect" title="factorization from dgstrf (DGSSVX)" alt="" coords="229,5,380,32"/>
+<area shape="rect" title="SGSSVX to solve systems with the same matrix but different right&#45;hand side." alt="" coords="229,5,380,32"/>
 <area shape="rect" title=" " alt="" coords="217,80,288,107"/>
 <area shape="rect" href="slu__sdefs_8h.html" title="Header file for real operations." alt="" coords="312,80,401,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
@@ -110,6 +110,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >The driver program SLINSOLX1.</p>
+<p >This example illustrates how to use SGSSVX to solve systems with the same A but different right-hand side. In this case, we factorize A only once in the first call to DGSSVX, and reuse the following data structures in the subsequent call to SGSSVX: perm_c, perm_r, R, C, L, U.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

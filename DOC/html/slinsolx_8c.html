@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -49,7 +49,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>factorization from dgstrf (DGSSVX)  
+<p>LU factorization from SGSTRF (SGSSVX)  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;getopt.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="slu__sdefs_8h_source.html">slu_sdefs.h</a>&quot;</code><br />
@@ -58,7 +58,7 @@ Include dependency graph for slinsolx.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="slinsolx_8c__incl.png" border="0" usemap="#aEXAMPLE_2slinsolx_8c" alt=""/></div>
 <map name="aEXAMPLE_2slinsolx_8c" id="aEXAMPLE_2slinsolx_8c">
-<area shape="rect" title="factorization from dgstrf (DGSSVX)" alt="" coords="233,5,376,32"/>
+<area shape="rect" title="LU factorization from SGSTRF (SGSSVX)" alt="" coords="233,5,376,32"/>
 <area shape="rect" title=" " alt="" coords="217,80,288,107"/>
 <area shape="rect" href="slu__sdefs_8h.html" title="Header file for real operations." alt="" coords="312,80,401,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
@@ -78,9 +78,9 @@ Include dependency graph for slinsolx.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a26a449fe0e6f4599404be8f78ed31f20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slinsolx_8c.html#a26a449fe0e6f4599404be8f78ed31f20">parse_command_line</a> (int argc, char *argv[], int *lwork, float *u, <a class="el" href="superlu__enum__consts_8h.html#ae6553118ce91b9c08f9376941ae1536f">yes_no_t</a> *equil, <a class="el" href="superlu__enum__consts_8h.html#a0c4e17b2d5cea33f9991ccc6a6678d62">trans_t</a> *trans)</td></tr>
-<tr class="memdesc:a26a449fe0e6f4599404be8f78ed31f20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse command line inputs.  <a href="slinsolx_8c.html#a26a449fe0e6f4599404be8f78ed31f20">More...</a><br /></td></tr>
-<tr class="separator:a26a449fe0e6f4599404be8f78ed31f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8d038a678af0213f6486a2445d4c209"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slinsolx_8c.html#ad8d038a678af0213f6486a2445d4c209">parse_command_line</a> (int argc, char *argv[], <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *lwork, float *u, <a class="el" href="superlu__enum__consts_8h.html#ae6553118ce91b9c08f9376941ae1536f">yes_no_t</a> *equil, <a class="el" href="superlu__enum__consts_8h.html#a0c4e17b2d5cea33f9991ccc6a6678d62">trans_t</a> *trans)</td></tr>
+<tr class="memdesc:ad8d038a678af0213f6486a2445d4c209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse command line inputs.  <a href="slinsolx_8c.html#ad8d038a678af0213f6486a2445d4c209">More...</a><br /></td></tr>
+<tr class="separator:ad8d038a678af0213f6486a2445d4c209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slinsolx_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -121,7 +121,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="util_8c.html#aea724a390aed4ef00a4b8ed783c60014" title="Deallocate SuperMatrix of type SC." alt="" coords="104,1389,291,1416"/>
 <area shape="rect" href="smemory_8c.html#a0dc26cf25b22fd08aadfc44a77efa89f" title=" " alt="" coords="807,807,893,833"/>
 <area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="626,731,715,757"/>
-<area shape="rect" href="slinsolx_8c.html#a26a449fe0e6f4599404be8f78ed31f20" title="Parse command line inputs." alt="" coords="123,1440,272,1467"/>
+<area shape="rect" href="slinsolx_8c.html#ad8d038a678af0213f6486a2445d4c209" title="Parse command line inputs." alt="" coords="123,1440,272,1467"/>
 <area shape="rect" href="sutil_8c.html#adcd47a85e4c30275772a1c60a0e225f2" title="Supernodal LU factor related." alt="" coords="583,1237,759,1264"/>
 <area shape="rect" href="sutil_8c.html#af67168ae9d7920841831576f6298158b" title=" " alt="" coords="118,1491,277,1517"/>
 <area shape="rect" href="util_8c.html#a4792687285a879f7955029421ba99795" title="Set the default values for the options argument." alt="" coords="129,1541,266,1568"/>
@@ -170,8 +170,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a26a449fe0e6f4599404be8f78ed31f20" name="a26a449fe0e6f4599404be8f78ed31f20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26a449fe0e6f4599404be8f78ed31f20">&#9670;&nbsp;</a></span>parse_command_line()</h2>
+<a id="ad8d038a678af0213f6486a2445d4c209" name="ad8d038a678af0213f6486a2445d4c209"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8d038a678af0213f6486a2445d4c209">&#9670;&nbsp;</a></span>parse_command_line()</h2>
 
 <div class="memitem">
 <div class="memproto">

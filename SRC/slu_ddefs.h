@@ -13,7 +13,7 @@ at the top-level directory.
  * \brief Header file for real operations
  * 
  * <pre> 
- * -- SuperLU routine (version 4.1) --
+ * -- SuperLU routine (version 7.0.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * November, 2010

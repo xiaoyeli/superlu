@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -114,7 +114,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a42d117e1d3cd4b12466ebfd499aeeb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Let rhs[i] = sum of i-th row of A, so the solution vector is all 1's.  <a href="cutil_8c.html#a42d117e1d3cd4b12466ebfd499aeeb84">More...</a><br /></td></tr>
 <tr class="separator:a42d117e1d3cd4b12466ebfd499aeeb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9ce7326ce98866f06d3989476ead551"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#ae9ce7326ce98866f06d3989476ead551">cfill</a> (<a class="el" href="structsinglecomplex.html">singlecomplex</a> *a, int alen, <a class="el" href="structsinglecomplex.html">singlecomplex</a> dval)</td></tr>
-<tr class="memdesc:ae9ce7326ce98866f06d3989476ead551"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a complex precision array with a given value.  <a href="cutil_8c.html#ae9ce7326ce98866f06d3989476ead551">More...</a><br /></td></tr>
+<tr class="memdesc:ae9ce7326ce98866f06d3989476ead551"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a singlecomplex precision array with a given value.  <a href="cutil_8c.html#ae9ce7326ce98866f06d3989476ead551">More...</a><br /></td></tr>
 <tr class="separator:ae9ce7326ce98866f06d3989476ead551"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86feb269c89ab5b4bf2bc71acc321ec2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a86feb269c89ab5b4bf2bc71acc321ec2">cinf_norm_error</a> (int nrhs, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X</a>, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *xtrue)</td></tr>
 <tr class="memdesc:a86feb269c89ab5b4bf2bc71acc321ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the inf-norm of the error vector.  <a href="cutil_8c.html#a86feb269c89ab5b4bf2bc71acc321ec2">More...</a><br /></td></tr>
@@ -122,8 +122,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a84a1610e172fb59a0bc19a1dadcb9fbe">cPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, float rpg, float rcond, float *ferr, float *berr, char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
 <tr class="memdesc:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print performance of the code.  <a href="cutil_8c.html#a84a1610e172fb59a0bc19a1dadcb9fbe">More...</a><br /></td></tr>
 <tr class="separator:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7973366a7d8934f5bf7e9996d4d6deed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a7973366a7d8934f5bf7e9996d4d6deed">print_complex_vec</a> (char *what, int n, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *vec)</td></tr>
-<tr class="separator:a7973366a7d8934f5bf7e9996d4d6deed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a978e60a61ebdd0d252afd24c9ea0e0a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a978e60a61ebdd0d252afd24c9ea0e0a9">print_singlecomplex_vec</a> (char *what, int n, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *vec)</td></tr>
+<tr class="separator:a978e60a61ebdd0d252afd24c9ea0e0a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
@@ -247,9 +247,9 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="cutil_8c_a6a8cbcc8762db770ec03f604f973a83b_cgraph.png" border="0" usemap="#acutil_8c_a6a8cbcc8762db770ec03f604f973a83b_cgraph" alt=""/></div>
 <map name="acutil_8c_a6a8cbcc8762db770ec03f604f973a83b_cgraph" id="acutil_8c_a6a8cbcc8762db770ec03f604f973a83b_cgraph">
 <area shape="rect" title="Convert a row compressed storage into a column compressed storage." alt="" coords="5,56,177,83"/>
-<area shape="rect" href="cmemory_8c.html#a760375cf72b56b890a6d4bf7b58a1996" title=" " alt="" coords="225,5,336,32"/>
-<area shape="rect" href="memory_8c.html#a1185d39afba5dcdb4f94e02fb6d2c708" title=" " alt="" coords="244,56,317,83"/>
-<area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="243,107,318,133"/>
+<area shape="rect" href="memory_8c.html#a1185d39afba5dcdb4f94e02fb6d2c708" title=" " alt="" coords="261,5,335,32"/>
+<area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="261,56,335,83"/>
+<area shape="rect" href="cmemory_8c.html#aafbdb876f27d8f514853ad45203c2c92" title=" " alt="" coords="225,107,371,133"/>
 </map>
 </div>
 
@@ -1026,14 +1026,14 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a7973366a7d8934f5bf7e9996d4d6deed" name="a7973366a7d8934f5bf7e9996d4d6deed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7973366a7d8934f5bf7e9996d4d6deed">&#9670;&nbsp;</a></span>print_complex_vec()</h2>
+<a id="a978e60a61ebdd0d252afd24c9ea0e0a9" name="a978e60a61ebdd0d252afd24c9ea0e0a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a978e60a61ebdd0d252afd24c9ea0e0a9">&#9670;&nbsp;</a></span>print_singlecomplex_vec()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int print_complex_vec </td>
+          <td class="memname">int print_singlecomplex_vec </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>what</em>, </td>

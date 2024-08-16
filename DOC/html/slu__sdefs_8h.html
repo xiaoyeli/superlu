@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -212,6 +212,8 @@ Functions</h2></td></tr>
 <tr class="separator:ad37e1a46eee89deec551e3df9ee39f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8298144c70d166ed5c02df380a81c47a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__sdefs_8h.html#a8298144c70d166ed5c02df380a81c47a">sreadtriple</a> (int *, int *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, float **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **)</td></tr>
 <tr class="separator:a8298144c70d166ed5c02df380a81c47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e1763aed2dc768bca0172ce75bd3cd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__sdefs_8h.html#a3e1763aed2dc768bca0172ce75bd3cd4">sreadtriple_noheader</a> (int *, int *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, float **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **)</td></tr>
+<tr class="separator:a3e1763aed2dc768bca0172ce75bd3cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3ceef685004a52ef1465418649aec6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__sdefs_8h.html#aa3ceef685004a52ef1465418649aec6a">sreadMM</a> (FILE *, int *, int *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, float **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **)</td></tr>
 <tr class="separator:aa3ceef685004a52ef1465418649aec6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d734e40276e89a3ef04bf79bc21acb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__sdefs_8h.html#a2d734e40276e89a3ef04bf79bc21acb6">sfill</a> (float *, int, float)</td></tr>
@@ -261,7 +263,7 @@ Functions</h2></td></tr>
 <p >All rights reserved.</p>
 <p >The source code is distributed under BSD license, see the file License.txt at the top-level directory.</p>
 <pre> 
--- SuperLU routine (version 4.1) --
+-- SuperLU routine (version 7.0.0) --
 Univ. of California Berkeley, Xerox Palo Alto Research Center,
 and Lawrence Berkeley National Lab.
 November, 2010
@@ -7018,6 +7020,58 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="280,81,355,108"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a3e1763aed2dc768bca0172ce75bd3cd4" name="a3e1763aed2dc768bca0172ce75bd3cd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e1763aed2dc768bca0172ce75bd3cd4">&#9670;&nbsp;</a></span>sreadtriple_noheader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sreadtriple_noheader </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float **&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

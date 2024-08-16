@@ -13,7 +13,7 @@ at the top-level directory.
  * \brief Header file for real operations
  * 
  * <pre> 
- * -- SuperLU routine (version 4.1) --
+ * -- SuperLU routine (version 7.0.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * November, 2010
@@ -246,6 +246,7 @@ extern int     ilu_zQuerySpace (SuperMatrix *, SuperMatrix *, mem_usage_t *);
 extern void    zreadhb(FILE *, int *, int *, int_t *, doublecomplex **, int_t **, int_t **);
 extern void    zreadrb(int *, int *, int_t *, doublecomplex **, int_t **, int_t **);
 extern void    zreadtriple(int *, int *, int_t *, doublecomplex **, int_t **, int_t **);
+extern void    zreadtriple_noheader(int *, int *, int_t *, doublecomplex **, int_t **, int_t **);
 extern void    zreadMM(FILE *, int *, int *, int_t *, doublecomplex **, int_t **, int_t **);
 extern void    zfill (doublecomplex *, int, doublecomplex);
 extern void    zinf_norm_error (int, SuperMatrix *, doublecomplex *);

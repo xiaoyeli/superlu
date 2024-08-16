@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;6.0.1</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
    </div>
   </td>
  </tr>
@@ -49,7 +49,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>LU factorization from zgstrf (ZGSSVX)  
+<p>LU factorization from ZGSTRF (ZGSSVX)  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;getopt.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="slu__zdefs_8h_source.html">slu_zdefs.h</a>&quot;</code><br />
@@ -58,7 +58,7 @@ Include dependency graph for zlinsolx.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="zlinsolx_8c__incl.png" border="0" usemap="#aEXAMPLE_2zlinsolx_8c" alt=""/></div>
 <map name="aEXAMPLE_2zlinsolx_8c" id="aEXAMPLE_2zlinsolx_8c">
-<area shape="rect" title="LU factorization from zgstrf (ZGSSVX)" alt="" coords="271,5,413,32"/>
+<area shape="rect" title="LU factorization from ZGSTRF (ZGSSVX)" alt="" coords="271,5,413,32"/>
 <area shape="rect" title=" " alt="" coords="255,80,325,107"/>
 <area shape="rect" href="slu__zdefs_8h.html" title="Header file for real operations." alt="" coords="349,80,439,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
@@ -79,9 +79,9 @@ Include dependency graph for zlinsolx.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a693ba86aac49435e82cf3a57a4412744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zlinsolx_8c.html#a693ba86aac49435e82cf3a57a4412744">parse_command_line</a> (int argc, char *argv[], int *lwork, double *u, <a class="el" href="superlu__enum__consts_8h.html#ae6553118ce91b9c08f9376941ae1536f">yes_no_t</a> *equil, <a class="el" href="superlu__enum__consts_8h.html#a0c4e17b2d5cea33f9991ccc6a6678d62">trans_t</a> *trans)</td></tr>
-<tr class="memdesc:a693ba86aac49435e82cf3a57a4412744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse command line inputs.  <a href="zlinsolx_8c.html#a693ba86aac49435e82cf3a57a4412744">More...</a><br /></td></tr>
-<tr class="separator:a693ba86aac49435e82cf3a57a4412744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab56cc1a264867c7c47841a91602a6d69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zlinsolx_8c.html#ab56cc1a264867c7c47841a91602a6d69">parse_command_line</a> (int argc, char *argv[], <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *lwork, double *u, <a class="el" href="superlu__enum__consts_8h.html#ae6553118ce91b9c08f9376941ae1536f">yes_no_t</a> *equil, <a class="el" href="superlu__enum__consts_8h.html#a0c4e17b2d5cea33f9991ccc6a6678d62">trans_t</a> *trans)</td></tr>
+<tr class="memdesc:ab56cc1a264867c7c47841a91602a6d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse command line inputs.  <a href="zlinsolx_8c.html#ab56cc1a264867c7c47841a91602a6d69">More...</a><br /></td></tr>
+<tr class="separator:ab56cc1a264867c7c47841a91602a6d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zlinsolx_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -122,7 +122,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="util_8c.html#aea724a390aed4ef00a4b8ed783c60014" title="Deallocate SuperMatrix of type SC." alt="" coords="104,1209,291,1236"/>
 <area shape="rect" href="zmemory_8c.html#abe25de7ac95d08769687751ffebc755b" title=" " alt="" coords="807,1336,957,1363"/>
 <area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="837,525,927,552"/>
-<area shape="rect" href="zlinsolx_8c.html#a693ba86aac49435e82cf3a57a4412744" title="Parse command line inputs." alt="" coords="123,1260,272,1287"/>
+<area shape="rect" href="zlinsolx_8c.html#ab56cc1a264867c7c47841a91602a6d69" title="Parse command line inputs." alt="" coords="123,1260,272,1287"/>
 <area shape="rect" href="util_8c.html#a4792687285a879f7955029421ba99795" title="Set the default values for the options argument." alt="" coords="129,1311,266,1337"/>
 <area shape="rect" href="util_8c.html#a7d50e009f6f1f4ba8a63cdd912a0d31d" title="Deallocate SuperLU stat." alt="" coords="161,1361,234,1388"/>
 <area shape="rect" href="util_8c.html#a9b8745daf1fd22070364570977fe1ccc" title="Initialize SuperLU stat." alt="" coords="165,399,229,425"/>
@@ -171,8 +171,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a693ba86aac49435e82cf3a57a4412744" name="a693ba86aac49435e82cf3a57a4412744"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a693ba86aac49435e82cf3a57a4412744">&#9670;&nbsp;</a></span>parse_command_line()</h2>
+<a id="ab56cc1a264867c7c47841a91602a6d69" name="ab56cc1a264867c7c47841a91602a6d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab56cc1a264867c7c47841a91602a6d69">&#9670;&nbsp;</a></span>parse_command_line()</h2>
 
 <div class="memitem">
 <div class="memproto">

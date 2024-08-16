@@ -13,7 +13,7 @@ at the top-level directory.
  * \brief Solves the system of linear equations A*X=B or A'*X=B
  *
  * <pre>
- * -- SuperLU routine (version 3.0) --
+ * -- SuperLU routine (version 7.0.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * October 15, 2003
@@ -548,8 +548,8 @@ printf("dgssvx: Fact=%4d, Trans=%4d, equed=%c\n",
 	}
     }
 
-    if ( *info > 0 ) {
-        if ( *info <= A->ncol ) {
+    if ( *info > 0 ) { 
+        if ( *info <= A->ncol ) { /* singular */
 	    /* Compute the reciprocal pivot growth factor of the leading
 	       rank-deficient (*info) columns of A. */
 	    *recip_pivot_growth = zPivotGrowth(*info, AA, perm_c, L, U);

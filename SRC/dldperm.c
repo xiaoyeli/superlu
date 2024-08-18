@@ -16,6 +16,7 @@ at the top-level directory.
  * -- SuperLU routine (version 7.0.0) --
  * Lawrence Berkeley National Laboratory.
  * June 30, 2009
+ * August 2024
  * </pre>
  */
 

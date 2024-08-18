@@ -13,10 +13,11 @@ at the top-level directory.
  * \brief Computes an LU factorization of a general sparse matrix
  *
  * <pre>
- * -- SuperLU routine (version 7.0.0 --
+ * -- SuperLU routine (version 7.0.0) --
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * October 15, 2003
+ * August 2024
  * 
  * Copyright (c) 1994 by Xerox Corporation.  All rights reserved.
  *

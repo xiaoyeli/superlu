@@ -17,6 +17,7 @@ at the top-level directory.
  * Univ. of California Berkeley, Xerox Palo Alto Research Center,
  * and Lawrence Berkeley National Lab.
  * July 25, 2015
+ * August 2024
  *
  * Modified from lapack routines SGECON.
  * </pre> 

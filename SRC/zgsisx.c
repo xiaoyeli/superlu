@@ -16,7 +16,7 @@ at the top-level directory.
  * -- SuperLU routine (version 7.0.0) --
  * Lawrence Berkeley National Laboratory.
  * November, 2010
- * August, 2011
+ * August 2024
  * </pre>
  */
 #include "slu_zdefs.h"

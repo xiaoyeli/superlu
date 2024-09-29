@@ -1,15 +1,14 @@
 /*  -- translated by f2c (version 19940927).
 */
 
+#include "../../SRC/slu_scomplex.h"
+
 /* Complex */ void cdotc_(singlecomplex * ret_val, int *n, singlecomplex *cx, int
 	*incx, singlecomplex *cy, int *incy)
 {
     /* System generated locals */
     int i__1, i__2;
     singlecomplex q__1, q__2, q__3;
-
-    /* Builtin functions */
-    void r_cnjg(singlecomplex *, singlecomplex *);
 
     /* Local variables */
     static int i;

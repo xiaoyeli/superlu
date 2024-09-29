@@ -27,9 +27,6 @@ static bool c_false = false;
     singlecomplex q__1, q__2, q__3;
     bool L__1;
 
-    /* Builtin functions */
-    void r_cnjg(singlecomplex *, singlecomplex *);
-
     /* Local variables */
     static int ilda, icol;
     static float temp;

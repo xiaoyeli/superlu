@@ -52,9 +52,7 @@
     float r__1, r__2;
     double d__1;
     singlecomplex q__1, q__2, q__3;
-    /* Builtin functions */
-    void r_cnjg(singlecomplex *, singlecomplex *);
-    double c_abs(singlecomplex *), r_imag(singlecomplex *);
+
     /* Local variables */
     static float d, f1, f2, g1, g2, fa, ga, di;
     static singlecomplex fs, gs, ss;

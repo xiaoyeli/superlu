@@ -60,8 +60,7 @@
     int i__2, i__3;
     double d__1, d__2;
     singlecomplex q__1, q__2, q__3;
-    /* Builtin functions */
-    void c_exp(singlecomplex *, singlecomplex *);
+
     /* Local variables */
     static int i;
     static float u[128];

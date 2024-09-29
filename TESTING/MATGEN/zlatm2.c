@@ -13,10 +13,6 @@
     int i__1, i__2;
     doublecomplex z__1, z__2, z__3;
 
-    /* Builtin functions */
-    void z_div(doublecomplex *, doublecomplex *, doublecomplex *), d_cnjg(
-	    doublecomplex *, doublecomplex *);
-
     /* Local variables */
     static int isub, jsub;
     static doublecomplex ctemp;

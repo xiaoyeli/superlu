@@ -36,8 +36,7 @@
        Function Body */
     /* System generated locals */
     doublecomplex z__1;
-    /* Builtin functions */
-    void d_cnjg(doublecomplex *, doublecomplex *);
+
     /* Local variables */
     static int ioff, i;
 

@@ -20,11 +20,6 @@ static int c__1 = 1;
     double d__1;
     doublecomplex z__1, z__2, z__3, z__4;
 
-    /* Builtin functions */
-    double z_abs(doublecomplex *);
-    void z_div(doublecomplex *, doublecomplex *, doublecomplex *), d_cnjg(
-	    doublecomplex *, doublecomplex *);
-
     /* Local variables */
     extern /* Subroutine */ int zher2_(char *, int *, doublecomplex *,
 	    doublecomplex *, int *, doublecomplex *, int *,

@@ -18,9 +18,6 @@ int zlarot_slu(bool *lrows, bool *lleft, bool *lright,
     int i__1, i__2, i__3, i__4;
     doublecomplex z__1, z__2, z__3, z__4, z__5, z__6;
 
-    /* Builtin functions */
-    void d_cnjg(doublecomplex *, doublecomplex *);
-
     /* Local variables */
     static int iinc, j, inext;
     static doublecomplex tempx;

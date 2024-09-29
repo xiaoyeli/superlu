@@ -1,6 +1,8 @@
+#include "../../SRC/slu_ddefs.h"
+#include "powi.h"
+
 #include <stdbool.h>
 #include <math.h>
-#include "../../SRC/slu_ddefs.h"
 
 /* Subroutine */ int dlartg_slu(double *f, double *g, double *cs, double *sn, double *r)
 {
@@ -53,8 +55,7 @@
     /* System generated locals */
     int i__1;
     double d__1, d__2;
-    /* Builtin functions */
-    double pow_di(double *, int *);
+
     /* Local variables */
     static int i;
     static double scale;
@@ -71,7 +72,7 @@
 	eps = dmach("E");
 	d__1 = dmach("B");
 	i__1 = (int) (log(safmin / eps) / log(dmach("B")) / 2.);
-	safmn2 = pow_di(&d__1, &i__1);
+	safmn2 = powi(d__1, i__1);
 	safmx2 = 1. / safmn2;
     }
     if (*g == 0.) {

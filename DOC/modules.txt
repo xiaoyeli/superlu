@@ -56,3 +56,9 @@
 
  These tests start with the letter z.
  */
+
+/*!
+ \defgroup TestingMatgen Matrix generation
+ \ingroup Testing
+ \brief Matrix generation for tests.
+ */

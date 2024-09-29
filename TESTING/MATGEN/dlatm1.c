@@ -1,5 +1,6 @@
 /*  -- translated by f2c (version 19940927).
 */
+#include "powi.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -11,9 +12,6 @@
     /* System generated locals */
     int i__1, i__2;
     double d__1;
-
-    /* Builtin functions */
-    double pow_di(double *, int *);
 
     /* Local variables */
     static double temp;
@@ -189,7 +187,7 @@ L50:
 	    i__1 = *n;
 	    for (i = 2; i <= i__1; ++i) {
 		i__2 = i - 1;
-		d[i] = pow_di(&alpha, &i__2);
+		d[i] = powi(alpha, i__2);
 /* L60: */
 	    }
 	}

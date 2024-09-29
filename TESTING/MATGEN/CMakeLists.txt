@@ -30,7 +30,6 @@ if(enable_single)
     slarot.c
     slatm2.c
     slatm3.c
-    r_sign.c
     pow_ri.c
   )
 endif()
@@ -73,7 +72,6 @@ if(enable_complex)
     claghe.c
     clarnd.c
 #    cdotc.c
-    r_sign.c
     pow_ri.c
 )
 endif()

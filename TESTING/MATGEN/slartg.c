@@ -1,3 +1,5 @@
+#include "powi.h"
+
 #include <math.h>
 #include <stdbool.h>
 
@@ -52,8 +54,7 @@
     /* System generated locals */
     int i__1;
     float r__1, r__2;
-    /* Builtin functions */
-    double pow_ri(float *, int *);
+
     /* Local variables */
     static int i;
     static float scale;
@@ -69,7 +70,7 @@
 	eps = smach("E");
 	r__1 = smach("B");
 	i__1 = (int) (log(safmin / eps) / log(smach("B")) / 2.f);
-	safmn2 = pow_ri(&r__1, &i__1);
+	safmn2 = powif(r__1, i__1);
 	safmx2 = 1.f / safmn2;
     }
     if (*g == 0.f) {

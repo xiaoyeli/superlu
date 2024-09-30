@@ -30,8 +30,7 @@ if(enable_single)
     slarot.c
     slatm2.c
     slatm3.c
-    r_sign.c
-    pow_ri.c
+    powi.c
   )
 endif()
 
@@ -49,8 +48,7 @@ if(enable_double)
     dlarot.c
     dlatm2.c
     dlatm3.c
-    d_sign.c
-    pow_di.c
+    powi.c
   )
 endif()
 
@@ -74,8 +72,7 @@ if(enable_complex)
     claghe.c
     clarnd.c
 #    cdotc.c
-    r_sign.c
-    pow_ri.c
+    powi.c
 )
 endif()
 
@@ -99,8 +96,7 @@ if(enable_complex16)
     zlaghe.c
     zlarnd.c
 #    zdotc.c
-    d_sign.c
-    pow_di.c
+    powi.c
   )
 endif()
 

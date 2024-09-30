@@ -3,6 +3,8 @@
 
 #include "../../SRC/slu_ddefs.h"
 
+#include <math.h>
+
 /* Table of constant values */
 
 static int c__3 = 3;
@@ -18,9 +20,6 @@ static double c_b26 = 1.;
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
     double d__1;
-
-    /* Builtin functions */
-    double d_sign(double *, double *);
 
     /* Local variables */
     extern /* Subroutine */ int dger_(int *, int *, double *,
@@ -151,7 +150,7 @@ static double c_b26 = 1.;
 	dlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = dnrm2_(&i__1, &work[1], &c__1);
-	wa = d_sign(&wn, &work[1]);
+	wa = copysign(wn, work[1]);
 	if (wn == 0.) {
 	    tau = 0.;
 	} else {
@@ -197,7 +196,7 @@ static double c_b26 = 1.;
 
 	i__2 = *n - *k - i + 1;
 	wn = dnrm2_(&i__2, &a[*k + i + i * a_dim1], &c__1);
-	wa = d_sign(&wn, &a[*k + i + i * a_dim1]);
+	wa = copysign(wn, a[*k + i + i * a_dim1]);
 	if (wn == 0.) {
 	    tau = 0.;
 	} else {

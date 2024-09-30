@@ -17,9 +17,6 @@ static double c_b10 = 0.;
     int a_dim1, a_offset, i__1;
     double d__1;
 
-    /* Builtin functions */
-    double d_sign(double *, double *);
-
     /* Local variables */
     extern /* Subroutine */ int dger_(int *, int *, double *,
 	    double *, int *, double *, int *, double *,
@@ -111,7 +108,7 @@ static double c_b10 = 0.;
 	dlarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = dnrm2_(&i__1, &work[1], &c__1);
-	wa = d_sign(&wn, &work[1]);
+	wa = copysign(wn, work[1]);
 	if (wn == 0.) {
 	    tau = 0.;
 	} else {

@@ -2,6 +2,8 @@
 */
 #include "../../SRC/slu_sdefs.h"
 
+#include <math.h>
+
 /* Table of constant values */
 
 static int c__3 = 3;
@@ -15,9 +17,6 @@ static float c_b10 = 0.f;
     /* System generated locals */
     int a_dim1, a_offset, i__1;
     float r__1;
-
-    /* Builtin functions */
-    double r_sign(float *, float *);
 
     /* Local variables */
     extern /* Subroutine */ int sger_(int *, int *, float *, float *,
@@ -108,7 +107,7 @@ static float c_b10 = 0.f;
 	slarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	i__1 = *n - i + 1;
 	wn = snrm2_(&i__1, &work[1], &c__1);
-	wa = r_sign(&wn, &work[1]);
+	wa = copysignf(wn, work[1]);
 	if (wn == 0.f) {
 	    tau = 0.f;
 	} else {

@@ -2,6 +2,8 @@
 */
 #include "../../SRC/slu_sdefs.h"
 
+#include <math.h>
+
 /* Table of constant values */
 
 static int c__3 = 3;
@@ -16,9 +18,6 @@ static float c_b13 = 0.f;
     /* System generated locals */
     int a_dim1, a_offset, i__1, i__2, i__3;
     float r__1;
-
-    /* Builtin functions */
-    double r_sign(float *, float *);
 
     /* Local variables */
     extern /* Subroutine */ int sger_(int *, int *, float *, float *,
@@ -149,7 +148,7 @@ static float c_b13 = 0.f;
 	    slarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *m - i + 1;
 	    wn = snrm2_(&i__1, &work[1], &c__1);
-	    wa = r_sign(&wn, &work[1]);
+	    wa = copysignf(wn, work[1]);
 	    if (wn == 0.f) {
 		tau = 0.f;
 	    } else {
@@ -182,7 +181,7 @@ t */
 	    slarnv_slu(&c__3, &iseed[1], &i__1, &work[1]);
 	    i__1 = *n - i + 1;
 	    wn = snrm2_(&i__1, &work[1], &c__1);
-	    wa = r_sign(&wn, &work[1]);
+	    wa = copysignf(wn, work[1]);
 	    if (wn == 0.f) {
 		tau = 0.f;
 	    } else {
@@ -231,7 +230,7 @@ L = 0)
 
 		i__2 = *m - *kl - i + 1;
 		wn = snrm2_(&i__2, &a[*kl + i + i * a_dim1], &c__1);
-		wa = r_sign(&wn, &a[*kl + i + i * a_dim1]);
+		wa = copysignf(wn, a[*kl + i + i * a_dim1]);
 		if (wn == 0.f) {
 		    tau = 0.f;
 		} else {
@@ -268,7 +267,7 @@ eft */
 
 		i__2 = *n - *ku - i + 1;
 		wn = snrm2_(&i__2, &a[i + (*ku + i) * a_dim1], lda);
-		wa = r_sign(&wn, &a[i + (*ku + i) * a_dim1]);
+		wa = copysignf(wn, a[i + (*ku + i) * a_dim1]);
 		if (wn == 0.f) {
 		    tau = 0.f;
 		} else {
@@ -310,7 +309,7 @@ ight */
 
 		i__2 = *n - *ku - i + 1;
 		wn = snrm2_(&i__2, &a[i + (*ku + i) * a_dim1], lda);
-		wa = r_sign(&wn, &a[i + (*ku + i) * a_dim1]);
+		wa = copysignf(wn, a[i + (*ku + i) * a_dim1]);
 		if (wn == 0.f) {
 		    tau = 0.f;
 		} else {
@@ -347,7 +346,7 @@ ight */
 
 		i__2 = *m - *kl - i + 1;
 		wn = snrm2_(&i__2, &a[*kl + i + i * a_dim1], &c__1);
-		wa = r_sign(&wn, &a[*kl + i + i * a_dim1]);
+		wa = copysignf(wn, a[*kl + i + i * a_dim1]);
 		if (wn == 0.f) {
 		    tau = 0.f;
 		} else {

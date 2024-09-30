@@ -18,9 +18,6 @@ int clarot_slu(bool *lrows, bool *lleft, bool *lright,
     int i__1, i__2, i__3, i__4;
     singlecomplex q__1, q__2, q__3, q__4, q__5, q__6;
 
-    /* Builtin functions */
-    void r_cnjg(singlecomplex *, singlecomplex *);
-
     /* Local variables */
     static int iinc, j, inext;
     static singlecomplex tempx;

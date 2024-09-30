@@ -19,10 +19,6 @@ static int c__1 = 1;
     double d__1;
     doublecomplex z__1;
 
-    /* Builtin functions */
-    double z_abs(doublecomplex *);
-    void z_div(doublecomplex *, doublecomplex *, doublecomplex *);
-
     /* Local variables */
     static int i;
     extern /* Subroutine */ int zgerc_(int *, int *, doublecomplex *,

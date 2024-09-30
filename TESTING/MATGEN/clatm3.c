@@ -13,9 +13,6 @@
     int i__1, i__2;
     singlecomplex q__1, q__2, q__3;
 
-    /* Builtin functions */
-    void c_div(singlecomplex *, singlecomplex *, singlecomplex *), r_cnjg(singlecomplex *, singlecomplex *);
-
     /* Local variables */
     static singlecomplex ctemp;
     extern /* Complex */ void clarnd_slu(singlecomplex *, int *, int *);

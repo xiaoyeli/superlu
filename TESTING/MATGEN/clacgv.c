@@ -36,8 +36,7 @@
        Function Body */
     /* System generated locals */
     singlecomplex q__1;
-    /* Builtin functions */
-    void r_cnjg(singlecomplex *, singlecomplex *);
+
     /* Local variables */
     static int ioff, i;
 

@@ -20,10 +20,6 @@ static int c__1 = 1;
     double d__1;
     doublecomplex z__1, z__2, z__3, z__4;
 
-    /* Builtin functions */
-    double z_abs(doublecomplex *);
-    void z_div(doublecomplex *, doublecomplex *, doublecomplex *);
-
     /* Local variables */
     static int i, j;
     static doublecomplex alpha;

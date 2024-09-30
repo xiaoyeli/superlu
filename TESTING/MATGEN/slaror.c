@@ -17,9 +17,6 @@ static int c__1 = 1;
     int a_dim1, a_offset, i__1, i__2;
     float r__1;
 
-    /* Builtin functions */
-    double r_sign(float *, float *);
-
     /* Local variables */
     static int kbeg, jcol;
     extern /* Subroutine */ int sger_(int *, int *, float *, float *,
@@ -215,9 +212,9 @@ static int c__1 = 1;
  X */
 
 	xnorm = snrm2_(&ixfrm, &x[kbeg], &c__1);
-	xnorms = r_sign(&xnorm, &x[kbeg]);
+	xnorms = copysignf(xnorm, x[kbeg]);
 	r__1 = -(double)x[kbeg];
-	x[kbeg + nxfrm] = r_sign(&c_b10, &r__1);
+	x[kbeg + nxfrm] = copysignf(c_b10, r__1);
 	factor = xnorms * (xnorms + x[kbeg]);
 	if (fabs(factor) < 1e-20f) {
 	    *info = 1;
@@ -257,7 +254,7 @@ static int c__1 = 1;
     }
 
     r__1 = slarnd_slu(&c__3, &iseed[1]);
-    x[nxfrm * 2] = r_sign(&c_b10, &r__1);
+    x[nxfrm * 2] = copysignf(c_b10, r__1);
 
 /*     Scale the matrix A by D. */
 

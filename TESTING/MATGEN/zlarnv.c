@@ -61,8 +61,7 @@
     int i__2, i__3;
     double d__1, d__2;
     doublecomplex z__1, z__2, z__3;
-    /* Builtin functions */
-    void z_exp(doublecomplex *, doublecomplex *);
+
     /* Local variables */
     static int i;
     static double u[128];

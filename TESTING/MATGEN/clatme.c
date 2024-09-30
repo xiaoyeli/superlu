@@ -25,10 +25,6 @@ static int c__5 = 5;
     float r__1, r__2;
     singlecomplex q__1, q__2;
 
-    /* Builtin functions */
-    double c_abs(singlecomplex *);
-    void r_cnjg(singlecomplex *, singlecomplex *);
-
     /* Local variables */
     static bool bads;
     static int isim;

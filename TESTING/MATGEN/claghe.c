@@ -19,10 +19,6 @@ static int c__1 = 1;
     double d__1;
     singlecomplex q__1, q__2, q__3, q__4;
 
-    /* Builtin functions */
-    double c_abs(singlecomplex *);
-    void c_div(singlecomplex *, singlecomplex *, singlecomplex *), r_cnjg(singlecomplex *, singlecomplex *);
-
     /* Local variables */
     extern /* Subroutine */ int cher2_(char *, int *, singlecomplex *, singlecomplex *
 	    , int *, singlecomplex *, int *, singlecomplex *, int *);

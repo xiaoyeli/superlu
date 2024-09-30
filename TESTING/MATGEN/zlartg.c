@@ -53,9 +53,7 @@
     /* System generated locals */
     double d__1, d__2;
     doublecomplex z__1, z__2, z__3;
-    /* Builtin functions */
-    void d_cnjg(doublecomplex *, doublecomplex *);
-    double z_abs(doublecomplex *), d_imag(doublecomplex *);
+
     /* Local variables */
     static double d, f1, f2, g1, g2, fa, ga, di;
     static doublecomplex fs, gs, ss;

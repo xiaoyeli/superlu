@@ -26,9 +26,6 @@ static bool c_false = false;
     doublecomplex z__1, z__2, z__3;
     bool L__1;
 
-    /* Builtin functions */
-    void d_cnjg(doublecomplex *, doublecomplex *);
-
     /* Local variables */
     static int ilda, icol;
     static double temp;

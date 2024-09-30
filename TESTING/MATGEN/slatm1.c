@@ -1,5 +1,6 @@
 /*  -- translated by f2c (version 19940927).
 */
+#include "powi.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -10,9 +11,6 @@
     /* System generated locals */
     int i__1, i__2;
     double d__1, d__2;
-
-    /* Builtin functions */
-    double pow_ri(float *, int *);
 
     /* Local variables */
     static float temp;
@@ -190,7 +188,7 @@ L50:
 	    i__1 = *n;
 	    for (i = 2; i <= i__1; ++i) {
 		i__2 = i - 1;
-		d[i] = pow_ri(&alpha, &i__2);
+		d[i] = powif(alpha, i__2);
 /* L60: */
 	    }
 	}

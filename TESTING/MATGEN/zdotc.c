@@ -1,15 +1,14 @@
 /*  -- translated by f2c (version 19940927).
 */
 
+#include "../../SRC/slu_dcomplex.h"
+
 /* Double Complex */ void zdotc_(doublecomplex * ret_val, int *n,
 	doublecomplex *zx, int *incx, doublecomplex *zy, int *incy)
 {
     /* System generated locals */
     int i__1, i__2;
     doublecomplex z__1, z__2, z__3;
-
-    /* Builtin functions */
-    void d_cnjg(doublecomplex *, doublecomplex *);
 
     /* Local variables */
     static int i;

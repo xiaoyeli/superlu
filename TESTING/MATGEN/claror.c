@@ -19,10 +19,6 @@ static int c__1 = 1;
     int a_dim1, a_offset, i__1, i__2, i__3;
     singlecomplex q__1, q__2;
 
-    /* Builtin functions */
-    double c_abs(singlecomplex *);
-    void r_cnjg(singlecomplex *, singlecomplex *);
-
     /* Local variables */
     static int kbeg, jcol;
     static float xabs;

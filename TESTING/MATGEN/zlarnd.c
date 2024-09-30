@@ -11,9 +11,6 @@
     double d__1, d__2;
     doublecomplex z__1, z__2, z__3;
 
-    /* Builtin functions */
-    void z_exp(doublecomplex *, doublecomplex *);
-
     /* Local variables */
     static double t1, t2;
     extern double dlaran_slu(int *);

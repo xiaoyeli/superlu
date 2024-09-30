@@ -19,10 +19,6 @@ static int c__1 = 1;
     double d__1;
     singlecomplex q__1;
 
-    /* Builtin functions */
-    double c_abs(singlecomplex *);
-    void c_div(singlecomplex *, singlecomplex *, singlecomplex *);
-
     /* Local variables */
     static int i;
     extern /* Subroutine */ int cgerc_(int *, int *, singlecomplex *,

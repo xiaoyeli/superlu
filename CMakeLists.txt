@@ -262,6 +262,8 @@ endif()
 
 add_subdirectory(EXAMPLE)
 
-if (enable_doc)
+# To work around CMake bug #18708 that got fixed in 3.28.0, for
+# older CMake disable finding Doxygen unless explicitly enabled
+if (enable_doc OR (CMAKE_VERSION VERSION_GREATER_EQUAL "3.28.0"))
    add_subdirectory(DOC)
 endif()

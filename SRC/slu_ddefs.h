@@ -175,7 +175,7 @@ extern void    dreadmt (int *, int *, int_t *, double **, int_t **, int_t **);
 extern void    dGenXtrue (int, int, double *, int);
 extern void    dFillRHS (trans_t, int, double *, int, SuperMatrix *,
 			  SuperMatrix *);
-extern void    dgstrs (trans_t, SuperMatrix *, SuperMatrix *, int *, int *,
+extern void    dgstrs (trans_t, SuperMatrix *, SuperMatrix *, const int *, const int *,
                         SuperMatrix *, SuperLUStat_t*, int *);
 /* ILU */
 extern void    dgsitrf (superlu_options_t*, SuperMatrix*, int, int, int*,

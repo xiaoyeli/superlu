@@ -174,7 +174,7 @@ sp_coletree(
 	    int *parent	               /* parent in elim tree */
 	    )
 {
-	int	*root;			/* root of subtee of etree 	*/
+	int	*root;			/* root of subtree of etree 	*/
 	int     *firstcol;		/* first nonzero col in each row*/
 	int	rset, cset;             
 	int	row, col;

@@ -88,7 +88,7 @@ void dpsolve(int n, double x[], double y[])
 }
 
 /*!
- * \brief Performs matrix-vector multipliation sp_dgemv with original matrix A.
+ * \brief Performs matrix-vector multiplication sp_dgemv with original matrix A.
  *
  * The operations is y := alpha*A*x + beta*y. See documentation of sp_dgemv
  * for further details.

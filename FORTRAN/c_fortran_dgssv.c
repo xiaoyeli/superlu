@@ -58,7 +58,7 @@ c_fortran_dgssv_(int *iopt, int *n, int_t *nnz, int *nrhs,
     SuperLUStat_t stat;
     factors_t *LUfactors;
     GlobalLU_t Glu;   /* Not needed on return. */
-    int_t    *rowind0;  /* counter 1-based indexing from Frotran arrays. */
+    int_t    *rowind0;  /* counter 1-based indexing from Fortran arrays. */
     int_t    *colptr0;  
 
     trans = NOTRANS;

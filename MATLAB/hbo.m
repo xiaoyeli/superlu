@@ -92,7 +92,7 @@ else
    error(['Harwell-Boeing type ' hbtype ' unexpected.'])
 end
 
-% Remove any explict zeros
+% Remove any explicit zeros
 
 if exist('hbzero')
    k = find(A == hbzero);

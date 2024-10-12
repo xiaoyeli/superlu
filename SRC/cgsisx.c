@@ -105,7 +105,7 @@ at the top-level directory.
  *			      p = gamma * nnz(A(:,j)).
  *		DROP_AREA:    Variation of ILUTP, for j-th column, use
  *			      nnz(F(:,1:j)) / nnz(A(:,1:j)) to control memory.
- *		DROP_DYNAMIC: Modify the threshold tau during factorizaion:
+ *		DROP_DYNAMIC: Modify the threshold tau during factorization:
  *			      If nnz(L(:,1:j)) / nnz(A(:,1:j)) > gamma
  *				  tau_L(j) := MIN(tau_0, tau_L(j-1) * 2);
  *			      Otherwise
@@ -231,7 +231,7 @@ at the top-level directory.
  *            obtained from MC64.
  *            If MC64 fails, cgsequ() is used to equilibrate the system,
  *            and A is scaled as above, but no permutation is involved.
- *            On exit, A is restored to the orginal row numbering, so
+ *            On exit, A is restored to the original row numbering, so
  *            Dr*A*Dc is returned.
  *
  * perm_c  (input/output) int*

@@ -88,7 +88,7 @@ void spsolve(int n, float x[], float y[])
 
 
 /*!
- * \brief Performs matrix-vector multipliation sp_sgemv with original matrix A.
+ * \brief Performs matrix-vector multiplication sp_sgemv with original matrix A.
  *
  * The operations is y := alpha*A*x + beta*y. See documentation of sp_sgemv
  * for further details.

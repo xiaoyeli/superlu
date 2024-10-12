@@ -154,7 +154,7 @@ typedef unsigned char Logical;
  * Fact   (fact_t)
  *        Specifies whether or not the factored form of the matrix
  *        A is supplied on entry, and if not, how the matrix A should
- *        be factorizaed.
+ *        be factorized.
  *        = DOFACT: The matrix A will be factorized from scratch, and the
  *             factors will be stored in L and U.
  *        = SamePattern: The matrix A will be factorized assuming

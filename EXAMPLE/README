@@ -1,7 +1,7 @@
 		SuperLU EXAMPLES
 
 This directory contains sample programs to illustrate how to use
-various functions provded in SuperLU. You can modify these
+various functions provided in SuperLU. You can modify these
 examples to suit your applications.
 
 Here are the descriptions of the double precision examples:

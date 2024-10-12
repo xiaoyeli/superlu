@@ -205,7 +205,7 @@ L90:
     return 0;
 
     /*     ................ ENTRY   (isave[0] == 4)
-	   X HAS BEEN OVERWRITTEN BY TRANDPOSE(A)*X. */
+	   X HAS BEEN OVERWRITTEN BY TRANSPOSE(A)*X. */
 L110:
     jlast = isave[1];  /* j; */
 #ifdef _CRAY

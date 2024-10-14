@@ -8,7 +8,7 @@ set(VERSION_MINOR "0")
 set(VERSION_BugFix "0")
 set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 
-# Compatiblitly to xSDK standard
+# Compatibility to xSDK standard
 # (Extreme-scale Scientific Software Development Kit)
 #
 #MESSAGE("\nProcess XSDK defaults ...")

@@ -97,7 +97,7 @@ static int c__1 = 1;
              columns will be orthogonal, the remaining columns being   
              zero.   
              For matrices where M > N, just use the previous   
-             explaination, interchanging 'L' and 'R' and "rows" and   
+             explanation, interchanging 'L' and 'R' and "rows" and   
              "columns".   
 
              Not modified.   

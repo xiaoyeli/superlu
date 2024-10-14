@@ -88,7 +88,7 @@ static int_t c__2 = 2;
 /*     If it is negative, these messages are suppressed. */
 
 /*    ICNTL(4) has default value 0. */
-/*     If left at the defaut value, the incoming data is checked for */
+/*     If left at the default value, the incoming data is checked for */
 /*     out-of-range indices and duplicates.  Setting ICNTL(4) to any */
 /*     other will avoid the checks but is likely to cause problems */
 /*     later if out-of-range indices or duplicates are present. */

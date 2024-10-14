@@ -88,7 +88,7 @@ void zpsolve(int n, doublecomplex x[], doublecomplex y[])
 
 
 /*!
- * \brief Performs matrix-vector multipliation sp_zgemv with original matrix A.
+ * \brief Performs matrix-vector multiplication sp_zgemv with original matrix A.
  *
  * The operations is y := alpha*A*x + beta*y. See documentation of sp_zgemv
  * for further details.

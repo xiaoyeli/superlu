@@ -88,7 +88,7 @@ void cpsolve(int n, singlecomplex x[], singlecomplex y[])
 
 
 /*!
- * \brief Performs matrix-vector multipliation sp_cgemv with original matrix A.
+ * \brief Performs matrix-vector multiplication sp_cgemv with original matrix A.
  *
  * The operations is y := alpha*A*x + beta*y. See documentation of sp_cgemv
  * for further details.

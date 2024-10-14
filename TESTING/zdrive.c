@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
     int            nfact, ifact, itran;
     int            kl, ku, mode, lda, ioff;
     int            zerot; /* indicate whether the matrix is singular */
-    int            izero; /* incidate the first column that is entirely zero */
+    int            izero; /* indicate the first column that is entirely zero */
     double         u;
     double         anorm, cndnum;
     doublecomplex         *Afull;

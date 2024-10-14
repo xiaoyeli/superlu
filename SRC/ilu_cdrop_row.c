@@ -267,7 +267,7 @@ int ilu_cdrop_row(
 	return 0;
     }
 
-    /* add dropped entries to the diagnal */
+    /* add dropped entries to the diagonal */
     if (milu != SILU)
     {
 	register int j;

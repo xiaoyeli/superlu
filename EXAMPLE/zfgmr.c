@@ -103,7 +103,7 @@ int zfgmr(int n,
 +-----------------------------------------------------------------------
 | subroutines called :
 | matvec - matrix-vector multiplication operation
-| psolve - (right) preconditionning operation
+| psolve - (right) preconditioning operation
 |	   psolve can be a NULL pointer (GMRES without preconditioner)
 +---------------------------------------------------------------------*/
 
@@ -239,7 +239,7 @@ int zfgmr(int n,
 	            zd_mult(&vv[i1][k], &vv[i1][k], t);
 	    }
 	    /*---------------------------------------------------
-	    |     done with modified gram schimdt and arnoldi step
+	    |     done with modified gram schmidt and arnoldi step
 	    |     now  update factorization of hh
 	    +--------------------------------------------------*/
 

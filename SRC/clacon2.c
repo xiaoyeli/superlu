@@ -198,7 +198,7 @@ L70:
     return 0;
 
     /*     ................ ENTRY   (isave[0] == 4)
-	   X HAS BEEN OVERWRITTEN BY TRANDPOSE(A)*X. */
+	   X HAS BEEN OVERWRITTEN BY TRANSPOSE(A)*X. */
 L110:
     jlast = isave[1];  /* j; */
     isave[1] = icmax1_slu(n, &x[0], &c__1); /* j */

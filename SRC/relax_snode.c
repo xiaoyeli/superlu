@@ -41,10 +41,9 @@ at the top-level directory.
  *    the matrix has been reordered according to the postorder of the etree.
  * </pre>
  */ 
-void
-relax_snode (
+void relax_snode (
 	     const     int n,
-	     int       *et,           /* column elimination tree */
+                  const int *et,           /* column elimination tree */
 	     const int relax_columns, /* max no of columns allowed in a
 					 relaxed snode */
 	     int       *descendants,  /* no of descendants of each node

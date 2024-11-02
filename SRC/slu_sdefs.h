@@ -175,7 +175,7 @@ extern void    sreadmt (int *, int *, int_t *, float **, int_t **, int_t **);
 extern void    sGenXtrue (int, int, float *, int);
 extern void    sFillRHS (trans_t, int, float *, int, SuperMatrix *,
 			  SuperMatrix *);
-extern void    sgstrs (trans_t, SuperMatrix *, SuperMatrix *, int *, int *,
+extern void    sgstrs (trans_t, SuperMatrix *, SuperMatrix *, const int *, const int *,
                         SuperMatrix *, SuperLUStat_t*, int *);
 /* ILU */
 extern void    sgsitrf (superlu_options_t*, SuperMatrix*, int, int, int*,
@@ -256,7 +256,7 @@ extern void    sPrint_CompCol_Matrix(char *, SuperMatrix *);
 extern void    sPrint_SuperNode_Matrix(char *, SuperMatrix *);
 extern void    sPrint_Dense_Matrix(char *, SuperMatrix *);
 extern void    sprint_lu_col(char *, int, int, int_t *, GlobalLU_t *);
-extern int     print_double_vec(char *, int, double *);
+extern int     print_float_vec(const char *, int, const float *);
 extern void    scheck_tempv(int, float *);
 
 /*! \brief BLAS */

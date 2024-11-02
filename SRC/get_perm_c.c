@@ -77,8 +77,8 @@ void get_colamd(const int m, const int n, const int_t nnz,
  * \param[in]  b_rowind Row indices of size bnz for matrix B.
  * \param[out] perm_c Column permutation vector.
  */
-void get_metis(int n, int_t bnz, const int_t *b_colptr,
-               const int_t *b_rowind, const int *perm_c)
+void get_metis(int n, int_t bnz, int_t *b_colptr,
+               int_t *b_rowind, int *perm_c)
 {
 #ifdef HAVE_METIS
     /*#define METISOPTIONS 8*/

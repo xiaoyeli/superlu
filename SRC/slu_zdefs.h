@@ -176,7 +176,7 @@ extern void    zreadmt (int *, int *, int_t *, doublecomplex **, int_t **, int_t
 extern void    zGenXtrue (int, int, doublecomplex *, int);
 extern void    zFillRHS (trans_t, int, doublecomplex *, int, SuperMatrix *,
 			  SuperMatrix *);
-extern void    zgstrs (trans_t, SuperMatrix *, SuperMatrix *, int *, int *,
+extern void    zgstrs (trans_t, SuperMatrix *, SuperMatrix *, const int *, const int *,
                         SuperMatrix *, SuperLUStat_t*, int *);
 /* ILU */
 extern void    zgsitrf (superlu_options_t*, SuperMatrix*, int, int, int*,
@@ -259,7 +259,7 @@ extern void    zPrint_CompCol_Matrix(char *, SuperMatrix *);
 extern void    zPrint_SuperNode_Matrix(char *, SuperMatrix *);
 extern void    zPrint_Dense_Matrix(char *, SuperMatrix *);
 extern void    zprint_lu_col(char *, int, int, int_t *, GlobalLU_t *);
-extern int     print_double_vec(char *, int, double *);
+extern int     print_doublecomplex_vec(const char *, int, const doublecomplex *);
 extern void    zcheck_tempv(int, doublecomplex *);
 
 /*! \brief BLAS */

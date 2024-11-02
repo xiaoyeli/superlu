@@ -176,7 +176,7 @@ extern void    creadmt (int *, int *, int_t *, singlecomplex **, int_t **, int_t
 extern void    cGenXtrue (int, int, singlecomplex *, int);
 extern void    cFillRHS (trans_t, int, singlecomplex *, int, SuperMatrix *,
 			  SuperMatrix *);
-extern void    cgstrs (trans_t, SuperMatrix *, SuperMatrix *, int *, int *,
+extern void    cgstrs (trans_t, SuperMatrix *, SuperMatrix *, const int *, const int *,
                         SuperMatrix *, SuperLUStat_t*, int *);
 /* ILU */
 extern void    cgsitrf (superlu_options_t*, SuperMatrix*, int, int, int*,
@@ -259,7 +259,7 @@ extern void    cPrint_CompCol_Matrix(char *, SuperMatrix *);
 extern void    cPrint_SuperNode_Matrix(char *, SuperMatrix *);
 extern void    cPrint_Dense_Matrix(char *, SuperMatrix *);
 extern void    cprint_lu_col(char *, int, int, int_t *, GlobalLU_t *);
-extern int     print_double_vec(char *, int, double *);
+extern int     print_singlecomplex_vec(const char *, int, const singlecomplex *);
 extern void    ccheck_tempv(int, singlecomplex *);
 
 /*! \brief BLAS */

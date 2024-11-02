@@ -256,7 +256,7 @@ extern void    dPrint_CompCol_Matrix(char *, SuperMatrix *);
 extern void    dPrint_SuperNode_Matrix(char *, SuperMatrix *);
 extern void    dPrint_Dense_Matrix(char *, SuperMatrix *);
 extern void    dprint_lu_col(char *, int, int, int_t *, GlobalLU_t *);
-extern int     print_double_vec(char *, int, double *);
+extern int     print_double_vec(const char *, int, const double *);
 extern void    dcheck_tempv(int, double *);
 
 /*! \brief BLAS */

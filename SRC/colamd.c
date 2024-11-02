@@ -892,7 +892,7 @@ PRIVATE Int garbage_collection
     Colamd_Row Row [],
     Colamd_Col Col [],
     Int A [],
-    Int *pfree
+    const Int *pfree
 ) ;
 
 PRIVATE Int clear_mark
@@ -905,7 +905,7 @@ PRIVATE Int clear_mark
 
 PRIVATE void print_report
 (
-    char *method,
+    const char *method,
     Int stats [COLAMD_STATS]
 ) ;
 
@@ -3002,7 +3002,7 @@ PRIVATE Int garbage_collection  /* returns the new value of pfree */
     Colamd_Row Row [],		/* row info */
     Colamd_Col Col [],		/* column info */
     Int A [],			/* A [0 ... Alen-1] holds the matrix */
-    Int *pfree			/* &A [0] ... pfree is in use */
+    const Int *pfree			/* &A [0] ... pfree is in use */
 )
 {
     /* === Local variables ================================================== */
@@ -3162,7 +3162,7 @@ PRIVATE Int clear_mark	/* return the new value for tag_mark */
 
 PRIVATE void print_report
 (
-    char *method,
+    const char *method,
     Int stats [COLAMD_STATS]
 )
 {

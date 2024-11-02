@@ -44,7 +44,7 @@ at the top-level directory.
 void
 relax_snode (
 	     const     int n,
-	     int       *et,           /* column elimination tree */
+                  const int *et,           /* column elimination tree */
 	     const int relax_columns, /* max no of columns allowed in a
 					 relaxed snode */
 	     int       *descendants,  /* no of descendants of each node

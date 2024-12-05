@@ -26,9 +26,6 @@ at the top-level directory.
 #include <getopt.h>
 #include "slu_sdefs.h"
 
-void parse_command_line(int argc, char *argv[], int *lwork,
-                        float *u, yes_no_t *equil, trans_t *trans);
-			
 int main(int argc, char *argv[])
 {
     char           equed[1];
@@ -85,7 +82,7 @@ int main(int argc, char *argv[])
     set_default_options(&options);
 
     /* Can use command line input to modify the defaults. */
-    parse_command_line(argc, argv, &lwork, &u, &equil, &trans);
+    sparse_command_line(argc, argv, &lwork, &u, &equil, &trans);
     options.Equil = equil;
     options.DiagPivotThresh = u;
     options.Trans = trans;
@@ -205,35 +202,3 @@ int main(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 
-
-/*!
- * \brief Parse command line inputs.
- */
-void
-parse_command_line(int argc, char *argv[], int_t *lwork,
-                   float *u, yes_no_t *equil, trans_t *trans )
-{
-    int c;
-    extern char *optarg;
-
-    while ( (c = getopt(argc, argv, "hl:w:r:u:f:t:p:e:")) != EOF ) {
-	switch (c) {
-	  case 'h':
-	    printf("Options:\n");
-	    printf("\t-l <int> - length of work[*] array\n");
-	    printf("\t-u <int> - pivoting threshold\n");
-	    printf("\t-e <0 or 1> - equilibrate or not\n");
-	    printf("\t-t <0 or 1> - solve transposed system or not\n");
-	    exit(1);
-	    break;
-	  case 'l': *lwork = atoi(optarg);
-	            break;
-	  case 'u': *u = atof(optarg); 
-	            break;
-	  case 'e': *equil = atoi(optarg); 
-	            break;
-	  case 't': *trans = atoi(optarg);
-	            break;
-  	}
-    }
-}

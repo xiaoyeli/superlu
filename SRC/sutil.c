@@ -33,6 +33,7 @@ at the top-level directory.
 
 
 #include <math.h>
+#include <getopt.h>
 #include "slu_sdefs.h"
 
 void
@@ -476,4 +477,36 @@ print_float_vec(const char *what, int n, const float *vec)
     printf("%s: n %d\n", what, n);
     for (i = 0; i < n; ++i) printf("%d\t%f\n", i, vec[i]);
     return 0;
+}
+
+/*!
+ * \brief Parse command line options to get relaxed snode size, panel size, etc.
+ */
+void
+sparse_command_line(int argc, char *argv[], int_t *lwork,
+                   float *u, yes_no_t *equil, trans_t *trans)
+{
+    int c;
+    extern char *optarg;
+
+    while ( (c = getopt(argc, argv, "hl:u:e:t:")) != EOF ) {
+	switch (c) {
+	  case 'h':
+	    printf("Options:\n");
+	    printf("\t-l <int> - length of work[*] array\n");
+	    printf("\t-u <int> - pivoting threshold\n");
+	    printf("\t-e <0 or 1> - equilibrate or not\n");
+	    printf("\t-t <0 or 1> - solve transposed system or not\n");
+	    exit(1);
+	    break;
+	  case 'l': *lwork = atoi(optarg);
+	            break;
+	  case 'u': *u = atof(optarg); 
+	            break;
+	  case 'e': *equil = atoi(optarg); 
+	            break;
+	  case 't': *trans = atoi(optarg);
+	            break;
+  	}
+    }
 }

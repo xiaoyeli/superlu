@@ -41,7 +41,7 @@ at the top-level directory.
 #define FMT3      "%10s:info=%d, izero=%d, n=%d, nrhs=%d, imat=%d, nfail=%d\n"
 
 static void
-parse_command_line(int argc, char *argv[], char *matrix_type,
+get_command_line_options(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int_t *lwork, double *u, FILE **fp);
 
@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
     relax      = sp_ienv(2);
     u          = 1.0;
     strcpy(matrix_type, "LA");
-    parse_command_line(argc, argv, matrix_type, &n,
+    get_command_line_options(argc, argv, matrix_type, &n,
 		       &panel_size, &relax, &nrhs, &maxsuper,
 		       &rowblk, &colblk, &lwork, &u, &fp);
     if ( lwork > 0 ) {
@@ -529,7 +529,7 @@ int main(int argc, char *argv[])
  * Parse command line options to get relaxed snode size, panel size, etc.
  */
 static void
-parse_command_line(int argc, char *argv[], char *matrix_type,
+get_command_line_options(int argc, char *argv[], char *matrix_type,
 		   int *n, int *w, int *relax, int *nrhs, int *maxsuper,
 		   int *rowblk, int *colblk, int_t *lwork, double *u, FILE **fp)
 {

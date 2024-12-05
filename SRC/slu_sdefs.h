@@ -249,6 +249,8 @@ extern void    sreadMM(FILE *, int *, int *, int_t *, float **, int_t **, int_t 
 extern void    sfill (float *, int, float);
 extern void    sinf_norm_error (int, SuperMatrix *, float *);
 extern float  sqselect(int, float *, int);
+extern void    sparse_command_line(int argc, char *argv[], int_t *lwork,
+                   float *u, yes_no_t *equil, trans_t *trans);
 
 
 /*! \brief Routines for debugging */

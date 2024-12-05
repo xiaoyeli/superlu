@@ -252,6 +252,8 @@ extern void    creadMM(FILE *, int *, int *, int_t *, singlecomplex **, int_t **
 extern void    cfill (singlecomplex *, int, singlecomplex);
 extern void    cinf_norm_error (int, SuperMatrix *, singlecomplex *);
 extern float  sqselect(int, float *, int);
+extern void    cparse_command_line(int argc, char *argv[], int_t *lwork,
+                   float *u, yes_no_t *equil, trans_t *trans);
 
 
 /*! \brief Routines for debugging */

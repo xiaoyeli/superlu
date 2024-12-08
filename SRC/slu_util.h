@@ -24,6 +24,7 @@ at the top-level directory.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 
 /*
 #ifndef __STDC__
@@ -86,8 +87,8 @@ at the top-level directory.
 #define SUPERLU_FREE(addr) USER_FREE(addr)
 
 #define CHECK_MALLOC(where) {                 \
-    extern int superlu_malloc_total;        \
-    printf("%s: malloc_total %d Bytes\n",     \
+    extern int64_t superlu_malloc_total;        \
+    printf("%s: malloc_total %lld Bytes\n",     \
 	   where, superlu_malloc_total); \
 }
 

@@ -26,7 +26,7 @@ at the top-level directory.
 
 
 #if ( DEBUGlevel>=1 )           /* Debug malloc/free. */
-int_t superlu_malloc_total = 0;
+int64_t superlu_malloc_total = 0;
 
 #define PAD_FACTOR  2
 #define DWORD  (sizeof(double)) /* Be sure it's no smaller than double. */

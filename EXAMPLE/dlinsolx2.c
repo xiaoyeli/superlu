@@ -27,7 +27,7 @@ at the top-level directory.
 #include <getopt.h>
 #include "slu_ddefs.h"
 
-void parse_command_line(int argc, char *argv[], int *lwork,
+void parse_command_line(int argc, char *argv[], int_t *lwork,
                         double *u, yes_no_t *equil, trans_t *trans);
 			
 int main(int argc, char *argv[])
@@ -272,7 +272,7 @@ int main(int argc, char *argv[])
  * \brief Parse command line options to get relaxed snode size, panel size, etc.
  */
 void
-parse_command_line(int argc, char *argv[], int *lwork,
+parse_command_line(int argc, char *argv[], int_t *lwork,
                    double *u, yes_no_t *equil, trans_t *trans )
 {
     int c;

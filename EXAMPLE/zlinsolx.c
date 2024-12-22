@@ -26,7 +26,7 @@ at the top-level directory.
 #include <getopt.h>
 #include "slu_zdefs.h"
 
-void parse_command_line(int argc, char *argv[], int *lwork,
+void parse_command_line(int argc, char *argv[], int_t *lwork,
                         double *u, yes_no_t *equil, trans_t *trans);
 			
 int main(int argc, char *argv[])

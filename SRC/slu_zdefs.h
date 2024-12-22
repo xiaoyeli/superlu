@@ -252,8 +252,6 @@ extern void    zreadMM(FILE *, int *, int *, int_t *, doublecomplex **, int_t **
 extern void    zfill (doublecomplex *, int, doublecomplex);
 extern void    zinf_norm_error (int, SuperMatrix *, doublecomplex *);
 extern double  dqselect(int, double *, int);
-extern void    zparse_command_line(int argc, char *argv[], int_t *lwork,
-                   double *u, yes_no_t *equil, trans_t *trans);
 
 
 /*! \brief Routines for debugging */

@@ -249,8 +249,6 @@ extern void    dreadMM(FILE *, int *, int *, int_t *, double **, int_t **, int_t
 extern void    dfill (double *, int, double);
 extern void    dinf_norm_error (int, SuperMatrix *, double *);
 extern double  dqselect(int, double *, int);
-extern void    dparse_command_line(int argc, char *argv[], int_t *lwork,
-                   double *u, yes_no_t *equil, trans_t *trans);
 
 
 /*! \brief Routines for debugging */

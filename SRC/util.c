@@ -618,4 +618,3 @@ void check_perm(const char *what, int n, const int *perm)
     SUPERLU_FREE(marker);
     printf("check_perm: %s: n %d\n", what, n);
 }
-

@@ -109,7 +109,7 @@ at the top-level directory.
 /***********************************************************************
  * Constants 
  ***********************************************************************/
-#define EMPTY	(-1)
+#define SLU_EMPTY	(-1)
 /*#define NO	(-1)*/
 #define FALSE	0
 #define TRUE	1

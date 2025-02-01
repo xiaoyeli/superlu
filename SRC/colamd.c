@@ -786,7 +786,7 @@ typedef struct Colamd_Row_struct
 
 /* -------------------------------------------------------------------------- */
 
-#define EMPTY	(-1)
+#define COLAMD_EMPTY	(-1)
 
 /* Row and column status */
 #define ALIVE	(0)
@@ -1700,8 +1700,8 @@ PRIVATE Int init_rows_cols	/* returns TRUE if OK, or FALSE otherwise */
 
 	Col [col].shared1.thickness = 1 ;
 	Col [col].shared2.score = 0 ;
-	Col [col].shared3.prev = EMPTY ;
-	Col [col].shared4.degree_next = EMPTY ;
+	Col [col].shared3.prev = COLAMD_EMPTY ;
+	Col [col].shared4.degree_next = COLAMD_EMPTY ;
     }
 
     /* p [0..n_col] no longer needed, used as "head" in subsequent routines */
@@ -2099,7 +2099,7 @@ PRIVATE void init_scoring
     /* clear the hash buckets */
     for (c = 0 ; c <= n_col ; c++)
     {
-	head [c] = EMPTY ;
+	head [c] = COLAMD_EMPTY ;
     }
     min_score = n_col ;
     /* place in reverse order, so low column indices are at the front */
@@ -2120,16 +2120,16 @@ PRIVATE void init_scoring
 	    ASSERT (min_score <= n_col) ;
 	    ASSERT (score >= 0) ;
 	    ASSERT (score <= n_col) ;
-	    ASSERT (head [score] >= EMPTY) ;
+	    ASSERT (head [score] >= COLAMD_EMPTY) ;
 
 	    /* now add this column to dList at proper score location */
 	    next_col = head [score] ;
-	    Col [c].shared3.prev = EMPTY ;
+	    Col [c].shared3.prev = COLAMD_EMPTY ;
 	    Col [c].shared4.degree_next = next_col ;
 
 	    /* if there already was a column with the same score, set its */
 	    /* previous pointer to this new column */
-	    if (next_col != EMPTY)
+	    if (next_col != COLAMD_EMPTY)
 	    {
 		Col [next_col].shared3.prev = c ;
 	    }
@@ -2259,17 +2259,17 @@ PRIVATE Int find_ordering	/* return the number of garbage collections */
 	/* make sure degree list isn't empty */
 	ASSERT (min_score >= 0) ;
 	ASSERT (min_score <= n_col) ;
-	ASSERT (head [min_score] >= EMPTY) ;
+	ASSERT (head [min_score] >= COLAMD_EMPTY) ;
 
 #ifndef NDEBUG
 	for (debug_d = 0 ; debug_d < min_score ; debug_d++)
 	{
-	    ASSERT (head [debug_d] == EMPTY) ;
+	    ASSERT (head [debug_d] == COLAMD_EMPTY) ;
 	}
 #endif /* NDEBUG */
 
 	/* get pivot column from head of minimum degree list */
-	while (head [min_score] == EMPTY && min_score < n_col)
+	while (head [min_score] == COLAMD_EMPTY && min_score < n_col)
 	{
 	    min_score++ ;
 	}
@@ -2277,9 +2277,9 @@ PRIVATE Int find_ordering	/* return the number of garbage collections */
 	ASSERT (pivot_col >= 0 && pivot_col <= n_col) ;
 	next_col = Col [pivot_col].shared4.degree_next ;
 	head [min_score] = next_col ;
-	if (next_col != EMPTY)
+	if (next_col != COLAMD_EMPTY)
 	{
-	    Col [next_col].shared3.prev = EMPTY ;
+	    Col [next_col].shared3.prev = COLAMD_EMPTY ;
 	}
 
 	ASSERT (COL_IS_ALIVE (pivot_col)) ;
@@ -2391,7 +2391,7 @@ PRIVATE Int find_ordering	/* return the number of garbage collections */
 	else
 	{
 	    /* there is no pivot row, since it is of zero length */
-	    pivot_row = EMPTY ;
+	    pivot_row = COLAMD_EMPTY ;
 	    ASSERT (pivot_row_length == 0) ;
 	}
 	ASSERT (Col [pivot_col].length > 0 || pivot_row_length == 0) ;
@@ -2443,8 +2443,8 @@ PRIVATE Int find_ordering	/* return the number of garbage collections */
 	    next_col = Col [col].shared4.degree_next ;
 	    ASSERT (cur_score >= 0) ;
 	    ASSERT (cur_score <= n_col) ;
-	    ASSERT (cur_score >= EMPTY) ;
-	    if (prev_col == EMPTY)
+	    ASSERT (cur_score >= COLAMD_EMPTY) ;
+	    if (prev_col == COLAMD_EMPTY)
 	    {
 		head [cur_score] = next_col ;
 	    }
@@ -2452,7 +2452,7 @@ PRIVATE Int find_ordering	/* return the number of garbage collections */
 	    {
 		Col [prev_col].shared4.degree_next = next_col ;
 	    }
-	    if (next_col != EMPTY)
+	    if (next_col != COLAMD_EMPTY)
 	    {
 		Col [next_col].shared3.prev = prev_col ;
 	    }
@@ -2579,7 +2579,7 @@ PRIVATE Int find_ordering	/* return the number of garbage collections */
 		ASSERT (((Int) hash) <= n_col) ;
 
 		head_column = head [hash] ;
-		if (head_column > EMPTY)
+		if (head_column > COLAMD_EMPTY)
 		{
 		    /* degree list "hash" is non-empty, use prev (shared3) of */
 		    /* first column in degree list as head of hash bucket */
@@ -2674,11 +2674,11 @@ PRIVATE Int find_ordering	/* return the number of garbage collections */
 	    ASSERT (min_score <= n_col) ;
 	    ASSERT (cur_score >= 0) ;
 	    ASSERT (cur_score <= n_col) ;
-	    ASSERT (head [cur_score] >= EMPTY) ;
+	    ASSERT (head [cur_score] >= COLAMD_EMPTY) ;
 	    next_col = head [cur_score] ;
 	    Col [col].shared4.degree_next = next_col ;
-	    Col [col].shared3.prev = EMPTY ;
-	    if (next_col != EMPTY)
+	    Col [col].shared3.prev = COLAMD_EMPTY ;
+	    if (next_col != COLAMD_EMPTY)
 	    {
 		Col [next_col].shared3.prev = col ;
 	    }
@@ -2757,7 +2757,7 @@ PRIVATE void order_children
     {
 	/* find an un-ordered non-principal column */
 	ASSERT (COL_IS_DEAD (i)) ;
-	if (!COL_IS_DEAD_PRINCIPAL (i) && Col [i].shared2.order == EMPTY)
+	if (!COL_IS_DEAD_PRINCIPAL (i) && Col [i].shared2.order == COLAMD_EMPTY)
 	{
 	    parent = i ;
 	    /* once found, find its principal parent */
@@ -2774,7 +2774,7 @@ PRIVATE void order_children
 
 	    do
 	    {
-		ASSERT (Col [c].shared2.order == EMPTY) ;
+		ASSERT (Col [c].shared2.order == COLAMD_EMPTY) ;
 
 		/* order this column */
 		Col [c].shared2.order = order++ ;
@@ -2787,7 +2787,7 @@ PRIVATE void order_children
 		/* continue until we hit an ordered column.  There are */
 		/* guaranteed not to be anymore unordered columns */
 		/* above an ordered column */
-	    } while (Col [c].shared2.order == EMPTY) ;
+	    } while (Col [c].shared2.order == COLAMD_EMPTY) ;
 
 	    /* re-order the super_col parent to largest order for this group */
 	    Col [parent].shared2.order = order ;
@@ -2888,7 +2888,7 @@ PRIVATE void detect_super_cols
 	/* === Get the first column in this hash bucket ===================== */
 
 	head_column = head [hash] ;
-	if (head_column > EMPTY)
+	if (head_column > COLAMD_EMPTY)
 	{
 	    first_col = Col [head_column].shared3.headhash ;
 	}
@@ -2899,7 +2899,7 @@ PRIVATE void detect_super_cols
 
 	/* === Consider each column in the hash bucket ====================== */
 
-	for (super_c = first_col ; super_c != EMPTY ;
+	for (super_c = first_col ; super_c != COLAMD_EMPTY ;
 	    super_c = Col [super_c].shared4.hash_next)
 	{
 	    ASSERT (COL_IS_ALIVE (super_c)) ;
@@ -2912,7 +2912,7 @@ PRIVATE void detect_super_cols
 	    /* === Compare super_c with all columns after it ================ */
 
 	    for (c = Col [super_c].shared4.hash_next ;
-		 c != EMPTY ; c = Col [c].shared4.hash_next)
+		 c != COLAMD_EMPTY ; c = Col [c].shared4.hash_next)
 	    {
 		ASSERT (c != super_c) ;
 		ASSERT (COL_IS_ALIVE (c)) ;
@@ -2958,7 +2958,7 @@ PRIVATE void detect_super_cols
 		Col [c].shared1.parent = super_c ;
 		KILL_NON_PRINCIPAL_COL (c) ;
 		/* order c later, in order_children() */
-		Col [c].shared2.order = EMPTY ;
+		Col [c].shared2.order = COLAMD_EMPTY ;
 		/* remove c from hash bucket */
 		Col [prev_c].shared4.hash_next = Col [c].shared4.hash_next ;
 	    }
@@ -2966,15 +2966,15 @@ PRIVATE void detect_super_cols
 
 	/* === Empty this hash bucket ======================================= */
 
-	if (head_column > EMPTY)
+	if (head_column > COLAMD_EMPTY)
 	{
 	    /* corresponding degree list "hash" is not empty */
-	    Col [head_column].shared3.headhash = EMPTY ;
+	    Col [head_column].shared3.headhash = COLAMD_EMPTY ;
 	}
 	else
 	{
 	    /* corresponding degree list "hash" is empty */
-	    head [hash] = EMPTY ;
+	    head [hash] = COLAMD_EMPTY ;
 	}
     }
 }
@@ -3437,12 +3437,12 @@ PRIVATE void debug_deg_lists
     for (deg = 0 ; deg <= n_col ; deg++)
     {
 	col = head [deg] ;
-	if (col == EMPTY)
+	if (col == COLAMD_EMPTY)
 	{
 	    continue ;
 	}
 	DEBUG4 (("%d:", deg)) ;
-	while (col != EMPTY)
+	while (col != COLAMD_EMPTY)
 	{
 	    DEBUG4 ((" %d", col)) ;
 	    have += Col [col].shared1.thickness ;

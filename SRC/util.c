@@ -215,7 +215,7 @@ resetrep_col (const int nseg, const int *segrep, int *repfnz)
     
     for (i = 0; i < nseg; i++) {
 	irep = segrep[i];
-	repfnz[irep] = EMPTY;
+	repfnz[irep] = SLU_EMPTY;
     }
 }
 
@@ -522,7 +522,7 @@ float DenseSize(int n, float sum_nw)
     return (sum_nw*8 + n*8)/1024.;
 }
 
-/*! \brief Check whether repfnz[] == EMPTY after reset.
+/*! \brief Check whether repfnz[] == SLU_EMPTY after reset.
  */
 void check_repfnz(int n, int w, int jcol, const int *repfnz)
 {
@@ -530,7 +530,7 @@ void check_repfnz(int n, int w, int jcol, const int *repfnz)
 
     for (jj = jcol; jj < jcol+w; jj++) 
 	for (k = 0; k < n; k++)
-	    if ( repfnz[(jj-jcol)*n + k] != EMPTY ) {
+	    if ( repfnz[(jj-jcol)*n + k] != SLU_EMPTY ) {
 		fprintf(stderr, "col %d, repfnz_col[%d] = %d\n", jj,
 			k, repfnz[(jj-jcol)*n + k]);
 		ABORT("check_repfnz");

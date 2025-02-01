@@ -46,7 +46,7 @@ int mark_relax(
     register int_t i, j;
     int_t k;
 
-    for (i = 0; i < n && relax_fsupc[i] != EMPTY; i++)
+    for (i = 0; i < n && relax_fsupc[i] != SLU_EMPTY; i++)
     {
 	jcol = relax_fsupc[i];	/* first column */
 	kcol = relax_end[jcol]; /* last column */

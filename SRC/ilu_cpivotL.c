@@ -115,9 +115,9 @@ ilu_cpivotL(
        Also search for user-specified pivot, and diagonal element. */
     pivmax = -1.0;
     pivptr = nsupc;
-    diag = EMPTY;
+    diag = SLU_EMPTY;
     old_pivptr = nsupc;
-    ptr0 = EMPTY;
+    ptr0 = SLU_EMPTY;
     for (isub = nsupc; isub < nsupr; ++isub) {
         if (marker[lsub_ptr[isub]] > jcol)
             continue; /* do not overlap with a later relaxed supernode */
@@ -140,7 +140,7 @@ ilu_cpivotL(
 	if (rtemp > pivmax) { pivmax = rtemp; pivptr = isub; }
 	if (*usepr && lsub_ptr[isub] == *pivrow) old_pivptr = isub;
 	if (lsub_ptr[isub] == diagind) diag = isub;
-	if (ptr0 == EMPTY) ptr0 = isub;
+	if (ptr0 == SLU_EMPTY) ptr0 = isub;
     }
 
     if (milu == SMILU_2 || milu == SMILU_3) pivmax += drop_sum.r;
@@ -154,9 +154,9 @@ ilu_cpivotL(
 	return (jcol+1);
     }
     if ( pivmax == 0.0 ) {
-	if (diag != EMPTY)
+	if (diag != SLU_EMPTY)
 	    *pivrow = lsub_ptr[pivptr = diag];
-	else if (ptr0 != EMPTY)
+	else if (ptr0 != SLU_EMPTY)
 	    *pivrow = lsub_ptr[pivptr = ptr0];
 	else {
 	    /* look for the first row which does not

@@ -318,14 +318,14 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     else
 	ilu_relax_snode(n, etree, relax, marker, relax_end, relax_fsupc);
 
-    ifill (perm_r, m, EMPTY);
-    ifill (marker, m * NO_MARKER, EMPTY);
+    ifill (perm_r, m, SLU_EMPTY);
+    ifill (marker, m * NO_MARKER, SLU_EMPTY);
     supno[0] = -1;
     xsup[0]  = xlsub[0] = xusub[0] = xlusup[0] = 0;
     w_def    = panel_size;
 
     /* Mark the rows used by relaxed supernodes */
-    ifill (marker_relax, m, EMPTY);
+    ifill (marker_relax, m, SLU_EMPTY);
     i = mark_relax(m, relax_end, relax_fsupc, xa_begin, xa_end,
 	         asub, marker_relax);
 #if ( PRNTlevel >= 1)
@@ -339,7 +339,7 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
      */
     for (jcol = 0; jcol < min_mn; ) {
 
-	if ( relax_end[jcol] != EMPTY ) { /* start of a relaxed snode */
+	if ( relax_end[jcol] != SLU_EMPTY ) { /* start of a relaxed snode */
 	    kcol = relax_end[jcol];	  /* end of the relaxed snode */
 	    panel_histo[kcol-jcol+1]++;
 
@@ -447,7 +447,7 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 	     */
 	    panel_size = w_def;
 	    for (k = jcol + 1; k < SUPERLU_MIN(jcol+panel_size, min_mn); k++)
-		if ( relax_end[k] != EMPTY ) {
+		if ( relax_end[k] != SLU_EMPTY ) {
 		    panel_size = k - jcol;
 		    break;
 		}
@@ -618,7 +618,7 @@ cgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     if ( m > n ) {
 	k = 0;
 	for (i = 0; i < m; ++i)
-	    if ( perm_r[i] == EMPTY ) {
+	    if ( perm_r[i] == SLU_EMPTY ) {
 		perm_r[i] = n + k;
 		++k;
 	    }

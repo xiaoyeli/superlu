@@ -120,7 +120,7 @@ if ( jcol == MIN_COL ) {
     diagind = iperm_c[jcol];
     pivmax = 0.0;
     pivptr = nsupc;
-    diag = EMPTY;
+    diag = SLU_EMPTY;
     old_pivptr = nsupc;
     for (isub = nsupc; isub < nsupr; ++isub) {
 	rtemp = fabs (lu_col_ptr[isub]);

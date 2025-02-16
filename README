@@ -55,6 +55,15 @@ are described below.
    You should link with a fast BLAS library by specifying the following:
               -DTPL_BLAS_LIBRARIES=<blas_library_name>
 	      
+        If you got warnings/errors about the conflicting types/function-definition
+        for your external BLAS functions, you can try to disable tests and examples:
+                -Denable_examples=OFF \
+                -Denable_tests=OFF \
+
+        If you got errors/warning in linkage, you can try to apply the git patch
+        for external BLAS:
+                git apply external_blas.patch
+	      
    If you do not have a BLAS library, you may use the internal CBLAS/ distribution, which can be very slow:
               -Denable_internal_blaslib=YES
 

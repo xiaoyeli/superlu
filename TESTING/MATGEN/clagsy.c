@@ -3,6 +3,7 @@
 
 #include "../../SRC/slu_scomplex.h"
 #include "../../SRC/slu_sdefs.h"
+#include "../../SRC/slu_cdefs.h"
 
 /* Table of constant values */
 
@@ -29,10 +30,7 @@ static int c__1 = 1;
 	    int *);
     extern /* Complex */ void cdotc_(singlecomplex *, int *, singlecomplex *, int
 	    *, singlecomplex *, int *);
-    extern /* Subroutine */ int cgemv_(char *, int *, int *, singlecomplex *
-	    , singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, singlecomplex *
-	    , int *), caxpy_(int *, singlecomplex *, singlecomplex *,
-	    int *, singlecomplex *, int *), csymv_sluslu(char *, int *,
+    extern /* Subroutine */ int csymv_sluslu(char *, int *,
 	    singlecomplex *, singlecomplex *, int *, singlecomplex *, int *, singlecomplex *,
 	    singlecomplex *, int *);
     extern float scnrm2_(int *, singlecomplex *, int *);

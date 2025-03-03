@@ -116,10 +116,6 @@ int cfgmr(int n,
     singlecomplex one = {1.0, 0.0};
     singlecomplex tt1, tt2;
 
-    /* prototypes */
-    extern int ccopy_(int *, singlecomplex *, int *, singlecomplex *, int *);
-    extern int caxpy_(int *, singlecomplex *, singlecomplex [], int *, singlecomplex [], int *);
-
     its = 0;
     vv = (singlecomplex **)SUPERLU_MALLOC((im + 1) * sizeof(singlecomplex *));
     for (int i = 0; i <= im; i++) vv[i] = singlecomplexMalloc(n);

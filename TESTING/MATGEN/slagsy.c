@@ -29,10 +29,7 @@ static float c_b26 = 1.f;
 	    int *, float *, int *, float *, int *);
     static float alpha;
     extern /* Subroutine */ int sscal_(int *, float *, float *, int *),
-	    sgemv_(char *, int *, int *, float *, float *, int *,
-	    float *, int *, float *, float *, int *), saxpy_(
-	    int *, float *, float *, int *, float *, int *), ssymv_(
-	    char *, int *, float *, float *, int *, float *, int *,
+	    ssymv_(char *, int *, float *, float *, int *, float *, int *,
 	    float *, float *, int *);
     static float wa, wb, wn;
     extern /* Subroutine */ int slarnv_slu(int *, int *, int *, float *);

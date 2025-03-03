@@ -6,7 +6,7 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int dgemv_(char *trans, integer *m, integer *n, doublereal *
+/* Subroutine */ void dgemv_(char *trans, integer *m, integer *n, doublereal *
 	alpha, doublereal *a, integer *lda, doublereal *x, integer *incx, 
 	doublereal *beta, doublereal *y, integer *incy)
 {
@@ -141,13 +141,13 @@
     }
     if (info != 0) {
 	input_error("DGEMV ", &info);
-	return 0;
+	return;
     }
 
 /*     Quick return if possible. */
 
     if (*m == 0 || *n == 0 || (*alpha == 0. && *beta == 1.)) {
-	return 0;
+	return;
     }
 
 /*     Set  LENX  and  LENY, the lengths of the vectors x and y, and set 
@@ -208,7 +208,7 @@
 	}
     }
     if (*alpha == 0.) {
-	return 0;
+	return;
     }
     if (strncmp(trans, "N", 1)==0) {
 
@@ -274,7 +274,7 @@
 	}
     }
 
-    return 0;
+    return;
 
 /*     End of DGEMV . */
 

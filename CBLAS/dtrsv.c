@@ -6,7 +6,7 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int dtrsv_(char *uplo, char *trans, char *diag, integer *n, 
+/* Subroutine */ void dtrsv_(char *uplo, char *trans, char *diag, integer *n, 
 	doublereal *a, integer *lda, doublereal *x, integer *incx)
 {
 
@@ -150,13 +150,13 @@
     }
     if (info != 0) {
 	input_error("DTRSV ", &info);
-	return 0;
+	return;
     }
 
 /*     Quick return if possible. */
 
     if (*n == 0) {
-	return 0;
+	return;
     }
 
     nounit = (strncmp(diag, "N", 1)==0);
@@ -318,7 +318,7 @@
 	}
     }
 
-    return 0;
+    return;
 
 /*     End of DTRSV . */
 

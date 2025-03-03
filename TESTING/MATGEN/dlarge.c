@@ -23,10 +23,7 @@ static double c_b10 = 0.;
 	    int *);
     extern double dnrm2_(int *, double *, int *);
     static int i;
-    extern /* Subroutine */ int dscal_(int *, double *, double *,
-	    int *), dgemv_(char *, int *, int *, double *,
-	    double *, int *, double *, int *, double *,
-	    double *, int *);
+    extern /* Subroutine */ int dscal_(int *, double *, double *, int *);
     static double wa, wb, wn;
     extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, double *);
     extern int input_error(char *, int *);

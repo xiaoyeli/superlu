@@ -6,11 +6,10 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int cgemv_(char *trans, integer *m, integer *n, singlecomplex *
+/* Subroutine */ void cgemv_(char *trans, integer *m, integer *n, singlecomplex *
 	alpha, singlecomplex *a, integer *lda, singlecomplex *x, integer *incx, singlecomplex *
 	beta, singlecomplex *y, integer *incy)
 {
-
 
     /* System generated locals */
 
@@ -149,14 +148,14 @@
     }
     if (info != 0) {
 	input_error("CGEMV ", &info);
-	return 0;
+	return;
     }
 
 /*     Quick return if possible. */
 
     if (*m == 0 || *n == 0 || (alpha->r == 0.f && alpha->i == 0.f && beta->r 
 			       == 1.f && beta->i == 0.f)) {
-	return 0;
+	return;
     }
 
     noconj = (strncmp(trans, "T", 1)==0);
@@ -224,7 +223,7 @@
 	}
     }
     if (alpha->r == 0.f && alpha->i == 0.f) {
-	return 0;
+	return;
     }
     if (strncmp(trans, "N", 1)==0) {
 
@@ -346,7 +345,7 @@
 	}
     }
 
-    return 0;
+    return;
 
 /*     End of CGEMV . */
 

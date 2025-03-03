@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int ccopy_(integer *n, singlecomplex *cx, integer *incx, singlecomplex *
+/* Subroutine */ void ccopy_(integer *n, singlecomplex *cx, integer *incx, singlecomplex *
 	cy, integer *incy)
 {
 
@@ -31,7 +31,7 @@
 
 
     if (*n <= 0) {
-	return 0;
+	return;
     }
     if (*incx == 1 && *incy == 1) {
 	goto L20;
@@ -54,7 +54,7 @@
 	iy += *incy;
 /* L10: */
     }
-    return 0;
+    return;
 
 /*        code for both increments equal to 1 */
 
@@ -63,6 +63,6 @@ L20:
 	CY(i).r = CX(i).r, CY(i).i = CX(i).i;
 /* L30: */
     }
-    return 0;
+    return;
 } /* ccopy_ */
 

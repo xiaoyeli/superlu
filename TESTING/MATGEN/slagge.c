@@ -24,9 +24,7 @@ static float c_b13 = 0.f;
 	    int *, float *, int *, float *, int *);
     extern float snrm2_(int *, float *, int *);
     static int i, j;
-    extern /* Subroutine */ int sscal_(int *, float *, float *, int *),
-	    sgemv_(char *, int *, int *, float *, float *, int *,
-	    float *, int *, float *, float *, int *);
+    extern /* Subroutine */ int sscal_(int *, float *, float *, int *);
     static float wa, wb, wn;
     extern /* Subroutine */ int slarnv_slu(int *, int *, int *, float *);
     extern int input_error(char *, int *);

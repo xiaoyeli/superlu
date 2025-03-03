@@ -35,8 +35,7 @@ static bool c_false = false;
     extern /* Subroutine */ int sscal_(int *, float *, float *, int *);
     static int idist, mnmin, iskew;
     static float extra, dummy;
-    extern /* Subroutine */ int scopy_(int *, float *, int *, float *,
-	    int *), slatm1_slu(int *, float *, int *, int *,
+    extern int slatm1_slu(int *, float *, int *, int *,
 	    int *, float *, int *, int *);
     static int ic, jc, nc, il, iendch, ir, jr, ipackg, mr;
     extern /* Subroutine */ int slagge_slu(int *, int *, int *,

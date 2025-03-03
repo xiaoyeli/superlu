@@ -261,14 +261,16 @@ extern void    scheck_tempv(int, float *);
 
 /*! \brief BLAS */
 
-extern int sgemm_(const char*, const char*, const int*, const int*, const int*,
+extern void scopy_(int *, float *, int *, float *, int *);
+extern void saxpy_(int *, float *, float *, int *, float *, int *);
+extern void sgemm_(const char*, const char*, const int*, const int*, const int*,
                   const float*, const float*, const int*, const float*,
 		  const int*, const float*, float*, const int*);
-extern int strsv_(char*, char*, char*, int*, float*, int*,
+extern void strsv_(char*, char*, char*, int*, float*, int*,
                   float*, int*);
-extern int strsm_(char*, char*, char*, char*, int*, int*,
+extern void strsm_(char*, char*, char*, char*, int*, int*,
                   float*, float*, int*, float*, int*);
-extern int sgemv_(char *, int *, int *, float *, float *a, int *,
+extern void sgemv_(char *, int *, int *, float *, float *a, int *,
                   float *, int *, float *, float *, int *);
 
 extern void susolve(int, int, float*, float*);

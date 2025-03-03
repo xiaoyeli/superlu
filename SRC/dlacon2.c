@@ -105,7 +105,7 @@ dlacon2_(int *n, double *v, double *x, int *isgn, double *est, int *kase, int is
 #else
     extern int idamax_(int *, double *, int *);
     extern double dasum_(int *, double *, int *);
-    extern int dcopy_(int *, double *, int *, double *, int *);
+    extern void dcopy_(int *, double *, int *, double *, int *);
 #endif
 #define d_sign(a, b) (b >= 0 ? fabs(a) : -fabs(a))    /* Copy sign */
 #define i_dnnt(a) \

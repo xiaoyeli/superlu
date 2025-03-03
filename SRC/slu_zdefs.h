@@ -264,14 +264,16 @@ extern void    zcheck_tempv(int, doublecomplex *);
 
 /*! \brief BLAS */
 
-extern int zgemm_(const char*, const char*, const int*, const int*, const int*,
+extern void zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
+extern void zaxpy_(int *, doublecomplex *, doublecomplex *, int *, doublecomplex *, int *);
+extern void zgemm_(const char*, const char*, const int*, const int*, const int*,
                   const doublecomplex*, const doublecomplex*, const int*, const doublecomplex*,
 		  const int*, const doublecomplex*, doublecomplex*, const int*);
-extern int ztrsv_(char*, char*, char*, int*, doublecomplex*, int*,
+extern void ztrsv_(char*, char*, char*, int*, doublecomplex*, int*,
                   doublecomplex*, int*);
-extern int ztrsm_(char*, char*, char*, char*, int*, int*,
+extern void ztrsm_(char*, char*, char*, char*, int*, int*,
                   doublecomplex*, doublecomplex*, int*, doublecomplex*, int*);
-extern int zgemv_(char *, int *, int *, doublecomplex *, doublecomplex *a, int *,
+extern void zgemv_(char *, int *, int *, doublecomplex *, doublecomplex *a, int *,
                   doublecomplex *, int *, doublecomplex *, doublecomplex *, int *);
 
 extern void zusolve(int, int, doublecomplex*, doublecomplex*);

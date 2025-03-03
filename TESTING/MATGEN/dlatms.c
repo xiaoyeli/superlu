@@ -36,8 +36,6 @@ dlatms_slu(int *m, int *n, char *dist, int *
 	    int *);
     static int ioffg;
     static int iinfo, idist, mnmin;
-    extern /* Subroutine */ int dcopy_(int *, double *, int *,
-	    double *, int *);
     static int iskew;
     static double extra, dummy;
     extern /* Subroutine */ int dlatm1_slu(int *, double *, int *,

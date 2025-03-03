@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int caxpy_(integer *n, singlecomplex *ca, singlecomplex *cx, integer *
+/* Subroutine */ void caxpy_(integer *n, singlecomplex *ca, singlecomplex *cx, integer *
 	incx, singlecomplex *cy, integer *incy)
 {
 
@@ -36,10 +36,10 @@
 
 
     if (*n <= 0) {
-	return 0;
+	return;
     }
     if ((r__1 = ca->r, dabs(r__1)) + (r__2 = r_imag(ca), dabs(r__2)) == 0.f) {
-	return 0;
+	return;
     }
     if (*incx == 1 && *incy == 1) {
 	goto L20;
@@ -65,7 +65,7 @@
 	iy += *incy;
 /* L10: */
     }
-    return 0;
+    return;
 
 /*        code for both increments equal to 1 */
 
@@ -77,6 +77,6 @@ L20:
 	CY(i).r = q__1.r, CY(i).i = q__1.i;
 /* L30: */
     }
-    return 0;
+    return;
 } /* caxpy_ */
 

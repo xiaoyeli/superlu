@@ -115,10 +115,6 @@ int sfgmr(int n,
     float zero = 0.0;
     float one = 1.0;
 
-    /* prototypes */
-    extern int scopy_(int *, float *, int *, float *, int *);
-    extern int saxpy_(int *, float *, float [], int *, float [], int *);
-
     its = 0;
     vv = (float **)SUPERLU_MALLOC((im + 1) * sizeof(float *));
     for (int i = 0; i <= im; i++) vv[i] = floatMalloc(n);

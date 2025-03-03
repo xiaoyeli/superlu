@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int saxpy_(integer *n, real *sa, real *sx, integer *incx, 
+/* Subroutine */ void saxpy_(integer *n, real *sa, real *sx, integer *incx, 
 	real *sy, integer *incy)
 {
 
@@ -31,10 +31,10 @@
 
 
     if (*n <= 0) {
-	return 0;
+	return;
     }
     if (*sa == 0.f) {
-	return 0;
+	return;
     }
     if (*incx == 1 && *incy == 1) {
 	goto L20;
@@ -57,7 +57,7 @@
 	iy += *incy;
 /* L10: */
     }
-    return 0;
+    return;
 
 /*        code for both increments equal to 1   
 
@@ -74,7 +74,7 @@ L20:
 /* L30: */
     }
     if (*n < 4) {
-	return 0;
+	return;
     }
 L40:
     mp1 = m + 1;
@@ -85,6 +85,6 @@ L40:
 	SY(i + 3) += *sa * SX(i + 3);
 /* L50: */
     }
-    return 0;
+    return;
 } /* saxpy_ */
 

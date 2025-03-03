@@ -6,7 +6,7 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int strsv_(char *uplo, char *trans, char *diag, integer *n, 
+/* Subroutine */ void strsv_(char *uplo, char *trans, char *diag, integer *n, 
 	real *a, integer *lda, real *x, integer *incx)
 {
 
@@ -147,13 +147,13 @@
     }
     if (info != 0) {
 	input_error("STRSV ", &info);
-	return 0;
+	return;
     }
 
 /*     Quick return if possible. */
 
     if (*n == 0) {
-	return 0;
+	return;
     }
 
     nounit = (strncmp(diag, "N", 1)==0);
@@ -315,7 +315,7 @@
 	}
     }
 
-    return 0;
+    return;
 
 /*     End of STRSV . */
 

@@ -6,7 +6,7 @@
 
 #include "f2c.h"
 
-/* Subroutine */ int zaxpy_(integer *n, doublecomplex *za, doublecomplex *zx, 
+/* Subroutine */ void zaxpy_(integer *n, doublecomplex *za, doublecomplex *zx, 
 	integer *incx, doublecomplex *zy, integer *incy)
 {
 
@@ -33,10 +33,10 @@
 
 
     if (*n <= 0) {
-	return 0;
+	return;
     }
     if (dcabs1_(za) == 0.) {
-	return 0;
+	return;
     }
     if (*incx == 1 && *incy == 1) {
 	goto L20;
@@ -62,7 +62,7 @@
 	iy += *incy;
 /* L10: */
     }
-    return 0;
+    return;
 
 /*        code for both increments equal to 1 */
 
@@ -74,6 +74,6 @@ L20:
 	ZY(i).r = z__1.r, ZY(i).i = z__1.i;
 /* L30: */
     }
-    return 0;
+    return;
 } /* zaxpy_ */
 

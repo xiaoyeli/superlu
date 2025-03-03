@@ -33,10 +33,7 @@ static double c_b26 = 1.;
     static int i, j;
     static double alpha;
     extern /* Subroutine */ int dscal_(int *, double *, double *,
-	    int *), dgemv_(char *, int *, int *, double *,
-	    double *, int *, double *, int *, double *,
-	    double *, int *), daxpy_(int *, double *,
-	    double *, int *, double *, int *), dsymv_(char *,
+	    int *),  dsymv_(char *,
 	    int *, double *, double *, int *, double *,
 	    int *, double *, double *, int *);
     static double wa, wb, wn;

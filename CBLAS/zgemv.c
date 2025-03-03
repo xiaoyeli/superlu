@@ -6,7 +6,7 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int zgemv_(char *trans, integer *m, integer *n, 
+/* Subroutine */ void zgemv_(char *trans, integer *m, integer *n, 
 	doublecomplex *alpha, doublecomplex *a, integer *lda, doublecomplex *
 	x, integer *incx, doublecomplex *beta, doublecomplex *y, integer *
 	incy)
@@ -151,14 +151,14 @@
     }
     if (info != 0) {
 	input_error("ZGEMV ", &info);
-	return 0;
+	return;
     }
 
 /*     Quick return if possible. */
 
     if (*m == 0 || *n == 0 || (alpha->r == 0. && alpha->i == 0.
 			       && beta->r == 1. && beta->i == 0.)) {
-	return 0;
+	return;
     }
 
     noconj = ( strncmp(trans, "T", 1)==0 );
@@ -226,7 +226,7 @@
 	}
     }
     if (alpha->r == 0. && alpha->i == 0.) {
-	return 0;
+	return;
     }
     if (strncmp(trans, "N", 1)==0) {
 
@@ -348,7 +348,7 @@
 	}
     }
 
-    return 0;
+    return;
 
 /*     End of ZGEMV . */
 

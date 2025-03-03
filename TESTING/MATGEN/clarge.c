@@ -3,6 +3,7 @@
 
 #include "../../SRC/slu_scomplex.h"
 #include "../../SRC/slu_sdefs.h"
+#include "../../SRC/slu_cdefs.h"
 
 /* Table of constant values */
 
@@ -23,9 +24,7 @@ static int c__1 = 1;
     static int i;
     extern /* Subroutine */ int cgerc_(int *, int *, singlecomplex *,
 	    singlecomplex *, int *, singlecomplex *, int *, singlecomplex *, int *),
-	     cscal_(int *, singlecomplex *, singlecomplex *, int *), cgemv_(char *
-	    , int *, int *, singlecomplex *, singlecomplex *, int *, singlecomplex *
-	    , int *, singlecomplex *, singlecomplex *, int *);
+	cscal_(int *, singlecomplex *, singlecomplex *, int *);
     extern float scnrm2_(int *, singlecomplex *, int *);
     static singlecomplex wa, wb;
     static float wn;

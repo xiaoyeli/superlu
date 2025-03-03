@@ -106,7 +106,7 @@ zlacon2_(int *n, doublecomplex *v, doublecomplex *x, double *est, int *kase, int
     extern double dmach(char *);
     extern int izmax1_slu(int *, doublecomplex *, int *);
     extern double dzsum1_slu(int *, doublecomplex *, int *);
-    extern int zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
+    extern void zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
 
     safmin = dmach("Safe minimum");
     if ( *kase == 0 ) {
@@ -179,7 +179,7 @@ L70:
     *est = dzsum1_slu(n, v, &c__1);
 
 
-/* L90: */
+L90:
     /*     TEST FOR CYCLING. */
     if (*est <= estold) goto L120;
 

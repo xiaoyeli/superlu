@@ -2,6 +2,7 @@
 */
 #include "../../SRC/slu_dcomplex.h"
 #include "../../SRC/slu_ddefs.h"
+#include "../../SRC/slu_zdefs.h"
 
 /* Table of constant values */
 
@@ -29,11 +30,7 @@ static int c__1 = 1;
 	    doublecomplex *, int *);
     extern /* Double Complex */ void zdotc_(doublecomplex *, int *,
 	    doublecomplex *, int *, doublecomplex *, int *);
-    extern /* Subroutine */ int zgemv_(char *, int *, int *,
-	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
-	    int *, doublecomplex *, doublecomplex *, int *),
-	    zaxpy_(int *, doublecomplex *, doublecomplex *, int *,
-	    doublecomplex *, int *), zsymv_(char *, int *,
+    extern /* Subroutine */ int	zsymv_(char *, int *,
 	    doublecomplex *, doublecomplex *, int *, doublecomplex *,
 	    int *, doublecomplex *, doublecomplex *, int *);
     extern double dznrm2_(int *, doublecomplex *, int *);

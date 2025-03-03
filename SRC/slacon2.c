@@ -105,7 +105,7 @@ slacon2_(int *n, float *v, float *x, int *isgn, float *est, int *kase, int isave
 #else
     extern int isamax_(int *, float *, int *);
     extern float sasum_(int *, float *, int *);
-    extern int scopy_(int *, float *, int *, float *, int *);
+    extern void scopy_(int *, float *, int *, float *, int *);
 #endif
 #define d_sign(a, b) (b >= 0 ? fabs(a) : -fabs(a))    /* Copy sign */
 #define i_dnnt(a) \

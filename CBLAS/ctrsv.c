@@ -6,7 +6,7 @@
 #include <string.h>
 #include "f2c.h"
 
-/* Subroutine */ int ctrsv_(char *uplo, char *trans, char *diag, integer *n, 
+/* Subroutine */ void ctrsv_(char *uplo, char *trans, char *diag, integer *n, 
 	singlecomplex *a, integer *lda, singlecomplex *x, integer *incx)
 {
 
@@ -155,13 +155,13 @@
     }
     if (info != 0) {
 	input_error("CTRSV ", &info);
-	return 0;
+	return;
     }
 
 /*     Quick return if possible. */
 
     if (*n == 0) {
-	return 0;
+	return;
     }
 
     noconj = (strncmp(trans, "T", 1)==0);
@@ -442,7 +442,7 @@
 	}
     }
 
-    return 0;
+    return;
 
 /*     End of CTRSV . */
 

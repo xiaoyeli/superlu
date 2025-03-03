@@ -1,0 +1,230 @@
+diff --git a/SRC/cgsrfs.c b/SRC/cgsrfs.c
+index ee4014b..416849d 100644
+--- a/SRC/cgsrfs.c
++++ b/SRC/cgsrfs.c
+@@ -175,8 +175,8 @@ cgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
+     extern int CCOPY(int *, singlecomplex *, int *, singlecomplex *, int *);
+     extern int CSAXPY(int *, singlecomplex *, singlecomplex *, int *, singlecomplex *, int *);
+ #else
+-    extern int ccopy_(int *, singlecomplex *, int *, singlecomplex *, int *);
+-    extern int caxpy_(int *, singlecomplex *, singlecomplex *, int *, singlecomplex *, int *);
++    extern void ccopy_(int *, singlecomplex *, int *, singlecomplex *, int *);
++    extern void caxpy_(int *, singlecomplex *, singlecomplex *, int *, singlecomplex *, int *);
+ #endif
+ 
+     Astore = A->Store;
+diff --git a/SRC/clacon2.c b/SRC/clacon2.c
+index 74ffbc3..7344317 100644
+--- a/SRC/clacon2.c
++++ b/SRC/clacon2.c
+@@ -106,7 +106,7 @@ clacon2_(int *n, singlecomplex *v, singlecomplex *x, float *est, int *kase, int
+     extern float smach(char *);
+     extern int icmax1_slu(int *, singlecomplex *, int *);
+     extern double scsum1_slu(int *, singlecomplex *, int *);
+-    extern int ccopy_(int *, singlecomplex *, int *, singlecomplex *, int *);
++    extern void ccopy_(int *, singlecomplex *, int *, singlecomplex *, int *);
+ 
+     safmin = smach("Safe minimum");
+     if ( *kase == 0 ) {
+diff --git a/SRC/dgsrfs.c b/SRC/dgsrfs.c
+index ebda1a1..367be39 100644
+--- a/SRC/dgsrfs.c
++++ b/SRC/dgsrfs.c
+@@ -175,8 +175,8 @@ dgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
+     extern int SCOPY(int *, double *, int *, double *, int *);
+     extern int SSAXPY(int *, double *, double *, int *, double *, int *);
+ #else
+-    extern int dcopy_(int *, double *, int *, double *, int *);
+-    extern int daxpy_(int *, double *, double *, int *, double *, int *);
++    extern void dcopy_(int *, double *, int *, double *, int *);
++    extern void daxpy_(int *, double *, double *, int *, double *, int *);
+ #endif
+ 
+     Astore = A->Store;
+diff --git a/SRC/dlacon2.c b/SRC/dlacon2.c
+index 656f3d8..17ad950 100644
+--- a/SRC/dlacon2.c
++++ b/SRC/dlacon2.c
+@@ -105,7 +105,7 @@ dlacon2_(int *n, double *v, double *x, int *isgn, double *est, int *kase, int is
+ #else
+     extern int idamax_(int *, double *, int *);
+     extern double dasum_(int *, double *, int *);
+-    extern int dcopy_(int *, double *, int *, double *, int *);
++    extern void dcopy_(int *, double *, int *, double *, int *);
+ #endif
+ #define d_sign(a, b) (b >= 0 ? fabs(a) : -fabs(a))    /* Copy sign */
+ #define i_dnnt(a) \
+diff --git a/SRC/sgsrfs.c b/SRC/sgsrfs.c
+index 406fbb0..36a0d33 100644
+--- a/SRC/sgsrfs.c
++++ b/SRC/sgsrfs.c
+@@ -175,8 +175,8 @@ sgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
+     extern int SCOPY(int *, float *, int *, float *, int *);
+     extern int SSAXPY(int *, float *, float *, int *, float *, int *);
+ #else
+-    extern int scopy_(int *, float *, int *, float *, int *);
+-    extern int saxpy_(int *, float *, float *, int *, float *, int *);
++    extern void scopy_(int *, float *, int *, float *, int *);
++    extern void saxpy_(int *, float *, float *, int *, float *, int *);
+ #endif
+ 
+     Astore = A->Store;
+diff --git a/SRC/slacon2.c b/SRC/slacon2.c
+index 5b197e4..2770f99 100644
+--- a/SRC/slacon2.c
++++ b/SRC/slacon2.c
+@@ -105,7 +105,7 @@ slacon2_(int *n, float *v, float *x, int *isgn, float *est, int *kase, int isave
+ #else
+     extern int isamax_(int *, float *, int *);
+     extern float sasum_(int *, float *, int *);
+-    extern int scopy_(int *, float *, int *, float *, int *);
++    extern void scopy_(int *, float *, int *, float *, int *);
+ #endif
+ #define d_sign(a, b) (b >= 0 ? fabs(a) : -fabs(a))    /* Copy sign */
+ #define i_dnnt(a) \
+diff --git a/SRC/slu_cdefs.h b/SRC/slu_cdefs.h
+index 0e8e178..b748025 100644
+--- a/SRC/slu_cdefs.h
++++ b/SRC/slu_cdefs.h
+@@ -264,14 +264,14 @@ extern void    ccheck_tempv(int, singlecomplex *);
+ 
+ /*! \brief BLAS */
+ 
+-extern int cgemm_(const char*, const char*, const int*, const int*, const int*,
++extern void cgemm_(const char*, const char*, const int*, const int*, const int*,
+                   const singlecomplex*, const singlecomplex*, const int*, const singlecomplex*,
+ 		  const int*, const singlecomplex*, singlecomplex*, const int*);
+-extern int ctrsv_(char*, char*, char*, int*, singlecomplex*, int*,
++extern void ctrsv_(char*, char*, char*, int*, singlecomplex*, int*,
+                   singlecomplex*, int*);
+-extern int ctrsm_(char*, char*, char*, char*, int*, int*,
++extern void ctrsm_(char*, char*, char*, char*, int*, int*,
+                   singlecomplex*, singlecomplex*, int*, singlecomplex*, int*);
+-extern int cgemv_(char *, int *, int *, singlecomplex *, singlecomplex *a, int *,
++extern void cgemv_(char *, int *, int *, singlecomplex *, singlecomplex *a, int *,
+                   singlecomplex *, int *, singlecomplex *, singlecomplex *, int *);
+ 
+ extern void cusolve(int, int, singlecomplex*, singlecomplex*);
+diff --git a/SRC/slu_ddefs.h b/SRC/slu_ddefs.h
+index ae50649..db752d1 100644
+--- a/SRC/slu_ddefs.h
++++ b/SRC/slu_ddefs.h
+@@ -261,14 +261,14 @@ extern void    dcheck_tempv(int, double *);
+ 
+ /*! \brief BLAS */
+ 
+-extern int dgemm_(const char*, const char*, const int*, const int*, const int*,
++extern void dgemm_(const char*, const char*, const int*, const int*, const int*,
+                   const double*, const double*, const int*, const double*,
+ 		  const int*, const double*, double*, const int*);
+-extern int dtrsv_(char*, char*, char*, int*, double*, int*,
++extern void dtrsv_(char*, char*, char*, int*, double*, int*,
+                   double*, int*);
+-extern int dtrsm_(char*, char*, char*, char*, int*, int*,
++extern void dtrsm_(char*, char*, char*, char*, int*, int*,
+                   double*, double*, int*, double*, int*);
+-extern int dgemv_(char *, int *, int *, double *, double *a, int *,
++extern void dgemv_(char *, int *, int *, double *, double *a, int *,
+                   double *, int *, double *, double *, int *);
+ 
+ extern void dusolve(int, int, double*, double*);
+diff --git a/SRC/slu_sdefs.h b/SRC/slu_sdefs.h
+index f56f215..117f509 100644
+--- a/SRC/slu_sdefs.h
++++ b/SRC/slu_sdefs.h
+@@ -261,14 +261,14 @@ extern void    scheck_tempv(int, float *);
+ 
+ /*! \brief BLAS */
+ 
+-extern int sgemm_(const char*, const char*, const int*, const int*, const int*,
++extern void sgemm_(const char*, const char*, const int*, const int*, const int*,
+                   const float*, const float*, const int*, const float*,
+ 		  const int*, const float*, float*, const int*);
+-extern int strsv_(char*, char*, char*, int*, float*, int*,
++extern void strsv_(char*, char*, char*, int*, float*, int*,
+                   float*, int*);
+-extern int strsm_(char*, char*, char*, char*, int*, int*,
++extern void strsm_(char*, char*, char*, char*, int*, int*,
+                   float*, float*, int*, float*, int*);
+-extern int sgemv_(char *, int *, int *, float *, float *a, int *,
++extern void sgemv_(char *, int *, int *, float *, float *a, int *,
+                   float *, int *, float *, float *, int *);
+ 
+ extern void susolve(int, int, float*, float*);
+diff --git a/SRC/slu_util.h b/SRC/slu_util.h
+index cc26372..e8ce150 100644
+--- a/SRC/slu_util.h
++++ b/SRC/slu_util.h
+@@ -366,7 +366,7 @@ typedef struct {
+ extern "C" {
+ #endif
+ 
+-extern int     input_error(char *, int *);
++extern void     input_error(char *, int *);
+ 
+ extern void    Destroy_SuperMatrix_Store(SuperMatrix *);
+ extern void    Destroy_CompCol_Matrix(SuperMatrix *);
+diff --git a/SRC/slu_zdefs.h b/SRC/slu_zdefs.h
+index 5dfe63e..1971ceb 100644
+--- a/SRC/slu_zdefs.h
++++ b/SRC/slu_zdefs.h
+@@ -264,14 +264,14 @@ extern void    zcheck_tempv(int, doublecomplex *);
+ 
+ /*! \brief BLAS */
+ 
+-extern int zgemm_(const char*, const char*, const int*, const int*, const int*,
++extern void zgemm_(const char*, const char*, const int*, const int*, const int*,
+                   const doublecomplex*, const doublecomplex*, const int*, const doublecomplex*,
+ 		  const int*, const doublecomplex*, doublecomplex*, const int*);
+-extern int ztrsv_(char*, char*, char*, int*, doublecomplex*, int*,
++extern void ztrsv_(char*, char*, char*, int*, doublecomplex*, int*,
+                   doublecomplex*, int*);
+-extern int ztrsm_(char*, char*, char*, char*, int*, int*,
++extern void ztrsm_(char*, char*, char*, char*, int*, int*,
+                   doublecomplex*, doublecomplex*, int*, doublecomplex*, int*);
+-extern int zgemv_(char *, int *, int *, doublecomplex *, doublecomplex *a, int *,
++extern void zgemv_(char *, int *, int *, doublecomplex *, doublecomplex *a, int *,
+                   doublecomplex *, int *, doublecomplex *, doublecomplex *, int *);
+ 
+ extern void zusolve(int, int, doublecomplex*, doublecomplex*);
+diff --git a/SRC/sp_ienv.c b/SRC/sp_ienv.c
+index 08edcba..cb0af0f 100644
+--- a/SRC/sp_ienv.c
++++ b/SRC/sp_ienv.c
+@@ -70,7 +70,7 @@ int
+ sp_ienv(int ispec)
+ {
+     int i;
+-    extern int input_error(char *, int *);
++    extern void input_error(char *, int *);
+ 
+     switch (ispec) {
+ 	case 1: return (20);
+diff --git a/SRC/zgsrfs.c b/SRC/zgsrfs.c
+index 9540e04..0c365e5 100644
+--- a/SRC/zgsrfs.c
++++ b/SRC/zgsrfs.c
+@@ -175,8 +175,8 @@ zgsrfs(trans_t trans, SuperMatrix *A, SuperMatrix *L, SuperMatrix *U,
+     extern int CCOPY(int *, doublecomplex *, int *, doublecomplex *, int *);
+     extern int CSAXPY(int *, doublecomplex *, doublecomplex *, int *, doublecomplex *, int *);
+ #else
+-    extern int zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
+-    extern int zaxpy_(int *, doublecomplex *, doublecomplex *, int *, doublecomplex *, int *);
++    extern void zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
++    extern void zaxpy_(int *, doublecomplex *, doublecomplex *, int *, doublecomplex *, int *);
+ #endif
+ 
+     Astore = A->Store;
+diff --git a/SRC/zlacon2.c b/SRC/zlacon2.c
+index 028b75e..e6e21a2 100644
+--- a/SRC/zlacon2.c
++++ b/SRC/zlacon2.c
+@@ -106,7 +106,7 @@ zlacon2_(int *n, doublecomplex *v, doublecomplex *x, double *est, int *kase, int
+     extern double dmach(char *);
+     extern int izmax1_slu(int *, doublecomplex *, int *);
+     extern double dzsum1_slu(int *, doublecomplex *, int *);
+-    extern int zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
++    extern void zcopy_(int *, doublecomplex *, int *, doublecomplex *, int *);
+ 
+     safmin = dmach("Safe minimum");
+     if ( *kase == 0 ) {

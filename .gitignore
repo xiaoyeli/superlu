@@ -1,5 +1,8 @@
 *~
 
+# Because cmake generates the following file, it can be ignored by git:
+SRC/superlu_config.h
+
 # You have to ignore this generated file or git will complain that it is an
 # unknown file!
 /make.inc

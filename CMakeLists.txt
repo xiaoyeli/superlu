@@ -159,12 +159,6 @@ if(BLAS_FOUND)
 else()
   message("-- Did not find or specify BLAS so configure to build internal CBLAS ...")
   add_subdirectory(CBLAS)
-  set(BLAS_LIB blas)
-  if (BUILD_SHARED_LIBS)  # export to be referenced by downstream makefile
-      set(BLAS_LIB_EXPORT ${CMAKE_INSTALL_PREFIX}/CBLAS/libblas.so)
-  else()
-      set(BLAS_LIB_EXPORT ${CMAKE_INSTALL_PREFIX}/CBLAS/libblas.a)
-  endif()
 endif()
 
 #--------------------- METIS ---------------------

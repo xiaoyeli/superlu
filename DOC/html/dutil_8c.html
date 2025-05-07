@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -62,16 +62,17 @@ Include dependency graph for dutil.c:</div>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" href="slu__ddefs_8h.html" title="Header file for real operations." alt="" coords="341,80,431,107"/>
 <area shape="rect" title=" " alt="" coords="735,155,799,181"/>
-<area shape="rect" title=" " alt="" coords="575,229,637,256"/>
-<area shape="rect" title=" " alt="" coords="742,229,806,256"/>
+<area shape="rect" title=" " alt="" coords="650,229,711,256"/>
+<area shape="rect" title=" " alt="" coords="795,229,859,256"/>
 <area shape="rect" title=" " alt="" coords="243,155,308,181"/>
-<area shape="rect" title=" " alt="" coords="41,229,107,256"/>
+<area shape="rect" title=" " alt="" coords="56,229,121,256"/>
 <area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="333,155,439,181"/>
 <area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="463,155,583,181"/>
 <area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="608,155,711,181"/>
 <area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="143,155,218,181"/>
-<area shape="rect" title=" " alt="" coords="319,229,389,256"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="131,229,295,256"/>
+<area shape="rect" title=" " alt="" coords="428,229,507,256"/>
+<area shape="rect" title=" " alt="" coords="146,229,215,256"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="240,229,404,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -118,11 +119,11 @@ Functions</h2></td></tr>
 <tr class="memitem:ae6aa0b8725411ba46ac42ee55503ee0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dutil_8c.html#ae6aa0b8725411ba46ac42ee55503ee0f">dinf_norm_error</a> (int nrhs, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X</a>, double *xtrue)</td></tr>
 <tr class="memdesc:ae6aa0b8725411ba46ac42ee55503ee0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the inf-norm of the error vector.  <a href="dutil_8c.html#ae6aa0b8725411ba46ac42ee55503ee0f">More...</a><br /></td></tr>
 <tr class="separator:ae6aa0b8725411ba46ac42ee55503ee0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c6e5de0836eb95d08cd15a4da367bcc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dutil_8c.html#a4c6e5de0836eb95d08cd15a4da367bcc">dPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, double rpg, double rcond, double *ferr, double *berr, char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
-<tr class="memdesc:a4c6e5de0836eb95d08cd15a4da367bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print performance of the code.  <a href="dutil_8c.html#a4c6e5de0836eb95d08cd15a4da367bcc">More...</a><br /></td></tr>
-<tr class="separator:a4c6e5de0836eb95d08cd15a4da367bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef4ac5badd8e67dc0be5797165aaf1af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dutil_8c.html#aef4ac5badd8e67dc0be5797165aaf1af">print_double_vec</a> (char *what, int n, double *vec)</td></tr>
-<tr class="separator:aef4ac5badd8e67dc0be5797165aaf1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adddcd414f3aa7b8bb9ab19524758e9e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dutil_8c.html#adddcd414f3aa7b8bb9ab19524758e9e1">dPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, double rpg, double rcond, double *ferr, const double *berr, const char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
+<tr class="memdesc:adddcd414f3aa7b8bb9ab19524758e9e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print performance of the code.  <a href="dutil_8c.html#adddcd414f3aa7b8bb9ab19524758e9e1">More...</a><br /></td></tr>
+<tr class="separator:adddcd414f3aa7b8bb9ab19524758e9e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dca59385febbab61affddc874877d11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dutil_8c.html#a2dca59385febbab61affddc874877d11">print_double_vec</a> (const char *what, int n, const double *vec)</td></tr>
+<tr class="separator:a2dca59385febbab61affddc874877d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
@@ -946,8 +947,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a4c6e5de0836eb95d08cd15a4da367bcc" name="a4c6e5de0836eb95d08cd15a4da367bcc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c6e5de0836eb95d08cd15a4da367bcc">&#9670;&nbsp;</a></span>dPrintPerf()</h2>
+<a id="adddcd414f3aa7b8bb9ab19524758e9e1" name="adddcd414f3aa7b8bb9ab19524758e9e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adddcd414f3aa7b8bb9ab19524758e9e1">&#9670;&nbsp;</a></span>dPrintPerf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -991,13 +992,13 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">const double *&#160;</td>
           <td class="paramname"><em>berr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>equed</em>, </td>
         </tr>
         <tr>
@@ -1016,8 +1017,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="aef4ac5badd8e67dc0be5797165aaf1af" name="aef4ac5badd8e67dc0be5797165aaf1af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef4ac5badd8e67dc0be5797165aaf1af">&#9670;&nbsp;</a></span>print_double_vec()</h2>
+<a id="a2dca59385febbab61affddc874877d11" name="a2dca59385febbab61affddc874877d11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dca59385febbab61affddc874877d11">&#9670;&nbsp;</a></span>print_double_vec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1025,7 +1026,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">int print_double_vec </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>what</em>, </td>
         </tr>
         <tr>
@@ -1037,7 +1038,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">const double *&#160;</td>
           <td class="paramname"><em>vec</em>&#160;</td>
         </tr>
         <tr>

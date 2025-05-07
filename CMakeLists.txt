@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.12)
 project(SuperLU C)
 set(VERSION_MAJOR "7")
 set(VERSION_MINOR "0")
-set(VERSION_BugFix "0")
+set(VERSION_BugFix "1")
 set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BugFix})
 
 # Compatibility to xSDK standard

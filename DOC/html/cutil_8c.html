@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -62,17 +62,18 @@ Include dependency graph for cutil.c:</div>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" href="slu__cdefs_8h.html" title="Header file for real operations." alt="" coords="409,80,499,107"/>
 <area shape="rect" title=" " alt="" coords="873,155,937,181"/>
-<area shape="rect" title=" " alt="" coords="643,229,705,256"/>
-<area shape="rect" title=" " alt="" coords="845,229,909,256"/>
+<area shape="rect" title=" " alt="" coords="719,229,781,256"/>
+<area shape="rect" title=" " alt="" coords="898,229,962,256"/>
 <area shape="rect" title=" " alt="" coords="243,155,308,181"/>
-<area shape="rect" title=" " alt="" coords="41,229,107,256"/>
+<area shape="rect" title=" " alt="" coords="56,229,121,256"/>
 <area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="333,155,439,181"/>
 <area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="463,155,583,181"/>
 <area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="608,155,711,181"/>
 <area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="143,155,218,181"/>
 <area shape="rect" href="slu__scomplex_8h.html" title="Header file for complex operations." alt="" coords="735,155,848,181"/>
-<area shape="rect" title=" " alt="" coords="319,229,389,256"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="131,229,295,256"/>
+<area shape="rect" title=" " alt="" coords="428,229,507,256"/>
+<area shape="rect" title=" " alt="" coords="146,229,215,256"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="240,229,404,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -119,11 +120,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a86feb269c89ab5b4bf2bc71acc321ec2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a86feb269c89ab5b4bf2bc71acc321ec2">cinf_norm_error</a> (int nrhs, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X</a>, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *xtrue)</td></tr>
 <tr class="memdesc:a86feb269c89ab5b4bf2bc71acc321ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the inf-norm of the error vector.  <a href="cutil_8c.html#a86feb269c89ab5b4bf2bc71acc321ec2">More...</a><br /></td></tr>
 <tr class="separator:a86feb269c89ab5b4bf2bc71acc321ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a84a1610e172fb59a0bc19a1dadcb9fbe">cPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, float rpg, float rcond, float *ferr, float *berr, char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
-<tr class="memdesc:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print performance of the code.  <a href="cutil_8c.html#a84a1610e172fb59a0bc19a1dadcb9fbe">More...</a><br /></td></tr>
-<tr class="separator:a84a1610e172fb59a0bc19a1dadcb9fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a978e60a61ebdd0d252afd24c9ea0e0a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a978e60a61ebdd0d252afd24c9ea0e0a9">print_singlecomplex_vec</a> (char *what, int n, <a class="el" href="structsinglecomplex.html">singlecomplex</a> *vec)</td></tr>
-<tr class="separator:a978e60a61ebdd0d252afd24c9ea0e0a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6845184b6ccff3d7c18e98f99110bbe1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a6845184b6ccff3d7c18e98f99110bbe1">cPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, float rpg, float rcond, float *ferr, const float *berr, const char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
+<tr class="memdesc:a6845184b6ccff3d7c18e98f99110bbe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print performance of the code.  <a href="cutil_8c.html#a6845184b6ccff3d7c18e98f99110bbe1">More...</a><br /></td></tr>
+<tr class="separator:a6845184b6ccff3d7c18e98f99110bbe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76925488870618a926666a5a1a4a0df6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cutil_8c.html#a76925488870618a926666a5a1a4a0df6">print_singlecomplex_vec</a> (const char *what, int n, const <a class="el" href="structsinglecomplex.html">singlecomplex</a> *vec)</td></tr>
+<tr class="separator:a76925488870618a926666a5a1a4a0df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
@@ -956,8 +957,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a84a1610e172fb59a0bc19a1dadcb9fbe" name="a84a1610e172fb59a0bc19a1dadcb9fbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84a1610e172fb59a0bc19a1dadcb9fbe">&#9670;&nbsp;</a></span>cPrintPerf()</h2>
+<a id="a6845184b6ccff3d7c18e98f99110bbe1" name="a6845184b6ccff3d7c18e98f99110bbe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6845184b6ccff3d7c18e98f99110bbe1">&#9670;&nbsp;</a></span>cPrintPerf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1001,13 +1002,13 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float *&#160;</td>
+          <td class="paramtype">const float *&#160;</td>
           <td class="paramname"><em>berr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>equed</em>, </td>
         </tr>
         <tr>
@@ -1026,8 +1027,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a978e60a61ebdd0d252afd24c9ea0e0a9" name="a978e60a61ebdd0d252afd24c9ea0e0a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a978e60a61ebdd0d252afd24c9ea0e0a9">&#9670;&nbsp;</a></span>print_singlecomplex_vec()</h2>
+<a id="a76925488870618a926666a5a1a4a0df6" name="a76925488870618a926666a5a1a4a0df6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76925488870618a926666a5a1a4a0df6">&#9670;&nbsp;</a></span>print_singlecomplex_vec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1035,7 +1036,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">int print_singlecomplex_vec </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>what</em>, </td>
         </tr>
         <tr>
@@ -1047,7 +1048,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structsinglecomplex.html">singlecomplex</a> *&#160;</td>
           <td class="paramname"><em>vec</em>&#160;</td>
         </tr>
         <tr>

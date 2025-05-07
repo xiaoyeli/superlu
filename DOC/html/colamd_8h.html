@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -49,16 +49,18 @@ $(function() {
   <div class="headertitle"><div class="title">colamd.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="superlu__config_8h_source.html">superlu_config.h</a>&quot;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="superlu__config_8h_source.html">superlu_config.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for colamd.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="colamd_8h__incl.png" border="0" usemap="#aSRC_2colamd_8h" alt=""/></div>
 <map name="aSRC_2colamd_8h" id="aSRC_2colamd_8h">
-<area shape="rect" title=" " alt="" coords="69,5,177,32"/>
-<area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="5,80,125,107"/>
-<area shape="rect" title=" " alt="" coords="149,80,213,107"/>
+<area shape="rect" title=" " alt="" coords="73,5,181,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,69,107"/>
+<area shape="rect" title=" " alt="" coords="94,80,159,107"/>
+<area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="184,80,304,107"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -136,7 +138,7 @@ Macros</h2></td></tr>
 <tr class="separator:ae97b9ba07b455e4ce07c53a4d71c1169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef0b9beac2af4dd945def68090fd6903"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#aef0b9beac2af4dd945def68090fd6903">SUITESPARSE_PRINTF</a>&#160;&#160;&#160;printf</td></tr>
 <tr class="separator:aef0b9beac2af4dd945def68090fd6903"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c27f78f2db3b7dcfcea6cdaf2010bc9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#a4c27f78f2db3b7dcfcea6cdaf2010bc9">SuiteSparse_long</a>&#160;&#160;&#160;long long int</td></tr>
+<tr class="memitem:a4c27f78f2db3b7dcfcea6cdaf2010bc9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#a4c27f78f2db3b7dcfcea6cdaf2010bc9">SuiteSparse_long</a>&#160;&#160;&#160;int64_t</td></tr>
 <tr class="separator:a4c27f78f2db3b7dcfcea6cdaf2010bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5508ef881ec0a26f42dbbcce580e597"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8h.html#ae5508ef881ec0a26f42dbbcce580e597">SuiteSparse_long_max</a>&#160;&#160;&#160;LONG_MAX</td></tr>
 <tr class="separator:ae5508ef881ec0a26f42dbbcce580e597"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -720,7 +722,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SuiteSparse_long&#160;&#160;&#160;long long int</td>
+          <td class="memname">#define SuiteSparse_long&#160;&#160;&#160;int64_t</td>
         </tr>
       </table>
 </div><div class="memdoc">

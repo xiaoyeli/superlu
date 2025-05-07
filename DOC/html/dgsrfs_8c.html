@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -63,16 +63,17 @@ Include dependency graph for dgsrfs.c:</div>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" href="slu__ddefs_8h.html" title="Header file for real operations." alt="" coords="341,80,431,107"/>
 <area shape="rect" title=" " alt="" coords="735,155,799,181"/>
-<area shape="rect" title=" " alt="" coords="575,229,637,256"/>
-<area shape="rect" title=" " alt="" coords="742,229,806,256"/>
+<area shape="rect" title=" " alt="" coords="650,229,711,256"/>
+<area shape="rect" title=" " alt="" coords="795,229,859,256"/>
 <area shape="rect" title=" " alt="" coords="243,155,308,181"/>
-<area shape="rect" title=" " alt="" coords="41,229,107,256"/>
+<area shape="rect" title=" " alt="" coords="56,229,121,256"/>
 <area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="333,155,439,181"/>
 <area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="463,155,583,181"/>
 <area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="608,155,711,181"/>
 <area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="143,155,218,181"/>
-<area shape="rect" title=" " alt="" coords="319,229,389,256"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="131,229,295,256"/>
+<area shape="rect" title=" " alt="" coords="428,229,507,256"/>
+<area shape="rect" title=" " alt="" coords="146,229,215,256"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="240,229,404,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -288,7 +289,7 @@ trans   (input) trans_t
 
   X       (input/output) SuperMatrix*
           X has types: Stype = SLU_DN, Dtype = SLU_D, Mtype = SLU_GE.
-          On entry, the solution matrix X, as computed by <a class="el" href="dgstrs_8c.html#a6e3eace519372b7dfcd053e0d3614fc1">dgstrs()</a>.
+          On entry, the solution matrix X, as computed by <a class="el" href="dgstrs_8c.html#a864d146711cf2746e1e4d9d160f52521">dgstrs()</a>.
           On exit, the improved solution matrix X.
           if *equed = 'C' or 'B', X should be premultiplied by diag(C)
               in order to obtain the solution to the original system.
@@ -329,23 +330,23 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,613,64,640"/>
 <area shape="rect" href="ilu__ddrop__row_8c.html#a5112358cf2de43341aaff9fba0066afc" title=" " alt="" coords="124,5,189,32"/>
 <area shape="rect" href="ilu__dcopy__to__ucol_8c.html#a24a0d368c78074384922e9d10b43f820" title=" " alt="" coords="267,5,332,32"/>
-<area shape="rect" href="dgstrs_8c.html#a6e3eace519372b7dfcd053e0d3614fc1" title=" " alt="" coords="127,411,186,437"/>
+<area shape="rect" href="dgstrs_8c.html#a864d146711cf2746e1e4d9d160f52521" title=" " alt="" coords="127,411,186,437"/>
 <area shape="rect" href="SRC_2dmemory_8c.html#ac67b2ffe0b0c24cb28a82520689166b1" title=" " alt="" coords="249,613,349,640"/>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="403,664,490,691"/>
 <area shape="rect" href="dlacon2_8c.html#a2c302d4fb016bb92527dcd1e360198c3" title=" " alt="" coords="119,107,195,133"/>
 <area shape="rect" href="dmach_8c.html#a9619845d75710daa0aa4549c2862bae5" title=" " alt="" coords="125,765,188,792"/>
 <area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="112,816,201,843"/>
 <area shape="rect" href="dsp__blas2_8c.html#a221dfb4c5cbc550095a989c61fec4993" title="Performs one of the matrix&#45;vector operations y := alpha*A*x + beta*y, or y := alpha*A&#39;*x + beta*y," alt="" coords="115,664,199,691"/>
-<area shape="rect" href="slu__ddefs_8h.html#acc7c47067de037060e4c4227ee6aaa48" title="BLAS." alt="" coords="263,309,336,336"/>
+<area shape="rect" href="slu__ddefs_8h.html#a31f23c62b0019cdfc94ff9c4c70879b1" title=" " alt="" coords="263,309,336,336"/>
 <area shape="rect" href="dmyblas2_8c.html#a986e55bb6eac4e68b78c98b8276557db" title="Solves a dense UNIT lower triangular system." alt="" coords="415,512,479,539"/>
 <area shape="rect" href="dmyblas2_8c.html#a703303b4c9cdd6074c55e83970db83b6" title="Performs a dense matrix&#45;vector multiply: Mxvec = Mxvec + M * vec." alt="" coords="411,208,483,235"/>
 <area shape="rect" href="SRC_2dmemory_8c.html#a032db6b3a4ed1f7c0f5375a7b87666ce" title=" " alt="" coords="397,309,496,336"/>
-<area shape="rect" href="dgstrs_8c.html#a1532445fd4c7e1e91d5bd11dbf78364f" title=" " alt="" coords="256,208,343,235"/>
-<area shape="rect" href="slu__ddefs_8h.html#a98496794e14272b95cd4ba4c09c526d2" title=" " alt="" coords="268,259,331,285"/>
+<area shape="rect" href="dgstrs_8c.html#a88a3eb66125e289fa7aa040338228f28" title=" " alt="" coords="256,208,343,235"/>
+<area shape="rect" href="slu__ddefs_8h.html#a9b4367981c00e5391ffbd0f53806a20f" title=" " alt="" coords="268,259,331,285"/>
 <area shape="rect" href="dmyblas2_8c.html#a47847fb71c3589e4d725db85052896fd" title="Solves a dense upper triangular system." alt="" coords="413,461,481,488"/>
 <area shape="rect" href="dsp__blas2_8c.html#aaa92ff654356fe62f70ebef5815627e4" title="Solves one of the systems of equations A*x = b, or A&#39;*x = b." alt="" coords="263,411,335,437"/>
-<area shape="rect" href="slu__ddefs_8h.html#ab9959831d583511b25c4de2ebb2448e2" title=" " alt="" coords="412,411,481,437"/>
-<area shape="rect" href="slu__ddefs_8h.html#a8bf1e89ca04a7d8384577eb9842e9ffa" title=" " alt="" coords="417,360,476,387"/>
+<area shape="rect" href="slu__ddefs_8h.html#ad9850e4d21f8397be3d9962f2cff4072" title=" " alt="" coords="412,411,481,437"/>
+<area shape="rect" href="slu__ddefs_8h.html#a16589ca2d9afd5e7067771a935546d3c" title=" " alt="" coords="417,360,476,387"/>
 <area shape="rect" href="ilu__ddrop__row_8c.html#abe00831e789ca38cf884de56ddf70bd7" title=" " alt="" coords="265,56,334,83"/>
 <area shape="rect" href="ilu__ddrop__row_8c.html#afdb24942915626f5de65c50cb31c267a" title=" " alt="" coords="263,107,335,133"/>
 </map>

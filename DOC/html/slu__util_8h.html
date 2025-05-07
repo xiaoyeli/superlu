@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -57,6 +57,7 @@ $(function() {
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;inttypes.h&gt;</code><br />
 <code>#include &lt;assert.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="superlu__enum__consts_8h_source.html">superlu_enum_consts.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -64,12 +65,13 @@ Include dependency graph for slu_util.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="slu__util_8h__incl.png" border="0" usemap="#aSRC_2slu__util_8h" alt=""/></div>
 <map name="aSRC_2slu__util_8h" id="aSRC_2slu__util_8h">
-<area shape="rect" title="Utility header file." alt="" coords="159,5,265,32"/>
+<area shape="rect" title="Utility header file." alt="" coords="207,5,313,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,67,107"/>
 <area shape="rect" title=" " alt="" coords="91,80,155,107"/>
 <area shape="rect" title=" " alt="" coords="179,80,245,107"/>
-<area shape="rect" title=" " alt="" coords="269,80,339,107"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="363,80,527,107"/>
+<area shape="rect" title=" " alt="" coords="269,80,347,107"/>
+<area shape="rect" title=" " alt="" coords="372,80,441,107"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="466,80,630,107"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -110,7 +112,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" href="cldperm_8c.html" title="Finds a row permutation so that the matrix has large entries on the diagonal." alt="" coords="3789,155,3901,181"/>
 <area shape="rect" href="cmemory_8c.html" title="Memory details." alt="" coords="3925,155,4044,181"/>
 <area shape="rect" href="cpanel__bmod_8c.html" title="Performs numeric block updates." alt="" coords="4069,155,4213,181"/>
-<area shape="rect" href="cpanel__dfs_8c.html" title="Peforms a symbolic factorization on a panel of symbols." alt="" coords="4237,155,4367,181"/>
+<area shape="rect" href="cpanel__dfs_8c.html" title="Performs a symbolic factorization on a panel of symbols." alt="" coords="4237,155,4367,181"/>
 <area shape="rect" href="cpivotL_8c.html" title="Performs numerical pivoting." alt="" coords="4391,155,4498,181"/>
 <area shape="rect" href="cpivotgrowth_8c.html" title="Computes the reciprocal pivot growth factor." alt="" coords="4522,155,4661,181"/>
 <area shape="rect" href="cpruneL_8c.html" title="Prunes the L&#45;structure." alt="" coords="4685,155,4797,181"/>
@@ -126,7 +128,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" href="ilu__ccolumn__dfs_8c.html" title="Performs a symbolic factorization." alt="" coords="6122,155,6282,181"/>
 <area shape="rect" href="ilu__ccopy__to__ucol_8c.html" title="Copy a computed column of U to the compressed data structure and drop some small entries." alt="" coords="6306,155,6477,181"/>
 <area shape="rect" href="ilu__cdrop__row_8c.html" title="Drop small rows from L." alt="" coords="6501,155,6647,181"/>
-<area shape="rect" href="ilu__cpanel__dfs_8c.html" title="Peforms a symbolic factorization on a panel of symbols and record the entries with maximum absolute v..." alt="" coords="6671,155,6821,181"/>
+<area shape="rect" href="ilu__cpanel__dfs_8c.html" title="Performs a symbolic factorization on a panel of symbols and record the entries with maximum absolute ..." alt="" coords="6671,155,6821,181"/>
 </map>
 </div>
 </div>
@@ -154,7 +156,7 @@ Macros</h2></td></tr>
 <tr class="separator:afe01e917327c4067f6235c152a6893ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a567c8cda36987b320c4c97db21963f71"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a567c8cda36987b320c4c97db21963f71">SUPERLU_MINOR_VERSION</a>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:a567c8cda36987b320c4c97db21963f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d6404de6061ed20841fa0a43684b243"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a5d6404de6061ed20841fa0a43684b243">SUPERLU_PATCH_VERSION</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a5d6404de6061ed20841fa0a43684b243"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a5d6404de6061ed20841fa0a43684b243">SUPERLU_PATCH_VERSION</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a5d6404de6061ed20841fa0a43684b243"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a745e85e3ef4b1267858c9df86608518c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a745e85e3ef4b1267858c9df86608518c">FIRSTCOL_OF_SNODE</a>(i)&#160;&#160;&#160;(xsup[i])</td></tr>
 <tr class="separator:a745e85e3ef4b1267858c9df86608518c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,7 +164,7 @@ Macros</h2></td></tr>
 <tr class="separator:a9b7b2a5116ee487722b0967317ab6360"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06193b28f40a4779ae7737711642eb45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a06193b28f40a4779ae7737711642eb45">NUM_TEMPV</a>(m,  w,  t,  b)&#160;&#160;&#160;( <a class="el" href="slu__util_8h.html#adca8259e9d345c7cbaaa0608a1acdfd4">SUPERLU_MAX</a>(m, (t + b)*w) )</td></tr>
 <tr class="separator:a06193b28f40a4779ae7737711642eb45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaba7be0a786a716c200675ac43827e2a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#aaba7be0a786a716c200675ac43827e2a">USER_ABORT</a>(msg)&#160;&#160;&#160;<a class="el" href="util_8c.html#a060bded38730c2e58fa7f7e19c43ba08">superlu_abort_and_exit</a>(msg)</td></tr>
+<tr class="memitem:aaba7be0a786a716c200675ac43827e2a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#aaba7be0a786a716c200675ac43827e2a">USER_ABORT</a>(msg)&#160;&#160;&#160;<a class="el" href="util_8c.html#a6a39277da8d63fe56dcae88af441722d">superlu_abort_and_exit</a>(msg)</td></tr>
 <tr class="separator:aaba7be0a786a716c200675ac43827e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4b133a54309e2c6e4ba69f3ff1141c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#aa4b133a54309e2c6e4ba69f3ff1141c2">ABORT</a>(err_msg)</td></tr>
 <tr class="separator:aa4b133a54309e2c6e4ba69f3ff1141c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,8 +194,8 @@ Macros</h2></td></tr>
 <tr class="separator:ac641190b1a047ebcf224372cb3dfec68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbd74ce05240823854ebfcd301f200e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#acbd74ce05240823854ebfcd301f200e8">U_SUB</a>(ptr)&#160;&#160;&#160;( Ustore-&gt;rowind[ptr] )</td></tr>
 <tr class="separator:acbd74ce05240823854ebfcd301f200e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b7cf2a3641be7b89138615764d60ba3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a2b7cf2a3641be7b89138615764d60ba3">EMPTY</a>&#160;&#160;&#160;(-1)</td></tr>
-<tr class="separator:a2b7cf2a3641be7b89138615764d60ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03fe07e9bb7850ef2079b763dcc3dedb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a03fe07e9bb7850ef2079b763dcc3dedb">SLU_EMPTY</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="separator:a03fe07e9bb7850ef2079b763dcc3dedb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa93f0eb578d23995850d61f7d61c55c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:aa93f0eb578d23995850d61f7d61c55c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>&#160;&#160;&#160;1</td></tr>
@@ -260,11 +262,11 @@ Functions</h2></td></tr>
 <tr class="memitem:afce6cba2b855a4b046f6521d5dd1beb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#afce6cba2b855a4b046f6521d5dd1beb4">ilu_set_default_options</a> (<a class="el" href="structsuperlu__options__t.html">superlu_options_t</a> *options)</td></tr>
 <tr class="memdesc:afce6cba2b855a4b046f6521d5dd1beb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the default values for the options argument for ILU.  <a href="slu__util_8h.html#afce6cba2b855a4b046f6521d5dd1beb4">More...</a><br /></td></tr>
 <tr class="separator:afce6cba2b855a4b046f6521d5dd1beb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf9c573cbfb4520a5ea820702d27cfa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#adf9c573cbfb4520a5ea820702d27cfa5">sp_preorder</a> (<a class="el" href="structsuperlu__options__t.html">superlu_options_t</a> *, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *, int *, int *, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *)</td></tr>
-<tr class="separator:adf9c573cbfb4520a5ea820702d27cfa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd38b081866ed2c3e4959c4c0560913c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#abd38b081866ed2c3e4959c4c0560913c">superlu_abort_and_exit</a> (char *)</td></tr>
-<tr class="memdesc:abd38b081866ed2c3e4959c4c0560913c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print message to error stream and exit program.  <a href="slu__util_8h.html#abd38b081866ed2c3e4959c4c0560913c">More...</a><br /></td></tr>
-<tr class="separator:abd38b081866ed2c3e4959c4c0560913c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88109ec54194f0e00c3fe259ce7f4732"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a88109ec54194f0e00c3fe259ce7f4732">sp_preorder</a> (const <a class="el" href="structsuperlu__options__t.html">superlu_options_t</a> *, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *, int *, int *, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *)</td></tr>
+<tr class="separator:a88109ec54194f0e00c3fe259ce7f4732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1389f8a2cec7883a38779a48984d452"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ad1389f8a2cec7883a38779a48984d452">superlu_abort_and_exit</a> (const char *)</td></tr>
+<tr class="memdesc:ad1389f8a2cec7883a38779a48984d452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print message to error stream and exit program.  <a href="slu__util_8h.html#ad1389f8a2cec7883a38779a48984d452">More...</a><br /></td></tr>
+<tr class="separator:ad1389f8a2cec7883a38779a48984d452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54fe4aca58cd68663861237857770851"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a54fe4aca58cd68663861237857770851">superlu_malloc</a> (size_t)</td></tr>
 <tr class="separator:a54fe4aca58cd68663861237857770851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af307f9df55df3ab0dbacefe59470c2e4"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#af307f9df55df3ab0dbacefe59470c2e4">int32Malloc</a> (int)</td></tr>
@@ -280,14 +282,14 @@ Functions</h2></td></tr>
 <tr class="memitem:abe99c041a73249c847f667bb2807c30b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#abe99c041a73249c847f667bb2807c30b">SetIWork</a> (int, int, int, int *, int **, int **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **xplore, int **, int **, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> **xprune, int **)</td></tr>
 <tr class="memdesc:abe99c041a73249c847f667bb2807c30b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up pointers for integer working arrays.  <a href="slu__util_8h.html#abe99c041a73249c847f667bb2807c30b">More...</a><br /></td></tr>
 <tr class="separator:abe99c041a73249c847f667bb2807c30b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62b7552d244b62157fa7fc32e006bcba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a62b7552d244b62157fa7fc32e006bcba">sp_coletree</a> (<a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, int, int, int *)</td></tr>
-<tr class="separator:a62b7552d244b62157fa7fc32e006bcba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9dcebe0d2709ff7ab053c3acb8f35af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#aa9dcebe0d2709ff7ab053c3acb8f35af">relax_snode</a> (const int, int *, const int, int *, int *)</td></tr>
-<tr class="separator:aa9dcebe0d2709ff7ab053c3acb8f35af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38eb510085c25622a32cc28ad803a318"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a38eb510085c25622a32cc28ad803a318">sp_coletree</a> (const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, int, int, int *)</td></tr>
+<tr class="separator:a38eb510085c25622a32cc28ad803a318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a698e718c956675125558efc4b033f273"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a698e718c956675125558efc4b033f273">relax_snode</a> (const int, const int *, const int, int *, int *)</td></tr>
+<tr class="separator:a698e718c956675125558efc4b033f273"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade3f23f612ced035318a59623b6925e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ade3f23f612ced035318a59623b6925e5">heap_relax_snode</a> (const int, int *, const int, int *, int *)</td></tr>
 <tr class="separator:ade3f23f612ced035318a59623b6925e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa67feb8d213a12c562f86b10e6eea7b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#aa67feb8d213a12c562f86b10e6eea7b4">mark_relax</a> (int, int *, int *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, int *)</td></tr>
-<tr class="separator:aa67feb8d213a12c562f86b10e6eea7b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57aef4dec89f5ada342286ab3b1f46c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a57aef4dec89f5ada342286ab3b1f46c2">mark_relax</a> (int, const int *, const int *, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *, int *)</td></tr>
+<tr class="separator:a57aef4dec89f5ada342286ab3b1f46c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27e75d77e5efd62dc8e0fdbd1f50b7ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a27e75d77e5efd62dc8e0fdbd1f50b7ab">countnz</a> (const int n, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *xprune, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *nnzL, <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *nnzU, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *)</td></tr>
 <tr class="memdesc:a27e75d77e5efd62dc8e0fdbd1f50b7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count the total number of nonzeros in factors L and U, and in the symmetrically reduced L.  <a href="slu__util_8h.html#a27e75d77e5efd62dc8e0fdbd1f50b7ab">More...</a><br /></td></tr>
 <tr class="separator:a27e75d77e5efd62dc8e0fdbd1f50b7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -297,8 +299,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a7061332d759d7e4d73c1b2e5cb0bf2bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a7061332d759d7e4d73c1b2e5cb0bf2bf">fixupL</a> (const int, const int *, <a class="el" href="structGlobalLU__t.html">GlobalLU_t</a> *)</td></tr>
 <tr class="memdesc:a7061332d759d7e4d73c1b2e5cb0bf2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fix up the data storage lsub for L-subscripts.  <a href="slu__util_8h.html#a7061332d759d7e4d73c1b2e5cb0bf2bf">More...</a><br /></td></tr>
 <tr class="separator:a7061332d759d7e4d73c1b2e5cb0bf2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2212f489d8bb77b74c61e0a7442796a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a2212f489d8bb77b74c61e0a7442796a8">ilu_relax_snode</a> (const int, int *, const int, int *, int *, int *)</td></tr>
-<tr class="separator:a2212f489d8bb77b74c61e0a7442796a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a757f7350ef35ce6539efa9ecf510e19e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a757f7350ef35ce6539efa9ecf510e19e">ilu_relax_snode</a> (const int, const int *, const int, int *, int *, int *)</td></tr>
+<tr class="separator:a757f7350ef35ce6539efa9ecf510e19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd37f89f3fd101b2860c26b45bd4c2a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#acd37f89f3fd101b2860c26b45bd4c2a1">ilu_heap_relax_snode</a> (const int, int *, const int, int *, int *, int *)</td></tr>
 <tr class="separator:acd37f89f3fd101b2860c26b45bd4c2a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab71db926d60d7b8fd739df197b766366"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ab71db926d60d7b8fd739df197b766366">resetrep_col</a> (const int, const int *, int *)</td></tr>
@@ -320,14 +322,14 @@ Functions</h2></td></tr>
 <tr class="separator:ab0dfb6551008bcad5e758defdbd13006"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01ded59744addeefd265dbb22d9f37d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a01ded59744addeefd265dbb22d9f37d0">snode_profile</a> (int, int *)</td></tr>
 <tr class="separator:a01ded59744addeefd265dbb22d9f37d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac33e407326ae1dc222aee7ff08f322cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ac33e407326ae1dc222aee7ff08f322cf">super_stats</a> (int, int *)</td></tr>
-<tr class="separator:ac33e407326ae1dc222aee7ff08f322cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e29ce75ab694aa7fdb32b7644f9da69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a9e29ce75ab694aa7fdb32b7644f9da69">check_repfnz</a> (int, int, int, int *)</td></tr>
-<tr class="memdesc:a9e29ce75ab694aa7fdb32b7644f9da69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether repfnz[] == EMPTY after reset.  <a href="slu__util_8h.html#a9e29ce75ab694aa7fdb32b7644f9da69">More...</a><br /></td></tr>
-<tr class="separator:a9e29ce75ab694aa7fdb32b7644f9da69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47292875a12f5601efa82a4350656db8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a47292875a12f5601efa82a4350656db8">PrintSumm</a> (char *, int, int, int)</td></tr>
-<tr class="memdesc:a47292875a12f5601efa82a4350656db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a summary of the testing results.  <a href="slu__util_8h.html#a47292875a12f5601efa82a4350656db8">More...</a><br /></td></tr>
-<tr class="separator:a47292875a12f5601efa82a4350656db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab55ad36cb7d8e1a542980c3de62b8128"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ab55ad36cb7d8e1a542980c3de62b8128">super_stats</a> (int, const int *)</td></tr>
+<tr class="separator:ab55ad36cb7d8e1a542980c3de62b8128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad07309870833b294a72d520e2f331b2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ad07309870833b294a72d520e2f331b2e">check_repfnz</a> (int, int, int, const int *)</td></tr>
+<tr class="memdesc:ad07309870833b294a72d520e2f331b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether repfnz[] == SLU_EMPTY after reset.  <a href="slu__util_8h.html#ad07309870833b294a72d520e2f331b2e">More...</a><br /></td></tr>
+<tr class="separator:ad07309870833b294a72d520e2f331b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a522d5dbbeb2ad4fbe50e6bcc80cd1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a9a522d5dbbeb2ad4fbe50e6bcc80cd1e">PrintSumm</a> (const char *, int, int, int)</td></tr>
+<tr class="memdesc:a9a522d5dbbeb2ad4fbe50e6bcc80cd1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a summary of the testing results.  <a href="slu__util_8h.html#a9a522d5dbbeb2ad4fbe50e6bcc80cd1e">More...</a><br /></td></tr>
+<tr class="separator:a9a522d5dbbeb2ad4fbe50e6bcc80cd1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b979ab4f4e75bdc1b89106dde6c8d72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a3b979ab4f4e75bdc1b89106dde6c8d72">StatInit</a> (<a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *)</td></tr>
 <tr class="memdesc:a3b979ab4f4e75bdc1b89106dde6c8d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize SuperLU stat.  <a href="slu__util_8h.html#a3b979ab4f4e75bdc1b89106dde6c8d72">More...</a><br /></td></tr>
 <tr class="separator:a3b979ab4f4e75bdc1b89106dde6c8d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -337,18 +339,18 @@ Functions</h2></td></tr>
 <tr class="memitem:ab0fb3345d479a7ac24f75f0e64bdff4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ab0fb3345d479a7ac24f75f0e64bdff4b">StatFree</a> (<a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *)</td></tr>
 <tr class="memdesc:ab0fb3345d479a7ac24f75f0e64bdff4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocate SuperLU stat.  <a href="slu__util_8h.html#ab0fb3345d479a7ac24f75f0e64bdff4b">More...</a><br /></td></tr>
 <tr class="separator:ab0fb3345d479a7ac24f75f0e64bdff4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48208ca68e95c765c0c55c12b196d79e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a48208ca68e95c765c0c55c12b196d79e">print_panel_seg</a> (int, int, int, int, int *, int *)</td></tr>
-<tr class="memdesc:a48208ca68e95c765c0c55c12b196d79e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagnostic print of segment info after panel_dfs().  <a href="slu__util_8h.html#a48208ca68e95c765c0c55c12b196d79e">More...</a><br /></td></tr>
-<tr class="separator:a48208ca68e95c765c0c55c12b196d79e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4885c929f82623b67a05fd439463487"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ad4885c929f82623b67a05fd439463487">print_int_vec</a> (char *what, int n, int *vec)</td></tr>
-<tr class="memdesc:ad4885c929f82623b67a05fd439463487"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print content of int array.  <a href="slu__util_8h.html#ad4885c929f82623b67a05fd439463487">More...</a><br /></td></tr>
-<tr class="separator:ad4885c929f82623b67a05fd439463487"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12ac1c212aea27743993db71020592c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a12ac1c212aea27743993db71020592c2">slu_PrintInt10</a> (char *name, int len, int *x)</td></tr>
-<tr class="memdesc:a12ac1c212aea27743993db71020592c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print content of int array with index numbers after every tenth row.  <a href="slu__util_8h.html#a12ac1c212aea27743993db71020592c2">More...</a><br /></td></tr>
-<tr class="separator:a12ac1c212aea27743993db71020592c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83d0844717cd9ffc862d97c194b21833"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a83d0844717cd9ffc862d97c194b21833">check_perm</a> (char *what, int n, int *perm)</td></tr>
-<tr class="memdesc:a83d0844717cd9ffc862d97c194b21833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validity check of a permutation.  <a href="slu__util_8h.html#a83d0844717cd9ffc862d97c194b21833">More...</a><br /></td></tr>
-<tr class="separator:a83d0844717cd9ffc862d97c194b21833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7740736afe50085829e480d29c8597fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a7740736afe50085829e480d29c8597fe">print_panel_seg</a> (int, int, int, int, const int *, const int *)</td></tr>
+<tr class="memdesc:a7740736afe50085829e480d29c8597fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagnostic print of segment info after panel_dfs().  <a href="slu__util_8h.html#a7740736afe50085829e480d29c8597fe">More...</a><br /></td></tr>
+<tr class="separator:a7740736afe50085829e480d29c8597fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad68056591a60355a39b66561ca6b4a03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#ad68056591a60355a39b66561ca6b4a03">print_int_vec</a> (const char *what, int n, const int *vec)</td></tr>
+<tr class="memdesc:ad68056591a60355a39b66561ca6b4a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print content of int array.  <a href="slu__util_8h.html#ad68056591a60355a39b66561ca6b4a03">More...</a><br /></td></tr>
+<tr class="separator:ad68056591a60355a39b66561ca6b4a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a938d6a58ec5cd69794dc4ff8ab75d352"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a938d6a58ec5cd69794dc4ff8ab75d352">slu_PrintInt10</a> (const char *name, int len, const int *x)</td></tr>
+<tr class="memdesc:a938d6a58ec5cd69794dc4ff8ab75d352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print content of int array with index numbers after every tenth row.  <a href="slu__util_8h.html#a938d6a58ec5cd69794dc4ff8ab75d352">More...</a><br /></td></tr>
+<tr class="separator:a938d6a58ec5cd69794dc4ff8ab75d352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30f880a48cf468173067bcc9ad5cb6bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slu__util_8h.html#a30f880a48cf468173067bcc9ad5cb6bf">check_perm</a> (const char *what, int n, const int *perm)</td></tr>
+<tr class="memdesc:a30f880a48cf468173067bcc9ad5cb6bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validity check of a permutation.  <a href="slu__util_8h.html#a30f880a48cf468173067bcc9ad5cb6bf">More...</a><br /></td></tr>
+<tr class="separator:a30f880a48cf468173067bcc9ad5cb6bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
@@ -393,8 +395,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    {                 \</div>
-<div class="line">    extern <span class="keywordtype">int</span> superlu_malloc_total;        \</div>
-<div class="line">    printf(<span class="stringliteral">&quot;%s: malloc_total %d Bytes\n&quot;</span>,     \</div>
+<div class="line">    extern int64_t superlu_malloc_total;        \</div>
+<div class="line">    printf(<span class="stringliteral">&quot;%s: malloc_total %lld Bytes\n&quot;</span>,     \</div>
 <div class="line">           where, superlu_malloc_total); \</div>
 <div class="line">}</div>
 </div><!-- fragment -->
@@ -497,20 +499,6 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define DROP_SECONDARY&#160;&#160;&#160;( 0x000E )  /* PROWS | COLUMN | AREA */</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2b7cf2a3641be7b89138615764d60ba3" name="a2b7cf2a3641be7b89138615764d60ba3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b7cf2a3641be7b89138615764d60ba3">&#9670;&nbsp;</a></span>EMPTY</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define EMPTY&#160;&#160;&#160;(-1)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -721,6 +709,20 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a03fe07e9bb7850ef2079b763dcc3dedb" name="a03fe07e9bb7850ef2079b763dcc3dedb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03fe07e9bb7850ef2079b763dcc3dedb">&#9670;&nbsp;</a></span>SLU_EMPTY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SLU_EMPTY&#160;&#160;&#160;(-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9672c5511c3efd9467e4d375a347c192" name="a9672c5511c3efd9467e4d375a347c192"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9672c5511c3efd9467e4d375a347c192">&#9670;&nbsp;</a></span>SUPERLU_FREE</h2>
 
@@ -848,7 +850,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERLU_PATCH_VERSION&#160;&#160;&#160;0</td>
+          <td class="memname">#define SUPERLU_PATCH_VERSION&#160;&#160;&#160;1</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -916,7 +918,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">msg</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="util_8c.html#a060bded38730c2e58fa7f7e19c43ba08">superlu_abort_and_exit</a>(msg)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="util_8c.html#a6a39277da8d63fe56dcae88af441722d">superlu_abort_and_exit</a>(msg)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1003,8 +1005,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a83d0844717cd9ffc862d97c194b21833" name="a83d0844717cd9ffc862d97c194b21833"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83d0844717cd9ffc862d97c194b21833">&#9670;&nbsp;</a></span>check_perm()</h2>
+<a id="a30f880a48cf468173067bcc9ad5cb6bf" name="a30f880a48cf468173067bcc9ad5cb6bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30f880a48cf468173067bcc9ad5cb6bf">&#9670;&nbsp;</a></span>check_perm()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1012,7 +1014,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void check_perm </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>what</em>, </td>
         </tr>
         <tr>
@@ -1024,7 +1026,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>perm</em>&#160;</td>
         </tr>
         <tr>
@@ -1045,8 +1047,8 @@ Functions</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="slu__util_8h_a83d0844717cd9ffc862d97c194b21833_cgraph.png" border="0" usemap="#aslu__util_8h_a83d0844717cd9ffc862d97c194b21833_cgraph" alt=""/></div>
-<map name="aslu__util_8h_a83d0844717cd9ffc862d97c194b21833_cgraph" id="aslu__util_8h_a83d0844717cd9ffc862d97c194b21833_cgraph">
+<div class="center"><img src="slu__util_8h_a30f880a48cf468173067bcc9ad5cb6bf_cgraph.png" border="0" usemap="#aslu__util_8h_a30f880a48cf468173067bcc9ad5cb6bf_cgraph" alt=""/></div>
+<map name="aslu__util_8h_a30f880a48cf468173067bcc9ad5cb6bf_cgraph" id="aslu__util_8h_a30f880a48cf468173067bcc9ad5cb6bf_cgraph">
 <area shape="rect" title="Validity check of a permutation." alt="" coords="5,5,100,32"/>
 <area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="148,5,237,32"/>
 </map>
@@ -1054,8 +1056,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9e29ce75ab694aa7fdb32b7644f9da69" name="a9e29ce75ab694aa7fdb32b7644f9da69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e29ce75ab694aa7fdb32b7644f9da69">&#9670;&nbsp;</a></span>check_repfnz()</h2>
+<a id="ad07309870833b294a72d520e2f331b2e" name="ad07309870833b294a72d520e2f331b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad07309870833b294a72d520e2f331b2e">&#9670;&nbsp;</a></span>check_repfnz()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1081,7 +1083,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>repfnz</em>&#160;</td>
         </tr>
         <tr>
@@ -1375,17 +1377,17 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="slu__util_8h_a263122009c4421188a14285798b7bff7_cgraph.png" border="0" usemap="#aslu__util_8h_a263122009c4421188a14285798b7bff7_cgraph" alt=""/></div>
 <map name="aslu__util_8h_a263122009c4421188a14285798b7bff7_cgraph" id="aslu__util_8h_a263122009c4421188a14285798b7bff7_cgraph">
 <area shape="rect" title="Obtains a permutation matrix by applying the multiple minimum degree ordering code." alt="" coords="5,309,97,336"/>
-<area shape="rect" href="get__perm__c_8c.html#a842fe36b4354a3434c1b340195c71e22" title="Form the structure of A&#39;+A." alt="" coords="165,81,245,108"/>
+<area shape="rect" href="get__perm__c_8c.html#a6f13e814acd5806d502c08e6ac83b77b" title="Form the structure of A&#39;+A." alt="" coords="165,81,245,108"/>
 <area shape="rect" href="mmd_8c.html#aaaff516b361a031e00ca2bc8e835eb54" title=" " alt="" coords="164,132,245,159"/>
-<area shape="rect" href="get__perm__c_8c.html#a4d27a2c28e6a97a8480d587376f467de" title="Get COLAMD&#39;s permutation for matrix A." alt="" coords="159,259,250,285"/>
+<area shape="rect" href="get__perm__c_8c.html#a30fb6991ca769602f9cc8170554f04a4" title="Get COLAMD&#39;s permutation for matrix A." alt="" coords="159,259,250,285"/>
 <area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="361,360,435,387"/>
 <area shape="rect" href="get__perm__c_8c.html#a4366ba634b60299b1172c0313c5e8aea" title="Get METIS&#39; permutation for matrix B." alt="" coords="165,360,245,387"/>
-<area shape="rect" href="get__perm__c_8c.html#a357185b632937f39cc4a3b64db5903c9" title="Form the structure of A&#39;*A." alt="" coords="175,411,234,437"/>
+<area shape="rect" href="get__perm__c_8c.html#a85249272cd9bc26841516d1430682aa7" title="Form the structure of A&#39;*A." alt="" coords="175,411,234,437"/>
 <area shape="rect" href="superlu__timer_8c.html#a901b1224789fec99ee424cbfde8fb301" title="Timer function." alt="" coords="145,461,264,488"/>
-<area shape="rect" href="mmd_8c.html#aadedb35782144095a6e504591f3ae490" title=" " alt="" coords="345,5,451,32"/>
-<area shape="rect" href="mmd_8c.html#aa9bd93304eab6a1bb907d87ab4c19934" title=" " alt="" coords="349,56,447,83"/>
-<area shape="rect" href="mmd_8c.html#a78f66f010be9e7c631f9bb8c89ad1011" title=" " alt="" coords="343,107,453,133"/>
-<area shape="rect" href="mmd_8c.html#abacf4e249155f63e7cf13c40ed19e246" title=" " alt="" coords="345,157,451,184"/>
+<area shape="rect" href="mmd_8c.html#a206cfcc432ecb708cf4ac9b383624a30" title=" " alt="" coords="345,5,451,32"/>
+<area shape="rect" href="mmd_8c.html#a840d25f03f1690667c6a03525deeb127" title=" " alt="" coords="349,56,447,83"/>
+<area shape="rect" href="mmd_8c.html#a0ab22b312823eced1c4eb4eeaf67e88a" title=" " alt="" coords="343,107,453,133"/>
+<area shape="rect" href="mmd_8c.html#ad561a9ad7424e4faafe0bf5f904c1814" title=" " alt="" coords="345,157,451,184"/>
 <area shape="rect" href="sp__coletree_8c.html#ab7bc8447f8976dbb19c60dc2e1a12905" title=" " alt="" coords="564,5,607,32"/>
 <area shape="rect" href="colamd_8c.html#a1025434cd41be3cab467798091aa87b6" title=" " alt="" coords="338,208,458,235"/>
 <area shape="rect" href="colamd_8c.html#af15b207d39038ee50826486796987fc7" title=" " alt="" coords="312,259,484,285"/>
@@ -1398,7 +1400,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="colamd_8c.html#a3c5479ead565e62b314dca6ecee35acf" title=" " alt="" coords="556,309,615,336"/>
 <area shape="rect" href="colamd_8c.html#a73761d13f47935936a30e4534bd0b2d1" title=" " alt="" coords="709,5,797,32"/>
 <area shape="rect" href="colamd_8c.html#a01af621c1624004dfcfb9ec6bbafd754" title=" " alt="" coords="688,56,819,83"/>
-<area shape="rect" href="colamd_8c.html#ab3de87271f85eff787104f3fe6bda915" title=" " alt="" coords="687,107,820,133"/>
+<area shape="rect" href="colamd_8c.html#a6b5235ff2a85b361e4752657237f2c55" title=" " alt="" coords="687,107,820,133"/>
 </map>
 </div>
 
@@ -1450,7 +1452,7 @@ Here is the call graph for this function:</div>
 <pre>
 Purpose
 =======
-   <a class="el" href="relax__snode_8c.html#ad70bc12cb9031ab8aba4a37a18be46e3">relax_snode()</a> - Identify the initial relaxed supernodes, assuming that 
+   <a class="el" href="relax__snode_8c.html#a96984940d61e809b5b91cbf30a23dab0">relax_snode()</a> - Identify the initial relaxed supernodes, assuming that 
    the matrix has been reordered according to the postorder of the etree.
 </pre> <div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1462,7 +1464,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="201,56,276,83"/>
 <area shape="rect" href="sp__coletree_8c.html#a29961a6839a7a7569d86d5931cb8dee4" title=" " alt="" coords="185,107,292,133"/>
 <area shape="rect" href="sp__coletree_8c.html#ac62a49def2febcfb9076e1b558859dda" title=" " alt="" coords="340,81,432,108"/>
-<area shape="rect" href="sp__coletree_8c.html#a7fec305add1f9f4c611eacdb2b744bfd" title=" " alt="" coords="351,132,421,159"/>
+<area shape="rect" href="sp__coletree_8c.html#a73236c6018c9c23553a163c89b3b8d8a" title=" " alt="" coords="351,132,421,159"/>
 </map>
 </div>
 
@@ -1615,14 +1617,14 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="221,56,296,83"/>
 <area shape="rect" href="sp__coletree_8c.html#a29961a6839a7a7569d86d5931cb8dee4" title=" " alt="" coords="205,107,312,133"/>
 <area shape="rect" href="sp__coletree_8c.html#ac62a49def2febcfb9076e1b558859dda" title=" " alt="" coords="360,81,452,108"/>
-<area shape="rect" href="sp__coletree_8c.html#a7fec305add1f9f4c611eacdb2b744bfd" title=" " alt="" coords="371,132,441,159"/>
+<area shape="rect" href="sp__coletree_8c.html#a73236c6018c9c23553a163c89b3b8d8a" title=" " alt="" coords="371,132,441,159"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a2212f489d8bb77b74c61e0a7442796a8" name="a2212f489d8bb77b74c61e0a7442796a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2212f489d8bb77b74c61e0a7442796a8">&#9670;&nbsp;</a></span>ilu_relax_snode()</h2>
+<a id="a757f7350ef35ce6539efa9ecf510e19e" name="a757f7350ef35ce6539efa9ecf510e19e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a757f7350ef35ce6539efa9ecf510e19e">&#9670;&nbsp;</a></span>ilu_relax_snode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1636,7 +1638,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>et</em>, </td>
         </tr>
         <tr>
@@ -1673,14 +1675,14 @@ Here is the call graph for this function:</div>
 <pre>
 Purpose
 =======
-   <a class="el" href="ilu__relax__snode_8c.html#ae0e2bbb8507d800766030635a3bd5a7e">ilu_relax_snode()</a> - Identify the initial relaxed supernodes, assuming
+   <a class="el" href="ilu__relax__snode_8c.html#a26ffe99dfc641a6548f4d88b2c92f81c">ilu_relax_snode()</a> - Identify the initial relaxed supernodes, assuming
    that the matrix has been reordered according to the postorder of the
    etree.
 </pre> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="slu__util_8h_a2212f489d8bb77b74c61e0a7442796a8_cgraph.png" border="0" usemap="#aslu__util_8h_a2212f489d8bb77b74c61e0a7442796a8_cgraph" alt=""/></div>
-<map name="aslu__util_8h_a2212f489d8bb77b74c61e0a7442796a8_cgraph" id="aslu__util_8h_a2212f489d8bb77b74c61e0a7442796a8_cgraph">
+<div class="center"><img src="slu__util_8h_a757f7350ef35ce6539efa9ecf510e19e_cgraph.png" border="0" usemap="#aslu__util_8h_a757f7350ef35ce6539efa9ecf510e19e_cgraph" alt=""/></div>
+<map name="aslu__util_8h_a757f7350ef35ce6539efa9ecf510e19e_cgraph" id="aslu__util_8h_a757f7350ef35ce6539efa9ecf510e19e_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,121,32"/>
 <area shape="rect" href="util_8c.html#ae289773c377a566a2f77c88b21d7f4ae" title="Fills an integer array with a given value." alt="" coords="169,5,208,32"/>
 </map>
@@ -1838,8 +1840,8 @@ info    (input) int
 
 </div>
 </div>
-<a id="aa67feb8d213a12c562f86b10e6eea7b4" name="aa67feb8d213a12c562f86b10e6eea7b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa67feb8d213a12c562f86b10e6eea7b4">&#9670;&nbsp;</a></span>mark_relax()</h2>
+<a id="a57aef4dec89f5ada342286ab3b1f46c2" name="a57aef4dec89f5ada342286ab3b1f46c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57aef4dec89f5ada342286ab3b1f46c2">&#9670;&nbsp;</a></span>mark_relax()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1853,31 +1855,31 @@ info    (input) int
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>relax_end</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>relax_fsupc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
           <td class="paramname"><em>xa_begin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
           <td class="paramname"><em>xa_end</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
           <td class="paramname"><em>asub</em>, </td>
         </tr>
         <tr>
@@ -1896,12 +1898,12 @@ info    (input) int
 <pre>
 Purpose
 =======
-   <a class="el" href="mark__relax_8c.html#a2100557c277a7f679bd6ed2410e29960">mark_relax()</a> - record the rows used by the relaxed supernodes.
+   <a class="el" href="mark__relax_8c.html#a30352ce804068510a8c434e32ae53060">mark_relax()</a> - record the rows used by the relaxed supernodes.
 </pre> 
 </div>
 </div>
-<a id="ad4885c929f82623b67a05fd439463487" name="ad4885c929f82623b67a05fd439463487"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4885c929f82623b67a05fd439463487">&#9670;&nbsp;</a></span>print_int_vec()</h2>
+<a id="ad68056591a60355a39b66561ca6b4a03" name="ad68056591a60355a39b66561ca6b4a03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad68056591a60355a39b66561ca6b4a03">&#9670;&nbsp;</a></span>print_int_vec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1909,7 +1911,7 @@ Purpose
         <tr>
           <td class="memname">void print_int_vec </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>what</em>, </td>
         </tr>
         <tr>
@@ -1921,7 +1923,7 @@ Purpose
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>vec</em>&#160;</td>
         </tr>
         <tr>
@@ -1942,8 +1944,8 @@ Purpose
 
 </div>
 </div>
-<a id="a48208ca68e95c765c0c55c12b196d79e" name="a48208ca68e95c765c0c55c12b196d79e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48208ca68e95c765c0c55c12b196d79e">&#9670;&nbsp;</a></span>print_panel_seg()</h2>
+<a id="a7740736afe50085829e480d29c8597fe" name="a7740736afe50085829e480d29c8597fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7740736afe50085829e480d29c8597fe">&#9670;&nbsp;</a></span>print_panel_seg()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1975,13 +1977,13 @@ Purpose
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>segrep</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>repfnz</em>&#160;</td>
         </tr>
         <tr>
@@ -1994,8 +1996,8 @@ Purpose
 
 </div>
 </div>
-<a id="a47292875a12f5601efa82a4350656db8" name="a47292875a12f5601efa82a4350656db8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47292875a12f5601efa82a4350656db8">&#9670;&nbsp;</a></span>PrintSumm()</h2>
+<a id="a9a522d5dbbeb2ad4fbe50e6bcc80cd1e" name="a9a522d5dbbeb2ad4fbe50e6bcc80cd1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a522d5dbbeb2ad4fbe50e6bcc80cd1e">&#9670;&nbsp;</a></span>PrintSumm()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2003,7 +2005,7 @@ Purpose
         <tr>
           <td class="memname">void PrintSumm </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>type</em>, </td>
         </tr>
         <tr>
@@ -2043,8 +2045,8 @@ Purpose
 
 </div>
 </div>
-<a id="aa9dcebe0d2709ff7ab053c3acb8f35af" name="aa9dcebe0d2709ff7ab053c3acb8f35af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9dcebe0d2709ff7ab053c3acb8f35af">&#9670;&nbsp;</a></span>relax_snode()</h2>
+<a id="a698e718c956675125558efc4b033f273" name="a698e718c956675125558efc4b033f273"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a698e718c956675125558efc4b033f273">&#9670;&nbsp;</a></span>relax_snode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2058,7 +2060,7 @@ Purpose
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>et</em>, </td>
         </tr>
         <tr>
@@ -2089,13 +2091,13 @@ Purpose
 <pre>
 Purpose
 =======
-   <a class="el" href="relax__snode_8c.html#ad70bc12cb9031ab8aba4a37a18be46e3">relax_snode()</a> - Identify the initial relaxed supernodes, assuming that 
+   <a class="el" href="relax__snode_8c.html#a96984940d61e809b5b91cbf30a23dab0">relax_snode()</a> - Identify the initial relaxed supernodes, assuming that 
    the matrix has been reordered according to the postorder of the etree.
 </pre> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="slu__util_8h_aa9dcebe0d2709ff7ab053c3acb8f35af_cgraph.png" border="0" usemap="#aslu__util_8h_aa9dcebe0d2709ff7ab053c3acb8f35af_cgraph" alt=""/></div>
-<map name="aslu__util_8h_aa9dcebe0d2709ff7ab053c3acb8f35af_cgraph" id="aslu__util_8h_aa9dcebe0d2709ff7ab053c3acb8f35af_cgraph">
+<div class="center"><img src="slu__util_8h_a698e718c956675125558efc4b033f273_cgraph.png" border="0" usemap="#aslu__util_8h_a698e718c956675125558efc4b033f273_cgraph" alt=""/></div>
+<map name="aslu__util_8h_a698e718c956675125558efc4b033f273_cgraph" id="aslu__util_8h_a698e718c956675125558efc4b033f273_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,100,32"/>
 <area shape="rect" href="util_8c.html#ae289773c377a566a2f77c88b21d7f4ae" title="Fills an integer array with a given value." alt="" coords="148,5,187,32"/>
 </map>
@@ -2253,8 +2255,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a12ac1c212aea27743993db71020592c2" name="a12ac1c212aea27743993db71020592c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12ac1c212aea27743993db71020592c2">&#9670;&nbsp;</a></span>slu_PrintInt10()</h2>
+<a id="a938d6a58ec5cd69794dc4ff8ab75d352" name="a938d6a58ec5cd69794dc4ff8ab75d352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a938d6a58ec5cd69794dc4ff8ab75d352">&#9670;&nbsp;</a></span>slu_PrintInt10()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2262,7 +2264,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void slu_PrintInt10 </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
@@ -2274,7 +2276,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>x</em>&#160;</td>
         </tr>
         <tr>
@@ -2324,8 +2326,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a62b7552d244b62157fa7fc32e006bcba" name="a62b7552d244b62157fa7fc32e006bcba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62b7552d244b62157fa7fc32e006bcba">&#9670;&nbsp;</a></span>sp_coletree()</h2>
+<a id="a38eb510085c25622a32cc28ad803a318" name="a38eb510085c25622a32cc28ad803a318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38eb510085c25622a32cc28ad803a318">&#9670;&nbsp;</a></span>sp_coletree()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2333,19 +2335,19 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">int sp_coletree </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
           <td class="paramname"><em>acolst</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
           <td class="paramname"><em>acolend</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="superlu__config_8h.html#ab6fd6105e64ed14a0c9281326f05e623">int_t</a> *&#160;</td>
           <td class="paramname"><em>arow</em>, </td>
         </tr>
         <tr>
@@ -2376,8 +2378,8 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="slu__util_8h_a62b7552d244b62157fa7fc32e006bcba_cgraph.png" border="0" usemap="#aslu__util_8h_a62b7552d244b62157fa7fc32e006bcba_cgraph" alt=""/></div>
-<map name="aslu__util_8h_a62b7552d244b62157fa7fc32e006bcba_cgraph" id="aslu__util_8h_a62b7552d244b62157fa7fc32e006bcba_cgraph">
+<div class="center"><img src="slu__util_8h_a38eb510085c25622a32cc28ad803a318_cgraph.png" border="0" usemap="#aslu__util_8h_a38eb510085c25622a32cc28ad803a318_cgraph" alt=""/></div>
+<map name="aslu__util_8h_a38eb510085c25622a32cc28ad803a318_cgraph" id="aslu__util_8h_a38eb510085c25622a32cc28ad803a318_cgraph">
 <area shape="rect" title=" " alt="" coords="5,132,96,159"/>
 <area shape="rect" href="sp__coletree_8c.html#aa34f31c4fe6ec2e5ee33f3d04ad9c209" title=" " alt="" coords="147,5,291,32"/>
 <area shape="rect" href="sp__coletree_8c.html#a7cdfbecc1ca23ee1cc298897bd64a45c" title=" " alt="" coords="197,56,241,83"/>
@@ -2470,8 +2472,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="adf9c573cbfb4520a5ea820702d27cfa5" name="adf9c573cbfb4520a5ea820702d27cfa5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf9c573cbfb4520a5ea820702d27cfa5">&#9670;&nbsp;</a></span>sp_preorder()</h2>
+<a id="a88109ec54194f0e00c3fe259ce7f4732" name="a88109ec54194f0e00c3fe259ce7f4732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88109ec54194f0e00c3fe259ce7f4732">&#9670;&nbsp;</a></span>sp_preorder()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2479,7 +2481,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void sp_preorder </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structsuperlu__options__t.html">superlu_options_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structsuperlu__options__t.html">superlu_options_t</a> *&#160;</td>
           <td class="paramname"><em>options</em>, </td>
         </tr>
         <tr>
@@ -2517,7 +2519,7 @@ Here is the call graph for this function:</div>
 Purpose
 =======
 
-<a class="el" href="sp__preorder_8c.html#ad3a9a45f02456022c7eba79e17e215bc">sp_preorder()</a> permutes the columns of the original matrix. It performs
+<a class="el" href="sp__preorder_8c.html#a3ff52ba40d8b9809b3a3cb0be78f2562">sp_preorder()</a> permutes the columns of the original matrix. It performs
 the following steps:
 
    1. Apply column permutation perm_c[] to A's column pointers to form AC;
@@ -2566,15 +2568,15 @@ AC      (output) SuperMatrix*
 </pre> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="slu__util_8h_adf9c573cbfb4520a5ea820702d27cfa5_cgraph.png" border="0" usemap="#aslu__util_8h_adf9c573cbfb4520a5ea820702d27cfa5_cgraph" alt=""/></div>
-<map name="aslu__util_8h_adf9c573cbfb4520a5ea820702d27cfa5_cgraph" id="aslu__util_8h_adf9c573cbfb4520a5ea820702d27cfa5_cgraph">
+<div class="center"><img src="slu__util_8h_a88109ec54194f0e00c3fe259ce7f4732_cgraph.png" border="0" usemap="#aslu__util_8h_a88109ec54194f0e00c3fe259ce7f4732_cgraph" alt=""/></div>
+<map name="aslu__util_8h_a88109ec54194f0e00c3fe259ce7f4732_cgraph" id="aslu__util_8h_a88109ec54194f0e00c3fe259ce7f4732_cgraph">
 <area shape="rect" title=" " alt="" coords="5,157,99,184"/>
-<area shape="rect" href="get__perm__c_8c.html#a842fe36b4354a3434c1b340195c71e22" title="Form the structure of A&#39;+A." alt="" coords="160,5,240,32"/>
-<area shape="rect" href="util_8c.html#a83d0844717cd9ffc862d97c194b21833" title="Validity check of a permutation." alt="" coords="153,56,247,83"/>
+<area shape="rect" href="get__perm__c_8c.html#a6f13e814acd5806d502c08e6ac83b77b" title="Form the structure of A&#39;+A." alt="" coords="160,5,240,32"/>
+<area shape="rect" href="util_8c.html#a30f880a48cf468173067bcc9ad5cb6bf" title="Validity check of a permutation." alt="" coords="153,56,247,83"/>
 <area shape="rect" href="memory_8c.html#af80c9ccfaa9f16f21cdb5df589eb1692" title=" " alt="" coords="163,107,237,133"/>
-<area shape="rect" href="util_8c.html#ad4885c929f82623b67a05fd439463487" title="Print content of int array." alt="" coords="151,157,249,184"/>
-<area shape="rect" href="sp__coletree_8c.html#ac49eab09694542160a27c8ed8dbf5701" title=" " alt="" coords="155,259,245,285"/>
-<area shape="rect" href="sp__coletree_8c.html#a657d6b291654432e815392c2a00d2b84" title=" " alt="" coords="151,208,249,235"/>
+<area shape="rect" href="util_8c.html#ad68056591a60355a39b66561ca6b4a03" title="Print content of int array." alt="" coords="151,157,249,184"/>
+<area shape="rect" href="sp__coletree_8c.html#a501ea198f84c6669625c090878b2906d" title=" " alt="" coords="155,259,245,285"/>
+<area shape="rect" href="sp__coletree_8c.html#ab77ef0430100858aa5d942c1d22cf011" title=" " alt="" coords="151,208,249,235"/>
 <area shape="rect" href="sp__coletree_8c.html#a29961a6839a7a7569d86d5931cb8dee4" title=" " alt="" coords="147,436,253,463"/>
 <area shape="rect" href="memory_8c.html#aef293480a9ff932ae7bf49a1c7e52b15" title=" " alt="" coords="332,31,421,57"/>
 <area shape="rect" href="sp__coletree_8c.html#aa34f31c4fe6ec2e5ee33f3d04ad9c209" title=" " alt="" coords="305,335,449,361"/>
@@ -2583,7 +2585,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="sp__coletree_8c.html#ac62a49def2febcfb9076e1b558859dda" title=" " alt="" coords="500,284,592,311"/>
 <area shape="rect" href="sp__coletree_8c.html#ab7bc8447f8976dbb19c60dc2e1a12905" title=" " alt="" coords="355,233,398,260"/>
 <area shape="rect" href="sp__coletree_8c.html#a6ecd760efd6eec938f69c6d692d6ddae" title=" " alt="" coords="337,284,417,311"/>
-<area shape="rect" href="sp__coletree_8c.html#a7fec305add1f9f4c611eacdb2b744bfd" title=" " alt="" coords="341,487,412,513"/>
+<area shape="rect" href="sp__coletree_8c.html#a73236c6018c9c23553a163c89b3b8d8a" title=" " alt="" coords="341,487,412,513"/>
 </map>
 </div>
 
@@ -2726,8 +2728,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ac33e407326ae1dc222aee7ff08f322cf" name="ac33e407326ae1dc222aee7ff08f322cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac33e407326ae1dc222aee7ff08f322cf">&#9670;&nbsp;</a></span>super_stats()</h2>
+<a id="ab55ad36cb7d8e1a542980c3de62b8128" name="ab55ad36cb7d8e1a542980c3de62b8128"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab55ad36cb7d8e1a542980c3de62b8128">&#9670;&nbsp;</a></span>super_stats()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2741,7 +2743,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>xsup</em>&#160;</td>
         </tr>
         <tr>
@@ -2754,8 +2756,8 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="slu__util_8h_ac33e407326ae1dc222aee7ff08f322cf_cgraph.png" border="0" usemap="#aslu__util_8h_ac33e407326ae1dc222aee7ff08f322cf_cgraph" alt=""/></div>
-<map name="aslu__util_8h_ac33e407326ae1dc222aee7ff08f322cf_cgraph" id="aslu__util_8h_ac33e407326ae1dc222aee7ff08f322cf_cgraph">
+<div class="center"><img src="slu__util_8h_ab55ad36cb7d8e1a542980c3de62b8128_cgraph.png" border="0" usemap="#aslu__util_8h_ab55ad36cb7d8e1a542980c3de62b8128_cgraph" alt=""/></div>
+<map name="aslu__util_8h_ab55ad36cb7d8e1a542980c3de62b8128_cgraph" id="aslu__util_8h_ab55ad36cb7d8e1a542980c3de62b8128_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,96,32"/>
 <area shape="rect" href="util_8c.html#ae289773c377a566a2f77c88b21d7f4ae" title="Fills an integer array with a given value." alt="" coords="144,5,183,32"/>
 </map>
@@ -2763,8 +2765,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="abd38b081866ed2c3e4959c4c0560913c" name="abd38b081866ed2c3e4959c4c0560913c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd38b081866ed2c3e4959c4c0560913c">&#9670;&nbsp;</a></span>superlu_abort_and_exit()</h2>
+<a id="ad1389f8a2cec7883a38779a48984d452" name="ad1389f8a2cec7883a38779a48984d452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1389f8a2cec7883a38779a48984d452">&#9670;&nbsp;</a></span>superlu_abort_and_exit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2772,7 +2774,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void superlu_abort_and_exit </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2874,7 +2876,7 @@ Here is the call graph for this function:</div>
 <map name="aslu__util_8h_ae571868a5633b4b3f25127f091fbbc9c_cgraph" id="aslu__util_8h_ae571868a5633b4b3f25127f091fbbc9c_cgraph">
 <area shape="rect" title=" " alt="" coords="5,31,112,57"/>
 <area shape="rect" href="sp__coletree_8c.html#ac62a49def2febcfb9076e1b558859dda" title=" " alt="" coords="160,5,252,32"/>
-<area shape="rect" href="sp__coletree_8c.html#a7fec305add1f9f4c611eacdb2b744bfd" title=" " alt="" coords="171,56,241,83"/>
+<area shape="rect" href="sp__coletree_8c.html#a73236c6018c9c23553a163c89b3b8d8a" title=" " alt="" coords="171,56,241,83"/>
 </map>
 </div>
 

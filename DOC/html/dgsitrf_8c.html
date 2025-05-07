@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -57,20 +57,21 @@ Include dependency graph for dgsitrf.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="dgsitrf_8c__incl.png" border="0" usemap="#aSRC_2dgsitrf_8c" alt=""/></div>
 <map name="aSRC_2dgsitrf_8c" id="aSRC_2dgsitrf_8c">
-<area shape="rect" title="Computes an ILU factorization of a general sparse matrix." alt="" coords="307,5,407,32"/>
-<area shape="rect" href="slu__ddefs_8h.html" title="Header file for real operations." alt="" coords="311,80,402,107"/>
+<area shape="rect" title="Computes an ILU factorization of a general sparse matrix." alt="" coords="283,5,383,32"/>
+<area shape="rect" href="slu__ddefs_8h.html" title="Header file for real operations." alt="" coords="287,80,378,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" title=" " alt="" coords="93,155,157,181"/>
-<area shape="rect" title=" " alt="" coords="95,229,157,256"/>
-<area shape="rect" title=" " alt="" coords="181,229,245,256"/>
+<area shape="rect" title=" " alt="" coords="127,229,189,256"/>
+<area shape="rect" title=" " alt="" coords="213,229,277,256"/>
 <area shape="rect" title=" " alt="" coords="432,155,497,181"/>
-<area shape="rect" title=" " alt="" coords="552,229,617,256"/>
+<area shape="rect" title=" " alt="" coords="301,229,367,256"/>
 <area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="522,155,629,181"/>
 <area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="653,155,773,181"/>
 <area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="797,155,900,181"/>
-<area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="282,155,357,181"/>
-<area shape="rect" title=" " alt="" coords="458,229,527,256"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="269,229,433,256"/>
+<area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="333,155,407,181"/>
+<area shape="rect" title=" " alt="" coords="391,229,469,256"/>
+<area shape="rect" title=" " alt="" coords="494,229,563,256"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="588,229,752,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -306,7 +307,7 @@ Local Working Arrays:
      reached when working on column j.
      Storage: relative to original row subscripts
      NOTE: There are 4 of them:
-           marker/marker1 are used for panel dfs, see (ilu_)<a class="el" href="dpanel__dfs_8c.html" title="Peforms a symbolic factorization on a panel of symbols.">dpanel_dfs.c</a>;
+           marker/marker1 are used for panel dfs, see (ilu_)<a class="el" href="dpanel__dfs_8c.html" title="Performs a symbolic factorization on a panel of symbols.">dpanel_dfs.c</a>;
            marker2 is used for inner-factorization, see (ilu)_dcolumn_dfs.c;
            marker_relax(has its own space) is used for relaxed supernodes.
 
@@ -367,14 +368,14 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="ilu__dpivotL_8c.html#a058d843996bb36b73784b80aae05f04b" title=" " alt="" coords="163,1509,249,1536"/>
 <area shape="rect" href="ilu__dsnode__dfs_8c.html#a63eb853c0abf30a36fca9e4fea416fd9" title=" " alt="" coords="150,330,262,357"/>
 <area shape="rect" href="ilu__heap__relax__snode_8c.html#aac1a978dda622cdb58c3c2eaee4b4030" title=" " alt="" coords="130,1002,282,1029"/>
-<area shape="rect" href="ilu__relax__snode_8c.html#ae0e2bbb8507d800766030635a3bd5a7e" title=" " alt="" coords="148,1104,264,1130"/>
-<area shape="rect" href="mark__relax_8c.html#a2100557c277a7f679bd6ed2410e29960" title=" " alt="" coords="162,1560,250,1586"/>
+<area shape="rect" href="ilu__relax__snode_8c.html#a26ffe99dfc641a6548f4d88b2c92f81c" title=" " alt="" coords="148,1104,264,1130"/>
+<area shape="rect" href="mark__relax_8c.html#a30352ce804068510a8c434e32ae53060" title=" " alt="" coords="162,1560,250,1586"/>
 <area shape="rect" href="util_8c.html#a67bce8b2142b3be41583de4fbea02cb0" title="Reset repfnz[] for the current column." alt="" coords="158,1610,254,1637"/>
 <area shape="rect" href="memory_8c.html#a62bab720052d576a870b98e6499b1a50" title="Set up pointers for integer working arrays." alt="" coords="167,952,245,978"/>
-<area shape="rect" href="slu__ddefs_8h.html#ab9959831d583511b25c4de2ebb2448e2" title=" " alt="" coords="371,90,440,117"/>
+<area shape="rect" href="slu__ddefs_8h.html#ad9850e4d21f8397be3d9962f2cff4072" title=" " alt="" coords="371,90,440,117"/>
 <area shape="rect" href="dmyblas2_8c.html#a986e55bb6eac4e68b78c98b8276557db" title="Solves a dense UNIT lower triangular system." alt="" coords="373,141,437,168"/>
 <area shape="rect" href="dmyblas2_8c.html#a703303b4c9cdd6074c55e83970db83b6" title="Performs a dense matrix&#45;vector multiply: Mxvec = Mxvec + M * vec." alt="" coords="369,192,441,218"/>
-<area shape="rect" href="slu__ddefs_8h.html#a8bf1e89ca04a7d8384577eb9842e9ffa" title=" " alt="" coords="376,40,435,66"/>
+<area shape="rect" href="slu__ddefs_8h.html#a16589ca2d9afd5e7067771a935546d3c" title=" " alt="" coords="376,40,435,66"/>
 <area shape="rect" href="SRC_2dmemory_8c.html#a59a8ee8b74e11c3134201840d404887a" title="Expand the existing storage to accommodate more fill&#45;ins." alt="" coords="535,293,608,320"/>
 <area shape="rect" href="SRC_2dmemory_8c.html#a03a9e0ba7072be3c6c20b714b90085b8" title=" " alt="" coords="511,344,632,370"/>
 <area shape="rect" href="SRC_2dmemory_8c.html#a7514353745c0b9e2be09845bd528e32c" title=" " alt="" coords="680,293,815,320"/>

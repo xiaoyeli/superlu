@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -62,17 +62,18 @@ Include dependency graph for zutil.c:</div>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" href="slu__zdefs_8h.html" title="Header file for real operations." alt="" coords="409,80,499,107"/>
 <area shape="rect" title=" " alt="" coords="874,155,938,181"/>
-<area shape="rect" title=" " alt="" coords="645,229,706,256"/>
-<area shape="rect" title=" " alt="" coords="846,229,910,256"/>
+<area shape="rect" title=" " alt="" coords="719,229,781,256"/>
+<area shape="rect" title=" " alt="" coords="899,229,963,256"/>
 <area shape="rect" title=" " alt="" coords="243,155,308,181"/>
-<area shape="rect" title=" " alt="" coords="41,229,107,256"/>
+<area shape="rect" title=" " alt="" coords="56,229,121,256"/>
 <area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="333,155,439,181"/>
 <area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="463,155,583,181"/>
 <area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="608,155,711,181"/>
 <area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="143,155,218,181"/>
 <area shape="rect" href="slu__dcomplex_8h.html" title="Header file for complex operations." alt="" coords="735,155,850,181"/>
-<area shape="rect" title=" " alt="" coords="319,229,389,256"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="131,229,295,256"/>
+<area shape="rect" title=" " alt="" coords="428,229,507,256"/>
+<area shape="rect" title=" " alt="" coords="146,229,215,256"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="240,229,404,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -119,11 +120,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a0c645d9e2d757c5f5fa1ecd67f0c2a07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zutil_8c.html#a0c645d9e2d757c5f5fa1ecd67f0c2a07">zinf_norm_error</a> (int nrhs, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zsymv_8c.html#a5ae25df4ee72f83efb4a3683c970678f">X</a>, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *xtrue)</td></tr>
 <tr class="memdesc:a0c645d9e2d757c5f5fa1ecd67f0c2a07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the inf-norm of the error vector.  <a href="zutil_8c.html#a0c645d9e2d757c5f5fa1ecd67f0c2a07">More...</a><br /></td></tr>
 <tr class="separator:a0c645d9e2d757c5f5fa1ecd67f0c2a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0807017bff32a20ff59820583a9e038d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zutil_8c.html#a0807017bff32a20ff59820583a9e038d">zPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, double rpg, double rcond, double *ferr, double *berr, char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
-<tr class="memdesc:a0807017bff32a20ff59820583a9e038d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print performance of the code.  <a href="zutil_8c.html#a0807017bff32a20ff59820583a9e038d">More...</a><br /></td></tr>
-<tr class="separator:a0807017bff32a20ff59820583a9e038d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bb486f4dae7b51a01fafcf0a09800d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zutil_8c.html#a4bb486f4dae7b51a01fafcf0a09800d1">print_doublecomplex_vec</a> (char *what, int n, <a class="el" href="structdoublecomplex.html">doublecomplex</a> *vec)</td></tr>
-<tr class="separator:a4bb486f4dae7b51a01fafcf0a09800d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a437a2b923cdb036b8c902db49eb717fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zutil_8c.html#a437a2b923cdb036b8c902db49eb717fb">zPrintPerf</a> (<a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, <a class="el" href="structmem__usage__t.html">mem_usage_t</a> *mem_usage, double rpg, double rcond, double *ferr, const double *berr, const char *equed, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat)</td></tr>
+<tr class="memdesc:a437a2b923cdb036b8c902db49eb717fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print performance of the code.  <a href="zutil_8c.html#a437a2b923cdb036b8c902db49eb717fb">More...</a><br /></td></tr>
+<tr class="separator:a437a2b923cdb036b8c902db49eb717fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47dfa8592dcb3c013b906ee0aee92259"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zutil_8c.html#a47dfa8592dcb3c013b906ee0aee92259">print_doublecomplex_vec</a> (const char *what, int n, const <a class="el" href="structdoublecomplex.html">doublecomplex</a> *vec)</td></tr>
+<tr class="separator:a47dfa8592dcb3c013b906ee0aee92259"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
@@ -146,8 +147,8 @@ Permission to modify the code and to distribute modified code is
 granted, provided the above notices are retained, and a notice that
 the code was modified is included with the above copyright notice.
 </pre> </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a4bb486f4dae7b51a01fafcf0a09800d1" name="a4bb486f4dae7b51a01fafcf0a09800d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bb486f4dae7b51a01fafcf0a09800d1">&#9670;&nbsp;</a></span>print_doublecomplex_vec()</h2>
+<a id="a47dfa8592dcb3c013b906ee0aee92259" name="a47dfa8592dcb3c013b906ee0aee92259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47dfa8592dcb3c013b906ee0aee92259">&#9670;&nbsp;</a></span>print_doublecomplex_vec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +156,7 @@ the code was modified is included with the above copyright notice.
         <tr>
           <td class="memname">int print_doublecomplex_vec </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>what</em>, </td>
         </tr>
         <tr>
@@ -167,7 +168,7 @@ the code was modified is included with the above copyright notice.
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structdoublecomplex.html">doublecomplex</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structdoublecomplex.html">doublecomplex</a> *&#160;</td>
           <td class="paramname"><em>vec</em>&#160;</td>
         </tr>
         <tr>
@@ -990,8 +991,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a0807017bff32a20ff59820583a9e038d" name="a0807017bff32a20ff59820583a9e038d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0807017bff32a20ff59820583a9e038d">&#9670;&nbsp;</a></span>zPrintPerf()</h2>
+<a id="a437a2b923cdb036b8c902db49eb717fb" name="a437a2b923cdb036b8c902db49eb717fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a437a2b923cdb036b8c902db49eb717fb">&#9670;&nbsp;</a></span>zPrintPerf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1035,13 +1036,13 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *&#160;</td>
+          <td class="paramtype">const double *&#160;</td>
           <td class="paramname"><em>berr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>equed</em>, </td>
         </tr>
         <tr>

@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -57,29 +57,30 @@ Include dependency graph for sgstrs.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="sgstrs_8c__incl.png" border="0" usemap="#aSRC_2sgstrs_8c" alt=""/></div>
 <map name="aSRC_2sgstrs_8c" id="aSRC_2sgstrs_8c">
-<area shape="rect" title="Solves a system using LU factorization." alt="" coords="307,5,407,32"/>
-<area shape="rect" href="slu__sdefs_8h.html" title="Header file for real operations." alt="" coords="312,80,401,107"/>
+<area shape="rect" title="Solves a system using LU factorization." alt="" coords="283,5,383,32"/>
+<area shape="rect" href="slu__sdefs_8h.html" title="Header file for real operations." alt="" coords="288,80,377,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,68,181"/>
 <area shape="rect" title=" " alt="" coords="93,155,157,181"/>
-<area shape="rect" title=" " alt="" coords="95,229,157,256"/>
-<area shape="rect" title=" " alt="" coords="181,229,245,256"/>
+<area shape="rect" title=" " alt="" coords="127,229,189,256"/>
+<area shape="rect" title=" " alt="" coords="213,229,277,256"/>
 <area shape="rect" title=" " alt="" coords="432,155,497,181"/>
-<area shape="rect" title=" " alt="" coords="552,229,617,256"/>
+<area shape="rect" title=" " alt="" coords="301,229,367,256"/>
 <area shape="rect" href="slu__Cnames_8h.html" title="Macros defining how C routines will be called." alt="" coords="522,155,629,181"/>
 <area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="653,155,773,181"/>
 <area shape="rect" href="supermatrix_8h.html" title="Matrix type definitions." alt="" coords="797,155,900,181"/>
-<area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="282,155,357,181"/>
-<area shape="rect" title=" " alt="" coords="458,229,527,256"/>
-<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="269,229,433,256"/>
+<area shape="rect" href="slu__util_8h.html" title="Utility header file." alt="" coords="333,155,407,181"/>
+<area shape="rect" title=" " alt="" coords="391,229,469,256"/>
+<area shape="rect" title=" " alt="" coords="494,229,563,256"/>
+<area shape="rect" href="superlu__enum__consts_8h.html" title="enum constants header file" alt="" coords="588,229,752,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9b6e1e555af9cf109ef3a584054a91e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgstrs_8c.html#a9b6e1e555af9cf109ef3a584054a91e2">sgstrs</a> (<a class="el" href="superlu__enum__consts_8h.html#a0c4e17b2d5cea33f9991ccc6a6678d62">trans_t</a> trans, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, int *perm_c, int *perm_r, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *B, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat, int *info)</td></tr>
-<tr class="separator:a9b6e1e555af9cf109ef3a584054a91e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad582f185cce067a3f9dd4225248af758"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgstrs_8c.html#ad582f185cce067a3f9dd4225248af758">sprint_soln</a> (int n, int nrhs, float *soln)</td></tr>
-<tr class="separator:ad582f185cce067a3f9dd4225248af758"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25977b5f949236afd2b4ac5a78e57d78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgstrs_8c.html#a25977b5f949236afd2b4ac5a78e57d78">sgstrs</a> (<a class="el" href="superlu__enum__consts_8h.html#a0c4e17b2d5cea33f9991ccc6a6678d62">trans_t</a> trans, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *L, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *<a class="el" href="zlarnv_8c.html#aa856a8508457fb5628c7d60f266c5596">U</a>, const int *perm_c, const int *perm_r, <a class="el" href="structSuperMatrix.html">SuperMatrix</a> *B, <a class="el" href="structSuperLUStat__t.html">SuperLUStat_t</a> *stat, int *info)</td></tr>
+<tr class="separator:a25977b5f949236afd2b4ac5a78e57d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7418f7ccf2d8ef4335ead5afd02ff6c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgstrs_8c.html#a7418f7ccf2d8ef4335ead5afd02ff6c7">sprint_soln</a> (int n, int nrhs, const float *soln)</td></tr>
+<tr class="separator:a7418f7ccf2d8ef4335ead5afd02ff6c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Copyright (c) 2003, The Regents of the University of California, through Lawrence Berkeley National Laboratory (subject to receipt of any required approvals from U.S. Dept. of Energy)</p>
@@ -102,8 +103,8 @@ Permission to modify the code and to distribute modified code is
 granted, provided the above notices are retained, and a notice that
 the code was modified is included with the above copyright notice.
 </pre> </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a9b6e1e555af9cf109ef3a584054a91e2" name="a9b6e1e555af9cf109ef3a584054a91e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b6e1e555af9cf109ef3a584054a91e2">&#9670;&nbsp;</a></span>sgstrs()</h2>
+<a id="a25977b5f949236afd2b4ac5a78e57d78" name="a25977b5f949236afd2b4ac5a78e57d78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25977b5f949236afd2b4ac5a78e57d78">&#9670;&nbsp;</a></span>sgstrs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -129,13 +130,13 @@ the code was modified is included with the above copyright notice.
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>perm_c</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int *&#160;</td>
+          <td class="paramtype">const int *&#160;</td>
           <td class="paramname"><em>perm_r</em>, </td>
         </tr>
         <tr>
@@ -216,28 +217,28 @@ info    (output) int*
 </pre> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="sgstrs_8c_a9b6e1e555af9cf109ef3a584054a91e2_cgraph.png" border="0" usemap="#asgstrs_8c_a9b6e1e555af9cf109ef3a584054a91e2_cgraph" alt=""/></div>
-<map name="asgstrs_8c_a9b6e1e555af9cf109ef3a584054a91e2_cgraph" id="asgstrs_8c_a9b6e1e555af9cf109ef3a584054a91e2_cgraph">
+<div class="center"><img src="sgstrs_8c_a25977b5f949236afd2b4ac5a78e57d78_cgraph.png" border="0" usemap="#asgstrs_8c_a25977b5f949236afd2b4ac5a78e57d78_cgraph" alt=""/></div>
+<map name="asgstrs_8c_a25977b5f949236afd2b4ac5a78e57d78_cgraph" id="asgstrs_8c_a25977b5f949236afd2b4ac5a78e57d78_cgraph">
 <area shape="rect" title=" " alt="" coords="5,284,63,311"/>
 <area shape="rect" href="smemory_8c.html#a41cfb55f70b0db4692d8e7da9b8e169e" title=" " alt="" coords="247,5,331,32"/>
 <area shape="rect" href="smemory_8c.html#a0dc26cf25b22fd08aadfc44a77efa89f" title=" " alt="" coords="111,360,197,387"/>
 <area shape="rect" href="input__error_8c.html#ad4e27444570b55672c6d20dc1adb12c0" title=" " alt="" coords="245,56,332,83"/>
-<area shape="rect" href="slu__sdefs_8h.html#ab822504d3d60a944da04997b4f91e067" title="BLAS." alt="" coords="117,411,191,437"/>
+<area shape="rect" href="slu__sdefs_8h.html#a3ed82bbcce30cb14611282e9ca5d06fa" title=" " alt="" coords="117,411,191,437"/>
 <area shape="rect" href="smyblas2_8c.html#a2c2e291d9f0825630425f05925633916" title="Solves a dense UNIT lower triangular system." alt="" coords="257,208,320,235"/>
 <area shape="rect" href="smyblas2_8c.html#a3ba02ba32ea4e0eae40802c9c5d082e1" title="Performs a dense matrix&#45;vector multiply: Mxvec = Mxvec + M * vec." alt="" coords="253,259,325,285"/>
 <area shape="rect" href="ssp__blas2_8c.html#ab9e8302d09840e67df27ddd4defaa621" title="Solves one of the systems of equations A*x = b, or A&#39;*x = b." alt="" coords="118,157,190,184"/>
 <area shape="rect" href="smyblas2_8c.html#a32cc084708387e72f8f7d269226237a0" title="Solves a dense upper triangular system." alt="" coords="255,309,322,336"/>
-<area shape="rect" href="sgstrs_8c.html#ad582f185cce067a3f9dd4225248af758" title=" " alt="" coords="111,461,197,488"/>
-<area shape="rect" href="slu__sdefs_8h.html#a68de665c44346f6eacfe87e9f3c2a1e6" title=" " alt="" coords="123,512,185,539"/>
-<area shape="rect" href="slu__sdefs_8h.html#ae29fbdb32369b70973b05d14fc3420c9" title=" " alt="" coords="254,157,323,184"/>
-<area shape="rect" href="slu__sdefs_8h.html#aab583b502d3953688a3fa27a9f4bbf1e" title=" " alt="" coords="260,107,317,133"/>
+<area shape="rect" href="sgstrs_8c.html#a7418f7ccf2d8ef4335ead5afd02ff6c7" title=" " alt="" coords="111,461,197,488"/>
+<area shape="rect" href="slu__sdefs_8h.html#a30494e9185aaa82af7012e98ca245d0b" title=" " alt="" coords="123,512,185,539"/>
+<area shape="rect" href="slu__sdefs_8h.html#a79a0b6fc433813a75c17ff3ef92d5fd6" title=" " alt="" coords="254,157,323,184"/>
+<area shape="rect" href="slu__sdefs_8h.html#a86cea0dc718c5e7740e69b608399dc88" title=" " alt="" coords="260,107,317,133"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ad582f185cce067a3f9dd4225248af758" name="ad582f185cce067a3f9dd4225248af758"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad582f185cce067a3f9dd4225248af758">&#9670;&nbsp;</a></span>sprint_soln()</h2>
+<a id="a7418f7ccf2d8ef4335ead5afd02ff6c7" name="a7418f7ccf2d8ef4335ead5afd02ff6c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7418f7ccf2d8ef4335ead5afd02ff6c7">&#9670;&nbsp;</a></span>sprint_soln()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -257,7 +258,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float *&#160;</td>
+          <td class="paramtype">const float *&#160;</td>
           <td class="paramname"><em>soln</em>&#160;</td>
         </tr>
         <tr>

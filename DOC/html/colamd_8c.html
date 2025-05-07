@@ -18,7 +18,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.0</span>
+   <div id="projectname">SuperLU<span id="projectnumber">&#160;7.0.1</span>
    </div>
   </td>
  </tr>
@@ -68,8 +68,9 @@ Include dependency graph for colamd.c:</div>
 <area shape="rect" title=" " alt="" coords="94,80,157,107"/>
 <area shape="rect" href="colamd_8h.html" title=" " alt="" coords="181,80,257,107"/>
 <area shape="rect" title=" " alt="" coords="281,80,343,107"/>
-<area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="100,155,220,181"/>
-<area shape="rect" title=" " alt="" coords="244,155,308,181"/>
+<area shape="rect" title=" " alt="" coords="97,155,161,181"/>
+<area shape="rect" title=" " alt="" coords="186,155,251,181"/>
+<area shape="rect" href="superlu__config_8h.html" title=" " alt="" coords="276,155,396,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -120,8 +121,8 @@ Macros</h2></td></tr>
 <tr class="separator:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa93f0eb578d23995850d61f7d61c55c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>&#160;&#160;&#160;(0)</td></tr>
 <tr class="separator:aa93f0eb578d23995850d61f7d61c55c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b7cf2a3641be7b89138615764d60ba3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a2b7cf2a3641be7b89138615764d60ba3">EMPTY</a>&#160;&#160;&#160;(-1)</td></tr>
-<tr class="separator:a2b7cf2a3641be7b89138615764d60ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cf6ce8ce8192c19669e6c3533ca5189"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a1cf6ce8ce8192c19669e6c3533ca5189">COLAMD_EMPTY</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="separator:a1cf6ce8ce8192c19669e6c3533ca5189"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8beef706da0344be19d59438fcdab6d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#ad8beef706da0344be19d59438fcdab6d">ALIVE</a>&#160;&#160;&#160;(0)</td></tr>
 <tr class="separator:ad8beef706da0344be19d59438fcdab6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c8793c7acb4598d2ebcd8288f29ee69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a3c8793c7acb4598d2ebcd8288f29ee69">DEAD</a>&#160;&#160;&#160;(-1)</td></tr>
@@ -186,12 +187,12 @@ Functions</h2></td></tr>
 <tr class="separator:a1597380f429739b4917d5f65f0438d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01af621c1624004dfcfb9ec6bbafd754"><td class="memItemLeft" align="right" valign="top"><a class="el" href="colamd_8c.html#a5e151c615eda34903514212f05a5ccf8">PRIVATE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a01af621c1624004dfcfb9ec6bbafd754">detect_super_cols</a> (<a class="el" href="colamd_8c.html#a2b3ca473160c3b6956a6aac9758f2223">Colamd_Col</a> Col[], <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> <a class="el" href="zsymv_8c.html#af5d6242ff783dd9efca51eeec1c234f7">A</a>[], <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> head[], <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> row_start, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> row_length)</td></tr>
 <tr class="separator:a01af621c1624004dfcfb9ec6bbafd754"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3de87271f85eff787104f3fe6bda915"><td class="memItemLeft" align="right" valign="top"><a class="el" href="colamd_8c.html#a5e151c615eda34903514212f05a5ccf8">PRIVATE</a> <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#ab3de87271f85eff787104f3fe6bda915">garbage_collection</a> (<a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> n_row, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> n_col, <a class="el" href="colamd_8c.html#a0a5ef3630ab34946e78296fab3ce47f6">Colamd_Row</a> Row[], <a class="el" href="colamd_8c.html#a2b3ca473160c3b6956a6aac9758f2223">Colamd_Col</a> Col[], <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> <a class="el" href="zsymv_8c.html#af5d6242ff783dd9efca51eeec1c234f7">A</a>[], <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> *pfree)</td></tr>
-<tr class="separator:ab3de87271f85eff787104f3fe6bda915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b5235ff2a85b361e4752657237f2c55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="colamd_8c.html#a5e151c615eda34903514212f05a5ccf8">PRIVATE</a> <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a6b5235ff2a85b361e4752657237f2c55">garbage_collection</a> (<a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> n_row, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> n_col, <a class="el" href="colamd_8c.html#a0a5ef3630ab34946e78296fab3ce47f6">Colamd_Row</a> Row[], <a class="el" href="colamd_8c.html#a2b3ca473160c3b6956a6aac9758f2223">Colamd_Col</a> Col[], <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> <a class="el" href="zsymv_8c.html#af5d6242ff783dd9efca51eeec1c234f7">A</a>[], const <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> *pfree)</td></tr>
+<tr class="separator:a6b5235ff2a85b361e4752657237f2c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73761d13f47935936a30e4534bd0b2d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="colamd_8c.html#a5e151c615eda34903514212f05a5ccf8">PRIVATE</a> <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a73761d13f47935936a30e4534bd0b2d1">clear_mark</a> (<a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> tag_mark, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> max_mark, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> n_row, <a class="el" href="colamd_8c.html#a0a5ef3630ab34946e78296fab3ce47f6">Colamd_Row</a> Row[])</td></tr>
 <tr class="separator:a73761d13f47935936a30e4534bd0b2d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08f646ff5666336db68cd803605f649d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="colamd_8c.html#a5e151c615eda34903514212f05a5ccf8">PRIVATE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a08f646ff5666336db68cd803605f649d">print_report</a> (char *method, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> stats[<a class="el" href="colamd_8h.html#a411703fc0a994b83ec0e00df1abfc0f7">COLAMD_STATS</a>])</td></tr>
-<tr class="separator:a08f646ff5666336db68cd803605f649d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adca9fc72d47eab9bb55c2877f98bf775"><td class="memItemLeft" align="right" valign="top"><a class="el" href="colamd_8c.html#a5e151c615eda34903514212f05a5ccf8">PRIVATE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#adca9fc72d47eab9bb55c2877f98bf775">print_report</a> (const char *method, <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> stats[<a class="el" href="colamd_8h.html#a411703fc0a994b83ec0e00df1abfc0f7">COLAMD_STATS</a>])</td></tr>
+<tr class="separator:adca9fc72d47eab9bb55c2877f98bf775"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad3dda97381807f40d5de2cd9c76cdec"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#aad3dda97381807f40d5de2cd9c76cdec">t_add</a> (size_t a, size_t b, int *ok)</td></tr>
 <tr class="separator:aad3dda97381807f40d5de2cd9c76cdec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c5479ead565e62b314dca6ecee35acf"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="colamd_8c.html#a3c5479ead565e62b314dca6ecee35acf">t_mult</a> (size_t a, size_t k, int *ok)</td></tr>
@@ -318,6 +319,20 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td>&#160;&#160;&#160;    ((<a class="el" href="colamd_8c.html#a3c5479ead565e62b314dca6ecee35acf">t_mult</a> (<a class="el" href="colamd_8c.html#aad3dda97381807f40d5de2cd9c76cdec">t_add</a> (n_col, 1, ok), sizeof (<a class="el" href="colamd_8c.html#a2b3ca473160c3b6956a6aac9758f2223">Colamd_Col</a>), ok) / sizeof (<a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a>)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1cf6ce8ce8192c19669e6c3533ca5189" name="a1cf6ce8ce8192c19669e6c3533ca5189"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf6ce8ce8192c19669e6c3533ca5189">&#9670;&nbsp;</a></span>COLAMD_EMPTY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLAMD_EMPTY&#160;&#160;&#160;(-1)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -562,20 +577,6 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td>&#160;&#160;&#160;    ((<a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a>) <a class="el" href="colamd_8c.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a> (16.0, (alpha) * sqrt ((double) (n))))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2b7cf2a3641be7b89138615764d60ba3" name="a2b7cf2a3641be7b89138615764d60ba3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b7cf2a3641be7b89138615764d60ba3">&#9670;&nbsp;</a></span>EMPTY</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define EMPTY&#160;&#160;&#160;(-1)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1075,7 +1076,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="colamd_8c.html#a3c5479ead565e62b314dca6ecee35acf" title=" " alt="" coords="197,309,256,336"/>
 <area shape="rect" href="colamd_8c.html#a73761d13f47935936a30e4534bd0b2d1" title=" " alt="" coords="351,5,439,32"/>
 <area shape="rect" href="colamd_8c.html#a01af621c1624004dfcfb9ec6bbafd754" title=" " alt="" coords="329,56,460,83"/>
-<area shape="rect" href="colamd_8c.html#ab3de87271f85eff787104f3fe6bda915" title=" " alt="" coords="328,107,461,133"/>
+<area shape="rect" href="colamd_8c.html#a6b5235ff2a85b361e4752657237f2c55" title=" " alt="" coords="328,107,461,133"/>
 </map>
 </div>
 
@@ -1146,7 +1147,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="colamd_8c_a32498b38cec2f3f3dda91aff3f0a3524_cgraph.png" border="0" usemap="#acolamd_8c_a32498b38cec2f3f3dda91aff3f0a3524_cgraph" alt=""/></div>
 <map name="acolamd_8c_a32498b38cec2f3f3dda91aff3f0a3524_cgraph" id="acolamd_8c_a32498b38cec2f3f3dda91aff3f0a3524_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,127,32"/>
-<area shape="rect" href="colamd_8c.html#a08f646ff5666336db68cd803605f649d" title=" " alt="" coords="175,5,265,32"/>
+<area shape="rect" href="colamd_8c.html#adca9fc72d47eab9bb55c2877f98bf775" title=" " alt="" coords="175,5,265,32"/>
 </map>
 </div>
 
@@ -1303,14 +1304,14 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,56,105,83"/>
 <area shape="rect" href="colamd_8c.html#a73761d13f47935936a30e4534bd0b2d1" title=" " alt="" coords="176,5,264,32"/>
 <area shape="rect" href="colamd_8c.html#a01af621c1624004dfcfb9ec6bbafd754" title=" " alt="" coords="155,56,285,83"/>
-<area shape="rect" href="colamd_8c.html#ab3de87271f85eff787104f3fe6bda915" title=" " alt="" coords="153,107,287,133"/>
+<area shape="rect" href="colamd_8c.html#a6b5235ff2a85b361e4752657237f2c55" title=" " alt="" coords="153,107,287,133"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ab3de87271f85eff787104f3fe6bda915" name="ab3de87271f85eff787104f3fe6bda915"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3de87271f85eff787104f3fe6bda915">&#9670;&nbsp;</a></span>garbage_collection()</h2>
+<a id="a6b5235ff2a85b361e4752657237f2c55" name="a6b5235ff2a85b361e4752657237f2c55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b5235ff2a85b361e4752657237f2c55">&#9670;&nbsp;</a></span>garbage_collection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1348,7 +1349,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="colamd_8h.html#a91adff1610bdf681555a8f2e330dc963">Int</a> *&#160;</td>
           <td class="paramname"><em>pfree</em>&#160;</td>
         </tr>
         <tr>
@@ -1529,8 +1530,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a08f646ff5666336db68cd803605f649d" name="a08f646ff5666336db68cd803605f649d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08f646ff5666336db68cd803605f649d">&#9670;&nbsp;</a></span>print_report()</h2>
+<a id="adca9fc72d47eab9bb55c2877f98bf775" name="adca9fc72d47eab9bb55c2877f98bf775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adca9fc72d47eab9bb55c2877f98bf775">&#9670;&nbsp;</a></span>print_report()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1538,7 +1539,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname"><a class="el" href="colamd_8c.html#a5e151c615eda34903514212f05a5ccf8">PRIVATE</a> void print_report </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>method</em>, </td>
         </tr>
         <tr>
@@ -1642,7 +1643,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="colamd_8c_a411c4f318bcc825d9c7dff709845210e_cgraph.png" border="0" usemap="#acolamd_8c_a411c4f318bcc825d9c7dff709845210e_cgraph" alt=""/></div>
 <map name="acolamd_8c_a411c4f318bcc825d9c7dff709845210e_cgraph" id="acolamd_8c_a411c4f318bcc825d9c7dff709845210e_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,128,32"/>
-<area shape="rect" href="colamd_8c.html#a08f646ff5666336db68cd803605f649d" title=" " alt="" coords="176,5,267,32"/>
+<area shape="rect" href="colamd_8c.html#adca9fc72d47eab9bb55c2877f98bf775" title=" " alt="" coords="176,5,267,32"/>
 </map>
 </div>
 

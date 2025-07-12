@@ -103,7 +103,11 @@ int main(int argc, char *argv[])
     }
 
     /* Read matrix A from a file in Harwell-Boeing format.*/
+#if 0    
     dreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
+#else
+    dreadMM(fp, &m, &n, &nnz, &a, &asub, &xa);
+#endif    
     
     dCreate_CompCol_Matrix(&A, m, n, nnz, a, asub, xa, SLU_NC, SLU_D, SLU_GE);
     Astore = A.Store;

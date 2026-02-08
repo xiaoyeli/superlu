@@ -113,7 +113,7 @@
     else {
         int argument = 0;
         input_error("zlarnd", &argument);
-        ret_val = 0;
+        ret_val->r = 0., ret_val->i = 0.;
     }
 
 /*     End of ZLARND */

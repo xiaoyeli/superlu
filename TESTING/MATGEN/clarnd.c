@@ -112,7 +112,7 @@
     else {
         int argument = 0;
         input_error("clarnd", &argument);
-        ret_val = 0;
+        ret_val->r = 0.f, ret_val->i = 0.f;
     }
 
 /*     End of CLARND */

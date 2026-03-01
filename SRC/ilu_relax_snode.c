@@ -75,6 +75,7 @@ ilu_relax_snode (
 	j++;
 	relax_fsupc[f++] = snode_start;
 	/* Search for a new leaf */
-	while ( descendants[j] != 0 && j < n ) j++;
+	while (j < n && descendants[j] != 0)
+	    j++;
     }
 }

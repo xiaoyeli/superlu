@@ -2273,7 +2273,7 @@ PRIVATE Int find_ordering	/* return the number of garbage collections */
 #endif /* NDEBUG */
 
 	/* get pivot column from head of minimum degree list */
-	while (head [min_score] == COLAMD_EMPTY && min_score < n_col)
+	while (min_score < n_col && head [min_score] == COLAMD_EMPTY)
 	{
 	    min_score++ ;
 	}

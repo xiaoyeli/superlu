@@ -236,7 +236,7 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
     register int jcol, jj;
     register int kcol;	/* end column of a relaxed snode */
     register int icol;
-    int_t     i, k, iinfo;
+    int_t     drop_row, k, iinfo;
     int       m, n, min_mn, jsupno, fsupc;
     int_t     new_next, nextlu, nextu;
     int       w_def;	/* upper bound on panel width */
@@ -325,10 +325,12 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 
     /* Mark the rows used by relaxed supernodes */
     ifill (marker_relax, m, SLU_EMPTY);
-    i = mark_relax(m, relax_end, relax_fsupc, xa_begin, xa_end,
+    int relaxed_supernodes = mark_relax(m, relax_end, relax_fsupc, xa_begin, xa_end,
 	         asub, marker_relax);
 #if ( PRNTlevel >= 1)
-    printf("%d relaxed supernodes.\n", (int)i);
+    printf("%d relaxed supernodes.\n", i);
+#else
+    (void)relaxed_supernodes; // to suppress unused variable warning
 #endif
 
     /*
@@ -353,9 +355,8 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 		    quota = gamma * Astore->nnz / m * (m - first) / m
 			    * (last - first + 1);
 		else if (drop_rule & DROP_COLUMN) {
-		    int i;
 		    quota = 0;
-		    for (i = first; i <= last; i++)
+		    for (int i = first; i <= last; i++)
 			quota += xa_end[i] - xa_begin[i];
 		    quota = gamma * quota * (m - first) / m;
 		} else if (drop_rule & DROP_AREA)
@@ -366,7 +367,7 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 		fill_tol = pow(fill_ini, 1.0 - 0.5 * (first + last) / min_mn);
 
 		/* Drop small rows */
-		i = ilu_ddrop_row(options, first, last, tol_L, quota, &nnzLj,
+		drop_row = ilu_ddrop_row(options, first, last, tol_L, quota, &nnzLj,
 				  &fill_tol, Glu, tempv, dwork2, 0);
 		/* Reset the parameters */
 		if (drop_rule & DROP_DYNAMIC) {
@@ -378,7 +379,9 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 		}
 		if (fill_tol < 0) iinfo -= (int)fill_tol;
 #ifdef DEBUG
-		num_drop_L += i * (last - first + 1);
+		num_drop_L += drop_row * (last - first + 1);
+#else
+		(void)drop_row; // to suppress unused variable warning
 #endif
 	    }
 
@@ -482,7 +485,6 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 
 		/* Make a fill-in position if the column is entirely zero */
 		if (xlsub[jj + 1] == xlsub[jj]) {
-		    register int i, row;
 		    int_t nextl;
 		    int_t nzlmax = Glu->nzlmax;
 		    int_t *lsub = Glu->lsub;
@@ -501,11 +503,14 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 		    ((double *) Glu->lusup)[xlusup[jj]] = zero;
 
 		    /* Choose a row index (pivrow) for fill-in */
-		    for (i = jj; i < n; i++)
-			if (marker_relax[swap[i]] <= jj) break;
-		    row = swap[i];
-		    marker2[row] = jj;
-		    lsub[xlsub[jj]] = row;
+		    for (int i = jj; i < n; i++) {
+			if (marker_relax[swap[i]] <= jj) {
+			    int row = swap[i];
+			    marker2[row] = jj;
+			    lsub[xlsub[jj]] = row;
+			    break;
+			}
+		    }
 #ifdef DEBUG
 		    printf("Fill col %d.\n", (int)jj);
 		    fflush(stdout);
@@ -575,9 +580,8 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 			quota = gamma * Astore->nnz / m * (m - first) / m
 				* (last - first + 1);
 		    else if (drop_rule & DROP_COLUMN) {
-			int i;
 			quota = 0;
-			for (i = first; i <= last; i++)
+			for (int i = first; i <= last; i++)
 			    quota += xa_end[i] - xa_begin[i];
 			quota = gamma * quota * (m - first) / m;
 		    } else if (drop_rule & DROP_AREA)
@@ -589,7 +593,7 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 			    (double)min_mn);
 
 		    /* Drop small rows */
-		    i = ilu_ddrop_row(options, first, last, tol_L, quota,
+		    drop_row = ilu_ddrop_row(options, first, last, tol_L, quota,
 				      &nnzLj, &fill_tol, Glu, tempv, dwork2,
 				      1);
 
@@ -603,7 +607,7 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 		    }
 		    if (fill_tol < 0) iinfo -= (int)fill_tol;
 #ifdef DEBUG
-		    num_drop_L += i * (last - first + 1);
+		    num_drop_L += drop_row * (last - first + 1);
 #endif
 		} /* if start a new supernode */
 
@@ -619,7 +623,7 @@ dgsitrf(superlu_options_t *options, SuperMatrix *A, int relax, int panel_size,
 
     if ( m > n ) {
 	k = 0;
-	for (i = 0; i < m; ++i)
+	for (int i = 0; i < m; ++i)
 	    if ( perm_r[i] == SLU_EMPTY ) {
 		perm_r[i] = n + k;
 		++k;

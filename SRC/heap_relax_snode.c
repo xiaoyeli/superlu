@@ -123,7 +123,8 @@ heap_relax_snode (
 	}
 	j++;
 	/* Search for a new leaf */
-	while ( descendants[j] != 0 && j < n ) j++;
+	while (j < n && descendants[j] != 0)
+	    j++;
     }
 
 #if ( PRNTlevel>=1 )

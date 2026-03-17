@@ -134,13 +134,14 @@ if ( jcol == MIN_COL ) {
 
     /* Test for singularity */
     if ( pivmax == 0.0 ) {
-#if 0
-        // There is no valid pivot.
-        // jcol represents the rank of U, 
-        // report the rank, let dgstrf handle the pivot
-	*pivrow = lsub_ptr[pivptr];
-	perm_r[*pivrow] = jcol;
-#endif
+	/* There is no valid pivot. jcol represents the rank of U,
+	   report the rank, let sgstrf handle the pivot. */
+	if (pivptr < nsupr) {
+	    *pivrow = lsub_ptr[pivptr];
+	}
+	else {
+	    *pivrow = diagind;
+	}
 	*usepr = 0;
 	return (jcol+1);
     }

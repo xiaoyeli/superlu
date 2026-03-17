@@ -105,7 +105,11 @@ zsnode_bmod (
 	CGEMV( ftcs2, &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr, 
 		&lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );
 #else
-	ztrsv_( "L", "N", "U", &nsupc, &lusup[luptr], &nsupr, 
+	if (nsupr < nsupc) {
+	    /* Fail early rather than passing in invalid parameters to TRSV. */
+	    ABORT("failed to factorize matrix");
+	}
+	ztrsv_( "L", "N", "U", &nsupc, &lusup[luptr], &nsupr,
 	      &lusup[ufirst], &incx );
 	zgemv_( "N", &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr, 
 		&lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );

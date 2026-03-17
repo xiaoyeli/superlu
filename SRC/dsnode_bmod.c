@@ -104,7 +104,11 @@ dsnode_bmod (
 	SGEMV( ftcs2, &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr, 
 		&lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );
 #else
-	dtrsv_( "L", "N", "U", &nsupc, &lusup[luptr], &nsupr, 
+	if (nsupr < nsupc) {
+	    /* Fail early rather than passing in invalid parameters to TRSV. */
+	    ABORT("failed to factorize matrix");
+	}
+	dtrsv_( "L", "N", "U", &nsupc, &lusup[luptr], &nsupr,
 	      &lusup[ufirst], &incx );
 	dgemv_( "N", &nrow, &nsupc, &alpha, &lusup[luptr+nsupc], &nsupr, 
 		&lusup[ufirst], &incx, &beta, &lusup[ufirst+nsupc], &incy );

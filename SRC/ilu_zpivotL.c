@@ -147,11 +147,7 @@ ilu_zpivotL(
 
     /* Test for singularity */
     if (pivmax < 0.0) {
-    	/*fprintf(stderr, "[0]: jcol=%d, SINGULAR!!!\n", jcol);
-	fflush(stderr);
-	exit(1); */
-	*usepr = 0;
-	return (jcol+1);
+	ABORT("[0]: matrix is singular");
     }
     if ( pivmax == 0.0 ) {
 	if (diag != SLU_EMPTY)
@@ -164,11 +160,7 @@ ilu_zpivotL(
 	    for (icol = jcol; icol < n; icol++)
 		if (marker[swap[icol]] <= jcol) break;
 	    if (icol >= n) {
-		/* fprintf(stderr, "[1]: jcol=%d, SINGULAR!!!\n", jcol);
-		fflush(stderr);
-		exit(1); */
-   	        *usepr = 0;
-	        return (jcol+1);
+		ABORT("[1]: matrix is singular");
 	    }
 
 	    *pivrow = swap[icol];

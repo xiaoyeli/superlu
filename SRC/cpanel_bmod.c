@@ -235,10 +235,14 @@ cpanel_bmod (
 		    CTRSV( ftcs1, ftcs2, ftcs3, &segsze, &lusup[luptr], 
 			   &nsupr, TriTmp, &incx );
 #else
-		    ctrsv_( "L", "N", "U", &segsze, &lusup[luptr], 
+		    if (nsupr < segsze) {
+			/* Fail early rather than passing in invalid parameters to TRSV. */
+			ABORT("failed to factorize matrix");
+		    }
+		    ctrsv_( "L", "N", "U", &segsze, &lusup[luptr],
 			   &nsupr, TriTmp, &incx );
 #endif
-#else		
+#else
 		    clsolve ( nsupr, segsze, &lusup[luptr], TriTmp );
 #endif
 		    
@@ -428,10 +432,14 @@ cpanel_bmod (
 		    CTRSV( ftcs1, ftcs2, ftcs3, &segsze, &lusup[luptr], 
 			   &nsupr, tempv, &incx );
 #else
-		    ctrsv_( "L", "N", "U", &segsze, &lusup[luptr], 
+		    if (nsupr < segsze) {
+			/* Fail early rather than passing in invalid parameters to TRSV. */
+			ABORT("failed to factorize matrix");
+		    }
+		    ctrsv_( "L", "N", "U", &segsze, &lusup[luptr],
 			   &nsupr, tempv, &incx );
 #endif
-		    
+
 		    luptr += segsze;	/* Dense matrix-vector */
 		    tempv1 = &tempv[segsze];
                     alpha = one;

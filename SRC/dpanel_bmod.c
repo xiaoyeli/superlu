@@ -221,10 +221,14 @@ dpanel_bmod (
 		    STRSV( ftcs1, ftcs2, ftcs3, &segsze, &lusup[luptr], 
 			   &nsupr, TriTmp, &incx );
 #else
-		    dtrsv_( "L", "N", "U", &segsze, &lusup[luptr], 
+		    if (nsupr < segsze) {
+			/* Fail early rather than passing in invalid parameters to TRSV. */
+			ABORT("failed to factorize matrix");
+		    }
+		    dtrsv_( "L", "N", "U", &segsze, &lusup[luptr],
 			   &nsupr, TriTmp, &incx );
 #endif
-#else		
+#else
 		    dlsolve ( nsupr, segsze, &lusup[luptr], TriTmp );
 #endif
 		    
@@ -400,7 +404,11 @@ dpanel_bmod (
 		    STRSV( ftcs1, ftcs2, ftcs3, &segsze, &lusup[luptr], 
 			   &nsupr, tempv, &incx );
 #else
-		    dtrsv_( "L", "N", "U", &segsze, &lusup[luptr], 
+		    if (nsupr < segsze) {
+			/* Fail early rather than passing in invalid parameters to TRSV. */
+			ABORT("failed to factorize matrix");
+		    }
+		    dtrsv_( "L", "N", "U", &segsze, &lusup[luptr],
 			   &nsupr, tempv, &incx );
 #endif
 		    

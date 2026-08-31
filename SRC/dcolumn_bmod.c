@@ -43,7 +43,7 @@ at the top-level directory.
  * ========
  * Performs numeric block updates (sup-col) in topological order.
  * It features: col-col, 2cols-col, 3cols-col, and sup-col updates.
- * Special processing on the supernodal portion of L\\U[*,j]
+ * Special processing on the supernodal portion of L\U[*,j]
  * Return value:   0 - successful return
  *               > 0 - number of bytes allocated when run out of space
  * </pre>
@@ -67,7 +67,7 @@ dcolumn_bmod (
          ftcs2 = _cptofcd("N", strlen("N")),
          ftcs3 = _cptofcd("U", strlen("U"));
 #endif
-    int         incx = 1, incy = 1;
+    slu_blasint incx = 1, incy = 1;
     double      alpha, beta;
     
     /* krep = representative of current k-th supernode
@@ -80,8 +80,8 @@ dcolumn_bmod (
      */
     double      ukj, ukj1, ukj2;
     int_t        luptr, luptr1, luptr2;
-    int          fsupc, nsupc, nsupr, segsze;
-    int          nrow;	  /* No of rows in the matrix of matrix-vector */
+    slu_blasint  fsupc, nsupc, nsupr, segsze;
+    slu_blasint  nrow;	  /* No of rows in the matrix of matrix-vector */
     int          jcolp1, jsupno, k, ksub, krep, krep_ind, ksupno;
     int_t        lptr, kfnz, isub, irow, i;
     int_t        no_zeros, new_next, ufirst, nextlu;

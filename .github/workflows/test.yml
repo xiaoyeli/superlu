@@ -23,6 +23,31 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
 
+  test-ubuntu-asan:
+    name: Ubuntu AddressSanitizer build and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Install dependencies
+        run: sudo apt-get install cmake gcc
+
+      - name: Configure
+        run: >
+          cmake -B build
+          -DCMAKE_BUILD_TYPE=Debug
+          -DCMAKE_C_FLAGS="-fsanitize=address -fno-omit-frame-pointer"
+          -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
+          -DCMAKE_SHARED_LINKER_FLAGS="-fsanitize=address"
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
   test-extended-ubuntu:
     name: Ubuntu extended build and test
     runs-on: ubuntu-latest

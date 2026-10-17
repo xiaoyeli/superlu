@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
     StatFree(&stat);
     Destroy_CompCol_Matrix(&A);
     Destroy_Dense_Matrix(&B);
-    if ( lwork >= 0 ) { /* Deallocate storage associated with L and U. */
+    if ( lwork == 0 ) { /* Deallocate storage associated with L and U. */
         Destroy_SuperNode_Matrix(&L);
         Destroy_CompCol_Matrix(&U);
     }

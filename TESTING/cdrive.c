@@ -392,10 +392,9 @@ int main(int argc, char *argv[])
 			    /* Restore perm_c. */
 			    for (i = 0; i < n; ++i) perm_c[i] = pc_save[i];
 
-		            if (lwork == 0) {
-			        Destroy_SuperNode_Matrix(&L);
-			        Destroy_CompCol_Matrix(&U);
-			    }
+			    /* cgssv allocated the factors */
+			    Destroy_SuperNode_Matrix(&L);
+			    Destroy_CompCol_Matrix(&U);
 			} /* if .. end of testing cgssv */
     
 			/*----------------
@@ -409,6 +408,19 @@ int main(int argc, char *argv[])
 			    claqgs(&A, R, C, rowcnd, colcnd, amax, equed);
 			}
 			
+			/* cgssvx computes new factors for DOFACT and
+			   SamePattern; free those of the previous call. */
+			if ( itran > 0 && (options.Fact == DOFACT ||
+					   options.Fact == SamePattern) ) {
+			    if ( lwork == 0 ) {
+				Destroy_SuperNode_Matrix(&L);
+				Destroy_CompCol_Matrix(&U);
+			    } else { /* L and U are stored in work[] */
+				Destroy_SuperMatrix_Store(&L);
+				Destroy_SuperMatrix_Store(&U);
+			    }
+			}
+
 			/* Solve the system and compute the condition number
 			   and error bounds using cgssvx.      */
 			cgssvx(&options, &A, perm_c, perm_r, etree,
@@ -473,6 +485,9 @@ int main(int argc, char *argv[])
 		    if ( lwork == 0 ) {
 			Destroy_SuperNode_Matrix(&L);
 			Destroy_CompCol_Matrix(&U);
+		    } else { /* L and U are stored in work[] */
+			Destroy_SuperMatrix_Store(&L);
+			Destroy_SuperMatrix_Store(&U);
 		    }
 
 		} /* for equil ... */
@@ -518,8 +533,6 @@ int main(int argc, char *argv[])
 #endif
     if ( lwork > 0 ) {
 	SUPERLU_FREE (work);
-	Destroy_SuperMatrix_Store(&L);
-	Destroy_SuperMatrix_Store(&U);
     }
 
     return (nfail == 0) ? EXIT_SUCCESS : EXIT_FAILURE;

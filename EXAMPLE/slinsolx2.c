@@ -69,10 +69,6 @@ int main(int argc, char *argv[])
     SuperLUStat_t stat;
     FILE 	   *fp = stdin;
 
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC("Enter main()");
-#endif
-
     /* Defaults */
     lwork = 0;
     nrhs  = 1;
@@ -267,9 +263,6 @@ int main(int argc, char *argv[])
         SUPERLU_FREE(work);
     }
 
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC("Exit main()");
-#endif
     return EXIT_SUCCESS;
 }
 

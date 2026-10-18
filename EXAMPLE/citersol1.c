@@ -151,10 +151,6 @@ int main(int argc, char *argv[])
     extern int num_drop_L, num_drop_U;
 #endif
 
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC("Enter main()");
-#endif
-
     /* Defaults */
     lwork = 0;
     nrhs  = 1;
@@ -404,10 +400,6 @@ int main(int argc, char *argv[])
     }
     SUPERLU_FREE(b);
     SUPERLU_FREE(x);
-
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC("Exit main()");
-#endif
 
     return EXIT_SUCCESS;
 }

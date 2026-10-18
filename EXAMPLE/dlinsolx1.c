@@ -222,6 +222,8 @@ int main(int argc, char *argv[])
         Destroy_SuperNode_Matrix(&L);
         Destroy_CompCol_Matrix(&U);
     } else if ( lwork > 0 ) {
+        Destroy_SuperMatrix_Store(&L);
+        Destroy_SuperMatrix_Store(&U);
         SUPERLU_FREE(work);
     }
 

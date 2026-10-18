@@ -195,6 +195,9 @@ int main(int argc, char *argv[])
     if ( lwork == 0 ) { /* Deallocate storage associated with L and U. */
         Destroy_SuperNode_Matrix(&L);
         Destroy_CompCol_Matrix(&U);
+    } else if ( lwork > 0 ) { /* L and U are stored in work[]. */
+        Destroy_SuperMatrix_Store(&L);
+        Destroy_SuperMatrix_Store(&U);
     }
 
     /* ------------------------------------------------------------
@@ -259,6 +262,8 @@ int main(int argc, char *argv[])
         Destroy_SuperNode_Matrix(&L);
         Destroy_CompCol_Matrix(&U);
     } else if ( lwork > 0 ) {
+        Destroy_SuperMatrix_Store(&L);
+        Destroy_SuperMatrix_Store(&U);
         SUPERLU_FREE(work);
     }
 

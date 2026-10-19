@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
     SuperLUStat_t  stat;
     static char    matrix_type[8];
     static char    equed[1], path[4], sym[1], dist[1];
-    FILE           *fp;
+    FILE           *fp = NULL;
 
     /* Fixed set of parameters */
     int            iseed[]  = {1988, 1989, 1990, 1991};
@@ -166,6 +166,7 @@ int main(int argc, char *argv[])
     } else {
 	/* Read a sparse matrix */
 	fimat = nimat = 0;
+	if ( !fp ) ABORT("Matrix type requires an input file (-f <file>)");
 	sreadhb(fp, &m, &n, &nnz, &a, &asub, &xa);
     }
 
@@ -555,6 +556,7 @@ parse_command_line(int argc, char *argv[], char *matrix_type,
 	    printf("Options:\n");
 	    printf("\t-w <int> - panel size\n");
 	    printf("\t-r <int> - granularity of relaxed supernodes\n");
+	    printf("\t-f <file> - file with test sparse matrix\n");
 	    exit(1);
 	    break;
 	  case 't': strcpy(matrix_type, optarg);

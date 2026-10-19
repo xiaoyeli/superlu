@@ -53,7 +53,7 @@ dlatms_slu(int *m, int *n, char *dist, int *
 	    int *, double *, int *), dlarot_slu(bool *, bool *,
 	     bool *, int *, double *, double *, double *,
 	    int *, double *, double *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static bool iltemp, givens;
     static int ioffst, irsign;
     static bool ilextr, topdwn;

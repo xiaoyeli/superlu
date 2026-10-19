@@ -62,7 +62,7 @@ static bool c_false = false;
 	    singlecomplex *, float *, singlecomplex *, singlecomplex *),
 	    clagsy_slu(int *, int *, float *, singlecomplex *,
 	    int *, int *, singlecomplex *, int *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     extern double slarnd_slu(int *, int *);
     extern /* Subroutine */ int clarot_slu(bool *, bool *, bool *,
 	    int *, singlecomplex *, singlecomplex *, singlecomplex *, int *, singlecomplex *,

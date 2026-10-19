@@ -18,7 +18,7 @@
     real temp;
     integer i, j, ix, jy, kx;
 
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
 
 /*  Purpose   
     =======   

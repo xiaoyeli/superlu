@@ -56,7 +56,7 @@ static bool c_false = false;
 	    doublecomplex *, int *), zlaghe_slu(int *, int *,
 	    double *, doublecomplex *, int *, int *,
 						 doublecomplex *, int *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static bool iltemp, givens;
     static int ioffst, irsign;
     extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *,

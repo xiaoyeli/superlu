@@ -39,7 +39,7 @@ static int c__1 = 1;
     static double wn;
     extern /* Subroutine */ int zlacgv_slu(int *, doublecomplex *, int *), zlarnv_slu(int *,
 	    int *, int *, doublecomplex *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static doublecomplex tau;
 
 

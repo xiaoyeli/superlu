@@ -26,7 +26,7 @@
     integer i, j;
     integer ix, iy, jx, jy, kx, ky;
 
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
 
 /*  Purpose   
     =======   

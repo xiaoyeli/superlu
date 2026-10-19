@@ -26,7 +26,7 @@ static float c_b10 = 0.f;
     extern /* Subroutine */ int sscal_(int *, float *, float *, int *);
     static float wa, wb, wn;
     extern /* Subroutine */ int slarnv_slu(int *, int *, int *, float *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static float tau;
 
 

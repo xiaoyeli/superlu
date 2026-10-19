@@ -33,7 +33,7 @@ static float c_b26 = 1.f;
 	    float *, float *, int *);
     static float wa, wb, wn;
     extern /* Subroutine */ int slarnv_slu(int *, int *, int *, float *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static float tau;
 
 

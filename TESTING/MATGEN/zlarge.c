@@ -31,7 +31,7 @@ static int c__1 = 1;
     static doublecomplex wa, wb;
     static double wn;
     extern /* Subroutine */ int zlarnv_slu(int *, int *, int *, doublecomplex *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static doublecomplex tau;
 
 

@@ -27,7 +27,7 @@
     integer ix, iy, jx, jy, kx, ky;
     logical noconj;
 
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
 
 /*  Purpose   
     =======   

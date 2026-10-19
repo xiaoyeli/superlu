@@ -19,7 +19,7 @@
     static double alpha;
     extern double dlaran_slu(int *);
     extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, double *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
 
 
 /*  -- LAPACK auxiliary test routine (version 2.0) --   

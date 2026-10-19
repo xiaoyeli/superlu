@@ -111,7 +111,7 @@
     static singlecomplex temp1, temp2;
     static int i, j;
     static int ix, iy, jx, jy, kx, ky;
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
 
 #define X(I) x[(I)-1]
 #define Y(I) y[(I)-1]

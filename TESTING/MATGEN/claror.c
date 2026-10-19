@@ -37,7 +37,7 @@ static int c__1 = 1;
     extern /* Complex */ void clarnd_slu(singlecomplex *, int *, int *);
     extern /* Subroutine */ int claset_slu(char *, int *, int *, singlecomplex
 	    *, singlecomplex *, singlecomplex *, int *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static float factor;
     static singlecomplex xnorms;
 

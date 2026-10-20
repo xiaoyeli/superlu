@@ -35,7 +35,7 @@ To run the small 5x5 sample program in Section 1 of the Users' Guide, type:
     	% superlu
 
 To run the real version examples, type:
-        % dlinsol < g20.rua      (or, % slinsol < g20.rua)
+        % dlinsol < g20.rua      (or, % slinsol g20.rua)
         % dlinsolx  < g20.rua     (or, % slinsolx < g20.rua)
         % dlinsolx1 < g20.rua    (or, % slinsolx1 < g20.rua)
         % dlinsolx2 < g20.rua    (or, % slinsolx2 < g20.rua)

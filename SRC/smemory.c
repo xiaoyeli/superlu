@@ -537,9 +537,9 @@ void
 		}
 	    }
 	    if ( type == LSUB || type == USUB ) {
-		copy_mem_int(len_to_copy, expanders[type].mem, new_mem);
+		memmove(new_mem, expanders[type].mem, (size_t)len_to_copy * sizeof(int_t));
 	    } else {
-		copy_mem_float(len_to_copy, expanders[type].mem, new_mem);
+		memmove(new_mem, expanders[type].mem, (size_t)len_to_copy * sizeof(float));
 	    }
 	    SUPERLU_FREE (expanders[type].mem);
 	}
@@ -587,7 +587,7 @@ void
 		new_mem = (void*)((char*)expanders[type + 1].mem + extra);
 		bytes_to_copy = (char*)Glu->stack.array + Glu->stack.top1
 		    - (char*)expanders[type + 1].mem;
-		user_bcopy(expanders[type+1].mem, new_mem, bytes_to_copy);
+		memmove(new_mem, expanders[type+1].mem, (size_t)bytes_to_copy);
 
 		if ( type < USUB ) {
 		    Glu->usub = expanders[USUB].mem =
@@ -648,17 +648,17 @@ sStackCompress(GlobalLU_t *Glu)
     
     dfrom = ucol;
     dto = (float *)((char*)lusup + xlusup[ndim] * dword);
-    copy_mem_float(xusub[ndim], dfrom, dto);
+    memmove(dto, dfrom, (size_t)xusub[ndim] * sizeof(float));
     ucol = dto;
 
     ifrom = lsub;
     ito = (int_t *) ((char*)ucol + xusub[ndim] * dword);
-    copy_mem_int(xlsub[ndim], ifrom, ito);
+    memmove(ito, ifrom, (size_t)xlsub[ndim] * sizeof(int_t));
     lsub = ito;
     
     ifrom = usub;
     ito = (int_t *) ((char*)lsub + xlsub[ndim] * liword);
-    copy_mem_int(xusub[ndim], ifrom, ito);
+    memmove(ito, ifrom, (size_t)xusub[ndim] * sizeof(int_t));
     usub = ito;
     
     last = (char*)usub + xusub[ndim] * liword;

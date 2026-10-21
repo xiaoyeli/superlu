@@ -23,8 +23,8 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
 
-  test-ubuntu-asan:
-    name: Ubuntu AddressSanitizer build and test
+  test-ubuntu-asan-ubsan:
+    name: Ubuntu AddressSanitizer and UndefinedBehaviorSanitizer build and test
     runs-on: ubuntu-latest
 
     steps:
@@ -38,9 +38,9 @@ jobs:
         run: >
           cmake -B build
           -DCMAKE_BUILD_TYPE=Debug
-          -DCMAKE_C_FLAGS="-fsanitize=address -fno-omit-frame-pointer"
-          -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
-          -DCMAKE_SHARED_LINKER_FLAGS="-fsanitize=address"
+          -DCMAKE_C_FLAGS="-fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer"
+          -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
+          -DCMAKE_SHARED_LINKER_FLAGS="-fsanitize=address,undefined"
 
       - name: Build
         run: cmake --build build

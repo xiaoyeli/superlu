@@ -482,6 +482,10 @@ cLUMemXpand(int jcol,
 }
 
 
+/*! \brief Deprecated: unused within SuperLU, use memmove() instead.
+ *
+ * This function will be removed in a future version.
+ */
 void
 copy_mem_singlecomplex(int_t howmany, void *old, void *new)
 {

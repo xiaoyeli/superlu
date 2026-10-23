@@ -70,12 +70,7 @@ at the top-level directory.
 
 
 #ifndef USER_MALLOC
-#if 1
 #define USER_MALLOC(size) superlu_malloc(size)
-#else
-/* The following may check out some uninitialized data */
-#define USER_MALLOC(size) memset (superlu_malloc(size), '\x0F', size)
-#endif
 #endif
 
 #define SUPERLU_MALLOC(size) USER_MALLOC(size)
@@ -85,12 +80,6 @@ at the top-level directory.
 #endif
 
 #define SUPERLU_FREE(addr) USER_FREE(addr)
-
-#define CHECK_MALLOC(where) {                 \
-    extern int64_t superlu_malloc_total;        \
-    printf("%s: malloc_total %lld Bytes\n",     \
-	   where, superlu_malloc_total); \
-}
 
 #define SUPERLU_MAX(x, y) 	( (x) > (y) ? (x) : (y) )
 #define SUPERLU_MIN(x, y) 	( (x) < (y) ? (x) : (y) )

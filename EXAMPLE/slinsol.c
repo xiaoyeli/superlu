@@ -46,10 +46,6 @@ int main(int argc, char *argv[])
     SuperLUStat_t stat;
     FILE      *fp = stdin;
     
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC("Enter main()");
-#endif
-
     /* Set the default input options:
 	options.Fact = DOFACT;
         options.Equil = YES;
@@ -127,10 +123,6 @@ int main(int argc, char *argv[])
     Destroy_SuperMatrix_Store(&B);
     Destroy_SuperNode_Matrix(&L);
     Destroy_CompCol_Matrix(&U);
-
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC("Exit main()");
-#endif
 
     return EXIT_SUCCESS;
 }

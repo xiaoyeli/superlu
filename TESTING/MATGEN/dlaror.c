@@ -36,7 +36,7 @@ static int c__1 = 1;
     extern double dlarnd_slu(int *, int *);
     extern /* Subroutine */ int dlaset_slu(char *, int *, int *,
 					double *, double *, double *, int *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static double factor, xnorms;
 
 

@@ -29,7 +29,7 @@ static int c__1 = 1;
     static singlecomplex wa, wb;
     static float wn;
     extern /* Subroutine */ int clarnv_slu(int *, int *, int *, singlecomplex *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static singlecomplex tau;
 
 

@@ -23,7 +23,7 @@ int clarot_slu(bool *lrows, bool *lleft, bool *lright,
     static singlecomplex tempx;
     static int ix, iy, nt;
     static singlecomplex xt[2], yt[2];
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static int iyt;
 
 

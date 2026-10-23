@@ -23,7 +23,7 @@ int slarot_slu(bool *lrows, bool *lleft, bool *lright,
 	    int *, float *, float *);
     static int inext, ix, iy, nt;
     static float xt[2], yt[2];
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static int iyt;
 
 

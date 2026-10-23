@@ -31,7 +31,7 @@ static int c__1 = 1;
     extern /* Subroutine */ int clacgv_slu(int *, singlecomplex *, int *);
     static float wn;
     extern /* Subroutine */ int clarnv_slu(int *, int *, int *, singlecomplex *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static singlecomplex tau;
 
 

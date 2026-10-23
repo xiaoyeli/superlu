@@ -11,7 +11,7 @@ double slarnd_slu(int *idist, int *iseed)
     /* Local variables */
     static float t1, t2;
     extern double dlaran_sluslu(int *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
 
 
 /*  -- LAPACK auxiliary routine (version 2.0) --   

@@ -16,7 +16,7 @@
     static float temp;
     static int i;
     static float alpha;
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     extern double dlaran_sluslu(int *);
     extern /* Subroutine */ int slarnv_slu(int *, int *, int *, float
 	    *);

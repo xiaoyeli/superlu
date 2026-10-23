@@ -29,7 +29,7 @@ static double c_b13 = 0.;
     extern /* Subroutine */ int dscal_(int *, double *, double *, int *);
     static double wa, wb, wn;
     extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, double *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static double tau;
 
 

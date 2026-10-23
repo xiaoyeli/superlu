@@ -38,7 +38,7 @@ static double c_b26 = 1.;
 	    int *, double *, double *, int *);
     static double wa, wb, wn;
     extern /* Subroutine */ int dlarnv_slu(int *, int *, int *, double *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static double tau;
 
 

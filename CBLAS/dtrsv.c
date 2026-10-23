@@ -20,7 +20,7 @@
     integer ix, jx, kx;
     logical nounit;
 
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
 
 /*  Purpose   
     =======   

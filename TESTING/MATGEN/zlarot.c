@@ -23,7 +23,7 @@ int zlarot_slu(bool *lrows, bool *lleft, bool *lright,
     static doublecomplex tempx;
     static int ix, iy, nt;
     static doublecomplex xt[2], yt[2];
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static int iyt;
 
 

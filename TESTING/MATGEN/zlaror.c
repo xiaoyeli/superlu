@@ -36,7 +36,7 @@ static int c__1 = 1;
     static int itype, nxfrm;
     static double xnorm;
     extern double dznrm2_(int *, doublecomplex *, int *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static double factor;
     extern /* Subroutine */ int zlacgv_slu(int *, doublecomplex *, int *);
     extern /* Double Complex */ void zlarnd_slu(doublecomplex *, int *, int *);

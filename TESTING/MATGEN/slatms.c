@@ -42,7 +42,7 @@ static bool c_false = false;
 	    int *, float *, float *, int *, int *, float *, int *
 	    );
     static int minlda;
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     extern double slarnd_slu(int *, int *);
     static bool iltemp, givens;
     static int ioffst, irsign;

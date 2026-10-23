@@ -130,7 +130,7 @@ index abb5a82..14fa883 100644
 +    singlecomplex temp;
      integer i, j, ix, jy, kx;
  
-     extern int input_error(char *, int *);
+     extern void input_error(char *, int *);
 diff --git a/CBLAS/chemv.c b/CBLAS/chemv.c
 index a8ac576..2c2a4f2 100644
 --- a/CBLAS/chemv.c

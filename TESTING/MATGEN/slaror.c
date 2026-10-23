@@ -29,7 +29,7 @@ static int c__1 = 1;
 	    float *, int *, float *, float *, int *);
     static int ixfrm, itype, nxfrm;
     static float xnorm;
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static float factor;
     extern double slarnd_slu(int *, int *);
     extern /* Subroutine */ int slaset_slu(char *, int *, int *, float *,

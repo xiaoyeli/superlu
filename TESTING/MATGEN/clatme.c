@@ -62,7 +62,7 @@ static int c__5 = 5;
 	    *), claset_slu(char *, int *, int *, singlecomplex *, singlecomplex *,
 	    singlecomplex *, int *),
 	     clarnv_slu(int *, int *, int *, singlecomplex *);
-    extern int input_error(char *, int *);
+    extern void input_error(char *, int *);
     static int irsign, iupper;
     static singlecomplex xnorms;
     static int jcr;

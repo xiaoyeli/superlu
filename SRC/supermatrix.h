@@ -12,8 +12,8 @@ at the top-level directory.
  * \brief Matrix type definitions
  */
 
-#ifndef __SUPERLU_SUPERMATRIX /* allow multiple inclusions */
-#define __SUPERLU_SUPERMATRIX
+#ifndef SUPERLU_SUPERMATRIX_H /* allow multiple inclusions */
+#define SUPERLU_SUPERMATRIX_H
 
 
 /********************************************
@@ -217,4 +217,4 @@ typedef struct NRformat_loc3d
 } NRformat_loc3d;
 
 
-#endif  /* __SUPERLU_SUPERMATRIX */
+#endif  /* SUPERLU_SUPERMATRIX_H */

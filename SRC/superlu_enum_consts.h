@@ -18,8 +18,8 @@ at the top-level directory.
  *
  */
 
-#ifndef __SUPERLU_ENUM_CONSTS /* allow multiple inclusions */
-#define __SUPERLU_ENUM_CONSTS
+#ifndef SUPERLU_ENUM_CONSTS_H /* allow multiple inclusions */
+#define SUPERLU_ENUM_CONSTS_H
 
 #define LargeDiag_AWPM LargeDiag_HWPM  /* backward compatibility */
 
@@ -89,4 +89,4 @@ typedef enum {
     NPHASES  /* total number of phases */
 } PhaseType;
 
-#endif /* __SUPERLU_ENUM_CONSTS */
+#endif /* SUPERLU_ENUM_CONSTS_H */

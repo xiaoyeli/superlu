@@ -147,6 +147,8 @@ add_executable(slinsol
                ${_DEPENDENCY_ALL}
                slinsol.c)
 target_link_libraries(slinsol superlu)
+add_test(NAME slinsol
+         COMMAND slinsol "${CMAKE_CURRENT_SOURCE_DIR}/g20.rua")
 
 add_executable(slinsol1
                ${_DEPENDENCY_ALL}

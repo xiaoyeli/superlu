@@ -18,8 +18,8 @@ at the top-level directory.
  *
  */
 
-#ifndef __SUPERLU_UTIL /* allow multiple inclusions */
-#define __SUPERLU_UTIL
+#ifndef SUPERLU_UTIL_H /* allow multiple inclusions */
+#define SUPERLU_UTIL_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -422,4 +422,4 @@ extern void    check_perm(const char *what, int n, const int *perm);
   }
 #endif
 
-#endif /* __SUPERLU_UTIL */
+#endif /* SUPERLU_UTIL_H */

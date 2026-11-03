@@ -71,8 +71,8 @@ at the top-level directory.
  *	Storage: new row subscripts; that is subscripts of PA.
  * </pre>
  */
-#ifndef __SUPERLU_sSP_DEFS /* allow multiple inclusions */
-#define __SUPERLU_sSP_DEFS
+#ifndef SUPERLU_sSP_DEFS_H /* allow multiple inclusions */
+#define SUPERLU_sSP_DEFS_H
 
 /*
  * File name:		ssp_defs.h
@@ -281,5 +281,5 @@ extern void smatvec(int, int, int, float*, float*, float*);
   }
 #endif
 
-#endif /* __SUPERLU_sSP_DEFS */
+#endif /* SUPERLU_sSP_DEFS_H */
 

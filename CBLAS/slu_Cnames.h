@@ -16,8 +16,8 @@
  * to be in all upcase (CRAY wants this). 
  * </pre>
  */
-#ifndef __SUPERLU_CNAMES /* allow multiple inclusions */
-#define __SUPERLU_CNAMES
+#ifndef SUPERLU_CNAMES_H /* allow multiple inclusions */
+#define SUPERLU_CNAMES_H
 
 
 #define ADD_       0
@@ -439,4 +439,4 @@
 #endif
 
 
-#endif /* __SUPERLU_CNAMES */
+#endif /* SUPERLU_CNAMES_H */

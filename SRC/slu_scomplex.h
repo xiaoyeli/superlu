@@ -21,8 +21,8 @@ at the top-level directory.
  * This header file is to be included in source files c*.c
  * </pre>
  */
-#ifndef __SUPERLU_SCOMPLEX /* allow multiple inclusions */
-#define __SUPERLU_SCOMPLEX
+#ifndef SUPERLU_SCOMPLEX_H /* allow multiple inclusions */
+#define SUPERLU_SCOMPLEX_H
 
 
 #ifndef SCOMPLEX_INCLUDE
@@ -90,4 +90,4 @@ singlecomplex c_sqrt(singlecomplex *);
 
 #endif
 
-#endif  /* __SUPERLU_SCOMPLEX */
+#endif  /* SUPERLU_SCOMPLEX_H */

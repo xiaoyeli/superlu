@@ -25,66 +25,6 @@ at the top-level directory.
 #include "slu_ddefs.h"
 
 
-#if ( DEBUGlevel>=1 )           /* Debug malloc/free. */
-int64_t superlu_malloc_total = 0;
-
-#define PAD_FACTOR  2
-#define DWORD  (sizeof(double)) /* Be sure it's no smaller than double. */
-/* size_t is usually defined as 'unsigned long' */
-
-void *superlu_malloc(size_t size)
-{
-    char *buf;
-
-    buf = (char *) malloc(size + DWORD);
-    if ( !buf ) {
-	printf("superlu_malloc fails: malloc_total %.0f MB, size %lld\n",
-	       superlu_malloc_total*1e-6, (long long)size);
-	ABORT("superlu_malloc: out of memory");
-    }
-
-    ((size_t *) buf)[0] = size;
-#if 0
-    superlu_malloc_total += size + DWORD;
-#else
-    superlu_malloc_total += size;
-#endif
-    return (void *) (buf + DWORD);
-}
-
-void superlu_free(void *addr)
-{
-    char *p = ((char *) addr) - DWORD;
-
-    if ( !addr )
-	ABORT("superlu_free: tried to free NULL pointer");
-
-    if ( !p )
-	ABORT("superlu_free: tried to free NULL+DWORD pointer");
-
-    { 
-	int_t n = ((size_t *) p)[0];
-	
-	if ( !n )
-	    ABORT("superlu_free: tried to free a freed pointer");
-	*((size_t *) p) = 0; /* Set to zero to detect duplicate free's. */
-#if 0	
-	superlu_malloc_total -= (n + DWORD);
-#else
-	superlu_malloc_total -= n;
-#endif
-
-	if ( superlu_malloc_total < 0 )
-	    ABORT("superlu_malloc_total went negative!");
-	
-	/*free (addr);*/
-	free (p);
-    }
-
-}
-
-#else   /* production mode */
-
 void *superlu_malloc(size_t size)
 {
     void *buf;
@@ -96,8 +36,6 @@ void superlu_free(void *addr)
 {
     free (addr);
 }
-
-#endif
 
 
 /*! \brief Set up pointers for integer working arrays.

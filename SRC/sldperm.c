@@ -103,9 +103,6 @@ sldperm(int job, int n, int_t nnz, int_t colptr[], int_t adjncy[],
     double *dw;
     double *nzval_d = (double *) SUPERLU_MALLOC(nnz * sizeof(double));
 
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC("Enter sldperm()");
-#endif
     liw = 5*n;
     if ( job == 3 ) liw = 10*n + nnz;
     if ( !(iw = intMalloc(liw)) ) ABORT("Malloc fails for iw[]");
@@ -174,10 +171,6 @@ sldperm(int job, int n, int_t nnz, int_t colptr[], int_t adjncy[],
     SUPERLU_FREE(iw);
     SUPERLU_FREE(dw);
     SUPERLU_FREE(nzval_d);
-
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC("Exit sldperm()");
-#endif
 
     return info[0];
 }

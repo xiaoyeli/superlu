@@ -71,8 +71,8 @@ at the top-level directory.
  *	Storage: new row subscripts; that is subscripts of PA.
  * </pre>
  */
-#ifndef __SUPERLU_zSP_DEFS /* allow multiple inclusions */
-#define __SUPERLU_zSP_DEFS
+#ifndef SUPERLU_zSP_DEFS_H /* allow multiple inclusions */
+#define SUPERLU_zSP_DEFS_H
 
 /*
  * File name:		zsp_defs.h
@@ -284,5 +284,5 @@ extern void zmatvec(int, int, int, doublecomplex*, doublecomplex*, doublecomplex
   }
 #endif
 
-#endif /* __SUPERLU_zSP_DEFS */
+#endif /* SUPERLU_zSP_DEFS_H */
 

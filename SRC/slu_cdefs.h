@@ -71,8 +71,8 @@ at the top-level directory.
  *	Storage: new row subscripts; that is subscripts of PA.
  * </pre>
  */
-#ifndef __SUPERLU_cSP_DEFS /* allow multiple inclusions */
-#define __SUPERLU_cSP_DEFS
+#ifndef SUPERLU_cSP_DEFS_H /* allow multiple inclusions */
+#define SUPERLU_cSP_DEFS_H
 
 /*
  * File name:		csp_defs.h
@@ -284,5 +284,5 @@ extern void cmatvec(int, int, int, singlecomplex*, singlecomplex*, singlecomplex
   }
 #endif
 
-#endif /* __SUPERLU_cSP_DEFS */
+#endif /* SUPERLU_cSP_DEFS_H */
 

@@ -71,8 +71,8 @@ at the top-level directory.
  *	Storage: new row subscripts; that is subscripts of PA.
  * </pre>
  */
-#ifndef __SUPERLU_dSP_DEFS /* allow multiple inclusions */
-#define __SUPERLU_dSP_DEFS
+#ifndef SUPERLU_dSP_DEFS_H /* allow multiple inclusions */
+#define SUPERLU_dSP_DEFS_H
 
 /*
  * File name:		dsp_defs.h
@@ -281,5 +281,5 @@ extern void dmatvec(int, int, int, double*, double*, double*);
   }
 #endif
 
-#endif /* __SUPERLU_dSP_DEFS */
+#endif /* SUPERLU_dSP_DEFS_H */
 

@@ -21,8 +21,8 @@ at the top-level directory.
  * This header file is to be included in source files z*.c
  * </pre>
  */
-#ifndef __SUPERLU_DCOMPLEX /* allow multiple inclusions */
-#define __SUPERLU_DCOMPLEX
+#ifndef SUPERLU_DCOMPLEX_H /* allow multiple inclusions */
+#define SUPERLU_DCOMPLEX_H
 
 
 #ifndef DCOMPLEX_INCLUDE
@@ -85,4 +85,4 @@ doublecomplex z_sqrt(doublecomplex *);
 
 #endif
 
-#endif  /* __SUPERLU_DCOMPLEX */
+#endif  /* SUPERLU_DCOMPLEX_H */
